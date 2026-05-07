@@ -3,34 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOORA · The Finisher Protocol</title>
-<meta name="description" content="A diagnostic for the Finisher. Taken every fifteen days across the 180-day path.">
-<meta name="theme-color" content="#0A2746">
+<title>KOORA · UNFINISHED Assessment · House of Mastery</title>
+<meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA.">
+<meta name="theme-color" content="#0B2341">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:radial-gradient(circle at 84% 10%,rgba(201,151,58,.10),transparent 28%),linear-gradient(180deg,#F8F4EA 0%,#FBF8F0 42%,#F5EFE2 100%);color:#3A3A40;min-height:100vh;line-height:1.5}
 :root{
   --serif:'Source Serif 4',Georgia,serif;
   --sans:'Plus Jakarta Sans',system-ui,sans-serif;
-  --navy:#0D1F3C;
-  --navy-soft:#1B2D4F;
-  --gold:#C9973A;
-  --gold-soft:#E8B85A;
-  --ink:#1A1A1F;
+  --navy:#0B2341;
+  --navy-soft:#17385F;
+  --gold:#A8873E;
+  --gold-soft:#D6B05B;
+  --ink:#10213B;
   --body:#3A3A40;
   --mid:#6E6E73;
   --dim:#98989E;
   --rule:#D8D8DC;
   --rule-soft:#E8E8EC;
-  --surface:#FBFBFD;
-  --surface-2:#F5F5F7;
+  --surface:#F8F4EA;
+  --surface-2:#F1EADB;
+  --surface-3:#E8DFCC;
   --white:#FFFFFF;
   --green:#2E7D32;
   --green-soft:#E8F4E9;
@@ -47,50 +48,70 @@ a:hover{color:var(--gold)}
 
 #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 
-nav{position:sticky;top:0;background:rgba(251,251,253,0.92);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
-.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.nav-brand{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
-.nav-meta{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--dim);text-transform:uppercase}
+/* NAV — both brands present, House of Mastery linked */
+nav{position:sticky;top:0;background:rgba(248,244,234,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
+.nav-house:hover{opacity:.7}
+.hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
+.nav-house-text{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
+.nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
+.nav-koora{font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:.10em;color:var(--navy);text-transform:none}
+.nav-meta{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;display:none}
+@media (min-width:680px){.nav-meta{display:inline}}
 
-main{max-width:680px;margin:0 auto;padding:0 28px}
+main{max-width:760px;margin:0 auto;padding:0 28px}
 .screen{display:none;animation:rise .35s cubic-bezier(.4,0,.2,1)}
 .screen.active{display:block}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(168,135,62,.18),transparent 14%,transparent 86%,rgba(11,35,65,.06)),radial-gradient(circle at 88% 18%,rgba(11,35,65,.08),transparent 26%);mix-blend-mode:multiply;opacity:.65;z-index:-1}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes selpulse{0%{opacity:1}70%{opacity:1}100%{opacity:.78}}
 
-/* DASHBOARD */
-#screen-dashboard{padding:64px 0 96px}
-.dash-greet{font-family:var(--serif);font-size:clamp(28px,4.2vw,42px);font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.12;margin-bottom:6px}
-.dash-greet em{font-style:italic;font-weight:600}
-.dash-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:48px;letter-spacing:.005em}
+.koora-stamp{font-family:var(--serif);font-size:10px;font-weight:700;letter-spacing:.32em;color:var(--gold);text-transform:none;display:block;margin-bottom:14px;opacity:.86}
 
-.dash-section-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;display:block}
+/* DASHBOARD — strong, table-led */
+#screen-dashboard{padding:48px 0 96px}
+.dash-hello{font-family:var(--serif);font-size:clamp(34px,5.4vw,56px);font-weight:600;letter-spacing:-.025em;color:var(--ink);line-height:1.04;margin-bottom:14px}
+.dash-hello em{font-style:italic;font-weight:600}
+.dash-line{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:400;line-height:1.55;color:var(--mid);letter-spacing:-.005em;margin-bottom:48px}
+.dash-line b{color:var(--ink);font-weight:600}
 
-.timeline{display:flex;align-items:center;gap:0;margin:0 -4px 12px;flex-wrap:wrap;padding:8px 0}
-.tl-node{display:flex;flex-direction:column;align-items:center;flex:1;min-width:48px;padding:0 2px}
-.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--rule);border:1.5px solid var(--rule);transition:all .25s ease}
-.tl-dot.done{background:var(--navy);border-color:var(--navy)}
-.tl-dot.now{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.18)}
-.tl-label{font-family:var(--sans);font-size:9.5px;font-weight:600;color:var(--dim);margin-top:8px;letter-spacing:.04em;white-space:nowrap}
-.tl-label.done{color:var(--ink)}
-.tl-label.now{color:var(--gold)}
-.tl-line{flex:1;height:1px;background:var(--rule);align-self:flex-start;margin-top:13px;min-width:8px}
-.tl-line.done{background:var(--navy)}
+.tbl-block{margin-bottom:44px}
+.tbl-h{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;display:block}
+.dtable{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;overflow:hidden;font-family:var(--sans)}
+.dtable th{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:left;padding:14px 18px;background:var(--surface-2);border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+.dtable th.right{text-align:right}
+.dtable td{padding:18px 18px;border-bottom:1px solid var(--rule-soft);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
+.dtable td.muted{color:var(--mid);font-weight:500;font-size:13px}
+.dtable td.right{text-align:right;font-variant-numeric:tabular-nums}
+.dtable tbody tr:last-child td{border-bottom:none}
+.dtable tbody tr.feature td{background:#FAF6EC}
+.dtable td.value-lg{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.015em}
+.delta-pill{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:8px;font-variant-numeric:tabular-nums}
+.delta-pill.up{background:var(--green-soft);color:var(--green)}
+.delta-pill.down{background:var(--red-soft);color:var(--red)}
+.delta-pill.flat{background:var(--surface-2);color:var(--mid)}
+.lvl-pill{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:3px 9px;border-radius:8px}
+.lvl-pill.quiet,.lvl-pill.emb{background:var(--green-soft);color:var(--green)}
+.lvl-pill.active,.lvl-pill.prac{background:var(--amber-soft);color:var(--amber)}
+.lvl-pill.loud{background:var(--red-soft);color:var(--red)}
+.lvl-pill.beg{background:var(--rule-soft);color:var(--mid)}
+.tbl-legend{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
+.tbl-legend b{color:var(--ink);font-weight:700}
 
-.dash-snapshot{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:36px 0 36px}
-.snap-card{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:22px 22px}
-.snap-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
-.snap-value{font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:-.01em;color:var(--ink);line-height:1.2;margin-bottom:6px}
-.snap-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.5}
-.snap-delta{display:inline-flex;align-items:center;gap:4px;font-family:var(--sans);font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:6px}
-.snap-delta.up{background:var(--green-soft);color:var(--green)}
-.snap-delta.down{background:var(--red-soft);color:var(--red)}
-.snap-delta.flat{background:var(--surface-2);color:var(--mid)}
+.path-table td.path-mark-cell{width:36px;padding:18px 0 18px 18px}
+.path-mark{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:transparent}
+.path-row.done .path-mark{background:var(--navy);border-color:var(--navy);color:#fff}
+.path-row.now .path-mark{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 0 0 4px rgba(201,151,58,.18)}
+.path-row.now td{background:#FAF6EC}
+.path-row.upcoming td.muted{color:var(--mid)}
+.path-row.now td.right{color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
 
 .dash-cta{margin-top:8px;display:flex;flex-direction:column;gap:14px}
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:18px 32px;border-radius:12px;border:none;cursor:pointer;transition:transform .12s ease,background .15s ease;width:100%;text-align:center}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:20px 32px;border-radius:14px;border:none;cursor:pointer;transition:background .15s,transform .12s;width:100%;text-align:center}
 .btn-primary:hover{background:var(--navy-soft)}
 .btn-primary:active{transform:scale(.99)}
-.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:12px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;width:100%}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;width:100%}
 .btn-secondary:hover{border-color:var(--ink);color:var(--ink)}
 .btn-text{background:none;border:none;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;padding:8px 4px;letter-spacing:.005em}
 .btn-text:hover{color:var(--ink)}
@@ -99,279 +120,135 @@ main{max-width:680px;margin:0 auto;padding:0 28px}
 /* WELCOME */
 #screen-welcome{padding:88px 0 96px}
 .eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:block}
-.hero{font-family:var(--serif);font-size:clamp(32px,5.6vw,52px);font-weight:600;line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
+.hero{font-family:var(--serif);font-size:clamp(34px,5.6vw,54px);font-weight:600;line-height:1.06;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
 .hero em{font-style:italic;font-weight:600}
-.lede{font-family:var(--serif);font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
+.lede{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
 .lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.65;color:var(--body);margin-bottom:16px}
-.divider{height:1px;background:var(--rule-soft);margin:44px 0;border:0}
-
+.body-text{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
+.divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
 .field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;display:block}
-.field-input,.field-select{display:block;width:100%;max-width:420px;padding:15px 16px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
+.field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .field-input:focus,.field-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .field-input::placeholder{color:#B8B8BD}
 .field-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px}
-.field-stack{margin-bottom:22px}
-.welcome-cta{margin-top:32px}
+.field-stack{margin-bottom:26px}
+.welcome-cta{margin-top:36px}
 
 /* QUESTION */
-#screen-question{padding:64px 0 120px}
-.q-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;gap:16px}
-.q-section{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.q-count{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.q-prompt{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--mid);margin-bottom:14px;letter-spacing:.01em}
-.q-text{font-family:var(--serif);font-size:clamp(22px,3.6vw,30px);font-weight:500;line-height:1.32;letter-spacing:-.015em;color:var(--ink);margin-bottom:42px}
-.q-text strong{font-weight:600}
-
-.options{display:flex;flex-direction:column;gap:10px;margin-bottom:42px}
-.opt{display:flex;align-items:center;gap:14px;background:var(--white);border:1.5px solid var(--rule);border-radius:12px;padding:18px 20px;font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.42;transition:border-color .15s,background .15s,transform .12s}
+#screen-question{padding:80px 0 140px}
+.q-section{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;display:block}
+.q-prompt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--mid);margin-bottom:22px;letter-spacing:.01em}
+.q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
+.options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
+.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
 .opt:hover{border-color:var(--ink);background:var(--surface-2)}
 .opt:active{transform:scale(.995)}
-.opt.sel{border-color:var(--navy);background:var(--navy);color:#fff}
+.opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards}
 .opt-key{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .opt.sel .opt-key{color:var(--gold-soft)}
-
-.q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.q-back{background:none;border:none;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;padding:10px 0;display:inline-flex;align-items:center;gap:6px}
+.q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
+.q-foot-meta{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.q-back{background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
 .q-back:hover{color:var(--ink)}
-.q-next{background:var(--navy);color:#fff;font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.005em;padding:14px 28px;border-radius:10px;border:none;cursor:pointer;transition:background .15s,opacity .15s;display:inline-flex;align-items:center;gap:8px}
-.q-next:hover{background:var(--navy-soft)}
-.q-next:disabled{opacity:.35;cursor:not-allowed}
-.q-error{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--red);margin-top:14px;display:none}
+.q-keyhint{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* RESULTS */
-#screen-results{padding:64px 0 96px}
+#screen-results{padding:48px 0 96px}
 .r-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
-.r-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,44px);font-weight:600;line-height:1.12;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px}
+.r-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:10px}
 .r-h1 em{font-style:italic;font-weight:600}
 .r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:6px;letter-spacing:.005em}
 
-.r-block{margin:48px 0}
-.r-block-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:18px;display:block}
-.r-h2{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:600;line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin-bottom:22px}
+/* Allegiance Matrix */
+.matrix-wrap{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:30px;overflow-x:auto}
+.matrix-table{width:100%;border-collapse:separate;border-spacing:6px;min-width:480px}
+.matrix-th{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:center;padding:0 4px 10px}
+.matrix-th-row{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--ink);text-align:left;padding:0 14px 0 0;letter-spacing:.005em;white-space:nowrap}
+.matrix-cell{aspect-ratio:1.4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:12px;font-weight:700;background:var(--surface-3);color:var(--dim);font-variant-numeric:tabular-nums}
+.matrix-cell.q1{background:var(--green-soft);color:var(--green)}
+.matrix-cell.q2{background:var(--amber-soft);color:var(--amber)}
+.matrix-cell.q3{background:#FCDADA;color:var(--red)}
+.matrix-cell.q4{background:var(--red);color:#fff}
+.matrix-table tr.loudest .matrix-cell{box-shadow:inset 0 0 0 2px var(--gold)}
+.matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
+.fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
+.fingerprint-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.fingerprint-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em}
+.fingerprint-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed var(--rule-soft);font-family:var(--sans)}
+.fingerprint-row:last-child{border-bottom:none}
+.fingerprint-fac{font-size:11px;font-weight:700;color:var(--mid);letter-spacing:.10em;text-transform:uppercase;padding-top:1px}
+.fingerprint-text{font-size:14px;font-weight:500;color:var(--body);line-height:1.55;letter-spacing:.005em}
 
-.score-list{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:8px 22px}
-.score-row{display:grid;grid-template-columns:120px 1fr 110px;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--rule-soft)}
-.score-row:last-child{border-bottom:none}
-.score-name{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);letter-spacing:.005em}
-.score-name-sub{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--mid);margin-top:2px;letter-spacing:.005em}
-.bar{height:6px;background:var(--rule-soft);border-radius:3px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
-.bar-fill.quiet{background:var(--green)}
-.bar-fill.active{background:var(--amber)}
-.bar-fill.loud{background:var(--red)}
-.bar-fill.beg{background:var(--rule)}
-.bar-fill.prac{background:var(--amber)}
-.bar-fill.emb{background:var(--green)}
-.score-val{font-family:var(--sans);font-size:12px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.score-val .lvl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.score-val.quiet,.score-val.emb{color:var(--green)}
-.score-val.active,.score-val.prac{color:var(--amber)}
-.score-val.loud,.score-val.beg{color:var(--red)}
-.score-val .delta{font-size:10px;font-weight:600}
-.delta-up{color:var(--green)}
-.delta-down{color:var(--red)}
-.delta-flat{color:var(--mid)}
+/* Practice fidelity feature */
+.fidelity-feature{background:var(--navy);color:#fff;border-radius:22px;padding:48px 36px;text-align:center}
+.fidelity-feature .label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.fidelity-feature .num{font-family:var(--serif);font-size:88px;font-weight:600;line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:12px}
+.fidelity-feature .num em{font-size:36px;font-style:normal;font-weight:500;color:var(--gold);letter-spacing:0;margin-left:2px}
+.fidelity-feature .meta{font-family:var(--sans);font-size:14px;font-weight:500;color:rgba(255,255,255,.72);letter-spacing:.005em;line-height:1.6;max-width:380px;margin:0 auto}
 
-.heat-row{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin:18px 0 10px}
-.heat-cell{aspect-ratio:1;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:14px;font-weight:700;color:#fff;letter-spacing:.02em;position:relative}
-.heat-cell.q1{background:var(--green-soft);color:var(--green)}
-.heat-cell.q2{background:var(--amber-soft);color:var(--amber)}
-.heat-cell.q3{background:#FCDADA;color:var(--red)}
-.heat-cell.q4{background:var(--red);color:#fff}
-.heat-pos.q1{background:var(--rule-soft);color:var(--mid)}
-.heat-pos.q2{background:var(--amber-soft);color:var(--amber)}
-.heat-pos.q3{background:#CDE8CE;color:var(--green)}
-.heat-pos.q4{background:var(--green);color:#fff}
-.heat-legend{font-family:var(--sans);font-size:11px;color:var(--mid);font-weight:500;display:flex;justify-content:space-between;margin-top:6px;letter-spacing:.005em}
-.heat-name-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
-.heat-name{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--mid);line-height:1.4}
-.heat-name b{display:block;color:var(--ink);font-weight:700;font-size:12px;margin-bottom:1px}
+/* Active covenant */
+.cov-card{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)}
+.cov-month{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cov-name{font-family:var(--serif);font-size:clamp(24px,3.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px;line-height:1.15}
+.cov-line{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--sans)}
+.cov-line:last-child{border-bottom:none}
+.cov-key{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;padding-top:2px}
+.cov-text{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:-.005em}
+.cov-text b{color:var(--ink);font-weight:600}
 
-.fac-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:0}
-.fac-card{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:22px}
-.fac-name{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.fac-q{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.005em;margin-bottom:14px}
-.fac-bar{height:5px;background:var(--rule-soft);border-radius:3px;overflow:hidden;margin-bottom:8px}
-.fac-bar > div{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
-.fac-meta{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--mid);letter-spacing:.005em}
-.fac-meta b{font-weight:700}
-
-.hung-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.hung-card{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:22px}
-.hung-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:14px}
-.hung-name{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
-.hung-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.hung-col-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:8px}
-.hung-col-bar{height:5px;background:var(--rule-soft);border-radius:3px;overflow:hidden;margin-bottom:6px}
-.hung-col-bar > div{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
-.hung-col-val{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--mid);font-variant-numeric:tabular-nums}
-
-.fid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.fid-row{background:var(--white);border:1px solid var(--rule-soft);border-radius:12px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.fid-name{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink)}
-.fid-name span{display:block;font-size:11px;font-weight:500;color:var(--mid);margin-top:2px;letter-spacing:.005em}
-.fid-pill{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:4px 10px;border-radius:10px}
-.fid-pill.emb{background:var(--green-soft);color:var(--green)}
-.fid-pill.prac{background:var(--amber-soft);color:var(--amber)}
-.fid-pill.beg{background:var(--rule-soft);color:var(--mid)}
-
-.fidelity-feature{background:var(--navy);color:#fff;border-radius:18px;padding:36px 32px;text-align:center}
-.fidelity-feature .label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.fidelity-feature .num{font-family:var(--serif);font-size:64px;font-weight:600;line-height:1;letter-spacing:-.025em;color:#fff;margin-bottom:8px}
-.fidelity-feature .num em{font-size:32px;font-style:normal;font-weight:500;color:var(--gold);letter-spacing:0;margin-left:2px}
-.fidelity-feature .meta{font-family:var(--sans);font-size:14px;font-weight:500;color:rgba(255,255,255,.7);letter-spacing:.005em}
-
-.unstuck{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:36px 32px}
-.unstuck-step{display:grid;grid-template-columns:36px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
-.unstuck-step:last-child{border-bottom:none}
-.unstuck-step:first-child{padding-top:0}
-.us-letter{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--gold);line-height:1;letter-spacing:-.01em;text-align:center;padding-top:2px}
-.us-title{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.10em;margin-bottom:8px}
-.us-body{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--body);line-height:1.62;letter-spacing:.005em}
-.us-body b{font-weight:700;color:var(--ink)}
-
-.move-grid{display:grid;grid-template-columns:1fr;gap:0}
-.move-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:14px 22px;background:var(--white);border:1px solid var(--rule-soft);border-bottom:none;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--body)}
-.move-row:first-child{border-radius:12px 12px 0 0}
-.move-row:last-child{border-radius:0 0 12px 12px;border-bottom:1px solid var(--rule-soft)}
-.move-row b{font-weight:700;color:var(--ink)}
-.move-prev{font-size:11px;color:var(--mid);font-variant-numeric:tabular-nums;letter-spacing:.005em}
-.move-arrow{font-family:var(--sans);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
-
-.delivery{background:var(--surface-2);border-radius:18px;padding:32px}
-.delivery-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
-.delivery-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);line-height:1.55;margin-bottom:18px;letter-spacing:.005em}
+/* Delivery */
+.delivery{background:var(--surface-2);border-radius:18px;padding:36px}
+.delivery-h{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
+.delivery-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);line-height:1.6;margin-bottom:20px;letter-spacing:.005em}
 .delivery-row{display:flex;gap:10px;flex-wrap:wrap}
-.email-input{flex:1;min-width:200px;padding:14px 16px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
+.email-input{flex:1;min-width:200px;padding:15px 18px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .email-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
-.email-status{font-family:var(--sans);font-size:13px;font-weight:600;margin-top:12px;display:none;letter-spacing:.005em}
+.email-status{font-family:var(--sans);font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em}
 .email-status.ok{color:var(--green)}
 .email-status.err{color:var(--red)}
-
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
 .contact-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;text-align:center;margin-top:36px}
-.contact-h{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-.005em}
-.contact-body{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--body);line-height:1.6;margin-bottom:14px;letter-spacing:.005em}
+.contact-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-.005em}
+.contact-body{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--body);line-height:1.6;margin-bottom:16px;letter-spacing:.005em}
 .contact-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-family:var(--sans);font-size:14px;font-weight:600}
 .contact-links a{color:var(--navy)}
 
-footer{border-top:1px solid var(--rule-soft);padding:32px 28px;text-align:center;margin-top:64px;background:var(--white)}
-.foot-credit{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--dim);line-height:1.6;letter-spacing:.005em}
+footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center;margin-top:64px;background:var(--white)}
+.foot-credit{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--dim);line-height:1.7;letter-spacing:.005em}
 .foot-credit b{color:var(--ink);font-weight:700}
+.foot-koora{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--navy);margin-top:6px;display:block}
 
-/* RESPONSIVE */
 @media (max-width:680px){
   main{padding:0 22px}
-  #screen-welcome,#screen-question,#screen-results,#screen-dashboard{padding-top:48px;padding-bottom:72px}
-  .dash-snapshot{grid-template-columns:1fr}
-  .fac-grid,.fid-grid{grid-template-columns:1fr}
-  .heat-name-grid{grid-template-columns:repeat(2,1fr)}
-  .score-row{grid-template-columns:90px 1fr 90px;gap:10px}
+  #screen-welcome,#screen-question,#screen-results,#screen-dashboard{padding-top:40px;padding-bottom:80px}
+  .nav-inner{padding:12px 18px;gap:10px}
+  .nav-house-text{font-size:10px}
   .actions .btn-primary,.actions .btn-secondary{width:100%}
-  .nav-inner{padding:14px 22px}
-  .delivery,.unstuck,.fidelity-feature{padding:26px 22px}
-  .timeline{margin:0 -2px 12px}
-  .tl-node{min-width:38px}
-  .tl-label{font-size:8.5px}
+  .delivery,.fidelity-feature,.cov-card{padding:28px 22px}
+  .opt{padding:18px 20px;font-size:15px}
+  .matrix-wrap{padding:22px 16px}
+  .fingerprint-row{grid-template-columns:90px 1fr;gap:10px}
+  .fidelity-feature .num{font-size:64px}
+  .dtable th,.dtable td{padding:14px 12px;font-size:13px}
+  .dtable td.value-lg{font-size:18px}
 }
-
-/* KOORA brand refinement — aligned to Finisher Protocol reference */
-:root{
-  --navy:#0A2746;
-  --navy-soft:#123657;
-  --gold:#A98735;
-  --gold-soft:#D8BE73;
-  --ink:#071E35;
-  --body:#354252;
-  --mid:#6C737B;
-  --dim:#8F949A;
-  --rule:#D9D2BF;
-  --rule-soft:#E8E1D0;
-  --surface:#F6F1E6;
-  --surface-2:#EFE8D8;
-  --white:#FFFDF7;
-}
-html{background:var(--surface)}
-body{
-  background:
-    radial-gradient(circle at 82% 18%, rgba(10,39,70,.10), transparent 28%),
-    linear-gradient(90deg, rgba(246,241,230,.98) 0%, rgba(246,241,230,.96) 58%, rgba(234,229,216,.78) 100%);
-  color:var(--body);
-}
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  pointer-events:none;
-  background:
-    linear-gradient(180deg, rgba(10,39,70,.18), transparent 1px) top 40px left 6vw / 88vw 1px no-repeat,
-    radial-gradient(ellipse at 92% 56%, rgba(10,39,70,.12), transparent 34%),
-    linear-gradient(180deg, transparent 0%, rgba(255,253,247,.46) 78%, rgba(246,241,230,.92) 100%);
-}
-#progress{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
-nav{background:rgba(246,241,230,.88);border-bottom:1px solid rgba(169,135,53,.30);box-shadow:0 8px 28px rgba(10,39,70,.035)}
-.nav-inner{max-width:1220px;padding:22px 38px}
-.nav-brand{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--ink);text-transform:none;position:relative;padding-left:34px}
-.nav-brand::before{content:"h";position:absolute;left:0;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(10,39,70,.30);color:var(--white);font-weight:800;font-size:13px;letter-spacing:0;text-transform:none}
-.nav-meta{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
-main{max-width:760px}
-#screen-welcome{padding:116px 0 104px;position:relative}
-#screen-welcome::after{content:"";position:absolute;right:-285px;top:88px;width:320px;height:520px;border-radius:42% 42% 16px 16px;background:linear-gradient(180deg,rgba(10,39,70,.18),rgba(10,39,70,.06));filter:blur(.2px);opacity:.42;z-index:-1}
-.eyebrow,.q-section,.r-eyebrow,.r-block-label,.dash-section-label{color:var(--gold);font-weight:800;letter-spacing:.16em}
-.hero{font-size:clamp(48px,8.8vw,92px);font-weight:700;line-height:.96;letter-spacing:-.045em;color:var(--navy);max-width:780px;margin-bottom:26px}
-.hero em{display:block;font-style:normal;font-size:clamp(28px,4.2vw,46px);font-weight:700;letter-spacing:-.025em;margin-top:10px;color:var(--navy)}
-.lede{font-size:clamp(20px,2.25vw,25px);line-height:1.46;color:#172F4B;max-width:700px}
-.body-text{font-weight:600;color:#465160;max-width:640px}
-.divider{background:linear-gradient(90deg,var(--gold),rgba(169,135,53,.08));margin:38px 0}
-.field-label{color:#687079;font-weight:800}
-.field-input,.field-select{background:rgba(255,253,247,.86);border-color:rgba(169,135,53,.38);border-radius:4px;box-shadow:0 12px 30px rgba(10,39,70,.04)}
-.field-input:focus,.field-select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(169,135,53,.16)}
-.btn-primary,.q-next{background:var(--navy);border-radius:4px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 18px 34px rgba(10,39,70,.13)}
-.btn-primary:hover,.q-next:hover{background:var(--navy-soft)}
-.btn-secondary{border-radius:4px;border-color:rgba(169,135,53,.42);background:rgba(255,253,247,.40);font-weight:800;color:var(--navy)}
-#screen-question{padding:84px 0 128px}
-.q-meta{border-top:1px solid rgba(169,135,53,.45);padding-top:24px;margin-bottom:36px}
-.q-prompt{text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:800;color:#7C7258}
-.q-text{font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.2;color:var(--navy);margin-bottom:36px}
-.options{gap:12px;margin-bottom:28px}
-.opt{background:rgba(255,253,247,.78);border-color:rgba(169,135,53,.32);border-radius:4px;padding:20px 22px;font-size:15px;font-weight:800;color:var(--navy);box-shadow:0 10px 30px rgba(10,39,70,.035)}
-.opt:hover{border-color:var(--gold);background:#FFFDF7;transform:translateY(-1px)}
-.opt.sel{border-color:var(--navy);background:var(--navy);color:#FFFDF7;box-shadow:0 18px 40px rgba(10,39,70,.16)}
-.opt-key{color:var(--gold);font-weight:800}
-.opt.sel .opt-key{color:var(--gold-soft)}
-.q-foot{margin-top:4px;align-items:center}
-.q-next{min-width:220px;justify-content:center;opacity:.96}
-.q-next:disabled{opacity:.30;box-shadow:none}
-.q-back{color:#736D61;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-footer{background:rgba(255,253,247,.58);border-top:1px solid rgba(169,135,53,.18)}
-.foot-credit{color:#6F7680;font-weight:600}
-.r-h1,.dash-greet{color:var(--navy)}
-.r-block,.delivery,.unstuck,.fidelity-feature,.snap-card,.score-row,.fac-card,.hung-card,.fid-row{background:rgba(255,253,247,.72);border-color:rgba(169,135,53,.24);border-radius:4px}
-@media(max-width:900px){
-  #screen-welcome::after{right:-190px;top:120px;width:240px;height:420px;opacity:.20}
-  .nav-inner{padding:18px 24px}
-  .nav-meta{font-size:10.5px;letter-spacing:.08em;text-align:right}
-  main{padding:0 24px}
-  #screen-welcome{padding-top:74px}
-  .hero{font-size:clamp(44px,15vw,64px)}
-  .hero em{font-size:clamp(25px,8.5vw,36px)}
-  .q-text{font-size:clamp(27px,8vw,34px)}
-  .q-next{width:100%;min-width:0}
-  .q-foot{display:grid;grid-template-columns:1fr;gap:14px}
-  .q-back{justify-content:center;order:2}
-}
-
 </style>
 </head>
 <body>
 <div id="progress"></div>
+
 <nav>
   <div class="nav-inner">
-    <span class="nav-brand">House of Mastery</span>
-    <span class="nav-meta" id="navMeta">KOORA · The Finisher Protocol</span>
+    <a class="nav-house" href="https://www.houseofmastery.co" target="_blank" rel="noopener" aria-label="House of Mastery">
+      <svg class="hm-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="#0B2341"/>
+        <text x="50" y="74" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text>
+      </svg>
+      <span class="nav-house-text">house of mastery<span>houseofmastery.co</span></span>
+    </a>
+    <span class="nav-koora">KOORA</span>
+    <span class="nav-meta" id="navMeta">KOORA · The Finisher Protocol · Month 1</span>
   </div>
 </nav>
 
@@ -379,17 +256,25 @@ footer{background:rgba(255,253,247,.58);border-top:1px solid rgba(169,135,53,.18
 
 <!-- DASHBOARD -->
 <section class="screen" id="screen-dashboard">
-  <h1 class="dash-greet">Welcome back, <em id="dashName">friend</em>.</h1>
-  <p class="dash-sub" id="dashSub">Your last assessment was on Day 0.</p>
+  <span class="koora-stamp">K · O · O · R · A</span>
+  <h1 class="dash-hello"><em id="dashName">Welcome back</em>.</h1>
+  <p class="dash-line" id="dashLine"></p>
 
-  <span class="dash-section-label">Your path</span>
-  <div class="timeline" id="timeline"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">Snapshot</span>
+    <table class="dtable" id="snapshotTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> Loudest reflex names the pattern that ran you most this period. Strongest pillar names the practice that held best. The arrows compare to your previous return.</p>
+  </div>
 
-  <div class="dash-snapshot" id="dashSnapshot"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The path · 13 returns across 180 days</span>
+    <table class="dtable" id="pathTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> Each return is one assessment. Filled marks are completed. The amber mark is the next return due. Each return is evidence of fidelity, not a test.</p>
+  </div>
 
   <div class="dash-cta">
-    <button class="btn-primary" id="dashTakeBtn" onclick="newAssessment()">Take your Day 15 assessment</button>
-    <button class="btn-secondary" onclick="showResultsFromHistory()">Open your last results</button>
+    <button class="btn-primary" id="dashTakeBtn" onclick="newAssessment()">Take your next assessment</button>
+    <button class="btn-secondary" onclick="showResultsFromHistory()">See your last results</button>
   </div>
 
   <div class="dash-foot">
@@ -399,11 +284,12 @@ footer{background:rgba(255,253,247,.58);border-top:1px solid rgba(169,135,53,.18
 
 <!-- WELCOME -->
 <section class="screen" id="screen-welcome">
+  <span class="koora-stamp">K · O · O · R · A</span>
   <span class="eyebrow">KOORA · The Finisher Protocol · Assessment</span>
-  <h1 class="hero">KOORA <em>The Finisher Protocol assessment.</em></h1>
-  <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name on it is the work that does not get done. <strong>You do not have a productivity problem. You have a fidelity problem.</strong></p>
-  <p class="body-text">This assessment names the patterns that have been running you, the pillars that are holding you, and the path that moves you forward. Seventy questions. About twenty minutes. No verdict. The pattern is the diagnosis.</p>
-  <p class="body-text">Take it every fifteen days. Each return is evidence. Each return is the work.</p>
+  <h1 class="hero">KOORA: what is running you. What is holding you. <em>Where you go next.</em></h1>
+  <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name is the work that does not get done. <strong>You do not have a productivity problem. You have a fidelity problem.</strong></p>
+  <p class="body-text">UNFINISHED is a sixty-item diagnostic taken every fifteen days across the 180-day path of KOORA. It maps six domains of self-fidelity, names the pattern most loud in you this period, and tracks how that pattern moves over time. The pattern is the diagnosis, never the verdict.</p>
+  <p class="body-text">About fifteen minutes. Each return is evidence. Each return is the work.</p>
 
   <hr class="divider">
 
@@ -424,90 +310,101 @@ footer{background:rgba(255,253,247,.58);border-top:1px solid rgba(169,135,53,.18
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <div class="q-meta">
-    <span class="q-section" id="qSection">Section 1 of 8</span>
-    <span class="q-count" id="qCount">01 / 70</span>
-  </div>
-  <p class="q-prompt">Since your last fifteen days</p>
+  <span class="koora-stamp">K · O · O · R · A</span>
+  <span class="q-section" id="qSection">Section 1 of 6</span>
+  <p class="q-prompt" id="qPrompt">Over the past fifteen days</p>
   <h2 class="q-text" id="qText"></h2>
   <div class="options" id="qOptions"></div>
   <div class="q-foot">
     <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
-    <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next</button>
+    <span class="q-foot-meta" id="qCount">Question 1 of 60</span>
+    <span></span>
   </div>
-  <p class="q-error" id="qError">Choose an option to continue.</p>
+  <p class="q-keyhint" id="qKeyhint">Press A, B, C, or D. After you select, the next question loads in 3 seconds.</p>
 </section>
 
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
+  <span class="koora-stamp">K · O · O · R · A</span>
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
   <p class="r-sub" id="rSub"></p>
 
-  <div class="r-block">
-    <span class="r-block-label">Pattern profile · The four reflexes</span>
-    <div class="score-list" id="reflexTable"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The four reflexes · Pattern profile</span>
+    <table class="dtable" id="reflexTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> Each reflex scores 0 to 16. <b>Quiet</b> ran rarely. <b>Active</b> ran often enough to notice. <b>Loud</b> dominated this period. The arrow shows movement since your last return.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">The four faculties · Your spine</span>
-    <div class="fac-grid" id="facultyGrid"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The Allegiance Matrix · How the loudest reflex broke each faculty</span>
+    <div class="matrix-wrap" id="matrixWrap"></div>
+    <p class="tbl-legend"><b>How to read this:</b> The matrix shows the four reflexes against the four faculties of fidelity. The gold-bordered row is your loudest reflex this period. Below it, the fingerprint shows specifically how that reflex broke each faculty.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">The four hungers · What is filled, what is substituted</span>
-    <div class="hung-grid" id="hungerGrid"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The seven postures · ALCARRA, the week as you lived it</span>
+    <table class="dtable" id="alcTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> Each posture scores 1 to 4. <b>Strong</b> means the posture was alive in your week. <b>Thin</b> means it was barely present. ALCARRA names the seven daily commitments that compose a coherent week.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">The four fidelities · What you held this period</span>
-    <div class="fid-grid" id="fidelityGrid"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The four needs · Filled, or substituted</span>
+    <table class="dtable" id="needTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> Each need has two columns. <b>Filled</b> is how met the genuine need was. <b>Substituted</b> is how much you reached for a counterfeit. High filled with low substituted is health. The reverse is the warning.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">UNFINISHED · The patterns running you</span>
-    <div class="heat-row" id="unfinishedHeat"></div>
-    <div class="heat-legend"><span>Quiet</span><span>Loud</span></div>
-    <div class="heat-name-grid" id="unfinishedNames"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The forces of necessity · What moved you</span>
+    <table class="dtable" id="forceTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> The four forces are the obligations that move a Finisher from intention to motion. <b>Duty</b> is who you are honoring. <b>Opus</b> is what was given you to build. <b>Declaration</b> is what you put on record. <b>Identity</b> is who you must become.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">FOUNDATION · The pillars holding you</span>
-    <div class="heat-row" id="foundationHeat"></div>
-    <div class="heat-legend"><span>Beginning</span><span>Embodied</span></div>
-    <div class="heat-name-grid" id="foundationNames"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The four fidelities · What you held this period</span>
+    <table class="dtable" id="fidTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> The four fidelities test whether you kept what was yours to keep, across mind, heart, will, and hand. Each scores 1 to 4. The covenant of the week is sealed by these four together.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">Practice fidelity · Sunrise, sunset, return</span>
+  <div class="tbl-block">
+    <span class="tbl-h">The four faculties of fidelity · Direct measure</span>
+    <table class="dtable" id="facTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> The four faculties of fidelity, named by the Allegiance Matrix, are the territories the reflexes break. This table measures each directly. <b>Embodied</b> is held. <b>Beginning</b> is the next place to grow.</p>
+  </div>
+
+  <div class="tbl-block">
+    <span class="tbl-h">The practice · Sunrise, sunset, return</span>
     <div class="fidelity-feature">
       <div class="label">Fidelity rate</div>
       <div class="num"><span id="fidNum">0</span><em>%</em></div>
-      <div class="meta" id="fidMeta">Days the practice held this period.</div>
+      <div class="meta" id="fidMeta">Across the six daily and weekly moves of the practice.</div>
     </div>
+    <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> Six moves compose the practice. The Seal at sunrise. The Daily Reset after the Seal. The evening question at sunset. The 24-hour return when you fall. The Friday cohort. The Sunday sealing. Fidelity rate is the proportion held.</p>
   </div>
 
-  <div class="r-block" id="moveBlock" style="display:none">
-    <span class="r-block-label">What moved · Since your last assessment</span>
-    <div class="move-grid" id="moveGrid"></div>
+  <div class="tbl-block" id="moveBlock" style="display:none">
+    <span class="tbl-h">What moved · Since your last return</span>
+    <table class="dtable" id="moveTable"></table>
+    <p class="tbl-legend"><b>How to read this:</b> Down arrows on reflexes are good. Up arrows on practice and pillars are good. The covenant is not perfection. The covenant is return, and return is what these arrows record.</p>
   </div>
 
-  <div class="r-block">
-    <span class="r-block-label">UNSTUCK · Your path the next fifteen days</span>
-    <div class="unstuck" id="unstuckBlock"></div>
+  <div class="tbl-block">
+    <span class="tbl-h">The covenant in motion</span>
+    <div class="cov-card" id="covCard"></div>
+    <p class="tbl-legend"><b>How to read this:</b> Each month carries one covenant. The covenant has three lines. The Promise names what you are stopping. The Practice names the daily move. The Evidence names how you will know.</p>
   </div>
 
-  <div class="r-block">
+  <div class="tbl-block">
     <div class="delivery">
       <h3 class="delivery-h">Send your results</h3>
-      <p class="delivery-sub">A copy reaches your inbox and a copy reaches the cohort archive at mail@mogire.com so the conversation can be picked up at the next sealing.</p>
+      <p class="delivery-sub">A copy reaches your inbox. A copy reaches mail@mogire.com so the cohort archive can pick the conversation up at the next sealing.</p>
       <div class="delivery-row">
         <input class="email-input" type="email" id="emailInput" placeholder="your@email.com">
         <button class="btn-primary" id="sendBtn" onclick="sendEmail()" style="flex:0 0 auto">Send</button>
       </div>
       <p class="email-status" id="emailStatus"></p>
       <div class="actions">
-        <button class="btn-secondary" onclick="downloadPDF()">Download PDF</button>
+        <button class="btn-secondary" onclick="downloadPDF()">Download report (PDF)</button>
         <button class="btn-secondary" onclick="goDashboard()">Back to your path</button>
       </div>
     </div>
@@ -526,21 +423,19 @@ footer{background:rgba(255,253,247,.58);border-top:1px solid rgba(169,135,53,.18
 </main>
 
 <footer>
-  <p class="foot-credit"><b>KOORA</b> · The Finisher Protocol assessment<br>Powered by House of Mastery with <b>Dr. Job Mogire, MD FACC</b><br>The covenant is not perfection. The covenant is return.</p>
+  <p class="foot-credit"><b>UNFINISHED</b> · A House of Mastery diagnostic instrument<br>Sixty items, six domains. 4-point Likert scale, recall window fifteen days.<br>Architected by <b>Dr. Job Mogire, MD FACC</b> · Founder<br>The covenant is not perfection. The covenant is return.<span class="foot-koora">K · O · O · R · A</span></p>
 </footer>
 
 <script>
 "use strict";
 
-// ── Defensive init ──
 var EMAILJS_OK=false;
 try{if(typeof emailjs!=='undefined'){emailjs.init('FEEOw8NA0cwBM4Vum');EMAILJS_OK=true}}catch(e){}
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
-// ── Constants ──
-var TOTAL=70;
+var TOTAL=60;
+var STORAGE_KEY='koora_unfinished_v3';
 var AUTO_ADVANCE_MS=3000;
-var STORAGE_KEY='koora_unfinished_history_v1';
 
 var DAY_OPTIONS=[
   {v:0,label:'Day 0 (Baseline)'},
@@ -566,229 +461,201 @@ var OPTIONS=[
   {label:'Most of the time',score:4,key:'D'}
 ];
 
-// ── 70 questions ──
-// rev=true means high score is good (positive item); else high score signals pattern is loud.
+// 60 items, 6 sections.
 var QUESTIONS=[
-  // Section 1: The 4Cs (16)
-  {n:1, sec:1,sn:'The four reflexes', dom:'Complaining',                  text:'I named what was wrong faster than I named what I would do about it.'},
-  {n:2, sec:1,sn:'The four reflexes', dom:'Complaining',                  text:'I described the same problem more than once without changing my approach.'},
-  {n:3, sec:1,sn:'The four reflexes', dom:'Complaining',                  text:'I felt the relief of venting, but the situation stayed the same.'},
-  {n:4, sec:1,sn:'The four reflexes', dom:'Complaining',                  text:'I forfeited agency. I treated the circumstances as the reason.'},
-  {n:5, sec:1,sn:'The four reflexes', dom:'Criticizing',                  text:'The voice in my head was harsher than I would ever be with someone I love.'},
-  {n:6, sec:1,sn:'The four reflexes', dom:'Criticizing',                  text:'I rehearsed mistakes longer than I extracted lessons from them.'},
-  {n:7, sec:1,sn:'The four reflexes', dom:'Criticizing',                  text:'I noticed my flaws faster than I noticed what was working.'},
-  {n:8, sec:1,sn:'The four reflexes', dom:'Criticizing',                  text:'I forfeited authority. The harshest voice inside me carried the final say.'},
-  {n:9, sec:1,sn:'The four reflexes', dom:'Comparing',                    text:'I measured my pace against someone else’s pace.'},
-  {n:10,sec:1,sn:'The four reflexes', dom:'Comparing',                    text:'I felt smaller after looking at someone’s life than before I looked.'},
-  {n:11,sec:1,sn:'The four reflexes', dom:'Comparing',                    text:'I downgraded my own progress when I saw someone else’s.'},
-  {n:12,sec:1,sn:'The four reflexes', dom:'Comparing',                    text:'I forfeited ground. I lost track of what I actually want.'},
-  {n:13,sec:1,sn:'The four reflexes', dom:'Competing',                    text:'I tracked who is ahead of me in my field.'},
-  {n:14,sec:1,sn:'The four reflexes', dom:'Competing',                    text:'My sense of worth moved with whether I was winning.'},
-  {n:15,sec:1,sn:'The four reflexes', dom:'Competing',                    text:'I did things mainly to be seen doing them.'},
-  {n:16,sec:1,sn:'The four reflexes', dom:'Competing',                    text:'I forfeited direction. I oriented around approval rather than what is mine to build.'},
-  // Section 2: Faculties (8) — reverse
-  {n:17,sec:2,sn:'The four faculties',dom:'Think (interpretation)',       text:'I asked of my thoughts, is this true, before acting on them.', rev:true},
-  {n:18,sec:2,sn:'The four faculties',dom:'Think (interpretation)',       text:'I noticed when interpretation slipped into invention.', rev:true},
-  {n:19,sec:2,sn:'The four faculties',dom:'Feel (ownership)',             text:'I owned my feelings rather than blamed them on others.', rev:true},
-  {n:20,sec:2,sn:'The four faculties',dom:'Feel (ownership)',             text:'I let myself feel what was actually present, without managing or numbing.', rev:true},
-  {n:21,sec:2,sn:'The four faculties',dom:'Choose (agency)',              text:'The choices I made were mine, not a script inherited from someone else.', rev:true},
-  {n:22,sec:2,sn:'The four faculties',dom:'Choose (agency)',              text:'When I caught myself running an inherited pattern, I refused it.', rev:true},
-  {n:23,sec:2,sn:'The four faculties',dom:'Do (embodiment)',              text:'The actions I took matched the words I had spoken.', rev:true},
-  {n:24,sec:2,sn:'The four faculties',dom:'Do (embodiment)',              text:'I closed the gap between what I said and what I did within the day.', rev:true},
-  // Section 3: Hungers (8)
-  {n:25,sec:3,sn:'The four hungers',  dom:'Aliveness (filled)',           text:'I felt genuinely alive. Present, in my body, awake to what is here.', rev:true},
-  {n:26,sec:3,sn:'The four hungers',  dom:'Aliveness (substitute)',       text:'I reached for intensity, like stimulation, urgency, or drama, as a substitute for presence.'},
-  {n:27,sec:3,sn:'The four hungers',  dom:'Connection (filled)',          text:'I felt deeply rooted in real relationships, not curated ones.', rev:true},
-  {n:28,sec:3,sn:'The four hungers',  dom:'Connection (substitute)',      text:'I reached for reach, like followers, network, or broader audience, as a substitute for roots.'},
-  {n:29,sec:3,sn:'The four hungers',  dom:'Meaning (filled)',             text:'I sensed depth in what I was doing. It carried weight beyond performance.', rev:true},
-  {n:30,sec:3,sn:'The four hungers',  dom:'Meaning (substitute)',         text:'I reached for breadth, like more topics, more options, or more directions, as a substitute for depth.'},
-  {n:31,sec:3,sn:'The four hungers',  dom:'Fulfillment (filled)',         text:'I felt enough. The quiet sense that I have what I need.', rev:true},
-  {n:32,sec:3,sn:'The four hungers',  dom:'Fulfillment (substitute)',     text:'I reached for more, like more income, more recognition, or more achievement, as a substitute for enough.'},
-  // Section 4: Fidelities (4) — reverse
-  {n:33,sec:4,sn:'The four fidelities',dom:'Mind (interpretation)',       text:'I thought what was mine to think, not the inherited script.', rev:true},
-  {n:34,sec:4,sn:'The four fidelities',dom:'Heart (ownership)',           text:'I felt what was mine to feel, not what I was trained to perform.', rev:true},
-  {n:35,sec:4,sn:'The four fidelities',dom:'Will (agency)',               text:'I chose what was mine to choose, not what was easier or expected.', rev:true},
-  {n:36,sec:4,sn:'The four fidelities',dom:'Hand (embodiment)',           text:'I did what was mine to do, and the doing matched the saying.', rev:true},
-  // Section 5: UNFINISHED (10)
-  {n:37,sec:5,sn:'UNFINISHED',         dom:'Unkept Promises',             text:'My word to myself lost credibility. Promises I made, broken without ceremony.'},
-  {n:38,sec:5,sn:'UNFINISHED',         dom:'Negotiating Constantly',      text:'I bargained with myself. Just today. Tomorrow. After this one thing.'},
-  {n:39,sec:5,sn:'UNFINISHED',         dom:'Fragmented Identity',         text:'I felt like a committee of half-formed selves rather than one clear person.'},
-  {n:40,sec:5,sn:'UNFINISHED',         dom:'Inherited Patterns',          text:'I ran a pattern I did not invent. Watched, absorbed, not yet refused.'},
-  {n:41,sec:5,sn:'UNFINISHED',         dom:'Neglected Completion',        text:'I stopped at ninety percent. The last ten, where the value lives, went unmade.'},
-  {n:42,sec:5,sn:'UNFINISHED',         dom:'Intelligence Weaponized',     text:'My mind built excellent excuses, dressed up as analysis.'},
-  {n:43,sec:5,sn:'UNFINISHED',         dom:'Self-Trust Bankrupt',         text:'My account with myself was overdrawn. I did not believe my own word.'},
-  {n:44,sec:5,sn:'UNFINISHED',         dom:'Hidden Shame',                text:'I performed public confidence over private shame. The mask was heavy.'},
-  {n:45,sec:5,sn:'UNFINISHED',         dom:'Exhausted From Carrying',     text:'I was tired. Not from work, but from dragging what I never finished.'},
-  {n:46,sec:5,sn:'UNFINISHED',         dom:'Deferred Action As Lifestyle',text:'Later was my operating system. The day arrived. I postponed it again.'},
-  // Section 6: FOUNDATION (10) — reverse
-  {n:47,sec:6,sn:'FOUNDATION',         dom:'Focus and Goal Setting',      text:'I held a focus this period. One clear thing I was working toward, named in writing.', rev:true},
-  {n:48,sec:6,sn:'FOUNDATION',         dom:'Openness to Growth',          text:'I welcomed feedback that contradicted my current view, and let it change something.', rev:true},
-  {n:49,sec:6,sn:'FOUNDATION',         dom:'Unwavering Resilience',       text:'When I fell, I returned within hours, not days. The return itself was the strength.', rev:true},
-  {n:50,sec:6,sn:'FOUNDATION',         dom:'Nurturing Relationships',     text:'I tended to one or more relationships with attention they could feel.', rev:true},
-  {n:51,sec:6,sn:'FOUNDATION',         dom:'Deep Self-Awareness',         text:'I noticed my patterns as they arose, not after the damage, but during the moment.', rev:true},
-  {n:52,sec:6,sn:'FOUNDATION',         dom:'Action and Accountability',   text:'I moved before I felt ready. I told a witness what I would do, and what I did.', rev:true},
-  {n:53,sec:6,sn:'FOUNDATION',         dom:'Trust and Integrity',         text:'My word held this period. What I said and what I did were the same thing.', rev:true},
-  {n:54,sec:6,sn:'FOUNDATION',         dom:'Intrinsic Motivation',        text:'I did things because they were mine to do, not for approval, score, or audience.', rev:true},
-  {n:55,sec:6,sn:'FOUNDATION',         dom:'Optimistic Outlook',          text:'I saw what could still be built, not only what had not yet been built.', rev:true},
-  {n:56,sec:6,sn:'FOUNDATION',         dom:'Never-ending Learning',       text:'I extracted the lesson before I let go of the experience, even when the experience hurt.', rev:true},
-  // Section 7: Practice (6) — reverse
-  {n:57,sec:7,sn:'Practice integrity', dom:'The Seal',                    text:'I performed the Seal at sunrise. Hand on heart, one breath, before phone, coffee, or message.', rev:true},
-  {n:58,sec:7,sn:'Practice integrity', dom:'The Daily Reset',             text:'I wrote the Daily Reset. Five prompts, five words or fewer, after the Seal.', rev:true},
-  {n:59,sec:7,sn:'Practice integrity', dom:'The evening master question', text:'I asked the evening question. Where did I keep fidelity. Where did I break it. Where do I return tomorrow.', rev:true},
-  {n:60,sec:7,sn:'Practice integrity', dom:'The 24-hour return',          text:'When I missed a Movement, I ran the protocol. Name. Refuse. Seal. Reset. Send.', rev:true},
-  {n:61,sec:7,sn:'Practice integrity', dom:'The Friday cohort',           text:'I showed up to the Friday cohort, and I spoke truth aloud.', rev:true},
-  {n:62,sec:7,sn:'Practice integrity', dom:'The Sunday sealing',          text:'I performed the Sunday sealing. Enduring Clause, week review, this week is finished.', rev:true},
-  // Section 8: Inner Journey (8) — 2 inventory (reverse) + 6 stage markers
-  {n:63,sec:8,sn:'The inner journey',  dom:'Finish inventory · Movement', text:'Of my Day 0 unfinished commitments, I have moved one or more to a clean, witnessed close. Completed, released, delegated, submitted, repaired, decided, or sealed.', rev:true},
-  {n:64,sec:8,sn:'The inner journey',  dom:'Finish inventory · Clarity',  text:'I am clear on the smallest honest finish for at least three of my unfinished items right now.', rev:true},
-  {n:65,sec:8,sn:'The inner journey',  dom:'Inner experience',            text:'I feel disoriented, fragile. The ground feels like it is moving under me, and I am still here.', arc:'rupture'},
-  {n:66,sec:8,sn:'The inner journey',  dom:'Inner experience',            text:'I am confronting the gap between who I claim to be and who my actions show me to be, and it stings.', arc:'exposure'},
-  {n:67,sec:8,sn:'The inner journey',  dom:'Inner experience',            text:'I have great days followed by crashes back into old patterns. I feel pulled in two directions.', arc:'tension'},
-  {n:68,sec:8,sn:'The inner journey',  dom:'Inner experience',            text:'I am catching myself responding from a self I have not been before, and it feels surprisingly easy.', arc:'unfolding'},
-  {n:69,sec:8,sn:'The inner journey',  dom:'Inner experience',            text:'I feel calm confidence. When I see another person stuck in a pattern I used to run, I want to help them through it.', arc:'rooting'},
-  {n:70,sec:8,sn:'The inner journey',  dom:'Inner experience',            text:'The new way is now my default. Going back to the old way would take more effort than continuing.', arc:'newnormal'}
+  // 1. The four reflexes (16) — 4 per subscale
+  {n:1, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I named what was wrong faster than I named what I would do about it.'},
+  {n:2, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I described the same problem more than once and changed nothing.'},
+  {n:3, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I felt the relief of venting, but the situation stayed the same.'},
+  {n:4, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I treated my circumstances as the reason I could not move.'},
+  {n:5, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'The voice in my head spoke to me in ways I would never speak to someone I love.'},
+  {n:6, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'I rehearsed mistakes longer than I extracted lessons from them.'},
+  {n:7, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'I noticed my flaws faster than I noticed what was working.'},
+  {n:8, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'I let the harshest voice inside me have the final say.'},
+  {n:9, sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I measured my pace against someone else’s pace.'},
+  {n:10,sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I felt smaller after looking at someone’s life than before I looked.'},
+  {n:11,sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I lost track of what I want when I saw what they have.'},
+  {n:12,sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I downgraded my own progress when I saw someone else’s.'},
+  {n:13,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I tracked who is ahead of me in my field.'},
+  {n:14,sec:1,sn:'The four reflexes', dom:'Competing',   text:'My sense of worth moved with whether I was winning.'},
+  {n:15,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I did things mainly to be seen doing them.'},
+  {n:16,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I oriented around approval rather than what is mine to build.'},
+  // 2. The seven postures (ALCARRA, 7) — reverse
+  {n:17,sec:2,sn:'The seven postures',dom:'Awareness',     text:'I let myself see what was true, even where the truth was unflattering.', rev:true},
+  {n:18,sec:2,sn:'The seven postures',dom:'Learning',      text:'I let yesterday teach me, and I began again clean.', rev:true},
+  {n:19,sec:2,sn:'The seven postures',dom:'Change',        text:'I shifted one thing this period rather than waiting to overhaul everything.', rev:true},
+  {n:20,sec:2,sn:'The seven postures',dom:'Action',        text:'I moved before I felt ready, instead of waiting to feel ready.', rev:true},
+  {n:21,sec:2,sn:'The seven postures',dom:'Resilience',    text:'When difficulty arrived, I stayed in the work.', rev:true},
+  {n:22,sec:2,sn:'The seven postures',dom:'Reflection',    text:'I looked back at my own behavior without defending it.', rev:true},
+  {n:23,sec:2,sn:'The seven postures',dom:'Accountability',text:'I let one trusted witness see the truth of my week.', rev:true},
+  // 3. The four needs (8) — pairs
+  {n:24,sec:3,sn:'The four needs', dom:'Aliveness · filled',     text:'I felt genuinely alive. Present, in my body, awake to what is here.', rev:true},
+  {n:25,sec:3,sn:'The four needs', dom:'Aliveness · substitute', text:'I reached for intensity, urgency, or drama when what I wanted was presence.'},
+  {n:26,sec:3,sn:'The four needs', dom:'Connection · filled',    text:'I felt rooted in real relationships, not curated ones.', rev:true},
+  {n:27,sec:3,sn:'The four needs', dom:'Connection · substitute',text:'I reached for reach, like followers or wider audience, when what I wanted was roots.'},
+  {n:28,sec:3,sn:'The four needs', dom:'Meaning · filled',       text:'I sensed depth in what I was doing. It carried weight beyond performance.', rev:true},
+  {n:29,sec:3,sn:'The four needs', dom:'Meaning · substitute',   text:'I reached for breadth, like more topics or more options, when what I wanted was depth.'},
+  {n:30,sec:3,sn:'The four needs', dom:'Fulfillment · filled',   text:'I felt enough. The quiet sense that I have what I need.', rev:true},
+  {n:31,sec:3,sn:'The four needs', dom:'Fulfillment · substitute',text:'I reached for more, like more income or recognition, when what I wanted was enough.'},
+  // 4. Forces (4) and Fidelities (4) — reverse
+  {n:32,sec:4,sn:'Forces and fidelities',dom:'Duty',                text:'I carried someone forward this period because I said I would.', rev:true, ff:'force'},
+  {n:33,sec:4,sn:'Forces and fidelities',dom:'Opus',                text:'I kept building the thing only I can build, even where no one applauded.', rev:true, ff:'force'},
+  {n:34,sec:4,sn:'Forces and fidelities',dom:'Declaration',         text:'I held a commitment I had spoken aloud to a witness who remembers.', rev:true, ff:'force'},
+  {n:35,sec:4,sn:'Forces and fidelities',dom:'Identity',            text:'I behaved like the person I want to become, even when no one was watching.', rev:true, ff:'force'},
+  {n:36,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Mind',    text:'I thought what was mine to think, not the inherited script.', rev:true, ff:'fidelity'},
+  {n:37,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Heart',   text:'I felt what was mine to feel, not what I was trained to perform.', rev:true, ff:'fidelity'},
+  {n:38,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Will',    text:'I chose what was mine to choose, not what was easier or expected.', rev:true, ff:'fidelity'},
+  {n:39,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Hand',    text:'I did what was mine to do, and the doing matched the saying.', rev:true, ff:'fidelity'},
+  // 5. Faculties of fidelity (4) + Practice (6) — reverse
+  {n:40,sec:5,sn:'Faculties and practice', dom:'Attention',          text:'My attention stayed with what was mine to attend to, not what was easier to look at.', rev:true},
+  {n:41,sec:5,sn:'Faculties and practice', dom:'Allegiance',         text:'My own clear judgment had the final say inside me, not the loudest voice in the room.', rev:true},
+  {n:42,sec:5,sn:'Faculties and practice', dom:'Integrity',          text:'My word and my action were the same thing this period.', rev:true},
+  {n:43,sec:5,sn:'Faculties and practice', dom:'Return',             text:'When I left center, I returned. The return itself was the practice.', rev:true},
+  {n:44,sec:5,sn:'Faculties and practice', dom:'The Seal',           text:'I performed the Seal at sunrise. Hand on heart, one breath, before phone, coffee, or message.', rev:true},
+  {n:45,sec:5,sn:'Faculties and practice', dom:'The Daily Reset',    text:'I wrote five short prompts after the Seal. Five words or fewer per line.', rev:true},
+  {n:46,sec:5,sn:'Faculties and practice', dom:'The evening question',text:'At sunset I asked: where did I keep fidelity. Where did I break it. Where do I return tomorrow.', rev:true},
+  {n:47,sec:5,sn:'Faculties and practice', dom:'The 24-hour return', text:'When I missed a day, I returned the next day. No shame spiral. No abandonment.', rev:true},
+  {n:48,sec:5,sn:'Faculties and practice', dom:'The Friday cohort',  text:'I spoke truth aloud where the cohort could hear it.', rev:true},
+  {n:49,sec:5,sn:'Faculties and practice', dom:'The Sunday sealing', text:'I closed the week before I opened the next one.', rev:true},
+  // 6. Where you are now (11): 4 UNFINISHED top + 1 inventory + 6 stage markers
+  {n:50,sec:6,sn:'Where you are now', dom:'Unkept promises',      text:'My word to myself lost credibility. I made promises and broke them quietly.'},
+  {n:51,sec:6,sn:'Where you are now', dom:'Self-trust bankrupt',  text:'I did not believe my own word when I made a new commitment.'},
+  {n:52,sec:6,sn:'Where you are now', dom:'Deferred action',      text:'Later was my operating system. The day arrived, and I postponed it again.'},
+  {n:53,sec:6,sn:'Where you are now', dom:'Hidden shame',         text:'I performed public confidence over private shame. The mask was heavy.'},
+  {n:54,sec:6,sn:'Where you are now', dom:'Inventory clarity',    text:'I am clear on the smallest honest finish for at least three of my unfinished commitments right now.', rev:true},
+  {n:55,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I felt disoriented, like the ground was shifting under me, and I was still here.', arc:'rupture'},
+  {n:56,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I was confronting the gap between what I claim and what I do, and it stung.', arc:'exposure'},
+  {n:57,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I had great days followed by crashes back into old patterns.', arc:'tension'},
+  {n:58,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I caught myself responding from a self I have not been before, and it surprised me.', arc:'unfolding'},
+  {n:59,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I wanted to help others through what I have walked through.', arc:'rooting'},
+  {n:60,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'The new way is now my default. Going back would take more effort than continuing.', arc:'newnormal'}
 ];
 
-// ── Domain metadata ──
 var REFLEXES=[
-  {key:'complaining',name:'Complaining',qs:[1,2,3,4],   forfeits:'Agency',     summary:'Mind goes to what is wrong before it goes to what is working.', breaks:'Integrity'},
-  {key:'criticizing',name:'Criticizing',qs:[5,6,7,8],   forfeits:'Authority',  summary:'The harshest voice inside carries the final say.',              breaks:'Allegiance'},
-  {key:'comparing', name:'Comparing', qs:[9,10,11,12],  forfeits:'Ground',     summary:'Measures life against another life and feels smaller.',         breaks:'Attention'},
-  {key:'competing', name:'Competing', qs:[13,14,15,16], forfeits:'Direction',  summary:'Tracks who is ahead and confuses winning with worth.',          breaks:'Return'}
+  {key:'complaining',name:'Complaining',qs:[1,2,3,4],   forfeits:'agency'},
+  {key:'criticizing',name:'Criticizing',qs:[5,6,7,8],   forfeits:'authority'},
+  {key:'comparing', name:'Comparing', qs:[9,10,11,12],  forfeits:'ground'},
+  {key:'competing', name:'Competing', qs:[13,14,15,16], forfeits:'direction'}
 ];
-var STRATEGIES={
-  complaining:[
-    {t:'Two-minute rule on naming problems',b:'Name what is wrong, then move. Two minutes maximum. After that, one move you can make. Not the whole solution. One move.'},
-    {t:'Translate complaint into request or decision',b:'Every complaint contains a hidden request or decision. Practice the translation aloud. This is not working becomes I will change this one thing.'},
-    {t:'Ratio check at sunset',b:'Count the minutes you spent naming problems against the minutes you spent acting on them. The honest count itself begins to shift the pattern.'}
-  ],
-  criticizing:[
-    {t:'The friend test',b:'Would you say this to a friend who made the same mistake. If not, restate the observation in the way you would speak to that friend. The truth holds. The cruelty leaves.'},
-    {t:'Sixty-second rule on self-criticism',b:'Notice the mistake. Sixty seconds. Then two questions. What do I learn. What do I do next. Then move.'},
-    {t:'Separate the act from the person',b:'I made a poor decision is a fact. I am a failure is a verdict. The critic collapses the two. Your job is to keep them separate.'}
-  ],
-  comparing:[
-    {t:'Compared to what',b:'Compared to what standard you actually chose. Most comparisons are automatic, not chosen. Asking the question interrupts the reflex.'},
-    {t:'One true thing',b:'What is one true thing about your own path right now. Not better or worse than anyone. Just true. Stand on that ground before you look anywhere else.'},
-    {t:'Feed audit, seven days',b:'Do not check the feed of anyone you compare yourself to. Replace the time with one small act that belongs to you alone.'}
-  ],
-  competing:[
-    {t:'The private act test',b:'If no one ever knew you did this, would you still want to do it. If yes, you are choosing. If no, you are competing. Choose more of what you would do in private.'},
-    {t:'One private act per day',b:'Do one thing today that you want for its own sake, with no audience. Do not post it. Let it be yours. The self underneath the competitor is unearthed by acts that no one sees.'},
-    {t:'Finish over win',b:'At sunset, ask, did I finish anything today, no matter how small. Not did I win. The only score that matters in the long run is closing what you opened.'}
-  ]
+
+var MATRIX={
+  complaining:{
+    Attention:'attention drifted toward what was wrong, not what was true',
+    Allegiance:'the grievance itself began to speak as final authority',
+    Integrity:'I named problems I had already decided not to fix',
+    Return:'I stayed inside the grievance and called it being honest'
+  },
+  criticizing:{
+    Attention:'attention hunted for flaws faster than it saw what was there',
+    Allegiance:'the harshest inner voice got the final say',
+    Integrity:'I condemned the very thing I kept doing',
+    Return:'I stayed inside the verdict and called it self-awareness'
+  },
+  comparing:{
+    Attention:'attention ran to other people’s lives instead of my own',
+    Allegiance:'an imagined audience started having the final say',
+    Integrity:'I measured my life in someone else’s currency',
+    Return:'I left for their life and stayed there'
+  },
+  competing:{
+    Attention:'attention tracked who was ahead instead of what mattered',
+    Allegiance:'the scoreboard began having the final say',
+    Integrity:'I performed what I should have been living',
+    Return:'I only returned after I lost'
+  }
 };
 
-var FACULTIES=[
-  {key:'think', name:'Think',  sub:'Interpretation', qs:[17,18], q:'What am I thinking, and is it true.'},
-  {key:'feel',  name:'Feel',   sub:'Ownership',      qs:[19,20], q:'What am I feeling, and am I owning it.'},
-  {key:'choose',name:'Choose', sub:'Agency',         qs:[21,22], q:'What am I choosing, and is it mine.'},
-  {key:'do',    name:'Do',     sub:'Embodiment',     qs:[23,24], q:'What am I doing, and does it match.'}
+var ALCARRA=[
+  {l:'A',name:'Awareness',     day:'Mon', q:17},
+  {l:'L',name:'Learning',      day:'Tue', q:18},
+  {l:'C',name:'Change',        day:'Wed', q:19},
+  {l:'A',name:'Action',        day:'Thu', q:20},
+  {l:'R',name:'Resilience',    day:'Fri', q:21},
+  {l:'R',name:'Reflection',    day:'Sat', q:22},
+  {l:'A',name:'Accountability',day:'Sun', q:23}
 ];
 
-var HUNGERS=[
-  {key:'alive', name:'Aliveness',  filled:25, subst:26, sub:'Presence vs intensity'},
-  {key:'conn',  name:'Connection', filled:27, subst:28, sub:'Roots vs reach'},
-  {key:'mean',  name:'Meaning',    filled:29, subst:30, sub:'Depth vs breadth'},
-  {key:'full',  name:'Fulfillment',filled:31, subst:32, sub:'Enough vs more'}
+var NEEDS=[
+  {key:'alive', name:'Aliveness',  filled:24, subst:25, sub:'Presence over intensity'},
+  {key:'conn',  name:'Connection', filled:26, subst:27, sub:'Roots over reach'},
+  {key:'mean',  name:'Meaning',    filled:28, subst:29, sub:'Depth over breadth'},
+  {key:'full',  name:'Fulfillment',filled:30, subst:31, sub:'Enough over more'}
+];
+
+var FORCES=[
+  {key:'duty',name:'Duty',sub:'Whom I am honoring',q:32},
+  {key:'opus',name:'Opus',sub:'What was given me to build',q:33},
+  {key:'declaration',name:'Declaration',sub:'What I put on record',q:34},
+  {key:'identity',name:'Identity',sub:'Who I must become',q:35}
 ];
 
 var FIDELITIES=[
-  {key:'mind', name:'Fidelity to Mind', sub:'Did I think what was mine to think.', q:33},
-  {key:'heart',name:'Fidelity to Heart',sub:'Did I feel what was mine to feel.',   q:34},
-  {key:'will', name:'Fidelity to Will', sub:'Did I choose what was mine to choose.',q:35},
-  {key:'hand', name:'Fidelity to Hand', sub:'Did I do what was mine to do.',        q:36}
+  {key:'mind', name:'Mind', sub:'Did I think what was mine to think',q:36},
+  {key:'heart',name:'Heart',sub:'Did I feel what was mine to feel',q:37},
+  {key:'will', name:'Will', sub:'Did I choose what was mine to choose',q:38},
+  {key:'hand', name:'Hand', sub:'Did I do what was mine to do',q:39}
 ];
 
-var UNFINISHED=[
-  {l:'U',name:'Unkept Promises',           q:37, sub:'Word to self lost credibility.'},
-  {l:'N',name:'Negotiating Constantly',    q:38, sub:'The bargain is the disease.'},
-  {l:'F',name:'Fragmented Identity',       q:39, sub:'A committee of half-formed selves.'},
-  {l:'I',name:'Inherited Patterns',        q:40, sub:'A pattern not invented, not refused.'},
-  {l:'N',name:'Neglected Completion',      q:41, sub:'Stops at ninety percent.'},
-  {l:'I',name:'Intelligence Weaponized',   q:42, sub:'Excellent excuses as analysis.'},
-  {l:'S',name:'Self-Trust Bankrupt',       q:43, sub:'The account is overdrawn.'},
-  {l:'H',name:'Hidden Shame',              q:44, sub:'Public confidence over private shame.'},
-  {l:'E',name:'Exhausted From Carrying',   q:45, sub:'Tired from dragging.'},
-  {l:'D',name:'Deferred Action As Lifestyle',q:46,sub:'Later as operating system.'}
-];
-
-var FOUNDATION=[
-  {l:'F',name:'Focus and Goal Setting',  q:47, sub:'One clear thing, named in writing.'},
-  {l:'O',name:'Openness to Growth',      q:48, sub:'Welcome the contradiction.'},
-  {l:'U',name:'Unwavering Resilience',   q:49, sub:'Return within hours, not days.'},
-  {l:'N',name:'Nurturing Relationships', q:50, sub:'Attention they could feel.'},
-  {l:'D',name:'Deep Self-Awareness',     q:51, sub:'Notice during, not after.'},
-  {l:'A',name:'Action and Accountability',q:52,sub:'Move before ready, then report.'},
-  {l:'T',name:'Trust and Integrity',     q:53, sub:'Said and done are the same thing.'},
-  {l:'I',name:'Intrinsic Motivation',    q:54, sub:'Mine to do, not theirs to see.'},
-  {l:'O',name:'Optimistic Outlook',      q:55, sub:'What can still be built.'},
-  {l:'N',name:'Never-ending Learning',   q:56, sub:'Lesson before letting go.'}
+var FACULTIES=[
+  {key:'attention', name:'Attention', sub:'Where the mind goes',q:40},
+  {key:'allegiance',name:'Allegiance',sub:'Whose voice has the final say',q:41},
+  {key:'integrity', name:'Integrity', sub:'Word and action as one',q:42},
+  {key:'return',    name:'Return',    sub:'The discipline of coming back',q:43}
 ];
 
 var PRACTICE=[
-  {key:'seal',  name:'The Seal',                    q:57},
-  {key:'reset', name:'The Daily Reset',             q:58},
-  {key:'evening',name:'The Evening Master Question',q:59},
-  {key:'return',name:'The 24-Hour Return',          q:60},
-  {key:'friday',name:'The Friday Cohort',           q:61},
-  {key:'sunday',name:'The Sunday Sealing',          q:62}
+  {key:'seal',  name:'The Seal',                    q:44},
+  {key:'reset', name:'The Daily Reset',             q:45},
+  {key:'evening',name:'The evening question',       q:46},
+  {key:'return',name:'The 24-hour return',          q:47},
+  {key:'friday',name:'The Friday cohort',           q:48},
+  {key:'sunday',name:'The Sunday sealing',          q:49}
+];
+
+var COVENANTS=[
+  {month:1,name:'Self',  promise:'I will stop abandoning myself.',practice:'I keep one daily promise to myself.',evidence:'I trust myself again. I have proof.'},
+  {month:2,name:'Body',  promise:'I will stop treating my body as disposable.',practice:'I protect rest, movement, nourishment, and attention.',evidence:'My body still carries me at sixty, seventy, eighty.'},
+  {month:3,name:'Craft', promise:'I will honor the work entrusted to me.',practice:'I serve the work daily. The work does not serve me.',evidence:'The work gets finished. Not perfect. Finished.'},
+  {month:4,name:'People',promise:'I will become different at home before I am different anywhere else.',practice:'I repair what I broke. I show up when I said I would.',evidence:'The people closest to me feel the change. They do not just hear about it.'},
+  {month:5,name:'Future',promise:'I will stop betraying the person I am becoming.',practice:'I act on behalf of the seventy-year-old version of me.',evidence:'My calendar, my money, and my habits agree with my future.'},
+  {month:6,name:'World', promise:'I will give back from the life I have rebuilt.',practice:'I do not abandon the work for easier invitations. I make one public contribution.',evidence:'The world receives proof that I came back stronger and gave something back.'}
 ];
 
 var ARC_INTERNAL={
-  rupture:{name:'Rupture',daySpan:[1,21]},
-  exposure:{name:'Exposure',daySpan:[22,60]},
-  tension:{name:'Tension',daySpan:[61,100]},
-  unfolding:{name:'Unfolding',daySpan:[101,150]},
-  rooting:{name:'Rooting',daySpan:[151,170]},
-  newnormal:{name:'New Normal',daySpan:[171,999]}
+  rupture:{name:'Rupture'},exposure:{name:'Exposure'},tension:{name:'Tension'},
+  unfolding:{name:'Unfolding'},rooting:{name:'Rooting'},newnormal:{name:'New Normal'}
 };
 
-// ── State ──
+// State
 var answers={};
 var currentQ=1;
-var autoAdvanceTimer=null;
 var participantName='';
 var participantDay=0;
 var lastResults=null;
+var advanceTimer=null;
 
-// ── Storage ──
-function loadHistory(){
-  try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}
-}
-function saveHistory(arr){
-  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(arr))}catch(e){}
-}
-function appendRecord(rec){
-  var h=loadHistory();h.push(rec);saveHistory(h);return h;
-}
+// Storage
+function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
+function saveHistory(arr){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(arr))}catch(e){}}
+function appendRecord(rec){var h=loadHistory();h.push(rec);saveHistory(h);return h}
 function clearHistory(){try{localStorage.removeItem(STORAGE_KEY)}catch(e){}}
-
 function priorRecords(name){
   var h=loadHistory();
   var n=(name||'').trim().toLowerCase();
   return h.filter(function(r){return (r.name||'').trim().toLowerCase()===n}).sort(function(a,b){return a.day-b.day || (a.date<b.date?-1:1)});
 }
-function lastFor(name){
-  var p=priorRecords(name);return p.length?p[p.length-1]:null;
-}
-function baselineFor(name){
-  var p=priorRecords(name);return p.length?p[0]:null;
-}
+function lastFor(name){var p=priorRecords(name);return p.length?p[p.length-1]:null}
 
-// ── Routing ──
+// Routing
 function show(id){
   var screens=document.querySelectorAll('.screen');
   for(var i=0;i<screens.length;i++)screens[i].classList.remove('active');
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
-
 function setNavMeta(text){var el=document.getElementById('navMeta');el.textContent=text||'UNFINISHED'}
 
-// ── Init ──
 function init(){
   populateDayPicker();
   var h=loadHistory();
@@ -801,7 +668,6 @@ function init(){
     show('screen-welcome');
   }
 }
-
 function populateDayPicker(){
   var sel=document.getElementById('dayPicker');
   sel.innerHTML='';
@@ -816,7 +682,6 @@ function populateDayPicker(){
     sel.appendChild(opt);
   }
 }
-
 function nextDayFor(prev){
   for(var i=0;i<DAY_OPTIONS.length;i++)if(DAY_OPTIONS[i].v>prev)return DAY_OPTIONS[i].v;
   return 181;
@@ -828,95 +693,18 @@ document.addEventListener('DOMContentLoaded',function(){
   document.addEventListener('keydown',function(e){
     var qScreen=document.getElementById('screen-question');
     if(!qScreen.classList.contains('active'))return;
+    if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA')return;
     var k=e.key.toLowerCase();
     if(k==='a'||k==='1'){selectOption(currentQ,1)}
     else if(k==='b'||k==='2'){selectOption(currentQ,2)}
     else if(k==='c'||k==='3'){selectOption(currentQ,3)}
     else if(k==='d'||k==='4'){selectOption(currentQ,4)}
-    else if(k==='enter'){if(answers[currentQ])nextQuestion()}
-    else if(k==='arrowleft'||k==='backspace'){if(e.target.tagName!=='INPUT')prevQuestion()}
+    else if(k==='enter'){if(answers[currentQ]){cancelAdvance();nextQuestion()}}
+    else if(k==='arrowleft'||k==='backspace'){cancelAdvance();prevQuestion()}
   });
 });
 
-// ── Dashboard render ──
-function renderDashboard(name){
-  var prior=lastFor(name);
-  var base=baselineFor(name);
-  var greet=document.getElementById('dashName');greet.textContent=name||'friend';
-  var sub=document.getElementById('dashSub');
-  if(prior){
-    var when=relTime(prior.date);
-    sub.textContent='Your last assessment was on '+labelForDay(prior.day)+', taken '+when+'.';
-  }else{
-    sub.textContent='Begin where you are.';
-  }
-
-  // Timeline
-  var tl=document.getElementById('timeline');tl.innerHTML='';
-  var milestones=[0,15,30,45,60,75,90,105,120,135,150,165,180];
-  var doneDays=priorRecords(name).map(function(r){return r.day});
-  var lastDone=doneDays.length?Math.max.apply(null,doneDays.filter(function(d){return d<=180})):-1;
-  for(var i=0;i<milestones.length;i++){
-    var d=milestones[i];
-    var node=document.createElement('div');node.className='tl-node';
-    var dot=document.createElement('div');dot.className='tl-dot';
-    var lbl=document.createElement('div');lbl.className='tl-label';lbl.textContent='D'+d;
-    var done=doneDays.indexOf(d)!==-1;
-    var nextDay=nextDayFor(lastDone);
-    var isNow=(d===nextDay && !done);
-    if(done){dot.classList.add('done');lbl.classList.add('done')}
-    if(isNow){dot.classList.add('now');lbl.classList.add('now')}
-    node.appendChild(dot);node.appendChild(lbl);tl.appendChild(node);
-    if(i<milestones.length-1){
-      var line=document.createElement('div');line.className='tl-line';
-      if(done && doneDays.indexOf(milestones[i+1])!==-1)line.classList.add('done');
-      tl.appendChild(line);
-    }
-  }
-
-  // Snapshot
-  var snap=document.getElementById('dashSnapshot');snap.innerHTML='';
-  if(prior){
-    var loud=loudestReflex(prior.scores);
-    var loudPrev=base && base!==prior?loudestReflex(base.scores):null;
-    var foundationStrong=topFoundation(prior);
-    var fid=prior.scores.fidelity_rate||0;
-    var fidPrev=base && base!==prior && (base.scores.fidelity_rate!=null)?base.scores.fidelity_rate:null;
-
-    snap.appendChild(buildSnap('Loudest reflex',loud.name,loudLabel(loud.pct)+' · '+loud.score+' / '+loud.max,
-      loudPrev?deltaPill(loudPrev.score-loud.score,'down'):null));
-    snap.appendChild(buildSnap('Strongest pillar',foundationStrong.name,levelLabelPos(foundationStrong.pct)+' · '+foundationStrong.score+'/4',null));
-    snap.appendChild(buildSnap('Practice fidelity',fid+'%','Across the six daily moves.',
-      fidPrev!=null?deltaPill(fid-fidPrev,'up'):null));
-    snap.appendChild(buildSnap('Path so far',doneDays.length+' returned',(180-Math.max.apply(null,doneDays))+' days remain to seal.',null));
-  }
-
-  // CTA
-  var btn=document.getElementById('dashTakeBtn');
-  var nd=prior?nextDayFor(prior.day):0;
-  var lblText=DAY_OPTIONS.find(function(o){return o.v===nd}).label;
-  btn.textContent='Take your '+lblText.split(' (')[0]+' assessment';
-}
-
-function buildSnap(label,value,meta,deltaHTML){
-  var el=document.createElement('div');el.className='snap-card';
-  var l=document.createElement('div');l.className='snap-label';l.textContent=label;el.appendChild(l);
-  var v=document.createElement('div');v.className='snap-value';v.textContent=value;
-  if(deltaHTML)v.appendChild(deltaHTML);
-  el.appendChild(v);
-  var m=document.createElement('div');m.className='snap-meta';m.textContent=meta;el.appendChild(m);
-  return el;
-}
-function deltaPill(amount,positiveDirection){
-  var span=document.createElement('span');
-  if(amount===0||isNaN(amount)){span.className='snap-delta flat';span.textContent='no change';return span}
-  var isPos=(amount>0 && positiveDirection==='up')||(amount<0 && positiveDirection==='down');
-  span.className='snap-delta '+(isPos?'up':'down');
-  var arrow=amount>0?'↑':'↓';
-  span.textContent=arrow+' '+Math.abs(amount);
-  return span;
-}
-
+// Helpers
 function relTime(iso){
   var t=new Date(iso).getTime(),now=Date.now(),diff=now-t,d=Math.floor(diff/86400000);
   if(d<1)return 'today';if(d===1)return 'yesterday';
@@ -924,13 +712,110 @@ function relTime(iso){
   if(d<60)return Math.floor(d/7)+' weeks ago';
   return Math.floor(d/30)+' months ago';
 }
+function labelForDay(d){var o=DAY_OPTIONS.find(function(o){return o.v===d});return o?o.label:('Day '+d)}
+function formatShortDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
+function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
+function safe(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
 
-function labelForDay(d){
-  var o=DAY_OPTIONS.find(function(o){return o.v===d});
-  return o?o.label:('Day '+d);
+// Dashboard
+function renderDashboard(name){
+  var prior=lastFor(name);
+  var hist=priorRecords(name);
+  var greetEl=document.getElementById('dashName');
+  greetEl.textContent='Welcome back, '+(name||'friend');
+
+  var lineEl=document.getElementById('dashLine');
+  if(prior){
+    var when=relTime(prior.date);
+    var lblShort=labelForDay(prior.day).split(' (')[0];
+    lineEl.innerHTML='Your last return was your <b>'+lblShort+'</b>, taken '+when+'. You have completed <b>'+hist.length+'</b> '+(hist.length===1?'return':'returns')+' so far.';
+  }else{
+    lineEl.textContent='Begin where you are.';
+  }
+
+  // Snapshot table
+  var snap=document.getElementById('snapshotTable');
+  if(prior){
+    var loud=loudestReflexFromRec(prior);
+    var fid=prior.scores&&prior.scores.fidelity_rate!=null?prior.scores.fidelity_rate:null;
+    var earlier=null;
+    for(var i=hist.length-2;i>=0;i--){if(hist[i].scores&&hist[i].scores.fidelity_rate!=null){earlier=hist[i];break}}
+    var loudPrev=earlier?loudestReflexFromRec(earlier):null;
+    var fidPrev=earlier?earlier.scores.fidelity_rate:null;
+
+    snap.innerHTML='<thead><tr><th>Indicator</th><th class="right">Value</th><th class="right">Since last</th></tr></thead><tbody>'+
+      '<tr class="feature"><td><b>Loudest reflex</b><div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">The pattern that ran you most this period</div></td>'+
+        '<td class="right value-lg">'+(loud&&loud.name?loud.name:'—')+'<div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">'+(loud?loud.score+' of '+loud.max+', '+levelLabelNeg(loud.pct):'')+'</div></td>'+
+        '<td class="right">'+(loudPrev?renderDeltaPill(loud.score-loudPrev.score,'down'):'<span class="muted" style="font-size:11px">first return</span>')+'</td></tr>'+
+      '<tr><td><b>Practice fidelity</b><div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">Across six daily and weekly moves</div></td>'+
+        '<td class="right value-lg">'+(fid!=null?fid+'%':'—')+'</td>'+
+        '<td class="right">'+(fidPrev!=null?renderDeltaPill(fid-fidPrev,'up'):'<span class="muted" style="font-size:11px">first return</span>')+'</td></tr>'+
+      '</tbody>';
+  }else{
+    snap.innerHTML='<tbody><tr><td class="muted">No prior return yet. Begin with the baseline.</td></tr></tbody>';
+  }
+
+  // Path table
+  var milestones=[
+    {v:0,name:'Day 0',ext:'Baseline'},
+    {v:15,name:'Day 15',ext:''},
+    {v:30,name:'Day 30',ext:'End of Self covenant'},
+    {v:45,name:'Day 45',ext:''},
+    {v:60,name:'Day 60',ext:'End of Body covenant'},
+    {v:75,name:'Day 75',ext:''},
+    {v:90,name:'Day 90',ext:'Ninety-day milestone'},
+    {v:105,name:'Day 105',ext:''},
+    {v:120,name:'Day 120',ext:'End of People covenant'},
+    {v:135,name:'Day 135',ext:''},
+    {v:150,name:'Day 150',ext:'End of Future covenant'},
+    {v:165,name:'Day 165',ext:''},
+    {v:180,name:'Day 180',ext:'The Sealing'}
+  ];
+  var doneDays=hist.map(function(r){return r.day});
+  var lastDone=doneDays.length?Math.max.apply(null,doneDays.filter(function(d){return d<=180})):-1;
+  var nextDay=nextDayFor(lastDone);
+
+  var ph='<thead><tr><th></th><th>Return</th><th>Domain</th><th class="right">Status</th></tr></thead><tbody>';
+  for(var i=0;i<milestones.length;i++){
+    var m=milestones[i];
+    var rec=hist.filter(function(r){return r.day===m.v}).slice(-1)[0];
+    var done=!!rec;
+    var isNow=(m.v===nextDay&&!done);
+    var cls='path-row '+(done?'done':isNow?'now':'upcoming');
+    var mark=done?'✓':(isNow?'•':'');
+    var meta=done?formatShortDate(rec.date):(isNow?'next':'');
+    ph+='<tr class="'+cls+'"><td class="path-mark-cell"><div class="path-mark">'+mark+'</div></td><td>'+m.name+'</td><td class="muted">'+(m.ext||'')+'</td><td class="right">'+meta+'</td></tr>';
+  }
+  ph+='</tbody>';
+  document.getElementById('pathTable').innerHTML=ph;
+
+  var btn=document.getElementById('dashTakeBtn');
+  var lblText=DAY_OPTIONS.find(function(o){return o.v===nextDay});
+  btn.textContent='Take your '+(lblText?lblText.label.split(' (')[0]:'next')+' assessment';
 }
 
-// ── New assessment flow ──
+function renderDeltaPill(amount,positiveDirection){
+  if(amount===0||isNaN(amount))return '<span class="delta-pill flat">no change</span>';
+  var isPos=(amount>0&&positiveDirection==='up')||(amount<0&&positiveDirection==='down');
+  var arrow=amount>0?'↑':'↓';
+  return '<span class="delta-pill '+(isPos?'up':'down')+'">'+arrow+' '+Math.abs(amount)+'</span>';
+}
+
+function loudestReflexFromRec(rec){
+  var src=rec&&rec.scores?rec.scores:null;
+  var best=null;
+  for(var i=0;i<REFLEXES.length;i++){
+    var r=REFLEXES[i],max=r.qs.length*4,score=0;
+    if(src){
+      if(src['reflex_'+r.key]&&typeof src['reflex_'+r.key].score==='number')score=src['reflex_'+r.key].score;
+      else if(typeof src[r.key]==='number')score=src[r.key];
+    }
+    if(!best||score>best.score)best={key:r.key,name:r.name,score:score,max:max,pct:max?score/max:0};
+  }
+  return best;
+}
+
+// Flow
 function newAssessment(){
   var h=loadHistory();
   if(h.length){
@@ -944,11 +829,9 @@ function showResultsFromHistory(){
   var name=document.getElementById('participantName').value||(loadHistory().slice(-1)[0]||{}).name;
   var p=lastFor(name);if(!p){newAssessment();return}
   participantName=p.name;participantDay=p.day;answers=p.answers||{};
-  buildResults(p);
-  show('screen-results');
+  buildResults(p);show('screen-results');
 }
 function startAssessment(){
-  clearAutoAdvance();
   var nameEl=document.getElementById('participantName');
   var name=(nameEl.value||'').trim();
   if(!name){nameEl.focus();return}
@@ -956,11 +839,9 @@ function startAssessment(){
   var dayEl=document.getElementById('dayPicker');
   participantDay=parseInt(dayEl.value,10)||0;
   answers={};currentQ=1;
-  renderQuestion(1);
-  show('screen-question');
-  setNavMeta('KOORA · '+labelForDay(participantDay).split(' (')[0]);
+  renderQuestion(1);show('screen-question');
+  setNavMeta('KOORA · The Finisher Protocol · '+labelForDay(participantDay).split(' (')[0]);
 }
-
 function confirmReset(){
   if(confirm('This clears every saved assessment in this browser. Continue?')){
     clearHistory();show('screen-welcome');populateDayPicker();
@@ -971,16 +852,15 @@ function goDashboard(){
   else show('screen-welcome');
 }
 
-// ── Question rendering ──
+// Question render with auto-advance
+function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
 function renderQuestion(n){
-  clearAutoAdvance();
+  cancelAdvance();
   var q=QUESTIONS[n-1];
-  document.getElementById('qSection').textContent='Section '+q.sec+' of 8 · '+q.sn;
-  document.getElementById('qCount').textContent=pad(n)+' / '+TOTAL;
+  document.getElementById('qSection').textContent='Section '+q.sec+' of 6 · '+q.sn;
+  document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
   document.getElementById('qText').textContent=q.text;
-  document.getElementById('qError').style.display='none';
   setProgress(Math.round(((n-1)/TOTAL)*98));
-
   var box=document.getElementById('qOptions');box.innerHTML='';
   for(var i=0;i<OPTIONS.length;i++){
     (function(opt){
@@ -988,170 +868,90 @@ function renderQuestion(n){
       b.className='opt'+(answers[n]===opt.score?' sel':'');
       b.innerHTML='<span class="opt-key">'+opt.key+'</span><span>'+opt.label+'</span>';
       b.onclick=function(){selectOption(n,opt.score)};
-      b.setAttribute('aria-label',opt.key+' · '+opt.label);
       box.appendChild(b);
     })(OPTIONS[i]);
   }
-
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
-  var nxt=document.getElementById('qNext');
-  nxt.textContent=n===TOTAL?'See your result':'Next';
-  nxt.disabled=!answers[n];
+  var hint=document.getElementById('qKeyhint');
+  if(hint)hint.textContent='Press A, B, C, or D. After you select, the next question loads in 3 seconds.';
 }
-function pad(n){return n<10?'0'+n:''+n}
 function selectOption(n,score){
   answers[n]=score;
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++){
     opts[i].classList.toggle('sel',OPTIONS[i].score===score);
+    opts[i].setAttribute('aria-pressed',OPTIONS[i].score===score?'true':'false');
   }
-  var nxt=document.getElementById('qNext');
-  nxt.disabled=false;
-  nxt.textContent=n===TOTAL?'Preparing your result…':'Next question in 3 seconds…';
-  document.getElementById('qError').style.display='none';
-  clearAutoAdvance();
-  autoAdvanceTimer=setTimeout(function(){
-    if(currentQ===n && answers[n]) nextQuestion();
+  var hint=document.getElementById('qKeyhint');
+  if(hint)hint.textContent=n===TOTAL?'Preparing your result in 3 seconds…':'Selected. Next question loads in 3 seconds…';
+  cancelAdvance();
+  advanceTimer=setTimeout(function(){
+    if(answers[n]===score && currentQ===n){nextQuestion()}
   },AUTO_ADVANCE_MS);
 }
-function clearAutoAdvance(){
-  if(autoAdvanceTimer){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null}
-}
 function nextQuestion(){
-  if(!answers[currentQ]){
-    document.getElementById('qError').style.display='block';
-    document.getElementById('qNext').disabled=true;
-    return;
-  }
+  cancelAdvance();
+  if(!answers[currentQ])return;
   if(currentQ===TOTAL){finishAssessment();return}
   currentQ++;renderQuestion(currentQ);
 }
-function prevQuestion(){clearAutoAdvance();if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
+function prevQuestion(){cancelAdvance();if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
 
-// ── Scoring ──
+// Scoring
 function sumQs(qs){var s=0;for(var i=0;i<qs.length;i++)s+=answers[qs[i]]||0;return s}
-
-function reflexScores(){return readReflexScores(null)}
-function readReflexScores(rec){
-  var src=rec&&rec.scores?rec.scores:null;
+function reflexScores(){
   var out={};
   for(var i=0;i<REFLEXES.length;i++){
-    var r=REFLEXES[i],max=r.qs.length*4,score=0,pct=0;
-    if(src){
-      if(src['reflex_'+r.key]&&typeof src['reflex_'+r.key].score==='number'){score=src['reflex_'+r.key].score;pct=src['reflex_'+r.key].pct||score/max}
-      else if(typeof src[r.key]==='number'){score=src[r.key];pct=score/max}
-    }else{
-      score=sumQs(r.qs);pct=score/max;
-    }
-    out[r.key]={key:r.key,name:r.name,score:score,max:max,pct:pct};
+    var r=REFLEXES[i],s=sumQs(r.qs),max=r.qs.length*4;
+    out[r.key]={key:r.key,name:r.name,score:s,max:max,pct:s/max};
   }
   return out;
 }
-function loudestReflex(scoresObjOrRec){
-  var rec=scoresObjOrRec&&scoresObjOrRec.scores?scoresObjOrRec:(scoresObjOrRec?{scores:scoresObjOrRec}:null);
-  var s=readReflexScores(rec);
-  var keys=Object.keys(s),best=keys[0];
+function loudestReflex(){
+  var s=reflexScores();var keys=Object.keys(s),best=keys[0];
   for(var i=1;i<keys.length;i++)if(s[keys[i]].score>s[best].score)best=keys[i];
   return s[best];
 }
-function reflexScoresFromAnswers(){return readReflexScores(null)}
-function facultyScores(){
-  var out={};
-  for(var i=0;i<FACULTIES.length;i++){
-    var f=FACULTIES[i],s=sumQs(f.qs),max=f.qs.length*4;
-    out[f.key]={score:s,max:max,pct:s/max};
-  }
-  return out;
-}
-function fidelityScores(){
-  var out={};
-  for(var i=0;i<FIDELITIES.length;i++){
-    var f=FIDELITIES[i],s=answers[f.q]||0;
-    out[f.key]={score:s,max:4,pct:s/4};
-  }
-  return out;
-}
-function unfinishedScores(){
-  return UNFINISHED.map(function(u){var s=answers[u.q]||0;return{l:u.l,name:u.name,score:s,pct:s/4}});
-}
-function foundationScores(){
-  return FOUNDATION.map(function(p){var s=answers[p.q]||0;return{l:p.l,name:p.name,score:s,pct:s/4}});
-}
-function hungerScores(){
-  return HUNGERS.map(function(h){
+function alcarraScores(){return ALCARRA.map(function(a){var s=answers[a.q]||0;return{l:a.l,name:a.name,day:a.day,score:s,pct:s/4}})}
+function needScores(){
+  return NEEDS.map(function(h){
     var f=answers[h.filled]||0,sb=answers[h.subst]||0;
     return{key:h.key,name:h.name,sub:h.sub,filled:f,filledPct:f/4,subst:sb,substPct:sb/4};
   });
 }
+function forceScores(){return FORCES.map(function(f){var s=answers[f.q]||0;return{key:f.key,name:f.name,sub:f.sub,score:s,pct:s/4}})}
+function fidelityScores(){return FIDELITIES.map(function(f){var s=answers[f.q]||0;return{key:f.key,name:f.name,sub:f.sub,score:s,pct:s/4}})}
+function facultyScores(){return FACULTIES.map(function(f){var s=answers[f.q]||0;return{key:f.key,name:f.name,sub:f.sub,score:s,pct:s/4}})}
 function practiceScores(){
   var out={};var total=0;
   for(var i=0;i<PRACTICE.length;i++){
     var p=PRACTICE[i],s=answers[p.q]||0;
-    out[p.key]={score:s,name:p.name};
-    total+=s;
+    out[p.key]={score:s,name:p.name};total+=s;
   }
-  out._total=total;
-  out._max=PRACTICE.length*4;
-  out._rate=Math.round((total/out._max)*100);
+  out._total=total;out._max=PRACTICE.length*4;out._rate=Math.round((total/out._max)*100);
   return out;
 }
-function inventoryScore(){
-  var moved=answers[63]||0,clear=answers[64]||0;
-  return {moved:moved,clear:clear,total:moved+clear,max:8};
-}
+function inventoryClear(){return answers[54]||0}
 function arcScores(){
   var out={};
-  for(var i=65;i<=70;i++){
-    var q=QUESTIONS[i-1];
-    out[q.arc]=answers[i]||0;
-  }
+  for(var i=55;i<=60;i++){var q=QUESTIONS[i-1];out[q.arc]=answers[i]||0}
   return out;
 }
 function activeStage(){
-  var a=arcScores();
-  var keys=Object.keys(a),best=keys[0];
+  var a=arcScores();var keys=Object.keys(a),best=keys[0];
   for(var i=1;i<keys.length;i++)if(a[keys[i]]>a[best])best=keys[i];
   return best;
 }
-function expectedStageForDay(d){
-  if(d<=21)return 'rupture';
-  if(d<=60)return 'exposure';
-  if(d<=100)return 'tension';
-  if(d<=150)return 'unfolding';
-  if(d<=170)return 'rooting';
-  return 'newnormal';
+function activeCovenant(day){
+  if(day<=30)return COVENANTS[0];if(day<=60)return COVENANTS[1];if(day<=90)return COVENANTS[2];
+  if(day<=120)return COVENANTS[3];if(day<=150)return COVENANTS[4];return COVENANTS[5];
 }
-
 function levelNeg(pct){return pct<=0.44?'quiet':pct<=0.69?'active':'loud'}
 function levelPos(pct){return pct<=0.44?'beg':pct<=0.69?'prac':'emb'}
 function levelLabelNeg(pct){return ({quiet:'Quiet',active:'Active',loud:'Loud'})[levelNeg(pct)]}
 function levelLabelPos(pct){return ({beg:'Beginning',prac:'Practicing',emb:'Embodied'})[levelPos(pct)]}
-function loudLabel(pct){return levelLabelNeg(pct)}
 
-function readFoundationFromRec(rec){
-  var src=rec&&rec.scores?rec.scores:null;
-  return FOUNDATION.map(function(p,i){
-    var s=0;
-    if(src){if(typeof src['foundation_'+i]==='number')s=src['foundation_'+i];}
-    else s=answers[p.q]||0;
-    return{l:p.l,name:p.name,score:s,pct:s/4};
-  });
-}
-function topFoundation(rec){
-  var arr=rec?readFoundationFromRec(rec):foundationScores();
-  var best=arr[0];for(var i=1;i<arr.length;i++)if(arr[i].score>best.score)best=arr[i];return best;
-}
-function bottomFoundation(rec){
-  var arr=rec?readFoundationFromRec(rec):foundationScores();
-  var worst=arr[0];for(var i=1;i<arr.length;i++)if(arr[i].score<worst.score)worst=arr[i];return worst;
-}
-function topUnfinished(){
-  var arr=unfinishedScores();var best=arr[0];
-  for(var i=1;i<arr.length;i++)if(arr[i].score>best.score)best=arr[i];
-  return best;
-}
-
-// ── Finish & save ──
+// Finish
 function finishAssessment(){
   setProgress(100);
   var rec=buildRecord();
@@ -1160,55 +960,33 @@ function finishAssessment(){
   show('screen-results');
   setNavMeta('Result · '+labelForDay(participantDay).split(' (')[0]);
 }
-
 function buildRecord(){
-  var rs=reflexScores();
-  var fs=facultyScores();
-  var fd=fidelityScores();
-  var un=unfinishedScores();
-  var fnd=foundationScores();
-  var pr=practiceScores();
-  var inv=inventoryScore();
-  var ar=arcScores();
-  var loud=loudestReflex(rs);
-  var scores={
-    fidelity_rate:pr._rate
-  };
+  var rs=reflexScores(),pr=practiceScores();
+  var loud=loudestReflex();
+  var scores={fidelity_rate:pr._rate,inventory_clear:inventoryClear()};
   for(var k in rs)scores['reflex_'+k]={score:rs[k].score,pct:rs[k].pct};
-  for(var k in fs)scores['faculty_'+k]={score:fs[k].score,pct:fs[k].pct};
-  for(var k in fd)scores['fidelity_'+k]={score:fd[k].score};
-  for(var i=0;i<un.length;i++)scores['unfinished_'+i]=un[i].score;
-  for(var i=0;i<fnd.length;i++)scores['foundation_'+i]=fnd[i].score;
-  for(var k in ar)scores['arc_'+k]=ar[k];
-  scores.inventory_moved=inv.moved;
-  scores.inventory_clear=inv.clear;
-  // for snapshot delta
-  scores.complaining=rs.complaining.score;
-  scores.criticizing=rs.criticizing.score;
-  scores.comparing=rs.comparing.score;
-  scores.competing=rs.competing.score;
-
+  scores.complaining=rs.complaining.score;scores.criticizing=rs.criticizing.score;
+  scores.comparing=rs.comparing.score;scores.competing=rs.competing.score;
+  var alc=alcarraScores();for(var i=0;i<alc.length;i++)scores['alc_'+alc[i].name.toLowerCase()]=alc[i].score;
+  var nd=needScores();for(var i=0;i<nd.length;i++){scores['need_'+nd[i].key+'_filled']=nd[i].filled;scores['need_'+nd[i].key+'_subst']=nd[i].subst}
+  var fr=forceScores();for(var i=0;i<fr.length;i++)scores['force_'+fr[i].key]=fr[i].score;
+  var fd=fidelityScores();for(var i=0;i<fd.length;i++)scores['fidelity_'+fd[i].key]=fd[i].score;
+  var fc=facultyScores();for(var i=0;i<fc.length;i++)scores['faculty_'+fc[i].key]=fc[i].score;
+  for(var k in pr){if(k.charAt(0)!=='_')scores['practice_'+k]=pr[k].score}
+  var ar=arcScores();for(var k in ar)scores['arc_'+k]=ar[k];
   return {
-    date:new Date().toISOString(),
-    day:participantDay,
-    name:participantName,
-    answers:Object.assign({},answers),
-    scores:scores,
-    primary_reflex:loud.key,
-    primary_level:levelNeg(loud.pct),
-    active_stage:activeStage()
+    date:new Date().toISOString(),day:participantDay,name:participantName,
+    answers:Object.assign({},answers),scores:scores,
+    primary_reflex:loud.key,primary_level:levelNeg(loud.pct),active_stage:activeStage()
   };
 }
 
-// ── Results render ──
+// Results
 function buildResults(rec){
   lastResults=rec;
   participantName=rec.name;participantDay=rec.day;answers=rec.answers||answers;
-
-  var prior=null,base=null;
-  var hist=priorRecords(rec.name);
+  var prior=null;var hist=priorRecords(rec.name);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
-  for(var i=0;i<hist.length;i++){if(hist[i].day===0 && hist[i].date<=rec.date){base=hist[i];break}}
 
   var loud=loudestReflex();
   var headline=document.getElementById('rHeadline');
@@ -1222,237 +1000,185 @@ function buildResults(rec){
   }
 
   renderReflexTable(prior);
-  renderFacultyGrid();
-  renderHungerGrid();
-  renderFidelityGrid();
-  renderUnfinishedHeat();
-  renderFoundationHeat();
+  renderMatrix(loud);
+  renderAlcarraTable();
+  renderNeedTable();
+  renderForceTable();
+  renderFidTable();
+  renderFacTable();
   renderPracticeFidelity(prior);
-  renderMovement(prior,base);
-  renderUnstuck();
+  renderMovement(prior);
+  renderCovenant(rec.day);
 }
 
 function renderReflexTable(prior){
-  var t=document.getElementById('reflexTable');t.innerHTML='';
   var rs=reflexScores();
+  var html='<thead><tr><th>Reflex</th><th>Forfeits</th><th class="right">Score</th><th class="right">Level</th><th class="right">Since last</th></tr></thead><tbody>';
   for(var i=0;i<REFLEXES.length;i++){
-    var r=REFLEXES[i],s=rs[r.key];
-    var lvl=levelNeg(s.pct);
-    var deltaHTML='';
+    var r=REFLEXES[i],s=rs[r.key],lvl=levelNeg(s.pct);
+    var deltaCell='<span class="muted" style="font-size:11px">first return</span>';
     if(prior){
       var prev=prior.scores['reflex_'+r.key]?prior.scores['reflex_'+r.key].score:prior.scores[r.key];
-      if(prev!=null){
-        var d=s.score-prev;
-        deltaHTML='<span class="delta '+(d<0?'delta-up':d>0?'delta-down':'delta-flat')+'">'+(d===0?'no change':(d>0?'↑ ':'↓ ')+Math.abs(d))+'</span>';
-      }
+      if(prev!=null){deltaCell=renderDeltaPill(s.score-prev,'down')}
     }
-    var row=document.createElement('div');row.className='score-row';
-    row.innerHTML=
-      '<div><div class="score-name">'+r.name+'</div><div class="score-name-sub">forfeits '+r.forfeits.toLowerCase()+'</div></div>'+
-      '<div class="bar"><div class="bar-fill '+lvl+'" style="width:'+Math.round(s.pct*100)+'%"></div></div>'+
-      '<div class="score-val '+lvl+'"><span>'+s.score+' / '+s.max+'</span><span class="lvl">'+levelLabelNeg(s.pct)+'</span>'+deltaHTML+'</div>';
-    t.appendChild(row);
+    html+='<tr><td>'+r.name+'</td><td class="muted">'+r.forfeits+'</td><td class="right">'+s.score+' / '+s.max+'</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelNeg(s.pct)+'</span></td><td class="right">'+deltaCell+'</td></tr>';
   }
+  html+='</tbody>';
+  document.getElementById('reflexTable').innerHTML=html;
 }
 
-function renderFacultyGrid(){
-  var g=document.getElementById('facultyGrid');g.innerHTML='';
-  var fs=facultyScores();
-  for(var i=0;i<FACULTIES.length;i++){
-    var f=FACULTIES[i],s=fs[f.key];
-    var lvl=levelPos(s.pct);
-    var card=document.createElement('div');card.className='fac-card';
-    card.innerHTML=
-      '<div class="fac-name">'+f.name+' · '+f.sub+'</div>'+
-      '<div class="fac-q">'+f.q+'</div>'+
-      '<div class="fac-bar"><div class="bar-fill '+lvl+'" style="width:'+Math.round(s.pct*100)+'%"></div></div>'+
-      '<div class="fac-meta"><b>'+levelLabelPos(s.pct)+'</b> · '+s.score+' / '+s.max+'</div>';
-    g.appendChild(card);
+function renderMatrix(loud){
+  var wrap=document.getElementById('matrixWrap');wrap.innerHTML='';
+  var rs=reflexScores();
+  var faculties=['Attention','Allegiance','Integrity','Return'];
+  var html='<table class="matrix-table"><thead><tr><th></th>';
+  for(var f=0;f<faculties.length;f++)html+='<th class="matrix-th">'+faculties[f]+'</th>';
+  html+='</tr></thead><tbody>';
+  for(var i=0;i<REFLEXES.length;i++){
+    var r=REFLEXES[i],sc=rs[r.key].score,sMax=rs[r.key].max;
+    var bandQ=sc/sMax;
+    var bandClass=bandQ<=.25?'q1':bandQ<=.50?'q2':bandQ<=.75?'q3':'q4';
+    var cls=(loud&&r.key===loud.key)?' class="loudest"':'';
+    html+='<tr'+cls+'><th class="matrix-th-row">'+r.name+'</th>';
+    for(var f=0;f<faculties.length;f++)html+='<td><div class="matrix-cell '+bandClass+'">'+sc+'</div></td>';
+    html+='</tr>';
   }
+  html+='</tbody></table>';
+
+  var fp='';
+  if(loud&&loud.key&&MATRIX[loud.key]){
+    fp+='<div class="fingerprint"><div class="fingerprint-label">The fingerprint of '+loud.name.toLowerCase()+' this period</div>'+
+      '<div class="fingerprint-h">When this reflex ran, here is what broke.</div>';
+    for(var f=0;f<faculties.length;f++){
+      fp+='<div class="fingerprint-row"><div class="fingerprint-fac">'+faculties[f]+'</div><div class="fingerprint-text">'+MATRIX[loud.key][faculties[f]]+'</div></div>';
+    }
+    fp+='</div>';
+  }
+  wrap.innerHTML=html+fp;
 }
 
-function renderHungerGrid(){
-  var g=document.getElementById('hungerGrid');g.innerHTML='';
-  var arr=hungerScores();
+function renderAlcarraTable(){
+  var arr=alcarraScores();
+  var html='<thead><tr><th>Posture</th><th>Day</th><th class="right">Score</th><th class="right">Strength</th></tr></thead><tbody>';
+  for(var i=0;i<arr.length;i++){
+    var a=arr[i];
+    var lvl=levelPos(a.pct);
+    html+='<tr><td>'+a.name+'</td><td class="muted">'+a.day+'</td><td class="right">'+a.score+' / 4</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelPos(a.pct)+'</span></td></tr>';
+  }
+  html+='</tbody>';
+  document.getElementById('alcTable').innerHTML=html;
+}
+
+function renderNeedTable(){
+  var arr=needScores();
+  var html='<thead><tr><th>Need</th><th>Frame</th><th class="right">Filled</th><th class="right">Substituted</th></tr></thead><tbody>';
   for(var i=0;i<arr.length;i++){
     var h=arr[i];
-    var fLvl=levelPos(h.filledPct),sLvl=levelNeg(h.substPct);
-    var card=document.createElement('div');card.className='hung-card';
-    card.innerHTML=
-      '<div class="hung-h"><div class="hung-name">'+h.name+'</div><div class="fac-meta">'+h.sub+'</div></div>'+
-      '<div class="hung-pair">'+
-        '<div>'+
-          '<div class="hung-col-label">Filled</div>'+
-          '<div class="hung-col-bar"><div class="bar-fill '+fLvl+'" style="width:'+Math.round(h.filledPct*100)+'%"></div></div>'+
-          '<div class="hung-col-val">'+h.filled+' / 4 · '+levelLabelPos(h.filledPct)+'</div>'+
-        '</div>'+
-        '<div>'+
-          '<div class="hung-col-label">Substituted</div>'+
-          '<div class="hung-col-bar"><div class="bar-fill '+sLvl+'" style="width:'+Math.round(h.substPct*100)+'%"></div></div>'+
-          '<div class="hung-col-val">'+h.subst+' / 4 · '+levelLabelNeg(h.substPct)+'</div>'+
-        '</div>'+
-      '</div>';
-    g.appendChild(card);
+    html+='<tr><td>'+h.name+'</td><td class="muted">'+h.sub+'</td>'+
+      '<td class="right">'+h.filled+'/4 · <span class="lvl-pill '+levelPos(h.filledPct)+'">'+levelLabelPos(h.filledPct)+'</span></td>'+
+      '<td class="right">'+h.subst+'/4 · <span class="lvl-pill '+levelNeg(h.substPct)+'">'+levelLabelNeg(h.substPct)+'</span></td></tr>';
   }
+  html+='</tbody>';
+  document.getElementById('needTable').innerHTML=html;
 }
 
-function renderFidelityGrid(){
-  var g=document.getElementById('fidelityGrid');g.innerHTML='';
-  var fd=fidelityScores();
-  for(var i=0;i<FIDELITIES.length;i++){
-    var f=FIDELITIES[i];var s=fd[f.key];
-    var lvl=levelPos(s.pct);
-    var row=document.createElement('div');row.className='fid-row';
-    row.innerHTML=
-      '<div class="fid-name">'+f.name+'<span>'+f.sub+'</span></div>'+
-      '<div class="fid-pill '+lvl+'">'+levelLabelPos(s.pct)+' · '+s.score+'/4</div>';
-    g.appendChild(row);
+function renderForceTable(){
+  var arr=forceScores();
+  var html='<thead><tr><th>Force</th><th>Question</th><th class="right">Score</th><th class="right">Strength</th></tr></thead><tbody>';
+  for(var i=0;i<arr.length;i++){
+    var f=arr[i];var lvl=levelPos(f.pct);
+    html+='<tr><td>'+f.name+'</td><td class="muted">'+f.sub+'</td><td class="right">'+f.score+' / 4</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelPos(f.pct)+'</span></td></tr>';
   }
+  html+='</tbody>';
+  document.getElementById('forceTable').innerHTML=html;
 }
-
-function renderUnfinishedHeat(){
-  var arr=unfinishedScores();
-  var heat=document.getElementById('unfinishedHeat');heat.innerHTML='';
+function renderFidTable(){
+  var arr=fidelityScores();
+  var html='<thead><tr><th>Fidelity</th><th>Test</th><th class="right">Score</th><th class="right">Held</th></tr></thead><tbody>';
   for(var i=0;i<arr.length;i++){
-    var c=document.createElement('div');
-    c.className='heat-cell q'+arr[i].score;
-    c.textContent=arr[i].l;
-    c.title=arr[i].name+' · '+arr[i].score+'/4';
-    heat.appendChild(c);
+    var f=arr[i];var lvl=levelPos(f.pct);
+    html+='<tr><td>To '+f.name+'</td><td class="muted">'+f.sub+'</td><td class="right">'+f.score+' / 4</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelPos(f.pct)+'</span></td></tr>';
   }
-  var names=document.getElementById('unfinishedNames');names.innerHTML='';
-  for(var i=0;i<arr.length;i++){
-    var d=document.createElement('div');d.className='heat-name';
-    d.innerHTML='<b>'+arr[i].l+' · '+arr[i].name+'</b>'+UNFINISHED[i].sub;
-    names.appendChild(d);
-  }
+  html+='</tbody>';
+  document.getElementById('fidTable').innerHTML=html;
 }
-function renderFoundationHeat(){
-  var arr=foundationScores();
-  var heat=document.getElementById('foundationHeat');heat.innerHTML='';
+function renderFacTable(){
+  var arr=facultyScores();
+  var html='<thead><tr><th>Faculty</th><th>Domain</th><th class="right">Score</th><th class="right">State</th></tr></thead><tbody>';
   for(var i=0;i<arr.length;i++){
-    var c=document.createElement('div');
-    c.className='heat-cell heat-pos q'+arr[i].score;
-    c.textContent=arr[i].l;
-    c.title=arr[i].name+' · '+arr[i].score+'/4';
-    heat.appendChild(c);
+    var f=arr[i];var lvl=levelPos(f.pct);
+    html+='<tr><td>'+f.name+'</td><td class="muted">'+f.sub+'</td><td class="right">'+f.score+' / 4</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelPos(f.pct)+'</span></td></tr>';
   }
-  var names=document.getElementById('foundationNames');names.innerHTML='';
-  for(var i=0;i<arr.length;i++){
-    var d=document.createElement('div');d.className='heat-name';
-    d.innerHTML='<b>'+arr[i].l+' · '+arr[i].name+'</b>'+FOUNDATION[i].sub;
-    names.appendChild(d);
-  }
+  html+='</tbody>';
+  document.getElementById('facTable').innerHTML=html;
 }
 
 function renderPracticeFidelity(prior){
   var p=practiceScores();
   document.getElementById('fidNum').textContent=p._rate;
-  var meta='Across the six daily moves.';
-  if(prior && prior.scores.fidelity_rate!=null){
+  var meta='Across the six daily and weekly moves of the practice.';
+  if(prior&&prior.scores.fidelity_rate!=null){
     var d=p._rate-prior.scores.fidelity_rate;
-    if(d>0)meta+=' Up '+d+' points since last assessment.';
-    else if(d<0)meta+=' Down '+Math.abs(d)+' points since last assessment.';
-    else meta+=' Steady since last assessment.';
+    if(d>0)meta+=' Up '+d+' points since last return.';
+    else if(d<0)meta+=' Down '+Math.abs(d)+' points since last return.';
+    else meta+=' Steady since last return.';
   }
   document.getElementById('fidMeta').textContent=meta;
 }
 
-function renderMovement(prior,base){
+function renderMovement(prior){
   var block=document.getElementById('moveBlock');
   if(!prior){block.style.display='none';return}
   block.style.display='block';
-  var grid=document.getElementById('moveGrid');grid.innerHTML='';
   var rows=[];
-  // Reflexes
   for(var i=0;i<REFLEXES.length;i++){
     var r=REFLEXES[i];
     var cur=reflexScores()[r.key].score;
-    var prev=(prior.scores['reflex_'+r.key] && prior.scores['reflex_'+r.key].score) || prior.scores[r.key] || 0;
-    rows.push({label:r.name,cur:cur,prev:prev,positive:'down',group:'Reflex'});
+    var prev=(prior.scores['reflex_'+r.key]&&prior.scores['reflex_'+r.key].score)||prior.scores[r.key]||0;
+    rows.push({label:r.name+' reflex',cur:cur,prev:prev,positive:'down'});
   }
-  // Foundation top-3 strongest
-  var fnd=foundationScores().slice().sort(function(a,b){return b.score-a.score}).slice(0,3);
-  for(var i=0;i<fnd.length;i++){
-    var f=fnd[i];
-    var idx=FOUNDATION.findIndex(function(x){return x.name===f.name});
-    var prev=prior.scores['foundation_'+idx]||0;
-    rows.push({label:'FOUNDATION · '+f.name,cur:f.score,prev:prev,positive:'up',group:'Pillar'});
-  }
-  // Practice fidelity
-  rows.push({label:'Practice fidelity',cur:practiceScores()._rate,prev:prior.scores.fidelity_rate||0,positive:'up',group:'Practice',unit:'%'});
-
+  rows.push({label:'Practice fidelity',cur:practiceScores()._rate,prev:prior.scores.fidelity_rate||0,positive:'up',unit:'%'});
+  var html='<thead><tr><th>Indicator</th><th class="right">Was</th><th class="right">Now</th><th class="right">Movement</th></tr></thead><tbody>';
   for(var i=0;i<rows.length;i++){
-    var r=rows[i];
-    var d=r.cur-r.prev;
-    var arrowCls=(d===0?'delta-flat':((d>0 && r.positive==='up')||(d<0 && r.positive==='down')?'delta-up':'delta-down'));
-    var arrow=d===0?'·':(d>0?'↑ +':'↓ ')+Math.abs(d)+(r.unit||'');
-    var row=document.createElement('div');row.className='move-row';
-    row.innerHTML='<b>'+safe(r.label)+'</b><span class="move-prev">was '+r.prev+(r.unit||'')+'</span><span class="move-arrow '+arrowCls+'">'+arrow+'</span>';
-    grid.appendChild(row);
+    var r=rows[i];var d=r.cur-r.prev;
+    var arrowCls=(d===0?'flat':((d>0&&r.positive==='up')||(d<0&&r.positive==='down')?'up':'down'));
+    var arrow=d===0?'no change':((d>0?'↑ +':'↓ ')+Math.abs(d)+(r.unit||''));
+    html+='<tr><td>'+safe(r.label)+'</td><td class="right muted">'+r.prev+(r.unit||'')+'</td><td class="right">'+r.cur+(r.unit||'')+'</td><td class="right"><span class="delta-pill '+arrowCls+'">'+arrow+'</span></td></tr>';
   }
+  html+='</tbody>';
+  document.getElementById('moveTable').innerHTML=html;
 }
 
-// ── UNSTUCK prescription ──
-function renderUnstuck(){
-  var loud=loudestReflex();
-  var weakPillar=bottomFoundation();
-  var topPillar=topFoundation();
-  var topUnf=topUnfinished();
-  var fac=facultyScores();
-  var weakFac=null;
-  for(var k in fac){if(!weakFac||fac[k].score<fac[weakFac].score)weakFac=k}
-  var weakFacObj=FACULTIES.find(function(f){return f.key===weakFac});
-
-  var strats=STRATEGIES[loud.key]||[];
-  var s1=strats[0]||{t:'',b:''};
-
-  var steps=[
-    {l:'U',t:'Uncover the obstacle',b:'The reflex running you is <b>'+loud.name+'</b>. It forfeits <b>'+REFLEXES.find(function(r){return r.key===loud.key}).forfeits.toLowerCase()+'</b>. Underneath it: <b>'+topUnf.name.toLowerCase()+'</b>. The faculty most asking for return: <b>'+weakFacObj.name+', '+weakFacObj.sub.toLowerCase()+'</b>.'},
-    {l:'N',t:'Narrow your focus',b:'One reflex. One faculty. One pattern. Nothing else moves until these do. Touching everything is a way of touching nothing.'},
-    {l:'S',t:'Strategize',b:'<b>'+s1.t+'.</b> '+s1.b},
-    {l:'T',t:'Take action, start',b:'Pick the smallest version of the strategy. Do it tomorrow before noon. Tell one witness what you will do. Tell them when it is done.'},
-    {l:'U',t:'Unwind, run the tape',b:'When the reflex fires, name it. Run the tape back. What triggered it. What came in underneath. What you reached for. The pattern is the diagnosis, never the verdict.'},
-    {l:'C',t:'Calibrate, celebrate',b:'At sunset, mark the day. Did you hold. Did you fall. Did you return. Lean on your strongest pillar, <b>'+topPillar.name+'</b>. Grow your weakest, <b>'+weakPillar.name+'</b>.'},
-    {l:'K',t:'Keep going',b:'Fifteen more days. Then return here. Movement is data. Stillness is data. Both tell the truth. The covenant is not perfection. The covenant is return.'}
-  ];
-
-  var box=document.getElementById('unstuckBlock');box.innerHTML='';
-  for(var i=0;i<steps.length;i++){
-    var st=steps[i];
-    var d=document.createElement('div');d.className='unstuck-step';
-    d.innerHTML='<div class="us-letter">'+st.l+'</div><div><div class="us-title">'+st.t+'</div><div class="us-body">'+st.b+'</div></div>';
-    box.appendChild(d);
-  }
+function renderCovenant(day){
+  var c=activeCovenant(day);
+  var box=document.getElementById('covCard');
+  box.innerHTML=
+    '<div class="cov-month">Month '+c.month+' · Covenant with '+c.name+'</div>'+
+    '<div class="cov-name">'+c.promise+'</div>'+
+    '<div class="cov-line"><div class="cov-key">Promise</div><div class="cov-text">'+c.promise+'</div></div>'+
+    '<div class="cov-line"><div class="cov-key">Practice</div><div class="cov-text">'+c.practice+'</div></div>'+
+    '<div class="cov-line"><div class="cov-key">Evidence</div><div class="cov-text">'+c.evidence+'</div></div>';
 }
 
-// ── Helpers ──
-function safe(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
-function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
-
-// ── Email ──
+// Email
 function sendEmail(){
-  var rec=lastResults;if(!rec){return}
+  var rec=lastResults;if(!rec)return;
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
   var status=document.getElementById('emailStatus');
   var btn=document.getElementById('sendBtn');
   if(!email||email.indexOf('@')<0||email.indexOf('.')<0){status.className='email-status err';status.textContent='Enter a valid email address.';status.style.display='block';return}
-  if(!EMAILJS_OK){status.className='email-status err';status.textContent='Email sending is not available right now. Use Download PDF instead.';status.style.display='block';return}
+  if(!EMAILJS_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
 
   var loud=loudestReflex();
-  var arc=rec.active_stage;
-  var arcMeta=ARC_INTERNAL[arc];
-  var expectedArc=expectedStageForDay(rec.day);
-  var arcAlignment=arc===expectedArc?'with':(stageOrder(arc)>stageOrder(expectedArc)?'ahead':'behind');
-
+  var arc=rec.active_stage||activeStage();
+  var arcMeta=ARC_INTERNAL[arc]||{name:arc};
   var traffic=REFLEXES.map(function(r){var s=reflexScores()[r.key];return r.name+': '+s.score+'/'+s.max+' ('+levelLabelNeg(s.pct)+')'}).join('<br>');
-  var fnd=foundationScores().slice().sort(function(a,b){return b.score-a.score});
-  var fndTop=fnd.slice(0,3).map(function(f){return f.name+' ('+f.score+'/4)'}).join('; ');
-  var fndBot=fnd.slice(-3).map(function(f){return f.name+' ('+f.score+'/4)'}).join('; ');
-  var unf=unfinishedScores().slice().sort(function(a,b){return b.score-a.score}).slice(0,3).map(function(u){return u.name+' ('+u.score+'/4)'}).join('; ');
-
-  var unstuckHTML=document.getElementById('unstuckBlock').innerHTML;
+  var alcLine=alcarraScores().map(function(a){return a.name+' '+a.score+'/4'}).join(' · ');
+  var ndLine=needScores().map(function(h){return h.name+': filled '+h.filled+'/4, substituted '+h.subst+'/4'}).join('<br>');
+  var cov=activeCovenant(rec.day);
+  var matrixLines='';
+  if(MATRIX[loud.key]){var faculties=['Attention','Allegiance','Integrity','Return'];for(var i=0;i<faculties.length;i++){matrixLines+='<b>'+faculties[i]+':</b> '+MATRIX[loud.key][faculties[i]]+'<br>'}}
 
   status.className='email-status';status.textContent='Sending...';status.style.display='block';
   btn.disabled=true;var prevBtn=btn.textContent;btn.textContent='Sending...';
@@ -1463,118 +1189,278 @@ function sendEmail(){
     cc_email:'mail@mogire.com',
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>Strongest pillars: '+fndTop+'<br>Pillars to grow: '+fndBot+'<br>UNFINISHED, loudest: '+unf+'<br><br><i>Internal · arc stage: '+arcMeta.name+' ('+arcAlignment+' chronological day expectation: '+ARC_INTERNAL[expectedArc].name+')</i>',
+    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' — Promise: '+cov.promise+' — Practice: '+cov.practice+' — Evidence: '+cov.evidence+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
-    strategies_html:unstuckHTML,
+    strategies_html:'<b>The Allegiance Matrix — fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
     summit_url:'mailto:mail@mogire.com'
   }).then(function(){
     status.className='email-status ok';status.textContent='Sent. A copy is on its way to '+email+' and to mail@mogire.com.';btn.disabled=false;btn.textContent=prevBtn;
   },function(){
-    status.className='email-status err';status.textContent='Email did not go through. Try again, or use Download PDF.';btn.disabled=false;btn.textContent=prevBtn;
+    status.className='email-status err';status.textContent='Email did not go through. Try again, or use Download Report.';btn.disabled=false;btn.textContent=prevBtn;
   });
 }
 
-function stageOrder(s){var keys=['rupture','exposure','tension','unfolding','rooting','newnormal'];return keys.indexOf(s)}
-
-// ── PDF ──
+// 4-page PDF report
 function downloadPDF(){
   if(!JSPDF_OK||typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
   var rec=lastResults;if(!rec)return;
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
-  var W=210,M=22,y=0;
+  var W=210,H=297,M=18;
+  var navy=[13,31,60],gold=[201,151,58],ink=[26,26,31],body=[58,58,64],mid=[110,110,115],dim=[152,152,158],ruleC=[216,216,220];
   var lc={quiet:[46,125,50],active:[199,119,0],loud:[178,34,34],beg:[178,34,34],prac:[199,119,0],emb:[46,125,50]};
 
-  doc.setFillColor(13,31,60);doc.rect(0,0,W,30,'F');
-  doc.setFillColor(201,151,58);doc.rect(0,0,W,2,'F');
-  doc.setTextColor(201,151,58);doc.setFontSize(8);doc.setFont('helvetica','bold');
-  doc.text('UNFINISHED  ·  HOUSE OF MASTERY',M,14);
-  doc.setTextColor(255,255,255);doc.setFontSize(9);doc.setFont('helvetica','normal');
-  doc.text('Confidential  ·  '+formatDate(rec.date)+'  ·  '+labelForDay(rec.day),M,23);
-  y=46;
+  function header(pageLabel){
+    doc.setFillColor(navy[0],navy[1],navy[2]);doc.rect(0,0,W,22,'F');
+    doc.setFillColor(gold[0],gold[1],gold[2]);doc.rect(0,0,W,1.6,'F');
+    doc.setTextColor(gold[0],gold[1],gold[2]);doc.setFontSize(8);doc.setFont('helvetica','bold');
+    doc.text('UNFINISHED  ·  KOORA  ·  HOUSE OF MASTERY',M,11);
+    doc.setTextColor(255,255,255);doc.setFontSize(8);doc.setFont('helvetica','normal');
+    doc.text('Confidential  ·  '+rec.name+'  ·  '+formatDate(rec.date)+'  ·  '+labelForDay(rec.day),M,17.5);
+    doc.setTextColor(255,255,255);doc.setFontSize(7);
+    doc.text(pageLabel,W-M,17.5,{align:'right'});
+  }
+  function footer(p){
+    doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,H-14,W-M,H-14);
+    doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(dim[0],dim[1],dim[2]);
+    doc.text('UNFINISHED · House of Mastery · Architected by Dr. Job Mogire, MD FACC, Founder · mail@mogire.com',M,H-9);
+    doc.text('Page '+p+' of 4',W-M,H-9,{align:'right'});
+  }
+  function sectionLabel(text,y){
+    doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(gold[0],gold[1],gold[2]);
+    doc.text(text.toUpperCase(),M,y);
+    doc.setDrawColor(gold[0],gold[1],gold[2]);doc.setLineWidth(.4);doc.line(M,y+1.5,M+50,y+1.5);
+    doc.setLineWidth(.2);
+  }
+  function legend(text,y){
+    doc.setFont('helvetica','italic');doc.setFontSize(8);doc.setTextColor(mid[0],mid[1],mid[2]);
+    var L=doc.splitTextToSize(text,W-M*2);doc.text(L,M,y);
+    return y+L.length*3.6;
+  }
 
-  doc.setTextColor(26,26,31);doc.setFontSize(20);doc.setFont('helvetica','bold');
-  doc.text('Result for '+rec.name,M,y);y+=11;
+  // ── PAGE 1 ── Headline + Snapshot + Reflex profile + Allegiance Matrix
+  header('Page 1 of 4 — Headline');
+  var y=32;
+  doc.setTextColor(ink[0],ink[1],ink[2]);doc.setFontSize(22);doc.setFont('helvetica','bold');
+  doc.text('Result for '+rec.name,M,y);y+=10;
+  var loud=loudestReflex();var p=practiceScores();
+  doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('Loudest reflex: '+loud.name+'  (level '+levelLabelNeg(loud.pct)+', '+loud.score+'/'+loud.max+')',M,y);y+=5.5;
+  doc.text('Practice fidelity: '+p._rate+'%   ·   Active covenant: '+activeCovenant(rec.day).name,M,y);y+=10;
 
-  var loud=loudestReflex();
-  doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(110,110,115);
-  doc.text('Loudest reflex: '+loud.name+' ('+levelLabelNeg(loud.pct)+', '+loud.score+'/'+loud.max+')  ·  Practice fidelity: '+practiceScores()._rate+'%',M,y);y+=12;
-
-  doc.setDrawColor(216,216,220);doc.line(M,y,W-M,y);y+=8;
-  doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(201,151,58);
-  doc.text('THE FOUR REFLEXES',M,y);y+=7;
-
+  sectionLabel('Pattern profile · The four reflexes',y);y+=7;
   var rs=reflexScores();
   for(var i=0;i<REFLEXES.length;i++){
     var r=REFLEXES[i],s=rs[r.key],lvl=levelNeg(s.pct),c=lc[lvl];
-    doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(26,26,31);
+    doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(ink[0],ink[1],ink[2]);
     doc.text(r.name,M,y);
-    doc.setFillColor(235,235,239);doc.roundedRect(M+50,y-3.5,100,4,1.5,1.5,'F');
-    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+50,y-3.5,100*s.pct,4,1.5,1.5,'F');
-    doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(s.score+'/'+s.max+'  '+levelLabelNeg(s.pct),M+156,y);y+=8.5;
+    doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text('forfeits '+r.forfeits,M+34,y);
+    doc.setFillColor(235,235,239);doc.roundedRect(M+76,y-3,80,4,1,1,'F');
+    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+76,y-3,80*s.pct,4,1,1,'F');
+    doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(s.score+'/'+s.max+'  '+levelLabelNeg(s.pct).toUpperCase(),M+162,y);y+=7;
   }
-  y+=4;
+  y+=2;
+  y=legend('Quiet ran rarely. Active ran often enough to notice. Loud dominated this period. Each subscale uses four items, scored 1 to 4, summed.',y)+4;
 
-  doc.setDrawColor(216,216,220);doc.line(M,y,W-M,y);y+=8;
-  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(201,151,58);
-  doc.text('UNFINISHED  ·  THE PATTERNS RUNNING YOU',M,y);y+=7;
-  var unf=unfinishedScores();
-  for(var i=0;i<unf.length;i++){
-    if(y>270){doc.addPage();y=24}
-    var u=unf[i],c=lc[levelNeg(u.pct)];
-    doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(26,26,31);
-    doc.text(u.l+'  '+u.name,M,y);
-    doc.setFillColor(235,235,239);doc.roundedRect(M+90,y-3.5,60,4,1.5,1.5,'F');
-    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+90,y-3.5,60*u.pct,4,1.5,1.5,'F');
-    doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(u.score+'/4  '+levelLabelNeg(u.pct),M+156,y);y+=7;
+  sectionLabel('The Allegiance Matrix · Fingerprint of '+loud.name.toLowerCase(),y);y+=7;
+  if(MATRIX[loud.key]){
+    var fac=['Attention','Allegiance','Integrity','Return'];
+    for(var i=0;i<fac.length;i++){
+      doc.setFont('helvetica','bold');doc.setFontSize(9.5);doc.setTextColor(ink[0],ink[1],ink[2]);
+      doc.text(fac[i],M,y);
+      doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(body[0],body[1],body[2]);
+      var ln=doc.splitTextToSize(MATRIX[loud.key][fac[i]],W-M*2-30);
+      doc.text(ln,M+30,y);y+=ln.length*4.4+2;
+    }
+  }
+  y+=2;y=legend('The reflex broke each faculty in a specific way. The covenant of return begins by repairing one of these four.',y);
+
+  footer(1);doc.addPage();
+
+  // ── PAGE 2 ── ALCARRA + Needs + Forces + Fidelities
+  header('Page 2 of 4 — The week as you lived it');
+  y=32;
+  sectionLabel('The seven postures · ALCARRA',y);y+=7;
+  var alc=alcarraScores();
+  for(var i=0;i<alc.length;i++){
+    var a=alc[i],lvl=levelPos(a.pct),c=lc[lvl];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(a.name,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text(a.day,M+44,y);
+    doc.setFillColor(235,235,239);doc.roundedRect(M+60,y-3,80,4,1,1,'F');
+    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+60,y-3,80*a.pct,4,1,1,'F');
+    doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(a.score+'/4  '+levelLabelPos(a.pct).toUpperCase(),M+146,y);y+=6.6;
+  }
+  y+=2;y=legend('ALCARRA names the seven daily commitments. Each scores 1 (thin) to 4 (strong) for the past fifteen days.',y)+4;
+
+  sectionLabel('The four needs · Filled or substituted',y);y+=7;
+  var nd=needScores();
+  for(var i=0;i<nd.length;i++){
+    var h=nd[i];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(h.name,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text(h.sub,M+44,y);
+    doc.setFontSize(9);doc.setTextColor(lc[levelPos(h.filledPct)][0],lc[levelPos(h.filledPct)][1],lc[levelPos(h.filledPct)][2]);
+    doc.text('Filled '+h.filled+'/4',M+108,y);
+    doc.setTextColor(lc[levelNeg(h.substPct)][0],lc[levelNeg(h.substPct)][1],lc[levelNeg(h.substPct)][2]);
+    doc.text('Substituted '+h.subst+'/4',M+138,y);y+=6.6;
+  }
+  y+=2;y=legend('High filled with low substituted is health. The reverse is the warning.',y)+4;
+
+  sectionLabel('Forces of necessity · What moved you',y);y+=7;
+  var fr=forceScores();
+  for(var i=0;i<fr.length;i++){
+    var f=fr[i],lvl=levelPos(f.pct),c=lc[lvl];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(f.name,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text(f.sub,M+34,y);
+    doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.6;
+  }
+  y+=2;sectionLabel('The four fidelities · What you held',y);y+=7;
+  var fd=fidelityScores();
+  for(var i=0;i<fd.length;i++){
+    var f=fd[i],lvl=levelPos(f.pct),c=lc[lvl];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text('Fidelity to '+f.name,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text(f.sub,M+50,y);
+    doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.6;
   }
 
-  if(y>240){doc.addPage();y=24}
-  y+=4;doc.setDrawColor(216,216,220);doc.line(M,y,W-M,y);y+=8;
-  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(201,151,58);
-  doc.text('FOUNDATION  ·  THE PILLARS HOLDING YOU',M,y);y+=7;
-  var fnd=foundationScores();
-  for(var i=0;i<fnd.length;i++){
-    if(y>270){doc.addPage();y=24}
-    var f=fnd[i],c=lc[levelPos(f.pct)];
-    doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(26,26,31);
-    doc.text(f.l+'  '+f.name,M,y);
-    doc.setFillColor(235,235,239);doc.roundedRect(M+90,y-3.5,60,4,1.5,1.5,'F');
-    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+90,y-3.5,60*f.pct,4,1.5,1.5,'F');
-    doc.setFontSize(9);doc.setFont('helvetica','normal');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(f.score+'/4  '+levelLabelPos(f.pct),M+156,y);y+=7;
+  footer(2);doc.addPage();
+
+  // ── PAGE 3 ── Faculties + Practice + Active covenant + Movement
+  header('Page 3 of 4 — Practice and movement');
+  y=32;
+  sectionLabel('The four faculties of fidelity',y);y+=7;
+  var fc=facultyScores();
+  for(var i=0;i<fc.length;i++){
+    var f=fc[i],lvl=levelPos(f.pct),c=lc[lvl];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(f.name,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text(f.sub,M+34,y);
+    doc.setFillColor(235,235,239);doc.roundedRect(M+88,y-3,52,4,1,1,'F');
+    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+88,y-3,52*f.pct,4,1,1,'F');
+    doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.6;
+  }
+  y+=2;y=legend('Attention, Allegiance, Integrity, Return. The four territories the reflexes break, here measured directly.',y)+4;
+
+  sectionLabel('The practice · Six daily and weekly moves',y);y+=7;
+  for(var i=0;i<PRACTICE.length;i++){
+    var pr=PRACTICE[i],s=answers[pr.q]||0,lvl=levelPos(s/4),c=lc[lvl];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(pr.name,M,y);
+    doc.setFillColor(235,235,239);doc.roundedRect(M+72,y-3,68,4,1,1,'F');
+    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+72,y-3,68*(s/4),4,1,1,'F');
+    doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(s+'/4',M+146,y);y+=6.6;
+  }
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(navy[0],navy[1],navy[2]);
+  doc.text('Fidelity rate: '+p._rate+'%',M,y+4);y+=10;
+  y=legend('Fidelity rate is the proportion of the practice held over the period. Down arrows on reflexes are good. Up arrows on practice and pillars are good.',y)+4;
+
+  sectionLabel('The covenant in motion',y);y+=7;
+  var cov=activeCovenant(rec.day);
+  doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('Month '+cov.month+': Covenant with '+cov.name,M,y);y+=7;
+  var lines=[{k:'PROMISE',v:cov.promise},{k:'PRACTICE',v:cov.practice},{k:'EVIDENCE',v:cov.evidence}];
+  for(var i=0;i<lines.length;i++){
+    doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(gold[0],gold[1],gold[2]);
+    doc.text(lines[i].k,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+    var ln=doc.splitTextToSize(lines[i].v,W-M*2-26);
+    doc.text(ln,M+24,y);y+=ln.length*4.6+2.5;
   }
 
-  if(y>220){doc.addPage();y=24}
-  y+=4;doc.setDrawColor(216,216,220);doc.line(M,y,W-M,y);y+=8;
-  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(201,151,58);
-  doc.text('UNSTUCK  ·  YOUR PATH THE NEXT FIFTEEN DAYS',M,y);y+=8;
-
-  var stepsBlock=document.getElementById('unstuckBlock');
-  var steps=stepsBlock.querySelectorAll('.unstuck-step');
-  for(var i=0;i<steps.length;i++){
-    if(y>262){doc.addPage();y=24}
-    var letter=steps[i].querySelector('.us-letter').textContent;
-    var title=steps[i].querySelector('.us-title').textContent;
-    var body=steps[i].querySelector('.us-body').textContent;
-    doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(201,151,58);
-    doc.text(letter+'.',M,y);
-    doc.setTextColor(26,26,31);doc.setFontSize(10);
-    doc.text(title,M+8,y);y+=6;
-    doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(58,58,64);
-    var lines=doc.splitTextToSize(body,W-M*2-8);
-    doc.text(lines,M+8,y);y+=lines.length*4.6+5;
+  // Movement
+  var prior=null;var hist=priorRecords(rec.name);
+  for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
+  if(prior){
+    y+=4;sectionLabel('What moved · Since your last return',y);y+=7;
+    var rows=[];
+    for(var i=0;i<REFLEXES.length;i++){
+      var r=REFLEXES[i];
+      var cur=rs[r.key].score;
+      var prev=(prior.scores['reflex_'+r.key]&&prior.scores['reflex_'+r.key].score)||prior.scores[r.key]||0;
+      rows.push({label:r.name+' reflex',cur:cur,prev:prev,positive:'down'});
+    }
+    rows.push({label:'Practice fidelity',cur:p._rate,prev:prior.scores.fidelity_rate||0,positive:'up',unit:'%'});
+    for(var i=0;i<rows.length;i++){
+      var r=rows[i];var d=r.cur-r.prev;
+      doc.setFont('helvetica','bold');doc.setFontSize(9.5);doc.setTextColor(ink[0],ink[1],ink[2]);
+      doc.text(r.label,M,y);
+      doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
+      doc.text('was '+r.prev+(r.unit||''),M+62,y);
+      doc.text('now '+r.cur+(r.unit||''),M+92,y);
+      var isPos=(d===0?false:((d>0&&r.positive==='up')||(d<0&&r.positive==='down')));
+      var c2=d===0?mid:(isPos?lc.quiet:lc.loud);
+      doc.setFont('helvetica','bold');doc.setTextColor(c2[0],c2[1],c2[2]);
+      doc.text(d===0?'no change':((d>0?'+':'-')+Math.abs(d)+(r.unit||'')),M+122,y);y+=5.4;
+    }
   }
 
-  if(y>275){doc.addPage();y=24}
-  y+=2;doc.setDrawColor(216,216,220);doc.line(M,y,W-M,y);y+=7;
-  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(152,152,158);
-  doc.text('UNFINISHED  ·  House of Mastery  ·  Architected by Dr. Job Mogire, MD FACC, Founder',M,y);y+=4;
-  doc.text('mail@mogire.com  ·  The covenant is not perfection. The covenant is return.',M,y);
+  footer(3);doc.addPage();
 
-  doc.save('UNFINISHED-'+rec.name.replace(/\s+/g,'-')+'-Day'+rec.day+'.pdf');
+  // ── PAGE 4 ── Where you are now + Methodology + Continuation
+  header('Page 4 of 4 — Where you are now');
+  y=32;
+
+  sectionLabel('UNFINISHED · Patterns running you',y);y+=7;
+  var ufi=[
+    {name:'Unkept promises',q:50,sub:'Word to self lost credibility'},
+    {name:'Self-trust bankrupt',q:51,sub:'Did not believe my own commitments'},
+    {name:'Deferred action',q:52,sub:'Later as operating system'},
+    {name:'Hidden shame',q:53,sub:'Public confidence over private shame'}
+  ];
+  for(var i=0;i<ufi.length;i++){
+    var u=ufi[i],s=answers[u.q]||0,lvl=levelNeg(s/4),c=lc[lvl];
+    doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(u.name,M,y);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text(u.sub,M+44,y);
+    doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(s+'/4  '+levelLabelNeg(s/4).toUpperCase(),M+146,y);y+=6.6;
+  }
+  y+=2;sectionLabel('Inventory clarity',y);y+=7;
+  var iv=answers[54]||0,ivLvl=levelPos(iv/4),ivC=lc[ivLvl];
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+  var lin=doc.splitTextToSize('Clear on the smallest honest finish for at least three of the unfinished items: '+iv+'/4  ('+levelLabelPos(iv/4)+').',W-M*2);
+  doc.text(lin,M,y);y+=lin.length*4.6+5;
+
+  sectionLabel('Methodology · for peer review',y);y+=7;
+  var meth=[
+    'Construct base. Six domains derived from the KOORA Master Architecture: the four reflexes of escape; the seven postures of return (ALCARRA); the four needs underneath the patterns; the four forces of necessity and the four fidelities sealed in the weekly covenant; the four faculties of fidelity broken by each reflex; and the practice of return.',
+    'Items. Sixty items total. Subscale composition: four reflexes × four items each (16); ALCARRA seven; four needs × two items (filled, substituted, 8); forces four, fidelities four (8); faculties four, practice six (10); inventory and inner-experience markers (11). Items written as first-person statements, observational rather than evaluative, in alignment with self-report instrument conventions.',
+    'Scale. Four-point Likert: rarely or never (1), sometimes (2), often (3), most of the time (4). Recall window fifteen days, held constant across all items.',
+    'Scoring. Subscale scores are unweighted sums normalised to percentage of maximum. Three-band cutpoints at 0.44 and 0.69 of subscale maximum, yielding Quiet, Active, Loud (negative items) or Beginning, Practicing, Embodied (positive items).',
+    'Test–retest design. Re-administered every fifteen days across the 180-day cycle (thirteen returns plus alumni continuation), supporting longitudinal sensitivity to change at individual level.',
+    'Convergent reference. The four-reflex construct overlaps theoretical territory with rumination (Nolen-Hoeksema), self-criticism (Gilbert), social comparison (Festinger, modern variants), and approval-status orientation. The four faculties draw on self-regulation literature on attention, agency, and behavioural integrity.'
+  ];
+  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(body[0],body[1],body[2]);
+  for(var i=0;i<meth.length;i++){
+    var L=doc.splitTextToSize(meth[i],W-M*2);
+    doc.text(L,M,y);y+=L.length*3.6+2;
+  }
+
+  y+=2;sectionLabel('Continuation',y);y+=7;
+  doc.setFont('helvetica','italic');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
+  var c2=doc.splitTextToSize('You are permitted to fall. You are not permitted to stop returning. Your next return is at '+(rec.day<180?'Day '+nextDayFor(rec.day):'the alumni continuation')+'.',W-M*2);
+  doc.text(c2,M,y);y+=c2.length*4.4+2;
+  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('Cohort contact: mail@mogire.com. Cohort WhatsApp on file with the participant.',M,y);
+
+  footer(4);
+  doc.save('UNFINISHED-Report-'+rec.name.replace(/\s+/g,'-')+'-Day'+rec.day+'.pdf');
 }
 </script>
 </body>
