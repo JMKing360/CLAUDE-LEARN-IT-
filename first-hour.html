@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE FIRST HOUR · House of Mastery</title>
+<meta name="description" content="THE FIRST HOUR, a six-chamber community audit by Dr. Job Mogire, MD, FACC, for the life you have been living without quite meaning to.">
+<meta name="theme-color" content="#0D1F3C">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5}
+:root{
+  --serif:'Source Serif 4',Georgia,serif;
+  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --navy:#0D1F3C;--navy-soft:#1B2D4F;
+  --gold:#C9973A;--gold-soft:#E8B85A;
+  --ink:#1A1A1F;--body:#3A3A40;--mid:#6E6E73;--dim:#98989E;
+  --rule:#D8D8DC;--rule-soft:#E8E8EC;
+  --surface:#FBFBFD;--surface-2:#F5F5F7;--surface-3:#EFEFF2;
+  --white:#FFFFFF;
+  --green:#2E7D32;--green-soft:#E8F4E9;
+  --amber:#C77700;--amber-soft:#FBF1DD;
+  --red:#B22222;--red-soft:#FAE8E8;
+}
+button{font-family:inherit}
+input,select,textarea{font-family:inherit;color:inherit}
+a{color:var(--navy);text-decoration:none}
+a:hover{color:var(--gold)}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
+
+nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
+.nav-house:hover{opacity:.7}
+.hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
+.nav-house-text{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
+.nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
+.nav-instrument{font-family:var(--serif);font-size:14px;font-weight:700;letter-spacing:.18em;color:var(--navy)}
+
+main{max-width:760px;margin:0 auto;padding:0 28px}
+.screen{display:none;animation:rise .35s cubic-bezier(.4,0,.2,1)}
+.screen.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes selpulse{0%{opacity:1}70%{opacity:1}100%{opacity:.78}}
+
+.brand-stamp{font-family:var(--serif);font-weight:700;letter-spacing:.32em;color:var(--gold);font-size:11px;display:block;margin-bottom:14px;opacity:.86;text-transform:uppercase}
+
+/* WELCOME */
+#screen-welcome{padding:88px 0 96px}
+.eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:block}
+.hero{font-family:var(--serif);font-size:clamp(34px,5.6vw,58px);font-weight:600;line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
+.hero em{font-style:italic;font-weight:600}
+.lede{font-family:var(--serif);font-size:clamp(20px,2.8vw,25px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:20px;letter-spacing:-.005em}
+.lede strong{font-weight:600;color:var(--ink)}
+.body-text{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
+.divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
+.field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;display:block}
+.field-input{display:block;width:100%;max-width:480px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
+.field-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
+.field-input::placeholder{color:#B8B8BD}
+.field-stack{margin-bottom:22px}
+.welcome-cta{margin-top:32px}
+.welcome-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-top:14px;line-height:1.6;letter-spacing:.005em;max-width:480px}
+.welcome-meta b{color:var(--ink);font-weight:700}
+.consent-line{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--mid);line-height:1.6;margin-top:10px;letter-spacing:.005em;max-width:480px}
+
+.framing-card{background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:22px 26px;margin:32px 0}
+.framing-card p{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:0}
+.framing-card p+p{margin-top:10px}
+
+/* TRANSITION */
+#screen-transition{padding:104px 0 140px}
+.tr-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.tr-h1{font-family:var(--serif);font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
+.tr-h1 em{font-style:italic;font-weight:600}
+.tr-text{font-family:var(--serif);font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:32px}
+.tr-text b{font-weight:600;color:var(--ink)}
+
+/* QUESTION */
+#screen-question{padding:64px 0 140px}
+.q-section{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.q-prompt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--mid);margin-bottom:22px;letter-spacing:.01em}
+.q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
+.options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
+.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
+.opt:hover{border-color:var(--ink);background:var(--surface-2)}
+.opt:active{transform:scale(.995)}
+.opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards}
+.opt-key{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.opt.sel .opt-key{color:var(--gold-soft)}
+.q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
+.q-foot-meta{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.q-back{background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
+.q-back:hover{color:var(--ink)}
+.q-keyhint{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
+
+/* ACK */
+#screen-ack{padding:140px 0 160px}
+.ack-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
+.ack-h1 em{font-style:italic;font-weight:600}
+.ack-text{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
+
+/* RESULTS */
+#screen-results{padding:48px 0 96px}
+.r-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
+.r-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin-bottom:14px}
+.r-h1 em{font-style:italic;font-weight:600}
+.r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:8px;letter-spacing:.005em}
+
+.r-block{margin:48px 0}
+.r-block-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:18px;display:block}
+
+.profile-list{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:8px 22px}
+.profile-row{display:grid;grid-template-columns:1fr 1fr 110px;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
+.profile-row:last-child{border-bottom:none}
+.profile-name{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
+.profile-name span{display:block;font-size:11px;font-weight:500;color:var(--mid);margin-top:3px;letter-spacing:.005em}
+.profile-bar{height:6px;background:var(--rule-soft);border-radius:3px;overflow:hidden}
+.profile-bar > div{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.bar-quiet{background:var(--green)}.bar-active{background:var(--amber)}.bar-loud{background:var(--red)}
+.profile-val{font-family:var(--sans);font-size:11px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.profile-val .lvl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.lvl-quiet{color:var(--green)}.lvl-active{color:var(--amber)}.lvl-loud{color:var(--red)}
+.profile-val .delta{font-size:10px;font-weight:600}
+.delta-up{color:var(--green)}.delta-down{color:var(--red)}.delta-flat{color:var(--mid)}
+.tbl-legend{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
+.tbl-legend b{color:var(--ink);font-weight:700}
+
+.feature-card{background:var(--navy);color:#fff;border-radius:22px;padding:44px 36px}
+.feature-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.feature-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,34px);font-weight:600;color:#fff;letter-spacing:-.022em;line-height:1.18;margin-bottom:14px}
+.feature-h em{font-style:italic;font-weight:600;color:var(--gold-soft)}
+.feature-body{font-family:var(--sans);font-size:15px;font-weight:500;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:14px;letter-spacing:.005em}
+.feature-body b{color:#fff;font-weight:700}
+
+.cost-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.cost-cell{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:24px 22px}
+.cost-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+.cost-num{font-family:var(--serif);font-size:clamp(34px,4.6vw,46px);font-weight:600;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:6px}
+.cost-num em{font-size:.55em;font-weight:500;color:var(--gold);font-style:normal;margin-left:2px;letter-spacing:0}
+.cost-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
+
+.forecast{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--red)}
+.forecast-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:block}
+.forecast-h{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.32;margin-bottom:18px}
+.forecast-row{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--body);line-height:1.6;padding:10px 0;border-bottom:1px dashed var(--rule-soft);letter-spacing:.005em}
+.forecast-row:last-child{border-bottom:none}
+.forecast-row b{color:var(--ink);font-weight:700}
+
+.pain-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--navy)}
+.pain-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
+.pain-q-second{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
+.pain-sub{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
+.pain-input{width:100%;padding:14px 16px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
+.pain-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
+.pain-input::placeholder{color:#B8B8BD}
+.self-quote{margin-top:22px;padding:24px 26px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;display:none}
+.self-quote.shown{display:block}
+.self-quote-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.self-quote-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
+
+/* Offer ladder */
+.ladder-h{font-family:var(--serif);font-size:clamp(24px,3.4vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.2;margin-bottom:8px}
+.ladder-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);margin-bottom:24px;line-height:1.55;letter-spacing:.005em}
+.ladder-list{display:flex;flex-direction:column;gap:14px}
+.rung{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:28px;position:relative}
+.rung.r1{border-left:3px solid var(--green)}
+.rung.r2{border-left:3px solid var(--gold)}
+.rung.r3{border-left:3px solid var(--gold)}
+.rung.r4{border-left:3px solid var(--navy);background:var(--navy);color:#fff}
+.rung-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.rung.r4 .rung-eyebrow{color:var(--gold-soft)}
+.rung-name{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.2;margin-bottom:8px}
+.rung.r4 .rung-name{color:#fff}
+.rung-name em{font-style:italic;font-weight:600}
+.rung-meta{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--mid);letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+.rung.r4 .rung-meta{color:var(--gold)}
+.rung-body{font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--body);line-height:1.65;letter-spacing:.005em;margin-bottom:14px}
+.rung.r4 .rung-body{color:rgba(255,255,255,.78)}
+.rung-body b{color:var(--ink);font-weight:700}
+.rung.r4 .rung-body b{color:#fff}
+.rung-action{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+.rung.r4 .rung-action{color:var(--gold)}
+
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:18px 32px;border-radius:14px;border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
+.btn-primary:hover{background:var(--navy-soft)}
+.btn-primary:active{transform:scale(.99)}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;text-decoration:none}
+.btn-secondary:hover{border-color:var(--ink);color:var(--ink)}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--navy);font-family:var(--sans);font-size:14.5px;font-weight:700;letter-spacing:.005em;padding:16px 28px;border-radius:12px;border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
+.btn-gold:hover{background:var(--gold-soft)}
+
+/* Vow / lineage / retake */
+.vow-block{margin:48px 0 28px;padding:32px 28px;text-align:center;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.vow-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.vow-text{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
+.vow-text em{color:var(--gold);font-style:italic;font-weight:600}
+
+.retake-block{background:var(--surface-2);border-radius:18px;padding:28px;margin:36px 0;text-align:center}
+.retake-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-.005em;margin-bottom:8px}
+.retake-body{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--body);line-height:1.6;letter-spacing:.005em}
+
+.lineage{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
+
+/* Movement panel */
+.move-grid{display:grid;grid-template-columns:1fr;gap:0}
+.move-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:16px 22px;background:var(--white);border:1px solid var(--rule-soft);border-bottom:none;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--body)}
+.move-row:first-child{border-radius:12px 12px 0 0}
+.move-row:last-child{border-radius:0 0 12px 12px;border-bottom:1px solid var(--rule-soft)}
+.move-row b{font-weight:700;color:var(--ink)}
+.move-prev{font-size:11px;color:var(--mid);font-variant-numeric:tabular-nums;letter-spacing:.005em}
+.move-arrow{font-family:var(--sans);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+
+footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center;margin-top:64px;background:var(--white)}
+.foot-credit{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--dim);line-height:1.7;letter-spacing:.005em}
+.foot-credit b{color:var(--ink);font-weight:700}
+
+/* Responsive */
+@media (min-width:1280px){
+  main{max-width:820px}
+  .hero{font-size:clamp(40px,4.8vw,62px)}
+}
+@media (max-width:680px){
+  main{padding:0 22px}
+  #screen-welcome,#screen-question,#screen-results,#screen-transition,#screen-ack{padding-top:40px;padding-bottom:80px}
+  .nav-inner{padding:12px 18px;gap:10px}
+  .nav-house-text{font-size:10px}
+  .nav-house-text span{display:none}
+  .nav-instrument{font-size:13px}
+  .feature-card,.forecast,.pain-block,.rung{padding:26px 22px}
+  .opt{padding:18px 20px;font-size:15px}
+  .cost-grid{grid-template-columns:1fr}
+  .profile-row{grid-template-columns:1fr 100px 80px;gap:10px}
+  .hero{font-size:clamp(30px,7vw,42px);line-height:1.06}
+  .q-text{font-size:clamp(22px,5.6vw,28px);margin-bottom:48px}
+  .tr-h1{font-size:clamp(24px,5.6vw,32px)}
+  .ack-h1{font-size:clamp(28px,7vw,38px)}
+  .r-h1{font-size:clamp(28px,6.4vw,40px)}
+}
+@media (max-width:420px){
+  main{padding:0 18px}
+  .nav-inner{padding:10px 14px}
+  .hero{font-size:28px}
+  .opt{padding:16px 18px;font-size:14.5px}
+  .feature-card,.forecast,.pain-block,.rung{padding:22px 20px}
+  .cost-cell{padding:20px 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .opt.sel{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-house" href="https://www.houseofmastery.co" target="_blank" rel="noopener" aria-label="House of Mastery">
+      <svg class="hm-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="48" fill="#0D1F3C"/>
+        <text x="50" y="74" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text>
+      </svg>
+      <span class="nav-house-text">house of mastery<span>houseofmastery.co</span></span>
+    </a>
+    <span class="nav-instrument">THE FIRST HOUR</span>
+  </div>
+</nav>
+
+<main>
+
+<!-- WELCOME -->
+<section class="screen active" id="screen-welcome">
+  <span class="brand-stamp">The First Hour · A House of Mastery audit</span>
+  <span class="eyebrow">THE FIRST HOUR · A six-chamber audit</span>
+  <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
+  <p class="lede">There is a kind of life that runs you while you think you are running it. The years pass. The days are full. The work does not get done. <strong>You are not failing. You are living on autopilot, and you can feel it.</strong></p>
+  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACC</b>. It names the patterns that have been quietly shaping your life and shows you what they have been costing. Thirty-six items. About ten minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
+  <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
+
+  <div class="framing-card">
+    <p>The Mind that Stopped Thinking. The Body that Got Forgotten. The Word that Lost Weight. The Time that Disappeared. The Money that Owns You. The People You Are Performing With.</p>
+    <p style="font-style:italic;color:var(--mid);font-size:15px;margin-top:12px">Six chambers. Six honest minutes each.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="field-stack">
+    <label class="field-label" for="participantName">Your first name</label>
+    <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40">
+  </div>
+
+  <div class="field-stack">
+    <label class="field-label" for="participantEmail">Your email</label>
+    <input class="field-input" type="email" id="participantEmail" placeholder="your@email.com" autocomplete="email">
+    <p class="consent-line">We send your full report to this email and one reminder thirty days from now to retake your first hour. We do not sell your data. You can unsubscribe at any time. Replies go to <b>mail@mogire.com</b>.</p>
+  </div>
+
+  <div class="welcome-cta">
+    <button class="btn-primary" onclick="startAssessment()" style="max-width:300px">Begin your first hour</button>
+    <p class="welcome-meta"><b>About ten minutes.</b> Press A, B, C, or D on your keyboard to answer. The next question follows in a moment.</p>
+  </div>
+</section>
+
+<!-- TRANSITION -->
+<section class="screen" id="screen-transition">
+  <span class="brand-stamp">THE FIRST HOUR · A House of Mastery audit</span>
+  <span class="tr-eyebrow" id="trEyebrow">A pause before the next chamber</span>
+  <h2 class="tr-h1" id="trH"></h2>
+  <p class="tr-text" id="trText"></p>
+  <button class="btn-primary" onclick="exitTransition()" style="max-width:240px">Continue</button>
+</section>
+
+<!-- QUESTION -->
+<section class="screen" id="screen-question">
+  <span class="brand-stamp">THE FIRST HOUR</span>
+  <span class="q-section" id="qSection">Chamber 1 of 6</span>
+  <p class="q-prompt" id="qPrompt">In the past thirty days</p>
+  <h2 class="q-text" id="qText"></h2>
+  <div class="options" id="qOptions"></div>
+  <div class="q-foot">
+    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
+    <span class="q-foot-meta" id="qCount">Question 1 of 36</span>
+    <span></span>
+  </div>
+  <p class="q-keyhint">Press A, B, C, or D. The next question follows in a moment.</p>
+</section>
+
+<!-- ACK -->
+<section class="screen" id="screen-ack">
+  <span class="brand-stamp">THE FIRST HOUR</span>
+  <h2 class="ack-h1"><em>One breath.</em></h2>
+  <p class="ack-text" id="ackText">You have answered thirty-six items. That is harder than it sounds. Now let us look together.</p>
+  <button class="btn-primary" onclick="afterAck()" style="max-width:280px">See your result</button>
+</section>
+
+<!-- RESULTS -->
+<section class="screen" id="screen-results">
+  <span class="brand-stamp">THE FIRST HOUR · Your audit</span>
+  <span class="r-eyebrow">Your result</span>
+  <h1 class="r-h1" id="rHeadline"></h1>
+  <p class="r-sub" id="rSub"></p>
+
+  <div class="r-block" id="anchorBlock"></div>
+
+  <div class="r-block">
+    <span class="r-block-label">Audit profile · The six chambers</span>
+    <div class="profile-list" id="profileList"></div>
+    <p class="tbl-legend"><b>How to read this:</b> Each chamber scores 0 to 24. <b>Quiet</b> is rare drift. <b>Active</b> is noticeable drift. <b>Loud</b> is the chamber currently shaping your life. The arrow shows movement since your last return, when there is one.</p>
+  </div>
+
+  <div class="r-block">
+    <div class="feature-card">
+      <span class="feature-eyebrow">The pattern, named</span>
+      <div class="feature-h" id="patternH"></div>
+      <div class="feature-body" id="patternBody"></div>
+    </div>
+  </div>
+
+  <div class="r-block">
+    <span class="r-block-label">The cost · in your own life, this period</span>
+    <div class="cost-grid" id="costGrid"></div>
+    <p class="tbl-legend"><b>How to read this:</b> Estimates based on your own answers. Conservative on every dimension. The number is not the point. The pattern is the point.</p>
+  </div>
+
+  <div class="r-block">
+    <div class="forecast">
+      <span class="forecast-eyebrow">The five-year forecast</span>
+      <div class="forecast-h" id="forecastH"></div>
+      <div id="forecastRows"></div>
+    </div>
+    <p class="tbl-legend"><b>How to read this:</b> If today's pattern continues for five years at the current rate. The maths is yours. The choice is yours. Naming this is the first half of changing it.</p>
+  </div>
+
+  <div class="r-block" id="moveBlock" style="display:none">
+    <span class="r-block-label">What changed · since your first hour</span>
+    <div class="move-grid" id="moveGrid"></div>
+    <p class="tbl-legend"><b>How to read this:</b> Down arrows on chambers are movement toward fidelity. Most patterns do not move on their own. Movement here is evidence that you are doing something different.</p>
+  </div>
+
+  <div class="r-block">
+    <span class="r-block-label">Your own words</span>
+    <div class="pain-block">
+      <p class="pain-q">If this drift continues for thirty more days, what does it cost you?</p>
+      <p class="pain-sub">One sentence. Concrete. Optional, and powerful. What you write travels with your full report.</p>
+      <textarea class="pain-input" id="painInput" placeholder="The day my drift costs me ..." onblur="showSelfQuote()"></textarea>
+      <p class="pain-q-second">Five years from now, what will you wish you had named today?</p>
+      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will most regret ..." onblur="showSelfQuote()"></textarea>
+      <div class="self-quote" id="selfQuote">
+        <div class="self-quote-label">Your own words, written back to you</div>
+        <div class="self-quote-text" id="selfQuoteText"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="r-block">
+    <h3 class="ladder-h">The next door, when you are ready.</h3>
+    <p class="ladder-sub">House of Mastery is a body of work, not a programme. Three rooms, in order of depth. Walk in at any rung. Most begin at the first.</p>
+    <div class="ladder-list">
+      <div class="rung r1">
+        <span class="rung-eyebrow">Free · You are here</span>
+        <div class="rung-name">The First Hour, retaken every thirty days</div>
+        <div class="rung-meta">Six months · No cost</div>
+        <div class="rung-body">You will receive a first hour, retaken every thirty days for six months. <b>Most patterns do not move when they are not addressed.</b> You will see this for yourself.</div>
+        <a class="rung-action" href="mailto:mail@mogire.com?subject=The%20First%20Hour%20questions">questions to mail@mogire.com</a>
+      </div>
+      <div class="rung r2">
+        <span class="rung-eyebrow">Free first attendance · Monthly</span>
+        <div class="rung-name">The Pamoja Hour</div>
+        <div class="rung-meta">Witness circle · One hour · First Saturday of every month</div>
+        <div class="rung-body"><b>Pamoja</b> is Swahili for <em>together</em>. One hour, monthly, where the people walking the same drift speak truthfully and listen truthfully. Hosted by House of Mastery. Your first hour is given. <b>You are not alone.</b></div>
+        <a class="rung-action" href="https://www.houseofmastery.co/pamoja" target="_blank" rel="noopener">Reserve your seat at houseofmastery.co/pamoja</a>
+      </div>
+      <div class="rung r3">
+        <span class="rung-eyebrow">Membership · Monthly</span>
+        <div class="rung-name">The Mastery Hour</div>
+        <div class="rung-meta">One hour with Dr. Mogire · Third Saturday monthly</div>
+        <div class="rung-body">A clinical-grade masterclass. <b>Dr. Job Mogire, MD, FACC</b> teaches one chamber of mastery in depth, every month. Members have full access to the recording library. The first session is included with the Pamoja Hour.</div>
+        <a class="rung-action" href="https://www.houseofmastery.co/mastery-hour" target="_blank" rel="noopener">Become a member at houseofmastery.co/mastery-hour</a>
+      </div>
+      <div class="rung r4">
+        <span class="rung-eyebrow">If the path is yours to walk</span>
+        <div class="rung-name"><em>KOORA: The Finisher’s Protocol</em></div>
+        <div class="rung-meta">180 days · Once a year · Twenty-four seats</div>
+        <div class="rung-body">A 180-day clinical-grade architecture for high-functioning professionals whose patterns have been running them quietly. <b>KOORA opens once a year.</b> Twenty-four seats. The number is structural. Each module is non-recoverable until the next intake. The diagnosis stays steady. Your relationship to it is what changes.</div>
+        <a class="rung-action" href="https://www.houseofmastery.co/koora" target="_blank" rel="noopener">Read more at houseofmastery.co/koora →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="retake-block">
+    <h3 class="retake-h">We will email you in thirty days.</h3>
+    <p class="retake-body">A reminder, with a link to retake your first hour. <b>The diagnosis will be steady.</b> What you will see is whether anything in your life has actually moved.</p>
+  </div>
+
+  <div class="vow-block">
+    <span class="vow-eyebrow">A line you may carry</span>
+    <p class="vow-text"><em>You are permitted to drift.</em> You are not permitted to keep pretending you are not.</p>
+  </div>
+
+  <div class="r-block" style="text-align:center">
+    <button class="btn-secondary" onclick="downloadPDF()" style="margin-right:8px">Download report (PDF)</button>
+    <button class="btn-secondary" onclick="resendEmail()">Email me my report</button>
+    <p class="email-status" id="emailStatus" style="font-family:var(--sans);font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em"></p>
+  </div>
+
+  <p class="lineage">The First Hour is a House of Mastery instrument · Designed by a board-certified cardiologist · Once a year, the deeper protocol opens.</p>
+</section>
+
+</main>
+
+<footer>
+  <p class="foot-credit"><b>THE FIRST HOUR</b> · A House of Mastery audit<br>Designed by <b>Dr. Job Mogire, MD, FACC</b><br>Where the rest begins. The first hour you take to see yourself clearly.</p>
+</footer>
+
+<script>
+"use strict";
+
+var EMAILJS_OK=false;
+try{if(typeof emailjs!=='undefined'){emailjs.init('FEEOw8NA0cwBM4Vum');EMAILJS_OK=true}}catch(e){}
+var JSPDF_OK=(typeof window.jspdf!=='undefined');
+
+var TOTAL=36;
+var STORAGE_KEY='hom_firsthour_history_v1';
+var AUTO_ADVANCE_MS=1500;
+
+var OPTIONS=[
+  {label:'Rarely or never',score:1,key:'A'},
+  {label:'Sometimes',score:2,key:'B'},
+  {label:'Often',score:3,key:'C'},
+  {label:'Most of the time',score:4,key:'D'}
+];
+
+// 36 questions across 6 chambers
+var QUESTIONS=[
+  {n:1, sec:1,sn:'The Mind that Stopped Thinking', text:'I have not had a thought I would call entirely my own in the past month.'},
+  {n:2, sec:1,sn:'The Mind that Stopped Thinking', text:'I share opinions I formed by scrolling, not by thinking.'},
+  {n:3, sec:1,sn:'The Mind that Stopped Thinking', text:'I cannot remember the last time I changed my mind on something that actually matters.'},
+  {n:4, sec:1,sn:'The Mind that Stopped Thinking', text:'My positions on most things were already inside me before I read anything about them.'},
+  {n:5, sec:1,sn:'The Mind that Stopped Thinking', text:'The voice in my head sounds more like my parents, my pastor, or my employer than like me.'},
+  {n:6, sec:1,sn:'The Mind that Stopped Thinking', text:'When I ask why I believe what I believe, I do not have a clean answer.'},
+  {n:7, sec:2,sn:'The Body that Got Forgotten',     text:'I treat my body as a vehicle to get me through the week.'},
+  {n:8, sec:2,sn:'The Body that Got Forgotten',     text:'My body is carrying pain I have not named to anyone.'},
+  {n:9, sec:2,sn:'The Body that Got Forgotten',     text:'I am tired in ways sleep does not fix.'},
+  {n:10,sec:2,sn:'The Body that Got Forgotten',     text:'I have medicated feelings I have not asked what they are.'},
+  {n:11,sec:2,sn:'The Body that Got Forgotten',     text:'The last time I moved my body just for joy, not to manage it, I cannot quite remember.'},
+  {n:12,sec:2,sn:'The Body that Got Forgotten',     text:'There are appointments with my body I keep postponing.'},
+  {n:13,sec:3,sn:'The Word that Lost Weight',       text:'The promises I most easily break are the ones I make to myself.'},
+  {n:14,sec:3,sn:'The Word that Lost Weight',       text:'I have stopped trusting my own commitments to myself.'},
+  {n:15,sec:3,sn:'The Word that Lost Weight',       text:'I make resolutions and quietly let them die.'},
+  {n:16,sec:3,sn:'The Word that Lost Weight',       text:'My word to others is more reliable than my word to me.'},
+  {n:17,sec:3,sn:'The Word that Lost Weight',       text:'I can list things I told myself I would do this year, and have not.'},
+  {n:18,sec:3,sn:'The Word that Lost Weight',       text:'When I think of those unkept promises, something inside me tightens.'},
+  {n:19,sec:4,sn:'The Time that Disappeared',       text:'I cannot fully account for what the past five years actually built.'},
+  {n:20,sec:4,sn:'The Time that Disappeared',       text:'I am older than I expected to be, without becoming who I expected to be.'},
+  {n:21,sec:4,sn:'The Time that Disappeared',       text:'The days are full but the year feels empty.'},
+  {n:22,sec:4,sn:'The Time that Disappeared',       text:'I have been telling myself "next quarter" for several quarters in a row.'},
+  {n:23,sec:4,sn:'The Time that Disappeared',       text:'The years pass faster every year, and I do not know why.'},
+  {n:24,sec:4,sn:'The Time that Disappeared',       text:'I am running out of "later" and somewhere I know it.'},
+  {n:25,sec:5,sn:'The Money that Owns You',         text:'My financial decisions are reactions, not chosen positions.'},
+  {n:26,sec:5,sn:'The Money that Owns You',         text:'I earn more now than I once dreamed of, and I am not actually freer.'},
+  {n:27,sec:5,sn:'The Money that Owns You',         text:'I carry financial weight that is not mine, and I cannot put it down.'},
+  {n:28,sec:5,sn:'The Money that Owns You',         text:'I spend on things that prove a story about me to people I do not particularly like.'},
+  {n:29,sec:5,sn:'The Money that Owns You',         text:'I avoid looking at my money, because looking is uncomfortable.'},
+  {n:30,sec:5,sn:'The Money that Owns You',         text:'My money operates by rules I never consciously set.'},
+  {n:31,sec:6,sn:'The People you are Performing With', text:'I perform a version of me at home, another at work, another with friends.'},
+  {n:32,sec:6,sn:'The People you are Performing With', text:'I have stopped showing the people closest to me what is actually true for me.'},
+  {n:33,sec:6,sn:'The People you are Performing With', text:'The conversations I most need to have are the ones I keep avoiding.'},
+  {n:34,sec:6,sn:'The People you are Performing With', text:'I am lonely in rooms full of people who think they know me.'},
+  {n:35,sec:6,sn:'The People you are Performing With', text:'I keep score with people I claim to love.'},
+  {n:36,sec:6,sn:'The People you are Performing With', text:'I have not been honest with the person closest to me about the cost of staying as I am.'}
+];
+
+var CHAMBERS=[
+  {key:'mind', n:1,name:'The Mind that Stopped Thinking',sub:'Borrowed opinions, scrolled certainties',qs:[1,2,3,4,5,6]},
+  {key:'body', n:2,name:'The Body that Got Forgotten',sub:'The vessel as vehicle',qs:[7,8,9,10,11,12]},
+  {key:'word', n:3,name:'The Word that Lost Weight',sub:'Promises broken without ceremony',qs:[13,14,15,16,17,18]},
+  {key:'time', n:4,name:'The Time that Disappeared',sub:'Years that cannot be accounted for',qs:[19,20,21,22,23,24]},
+  {key:'money',n:5,name:'The Money that Owns You',sub:'Inherited patterns, unspoken weight',qs:[25,26,27,28,29,30]},
+  {key:'people',n:6,name:'The People you are Performing With',sub:'Performance over presence',qs:[31,32,33,34,35,36]}
+];
+
+var CHAMBER_PARAGRAPHS={
+  mind:'Your mind has been running on outsourced track. Opinions you did not form. Beliefs you absorbed before you noticed. The voice you hear at three in the morning is not your own voice. It is a borrowed voice. The first chamber to repair is the one that does the looking.',
+  body:'Your body is carrying what your week has refused to set down. Tiredness sleep cannot fix. Pain not yet named. Movement reduced to management. The body keeps a record of what the mind postpones. The record is patient. The cost is not.',
+  word:'Your word to yourself has lost weight. The promises you most easily break are the ones you make to you. The bank account of self-trust is overdrawn. Until you are honest with yourself about a small thing, you cannot be honest with yourself about a large one.',
+  time:'Your time has been disappearing in ways you cannot name. The days are full. The year is thin. Five years can pass without a clear answer to what they built. Time is the only resource that does not return. Your relationship to time is the most honest mirror you have.',
+  money:'Your money is operating by rules you did not consciously set. You earn more than you once dreamed of. You are not freer. The money is reacting to fear, to image, to inherited script. Until the rules are visible, the rules are running you.',
+  people:'You have been performing relationships that you used to live. The version of you at home is not the version at work. Both are managed. The cost of pretending is paid in loneliness. The people closest to you sense it before you say it.'
+};
+
+// Section transitions (between chambers)
+var TRANSITIONS=[
+  {q:6, eyebrow:'Chamber one is done',h:'You looked at the mind.',text:'Now look at the body. <b>The body keeps the record the mind tries to misplace.</b>'},
+  {q:12,eyebrow:'Chamber two is done',h:'You looked at the body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony.'},
+  {q:18,eyebrow:'Halfway. Notice it.',h:'Three chambers done.',text:'Mind. Body. Word. Now turn to time, money, and the people you have been performing with.'},
+  {q:24,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules. Most rules were inherited.</b>'},
+  {q:30,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been performing with. Stay here. The last six items are the most honest.'}
+];
+
+// State
+var answers={};
+var currentQ=1;
+var participantName='';
+var participantEmail='';
+var lastResults=null;
+var advanceTimer=null;
+var pendingAfterTransition=null;
+var painText='';
+var painText5y='';
+
+// Storage
+function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
+function saveHistory(arr){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(arr))}catch(e){}}
+function appendRecord(rec){var h=loadHistory();h.push(rec);saveHistory(h);return h}
+function priorRecords(email){
+  var h=loadHistory();
+  var e=(email||'').trim().toLowerCase();
+  return h.filter(function(r){return (r.email||'').trim().toLowerCase()===e}).sort(function(a,b){return a.date<b.date?-1:1});
+}
+function lastFor(email){var p=priorRecords(email);return p.length?p[p.length-1]:null}
+
+// Routing
+function show(id){
+  var screens=document.querySelectorAll('.screen');
+  for(var i=0;i<screens.length;i++)screens[i].classList.remove('active');
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
+
+document.addEventListener('DOMContentLoaded',function(){
+  // Pre-fill from URL params (for retake links from email)
+  try{
+    var p=new URLSearchParams(window.location.search);
+    var nm=p.get('name'),em=p.get('email');
+    if(nm)document.getElementById('participantName').value=nm;
+    if(em)document.getElementById('participantEmail').value=em;
+  }catch(e){}
+
+  document.addEventListener('keydown',function(e){
+    var qScreen=document.getElementById('screen-question');
+    if(!qScreen.classList.contains('active'))return;
+    if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+    var k=e.key.toLowerCase();
+    if(k==='a'||k==='1'){selectOption(currentQ,1)}
+    else if(k==='b'||k==='2'){selectOption(currentQ,2)}
+    else if(k==='c'||k==='3'){selectOption(currentQ,3)}
+    else if(k==='d'||k==='4'){selectOption(currentQ,4)}
+    else if(k==='enter'){if(answers[currentQ]){cancelAdvance();nextQuestion()}}
+    else if(k==='arrowleft'||k==='backspace'){cancelAdvance();prevQuestion()}
+  });
+});
+
+// Helpers
+function relTime(iso){
+  var t=new Date(iso).getTime(),now=Date.now(),diff=now-t,d=Math.floor(diff/86400000);
+  if(d<1)return 'today';if(d===1)return 'yesterday';
+  if(d<14)return d+' days ago';
+  if(d<60)return Math.floor(d/7)+' weeks ago';
+  return Math.floor(d/30)+' months ago';
+}
+function daysBetween(a,b){return Math.floor((new Date(b).getTime()-new Date(a).getTime())/86400000)}
+function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
+function safe(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+function isValidEmail(e){return e&&e.indexOf('@')>0&&e.indexOf('.')>0}
+
+// Flow
+function startAssessment(){
+  var nameEl=document.getElementById('participantName');
+  var emailEl=document.getElementById('participantEmail');
+  var name=(nameEl.value||'').trim();
+  var email=(emailEl.value||'').trim();
+  if(!name){nameEl.focus();return}
+  if(!isValidEmail(email)){emailEl.focus();return}
+  participantName=name;participantEmail=email;
+  answers={};currentQ=1;painText='';painText5y='';
+  renderQuestion(1);show('screen-question');
+}
+
+function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
+function renderQuestion(n){
+  cancelAdvance();
+  var q=QUESTIONS[n-1];
+  document.getElementById('qSection').textContent='Chamber '+q.sec+' of 6 · '+q.sn;
+  document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
+  document.getElementById('qText').textContent=q.text;
+  setProgress(Math.round(((n-1)/TOTAL)*98));
+  var box=document.getElementById('qOptions');box.innerHTML='';
+  for(var i=0;i<OPTIONS.length;i++){
+    (function(opt){
+      var b=document.createElement('button');
+      b.className='opt'+(answers[n]===opt.score?' sel':'');
+      b.innerHTML='<span class="opt-key">'+opt.key+'</span><span>'+opt.label+'</span>';
+      b.onclick=function(){selectOption(n,opt.score)};
+      box.appendChild(b);
+    })(OPTIONS[i]);
+  }
+  document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
+}
+function selectOption(n,score){
+  answers[n]=score;
+  var opts=document.querySelectorAll('#qOptions .opt');
+  for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
+  cancelAdvance();
+  advanceTimer=setTimeout(function(){
+    if(answers[n]===score && currentQ===n){nextQuestion()}
+  },AUTO_ADVANCE_MS);
+}
+function nextQuestion(){
+  cancelAdvance();
+  if(!answers[currentQ])return;
+  var trans=TRANSITIONS.find(function(t){return t.q===currentQ});
+  if(trans){enterTransition(trans);return}
+  if(currentQ===TOTAL){enterAck();return}
+  currentQ++;renderQuestion(currentQ);
+}
+function prevQuestion(){cancelAdvance();if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
+
+function enterTransition(trans){
+  pendingAfterTransition=trans.q+1;
+  document.getElementById('trEyebrow').textContent=trans.eyebrow;
+  document.getElementById('trH').innerHTML=trans.h;
+  document.getElementById('trText').innerHTML=trans.text;
+  show('screen-transition');
+  setProgress(Math.round((trans.q/TOTAL)*98));
+}
+function exitTransition(){
+  if(pendingAfterTransition==null)return;
+  currentQ=pendingAfterTransition;pendingAfterTransition=null;
+  renderQuestion(currentQ);show('screen-question');
+}
+
+function enterAck(){
+  document.getElementById('ackText').innerHTML=safe(participantName)+', you have answered thirty-six items. That is harder than it sounds. Take one breath. Now let us look together.';
+  show('screen-ack');setProgress(100);
+}
+function afterAck(){finishAssessment()}
+
+// Scoring
+function sumQs(qs){var s=0;for(var i=0;i<qs.length;i++)s+=answers[qs[i]]||0;return s}
+function chamberScores(){
+  return CHAMBERS.map(function(c){var s=sumQs(c.qs),max=c.qs.length*4;return{key:c.key,name:c.name,sub:c.sub,score:s,max:max,pct:s/max}});
+}
+function loudestChamber(){
+  var arr=chamberScores();var best=arr[0];
+  for(var i=1;i<arr.length;i++)if(arr[i].score>best.score)best=arr[i];
+  return best;
+}
+function totalScore(){var s=0;for(var k in answers)s+=answers[k];return s}
+function levelNeg(pct){return pct<=0.44?'quiet':pct<=0.69?'active':'loud'}
+function levelLabel(pct){return ({quiet:'Quiet',active:'Active',loud:'Loud'})[levelNeg(pct)]}
+
+// Cost estimation, rough but defensible.
+// All numbers anchor to the participant's own self-reports, scaled to four-point Likert.
+function estimateCost(){
+  var cs=chamberScores();
+  var bm=cs.find(function(x){return x.key==='body'}).score;     // 6-24
+  var tm=cs.find(function(x){return x.key==='time'}).score;
+  var ww=cs.find(function(x){return x.key==='word'}).score;
+  var pp=cs.find(function(x){return x.key==='people'}).score;
+  var mn=cs.find(function(x){return x.key==='money'}).score;
+  var md=cs.find(function(x){return x.key==='mind'}).score;
+
+  // Time: hours per week of unconscious life × 52
+  var unconsciousHoursWeekly=Math.round(((tm+md)/48)*42); // up to ~42 hr/wk
+  var hoursYear=unconsciousHoursWeekly*52;
+
+  // Promises: estimated per year, scaled by Word score
+  var promisesBroken=Math.round((ww-6)*4.2);
+
+  // Conversations postponed: scaled by People score
+  var conversationsPostponed=Math.round((pp-6)*1.6);
+
+  // Money: estimated annual unconscious spend (illustrative percentage of unspecified income)
+  var moneyDriftPercent=Math.round(((mn-6)/18)*22+6); // 6-28 percent
+
+  return {
+    hoursYear:Math.max(0,hoursYear),
+    hoursWeek:Math.max(0,unconsciousHoursWeekly),
+    promisesBroken:Math.max(0,promisesBroken),
+    conversationsPostponed:Math.max(0,conversationsPostponed),
+    moneyDriftPercent:Math.min(40,Math.max(2,moneyDriftPercent))
+  };
+}
+
+function fiveYearForecast(){
+  var c=estimateCost();
+  return {
+    hoursLost:c.hoursYear*5,
+    promisesBroken:c.promisesBroken*5,
+    conversationsLost:c.conversationsPostponed*5,
+    moneyDriftPercent:c.moneyDriftPercent
+  };
+}
+
+// Finish
+function finishAssessment(){
+  setProgress(100);
+  var rec=buildRecord();
+  appendRecord(rec);
+  buildResults(rec);
+  show('screen-results');
+  // Trigger an automatic email send so the participant receives the report regardless of what they do next
+  fireEmailQuiet(rec);
+}
+function buildRecord(){
+  var cs=chamberScores();var loud=loudestChamber();
+  var scores={total:totalScore()};
+  for(var i=0;i<cs.length;i++)scores['ch_'+cs[i].key]=cs[i].score;
+  return {
+    date:new Date().toISOString(),name:participantName,email:participantEmail,
+    answers:Object.assign({},answers),scores:scores,
+    loud:loud.key,loud_level:levelNeg(loud.pct)
+  };
+}
+
+// Results
+function buildResults(rec){
+  lastResults=rec;
+  participantName=rec.name;participantEmail=rec.email;answers=rec.answers||answers;
+
+  var prior=null;var hist=priorRecords(rec.email);
+  for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
+  var returnIdx=hist.length;
+
+  var loud=loudestChamber();
+  var headline=document.getElementById('rHeadline');
+  var sub=document.getElementById('rSub');
+
+  if(returnIdx===1){
+    headline.innerHTML=safe(rec.name)+', <em>this is what has been running you when you are not watching.</em>';
+    sub.textContent='First Hour · First take · '+formatDate(rec.date);
+  }else{
+    var daysSinceFirst=daysBetween(hist[0].date,rec.date);
+    headline.innerHTML=safe(rec.name)+', <em>you have lived '+daysSinceFirst+' more days the same way.</em>';
+    sub.textContent='First Hour · Return '+returnIdx+' · '+daysSinceFirst+' days since your first hour · '+formatDate(rec.date);
+  }
+
+  renderAnchor(prior,returnIdx);
+  renderProfile(prior);
+  renderPattern(loud);
+  renderCost();
+  renderForecast();
+  renderMovement(prior);
+
+  document.getElementById('painInput').value='';
+  document.getElementById('painInput5y').value='';
+  document.getElementById('selfQuote').classList.remove('shown');
+}
+
+function renderAnchor(prior,returnIdx){
+  var box=document.getElementById('anchorBlock');box.innerHTML='';
+  if(returnIdx===1){
+    box.innerHTML='<div class="feature-card" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--rule-soft)">'+
+      '<span class="feature-eyebrow" style="color:var(--gold)">The honest hour</span>'+
+      '<div class="feature-h" style="color:var(--ink)">Most people will not take this. <em style="color:var(--gold)">You did.</em></div>'+
+      '<div class="feature-body" style="color:var(--mid)">That alone is data about who you are. The rest of this page is the diagnosis. Read it slowly.</div>'+
+      '</div>';
+    return;
+  }
+  // Returner: anchor on what moved
+  var loudPrev=null;
+  if(prior){
+    var arr=chamberScores().slice();
+    arr.sort(function(a,b){return b.score-a.score});
+    var moved=[];
+    for(var i=0;i<CHAMBERS.length;i++){
+      var c=CHAMBERS[i];var cur=chamberScores()[i].score;
+      var prev=prior.scores['ch_'+c.key]||0;
+      if(prev>cur)moved.push({name:c.name,delta:prev-cur});
+    }
+    var headLine='',body='';
+    if(moved.length){
+      moved.sort(function(a,b){return b.delta-a.delta});
+      headLine=moved[0].name+' is <em>quieter</em> than your first audit, by '+moved[0].delta+' point'+(moved[0].delta===1?'':'s')+'.';
+      body='Notice this before we look at the rest. Movement here is not luck. It is what you have been doing differently.';
+    }else{
+      var daysSinceFirst=daysBetween(prior.date,new Date().toISOString());
+      headLine='Nothing has moved.';
+      body='You have drifted '+daysSinceFirst+' more days since you first named this. The pattern named on Day 0 is still running. <b>Most patterns do not move when they are not addressed.</b>';
+    }
+    box.innerHTML='<div class="feature-card" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--rule-soft)">'+
+      '<span class="feature-eyebrow" style="color:var(--gold)">What moved · what did not</span>'+
+      '<div class="feature-h" style="color:var(--ink)">'+headLine+'</div>'+
+      '<div class="feature-body" style="color:var(--mid)">'+body+'</div>'+
+      '</div>';
+  }
+}
+
+function renderProfile(prior){
+  var arr=chamberScores();
+  var html='';
+  for(var i=0;i<arr.length;i++){
+    var c=arr[i],lvl=levelNeg(c.pct);
+    var deltaH='';
+    if(prior){
+      var prev=prior.scores['ch_'+c.key]||0;
+      if(prev>0){
+        var d=c.score-prev;
+        if(d===0)deltaH='<span class="delta delta-flat">no change</span>';
+        else if(d<0)deltaH='<span class="delta delta-up">↓ '+Math.abs(d)+'</span>';
+        else deltaH='<span class="delta delta-down">↑ '+d+'</span>';
+      }
+    }
+    html+='<div class="profile-row">'+
+      '<div class="profile-name">'+c.name+'<span>'+c.sub+'</span></div>'+
+      '<div class="profile-bar"><div class="bar-'+lvl+'" style="width:'+Math.round(c.pct*100)+'%"></div></div>'+
+      '<div class="profile-val lvl-'+lvl+'"><span>'+c.score+' / '+c.max+'</span><span class="lvl">'+levelLabel(c.pct)+'</span>'+deltaH+'</div>'+
+      '</div>';
+  }
+  document.getElementById('profileList').innerHTML=html;
+}
+
+function renderPattern(loud){
+  document.getElementById('patternH').innerHTML='The chamber running you most is <em>'+loud.name+'</em>.';
+  document.getElementById('patternBody').innerHTML=CHAMBER_PARAGRAPHS[loud.key];
+}
+
+function renderCost(){
+  var c=estimateCost();
+  var grid=document.getElementById('costGrid');
+  grid.innerHTML=
+    '<div class="cost-cell"><div class="cost-label">Hours of unconscious life this year</div><div class="cost-num">'+c.hoursYear.toLocaleString()+'<em>hr</em></div><div class="cost-meta">Roughly '+c.hoursWeek+' hours each week, lived on autopilot, by your own report.</div></div>'+
+    '<div class="cost-cell"><div class="cost-label">Promises broken to yourself</div><div class="cost-num">'+c.promisesBroken+'<em>this year</em></div><div class="cost-meta">Each one, a small withdrawal from your account of self-trust.</div></div>'+
+    '<div class="cost-cell"><div class="cost-label">Conversations you keep postponing</div><div class="cost-num">'+c.conversationsPostponed+'<em>·</em></div><div class="cost-meta">Each one, a relationship slowly storing the cost of being unsaid.</div></div>'+
+    '<div class="cost-cell"><div class="cost-label">Money operating outside conscious choice</div><div class="cost-num">'+c.moneyDriftPercent+'<em>% est.</em></div><div class="cost-meta">An estimated share of your spending driven by image, fear, or inheritance.</div></div>';
+}
+
+function renderForecast(){
+  var f=fiveYearForecast();
+  document.getElementById('forecastH').innerHTML='If this autopilot continues at this rate, here is the shape of your next five years.';
+  document.getElementById('forecastRows').innerHTML=
+    '<div class="forecast-row"><b>'+f.hoursLost.toLocaleString()+' hours</b> of life, lived on autopilot. The equivalent of '+Math.round(f.hoursLost/24/365*10)/10+' full years of waking time, conscious of nothing in particular.</div>'+
+    '<div class="forecast-row"><b>'+f.promisesBroken+' promises</b> to yourself, broken without ceremony. By the end of five years, you will not believe yourself when you make the next one.</div>'+
+    '<div class="forecast-row"><b>'+f.conversationsLost+' conversations</b>, postponed past the point where they could have changed anything.</div>'+
+    '<div class="forecast-row"><b>~'+f.moneyDriftPercent+'%</b> of your spending in five years, still operating by rules you never set. Your future will inherit your present, exactly.</div>';
+}
+
+function renderMovement(prior){
+  var block=document.getElementById('moveBlock');
+  if(!prior){block.style.display='none';return}
+  block.style.display='block';
+  var html='<thead style="display:none"></thead><tbody>';
+  for(var i=0;i<CHAMBERS.length;i++){
+    var c=CHAMBERS[i];
+    var cur=chamberScores()[i].score;
+    var prev=prior.scores['ch_'+c.key]||0;
+    var d=cur-prev;
+    var arrowCls=(d===0?'delta-flat':d<0?'delta-up':'delta-down');
+    var arrow=d===0?'no change':((d<0?'↓ ':'↑ +')+Math.abs(d));
+    html+='<div class="move-row"><b>'+c.name+'</b><span class="move-prev">was '+prev+'</span><span class="move-arrow '+arrowCls+'">'+arrow+'</span></div>';
+  }
+  html+='</tbody>';
+  document.getElementById('moveGrid').innerHTML=html;
+}
+
+function showSelfQuote(){
+  var t1=document.getElementById('painInput').value.trim();
+  var t2=document.getElementById('painInput5y').value.trim();
+  painText=t1;painText5y=t2;
+  var combined='';
+  if(t1)combined='"'+t1+'"';
+  if(t2)combined+=(combined?'<br><br>':'')+'"'+t2+'"';
+  if(!combined){document.getElementById('selfQuote').classList.remove('shown');return}
+  document.getElementById('selfQuoteText').innerHTML=combined;
+  document.getElementById('selfQuote').classList.add('shown');
+  var h=loadHistory();if(h.length){h[h.length-1].pain_text=t1;h[h.length-1].pain_text_5y=t2;saveHistory(h)}
+}
+
+// Email — silent send when assessment finishes, also resendable
+function fireEmailQuiet(rec){
+  if(!EMAILJS_OK)return;
+  buildEmailPayload(rec).then(function(){}).catch(function(){});
+}
+function resendEmail(){
+  var rec=lastResults;if(!rec)return;
+  rec.pain_text=document.getElementById('painInput').value.trim();
+  rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  var status=document.getElementById('emailStatus');
+  status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
+  if(!EMAILJS_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
+  buildEmailPayload(rec).then(function(){
+    status.style.color='var(--green)';status.textContent='Sent. A copy is on its way to '+rec.email+' and to mail@mogire.com.';
+  },function(){
+    status.style.color='var(--red)';status.textContent='Email did not go through. Try Download Report.';
+  });
+}
+function buildEmailPayload(rec){
+  var loud=loudestChamber();var c=estimateCost();var f=fiveYearForecast();
+  var profileLines=chamberScores().map(function(x){return x.name+': '+x.score+' / '+x.max+' ('+levelLabel(x.pct)+')'}).join('<br>');
+  var costLines='Hours of unconscious life this year: ~'+c.hoursYear.toLocaleString()+'<br>Promises broken to yourself this year: ~'+c.promisesBroken+'<br>Conversations postponed: ~'+c.conversationsPostponed+'<br>Money operating outside conscious choice: ~'+c.moneyDriftPercent+'%';
+  var fcLines='Hours lost over five years: ~'+f.hoursLost.toLocaleString()+'<br>Promises that will be broken: ~'+f.promisesBroken+'<br>Conversations not had: ~'+f.conversationsLost+'<br>Money still operating outside conscious choice: ~'+f.moneyDriftPercent+'%';
+  return emailjs.send('service_76loif8','template_3j2uhtd',{
+    to_name:rec.name,
+    to_email:rec.email,
+    cc_email:'mail@mogire.com',
+    primary_reflex:loud.name,
+    primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
+    archetype_desc:'THE FIRST HOUR · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.',
+    traffic_summary:profileLines,
+    strategies_html:'<b>The cost, this period</b><br>'+costLines+'<br><br><b>The five-year forecast</b><br>'+fcLines,
+    summit_url:'https://www.houseofmastery.co'
+  });
+}
+
+// PDF
+function downloadPDF(){
+  if(!JSPDF_OK||typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
+  var rec=lastResults;if(!rec)return;
+  rec.pain_text=document.getElementById('painInput').value.trim();
+  rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  var jsPDFCtor=window.jspdf.jsPDF;
+  var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
+  var W=210,H=297,M=18;
+  var navy=[13,31,60],gold=[201,151,58],ink=[26,26,31],body=[58,58,64],mid=[110,110,115],dim=[152,152,158],ruleC=[216,216,220];
+  var lc={quiet:[46,125,50],active:[199,119,0],loud:[178,34,34]};
+
+  function header(label){
+    doc.setFillColor(navy[0],navy[1],navy[2]);doc.rect(0,0,W,22,'F');
+    doc.setFillColor(gold[0],gold[1],gold[2]);doc.rect(0,0,W,1.6,'F');
+    doc.setTextColor(gold[0],gold[1],gold[2]);doc.setFontSize(8);doc.setFont('helvetica','bold');
+    doc.text('THE FIRST HOUR  ·  HOUSE OF MASTERY  ·  DR. JOB MOGIRE, MD, FACC',M,11);
+    doc.setTextColor(255,255,255);doc.setFontSize(8);doc.setFont('helvetica','normal');
+    doc.text('Confidential  ·  '+rec.name+'  ·  '+formatDate(rec.date),M,17.5);
+    doc.setTextColor(255,255,255);doc.setFontSize(7);doc.text(label,W-M,17.5,{align:'right'});
+  }
+  function footer(p){
+    doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,H-14,W-M,H-14);
+    doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(dim[0],dim[1],dim[2]);
+    doc.text('THE FIRST HOUR · House of Mastery · mail@mogire.com',M,H-9);
+    doc.text('Page '+p+' of 3',W-M,H-9,{align:'right'});
+  }
+  function sectionLabel(text,y){
+    doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(gold[0],gold[1],gold[2]);
+    doc.text(text.toUpperCase(),M,y);
+    doc.setDrawColor(gold[0],gold[1],gold[2]);doc.setLineWidth(.4);doc.line(M,y+1.5,M+50,y+1.5);
+    doc.setLineWidth(.2);
+  }
+
+  // Page 1: cover letter + headline + profile
+  header('Page 1 of 3');
+  var y=32;
+  doc.setFont('times','italic');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  var letter=[
+    rec.name+', most people who open this page do not finish it. You did.',
+    'What you just named has been moving inside your life for years. The instrument did not invent it. It found language for it in your own week’s terms.',
+    'I designed The First Hour because I needed it before I could build it. Eight years of cardiology in Kenya before American residency taught me that the body keeps the record the mind tries to misplace. The pattern stays steady. Your relationship to it is what changes.',
+    'You will receive a reminder in thirty days. Most patterns do not move when they are not addressed. We will see together.'
+  ];
+  for(var i=0;i<letter.length;i++){var L=doc.splitTextToSize(letter[i],W-M*2);doc.text(L,M,y);y+=L.length*5.2+3}
+  y+=2;doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
+  doc.text('Dr. Job Mogire, MD, FACC.',M,y);y+=4.5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('Architect, House of Mastery.',M,y);y+=10;
+
+  doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,y,W-M,y);y+=8;
+
+  var loud=loudestChamber();
+  doc.setFont('helvetica','bold');doc.setFontSize(13);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('Loudest chamber: '+loud.name,M,y);y+=6;
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+  var L=doc.splitTextToSize(CHAMBER_PARAGRAPHS[loud.key],W-M*2);doc.text(L,M,y);y+=L.length*4.6+8;
+
+  sectionLabel('Audit profile · The six chambers',y);y+=7;
+  var cs=chamberScores();
+  for(var i=0;i<cs.length;i++){
+    var c=cs[i],lvl=levelNeg(c.pct),col=lc[lvl];
+    doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text(c.name,M,y);
+    doc.setFillColor(235,235,239);doc.roundedRect(M+88,y-3,68,4,1,1,'F');
+    doc.setFillColor(col[0],col[1],col[2]);doc.roundedRect(M+88,y-3,68*c.pct,4,1,1,'F');
+    doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(col[0],col[1],col[2]);
+    doc.text(c.score+'/'+c.max+'  '+levelLabel(c.pct).toUpperCase(),M+162,y);y+=7;
+  }
+
+  footer(1);doc.addPage();
+
+  // Page 2: cost + forecast + own words
+  header('Page 2 of 3');
+  y=32;
+  var co=estimateCost();var f=fiveYearForecast();
+  sectionLabel('The cost · this period',y);y+=7;
+  var costLines=[
+    'Hours of unconscious life this year: ~'+co.hoursYear.toLocaleString()+'  ('+co.hoursWeek+' per week)',
+    'Promises broken to yourself: ~'+co.promisesBroken+' this year',
+    'Conversations postponed: ~'+co.conversationsPostponed,
+    'Money operating outside conscious choice: ~'+co.moneyDriftPercent+'%'
+  ];
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+  for(var i=0;i<costLines.length;i++){doc.text('· '+costLines[i],M,y);y+=5.4}
+  y+=4;sectionLabel('The five-year forecast',y);y+=7;
+  var fcLines=[
+    '~'+f.hoursLost.toLocaleString()+' hours of life, lived on autopilot. About '+(Math.round(f.hoursLost/24/365*10)/10)+' full years of waking time.',
+    '~'+f.promisesBroken+' promises to yourself, broken without ceremony.',
+    '~'+f.conversationsLost+' conversations, postponed past the point where they could have changed anything.',
+    '~'+f.moneyDriftPercent+'% of your spending, still operating by rules you did not set.'
+  ];
+  for(var i=0;i<fcLines.length;i++){var L2=doc.splitTextToSize('· '+fcLines[i],W-M*2);doc.text(L2,M,y);y+=L2.length*5.2}
+  y+=4;sectionLabel('Your own words',y);y+=7;
+  doc.setFont('times','italic');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+  doc.text('Thirty-day horizon: "'+(rec.pain_text||'(not recorded)')+'"',M,y);y+=8;
+  doc.text('Five-year horizon: "'+(rec.pain_text_5y||'(not recorded)')+'"',M,y);y+=10;
+
+  footer(2);doc.addPage();
+
+  // Page 3: ladder + retake + lineage
+  header('Page 3 of 3');
+  y=32;
+  sectionLabel('The next door, when you are ready',y);y+=8;
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('1. The First Hour, retaken every thirty days  (free, six months)',M,y);y+=5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+  doc.text('Most patterns do not move when they are not addressed. You will see this for yourself.',M,y);y+=8;
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('2. The Pamoja Hour  (monthly · first Saturday · first attendance free)',M,y);y+=5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+  doc.text('A monthly witness circle. Pamoja is Swahili for together. You are not alone.',M,y);y+=8;
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('3. The Mastery Hour  (monthly · third Saturday · membership)',M,y);y+=5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+  doc.text('One hour with Dr. Mogire. One chamber of mastery, taught in depth. Recordings included.',M,y);y+=8;
+  doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('4. KOORA: The Finisher’s Protocol  (180 days · once a year · twenty-four seats)',M,y);y+=5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+  var k=doc.splitTextToSize('A clinical-grade architecture for the high-functioning professional whose patterns have been running them quietly. The diagnosis stays steady. Your relationship to it is what changes.',W-M*2);
+  doc.text(k,M,y);y+=k.length*5+10;
+
+  doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,y,W-M,y);y+=8;
+  doc.setFont('times','italic');doc.setFontSize(11);doc.setTextColor(navy[0],navy[1],navy[2]);
+  var v=doc.splitTextToSize('You are permitted to drift. You are not permitted to drift quietly.',W-M*2);
+  doc.text(v,M,y);y+=v.length*5+6;
+  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('We will email you in thirty days. mail@mogire.com is the cohort archive.',M,y);
+
+  footer(3);
+  doc.save('TheFirstHour-Report-'+rec.name.replace(/\s+/g,'-')+'.pdf');
+}
+</script>
+</body>
+</html>
