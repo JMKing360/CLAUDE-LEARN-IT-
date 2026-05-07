@@ -402,6 +402,22 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   </div>
 
   <div class="r-block">
+    <span class="r-block-label">The canon · what you have just diagnosed</span>
+    <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)">
+      <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,21px);font-weight:500;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin:0">
+        What you have just named has a name. It is called <b>The Unfinished Life</b>. It is not laziness. It is fragmentation. Open loops. Unkept promises. Half-built identities. The pattern has a body, a literature, and a path through it. The path moves through six layers, from outer architecture to sacred essence. It passes, eventually, through four questions every covenant with your future is built on.
+      </p>
+      <ol style="font-family:var(--serif);font-size:clamp(17px,2.4vw,20px);font-weight:600;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:22px 0 0 22px;padding:0">
+        <li style="margin-bottom:6px">Who do you want to be?</li>
+        <li style="margin-bottom:6px">What do you want to do?</li>
+        <li style="margin-bottom:6px">Where do you want to end up?</li>
+        <li>Why these, and not the ones the world keeps suggesting on your behalf?</li>
+      </ol>
+      <p style="font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--mid);margin-top:18px;line-height:1.55;letter-spacing:.005em">Most adults have never answered the four cleanly. The answers in your own voice are the work of the next door.</p>
+    </div>
+  </div>
+
+  <div class="r-block">
     <h3 class="ladder-h">The next door, when you are ready.</h3>
     <p class="ladder-sub">House of Mastery is a body of work, not a programme. Three rooms, in order of depth. Walk in at any rung. Most begin at the first.</p>
     <div class="ladder-list">
@@ -1001,7 +1017,9 @@ function downloadPDF(){
   y+=2;doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
   doc.text('Dr. Job Mogire, MD, FACC.',M,y);y+=4.5;
   doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
-  doc.text('Architect, House of Mastery.',M,y);y+=10;
+  doc.text('Architect, House of Mastery.',M,y);y+=4.5;
+  doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('The First Hour is the entry instrument of an architecture that moves through six layers of return: outer architecture, protective rhythm, embodied capacity, meaning encoding, survival selfhood, sacred essence.',M,y,{maxWidth:W-M*2});y+=12;
 
   doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,y,W-M,y);y+=8;
 
