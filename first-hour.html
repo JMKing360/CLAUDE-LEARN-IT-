@@ -282,8 +282,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <span class="brand-stamp">The First Hour · A House of Mastery audit</span>
   <span class="eyebrow">THE FIRST HOUR · A six-chamber audit</span>
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
-  <p class="lede">There is a kind of life that runs you while you think you are running it. The years pass. The days are full. The work does not get done. <strong>You are not failing. You are living on autopilot, and you can feel it.</strong></p>
-  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACC</b>. It names the patterns that have been quietly shaping your life and shows you what they have been costing. Thirty-six items. About ten minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
+  <p class="lede">There is a kind of life that runs you while you think you are running it. <strong>From the outside, it works.</strong> The biography reads well at weddings. From the inside, something is on mute. The work does not get done. The years pass. The room is full of people who think they know you. <strong>You are not lazy. You just never finish.</strong></p>
+  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACP, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Thirty-six items. About ten minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
   <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
 
   <div class="framing-card">
@@ -306,7 +306,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <div class="welcome-cta">
     <button class="btn-primary" onclick="startAssessment()" style="max-width:300px">Begin your first hour</button>
-    <p class="welcome-meta"><b>About ten minutes.</b> Press A, B, C, or D on your keyboard to answer. The next question follows in a moment.</p>
+    <p class="welcome-meta"><b>About ten minutes.</b> Press A, B, C, or D on your keyboard to answer. The next question follows in a moment.<br><br><em style="color:var(--ink);font-weight:600">Don’t die with an unfinished life.</em></p>
   </div>
 </section>
 
@@ -458,7 +458,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </main>
 
 <footer>
-  <p class="foot-credit"><b>THE FIRST HOUR</b> · A House of Mastery audit<br>Designed by <b>Dr. Job Mogire, MD, FACC</b><br>Where the rest begins. The first hour you take to see yourself clearly.</p>
+  <p class="foot-credit"><b>THE FIRST HOUR</b> · A House of Mastery audit<br>Designed by <b>Dr. Job Mogire, MD, FACP, FACC</b>, board-certified cardiologist<br>Don’t die with an unfinished life.</p>
 </footer>
 
 <script>
@@ -529,12 +529,12 @@ var CHAMBERS=[
 ];
 
 var CHAMBER_PARAGRAPHS={
-  mind:'Your mind has been running on outsourced track. Opinions you did not form. Beliefs you absorbed before you noticed. The voice you hear at three in the morning is not your own voice. It is a borrowed voice. The first chamber to repair is the one that does the looking.',
-  body:'Your body is carrying what your week has refused to set down. Tiredness sleep cannot fix. Pain not yet named. Movement reduced to management. The body keeps a record of what the mind postpones. The record is patient. The cost is not.',
-  word:'Your word to yourself has lost weight. The promises you most easily break are the ones you make to you. The bank account of self-trust is overdrawn. Until you are honest with yourself about a small thing, you cannot be honest with yourself about a large one.',
-  time:'Your time has been disappearing in ways you cannot name. The days are full. The year is thin. Five years can pass without a clear answer to what they built. Time is the only resource that does not return. Your relationship to time is the most honest mirror you have.',
-  money:'Your money is operating by rules you did not consciously set. You earn more than you once dreamed of. You are not freer. The money is reacting to fear, to image, to inherited script. Until the rules are visible, the rules are running you.',
-  people:'You have been performing relationships that you used to live. The version of you at home is not the version at work. Both are managed. The cost of pretending is paid in loneliness. The people closest to you sense it before you say it.'
+  mind:'Your mind has been running on outsourced track. Opinions you did not form. Beliefs you absorbed before you noticed. People who once knew you describe a kind of decalcification, where the wonder went somewhere and the curiosity dimmed. The voice you hear at three in the morning is not your own voice. It is a borrowed voice. The sad story of you has begun to act like an identity. The first chamber to repair is the one that does the looking.',
+  body:'Your body is carrying what your week has refused to set down. Tiredness sleep cannot fix. Pain not yet named. Movement reduced to management. As a cardiologist, I have watched what unspoken life does to a heart. The conversation you will not have is becoming chest pain. The body keeps the record the mind tries to misplace. The record is patient. The cost is not.',
+  word:'Your word to yourself has lost weight. The person who makes the promise has stopped having credibility with the person who must keep it. The bank account of self-trust is overdrawn. Most of what you call procrastination is fear masquerading as willpower. Until you are honest with yourself about a small thing, you cannot be honest with yourself about a large one.',
+  time:'Your time has been disappearing in ways you cannot name. The days are full. The year is thin. You are running out of \u2018later\u2019 and somewhere you know it. The biggest lie you have been telling yourself is that things will be better in the future. They will not, unless something changes today. The grand gnawing space between how you think you should feel and how you actually feel is largest here, in time. Time is the only resource that does not return. It is the most honest mirror you have.',
+  money:'Your money operates by rules you did not consciously set. You earn more than you once dreamed of. You are not freer. Money has been reacting to fear, to image, to inherited script. The substitution economy: what you traded away for the thing you bought. Your ask has stopped being your dignity and started feeling like desperation. Until the rules are visible, the rules are running you.',
+  people:'You have been performing relationships you used to live. The version of you at home is not the version at work. Both are managed. You may be lonely in rooms full of people who think they know you. Warmth without depth in your closest seats. The cost of pretending is paid in loneliness, then in chest pain, then in legacy. The people closest to you sense it before you say it.'
 };
 
 // Section transitions (between chambers)
@@ -802,8 +802,8 @@ function renderAnchor(prior,returnIdx){
   if(returnIdx===1){
     box.innerHTML='<div class="feature-card" style="background:var(--surface-2);color:var(--ink);border:1px solid var(--rule-soft)">'+
       '<span class="feature-eyebrow" style="color:var(--gold)">The honest hour</span>'+
-      '<div class="feature-h" style="color:var(--ink)">Most people will not take this. <em style="color:var(--gold)">You did.</em></div>'+
-      '<div class="feature-body" style="color:var(--mid)">That alone is data about who you are. The rest of this page is the diagnosis. Read it slowly.</div>'+
+      '<div class="feature-h" style="color:var(--ink)">You are not your potential. <em style="color:var(--gold)">You are your ledger.</em></div>'+
+      '<div class="feature-body" style="color:var(--mid)">Most people will not take this. You did. That alone is data about who you are. The rest of this page is the diagnosis. Read it slowly.</div>'+
       '</div>';
     return;
   }
@@ -993,7 +993,8 @@ function downloadPDF(){
   var letter=[
     rec.name+', most people who open this page do not finish it. You did.',
     'What you just named has been moving inside your life for years. The instrument did not invent it. It found language for it in your own week’s terms.',
-    'I designed The First Hour because I needed it before I could build it. Eight years of cardiology in Kenya before American residency taught me that the body keeps the record the mind tries to misplace. The pattern stays steady. Your relationship to it is what changes.',
+    'I designed The First Hour because I needed it before I could build it. Eight years of cardiology in Kenya before American residency taught me that the body keeps the record the mind tries to misplace. The conversation you will not have is becoming chest pain. The pattern stays steady. Your relationship to it is what changes.',
+    'Don\u2019t die with an unfinished life.',
     'You will receive a reminder in thirty days. Most patterns do not move when they are not addressed. We will see together.'
   ];
   for(var i=0;i<letter.length;i++){var L=doc.splitTextToSize(letter[i],W-M*2);doc.text(L,M,y);y+=L.length*5.2+3}
