@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNFINISHED · House of Mastery</title>
+<title>KOORA · The Finisher Protocol</title>
 <meta name="description" content="A diagnostic for the Finisher. Taken every fifteen days across the 180-day path.">
-<meta name="theme-color" content="#0D1F3C">
+<meta name="theme-color" content="#0A2746">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -276,6 +276,94 @@ footer{border-top:1px solid var(--rule-soft);padding:32px 28px;text-align:center
   .tl-node{min-width:38px}
   .tl-label{font-size:8.5px}
 }
+
+/* KOORA brand refinement — aligned to Finisher Protocol reference */
+:root{
+  --navy:#0A2746;
+  --navy-soft:#123657;
+  --gold:#A98735;
+  --gold-soft:#D8BE73;
+  --ink:#071E35;
+  --body:#354252;
+  --mid:#6C737B;
+  --dim:#8F949A;
+  --rule:#D9D2BF;
+  --rule-soft:#E8E1D0;
+  --surface:#F6F1E6;
+  --surface-2:#EFE8D8;
+  --white:#FFFDF7;
+}
+html{background:var(--surface)}
+body{
+  background:
+    radial-gradient(circle at 82% 18%, rgba(10,39,70,.10), transparent 28%),
+    linear-gradient(90deg, rgba(246,241,230,.98) 0%, rgba(246,241,230,.96) 58%, rgba(234,229,216,.78) 100%);
+  color:var(--body);
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(10,39,70,.18), transparent 1px) top 40px left 6vw / 88vw 1px no-repeat,
+    radial-gradient(ellipse at 92% 56%, rgba(10,39,70,.12), transparent 34%),
+    linear-gradient(180deg, transparent 0%, rgba(255,253,247,.46) 78%, rgba(246,241,230,.92) 100%);
+}
+#progress{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-soft))}
+nav{background:rgba(246,241,230,.88);border-bottom:1px solid rgba(169,135,53,.30);box-shadow:0 8px 28px rgba(10,39,70,.035)}
+.nav-inner{max-width:1220px;padding:22px 38px}
+.nav-brand{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--ink);text-transform:none;position:relative;padding-left:34px}
+.nav-brand::before{content:"h";position:absolute;left:0;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:rgba(10,39,70,.30);color:var(--white);font-weight:800;font-size:13px;letter-spacing:0;text-transform:none}
+.nav-meta{font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
+main{max-width:760px}
+#screen-welcome{padding:116px 0 104px;position:relative}
+#screen-welcome::after{content:"";position:absolute;right:-285px;top:88px;width:320px;height:520px;border-radius:42% 42% 16px 16px;background:linear-gradient(180deg,rgba(10,39,70,.18),rgba(10,39,70,.06));filter:blur(.2px);opacity:.42;z-index:-1}
+.eyebrow,.q-section,.r-eyebrow,.r-block-label,.dash-section-label{color:var(--gold);font-weight:800;letter-spacing:.16em}
+.hero{font-size:clamp(48px,8.8vw,92px);font-weight:700;line-height:.96;letter-spacing:-.045em;color:var(--navy);max-width:780px;margin-bottom:26px}
+.hero em{display:block;font-style:normal;font-size:clamp(28px,4.2vw,46px);font-weight:700;letter-spacing:-.025em;margin-top:10px;color:var(--navy)}
+.lede{font-size:clamp(20px,2.25vw,25px);line-height:1.46;color:#172F4B;max-width:700px}
+.body-text{font-weight:600;color:#465160;max-width:640px}
+.divider{background:linear-gradient(90deg,var(--gold),rgba(169,135,53,.08));margin:38px 0}
+.field-label{color:#687079;font-weight:800}
+.field-input,.field-select{background:rgba(255,253,247,.86);border-color:rgba(169,135,53,.38);border-radius:4px;box-shadow:0 12px 30px rgba(10,39,70,.04)}
+.field-input:focus,.field-select:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(169,135,53,.16)}
+.btn-primary,.q-next{background:var(--navy);border-radius:4px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 18px 34px rgba(10,39,70,.13)}
+.btn-primary:hover,.q-next:hover{background:var(--navy-soft)}
+.btn-secondary{border-radius:4px;border-color:rgba(169,135,53,.42);background:rgba(255,253,247,.40);font-weight:800;color:var(--navy)}
+#screen-question{padding:84px 0 128px}
+.q-meta{border-top:1px solid rgba(169,135,53,.45);padding-top:24px;margin-bottom:36px}
+.q-prompt{text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:800;color:#7C7258}
+.q-text{font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.2;color:var(--navy);margin-bottom:36px}
+.options{gap:12px;margin-bottom:28px}
+.opt{background:rgba(255,253,247,.78);border-color:rgba(169,135,53,.32);border-radius:4px;padding:20px 22px;font-size:15px;font-weight:800;color:var(--navy);box-shadow:0 10px 30px rgba(10,39,70,.035)}
+.opt:hover{border-color:var(--gold);background:#FFFDF7;transform:translateY(-1px)}
+.opt.sel{border-color:var(--navy);background:var(--navy);color:#FFFDF7;box-shadow:0 18px 40px rgba(10,39,70,.16)}
+.opt-key{color:var(--gold);font-weight:800}
+.opt.sel .opt-key{color:var(--gold-soft)}
+.q-foot{margin-top:4px;align-items:center}
+.q-next{min-width:220px;justify-content:center;opacity:.96}
+.q-next:disabled{opacity:.30;box-shadow:none}
+.q-back{color:#736D61;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+footer{background:rgba(255,253,247,.58);border-top:1px solid rgba(169,135,53,.18)}
+.foot-credit{color:#6F7680;font-weight:600}
+.r-h1,.dash-greet{color:var(--navy)}
+.r-block,.delivery,.unstuck,.fidelity-feature,.snap-card,.score-row,.fac-card,.hung-card,.fid-row{background:rgba(255,253,247,.72);border-color:rgba(169,135,53,.24);border-radius:4px}
+@media(max-width:900px){
+  #screen-welcome::after{right:-190px;top:120px;width:240px;height:420px;opacity:.20}
+  .nav-inner{padding:18px 24px}
+  .nav-meta{font-size:10.5px;letter-spacing:.08em;text-align:right}
+  main{padding:0 24px}
+  #screen-welcome{padding-top:74px}
+  .hero{font-size:clamp(44px,15vw,64px)}
+  .hero em{font-size:clamp(25px,8.5vw,36px)}
+  .q-text{font-size:clamp(27px,8vw,34px)}
+  .q-next{width:100%;min-width:0}
+  .q-foot{display:grid;grid-template-columns:1fr;gap:14px}
+  .q-back{justify-content:center;order:2}
+}
+
 </style>
 </head>
 <body>
@@ -283,7 +371,7 @@ footer{border-top:1px solid var(--rule-soft);padding:32px 28px;text-align:center
 <nav>
   <div class="nav-inner">
     <span class="nav-brand">House of Mastery</span>
-    <span class="nav-meta" id="navMeta">UNFINISHED</span>
+    <span class="nav-meta" id="navMeta">KOORA · The Finisher Protocol</span>
   </div>
 </nav>
 
@@ -311,8 +399,8 @@ footer{border-top:1px solid var(--rule-soft);padding:32px 28px;text-align:center
 
 <!-- WELCOME -->
 <section class="screen" id="screen-welcome">
-  <span class="eyebrow">UNFINISHED · A diagnostic for the Finisher</span>
-  <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
+  <span class="eyebrow">KOORA · The Finisher Protocol · Assessment</span>
+  <h1 class="hero">KOORA <em>The Finisher Protocol assessment.</em></h1>
   <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name on it is the work that does not get done. <strong>You do not have a productivity problem. You have a fidelity problem.</strong></p>
   <p class="body-text">This assessment names the patterns that have been running you, the pillars that are holding you, and the path that moves you forward. Seventy questions. About twenty minutes. No verdict. The pattern is the diagnosis.</p>
   <p class="body-text">Take it every fifteen days. Each return is evidence. Each return is the work.</p>
@@ -330,7 +418,7 @@ footer{border-top:1px solid var(--rule-soft);padding:32px 28px;text-align:center
   </div>
 
   <div class="welcome-cta">
-    <button class="btn-primary" onclick="startAssessment()" style="max-width:280px">Begin</button>
+    <button class="btn-primary" onclick="startAssessment()" style="max-width:300px">Begin the protocol</button>
   </div>
 </section>
 
@@ -438,7 +526,7 @@ footer{border-top:1px solid var(--rule-soft);padding:32px 28px;text-align:center
 </main>
 
 <footer>
-  <p class="foot-credit"><b>UNFINISHED</b> · A House of Mastery diagnostic<br>Architected by <b>Dr. Job Mogire, MD FACC</b> · Founder<br>The covenant is not perfection. The covenant is return.</p>
+  <p class="foot-credit"><b>KOORA</b> · The Finisher Protocol assessment<br>Powered by House of Mastery with <b>Dr. Job Mogire, MD FACC</b><br>The covenant is not perfection. The covenant is return.</p>
 </footer>
 
 <script>
@@ -451,6 +539,7 @@ var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 // ── Constants ──
 var TOTAL=70;
+var AUTO_ADVANCE_MS=3000;
 var STORAGE_KEY='koora_unfinished_history_v1';
 
 var DAY_OPTIONS=[
@@ -658,6 +747,7 @@ var ARC_INTERNAL={
 // ── State ──
 var answers={};
 var currentQ=1;
+var autoAdvanceTimer=null;
 var participantName='';
 var participantDay=0;
 var lastResults=null;
@@ -858,6 +948,7 @@ function showResultsFromHistory(){
   show('screen-results');
 }
 function startAssessment(){
+  clearAutoAdvance();
   var nameEl=document.getElementById('participantName');
   var name=(nameEl.value||'').trim();
   if(!name){nameEl.focus();return}
@@ -867,7 +958,7 @@ function startAssessment(){
   answers={};currentQ=1;
   renderQuestion(1);
   show('screen-question');
-  setNavMeta('UNFINISHED · '+labelForDay(participantDay).split(' (')[0]);
+  setNavMeta('KOORA · '+labelForDay(participantDay).split(' (')[0]);
 }
 
 function confirmReset(){
@@ -882,6 +973,7 @@ function goDashboard(){
 
 // ── Question rendering ──
 function renderQuestion(n){
+  clearAutoAdvance();
   var q=QUESTIONS[n-1];
   document.getElementById('qSection').textContent='Section '+q.sec+' of 8 · '+q.sn;
   document.getElementById('qCount').textContent=pad(n)+' / '+TOTAL;
@@ -896,6 +988,7 @@ function renderQuestion(n){
       b.className='opt'+(answers[n]===opt.score?' sel':'');
       b.innerHTML='<span class="opt-key">'+opt.key+'</span><span>'+opt.label+'</span>';
       b.onclick=function(){selectOption(n,opt.score)};
+      b.setAttribute('aria-label',opt.key+' · '+opt.label);
       box.appendChild(b);
     })(OPTIONS[i]);
   }
@@ -912,8 +1005,17 @@ function selectOption(n,score){
   for(var i=0;i<opts.length;i++){
     opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   }
-  document.getElementById('qNext').disabled=false;
+  var nxt=document.getElementById('qNext');
+  nxt.disabled=false;
+  nxt.textContent=n===TOTAL?'Preparing your result…':'Next question in 3 seconds…';
   document.getElementById('qError').style.display='none';
+  clearAutoAdvance();
+  autoAdvanceTimer=setTimeout(function(){
+    if(currentQ===n && answers[n]) nextQuestion();
+  },AUTO_ADVANCE_MS);
+}
+function clearAutoAdvance(){
+  if(autoAdvanceTimer){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null}
 }
 function nextQuestion(){
   if(!answers[currentQ]){
@@ -924,7 +1026,7 @@ function nextQuestion(){
   if(currentQ===TOTAL){finishAssessment();return}
   currentQ++;renderQuestion(currentQ);
 }
-function prevQuestion(){if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
+function prevQuestion(){clearAutoAdvance();if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
 
 // ── Scoring ──
 function sumQs(qs){var s=0;for(var i=0;i<qs.length;i++)s+=answers[qs[i]]||0;return s}
