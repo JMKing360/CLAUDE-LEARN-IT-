@@ -46,7 +46,7 @@ input,select,textarea{font-family:inherit;color:inherit}
 a{color:var(--navy);text-decoration:none}
 a:hover{color:var(--navy-soft)}
 
-#progress{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg,var(--navy) 0%,var(--navy-soft) 76%,var(--gold-soft) 100%);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 0 rgba(11,35,65,.08)}
+#progress{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg, var(--navy) 0%, var(--navy-soft) 76%, var(--gold-soft) 100%);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 0 rgba(11,35,65,.08)}
 
 /* NAV — both brands present, House of Mastery linked */
 nav{position:sticky;top:0;background:rgba(248,245,236,0.96);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid rgba(11,35,65,.10);z-index:90}
@@ -323,7 +323,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <span class="q-foot-meta" id="qCount">Question 1 of 60</span>
     <button class="q-next" id="qNext" onclick="cancelAdvance();nextQuestion()" disabled>Next</button>
   </div>
-  <p class="q-keyhint" id="qKeyhint">Press A, B, C, or D. After you select, the next question loads in 3 seconds.</p>
+  <p class="q-keyhint" id="qKeyhint">Press A, B, C, or D. Continue in 3 seconds after you select. You can still tap Next once you choose.</p>
 </section>
 
 <!-- RESULTS -->
@@ -883,7 +883,7 @@ function renderQuestion(n){
     next.textContent=answered?(n===TOTAL?'See result':'Next'):'Next';
   }
   var hint=document.getElementById('qKeyhint');
-  if(hint)hint.textContent='Select one response. After you choose, the next question loads in 3 seconds.';
+  if(hint)hint.textContent='Select one response. Continue in 3 seconds after you choose. You can still tap Next once you choose.';
 }
 function selectOption(n,score){
   answers[n]=score;
@@ -896,10 +896,10 @@ function selectOption(n,score){
   if(next){
     next.style.display='inline-flex';
     next.disabled=false;
-    next.textContent=n===TOTAL?'See result':'Continue now';
+    next.textContent=n===TOTAL?'See result':'Next';
   }
   var hint=document.getElementById('qKeyhint');
-  if(hint)hint.textContent=n===TOTAL?'Preparing your result in 3 seconds…':'Selected. Moving forward in 3 seconds…';
+  if(hint)hint.textContent=n===TOTAL?'Preparing your result in 3 seconds…':'Selected. Continue in 3 seconds. You can still tap Next once you choose.';
   cancelAdvance();
   advanceTimer=setTimeout(function(){
     if(answers[n]===score && currentQ===n){nextQuestion()}
