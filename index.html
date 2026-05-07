@@ -323,7 +323,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <span class="q-foot-meta" id="qCount">Question 1 of 60</span>
     <button class="q-next" id="qNext" onclick="cancelAdvance();nextQuestion()" disabled>Next</button>
   </div>
-  <p class="q-keyhint" id="qKeyhint">Press A, B, C, or D. Continue in 3 seconds after you select. You can still tap Next once you choose.</p>
+  <p class="q-keyhint" id="qKeyhint">Press A, B, C, or D. Continue in 2 seconds after you select. You can still tap Next once you choose.</p>
 </section>
 
 <!-- RESULTS -->
@@ -438,7 +438,7 @@ var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=60;
 var STORAGE_KEY='koora_unfinished_v3';
-var AUTO_ADVANCE_MS=3000;
+var AUTO_ADVANCE_MS=2000;
 
 var DAY_OPTIONS=[
   {v:0,label:'Day 0 (Baseline)'},
@@ -883,7 +883,7 @@ function renderQuestion(n){
     next.textContent=answered?(n===TOTAL?'See result':'Next'):'Next';
   }
   var hint=document.getElementById('qKeyhint');
-  if(hint)hint.textContent='Select one response. Continue in 3 seconds after you choose. You can still tap Next once you choose.';
+  if(hint)hint.textContent='Select one response. Continue in 2 seconds after you choose. You can still tap Next once you choose.';
 }
 function selectOption(n,score){
   answers[n]=score;
@@ -899,7 +899,7 @@ function selectOption(n,score){
     next.textContent=n===TOTAL?'See result':'Next';
   }
   var hint=document.getElementById('qKeyhint');
-  if(hint)hint.textContent=n===TOTAL?'Preparing your result in 3 seconds…':'Selected. Continue in 3 seconds. You can still tap Next once you choose.';
+  if(hint)hint.textContent=n===TOTAL?'Preparing your result in 2 seconds…':'Selected. Continue in 2 seconds. You can still tap Next once you choose.';
   cancelAdvance();
   advanceTimer=setTimeout(function(){
     if(answers[n]===score && currentQ===n){nextQuestion()}
