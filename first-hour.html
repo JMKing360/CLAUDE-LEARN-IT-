@@ -36,6 +36,34 @@ a:hover{color:var(--gold)}
 
 #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 
+/* Six-segment chamber progress — visible architecture */
+#chamber-progress{position:fixed;top:55px;left:0;right:0;display:none;justify-content:center;gap:6px;padding:10px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
+#chamber-progress.shown{display:flex}
+.cp-seg{flex:0 1 70px;max-width:70px;height:3px;border-radius:2px;background:var(--rule);position:relative;transition:background .3s ease}
+.cp-seg.done{background:var(--navy)}
+.cp-seg.now{background:var(--gold)}
+.cp-seg.now::after{content:'';position:absolute;inset:0;background:var(--gold);border-radius:2px;animation:cp-pulse 1.6s ease-in-out infinite}
+@keyframes cp-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* Premium card elevation system */
+.feature-card,.cohort-cta,.cov-card{box-shadow:0 1px 2px rgba(13,31,60,.04),0 10px 28px rgba(13,31,60,.06)}
+.fidelity-feature{box-shadow:0 2px 6px rgba(13,31,60,.10),0 22px 56px rgba(13,31,60,.18)}
+
+/* Hanging punctuation on participant's own quote */
+.self-quote-text{text-indent:-.42em}
+
+/* Tabular numerals everywhere a number is being read */
+.cost-num,.profile-val,.dash-stat-value,.fidelity-feature .num,.move-prev,.move-arrow{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1,"lnum" 1}
+
+/* Gold accent dividers between result blocks */
+#screen-results .r-block + .r-block::before{content:"";display:block;width:36px;height:2px;background:var(--gold);opacity:.55;margin:0 auto 40px;border-radius:1px}
+
+/* Refined option button states: depth + micro-press */
+.opt{box-shadow:0 1px 0 rgba(13,31,60,.03)}
+.opt:hover{box-shadow:0 3px 10px rgba(13,31,60,.08);transform:translateY(-1px)}
+.opt:active{transform:translateY(0) scale(.995)}
+.opt.sel{box-shadow:0 4px 14px rgba(13,31,60,.20)}
+
 nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
 .nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
@@ -261,6 +289,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </head>
 <body>
 <div id="progress"></div>
+<div id="chamber-progress" aria-hidden="true">
+  <div class="cp-seg" data-ch="1"></div>
+  <div class="cp-seg" data-ch="2"></div>
+  <div class="cp-seg" data-ch="3"></div>
+  <div class="cp-seg" data-ch="4"></div>
+  <div class="cp-seg" data-ch="5"></div>
+  <div class="cp-seg" data-ch="6"></div>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -284,7 +320,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
   <p class="lede">There is a kind of life that runs you while you think you are running it. <strong>From the outside, it works.</strong> The biography reads well at weddings. From the inside, something is on mute. The work does not get done. The years pass. The room is full of people who think they know you. <strong>You are not lazy. You just never finish.</strong></p>
   <p class="lede" style="font-size:clamp(18px,2.5vw,21px);color:var(--mid);margin-top:-6px">This is not breakdown. It is maturation. The diagnostic instrument is the room where the inventory becomes available before it arrives as a crisis.</p>
-  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACP, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Thirty-six items. About ten minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
+  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACP, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Forty-two items. About twelve minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
   <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
   <p class="body-text" style="font-style:italic;color:var(--mid);font-size:15px;margin-top:8px">This is not another self-improvement instrument. Most of those become another form of masking. This one names the pattern, quantifies the cost, and steps back. The work, when it begins, is yours.</p>
 
@@ -330,7 +366,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="options" id="qOptions"></div>
   <div class="q-foot">
     <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
-    <span class="q-foot-meta" id="qCount">Question 1 of 36</span>
+    <span class="q-foot-meta" id="qCount">Question 1 of 42</span>
     <span></span>
   </div>
   <p class="q-keyhint">Press A, B, C, or D. The next question follows in a moment.</p>
@@ -340,7 +376,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <section class="screen" id="screen-ack">
   <span class="brand-stamp">THE FIRST HOUR</span>
   <h2 class="ack-h1"><em>One breath.</em></h2>
-  <p class="ack-text" id="ackText">You have answered thirty-six items. That is harder than it sounds. Now let us look together.</p>
+  <p class="ack-text" id="ackText">You have answered forty-two items. That is harder than it sounds. Now let us look together.</p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px">See your result</button>
 </section>
 
@@ -486,8 +522,8 @@ var EMAILJS_OK=false;
 try{if(typeof emailjs!=='undefined'){emailjs.init('FEEOw8NA0cwBM4Vum');EMAILJS_OK=true}}catch(e){}
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
-var TOTAL=36;
-var STORAGE_KEY='hom_firsthour_history_v1';
+var TOTAL=42;
+var STORAGE_KEY='hom_firsthour_history_v2';
 var AUTO_ADVANCE_MS=1500;
 
 var OPTIONS=[
@@ -497,7 +533,7 @@ var OPTIONS=[
   {label:'Most of the time',score:4,key:'D'}
 ];
 
-// 36 questions across 6 chambers
+// 42 questions across 6 chambers, 7 per chamber, expanded to cover the top 20 East African pain points
 var QUESTIONS=[
   {n:1, sec:1,sn:'The Mind that Stopped Thinking', text:'I have not had a thought I would call entirely my own in the past month.'},
   {n:2, sec:1,sn:'The Mind that Stopped Thinking', text:'I share opinions I formed by scrolling, not by thinking.'},
@@ -505,45 +541,51 @@ var QUESTIONS=[
   {n:4, sec:1,sn:'The Mind that Stopped Thinking', text:'My positions on most things were already inside me before I read anything about them.'},
   {n:5, sec:1,sn:'The Mind that Stopped Thinking', text:'The voice in my head sounds more like my parents, my pastor, or my employer than like me.'},
   {n:6, sec:1,sn:'The Mind that Stopped Thinking', text:'When I ask why I believe what I believe, I do not have a clean answer.'},
-  {n:7, sec:2,sn:'The Body that Got Forgotten',     text:'I treat my body as a vehicle to get me through the week.'},
-  {n:8, sec:2,sn:'The Body that Got Forgotten',     text:'My body is carrying pain I have not named to anyone.'},
-  {n:9, sec:2,sn:'The Body that Got Forgotten',     text:'I am tired in ways sleep does not fix.'},
-  {n:10,sec:2,sn:'The Body that Got Forgotten',     text:'I have medicated feelings I have not asked what they are.'},
-  {n:11,sec:2,sn:'The Body that Got Forgotten',     text:'The last time I moved my body just for joy, not to manage it, I cannot quite remember.'},
-  {n:12,sec:2,sn:'The Body that Got Forgotten',     text:'There are appointments with my body I keep postponing.'},
-  {n:13,sec:3,sn:'The Word that Lost Weight',       text:'The promises I most easily break are the ones I make to myself.'},
-  {n:14,sec:3,sn:'The Word that Lost Weight',       text:'I have stopped trusting my own commitments to myself.'},
-  {n:15,sec:3,sn:'The Word that Lost Weight',       text:'I make resolutions and quietly let them die.'},
-  {n:16,sec:3,sn:'The Word that Lost Weight',       text:'My word to others is more reliable than my word to me.'},
-  {n:17,sec:3,sn:'The Word that Lost Weight',       text:'I can list things I told myself I would do this year, and have not.'},
-  {n:18,sec:3,sn:'The Word that Lost Weight',       text:'When I think of those unkept promises, something inside me tightens.'},
-  {n:19,sec:4,sn:'The Time that Disappeared',       text:'I cannot fully account for what the past five years actually built.'},
-  {n:20,sec:4,sn:'The Time that Disappeared',       text:'I am older than I expected to be, without becoming who I expected to be.'},
-  {n:21,sec:4,sn:'The Time that Disappeared',       text:'The days are full but the year feels empty.'},
-  {n:22,sec:4,sn:'The Time that Disappeared',       text:'I have been telling myself "next quarter" for several quarters in a row.'},
-  {n:23,sec:4,sn:'The Time that Disappeared',       text:'The years pass faster every year, and I do not know why.'},
-  {n:24,sec:4,sn:'The Time that Disappeared',       text:'I am running out of "later" and somewhere I know it.'},
-  {n:25,sec:5,sn:'The Money that Owns You',         text:'My financial decisions are reactions, not chosen positions.'},
-  {n:26,sec:5,sn:'The Money that Owns You',         text:'I earn more now than I once dreamed of, and I am not actually freer.'},
-  {n:27,sec:5,sn:'The Money that Owns You',         text:'I carry financial weight that is not mine, and I cannot put it down.'},
-  {n:28,sec:5,sn:'The Money that Owns You',         text:'I spend on things that prove a story about me to people I do not particularly like.'},
-  {n:29,sec:5,sn:'The Money that Owns You',         text:'I avoid looking at my money, because looking is uncomfortable.'},
-  {n:30,sec:5,sn:'The Money that Owns You',         text:'My money operates by rules I never consciously set.'},
-  {n:31,sec:6,sn:'The People you are Performing With', text:'I perform a version of me at home, another at work, another with friends.'},
-  {n:32,sec:6,sn:'The People you are Performing With', text:'I have stopped showing the people closest to me what is actually true for me.'},
-  {n:33,sec:6,sn:'The People you are Performing With', text:'The conversations I most need to have are the ones I keep avoiding.'},
-  {n:34,sec:6,sn:'The People you are Performing With', text:'I am lonely in rooms full of people who think they know me.'},
-  {n:35,sec:6,sn:'The People you are Performing With', text:'I keep score with people I claim to love.'},
-  {n:36,sec:6,sn:'The People you are Performing With', text:'I have not been honest with the person closest to me about the cost of staying as I am.'}
+  {n:7, sec:1,sn:'The Mind that Stopped Thinking', text:'I have read enough books, taken enough courses, and listened to enough podcasts. The pattern has not changed.'},
+  {n:8, sec:2,sn:'The Body that Got Forgotten',     text:'I treat my body as a vehicle to get me through the week.'},
+  {n:9, sec:2,sn:'The Body that Got Forgotten',     text:'My body is carrying pain I have not named to anyone.'},
+  {n:10,sec:2,sn:'The Body that Got Forgotten',     text:'I am tired in ways sleep does not fix.'},
+  {n:11,sec:2,sn:'The Body that Got Forgotten',     text:'I have medicated feelings I have not asked what they are.'},
+  {n:12,sec:2,sn:'The Body that Got Forgotten',     text:'The last time I moved my body just for joy, not to manage it, I cannot quite remember.'},
+  {n:13,sec:2,sn:'The Body that Got Forgotten',     text:'There are appointments with my body I keep postponing.'},
+  {n:14,sec:2,sn:'The Body that Got Forgotten',     text:'There is an hour at night when my mind audits my life, and the audit will not let me sleep through it.'},
+  {n:15,sec:3,sn:'The Word that Lost Weight',       text:'The promises I most easily break are the ones I make to myself.'},
+  {n:16,sec:3,sn:'The Word that Lost Weight',       text:'I have stopped trusting my own commitments to myself.'},
+  {n:17,sec:3,sn:'The Word that Lost Weight',       text:'I make resolutions and quietly let them die.'},
+  {n:18,sec:3,sn:'The Word that Lost Weight',       text:'My word to others is more reliable than my word to me.'},
+  {n:19,sec:3,sn:'The Word that Lost Weight',       text:'I can list things I told myself I would do this year, and have not.'},
+  {n:20,sec:3,sn:'The Word that Lost Weight',       text:'When I think of those unkept promises, something inside me tightens.'},
+  {n:21,sec:3,sn:'The Word that Lost Weight',       text:'There is a piece of work that, if I died with it unfinished, would be the unfinished life. I am postponing it.'},
+  {n:22,sec:4,sn:'The Time that Disappeared',       text:'I cannot fully account for what the past five years actually built.'},
+  {n:23,sec:4,sn:'The Time that Disappeared',       text:'I am older than I expected to be, without becoming who I expected to be.'},
+  {n:24,sec:4,sn:'The Time that Disappeared',       text:'The days are full but the year feels empty.'},
+  {n:25,sec:4,sn:'The Time that Disappeared',       text:'I have been telling myself "next quarter" for several quarters in a row.'},
+  {n:26,sec:4,sn:'The Time that Disappeared',       text:'The years pass faster every year, and I do not know why.'},
+  {n:27,sec:4,sn:'The Time that Disappeared',       text:'I am running out of "later" and somewhere I know it.'},
+  {n:28,sec:4,sn:'The Time that Disappeared',       text:'I have been telling myself "this year is different" for several years in a row.'},
+  {n:29,sec:5,sn:'The Money that Owns You',         text:'My financial decisions are reactions, not chosen positions.'},
+  {n:30,sec:5,sn:'The Money that Owns You',         text:'I earn more now than I once dreamed of, and I am not actually freer.'},
+  {n:31,sec:5,sn:'The Money that Owns You',         text:'I carry financial weight that is not mine, and I cannot put it down.'},
+  {n:32,sec:5,sn:'The Money that Owns You',         text:'I spend on things that prove a story about me to people I do not particularly like.'},
+  {n:33,sec:5,sn:'The Money that Owns You',         text:'I avoid looking at my money, because looking is uncomfortable.'},
+  {n:34,sec:5,sn:'The Money that Owns You',         text:'My money operates by rules I never consciously set.'},
+  {n:35,sec:5,sn:'The Money that Owns You',         text:'Each pay rise has been absorbed by the next standard of living, not by freedom.'},
+  {n:36,sec:6,sn:'The People you are Performing With', text:'I perform a version of me at home, another at work, another with friends.'},
+  {n:37,sec:6,sn:'The People you are Performing With', text:'I have stopped showing the people closest to me what is actually true for me.'},
+  {n:38,sec:6,sn:'The People you are Performing With', text:'The conversations I most need to have are the ones I keep avoiding.'},
+  {n:39,sec:6,sn:'The People you are Performing With', text:'I am lonely in rooms full of people who think they know me.'},
+  {n:40,sec:6,sn:'The People you are Performing With', text:'I keep score with people I claim to love.'},
+  {n:41,sec:6,sn:'The People you are Performing With', text:'I have not been honest with the person closest to me about the cost of staying as I am.'},
+  {n:42,sec:6,sn:'The People you are Performing With', text:'The children in my life are learning my pattern of incompletion from how I live, not from what I tell them.'}
 ];
 
 var CHAMBERS=[
-  {key:'mind', n:1,name:'The Mind that Stopped Thinking',sub:'Borrowed opinions, scrolled certainties',qs:[1,2,3,4,5,6]},
-  {key:'body', n:2,name:'The Body that Got Forgotten',sub:'The vessel as vehicle',qs:[7,8,9,10,11,12]},
-  {key:'word', n:3,name:'The Word that Lost Weight',sub:'Promises broken without ceremony',qs:[13,14,15,16,17,18]},
-  {key:'time', n:4,name:'The Time that Disappeared',sub:'Years that cannot be accounted for',qs:[19,20,21,22,23,24]},
-  {key:'money',n:5,name:'The Money that Owns You',sub:'Inherited patterns, unspoken weight',qs:[25,26,27,28,29,30]},
-  {key:'people',n:6,name:'The People you are Performing With',sub:'Performance over presence',qs:[31,32,33,34,35,36]}
+  {key:'mind', n:1,name:'The Mind that Stopped Thinking',sub:'Borrowed opinions, scrolled certainties',qs:[1,2,3,4,5,6,7]},
+  {key:'body', n:2,name:'The Body that Got Forgotten',sub:'The vessel as vehicle',qs:[8,9,10,11,12,13,14]},
+  {key:'word', n:3,name:'The Word that Lost Weight',sub:'Promises broken without ceremony',qs:[15,16,17,18,19,20,21]},
+  {key:'time', n:4,name:'The Time that Disappeared',sub:'Years that cannot be accounted for',qs:[22,23,24,25,26,27,28]},
+  {key:'money',n:5,name:'The Money that Owns You',sub:'Inherited patterns, unspoken weight',qs:[29,30,31,32,33,34,35]},
+  {key:'people',n:6,name:'The People you are Performing With',sub:'Performance over presence, the inheritance',qs:[36,37,38,39,40,41,42]}
 ];
 
 var CHAMBER_PARAGRAPHS={
@@ -555,13 +597,13 @@ var CHAMBER_PARAGRAPHS={
   people:'You have been performing relationships you used to live. The version of you at home is not the version at work. Both are managed. You may be lonely in rooms full of people who think they know you. Warmth without depth in your closest seats. The cost of pretending is paid in loneliness, then in chest pain, then in legacy. The people closest to you sense it before you say it.'
 };
 
-// Section transitions (between chambers)
+// Section transitions (between chambers) — firing at new 7-item boundaries
 var TRANSITIONS=[
-  {q:6, eyebrow:'Chamber one is done',h:'You looked at the mind.',text:'Now look at the body. <b>The body keeps the record the mind tries to misplace.</b>'},
-  {q:12,eyebrow:'Chamber two is done',h:'You looked at the body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony.'},
-  {q:18,eyebrow:'Halfway. Notice it.',h:'Three chambers done.',text:'Mind. Body. Word. Now turn to time, money, and the people you have been performing with.'},
-  {q:24,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules. Most rules were inherited.</b>'},
-  {q:30,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been performing with. Stay here. The last six items are the most honest.'}
+  {q:7, eyebrow:'Chamber one is done',h:'You looked at the mind.',text:'Now look at the body. <b>The body keeps the record the mind tries to misplace.</b>'},
+  {q:14,eyebrow:'Chamber two is done',h:'You looked at the body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony.'},
+  {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done.',text:'Mind. Body. Word. Now turn to time, money, and the people you have been performing with.'},
+  {q:28,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules. Most rules were inherited.</b>'},
+  {q:35,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been performing with. Stay here. The last seven items are the most honest.'}
 ];
 
 // State
@@ -594,6 +636,34 @@ function show(id){
   window.scrollTo(0,0);
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
+function setChamberProgress(currentChamber){
+  var bar=document.getElementById('chamber-progress');
+  if(!bar)return;
+  var segs=bar.querySelectorAll('.cp-seg');
+  for(var i=0;i<segs.length;i++){
+    var ch=i+1;
+    segs[i].classList.toggle('done',ch<currentChamber);
+    segs[i].classList.toggle('now',ch===currentChamber);
+  }
+  bar.classList.toggle('shown',currentChamber>=1&&currentChamber<=6);
+}
+function hideChamberProgress(){var bar=document.getElementById('chamber-progress');if(bar)bar.classList.remove('shown')}
+
+// Number count-up animation, capped to one motion per page-load element, justified by data
+function countUpEl(el,target,duration,format){
+  if(!el)return;
+  var start=0,startedAt=null;
+  duration=duration||700;
+  function tick(ts){
+    if(!startedAt)startedAt=ts;
+    var p=Math.min(1,(ts-startedAt)/duration);
+    var eased=1-Math.pow(1-p,3);
+    var v=Math.round(start+(target-start)*eased);
+    el.textContent=format?format(v):v.toLocaleString();
+    if(p<1)requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 
 document.addEventListener('DOMContentLoaded',function(){
   // Pre-fill from URL params (for retake links from email)
@@ -652,6 +722,7 @@ function renderQuestion(n){
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
   document.getElementById('qText').textContent=q.text;
   setProgress(Math.round(((n-1)/TOTAL)*98));
+  setChamberProgress(q.sec);
   var box=document.getElementById('qOptions');box.innerHTML='';
   for(var i=0;i<OPTIONS.length;i++){
     (function(opt){
@@ -688,7 +759,7 @@ function enterTransition(trans){
   document.getElementById('trEyebrow').textContent=trans.eyebrow;
   document.getElementById('trH').innerHTML=trans.h;
   document.getElementById('trText').innerHTML=trans.text;
-  show('screen-transition');
+  hideChamberProgress();show('screen-transition');
   setProgress(Math.round((trans.q/TOTAL)*98));
 }
 function exitTransition(){
@@ -698,8 +769,8 @@ function exitTransition(){
 }
 
 function enterAck(){
-  document.getElementById('ackText').innerHTML=safe(participantName)+', you have answered thirty-six items. That is harder than it sounds. Take one breath. Now let us look together.';
-  show('screen-ack');setProgress(100);
+  document.getElementById('ackText').innerHTML=safe(participantName)+', you have answered forty-two items. That is harder than it sounds. Take one breath. Now let us look together.';
+  hideChamberProgress();show('screen-ack');setProgress(100);
 }
 function afterAck(){finishAssessment()}
 
@@ -718,10 +789,10 @@ function levelNeg(pct){return pct<=0.44?'quiet':pct<=0.69?'active':'loud'}
 function levelLabel(pct){return ({quiet:'Quiet',active:'Active',loud:'Loud'})[levelNeg(pct)]}
 
 // Cost estimation, rough but defensible.
-// All numbers anchor to the participant's own self-reports, scaled to four-point Likert.
+// All numbers anchor to the participant's own self-reports.
+// With 7 items per chamber × 4-point Likert, scores range 7 (low) to 28 (high) per chamber.
 function estimateCost(){
   var cs=chamberScores();
-  var bm=cs.find(function(x){return x.key==='body'}).score;     // 6-24
   var tm=cs.find(function(x){return x.key==='time'}).score;
   var ww=cs.find(function(x){return x.key==='word'}).score;
   var pp=cs.find(function(x){return x.key==='people'}).score;
@@ -729,17 +800,18 @@ function estimateCost(){
   var md=cs.find(function(x){return x.key==='mind'}).score;
 
   // Time: hours per week of unconscious life × 52
-  var unconsciousHoursWeekly=Math.round(((tm+md)/48)*42); // up to ~42 hr/wk
+  // (tm+md) range 14-56. Scale to 0-42 hr/wk autopilot.
+  var unconsciousHoursWeekly=Math.round(((tm+md-14)/42)*42);
   var hoursYear=unconsciousHoursWeekly*52;
 
-  // Promises: estimated per year, scaled by Word score
-  var promisesBroken=Math.round((ww-6)*4.2);
+  // Promises broken to self: scale by Word score (7-28). Up to ~90/yr at high.
+  var promisesBroken=Math.round((ww-7)*4.3);
 
-  // Conversations postponed: scaled by People score
-  var conversationsPostponed=Math.round((pp-6)*1.6);
+  // Conversations postponed: scale by People score (7-28). Up to ~33 at high.
+  var conversationsPostponed=Math.round((pp-7)*1.6);
 
-  // Money: estimated annual unconscious spend (illustrative percentage of unspecified income)
-  var moneyDriftPercent=Math.round(((mn-6)/18)*22+6); // 6-28 percent
+  // Money operating outside conscious choice: percent estimate (6-32%).
+  var moneyDriftPercent=Math.round(((mn-7)/21)*26+6);
 
   return {
     hoursYear:Math.max(0,hoursYear),
@@ -766,7 +838,7 @@ function finishAssessment(){
   var rec=buildRecord();
   appendRecord(rec);
   buildResults(rec);
-  show('screen-results');
+  hideChamberProgress();show('screen-results');
   // Trigger an automatic email send so the participant receives the report regardless of what they do next
   fireEmailQuiet(rec);
 }
@@ -887,10 +959,15 @@ function renderCost(){
   var c=estimateCost();
   var grid=document.getElementById('costGrid');
   grid.innerHTML=
-    '<div class="cost-cell"><div class="cost-label">Hours of unconscious life this year</div><div class="cost-num">'+c.hoursYear.toLocaleString()+'<em>hr</em></div><div class="cost-meta">Roughly '+c.hoursWeek+' hours each week, lived on autopilot, by your own report.</div></div>'+
-    '<div class="cost-cell"><div class="cost-label">Promises broken to yourself</div><div class="cost-num">'+c.promisesBroken+'<em>this year</em></div><div class="cost-meta">Each one, a small withdrawal from your account of self-trust.</div></div>'+
-    '<div class="cost-cell"><div class="cost-label">Conversations you keep postponing</div><div class="cost-num">'+c.conversationsPostponed+'<em>·</em></div><div class="cost-meta">Each one, a relationship slowly storing the cost of being unsaid.</div></div>'+
-    '<div class="cost-cell"><div class="cost-label">Money operating outside conscious choice</div><div class="cost-num">'+c.moneyDriftPercent+'<em>% est.</em></div><div class="cost-meta">An estimated share of your spending driven by image, fear, or inheritance.</div></div>';
+    '<div class="cost-cell"><div class="cost-label">Hours of unconscious life this year</div><div class="cost-num"><span data-cu="hoursYear">0</span><em>hr</em></div><div class="cost-meta">Roughly '+c.hoursWeek+' hours each week, lived on autopilot, by your own report.</div></div>'+
+    '<div class="cost-cell"><div class="cost-label">Promises broken to yourself</div><div class="cost-num"><span data-cu="promisesBroken">0</span><em>this year</em></div><div class="cost-meta">Each one, a small withdrawal from your account of self-trust.</div></div>'+
+    '<div class="cost-cell"><div class="cost-label">Conversations you keep postponing</div><div class="cost-num"><span data-cu="conversationsPostponed">0</span><em>·</em></div><div class="cost-meta">Each one, a relationship slowly storing the cost of being unsaid.</div></div>'+
+    '<div class="cost-cell"><div class="cost-label">Money operating outside conscious choice</div><div class="cost-num"><span data-cu="moneyDriftPercent">0</span><em>% est.</em></div><div class="cost-meta">An estimated share of your spending driven by image, fear, or inheritance.</div></div>';
+  // Count up each value over 700ms
+  countUpEl(grid.querySelector('[data-cu="hoursYear"]'),c.hoursYear,800);
+  countUpEl(grid.querySelector('[data-cu="promisesBroken"]'),c.promisesBroken,700);
+  countUpEl(grid.querySelector('[data-cu="conversationsPostponed"]'),c.conversationsPostponed,700);
+  countUpEl(grid.querySelector('[data-cu="moneyDriftPercent"]'),c.moneyDriftPercent,700);
 }
 
 function renderForecast(){
