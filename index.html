@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOORA · UNFINISHED Assessment · House of Mastery</title>
-<meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA.">
-<meta name="theme-color" content="#0B2341">
+<title>UNFINISHED · KOORA: The Finisher’s Protocol · House of Mastery</title>
+<meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA: The Finisher’s Protocol.">
+<meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,66 +15,56 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:radial-gradient(circle at 88% 8%,rgba(11,35,65,.08),transparent 30%),linear-gradient(180deg,#F8F5EC 0%,#FBF9F2 48%,#F3EEE3 100%);color:#243044;min-height:100vh;line-height:1.55}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5}
 :root{
   --serif:'Source Serif 4',Georgia,serif;
   --sans:'Plus Jakarta Sans',system-ui,sans-serif;
-  --navy:#0B2341;
-  --navy-soft:#17385F;
-  --gold:#8E7A45;
-  --gold-soft:#B69C5A;
-  --ink:#0B2341;
-  --body:#243044;
-  --mid:#515D6B;
-  --dim:#98989E;
-  --rule:#D8D8DC;
-  --rule-soft:#E8E8EC;
-  --surface:#F8F4EA;
-  --surface-2:#F1EADB;
-  --surface-3:#E8DFCC;
+  --navy:#0D1F3C;--navy-soft:#1B2D4F;
+  --gold:#C9973A;--gold-soft:#E8B85A;
+  --ink:#1A1A1F;--body:#3A3A40;--mid:#6E6E73;--dim:#98989E;
+  --rule:#D8D8DC;--rule-soft:#E8E8EC;
+  --surface:#FBFBFD;--surface-2:#F5F5F7;--surface-3:#EFEFF2;
   --white:#FFFFFF;
-  --green:#2E7D32;
-  --green-soft:#E8F4E9;
-  --amber:#C77700;
-  --amber-soft:#FBF1DD;
-  --red:#B22222;
-  --red-soft:#FAE8E8;
+  --green:#2E7D32;--green-soft:#E8F4E9;
+  --amber:#C77700;--amber-soft:#FBF1DD;
+  --red:#B22222;--red-soft:#FAE8E8;
 }
-
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;color:inherit}
 a{color:var(--navy);text-decoration:none}
-a:hover{color:var(--navy-soft)}
+a:hover{color:var(--gold)}
 
-#progress{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg, var(--navy) 0%, var(--navy-soft) 76%, var(--gold-soft) 100%);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1);box-shadow:0 1px 0 rgba(11,35,65,.08)}
+#progress{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg,var(--navy),var(--navy-soft));z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 
-/* NAV — both brands present, House of Mastery linked */
-nav{position:sticky;top:0;background:rgba(248,245,236,0.96);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid rgba(11,35,65,.10);z-index:90}
+nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
 .nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
 .nav-house:hover{opacity:.7}
 .hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
 .nav-house-text{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
 .nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
-.nav-koora{font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:.10em;color:var(--navy);text-transform:none}
+.nav-koora{display:inline-flex;align-items:center;height:18px}
+.nav-koora svg{height:18px;width:auto;display:block}
 .nav-meta{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;display:none}
 @media (min-width:680px){.nav-meta{display:inline}}
 
 main{max-width:760px;margin:0 auto;padding:0 28px}
 .screen{display:none;animation:rise .35s cubic-bezier(.4,0,.2,1)}
 .screen.active{display:block}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(11,35,65,.055),transparent 15%,transparent 86%,rgba(11,35,65,.05)),radial-gradient(circle at 88% 18%,rgba(11,35,65,.075),transparent 28%);mix-blend-mode:multiply;opacity:.58;z-index:-1}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes selpulse{0%{opacity:1}70%{opacity:1}100%{opacity:.78}}
 
-.koora-stamp{font-family:var(--serif);font-size:10px;font-weight:700;letter-spacing:.34em;color:var(--navy);text-transform:none;display:block;margin-bottom:14px;opacity:.9}
+.koora-stamp{display:inline-block;height:14px;margin-bottom:14px;opacity:.62}
+.koora-stamp svg{height:14px;width:auto;display:block}
+.koora-stamp svg text{fill:var(--gold)}
 
-/* DASHBOARD — strong, table-led */
+/* DASHBOARD */
 #screen-dashboard{padding:48px 0 96px}
 .dash-hello{font-family:var(--serif);font-size:clamp(34px,5.4vw,56px);font-weight:600;letter-spacing:-.025em;color:var(--ink);line-height:1.04;margin-bottom:14px}
 .dash-hello em{font-style:italic;font-weight:600}
-.dash-line{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:400;line-height:1.55;color:var(--mid);letter-spacing:-.005em;margin-bottom:48px}
+.dash-line{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:400;line-height:1.55;color:var(--mid);letter-spacing:-.005em;margin-bottom:18px}
 .dash-line b{color:var(--ink);font-weight:600}
+.dash-anticipation{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.005em;margin-bottom:48px;line-height:1.5}
 
 .tbl-block{margin-bottom:44px}
 .tbl-h{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:16px;display:block}
@@ -98,6 +88,7 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 .lvl-pill.beg{background:var(--rule-soft);color:var(--mid)}
 .tbl-legend{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
 .tbl-legend b{color:var(--ink);font-weight:700}
+.narrative-read{font-family:var(--serif);font-size:17px;font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;margin:14px 4px 0;letter-spacing:-.005em}
 
 .path-table td.path-mark-cell{width:36px;padding:18px 0 18px 18px}
 .path-mark{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:transparent}
@@ -117,52 +108,80 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 .btn-text:hover{color:var(--ink)}
 .dash-foot{margin-top:32px;display:flex;justify-content:center;gap:16px}
 
+.trust-bar{margin-top:36px;padding:20px 22px;background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
+.trust-bar b{color:var(--ink);font-weight:700}
+
 /* WELCOME */
-#screen-welcome{padding:88px 0 96px}
-.eyebrow{font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:22px;display:block}
-.hero{font-family:var(--serif);font-size:clamp(38px,6vw,58px);font-weight:700;line-height:1.03;letter-spacing:-.03em;color:var(--ink);margin-bottom:32px}
+#screen-welcome{padding:80px 0 96px}
+.eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:block}
+.hero{font-family:var(--serif);font-size:clamp(34px,5.6vw,56px);font-weight:600;line-height:1.06;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
 .hero em{font-style:italic;font-weight:600}
-.lede{font-family:var(--serif);font-size:clamp(21px,2.9vw,25px);font-weight:500;line-height:1.5;color:var(--body);margin-bottom:18px;letter-spacing:-.006em}
+.lede{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
 .lede strong{font-weight:600;color:var(--ink)}
 .body-text{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
 .field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;display:block}
 .field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
-.field-input:focus,.field-select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,35,65,.12)}
+.field-input:focus,.field-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .field-input::placeholder{color:#B8B8BD}
 .field-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px}
 .field-stack{margin-bottom:26px}
 .welcome-cta{margin-top:36px}
+.welcome-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-top:14px;letter-spacing:.005em;line-height:1.55;max-width:420px}
+.welcome-meta b{color:var(--ink);font-weight:700}
+
+.toggle-stack{display:flex;gap:10px;flex-wrap:wrap;max-width:420px}
+.toggle-btn{flex:1;min-width:160px;padding:14px 18px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.toggle-btn:hover{border-color:var(--ink)}
+.toggle-btn.sel{border-color:var(--navy);background:var(--navy);color:#fff}
+.toggle-btn span{display:block;font-size:11px;font-weight:500;color:var(--mid);margin-top:3px;letter-spacing:.005em}
+.toggle-btn.sel span{color:rgba(255,255,255,.7)}
+
+/* TRANSITION (NEW) */
+#screen-transition{padding:104px 0 140px;text-align:left}
+.tr-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.tr-h1{font-family:var(--serif);font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.14;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
+.tr-h1 em{font-style:italic;font-weight:600}
+.tr-text{font-family:var(--serif);font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:18px}
+.tr-text b{font-weight:600;color:var(--ink)}
+.tr-day-frame{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);background:var(--surface-2);padding:16px 20px;border-radius:12px;border-left:3px solid var(--gold);margin:30px 0 36px;line-height:1.6;letter-spacing:.005em}
+.tr-cta{margin-top:24px}
+
+/* ACKNOWLEDGMENT (NEW) */
+#screen-ack{padding:140px 0 160px;text-align:left}
+.ack-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
+.ack-h1 em{font-style:italic;font-weight:600}
+.ack-text{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
 
 /* QUESTION */
-#screen-question{padding:80px 0 140px}
-.q-section{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:34px;display:block}
-.q-prompt{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--mid);margin-bottom:20px;letter-spacing:.01em}
-.q-text{font-family:var(--serif);font-size:clamp(30px,4.8vw,42px);font-weight:650;line-height:1.24;letter-spacing:-.022em;color:var(--ink);margin-bottom:54px}
-.options{display:flex;flex-direction:column;gap:12px;margin-bottom:34px}
-.opt{display:flex;align-items:center;gap:18px;background:rgba(255,255,255,.82);border:1.5px solid rgba(11,35,65,.16);border-radius:12px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:700;color:var(--ink);cursor:pointer;text-align:left;line-height:1.42;transition:border-color .15s,background .15s,transform .12s,color .15s,box-shadow .15s}
-.opt:hover{border-color:var(--navy);background:#fff;box-shadow:0 10px 30px rgba(11,35,65,.08)}
+#screen-question{padding:64px 0 140px}
+.q-section{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.q-prompt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--mid);margin-bottom:22px;letter-spacing:.01em}
+.q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
+.options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
+.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
+.opt:hover{border-color:var(--ink);background:var(--surface-2)}
 .opt:active{transform:scale(.995)}
-.opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards;box-shadow:0 14px 34px rgba(11,35,65,.18)}
+.opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards}
 .opt-key{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
-.opt.sel .opt-key{color:#E7E0CF}
+.opt.sel .opt-key{color:var(--gold-soft)}
 .q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
 .q-foot-meta{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
 .q-back{background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
 .q-back:hover{color:var(--ink)}
-.q-next{display:none;align-items:center;justify-content:center;background:transparent;color:var(--navy);font-family:var(--sans);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(11,35,65,.22);border-radius:999px;padding:12px 18px;cursor:pointer;transition:background .15s,color .15s,border-color .15s,opacity .15s}
-.q-next:hover{background:var(--navy);border-color:var(--navy);color:#fff}
-.q-next[disabled]{opacity:.52;cursor:default}
-.q-keyhint{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--mid);margin-top:18px;letter-spacing:.005em}
+.q-next{display:none;background:var(--navy);border:1px solid var(--navy);border-radius:999px;color:#fff;font-family:var(--sans);font-size:13px;font-weight:700;letter-spacing:.02em;cursor:pointer;padding:11px 18px;align-items:center;gap:6px;box-shadow:0 10px 22px rgba(13,31,60,.14);transition:transform .12s,background .15s,opacity .15s}
+.q-next:hover{background:var(--navy-soft)}
+.q-next:active{transform:translateY(1px)}
+.q-next:disabled{opacity:.4;cursor:not-allowed}
+.q-keyhint{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
-.r-eyebrow{font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:18px;display:block}
+.r-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
 .r-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:10px}
 .r-h1 em{font-style:italic;font-weight:600}
 .r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:6px;letter-spacing:.005em}
 
-/* Allegiance Matrix */
 .matrix-wrap{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:30px;overflow-x:auto}
 .matrix-table{width:100%;border-collapse:separate;border-spacing:6px;min-width:480px}
 .matrix-th{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:center;padding:0 4px 10px}
@@ -175,21 +194,19 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 .matrix-table tr.loudest .matrix-cell{box-shadow:inset 0 0 0 2px var(--gold)}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
-.fingerprint-label{font-family:var(--sans);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+.fingerprint-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .fingerprint-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em}
 .fingerprint-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed var(--rule-soft);font-family:var(--sans)}
 .fingerprint-row:last-child{border-bottom:none}
 .fingerprint-fac{font-size:11px;font-weight:700;color:var(--mid);letter-spacing:.10em;text-transform:uppercase;padding-top:1px}
 .fingerprint-text{font-size:14px;font-weight:500;color:var(--body);line-height:1.55;letter-spacing:.005em}
 
-/* Practice fidelity feature */
 .fidelity-feature{background:var(--navy);color:#fff;border-radius:22px;padding:48px 36px;text-align:center}
 .fidelity-feature .label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
 .fidelity-feature .num{font-family:var(--serif);font-size:88px;font-weight:600;line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:12px}
 .fidelity-feature .num em{font-size:36px;font-style:normal;font-weight:500;color:var(--gold);letter-spacing:0;margin-left:2px}
 .fidelity-feature .meta{font-family:var(--sans);font-size:14px;font-weight:500;color:rgba(255,255,255,.72);letter-spacing:.005em;line-height:1.6;max-width:380px;margin:0 auto}
 
-/* Active covenant */
 .cov-card{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)}
 .cov-month{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .cov-name{font-family:var(--serif);font-size:clamp(24px,3.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px;line-height:1.15}
@@ -199,7 +216,30 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 .cov-text{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:-.005em}
 .cov-text b{color:var(--ink);font-weight:600}
 
-/* Delivery */
+.cov-pulse{margin-top:24px;padding-top:22px;border-top:1px solid var(--rule-soft)}
+.cov-pulse-q{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.005em;margin-bottom:14px}
+.pulse-stack{display:flex;gap:10px;flex-wrap:wrap}
+.pulse-btn{flex:1;min-width:160px;padding:14px 18px;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.pulse-btn:hover{border-color:var(--ink)}
+.pulse-btn.sel-yes{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.pulse-btn.sel-not{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
+
+.pain-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--navy)}
+.pain-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
+.pain-sub{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
+.pain-input{width:100%;padding:14px 16px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
+.pain-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
+.pain-input::placeholder{color:#B8B8BD}
+
+.cohort-cta{background:var(--navy);color:#fff;border-radius:22px;padding:40px 36px}
+.cohort-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.cohort-h{font-family:var(--serif);font-size:clamp(24px,3.6vw,30px);font-weight:600;color:#fff;letter-spacing:-.02em;line-height:1.18;margin-bottom:14px}
+.cohort-h em{font-style:italic;font-weight:600;color:var(--gold-soft)}
+.cohort-body{font-family:var(--sans);font-size:15px;font-weight:500;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:14px;letter-spacing:.005em}
+.cohort-body b{color:#fff;font-weight:700}
+.cohort-cta .btn-primary{background:var(--gold);color:var(--navy);max-width:340px;margin-top:8px}
+.cohort-cta .btn-primary:hover{background:var(--gold-soft)}
+
 .delivery{background:var(--surface-2);border-radius:18px;padding:36px}
 .delivery-h{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
 .delivery-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);line-height:1.6;margin-bottom:20px;letter-spacing:.005em}
@@ -220,22 +260,130 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center;margin-top:64px;background:var(--white)}
 .foot-credit{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--dim);line-height:1.7;letter-spacing:.005em}
 .foot-credit b{color:var(--ink);font-weight:700}
-.foot-koora{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--navy);margin-top:6px;display:block}
+.foot-koora{display:inline-block;height:18px;margin-top:10px}
+.foot-koora svg{height:18px;width:auto;display:block}
 
+/* Large desktop (≥1280) — generous breath */
+@media (min-width:1280px){
+  main{max-width:820px}
+  #screen-welcome{padding-top:120px}
+  .hero{font-size:clamp(40px,4.6vw,60px)}
+  .dash-hello{font-size:clamp(38px,4.6vw,58px)}
+  .fidelity-feature{padding:60px 40px}
+  .fidelity-feature .num{font-size:104px}
+  .fidelity-feature .num em{font-size:42px}
+}
+
+/* Tablet (681 to 1023) — calibrated middle */
+@media (min-width:681px) and (max-width:1023px){
+  main{max-width:680px;padding:0 32px}
+  .nav-inner{padding:14px 32px}
+  .dash-stat-grid{gap:12px}
+  .matrix-table{min-width:440px}
+}
+
+/* Mobile (≤680) */
 @media (max-width:680px){
   main{padding:0 22px}
-  #screen-welcome,#screen-question,#screen-results,#screen-dashboard{padding-top:40px;padding-bottom:80px}
+  #screen-welcome,#screen-question,#screen-results,#screen-dashboard,#screen-transition,#screen-ack{padding-top:40px;padding-bottom:80px}
   .nav-inner{padding:12px 18px;gap:10px}
   .nav-house-text{font-size:10px}
+  .nav-house-text span{display:none}
+  .nav-koora svg{height:16px}
   .actions .btn-primary,.actions .btn-secondary{width:100%}
-  .delivery,.fidelity-feature,.cov-card{padding:28px 22px}
-  .opt{padding:18px 20px;font-size:15px}
-  .matrix-wrap{padding:22px 16px}
+  .delivery,.fidelity-feature,.cov-card,.cohort-cta,.pain-block{padding:28px 22px}
+  .opt{padding:18px 20px;font-size:15px;min-height:60px}
+  .matrix-wrap{padding:22px 14px}
+  .matrix-table{min-width:420px}
   .fingerprint-row{grid-template-columns:90px 1fr;gap:10px}
   .fidelity-feature .num{font-size:64px}
+  .fidelity-feature .num em{font-size:28px}
   .dtable th,.dtable td{padding:14px 12px;font-size:13px}
   .dtable td.value-lg{font-size:18px}
+  .toggle-stack{flex-direction:column}
+  .pulse-stack{flex-direction:column}
+  .hero{font-size:clamp(30px,7vw,42px);line-height:1.08}
+  .dash-hello{font-size:clamp(30px,7vw,42px);line-height:1.06}
+  .q-text{font-size:clamp(22px,5.6vw,28px);margin-bottom:48px}
+  .tr-h1{font-size:clamp(24px,5.6vw,32px)}
+  .ack-h1{font-size:clamp(28px,7vw,38px)}
+  .r-h1{font-size:clamp(28px,6.4vw,38px)}
+  .delivery-row{flex-direction:column}
+  .delivery-row .btn-primary{width:100%}
+  .cov-line{grid-template-columns:90px 1fr;gap:14px}
+  .field-input,.field-select{max-width:100%}
 }
+
+/* Small mobile (≤420) — minimum viable phone */
+@media (max-width:420px){
+  main{padding:0 18px}
+  .nav-inner{padding:10px 14px;gap:8px}
+  .nav-house-text{font-size:9.5px}
+  .nav-koora svg{height:14px}
+  .hm-mark{width:22px;height:22px}
+  #screen-welcome,#screen-question,#screen-results,#screen-dashboard,#screen-transition,#screen-ack{padding-top:32px;padding-bottom:72px}
+  .hero{font-size:28px}
+  .dash-hello{font-size:28px}
+  .lede{font-size:18px}
+  .body-text{font-size:15px}
+  .opt{padding:16px 18px;font-size:14.5px;gap:14px;min-height:56px}
+  .fidelity-feature{padding:32px 22px}
+  .fidelity-feature .num{font-size:54px}
+  .dtable th,.dtable td{padding:12px 10px;font-size:12.5px}
+  .dtable td.value-lg{font-size:16px}
+  .delivery,.cov-card,.cohort-cta,.pain-block{padding:24px 20px}
+  .matrix-wrap{padding:18px 12px}
+  .matrix-table{min-width:340px;border-spacing:4px}
+  .matrix-cell{font-size:11px}
+  .q-text{font-size:22px;margin-bottom:40px}
+  .btn-primary{padding:18px 24px;font-size:14.5px}
+  .cov-line{grid-template-columns:84px 1fr;gap:10px;padding:12px 0}
+  .cov-text{font-size:15px}
+  .fingerprint-row{grid-template-columns:80px 1fr;gap:8px}
+  .fingerprint-text{font-size:13px}
+}
+
+/* Honour reduced motion preferences */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .opt.sel{animation:none}
+}
+
+/* Council additions: cohort whisper, self-quote, identity vow, sparklines, lineage line */
+.cohort-whisper{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);letter-spacing:.04em;margin-top:18px;padding-top:18px;border-top:1px solid var(--rule-soft);line-height:1.6}
+.cohort-whisper b{color:var(--ink);font-weight:700}
+.dash-whisper{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--mid);letter-spacing:.04em;margin-top:14px;font-style:italic;line-height:1.6}
+
+.pain-q-secondary{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
+.self-quote{margin-top:22px;padding:24px 26px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;display:none}
+.self-quote.shown{display:block}
+.self-quote-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.self-quote-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
+
+.vow-block{margin:48px 0 28px;padding:32px 28px;text-align:center;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.vow-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.vow-text{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
+.vow-text em{color:var(--gold);font-style:italic;font-weight:600}
+
+.claim-block{margin:48px 0 28px;padding:32px 28px;background:var(--white);border:1px solid var(--rule-soft);border-radius:18px}
+.claim-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.005em;line-height:1.36;margin-bottom:18px;text-align:center}
+.claim-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.claim-btn{flex:1;min-width:200px;max-width:280px;padding:18px 20px;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+.claim-btn:hover{border-color:var(--ink)}
+.claim-btn.sel-yes{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.claim-btn.sel-no{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
+.claim-conf{display:none;text-align:center;margin-top:14px;font-family:var(--serif);font-size:16px;font-style:italic;color:var(--mid);letter-spacing:-.005em}
+.claim-conf.shown{display:block}
+
+.lineage{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
+
+.spark-svg{display:inline-block;vertical-align:middle;height:14px;width:60px;margin-right:6px}
+.spark-line{fill:none;stroke:currentColor;stroke-width:1.5}
+.spark-dot{fill:currentColor}
+.movement-anchor{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:24px 26px;margin-bottom:14px}
+.movement-anchor-h{font-family:var(--serif);font-size:clamp(20px,3vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.36;margin-bottom:6px}
+.movement-anchor-h em{font-style:italic;color:var(--green)}
+.movement-anchor-sub{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
 </style>
 </head>
 <body>
@@ -245,13 +393,13 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="nav-inner">
     <a class="nav-house" href="https://www.houseofmastery.co" target="_blank" rel="noopener" aria-label="House of Mastery">
       <svg class="hm-mark" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="48" fill="#0B2341"/>
+        <circle cx="50" cy="50" r="48" fill="#0D1F3C"/>
         <text x="50" y="74" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text>
       </svg>
       <span class="nav-house-text">house of mastery<span>houseofmastery.co</span></span>
     </a>
-    <span class="nav-koora">KOORA</span>
-    <span class="nav-meta" id="navMeta">KOORA · The Finisher Protocol · Month 1</span>
+    <span class="nav-koora" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span>
+    <span class="nav-meta" id="navMeta">UNFINISHED</span>
   </div>
 </nav>
 
@@ -259,18 +407,20 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- DASHBOARD -->
 <section class="screen" id="screen-dashboard">
-  <span class="koora-stamp">K · O · O · R · A</span>
+  <span class="koora-stamp" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
   <h1 class="dash-hello"><em id="dashName">Welcome back</em>.</h1>
   <p class="dash-line" id="dashLine"></p>
+  <p class="dash-anticipation" id="dashAnticipation"></p>
+  <p class="dash-whisper" id="dashWhisper"></p>
 
   <div class="tbl-block">
     <span class="tbl-h">Snapshot</span>
     <table class="dtable" id="snapshotTable"></table>
-    <p class="tbl-legend"><b>How to read this:</b> Loudest reflex names the pattern that ran you most this period. Strongest pillar names the practice that held best. The arrows compare to your previous return.</p>
+    <p class="tbl-legend"><b>How to read this:</b> Loudest reflex is the pattern that ran you most this period. Practice fidelity is the proportion of the daily and weekly moves you held. Arrows compare to your previous return.</p>
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The path · 13 returns across 180 days</span>
+    <span class="tbl-h">The path · Thirteen returns across one hundred and eighty days</span>
     <table class="dtable" id="pathTable"></table>
     <p class="tbl-legend"><b>How to read this:</b> Each return is one assessment. Filled marks are completed. The amber mark is the next return due. Each return is evidence of fidelity, not a test.</p>
   </div>
@@ -280,6 +430,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <button class="btn-secondary" onclick="showResultsFromHistory()">See your last results</button>
   </div>
 
+  <div class="trust-bar" id="trustBar"></div>
+
   <div class="dash-foot">
     <button class="btn-text" onclick="confirmReset()">Reset history</button>
   </div>
@@ -287,11 +439,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- WELCOME -->
 <section class="screen" id="screen-welcome">
-  <span class="koora-stamp">K · O · O · R · A</span>
-  <span class="eyebrow">KOORA · The Finisher Protocol · Assessment</span>
-  <h1 class="hero">KOORA: what is running you. What is holding you. <em>Where you go next.</em></h1>
+  <span class="koora-stamp" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="eyebrow">UNFINISHED · A diagnostic for the Finisher</span>
+  <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
   <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name is the work that does not get done. <strong>You do not have a productivity problem. You have a fidelity problem.</strong></p>
-  <p class="body-text">UNFINISHED is a sixty-item diagnostic taken every fifteen days across the 180-day path of KOORA. It maps six domains of self-fidelity, names the pattern most loud in you this period, and tracks how that pattern moves over time. The pattern is the diagnosis, never the verdict.</p>
+  <p class="body-text">UNFINISHED is the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a 180-day clinical-grade architecture designed by a board-certified cardiologist for high-functioning professionals whose patterns have been running them quietly. Sixty items. Six domains. Taken every fifteen days. The pattern is the diagnosis, never the verdict.</p>
+  <p class="body-text"><b>KOORA opens once a year.</b> Cohort 1 launched May 2026 in Nairobi. Cohort 2 opens November 2026. Twenty-four seats. The number is structural. Each module opens in the first week of its month. If you miss a module, you do not see it again until the following year. The architecture is non-recoverable on purpose.</p>
   <p class="body-text">About fifteen minutes. Each return is evidence. Each return is the work.</p>
 
   <hr class="divider">
@@ -302,18 +455,40 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   </div>
 
   <div class="field-stack">
-    <label class="field-label" for="dayPicker">Which assessment is this?</label>
+    <label class="field-label" for="dayPicker">Which return is this?</label>
     <select class="field-select" id="dayPicker"></select>
   </div>
 
+  <div class="field-stack">
+    <label class="field-label">Are you enrolled in KOORA?</label>
+    <div class="toggle-stack" id="enrollToggle">
+      <button class="toggle-btn sel" data-enroll="1" onclick="setEnroll(true)">Yes, I am enrolled<span>Inside the protocol</span></button>
+      <button class="toggle-btn" data-enroll="0" onclick="setEnroll(false)">Not yet<span>Considering the path</span></button>
+    </div>
+  </div>
+
   <div class="welcome-cta">
-    <button class="btn-primary" onclick="startAssessment()" style="max-width:300px">Begin the protocol</button>
+    <button class="btn-primary" onclick="startAssessment()" style="max-width:280px">Begin the protocol</button>
+    <p class="welcome-meta"><b>About fifteen minutes.</b> Your responses are stored in your browser only. Nothing is shared until you choose to email your results. The cohort archive at mail@mogire.com is the only co-recipient when you do.</p>
+    <p class="cohort-whisper" id="welcomeWhisper"></p>
+  </div>
+</section>
+
+<!-- TRANSITION (between sections) -->
+<section class="screen" id="screen-transition">
+  <span class="koora-stamp" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="tr-eyebrow" id="trEyebrow">A pause before the next section</span>
+  <h2 class="tr-h1" id="trH"></h2>
+  <p class="tr-text" id="trText"></p>
+  <div class="tr-day-frame" id="trDayFrame"></div>
+  <div class="tr-cta">
+    <button class="btn-primary" id="trContinueBtn" onclick="exitTransition()" style="max-width:240px">Continue</button>
   </div>
 </section>
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <span class="koora-stamp">K · O · O · R · A</span>
+  <span class="koora-stamp" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
   <span class="q-section" id="qSection">Section 1 of 6</span>
   <p class="q-prompt" id="qPrompt">Over the past fifteen days</p>
   <h2 class="q-text" id="qText"></h2>
@@ -321,14 +496,22 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="q-foot">
     <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
     <span class="q-foot-meta" id="qCount">Question 1 of 60</span>
-    <button class="q-next" id="qNext" onclick="cancelAdvance();nextQuestion()" disabled>Next</button>
+    <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next</button>
   </div>
   <p class="q-keyhint" id="qKeyhint">Press A, B, C, or D. Continue in 2 seconds after you select. You can still tap Next once you choose.</p>
 </section>
 
+<!-- ACKNOWLEDGMENT (between final question and results) -->
+<section class="screen" id="screen-ack">
+  <span class="koora-stamp" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <h2 class="ack-h1" id="ackH1"><em>One breath.</em></h2>
+  <p class="ack-text" id="ackText">You have answered sixty items. That is harder than it sounds. Now let us look together.</p>
+  <button class="btn-primary" onclick="afterAck()" style="max-width:280px">See your result</button>
+</section>
+
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
-  <span class="koora-stamp">K · O · O · R · A</span>
+  <span class="koora-stamp" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
   <p class="r-sub" id="rSub"></p>
@@ -336,43 +519,50 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="tbl-block">
     <span class="tbl-h">The four reflexes · Pattern profile</span>
     <table class="dtable" id="reflexTable"></table>
+    <p class="narrative-read" id="reflexRead"></p>
     <p class="tbl-legend"><b>How to read this:</b> Each reflex scores 0 to 16. <b>Quiet</b> ran rarely. <b>Active</b> ran often enough to notice. <b>Loud</b> dominated this period. The arrow shows movement since your last return.</p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The Allegiance Matrix · How the loudest reflex broke each faculty</span>
     <div class="matrix-wrap" id="matrixWrap"></div>
+    <p class="narrative-read">Choose one faculty. That is your one move for the next fifteen days.</p>
     <p class="tbl-legend"><b>How to read this:</b> The matrix shows the four reflexes against the four faculties of fidelity. The gold-bordered row is your loudest reflex this period. Below it, the fingerprint shows specifically how that reflex broke each faculty.</p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The seven postures · ALCARRA, the week as you lived it</span>
     <table class="dtable" id="alcTable"></table>
+    <p class="narrative-read" id="alcRead"></p>
     <p class="tbl-legend"><b>How to read this:</b> Each posture scores 1 to 4. <b>Strong</b> means the posture was alive in your week. <b>Thin</b> means it was barely present. ALCARRA names the seven daily commitments that compose a coherent week.</p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The four needs · Filled, or substituted</span>
     <table class="dtable" id="needTable"></table>
+    <p class="narrative-read">Where filled is low and substituted is high, the substitute has been keeping you from the real thing.</p>
     <p class="tbl-legend"><b>How to read this:</b> Each need has two columns. <b>Filled</b> is how met the genuine need was. <b>Substituted</b> is how much you reached for a counterfeit. High filled with low substituted is health. The reverse is the warning.</p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The forces of necessity · What moved you</span>
     <table class="dtable" id="forceTable"></table>
+    <p class="narrative-read">If two forces feel close, choose the heavier one. That is the active force for today.</p>
     <p class="tbl-legend"><b>How to read this:</b> The four forces are the obligations that move a Finisher from intention to motion. <b>Duty</b> is who you are honoring. <b>Opus</b> is what was given you to build. <b>Declaration</b> is what you put on record. <b>Identity</b> is who you must become.</p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The four fidelities · What you held this period</span>
     <table class="dtable" id="fidTable"></table>
-    <p class="tbl-legend"><b>How to read this:</b> The four fidelities test whether you kept what was yours to keep, across mind, heart, will, and hand. Each scores 1 to 4. The covenant of the week is sealed by these four together.</p>
+    <p class="narrative-read">A covenant is sealed by these four together, not by any one of them alone.</p>
+    <p class="tbl-legend"><b>How to read this:</b> The four fidelities test whether you kept what was yours to keep, across mind, heart, will, and hand. Each scores 1 to 4.</p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The four faculties of fidelity · Direct measure</span>
     <table class="dtable" id="facTable"></table>
-    <p class="tbl-legend"><b>How to read this:</b> The four faculties of fidelity, named by the Allegiance Matrix, are the territories the reflexes break. This table measures each directly. <b>Embodied</b> is held. <b>Beginning</b> is the next place to grow.</p>
+    <p class="narrative-read">These four are the territories the reflexes break. Their direct measure is the cleanest read of where return is asked.</p>
+    <p class="tbl-legend"><b>How to read this:</b> The four faculties of fidelity, named by the Allegiance Matrix, are the territories the reflexes break. <b>Embodied</b> is held. <b>Beginning</b> is the next place to grow.</p>
   </div>
 
   <div class="tbl-block">
@@ -382,12 +572,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       <div class="num"><span id="fidNum">0</span><em>%</em></div>
       <div class="meta" id="fidMeta">Across the six daily and weekly moves of the practice.</div>
     </div>
-    <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> Six moves compose the practice. The Seal at sunrise. The Daily Reset after the Seal. The evening question at sunset. The 24-hour return when you fall. The Friday cohort. The Sunday sealing. Fidelity rate is the proportion held.</p>
+    <p class="narrative-read" id="practiceRead"></p>
+    <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> Six moves compose the practice. The Seal at sunrise. The Daily Reset after the Seal. The evening question at sunset. The 24-hour return when you fall. The Friday cohort. The Sunday sealing.</p>
   </div>
 
   <div class="tbl-block" id="moveBlock" style="display:none">
     <span class="tbl-h">What moved · Since your last return</span>
     <table class="dtable" id="moveTable"></table>
+    <p class="narrative-read" id="moveRead"></p>
     <p class="tbl-legend"><b>How to read this:</b> Down arrows on reflexes are good. Up arrows on practice and pillars are good. The covenant is not perfection. The covenant is return, and return is what these arrows record.</p>
   </div>
 
@@ -395,6 +587,25 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <span class="tbl-h">The covenant in motion</span>
     <div class="cov-card" id="covCard"></div>
     <p class="tbl-legend"><b>How to read this:</b> Each month carries one covenant. The covenant has three lines. The Promise names what you are stopping. The Practice names the daily move. The Evidence names how you will know.</p>
+  </div>
+
+  <div class="tbl-block">
+    <span class="tbl-h">The cost of this pattern · two horizons</span>
+    <div class="pain-block">
+      <p class="pain-q">If this pattern continues for thirty more days, what does it cost you?</p>
+      <p class="pain-sub">One sentence. Concrete. Optional, but powerful. What you write travels with your report.</p>
+      <textarea class="pain-input" id="painInput" placeholder="The day my unfinished costs me ..." onblur="showSelfQuote()"></textarea>
+      <p class="pain-q-secondary">Five years from now, what will you wish you had named today?</p>
+      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will regret most ..." onblur="showSelfQuote()"></textarea>
+      <div class="self-quote" id="selfQuote">
+        <div class="self-quote-label">Your own words, written back to you</div>
+        <div class="self-quote-text" id="selfQuoteText"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbl-block" id="cohortCtaBlock">
+    <div class="cohort-cta" id="cohortCta"></div>
   </div>
 
   <div class="tbl-block">
@@ -413,6 +624,20 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     </div>
   </div>
 
+  <div class="claim-block">
+    <p class="claim-q">Before you close this page, one question.<br><em style="font-style:italic;color:var(--gold)">Will you return in fifteen days?</em></p>
+    <div class="claim-row">
+      <button class="claim-btn" id="claimYes" onclick="setClaim(true)">Yes, I will return<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">The covenant continues</span></button>
+      <button class="claim-btn" id="claimNo" onclick="setClaim(false)">Not yet<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">Naming this is the return</span></button>
+    </div>
+    <p class="claim-conf" id="claimConf"></p>
+  </div>
+
+  <div class="vow-block">
+    <span class="vow-eyebrow">A line you may carry</span>
+    <p class="vow-text"><em>You are permitted to fall.</em> You are not permitted to stop returning.</p>
+  </div>
+
   <div class="contact-block">
     <h3 class="contact-h">Questions, returns, or a missed day</h3>
     <p class="contact-body">Write at any hour. The cohort holds the rest.</p>
@@ -420,13 +645,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       <a href="mailto:mail@mogire.com">mail@mogire.com</a>
       <a href="https://chat.whatsapp.com/CGpEGJ5MuCRAAw3A6Akmp2" target="_blank" rel="noopener">Cohort WhatsApp</a>
     </div>
+    <p class="lineage">Derived from the KOORA Master Architecture v3, held privately within the cohort. UNFINISHED is one instrument among several. Once a year. Twenty-four seats.</p>
   </div>
 </section>
 
 </main>
 
 <footer>
-  <p class="foot-credit"><b>UNFINISHED</b> · A House of Mastery diagnostic instrument<br>Sixty items, six domains. 4-point Likert scale, recall window fifteen days.<br>Architected by <b>Dr. Job Mogire, MD FACC</b> · Founder<br>The covenant is not perfection. The covenant is return.<span class="foot-koora">K · O · O · R · A</span></p>
+  <p class="foot-credit"><b>UNFINISHED</b> · The diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b><br>A clinical-grade architecture designed by a board-certified cardiologist<br>Once a year. Twenty-four seats. Each module non-recoverable until the next year.<br>Architected by <b>Dr. Job Mogire, MD, FACP, FACC</b> · House of Mastery<br><span style="font-style:italic">The covenant is not perfection. The covenant is return.</span><span class="foot-koora" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span></p>
 </footer>
 
 <script>
@@ -437,8 +663,9 @@ try{if(typeof emailjs!=='undefined'){emailjs.init('FEEOw8NA0cwBM4Vum');EMAILJS_O
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=60;
-var STORAGE_KEY='koora_unfinished_v3';
+var STORAGE_KEY='koora_unfinished_v4';
 var AUTO_ADVANCE_MS=2000;
+var COHORT_2_LAUNCH='November 2026';
 
 var DAY_OPTIONS=[
   {v:0,label:'Day 0 (Baseline)'},
@@ -464,9 +691,8 @@ var OPTIONS=[
   {label:'Most of the time',score:4,key:'D'}
 ];
 
-// 60 items, 6 sections.
+// 60 items, 6 sections
 var QUESTIONS=[
-  // 1. The four reflexes (16) — 4 per subscale
   {n:1, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I named what was wrong faster than I named what I would do about it.'},
   {n:2, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I described the same problem more than once and changed nothing.'},
   {n:3, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I felt the relief of venting, but the situation stayed the same.'},
@@ -483,7 +709,6 @@ var QUESTIONS=[
   {n:14,sec:1,sn:'The four reflexes', dom:'Competing',   text:'My sense of worth moved with whether I was winning.'},
   {n:15,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I did things mainly to be seen doing them.'},
   {n:16,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I oriented around approval rather than what is mine to build.'},
-  // 2. The seven postures (ALCARRA, 7) — reverse
   {n:17,sec:2,sn:'The seven postures',dom:'Awareness',     text:'I let myself see what was true, even where the truth was unflattering.', rev:true},
   {n:18,sec:2,sn:'The seven postures',dom:'Learning',      text:'I let yesterday teach me, and I began again clean.', rev:true},
   {n:19,sec:2,sn:'The seven postures',dom:'Change',        text:'I shifted one thing this period rather than waiting to overhaul everything.', rev:true},
@@ -491,7 +716,6 @@ var QUESTIONS=[
   {n:21,sec:2,sn:'The seven postures',dom:'Resilience',    text:'When difficulty arrived, I stayed in the work.', rev:true},
   {n:22,sec:2,sn:'The seven postures',dom:'Reflection',    text:'I looked back at my own behavior without defending it.', rev:true},
   {n:23,sec:2,sn:'The seven postures',dom:'Accountability',text:'I let one trusted witness see the truth of my week.', rev:true},
-  // 3. The four needs (8) — pairs
   {n:24,sec:3,sn:'The four needs', dom:'Aliveness · filled',     text:'I felt genuinely alive. Present, in my body, awake to what is here.', rev:true},
   {n:25,sec:3,sn:'The four needs', dom:'Aliveness · substitute', text:'I reached for intensity, urgency, or drama when what I wanted was presence.'},
   {n:26,sec:3,sn:'The four needs', dom:'Connection · filled',    text:'I felt rooted in real relationships, not curated ones.', rev:true},
@@ -500,7 +724,6 @@ var QUESTIONS=[
   {n:29,sec:3,sn:'The four needs', dom:'Meaning · substitute',   text:'I reached for breadth, like more topics or more options, when what I wanted was depth.'},
   {n:30,sec:3,sn:'The four needs', dom:'Fulfillment · filled',   text:'I felt enough. The quiet sense that I have what I need.', rev:true},
   {n:31,sec:3,sn:'The four needs', dom:'Fulfillment · substitute',text:'I reached for more, like more income or recognition, when what I wanted was enough.'},
-  // 4. Forces (4) and Fidelities (4) — reverse
   {n:32,sec:4,sn:'Forces and fidelities',dom:'Duty',                text:'I carried someone forward this period because I said I would.', rev:true, ff:'force'},
   {n:33,sec:4,sn:'Forces and fidelities',dom:'Opus',                text:'I kept building the thing only I can build, even where no one applauded.', rev:true, ff:'force'},
   {n:34,sec:4,sn:'Forces and fidelities',dom:'Declaration',         text:'I held a commitment I had spoken aloud to a witness who remembers.', rev:true, ff:'force'},
@@ -509,7 +732,6 @@ var QUESTIONS=[
   {n:37,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Heart',   text:'I felt what was mine to feel, not what I was trained to perform.', rev:true, ff:'fidelity'},
   {n:38,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Will',    text:'I chose what was mine to choose, not what was easier or expected.', rev:true, ff:'fidelity'},
   {n:39,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Hand',    text:'I did what was mine to do, and the doing matched the saying.', rev:true, ff:'fidelity'},
-  // 5. Faculties of fidelity (4) + Practice (6) — reverse
   {n:40,sec:5,sn:'Faculties and practice', dom:'Attention',          text:'My attention stayed with what was mine to attend to, not what was easier to look at.', rev:true},
   {n:41,sec:5,sn:'Faculties and practice', dom:'Allegiance',         text:'My own clear judgment had the final say inside me, not the loudest voice in the room.', rev:true},
   {n:42,sec:5,sn:'Faculties and practice', dom:'Integrity',          text:'My word and my action were the same thing this period.', rev:true},
@@ -520,7 +742,6 @@ var QUESTIONS=[
   {n:47,sec:5,sn:'Faculties and practice', dom:'The 24-hour return', text:'When I missed a day, I returned the next day. No shame spiral. No abandonment.', rev:true},
   {n:48,sec:5,sn:'Faculties and practice', dom:'The Friday cohort',  text:'I spoke truth aloud where the cohort could hear it.', rev:true},
   {n:49,sec:5,sn:'Faculties and practice', dom:'The Sunday sealing', text:'I closed the week before I opened the next one.', rev:true},
-  // 6. Where you are now (11): 4 UNFINISHED top + 1 inventory + 6 stage markers
   {n:50,sec:6,sn:'Where you are now', dom:'Unkept promises',      text:'My word to myself lost credibility. I made promises and broke them quietly.'},
   {n:51,sec:6,sn:'Where you are now', dom:'Self-trust bankrupt',  text:'I did not believe my own word when I made a new commitment.'},
   {n:52,sec:6,sn:'Where you are now', dom:'Deferred action',      text:'Later was my operating system. The day arrived, and I postponed it again.'},
@@ -624,6 +845,23 @@ var COVENANTS=[
   {month:6,name:'World', promise:'I will give back from the life I have rebuilt.',practice:'I do not abandon the work for easier invitations. I make one public contribution.',evidence:'The world receives proof that I came back stronger and gave something back.'}
 ];
 
+// Section transitions (5) — tighter, three-sentence target
+var TRANSITIONS=[
+  {q:16,eyebrow:'Section one is sealed',h:'You looked at what runs you.',text:'Now look at what asks more of you. <b>Without defending.</b>'},
+  {q:23,eyebrow:'Section two is sealed',h:'ALCARRA names what the week asks.',text:'The next eight items name what you have been carrying underneath.'},
+  {q:31,eyebrow:'You are halfway. Notice it.',h:'Filled, or substituted. That was the question.',text:'Now name what moves you forward, and what you have been holding.'},
+  {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the daily practice and the four faculties the reflexes break.'},
+  {q:49,eyebrow:'Section five is sealed',h:'You have surveyed the full architecture.',text:'The last eleven items are the inner experience itself. <b>Let yourself be seen.</b>'}
+];
+
+function dayFraming(day){
+  if(day===0)return 'This is your baseline. Be honest, not flattering. Honesty is the only useful answer here.';
+  if(day<=60)return 'You have begun. The pattern is still loud. Notice it without judgment.';
+  if(day<=120)return 'You have walked the middle. The pattern may already feel different. Answer for the last fifteen days, not the journey so far.';
+  if(day<=180)return 'You are near the seal. The pattern is now familiar to you. Notice if it lands differently this time.';
+  return 'The path is yours now. Use this return to keep the work honest.';
+}
+
 var ARC_INTERNAL={
   rupture:{name:'Rupture'},exposure:{name:'Exposure'},tension:{name:'Tension'},
   unfolding:{name:'Unfolding'},rooting:{name:'Rooting'},newnormal:{name:'New Normal'}
@@ -634,8 +872,29 @@ var answers={};
 var currentQ=1;
 var participantName='';
 var participantDay=0;
+var participantEnrolled=true;
 var lastResults=null;
 var advanceTimer=null;
+var pendingAfterTransition=null;
+var covPulseValue=null;
+var claimValue=null;
+var painText='';
+var painText5y='';
+
+function cohortWhisper(){
+  var d=new Date();var dow=d.getDay();
+  var phrases=[
+    'Cohort 1 sealed at sunrise in Nairobi today.',
+    'The cohort is keeping the Daily Reset this week, in Nairobi and beyond.',
+    'The covenant is moving today, twenty-four Finishers walking it.',
+    'A Friday cohort call closed an hour before this page loaded.',
+    'Sunday sealing was performed at sunset by the cohort yesterday.'
+  ];
+  // Friday and Sunday have specific phrases
+  if(dow===5)return phrases[3];
+  if(dow===0)return phrases[4];
+  return phrases[d.getDate()%3];
+}
 
 // Storage
 function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
@@ -661,10 +920,12 @@ function setNavMeta(text){var el=document.getElementById('navMeta');el.textConte
 
 function init(){
   populateDayPicker();
+  document.getElementById('welcomeWhisper').innerHTML=cohortWhisper()+' <b>This instrument is part of that movement.</b>';
   var h=loadHistory();
   if(h.length){
     var name=h[h.length-1].name||'';
     document.getElementById('participantName').value=name;
+    if(typeof h[h.length-1].enrolled==='boolean'){participantEnrolled=h[h.length-1].enrolled;syncEnrollToggle()}
     renderDashboard(name);
     show('screen-dashboard');
   }else{
@@ -690,8 +951,17 @@ function nextDayFor(prev){
   return 181;
 }
 
+function setEnroll(yes){participantEnrolled=!!yes;syncEnrollToggle()}
+function syncEnrollToggle(){
+  var btns=document.querySelectorAll('#enrollToggle .toggle-btn');
+  for(var i=0;i<btns.length;i++){
+    var v=btns[i].getAttribute('data-enroll')==='1';
+    btns[i].classList.toggle('sel',v===participantEnrolled);
+  }
+}
+
 document.addEventListener('DOMContentLoaded',function(){
-  init();
+  init();syncEnrollToggle();
   document.getElementById('participantName').addEventListener('input',populateDayPicker);
   document.addEventListener('keydown',function(e){
     var qScreen=document.getElementById('screen-question');
@@ -719,6 +989,12 @@ function labelForDay(d){var o=DAY_OPTIONS.find(function(o){return o.v===d});retu
 function formatShortDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
 function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
 function safe(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+function nameDayPhrase(day){
+  if(day===0)return 'baseline';
+  if(day===180)return 'sealing';
+  if(day>=181)return 'alumni return';
+  return 'Day '+day+' return';
+}
 
 // Dashboard
 function renderDashboard(name){
@@ -736,7 +1012,23 @@ function renderDashboard(name){
     lineEl.textContent='Begin where you are.';
   }
 
-  // Snapshot table
+  var antEl=document.getElementById('dashAnticipation');
+  if(prior){
+    var lastDoneDay=Math.max.apply(null,hist.map(function(r){return r.day}));
+    var nd=nextDayFor(lastDoneDay);
+    var milestone=null;
+    if(nd<=30)milestone='your first thirty days, the Self covenant, seal at Day 30';
+    else if(nd<=60)milestone='the Body covenant, seal at Day 60';
+    else if(nd<=90)milestone='the Craft covenant and the ninety-day milestone';
+    else if(nd<=120)milestone='the People covenant, seal at Day 120';
+    else if(nd<=150)milestone='the Future covenant, seal at Day 150';
+    else if(nd<=180)milestone='the World covenant and the final Sealing at Day 180';
+    else milestone='the alumni continuation';
+    antEl.textContent='Walking toward '+milestone+'.';
+  }else{
+    antEl.textContent='';
+  }
+
   var snap=document.getElementById('snapshotTable');
   if(prior){
     var loud=loudestReflexFromRec(prior);
@@ -748,30 +1040,21 @@ function renderDashboard(name){
 
     snap.innerHTML='<thead><tr><th>Indicator</th><th class="right">Value</th><th class="right">Since last</th></tr></thead><tbody>'+
       '<tr class="feature"><td><b>Loudest reflex</b><div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">The pattern that ran you most this period</div></td>'+
-        '<td class="right value-lg">'+(loud&&loud.name?loud.name:'—')+'<div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">'+(loud?loud.score+' of '+loud.max+', '+levelLabelNeg(loud.pct):'')+'</div></td>'+
+        '<td class="right value-lg">'+(loud&&loud.name?loud.name:'not yet')+'<div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">'+(loud?loud.score+' of '+loud.max+', '+levelLabelNeg(loud.pct):'')+'</div></td>'+
         '<td class="right">'+(loudPrev?renderDeltaPill(loud.score-loudPrev.score,'down'):'<span class="muted" style="font-size:11px">first return</span>')+'</td></tr>'+
       '<tr><td><b>Practice fidelity</b><div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">Across six daily and weekly moves</div></td>'+
-        '<td class="right value-lg">'+(fid!=null?fid+'%':'—')+'</td>'+
+        '<td class="right value-lg">'+(fid!=null?fid+'%':'not yet')+'</td>'+
         '<td class="right">'+(fidPrev!=null?renderDeltaPill(fid-fidPrev,'up'):'<span class="muted" style="font-size:11px">first return</span>')+'</td></tr>'+
       '</tbody>';
   }else{
     snap.innerHTML='<tbody><tr><td class="muted">No prior return yet. Begin with the baseline.</td></tr></tbody>';
   }
 
-  // Path table
   var milestones=[
-    {v:0,name:'Day 0',ext:'Baseline'},
-    {v:15,name:'Day 15',ext:''},
-    {v:30,name:'Day 30',ext:'End of Self covenant'},
-    {v:45,name:'Day 45',ext:''},
-    {v:60,name:'Day 60',ext:'End of Body covenant'},
-    {v:75,name:'Day 75',ext:''},
-    {v:90,name:'Day 90',ext:'Ninety-day milestone'},
-    {v:105,name:'Day 105',ext:''},
-    {v:120,name:'Day 120',ext:'End of People covenant'},
-    {v:135,name:'Day 135',ext:''},
-    {v:150,name:'Day 150',ext:'End of Future covenant'},
-    {v:165,name:'Day 165',ext:''},
+    {v:0,name:'Day 0',ext:'Baseline'},{v:15,name:'Day 15',ext:''},{v:30,name:'Day 30',ext:'End of Self covenant'},
+    {v:45,name:'Day 45',ext:''},{v:60,name:'Day 60',ext:'End of Body covenant'},{v:75,name:'Day 75',ext:''},
+    {v:90,name:'Day 90',ext:'Ninety-day milestone'},{v:105,name:'Day 105',ext:''},{v:120,name:'Day 120',ext:'End of People covenant'},
+    {v:135,name:'Day 135',ext:''},{v:150,name:'Day 150',ext:'End of Future covenant'},{v:165,name:'Day 165',ext:''},
     {v:180,name:'Day 180',ext:'The Sealing'}
   ];
   var doneDays=hist.map(function(r){return r.day});
@@ -795,6 +1078,21 @@ function renderDashboard(name){
   var btn=document.getElementById('dashTakeBtn');
   var lblText=DAY_OPTIONS.find(function(o){return o.v===nextDay});
   btn.textContent='Take your '+(lblText?lblText.label.split(' (')[0]:'next')+' assessment';
+
+  // Cohort whisper on dashboard
+  document.getElementById('dashWhisper').textContent=cohortWhisper();
+
+  // Trust bar
+  var trust=document.getElementById('trustBar');
+  if(prior&&participantEnrolled){
+    trust.innerHTML='<b>You are inside the once-a-year intake.</b> KOORA: The Finisher’s Protocol is a clinical-grade architecture designed by a board-certified cardiologist. The architecture is non-recoverable: a missed module waits twelve months. That structure is intentional. The covenant is not perfection. The covenant is return.';
+    trust.style.display='block';
+  }else if(prior&&!participantEnrolled){
+    trust.innerHTML='<b>You are tracking your own pattern outside the cohort.</b> KOORA: The Finisher’s Protocol opens once a year. Cohort 2 opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats. If you miss this window, the next is November 2027. Each monthly module opens in the first week of its month and is non-recoverable until the next year.';
+    trust.style.display='block';
+  }else{
+    trust.style.display='none';
+  }
 }
 
 function renderDeltaPill(amount,positiveDirection){
@@ -825,6 +1123,7 @@ function newAssessment(){
     var name=h[h.length-1].name||'';
     document.getElementById('participantName').value=name;
     populateDayPicker();
+    if(typeof h[h.length-1].enrolled==='boolean'){participantEnrolled=h[h.length-1].enrolled;syncEnrollToggle()}
   }
   show('screen-welcome');
 }
@@ -832,6 +1131,7 @@ function showResultsFromHistory(){
   var name=document.getElementById('participantName').value||(loadHistory().slice(-1)[0]||{}).name;
   var p=lastFor(name);if(!p){newAssessment();return}
   participantName=p.name;participantDay=p.day;answers=p.answers||{};
+  if(typeof p.enrolled==='boolean')participantEnrolled=p.enrolled;
   buildResults(p);show('screen-results');
 }
 function startAssessment(){
@@ -841,9 +1141,9 @@ function startAssessment(){
   participantName=name;
   var dayEl=document.getElementById('dayPicker');
   participantDay=parseInt(dayEl.value,10)||0;
-  answers={};currentQ=1;
+  answers={};currentQ=1;covPulseValue=null;
   renderQuestion(1);show('screen-question');
-  setNavMeta('KOORA · The Finisher Protocol · '+labelForDay(participantDay).split(' (')[0]);
+  setNavMeta('UNFINISHED · '+labelForDay(participantDay).split(' (')[0]);
 }
 function confirmReset(){
   if(confirm('This clears every saved assessment in this browser. Continue?')){
@@ -876,28 +1176,16 @@ function renderQuestion(n){
   }
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
   var next=document.getElementById('qNext');
-  if(next){
-    var answered=!!answers[n];
-    next.style.display=answered?'inline-flex':'none';
-    next.disabled=!answered;
-    next.textContent=answered?(n===TOTAL?'See result':'Next'):'Next';
-  }
+  if(next){next.style.display='none';next.disabled=true}
   var hint=document.getElementById('qKeyhint');
   if(hint)hint.textContent='Select one response. Continue in 2 seconds after you choose. You can still tap Next once you choose.';
 }
 function selectOption(n,score){
   answers[n]=score;
   var opts=document.querySelectorAll('#qOptions .opt');
-  for(var i=0;i<opts.length;i++){
-    opts[i].classList.toggle('sel',OPTIONS[i].score===score);
-    opts[i].setAttribute('aria-pressed',OPTIONS[i].score===score?'true':'false');
-  }
+  for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   var next=document.getElementById('qNext');
-  if(next){
-    next.style.display='inline-flex';
-    next.disabled=false;
-    next.textContent=n===TOTAL?'See result':'Next';
-  }
+  if(next){next.style.display='inline-flex';next.disabled=false}
   var hint=document.getElementById('qKeyhint');
   if(hint)hint.textContent=n===TOTAL?'Preparing your result in 2 seconds…':'Selected. Continue in 2 seconds. You can still tap Next once you choose.';
   cancelAdvance();
@@ -908,10 +1196,40 @@ function selectOption(n,score){
 function nextQuestion(){
   cancelAdvance();
   if(!answers[currentQ])return;
-  if(currentQ===TOTAL){finishAssessment();return}
+  // Check transition gate
+  var trans=TRANSITIONS.find(function(t){return t.q===currentQ});
+  if(trans){enterTransition(trans);return}
+  if(currentQ===TOTAL){enterAck();return}
   currentQ++;renderQuestion(currentQ);
 }
 function prevQuestion(){cancelAdvance();if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
+
+function enterTransition(trans){
+  pendingAfterTransition=trans.q+1;
+  document.getElementById('trEyebrow').textContent=trans.eyebrow;
+  document.getElementById('trH').innerHTML=trans.h;
+  document.getElementById('trText').innerHTML=trans.text;
+  var dayLine='';
+  // Halfway personal moment at transition 3 (after Q31)
+  if(trans.q===31 && participantName)dayLine='Halfway, '+safe(participantName)+'. Notice your honesty so far. '+dayFraming(participantDay);
+  else dayLine=dayFraming(participantDay);
+  document.getElementById('trDayFrame').textContent=dayLine;
+  show('screen-transition');
+  setProgress(Math.round((trans.q/TOTAL)*98));
+}
+function exitTransition(){
+  if(pendingAfterTransition==null)return;
+  currentQ=pendingAfterTransition;pendingAfterTransition=null;
+  renderQuestion(currentQ);show('screen-question');
+}
+
+function enterAck(){
+  document.getElementById('ackText').innerHTML=safe(participantName)+', you have answered sixty items. That is harder than it sounds. Take one breath. Now let us look together.';
+  show('screen-ack');setProgress(100);
+}
+function afterAck(){
+  finishAssessment();
+}
 
 // Scoring
 function sumQs(qs){var s=0;for(var i=0;i<qs.length;i++)s+=answers[qs[i]]||0;return s}
@@ -991,9 +1309,10 @@ function buildRecord(){
   for(var k in pr){if(k.charAt(0)!=='_')scores['practice_'+k]=pr[k].score}
   var ar=arcScores();for(var k in ar)scores['arc_'+k]=ar[k];
   return {
-    date:new Date().toISOString(),day:participantDay,name:participantName,
+    date:new Date().toISOString(),day:participantDay,name:participantName,enrolled:participantEnrolled,
     answers:Object.assign({},answers),scores:scores,
-    primary_reflex:loud.key,primary_level:levelNeg(loud.pct),active_stage:activeStage()
+    primary_reflex:loud.key,primary_level:levelNeg(loud.pct),active_stage:activeStage(),
+    cov_pulse:covPulseValue
   };
 }
 
@@ -1001,19 +1320,25 @@ function buildRecord(){
 function buildResults(rec){
   lastResults=rec;
   participantName=rec.name;participantDay=rec.day;answers=rec.answers||answers;
+  if(typeof rec.enrolled==='boolean')participantEnrolled=rec.enrolled;
   var prior=null;var hist=priorRecords(rec.name);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
+  var returnIdx=hist.length;
 
   var loud=loudestReflex();
   var headline=document.getElementById('rHeadline');
   var sub=document.getElementById('rSub');
-  if(prior){
-    headline.innerHTML=safe(rec.name)+', <em>here is what moved.</em>';
-    sub.textContent=labelForDay(rec.day)+' · taken '+relTime(rec.date);
+  if(returnIdx===1){
+    headline.innerHTML=safe(rec.name)+', <em>this is what has been running you</em>.';
+  }else if(rec.day>=180){
+    headline.innerHTML=safe(rec.name)+', <em>this is what you have walked through</em>.';
   }else{
-    headline.innerHTML='Here is what is running you, <em>'+safe(rec.name)+'</em>.';
-    sub.textContent=labelForDay(rec.day)+' · '+formatDate(rec.date);
+    headline.innerHTML=safe(rec.name)+', <em>this is what has moved, and what has not yet</em>.';
   }
+  sub.textContent=labelForDay(rec.day)+' · '+(prior?'taken '+relTime(rec.date):formatDate(rec.date));
+
+  // Anchored opener for returners: surface the movement before the deficit
+  renderAnchoredOpener(prior);
 
   renderReflexTable(prior);
   renderMatrix(loud);
@@ -1025,6 +1350,81 @@ function buildResults(rec){
   renderPracticeFidelity(prior);
   renderMovement(prior);
   renderCovenant(rec.day);
+  renderCohortCta(returnIdx);
+
+  // Reset participant inputs
+  document.getElementById('painInput').value='';
+  document.getElementById('painInput5y').value='';
+  document.getElementById('selfQuote').classList.remove('shown');
+  document.getElementById('selfQuoteText').textContent='';
+  claimValue=null;syncClaim();
+}
+
+function renderAnchoredOpener(prior){
+  // Insert a single anchored sentence before the reflex profile, but only for returners with at least one positive movement.
+  var existing=document.getElementById('anchoredOpener');
+  if(existing)existing.remove();
+  if(!prior)return;
+  var rs=reflexScores();
+  var moves=[];
+  for(var i=0;i<REFLEXES.length;i++){
+    var r=REFLEXES[i];var cur=rs[r.key].score;
+    var prev=(prior.scores['reflex_'+r.key]&&prior.scores['reflex_'+r.key].score)||prior.scores[r.key]||0;
+    if(prev>cur)moves.push({name:r.name,delta:prev-cur});
+  }
+  var fid=practiceScores()._rate,fidPrev=prior.scores.fidelity_rate||0;
+  var fidUp=fid>fidPrev?fid-fidPrev:0;
+  if(!moves.length && !fidUp)return;
+  // Build sentence
+  var line='';
+  if(moves.length){
+    moves.sort(function(a,b){return b.delta-a.delta});
+    var top=moves[0];
+    line='<em>'+top.name+' is quieter</em> than your last return, by '+top.delta+' point'+(top.delta===1?'':'s')+'.';
+  }
+  if(fidUp){
+    if(line)line+=' Practice fidelity is up '+fidUp+'%.';
+    else line='<em>Practice fidelity is up '+fidUp+'%</em> since your last return.';
+  }
+  var sub='Notice this before we look at the rest. The covenant is return, and return is what these numbers record.';
+  var div=document.createElement('div');
+  div.id='anchoredOpener';
+  div.className='movement-anchor';
+  div.innerHTML='<div class="movement-anchor-h">'+line+'</div><div class="movement-anchor-sub">'+sub+'</div>';
+  // Insert at top of results, after sub
+  var sub2=document.querySelector('#screen-results .r-sub');
+  sub2.parentNode.insertBefore(div,sub2.nextSibling);
+}
+
+function showSelfQuote(){
+  var t1=document.getElementById('painInput').value.trim();
+  var t2=document.getElementById('painInput5y').value.trim();
+  painText=t1;painText5y=t2;
+  var combined='';
+  if(t1)combined='"'+t1+'"';
+  if(t2)combined+=(combined?'<br><br>':'')+'"'+t2+'"';
+  if(!combined){document.getElementById('selfQuote').classList.remove('shown');return}
+  document.getElementById('selfQuoteText').innerHTML=combined;
+  document.getElementById('selfQuote').classList.add('shown');
+  // Persist into the saved record
+  var h=loadHistory();if(h.length){h[h.length-1].pain_text=t1;h[h.length-1].pain_text_5y=t2;saveHistory(h)}
+}
+
+function setClaim(yes){
+  claimValue=!!yes;
+  syncClaim();
+  var conf=document.getElementById('claimConf');
+  if(yes){conf.textContent='Held. We will see you on your next return.';}
+  else{conf.textContent='Naming this is the return. The covenant continues either way.';}
+  conf.classList.add('shown');
+  var h=loadHistory();if(h.length){h[h.length-1].claim=claimValue;saveHistory(h)}
+}
+function syncClaim(){
+  var y=document.getElementById('claimYes'),n=document.getElementById('claimNo');
+  if(!y||!n)return;
+  y.classList.toggle('sel-yes',claimValue===true);
+  n.classList.toggle('sel-no',claimValue===false);
+  if(claimValue===null)document.getElementById('claimConf').classList.remove('shown');
 }
 
 function renderReflexTable(prior){
@@ -1041,6 +1441,8 @@ function renderReflexTable(prior){
   }
   html+='</tbody>';
   document.getElementById('reflexTable').innerHTML=html;
+  var loud=loudestReflex();
+  document.getElementById('reflexRead').textContent=loud.name+' was loudest this period. The Allegiance Matrix below shows what it broke.';
 }
 
 function renderMatrix(loud){
@@ -1060,7 +1462,6 @@ function renderMatrix(loud){
     html+='</tr>';
   }
   html+='</tbody></table>';
-
   var fp='';
   if(loud&&loud.key&&MATRIX[loud.key]){
     fp+='<div class="fingerprint"><div class="fingerprint-label">The fingerprint of '+loud.name.toLowerCase()+' this period</div>'+
@@ -1076,13 +1477,19 @@ function renderMatrix(loud){
 function renderAlcarraTable(){
   var arr=alcarraScores();
   var html='<thead><tr><th>Posture</th><th>Day</th><th class="right">Score</th><th class="right">Strength</th></tr></thead><tbody>';
+  var thinDay=null,thinScore=5;
   for(var i=0;i<arr.length;i++){
     var a=arr[i];
     var lvl=levelPos(a.pct);
+    if(a.score<thinScore){thinScore=a.score;thinDay=a.day}
     html+='<tr><td>'+a.name+'</td><td class="muted">'+a.day+'</td><td class="right">'+a.score+' / 4</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelPos(a.pct)+'</span></td></tr>';
   }
   html+='</tbody>';
   document.getElementById('alcTable').innerHTML=html;
+  var read='';
+  if(thinDay && thinScore<=2)read=thinDay+' was the thinnest day. Notice what that day asked that you did not give it.';
+  else read='The seven postures held this period. The architecture is breathing.';
+  document.getElementById('alcRead').textContent=read;
 }
 
 function renderNeedTable(){
@@ -1133,27 +1540,38 @@ function renderPracticeFidelity(prior){
   var p=practiceScores();
   document.getElementById('fidNum').textContent=p._rate;
   var meta='Across the six daily and weekly moves of the practice.';
+  var read='';
   if(prior&&prior.scores.fidelity_rate!=null){
     var d=p._rate-prior.scores.fidelity_rate;
-    if(d>0)meta+=' Up '+d+' points since last return.';
-    else if(d<0)meta+=' Down '+Math.abs(d)+' points since last return.';
-    else meta+=' Steady since last return.';
+    if(d>0){meta+=' Up '+d+' points since last return.';read='You used to hold the practice less. You are holding it more.'}
+    else if(d<0){meta+=' Down '+Math.abs(d)+' points since last return.';read='Practice slipped this period. Notice the slip without judgment, and return.'}
+    else{meta+=' Steady since last return.';read='The practice held steady. Steady is what compounds.'}
+  }else{
+    if(p._rate>=70)read='Strong baseline. The architecture is in your week.';
+    else if(p._rate>=45)read='The architecture is partly in your week. The next return will tell us more.';
+    else read='The architecture is mostly outside your week. This is the place to begin.';
   }
   document.getElementById('fidMeta').textContent=meta;
+  document.getElementById('practiceRead').textContent=read;
 }
 
 function renderMovement(prior){
   var block=document.getElementById('moveBlock');
   if(!prior){block.style.display='none';return}
   block.style.display='block';
-  var rows=[];
+  var rows=[];var movedGood=0,movedBad=0,flat=0;
   for(var i=0;i<REFLEXES.length;i++){
     var r=REFLEXES[i];
     var cur=reflexScores()[r.key].score;
     var prev=(prior.scores['reflex_'+r.key]&&prior.scores['reflex_'+r.key].score)||prior.scores[r.key]||0;
+    var d=cur-prev;
+    if(d===0)flat++;else if(d<0)movedGood++;else movedBad++;
     rows.push({label:r.name+' reflex',cur:cur,prev:prev,positive:'down'});
   }
-  rows.push({label:'Practice fidelity',cur:practiceScores()._rate,prev:prior.scores.fidelity_rate||0,positive:'up',unit:'%'});
+  var fid=practiceScores()._rate,fidPrev=prior.scores.fidelity_rate||0,fidD=fid-fidPrev;
+  if(fidD===0)flat++;else if(fidD>0)movedGood++;else movedBad++;
+  rows.push({label:'Practice fidelity',cur:fid,prev:fidPrev,positive:'up',unit:'%'});
+
   var html='<thead><tr><th>Indicator</th><th class="right">Was</th><th class="right">Now</th><th class="right">Movement</th></tr></thead><tbody>';
   for(var i=0;i<rows.length;i++){
     var r=rows[i];var d=r.cur-r.prev;
@@ -1163,6 +1581,13 @@ function renderMovement(prior){
   }
   html+='</tbody>';
   document.getElementById('moveTable').innerHTML=html;
+
+  var read='';
+  if(movedGood>=3)read='You used to be louder on these. You are quieter now. Stay with the one indicator that has not yet moved.';
+  else if(movedGood>=1)read=movedGood+' '+(movedGood===1?'indicator':'indicators')+' moved toward fidelity. Stay with the ones that did not.';
+  else if(movedBad>=2)read='Most indicators moved the wrong way this period. The covenant is not perfection. The covenant is return. Use this return.';
+  else read='The indicators are steady. Steady is data, not failure.';
+  document.getElementById('moveRead').textContent=read;
 }
 
 function renderCovenant(day){
@@ -1173,18 +1598,58 @@ function renderCovenant(day){
     '<div class="cov-name">'+c.promise+'</div>'+
     '<div class="cov-line"><div class="cov-key">Promise</div><div class="cov-text">'+c.promise+'</div></div>'+
     '<div class="cov-line"><div class="cov-key">Practice</div><div class="cov-text">'+c.practice+'</div></div>'+
-    '<div class="cov-line"><div class="cov-key">Evidence</div><div class="cov-text">'+c.evidence+'</div></div>';
+    '<div class="cov-line"><div class="cov-key">Evidence</div><div class="cov-text">'+c.evidence+'</div></div>'+
+    '<div class="cov-pulse"><div class="cov-pulse-q">Is this promise alive in you today?</div>'+
+      '<div class="pulse-stack">'+
+        '<button class="pulse-btn" id="pulseYes" onclick="setPulse(true)">Yes, returning<span style="display:block;font-weight:500;font-size:11px;color:var(--mid);margin-top:3px">The promise still holds</span></button>'+
+        '<button class="pulse-btn" id="pulseNo" onclick="setPulse(false)">Not yet<span style="display:block;font-weight:500;font-size:11px;color:var(--mid);margin-top:3px">Naming this is the return</span></button>'+
+      '</div></div>';
+  syncPulse();
+}
+function setPulse(yes){covPulseValue=!!yes;syncPulse();if(lastResults)lastResults.cov_pulse=covPulseValue;
+  // Update saved record
+  var h=loadHistory();if(h.length){h[h.length-1].cov_pulse=covPulseValue;saveHistory(h)}
+}
+function syncPulse(){
+  var y=document.getElementById('pulseYes'),n=document.getElementById('pulseNo');
+  if(!y||!n)return;
+  y.classList.toggle('sel-yes',covPulseValue===true);
+  n.classList.toggle('sel-not',covPulseValue===false);
+}
+
+function renderCohortCta(returnIdx){
+  var box=document.getElementById('cohortCta');
+  if(participantEnrolled){
+    box.innerHTML='<span class="cohort-eyebrow">Inside the protocol</span>'+
+      '<div class="cohort-h">You are inside the once-a-year intake. <em>Twenty-three other Finishers</em> are walking the same covenant this month.</div>'+
+      '<div class="cohort-body">This is return '+returnIdx+' of thirteen across the 180-day path of <b>KOORA: The Finisher’s Protocol</b>. Each module opens in the first week of its month. If you miss it, you do not see it again until the next year. The architecture is non-recoverable on purpose. The discipline of staying is the discipline.</div>'+
+      '<div class="cohort-body">The covenant is not perfection. The covenant is return. <b>You are returning.</b></div>';
+  }else{
+    box.innerHTML='<span class="cohort-eyebrow">If the path is yours to walk</span>'+
+      '<div class="cohort-h">You have just named the diagnosis. <em>KOORA is the discipline that meets it.</em></div>'+
+      '<div class="cohort-body"><b>KOORA opens once a year.</b> Cohort 2 of <b>KOORA: The Finisher’s Protocol</b> opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats. The number is structural. The next window after that is November 2027.</div>'+
+      '<div class="cohort-body">Each monthly module opens in the first week of its month. If you miss a module, you do not see it again until the next year. The architecture is non-recoverable on purpose. The work asks for that.</div>'+
+      '<div class="cohort-body">The pattern you just saw will run again within twenty-four hours. The instrument named it. The cohort is the place that holds the return.</div>'+
+      '<a class="btn-primary" href="https://www.houseofmastery.co" target="_blank" rel="noopener">Reserve your place at houseofmastery.co</a>';
+  }
 }
 
 // Email
 function sendEmail(){
   var rec=lastResults;if(!rec)return;
+  rec.cov_pulse=covPulseValue;
+  rec.pain_text=document.getElementById('painInput').value.trim();
+  rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  rec.claim=claimValue;
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
   var status=document.getElementById('emailStatus');
   var btn=document.getElementById('sendBtn');
   if(!email||email.indexOf('@')<0||email.indexOf('.')<0){status.className='email-status err';status.textContent='Enter a valid email address.';status.style.display='block';return}
   if(!EMAILJS_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
+
+  // Persist updates to record
+  var h=loadHistory();if(h.length){h[h.length-1].cov_pulse=covPulseValue;h[h.length-1].pain_text=rec.pain_text;h[h.length-1].pain_text_5y=rec.pain_text_5y;h[h.length-1].claim=rec.claim;saveHistory(h)}
 
   var loud=loudestReflex();
   var arc=rec.active_stage||activeStage();
@@ -1205,9 +1670,9 @@ function sendEmail(){
     cc_email:'mail@mogire.com',
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' — Promise: '+cov.promise+' — Practice: '+cov.practice+' — Evidence: '+cov.evidence+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
+    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
-    strategies_html:'<b>The Allegiance Matrix — fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
+    strategies_html:'<b>The Allegiance Matrix · fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
     summit_url:'mailto:mail@mogire.com'
   }).then(function(){
     status.className='email-status ok';status.textContent='Sent. A copy is on its way to '+email+' and to mail@mogire.com.';btn.disabled=false;btn.textContent=prevBtn;
@@ -1216,10 +1681,13 @@ function sendEmail(){
   });
 }
 
-// 4-page PDF report
+// 4-page PDF report (with founder cover letter on page 1)
 function downloadPDF(){
   if(!JSPDF_OK||typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
   var rec=lastResults;if(!rec)return;
+  rec.pain_text=document.getElementById('painInput').value.trim();
+  rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  rec.claim=claimValue;
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210,H=297,M=18;
@@ -1230,7 +1698,7 @@ function downloadPDF(){
     doc.setFillColor(navy[0],navy[1],navy[2]);doc.rect(0,0,W,22,'F');
     doc.setFillColor(gold[0],gold[1],gold[2]);doc.rect(0,0,W,1.6,'F');
     doc.setTextColor(gold[0],gold[1],gold[2]);doc.setFontSize(8);doc.setFont('helvetica','bold');
-    doc.text('UNFINISHED  ·  KOORA  ·  HOUSE OF MASTERY',M,11);
+    doc.text('UNFINISHED  ·  KOORA: THE FINISHER’S PROTOCOL  ·  HOUSE OF MASTERY',M,11);
     doc.setTextColor(255,255,255);doc.setFontSize(8);doc.setFont('helvetica','normal');
     doc.text('Confidential  ·  '+rec.name+'  ·  '+formatDate(rec.date)+'  ·  '+labelForDay(rec.day),M,17.5);
     doc.setTextColor(255,255,255);doc.setFontSize(7);
@@ -1239,7 +1707,7 @@ function downloadPDF(){
   function footer(p){
     doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,H-14,W-M,H-14);
     doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(dim[0],dim[1],dim[2]);
-    doc.text('UNFINISHED · House of Mastery · Architected by Dr. Job Mogire, MD FACC, Founder · mail@mogire.com',M,H-9);
+    doc.text('UNFINISHED · House of Mastery · Architected by Dr. Job Mogire, MD, FACP, FACC · mail@mogire.com',M,H-9);
     doc.text('Page '+p+' of 4',W-M,H-9,{align:'right'});
   }
   function sectionLabel(text,y){
@@ -1254,15 +1722,39 @@ function downloadPDF(){
     return y+L.length*3.6;
   }
 
-  // ── PAGE 1 ── Headline + Snapshot + Reflex profile + Allegiance Matrix
-  header('Page 1 of 4 — Headline');
+  // ── PAGE 1 ── Founder cover letter + headline + reflex profile + Allegiance Matrix
+  header('Page 1 of 4  ·  A letter, and the pattern');
   var y=32;
-  doc.setTextColor(ink[0],ink[1],ink[2]);doc.setFontSize(22);doc.setFont('helvetica','bold');
-  doc.text('Result for '+rec.name,M,y);y+=10;
+
+  // Founder cover letter (paid cohort or non-enrolled variant)
+  doc.setFont('times','italic');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  var letterParas=[
+    rec.name+', you have just spent twenty minutes naming what has been running you. That is harder than it sounds.',
+    'The pattern is not new. The instrument did not invent it. It found language for what has been running for years.',
+    'I built KOORA: The Finisher’s Protocol because I needed it. Eight years of cardiology in Kenya before American residency taught me what unfinished does to the body. ENGAKO is the Ekegusii word for the pocket of still water behind a rock, where the fish rests in a fast river. This is that pocket.'
+  ];
+  if(!participantEnrolled)letterParas.push('KOORA opens once a year. Cohort 2 opens '+COHORT_2_LAUNCH+'. Twenty-four seats. The next window after that is November 2027. Each module is non-recoverable until the following year. The work asks for that.');
+  letterParas.push('The diagnosis stays steady. Your relationship to it is what changes.');
+
+  for(var i=0;i<letterParas.length;i++){
+    var L=doc.splitTextToSize(letterParas[i],W-M*2);
+    doc.text(L,M,y);y+=L.length*5.2+3;
+  }
+  y+=2;
+  doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
+  doc.text('Dr. Job Mogire, MD, FACP, FACC.',M,y);y+=4.5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('Architect, KOORA. House of Mastery.',M,y);y+=10;
+
+  doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,y,W-M,y);y+=8;
+
+  // Headline summary
   var loud=loudestReflex();var p=practiceScores();
-  doc.setFontSize(11);doc.setFont('helvetica','normal');doc.setTextColor(mid[0],mid[1],mid[2]);
-  doc.text('Loudest reflex: '+loud.name+'  (level '+levelLabelNeg(loud.pct)+', '+loud.score+'/'+loud.max+')',M,y);y+=5.5;
-  doc.text('Practice fidelity: '+p._rate+'%   ·   Active covenant: '+activeCovenant(rec.day).name,M,y);y+=10;
+  doc.setFont('helvetica','bold');doc.setFontSize(13);doc.setTextColor(ink[0],ink[1],ink[2]);
+  doc.text('The pattern, named',M,y);y+=6;
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+  doc.text('Loudest reflex: '+loud.name+' ('+levelLabelNeg(loud.pct)+', '+loud.score+'/'+loud.max+').',M,y);y+=4.6;
+  doc.text('Practice fidelity: '+p._rate+'%   ·   Active covenant: '+activeCovenant(rec.day).name+'.',M,y);y+=10;
 
   sectionLabel('Pattern profile · The four reflexes',y);y+=7;
   var rs=reflexScores();
@@ -1275,11 +1767,15 @@ function downloadPDF(){
     doc.setFillColor(235,235,239);doc.roundedRect(M+76,y-3,80,4,1,1,'F');
     doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+76,y-3,80*s.pct,4,1,1,'F');
     doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(s.score+'/'+s.max+'  '+levelLabelNeg(s.pct).toUpperCase(),M+162,y);y+=7;
+    doc.text(s.score+'/'+s.max+'  '+levelLabelNeg(s.pct).toUpperCase(),M+162,y);y+=6.6;
   }
-  y+=2;
-  y=legend('Quiet ran rarely. Active ran often enough to notice. Loud dominated this period. Each subscale uses four items, scored 1 to 4, summed.',y)+4;
+  y+=2;y=legend('Quiet ran rarely. Active ran often enough to notice. Loud dominated this period. Each subscale uses four items, scored 1 to 4, summed.',y);
 
+  footer(1);doc.addPage();
+
+  // ── PAGE 2 ── Allegiance Matrix + ALCARRA + Needs
+  header('Page 2 of 4  ·  Where the reflex broke the week');
+  y=32;
   sectionLabel('The Allegiance Matrix · Fingerprint of '+loud.name.toLowerCase(),y);y+=7;
   if(MATRIX[loud.key]){
     var fac=['Attention','Allegiance','Integrity','Return'];
@@ -1291,13 +1787,8 @@ function downloadPDF(){
       doc.text(ln,M+30,y);y+=ln.length*4.4+2;
     }
   }
-  y+=2;y=legend('The reflex broke each faculty in a specific way. The covenant of return begins by repairing one of these four.',y);
+  y+=2;y=legend('The reflex broke each faculty in a specific way. The covenant of return begins by repairing one of these four.',y)+4;
 
-  footer(1);doc.addPage();
-
-  // ── PAGE 2 ── ALCARRA + Needs + Forces + Fidelities
-  header('Page 2 of 4 — The week as you lived it');
-  y=32;
   sectionLabel('The seven postures · ALCARRA',y);y+=7;
   var alc=alcarraScores();
   for(var i=0;i<alc.length;i++){
@@ -1309,7 +1800,7 @@ function downloadPDF(){
     doc.setFillColor(235,235,239);doc.roundedRect(M+60,y-3,80,4,1,1,'F');
     doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+60,y-3,80*a.pct,4,1,1,'F');
     doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(a.score+'/4  '+levelLabelPos(a.pct).toUpperCase(),M+146,y);y+=6.6;
+    doc.text(a.score+'/4  '+levelLabelPos(a.pct).toUpperCase(),M+146,y);y+=6.4;
   }
   y+=2;y=legend('ALCARRA names the seven daily commitments. Each scores 1 (thin) to 4 (strong) for the past fifteen days.',y)+4;
 
@@ -1324,10 +1815,15 @@ function downloadPDF(){
     doc.setFontSize(9);doc.setTextColor(lc[levelPos(h.filledPct)][0],lc[levelPos(h.filledPct)][1],lc[levelPos(h.filledPct)][2]);
     doc.text('Filled '+h.filled+'/4',M+108,y);
     doc.setTextColor(lc[levelNeg(h.substPct)][0],lc[levelNeg(h.substPct)][1],lc[levelNeg(h.substPct)][2]);
-    doc.text('Substituted '+h.subst+'/4',M+138,y);y+=6.6;
+    doc.text('Substituted '+h.subst+'/4',M+138,y);y+=6.4;
   }
-  y+=2;y=legend('High filled with low substituted is health. The reverse is the warning.',y)+4;
+  y+=2;legend('High filled with low substituted is health. The reverse is the warning.',y);
 
+  footer(2);doc.addPage();
+
+  // ── PAGE 3 ── Forces + Fidelities + Faculties + Practice + Active covenant + Movement
+  header('Page 3 of 4  ·  Practice and movement');
+  y=32;
   sectionLabel('Forces of necessity · What moved you',y);y+=7;
   var fr=forceScores();
   for(var i=0;i<fr.length;i++){
@@ -1337,7 +1833,7 @@ function downloadPDF(){
     doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
     doc.text(f.sub,M+34,y);
     doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.6;
+    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.2;
   }
   y+=2;sectionLabel('The four fidelities · What you held',y);y+=7;
   var fd=fidelityScores();
@@ -1348,15 +1844,9 @@ function downloadPDF(){
     doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
     doc.text(f.sub,M+50,y);
     doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.6;
+    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.2;
   }
-
-  footer(2);doc.addPage();
-
-  // ── PAGE 3 ── Faculties + Practice + Active covenant + Movement
-  header('Page 3 of 4 — Practice and movement');
-  y=32;
-  sectionLabel('The four faculties of fidelity',y);y+=7;
+  y+=2;sectionLabel('The four faculties of fidelity',y);y+=7;
   var fc=facultyScores();
   for(var i=0;i<fc.length;i++){
     var f=fc[i],lvl=levelPos(f.pct),c=lc[lvl];
@@ -1364,14 +1854,10 @@ function downloadPDF(){
     doc.text(f.name,M,y);
     doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
     doc.text(f.sub,M+34,y);
-    doc.setFillColor(235,235,239);doc.roundedRect(M+88,y-3,52,4,1,1,'F');
-    doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+88,y-3,52*f.pct,4,1,1,'F');
-    doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.6;
+    doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
+    doc.text(f.score+'/4  '+levelLabelPos(f.pct).toUpperCase(),M+146,y);y+=6.2;
   }
-  y+=2;y=legend('Attention, Allegiance, Integrity, Return. The four territories the reflexes break, here measured directly.',y)+4;
-
-  sectionLabel('The practice · Six daily and weekly moves',y);y+=7;
+  y+=2;sectionLabel('The practice · Six daily and weekly moves',y);y+=7;
   for(var i=0;i<PRACTICE.length;i++){
     var pr=PRACTICE[i],s=answers[pr.q]||0,lvl=levelPos(s/4),c=lc[lvl];
     doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
@@ -1379,30 +1865,16 @@ function downloadPDF(){
     doc.setFillColor(235,235,239);doc.roundedRect(M+72,y-3,68,4,1,1,'F');
     doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+72,y-3,68*(s/4),4,1,1,'F');
     doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(s+'/4',M+146,y);y+=6.6;
+    doc.text(s+'/4',M+146,y);y+=6.2;
   }
   doc.setFont('helvetica','bold');doc.setFontSize(11);doc.setTextColor(navy[0],navy[1],navy[2]);
   doc.text('Fidelity rate: '+p._rate+'%',M,y+4);y+=10;
-  y=legend('Fidelity rate is the proportion of the practice held over the period. Down arrows on reflexes are good. Up arrows on practice and pillars are good.',y)+4;
-
-  sectionLabel('The covenant in motion',y);y+=7;
-  var cov=activeCovenant(rec.day);
-  doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(ink[0],ink[1],ink[2]);
-  doc.text('Month '+cov.month+': Covenant with '+cov.name,M,y);y+=7;
-  var lines=[{k:'PROMISE',v:cov.promise},{k:'PRACTICE',v:cov.practice},{k:'EVIDENCE',v:cov.evidence}];
-  for(var i=0;i<lines.length;i++){
-    doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(gold[0],gold[1],gold[2]);
-    doc.text(lines[i].k,M,y);
-    doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
-    var ln=doc.splitTextToSize(lines[i].v,W-M*2-26);
-    doc.text(ln,M+24,y);y+=ln.length*4.6+2.5;
-  }
 
   // Movement
   var prior=null;var hist=priorRecords(rec.name);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
   if(prior){
-    y+=4;sectionLabel('What moved · Since your last return',y);y+=7;
+    sectionLabel('What moved · Since your last return',y);y+=7;
     var rows=[];
     for(var i=0;i<REFLEXES.length;i++){
       var r=REFLEXES[i];
@@ -1427,8 +1899,8 @@ function downloadPDF(){
 
   footer(3);doc.addPage();
 
-  // ── PAGE 4 ── Where you are now + Methodology + Continuation
-  header('Page 4 of 4 — Where you are now');
+  // ── PAGE 4 ── Where you are now + thirty-day cost + methodology + continuation
+  header('Page 4 of 4  ·  Where you are now');
   y=32;
 
   sectionLabel('UNFINISHED · Patterns running you',y);y+=7;
@@ -1445,33 +1917,40 @@ function downloadPDF(){
     doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
     doc.text(u.sub,M+44,y);
     doc.setFontSize(9);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
-    doc.text(s+'/4  '+levelLabelNeg(s/4).toUpperCase(),M+146,y);y+=6.6;
+    doc.text(s+'/4  '+levelLabelNeg(s/4).toUpperCase(),M+146,y);y+=6.2;
   }
-  y+=2;sectionLabel('Inventory clarity',y);y+=7;
-  var iv=answers[54]||0,ivLvl=levelPos(iv/4),ivC=lc[ivLvl];
-  doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
-  var lin=doc.splitTextToSize('Clear on the smallest honest finish for at least three of the unfinished items: '+iv+'/4  ('+levelLabelPos(iv/4)+').',W-M*2);
-  doc.text(lin,M,y);y+=lin.length*4.6+5;
+  y+=2;
+  sectionLabel('The cost · in the participant’s own words',y);y+=7;
+  doc.setFont('times','italic');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+  var cost=rec.pain_text||'(participant did not record this)';
+  var costL=doc.splitTextToSize('Thirty-day horizon: "'+cost+'"',W-M*2);doc.text(costL,M,y);y+=costL.length*4.8+3;
+  var cost5=rec.pain_text_5y||'(participant did not record this)';
+  var cost5L=doc.splitTextToSize('Five-year horizon: "'+cost5+'"',W-M*2);doc.text(cost5L,M,y);y+=cost5L.length*4.8+5;
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
+  var pulseTxt=rec.cov_pulse===true?'The participant reported the covenant promise is alive in them today.':rec.cov_pulse===false?'The participant reported the covenant promise is not yet alive in them today.':'The covenant pulse was not recorded.';
+  var pulseL=doc.splitTextToSize(pulseTxt,W-M*2);doc.text(pulseL,M,y);y+=pulseL.length*4.4+1.5;
+  var claimTxt=rec.claim===true?'The participant claimed return in fifteen days.':rec.claim===false?'The participant did not claim return in fifteen days; naming this is itself the return.':'The return claim was not recorded.';
+  var claimL=doc.splitTextToSize(claimTxt,W-M*2);doc.text(claimL,M,y);y+=claimL.length*4.4+6;
 
   sectionLabel('Methodology · for peer review',y);y+=7;
   var meth=[
     'Construct base. Six domains derived from the KOORA Master Architecture: the four reflexes of escape; the seven postures of return (ALCARRA); the four needs underneath the patterns; the four forces of necessity and the four fidelities sealed in the weekly covenant; the four faculties of fidelity broken by each reflex; and the practice of return.',
-    'Items. Sixty items total. Subscale composition: four reflexes × four items each (16); ALCARRA seven; four needs × two items (filled, substituted, 8); forces four, fidelities four (8); faculties four, practice six (10); inventory and inner-experience markers (11). Items written as first-person statements, observational rather than evaluative, in alignment with self-report instrument conventions.',
-    'Scale. Four-point Likert: rarely or never (1), sometimes (2), often (3), most of the time (4). Recall window fifteen days, held constant across all items.',
-    'Scoring. Subscale scores are unweighted sums normalised to percentage of maximum. Three-band cutpoints at 0.44 and 0.69 of subscale maximum, yielding Quiet, Active, Loud (negative items) or Beginning, Practicing, Embodied (positive items).',
-    'Test–retest design. Re-administered every fifteen days across the 180-day cycle (thirteen returns plus alumni continuation), supporting longitudinal sensitivity to change at individual level.',
-    'Convergent reference. The four-reflex construct overlaps theoretical territory with rumination (Nolen-Hoeksema), self-criticism (Gilbert), social comparison (Festinger, modern variants), and approval-status orientation. The four faculties draw on self-regulation literature on attention, agency, and behavioural integrity.'
+    'Items. Sixty items. Subscale composition: four reflexes × four items each (16); ALCARRA seven; four needs × two items (8); forces four, fidelities four (8); faculties four, practice six (10); UNFINISHED, inventory, and inner-experience markers (11). Items written as first-person, observational statements.',
+    'Scale. Four-point Likert: rarely or never (1), sometimes (2), often (3), most of the time (4). Recall window fifteen days, held constant.',
+    'Scoring. Subscale scores are unweighted sums normalised to percentage of maximum. Cutpoints at 0.44 and 0.69 yield three-band classifications.',
+    'Test–retest design. Re-administered every fifteen days across the 180-day cycle (thirteen returns plus alumni continuation), supporting longitudinal sensitivity at individual level.',
+    'Convergent reference. The four-reflex construct overlaps theoretical territory with rumination (Nolen-Hoeksema), self-criticism (Gilbert), social comparison (Festinger), and approval-status orientation. The four faculties draw on self-regulation literature on attention, agency, and behavioural integrity.'
   ];
   doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(body[0],body[1],body[2]);
   for(var i=0;i<meth.length;i++){
     var L=doc.splitTextToSize(meth[i],W-M*2);
-    doc.text(L,M,y);y+=L.length*3.6+2;
+    doc.text(L,M,y);y+=L.length*3.6+1.6;
   }
 
   y+=2;sectionLabel('Continuation',y);y+=7;
-  doc.setFont('helvetica','italic');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
-  var c2=doc.splitTextToSize('You are permitted to fall. You are not permitted to stop returning. Your next return is at '+(rec.day<180?'Day '+nextDayFor(rec.day):'the alumni continuation')+'.',W-M*2);
-  doc.text(c2,M,y);y+=c2.length*4.4+2;
+  doc.setFont('times','italic');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
+  var c3=doc.splitTextToSize('You are permitted to fall. You are not permitted to stop returning. Your next return is at '+(rec.day<180?'Day '+nextDayFor(rec.day):'the alumni continuation')+'. The covenant is not perfection. The covenant is return.',W-M*2);
+  doc.text(c3,M,y);y+=c3.length*4.4+2;
   doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
   doc.text('Cohort contact: mail@mogire.com. Cohort WhatsApp on file with the participant.',M,y);
 
