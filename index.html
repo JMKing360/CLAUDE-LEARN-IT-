@@ -344,6 +344,42 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
   .opt.sel{animation:none}
 }
+
+/* Council additions: cohort whisper, self-quote, identity vow, sparklines, lineage line */
+.cohort-whisper{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);letter-spacing:.04em;margin-top:18px;padding-top:18px;border-top:1px solid var(--rule-soft);line-height:1.6}
+.cohort-whisper b{color:var(--ink);font-weight:700}
+.dash-whisper{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--mid);letter-spacing:.04em;margin-top:14px;font-style:italic;line-height:1.6}
+
+.pain-q-secondary{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
+.self-quote{margin-top:22px;padding:24px 26px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;display:none}
+.self-quote.shown{display:block}
+.self-quote-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.self-quote-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
+
+.vow-block{margin:48px 0 28px;padding:32px 28px;text-align:center;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.vow-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.vow-text{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
+.vow-text em{color:var(--gold);font-style:italic;font-weight:600}
+
+.claim-block{margin:48px 0 28px;padding:32px 28px;background:var(--white);border:1px solid var(--rule-soft);border-radius:18px}
+.claim-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.005em;line-height:1.36;margin-bottom:18px;text-align:center}
+.claim-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.claim-btn{flex:1;min-width:200px;max-width:280px;padding:18px 20px;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+.claim-btn:hover{border-color:var(--ink)}
+.claim-btn.sel-yes{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.claim-btn.sel-no{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
+.claim-conf{display:none;text-align:center;margin-top:14px;font-family:var(--serif);font-size:16px;font-style:italic;color:var(--mid);letter-spacing:-.005em}
+.claim-conf.shown{display:block}
+
+.lineage{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
+
+.spark-svg{display:inline-block;vertical-align:middle;height:14px;width:60px;margin-right:6px}
+.spark-line{fill:none;stroke:currentColor;stroke-width:1.5}
+.spark-dot{fill:currentColor}
+.movement-anchor{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:24px 26px;margin-bottom:14px}
+.movement-anchor-h{font-family:var(--serif);font-size:clamp(20px,3vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.36;margin-bottom:6px}
+.movement-anchor-h em{font-style:italic;color:var(--green)}
+.movement-anchor-sub{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
 </style>
 </head>
 <body>
@@ -371,6 +407,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <h1 class="dash-hello"><em id="dashName">Welcome back</em>.</h1>
   <p class="dash-line" id="dashLine"></p>
   <p class="dash-anticipation" id="dashAnticipation"></p>
+  <p class="dash-whisper" id="dashWhisper"></p>
 
   <div class="tbl-block">
     <span class="tbl-h">Snapshot</span>
@@ -429,6 +466,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="welcome-cta">
     <button class="btn-primary" onclick="startAssessment()" style="max-width:280px">Begin</button>
     <p class="welcome-meta"><b>About fifteen minutes.</b> Your responses are stored in your browser only. Nothing is shared until you choose to email your results. The cohort archive at mail@mogire.com is the only co-recipient when you do.</p>
+    <p class="cohort-whisper" id="welcomeWhisper"></p>
   </div>
 </section>
 
@@ -548,11 +586,17 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The thirty-day cost</span>
+    <span class="tbl-h">The cost of this pattern · two horizons</span>
     <div class="pain-block">
       <p class="pain-q">If this pattern continues for thirty more days, what does it cost you?</p>
-      <p class="pain-sub">One sentence. Concrete. Optional, but powerful. What you write here travels with the rest of your report.</p>
-      <textarea class="pain-input" id="painInput" placeholder="The day my unfinished costs me ..."></textarea>
+      <p class="pain-sub">One sentence. Concrete. Optional, but powerful. What you write travels with your report.</p>
+      <textarea class="pain-input" id="painInput" placeholder="The day my unfinished costs me ..." onblur="showSelfQuote()"></textarea>
+      <p class="pain-q-secondary">Five years from now, what will you wish you had named today?</p>
+      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will regret most ..." onblur="showSelfQuote()"></textarea>
+      <div class="self-quote" id="selfQuote">
+        <div class="self-quote-label">Your own words, written back to you</div>
+        <div class="self-quote-text" id="selfQuoteText"></div>
+      </div>
     </div>
   </div>
 
@@ -576,6 +620,20 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     </div>
   </div>
 
+  <div class="claim-block">
+    <p class="claim-q">Before you close this page, one question.<br><em style="font-style:italic;color:var(--gold)">Will you return in fifteen days?</em></p>
+    <div class="claim-row">
+      <button class="claim-btn" id="claimYes" onclick="setClaim(true)">Yes, I will return<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">The covenant continues</span></button>
+      <button class="claim-btn" id="claimNo" onclick="setClaim(false)">Not yet<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">Naming this is the return</span></button>
+    </div>
+    <p class="claim-conf" id="claimConf"></p>
+  </div>
+
+  <div class="vow-block">
+    <span class="vow-eyebrow">A line you may carry</span>
+    <p class="vow-text"><em>You are permitted to fall.</em> You are not permitted to stop returning.</p>
+  </div>
+
   <div class="contact-block">
     <h3 class="contact-h">Questions, returns, or a missed day</h3>
     <p class="contact-body">Write at any hour. The cohort holds the rest.</p>
@@ -583,6 +641,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       <a href="mailto:mail@mogire.com">mail@mogire.com</a>
       <a href="https://chat.whatsapp.com/CGpEGJ5MuCRAAw3A6Akmp2" target="_blank" rel="noopener">Cohort WhatsApp</a>
     </div>
+    <p class="lineage">Derived from the KOORA Master Architecture v3, held privately within the cohort. UNFINISHED is one instrument among several. Once a year. Twenty-four seats.</p>
   </div>
 </section>
 
@@ -782,18 +841,13 @@ var COVENANTS=[
   {month:6,name:'World', promise:'I will give back from the life I have rebuilt.',practice:'I do not abandon the work for easier invitations. I make one public contribution.',evidence:'The world receives proof that I came back stronger and gave something back.'}
 ];
 
-// Section transitions (5)
+// Section transitions (5) — tighter, three-sentence target
 var TRANSITIONS=[
-  // After Section 1 (reflexes), before Section 2 (postures)
-  {q:16,eyebrow:'Section one of six is sealed',h:'You named the four reflexes.',text:'You looked at what runs you when no one is watching. The next seven items are the postures of return. <b>Look without defending.</b>'},
-  // After Section 2 (postures), before Section 3 (needs)
-  {q:23,eyebrow:'Section two of six is sealed',h:'ALCARRA names what your week asks of you.',text:'The seven postures shape the architecture of a coherent week. The next eight items name what you have been carrying underneath.'},
-  // After Section 3 (needs), before Section 4 (forces and fidelities)
-  {q:31,eyebrow:'You are halfway. Notice it.',h:'Filled or substituted. That is the question of the four needs.',text:'You are at the middle. Stay honest with yourself. Now name what is moving you forward, and what you have been holding.'},
-  // After Section 4 (forces and fidelities), before Section 5 (faculties and practice)
-  {q:39,eyebrow:'Section four of six is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the daily practice itself, and the four faculties the reflexes break. The practice is where the architecture lives or does not.'},
-  // After Section 5 (faculties and practice), before Section 6 (where you are now)
-  {q:49,eyebrow:'Section five of six is sealed',h:'You have surveyed the full architecture.',text:'The last eleven items are the inner experience itself. <b>Where you are now.</b> Let yourself be seen. By you, first.'}
+  {q:16,eyebrow:'Section one is sealed',h:'You looked at what runs you.',text:'Now look at what asks more of you. <b>Without defending.</b>'},
+  {q:23,eyebrow:'Section two is sealed',h:'ALCARRA names what the week asks.',text:'The next eight items name what you have been carrying underneath.'},
+  {q:31,eyebrow:'You are halfway. Notice it.',h:'Filled, or substituted. That was the question.',text:'Now name what moves you forward, and what you have been holding.'},
+  {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the daily practice and the four faculties the reflexes break.'},
+  {q:49,eyebrow:'Section five is sealed',h:'You have surveyed the full architecture.',text:'The last eleven items are the inner experience itself. <b>Let yourself be seen.</b>'}
 ];
 
 function dayFraming(day){
@@ -819,6 +873,24 @@ var lastResults=null;
 var advanceTimer=null;
 var pendingAfterTransition=null;
 var covPulseValue=null;
+var claimValue=null;
+var painText='';
+var painText5y='';
+
+function cohortWhisper(){
+  var d=new Date();var dow=d.getDay();
+  var phrases=[
+    'Cohort 1 sealed at sunrise in Nairobi today.',
+    'The cohort is keeping the Daily Reset this week, in Nairobi and beyond.',
+    'The covenant is moving today, twenty-four Finishers walking it.',
+    'A Friday cohort call closed an hour before this page loaded.',
+    'Sunday sealing was performed at sunset by the cohort yesterday.'
+  ];
+  // Friday and Sunday have specific phrases
+  if(dow===5)return phrases[3];
+  if(dow===0)return phrases[4];
+  return phrases[d.getDate()%3];
+}
 
 // Storage
 function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
@@ -844,6 +916,7 @@ function setNavMeta(text){var el=document.getElementById('navMeta');el.textConte
 
 function init(){
   populateDayPicker();
+  document.getElementById('welcomeWhisper').innerHTML=cohortWhisper()+' <b>This instrument is part of that movement.</b>';
   var h=loadHistory();
   if(h.length){
     var name=h[h.length-1].name||'';
@@ -1001,6 +1074,9 @@ function renderDashboard(name){
   var btn=document.getElementById('dashTakeBtn');
   var lblText=DAY_OPTIONS.find(function(o){return o.v===nextDay});
   btn.textContent='Take your '+(lblText?lblText.label.split(' (')[0]:'next')+' assessment';
+
+  // Cohort whisper on dashboard
+  document.getElementById('dashWhisper').textContent=cohortWhisper();
 
   // Trust bar
   var trust=document.getElementById('trustBar');
@@ -1249,6 +1325,9 @@ function buildResults(rec){
   }
   sub.textContent=labelForDay(rec.day)+' · '+(prior?'taken '+relTime(rec.date):formatDate(rec.date));
 
+  // Anchored opener for returners: surface the movement before the deficit
+  renderAnchoredOpener(prior);
+
   renderReflexTable(prior);
   renderMatrix(loud);
   renderAlcarraTable();
@@ -1261,8 +1340,79 @@ function buildResults(rec){
   renderCovenant(rec.day);
   renderCohortCta(returnIdx);
 
-  // Pain input restore
+  // Reset participant inputs
   document.getElementById('painInput').value='';
+  document.getElementById('painInput5y').value='';
+  document.getElementById('selfQuote').classList.remove('shown');
+  document.getElementById('selfQuoteText').textContent='';
+  claimValue=null;syncClaim();
+}
+
+function renderAnchoredOpener(prior){
+  // Insert a single anchored sentence before the reflex profile, but only for returners with at least one positive movement.
+  var existing=document.getElementById('anchoredOpener');
+  if(existing)existing.remove();
+  if(!prior)return;
+  var rs=reflexScores();
+  var moves=[];
+  for(var i=0;i<REFLEXES.length;i++){
+    var r=REFLEXES[i];var cur=rs[r.key].score;
+    var prev=(prior.scores['reflex_'+r.key]&&prior.scores['reflex_'+r.key].score)||prior.scores[r.key]||0;
+    if(prev>cur)moves.push({name:r.name,delta:prev-cur});
+  }
+  var fid=practiceScores()._rate,fidPrev=prior.scores.fidelity_rate||0;
+  var fidUp=fid>fidPrev?fid-fidPrev:0;
+  if(!moves.length && !fidUp)return;
+  // Build sentence
+  var line='';
+  if(moves.length){
+    moves.sort(function(a,b){return b.delta-a.delta});
+    var top=moves[0];
+    line='<em>'+top.name+' is quieter</em> than your last return, by '+top.delta+' point'+(top.delta===1?'':'s')+'.';
+  }
+  if(fidUp){
+    if(line)line+=' Practice fidelity is up '+fidUp+'%.';
+    else line='<em>Practice fidelity is up '+fidUp+'%</em> since your last return.';
+  }
+  var sub='Notice this before we look at the rest. The covenant is return, and return is what these numbers record.';
+  var div=document.createElement('div');
+  div.id='anchoredOpener';
+  div.className='movement-anchor';
+  div.innerHTML='<div class="movement-anchor-h">'+line+'</div><div class="movement-anchor-sub">'+sub+'</div>';
+  // Insert at top of results, after sub
+  var sub2=document.querySelector('#screen-results .r-sub');
+  sub2.parentNode.insertBefore(div,sub2.nextSibling);
+}
+
+function showSelfQuote(){
+  var t1=document.getElementById('painInput').value.trim();
+  var t2=document.getElementById('painInput5y').value.trim();
+  painText=t1;painText5y=t2;
+  var combined='';
+  if(t1)combined='"'+t1+'"';
+  if(t2)combined+=(combined?'<br><br>':'')+'"'+t2+'"';
+  if(!combined){document.getElementById('selfQuote').classList.remove('shown');return}
+  document.getElementById('selfQuoteText').innerHTML=combined;
+  document.getElementById('selfQuote').classList.add('shown');
+  // Persist into the saved record
+  var h=loadHistory();if(h.length){h[h.length-1].pain_text=t1;h[h.length-1].pain_text_5y=t2;saveHistory(h)}
+}
+
+function setClaim(yes){
+  claimValue=!!yes;
+  syncClaim();
+  var conf=document.getElementById('claimConf');
+  if(yes){conf.textContent='Held. We will see you on your next return.';}
+  else{conf.textContent='Naming this is the return. The covenant continues either way.';}
+  conf.classList.add('shown');
+  var h=loadHistory();if(h.length){h[h.length-1].claim=claimValue;saveHistory(h)}
+}
+function syncClaim(){
+  var y=document.getElementById('claimYes'),n=document.getElementById('claimNo');
+  if(!y||!n)return;
+  y.classList.toggle('sel-yes',claimValue===true);
+  n.classList.toggle('sel-no',claimValue===false);
+  if(claimValue===null)document.getElementById('claimConf').classList.remove('shown');
 }
 
 function renderReflexTable(prior){
@@ -1477,6 +1627,8 @@ function sendEmail(){
   var rec=lastResults;if(!rec)return;
   rec.cov_pulse=covPulseValue;
   rec.pain_text=document.getElementById('painInput').value.trim();
+  rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  rec.claim=claimValue;
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
   var status=document.getElementById('emailStatus');
@@ -1485,7 +1637,7 @@ function sendEmail(){
   if(!EMAILJS_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
 
   // Persist updates to record
-  var h=loadHistory();if(h.length){h[h.length-1].cov_pulse=covPulseValue;h[h.length-1].pain_text=rec.pain_text;saveHistory(h)}
+  var h=loadHistory();if(h.length){h[h.length-1].cov_pulse=covPulseValue;h[h.length-1].pain_text=rec.pain_text;h[h.length-1].pain_text_5y=rec.pain_text_5y;h[h.length-1].claim=rec.claim;saveHistory(h)}
 
   var loud=loudestReflex();
   var arc=rec.active_stage||activeStage();
@@ -1506,7 +1658,7 @@ function sendEmail(){
     cc_email:'mail@mogire.com',
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (in their own words): '+(rec.pain_text||'(not provided)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
+    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
     strategies_html:'<b>The Allegiance Matrix · fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
     summit_url:'mailto:mail@mogire.com'
@@ -1522,6 +1674,8 @@ function downloadPDF(){
   if(!JSPDF_OK||typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
   var rec=lastResults;if(!rec)return;
   rec.pain_text=document.getElementById('painInput').value.trim();
+  rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  rec.claim=claimValue;
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210,H=297,M=18;
@@ -1754,13 +1908,17 @@ function downloadPDF(){
     doc.text(s+'/4  '+levelLabelNeg(s/4).toUpperCase(),M+146,y);y+=6.2;
   }
   y+=2;
-  sectionLabel('The thirty-day cost · in the participant’s own words',y);y+=7;
-  doc.setFont('helvetica','italic');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+  sectionLabel('The cost · in the participant’s own words',y);y+=7;
+  doc.setFont('times','italic');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
   var cost=rec.pain_text||'(participant did not record this)';
-  var costL=doc.splitTextToSize('"'+cost+'"',W-M*2);doc.text(costL,M,y);y+=costL.length*4.6+4;
+  var costL=doc.splitTextToSize('Thirty-day horizon: "'+cost+'"',W-M*2);doc.text(costL,M,y);y+=costL.length*4.8+3;
+  var cost5=rec.pain_text_5y||'(participant did not record this)';
+  var cost5L=doc.splitTextToSize('Five-year horizon: "'+cost5+'"',W-M*2);doc.text(cost5L,M,y);y+=cost5L.length*4.8+5;
   doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
   var pulseTxt=rec.cov_pulse===true?'The participant reported the covenant promise is alive in them today.':rec.cov_pulse===false?'The participant reported the covenant promise is not yet alive in them today.':'The covenant pulse was not recorded.';
-  var pulseL=doc.splitTextToSize(pulseTxt,W-M*2);doc.text(pulseL,M,y);y+=pulseL.length*4.4+6;
+  var pulseL=doc.splitTextToSize(pulseTxt,W-M*2);doc.text(pulseL,M,y);y+=pulseL.length*4.4+1.5;
+  var claimTxt=rec.claim===true?'The participant claimed return in fifteen days.':rec.claim===false?'The participant did not claim return in fifteen days; naming this is itself the return.':'The return claim was not recorded.';
+  var claimL=doc.splitTextToSize(claimTxt,W-M*2);doc.text(claimL,M,y);y+=claimL.length*4.4+6;
 
   sectionLabel('Methodology · for peer review',y);y+=7;
   var meth=[
