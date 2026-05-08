@@ -35,6 +35,19 @@ a{color:var(--navy);text-decoration:none}
 a:hover{color:var(--gold)}
 
 #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
+/* Six-segment chamber progress */
+#chamber-progress{position:fixed;top:55px;left:0;right:0;display:none;justify-content:center;gap:6px;padding:10px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
+#chamber-progress.shown{display:flex}
+.cp-seg{flex:0 1 70px;max-width:70px;height:3px;border-radius:2px;background:var(--rule);position:relative;transition:background .3s ease}
+.cp-seg.done{background:var(--navy)}
+.cp-seg.now{background:var(--gold)}
+.cp-seg.now::after{content:"";position:absolute;inset:0;background:var(--gold);border-radius:2px;animation:cp-pulse 1.6s ease-in-out infinite}
+@keyframes cp-pulse{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* Focus-visible ring for keyboard accessibility */
+.opt:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45);border-color:var(--gold)}
+.btn-primary:focus-visible,.btn-secondary:focus-visible,.btn-back:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
+
 
 nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
 .nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
@@ -384,6 +397,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </head>
 <body>
 <div id="progress"></div>
+<div id="chamber-progress" aria-hidden="true">
+  <div class="cp-seg" data-ch="1"></div>
+  <div class="cp-seg" data-ch="2"></div>
+  <div class="cp-seg" data-ch="3"></div>
+  <div class="cp-seg" data-ch="4"></div>
+  <div class="cp-seg" data-ch="5"></div>
+  <div class="cp-seg" data-ch="6"></div>
+</div>
 
 <nav>
   <div class="nav-inner">
@@ -579,6 +600,15 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <table class="dtable" id="moveTable"></table>
     <p class="narrative-read" id="moveRead"></p>
     <p class="tbl-legend"><b>How to read this:</b> Down arrows on reflexes are good. Up arrows on practice and pillars are good. The covenant is not perfection. The covenant is return, and return is what these arrows record.</p>
+  </div>
+
+  <div class="tbl-block">
+    <span class="tbl-h">The threshold map · where you tend to break</span>
+    <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:26px 22px">
+      <p style="font-family:var(--serif);font-size:16px;color:var(--body);margin:0 0 18px;line-height:1.5">Most patterns do not break in one place. They break in a particular threshold. Mark the one most true for you over the past fifteen days.</p>
+      <div id="thresholdRow" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> The five thresholds are <b>before beginning</b>, <b>after beginning</b>, <b>at resistance</b>, <b>near completion</b>, and <b>after falling</b>. Knowing yours moves the work from generic discipline to specific repair.</p>
+    </div>
   </div>
 
   <div class="tbl-block">
@@ -917,6 +947,17 @@ function show(id){
   window.scrollTo(0,0);
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
+function setChamberProgress(currentChamber){
+  var bar=document.getElementById('chamber-progress');if(!bar)return;
+  var segs=bar.querySelectorAll('.cp-seg');
+  for(var i=0;i<segs.length;i++){
+    var ch=i+1;
+    segs[i].classList.toggle('done',ch<currentChamber);
+    segs[i].classList.toggle('now',ch===currentChamber);
+  }
+  bar.classList.toggle('shown',currentChamber>=1&&currentChamber<=6);
+}
+function hideChamberProgress(){var bar=document.getElementById('chamber-progress');if(bar)bar.classList.remove('shown')}
 function setNavMeta(text){var el=document.getElementById('navMeta');el.textContent=text||'UNFINISHED'}
 
 function init(){
@@ -1235,6 +1276,7 @@ function renderQuestion(n){
   document.getElementById('qText').textContent=q.text;
   document.getElementById('qPrompt').textContent=sectionPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
+  setChamberProgress(q.sec);
   var box=document.getElementById('qOptions');box.innerHTML='';
   for(var i=0;i<OPTIONS.length;i++){
     (function(opt){
@@ -1277,7 +1319,7 @@ function enterTransition(trans){
   if(trans.q===31 && participantName)dayLine='Halfway, '+safe(participantName)+'. Notice your honesty so far. '+dayFraming(participantDay);
   else dayLine=dayFraming(participantDay);
   document.getElementById('trDayFrame').textContent=dayLine;
-  show('screen-transition');
+  hideChamberProgress();show('screen-transition');
   setProgress(Math.round((trans.q/TOTAL)*98));
 }
 function exitTransition(){
@@ -1288,7 +1330,7 @@ function exitTransition(){
 
 function enterAck(){
   document.getElementById('ackText').innerHTML=safe(participantName)+', you have answered sixty items. That is harder than it sounds. Take one breath. Now let us look together.';
-  show('screen-ack');setProgress(100);
+  hideChamberProgress();show('screen-ack');setProgress(100);
 }
 function afterAck(){
   finishAssessment();
@@ -1354,7 +1396,7 @@ function finishAssessment(){
   var rec=buildRecord();
   appendRecord(rec);
   buildResults(rec);
-  show('screen-results');
+  hideChamberProgress();show('screen-results');
   setNavMeta('Result · '+labelForDay(participantDay).split(' (')[0]);
 }
 function buildRecord(){
@@ -1413,6 +1455,7 @@ function buildResults(rec){
   renderPracticeFidelity(prior);
   renderMovement(prior);
   renderCovenant(rec.day);
+  renderThreshold();
   renderCohortCta(returnIdx);
 
   // Reset participant inputs
@@ -1538,6 +1581,13 @@ function renderMatrix(loud){
     for(var f=0;f<faculties.length;f++){
       fp+='<div class="fingerprint-row"><div class="fingerprint-fac">'+faculties[f]+'</div><div class="fingerprint-text">'+MATRIX[loud.key][faculties[f]]+'</div></div>';
     }
+    // Strength + Next Step closure (Mirror/Mechanism/Cost/Strength/Next-Step structure completion)
+    var quietest=null;
+    for(var i=0;i<REFLEXES.length;i++){var r=REFLEXES[i],s=rs[r.key];if(!quietest||s.score<quietest.score)quietest=s}
+    if(quietest && quietest.key!==loud.key){
+      fp+='<div class="fingerprint-row" style="border-top:1px solid var(--rule-soft);border-bottom:none;padding-top:18px;margin-top:8px"><div class="fingerprint-fac" style="color:var(--green)">Strength</div><div class="fingerprint-text"><b>'+quietest.name+'</b> is the reflex least loud. Lean on it as the ground while you address the others.</div></div>';
+    }
+    fp+='<div class="fingerprint-row" style="border-bottom:none"><div class="fingerprint-fac" style="color:var(--gold)">Next move</div><div class="fingerprint-text">The implementation intention you write below is the first finishable move. The covenant of return begins by repairing one of these four faculties, in the next twenty-four hours.</div></div>';
     fp+='</div>';
   }
   wrap.innerHTML=html+fp;
@@ -1659,6 +1709,35 @@ function renderMovement(prior){
   document.getElementById('moveRead').textContent=read;
 }
 
+
+function renderThreshold(){
+  var box=document.getElementById('thresholdRow');if(!box)return;
+  var thresholds=[
+    {k:'before',label:'Before beginning',sub:'I avoid choosing'},
+    {k:'after',label:'After beginning',sub:'I lose novelty and drift'},
+    {k:'resist',label:'At resistance',sub:'I reorganise instead of continue'},
+    {k:'near',label:'Near completion',sub:'I sabotage when finishing becomes real'},
+    {k:'fall',label:'After falling',sub:'I struggle to return'}
+  ];
+  box.innerHTML='';
+  for(var i=0;i<thresholds.length;i++){
+    (function(th){
+      var b=document.createElement('button');
+      b.className='claim-btn';
+      b.style.cssText='flex:1;min-width:140px;padding:14px 16px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;';
+      b.innerHTML=th.label+'<span style="display:block;font-weight:500;font-size:11px;color:var(--mid);margin-top:3px;letter-spacing:.005em">'+th.sub+'</span>';
+      b.onclick=function(){
+        var all=box.querySelectorAll('.claim-btn');
+        for(var k=0;k<all.length;k++){all[k].style.borderColor='var(--rule)';all[k].style.background='var(--white)';all[k].style.color='var(--ink)'}
+        b.style.borderColor='var(--gold)';b.style.background='#FAF6EC';b.style.color='var(--gold)';
+        if(lastResults)lastResults.threshold=th.k;
+        var h=loadHistory();if(h.length){h[h.length-1].threshold=th.k;saveHistory(h)}
+      };
+      box.appendChild(b);
+    })(thresholds[i]);
+  }
+}
+
 function renderCovenant(day){
   var c=activeCovenant(day);
   var box=document.getElementById('covCard');
@@ -1711,6 +1790,7 @@ function sendEmail(){
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
   rec.claim=claimValue;
   rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
+  rec.threshold=rec.threshold||null;
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
   var status=document.getElementById('emailStatus');
@@ -1740,7 +1820,7 @@ function sendEmail(){
     cc_email:'mogiremd@gmail.com',
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
+    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br>Threshold (self-reported): '+(rec.threshold||'(not selected)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
     strategies_html:'<b>The Allegiance Matrix · fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
     summit_url:'mailto:mail@mogire.com'
@@ -1759,6 +1839,7 @@ function downloadPDF(){
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
   rec.claim=claimValue;
   rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
+  rec.threshold=rec.threshold||null;
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210,H=297,M=18;
