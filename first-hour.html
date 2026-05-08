@@ -1033,7 +1033,11 @@ function renderProfile(prior){
 
 function renderPattern(loud){
   document.getElementById('patternH').innerHTML='The chamber running you most is <em>'+loud.name+'</em>.';
-  document.getElementById('patternBody').innerHTML=CHAMBER_PARAGRAPHS[loud.key];
+  // Mirror, Mechanism, Cost are inside CHAMBER_PARAGRAPHS. Append a strength line and a next-step pointer.
+  var quietest=chamberScores().slice().sort(function(a,b){return a.score-b.score})[0];
+  var strengthLine=' <b>What is still working in you:</b> '+quietest.name+' is the chamber least loud. Lean on it as the ground while you address the others.';
+  var nextStep=' <b>Your next step:</b> the implementation intention you write below is your first finishable move. The First Hour is not a meditation on the pattern. It is the place where the pattern meets the next twenty-four hours.';
+  document.getElementById('patternBody').innerHTML=CHAMBER_PARAGRAPHS[loud.key]+'<br><br>'+strengthLine+'<br><br>'+nextStep;
 }
 
 function renderCost(){
