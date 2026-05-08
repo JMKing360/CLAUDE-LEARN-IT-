@@ -443,6 +443,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <p class="body-text"><b>KOORA opens once a year.</b> Cohort 1 launched May 2026 in Nairobi. Cohort 2 opens November 2026. Twenty-four seats. The number is structural. Each module opens in the first week of its month. If you miss a module, you do not see it again until the following year. The architecture is non-recoverable on purpose.</p>
   <p class="body-text">About fifteen minutes. Each return is evidence. Each return is the work.</p>
 
+  <p class="body-text" style="font-style:italic;color:var(--mid);font-size:15px;margin-top:8px;border-left:3px solid var(--gold);padding-left:14px;line-height:1.6">Nothing here is accusation. It is architecture. The pattern is the diagnosis, never the verdict.</p>
+
   <hr class="divider">
 
   <div class="field-stack">
@@ -597,6 +599,9 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
         <div class="self-quote-label">Your own words, written back to you</div>
         <div class="self-quote-text" id="selfQuoteText"></div>
       </div>
+      <p class="pain-q-secondary" style="margin-top:36px">When tomorrow begins, I will...</p>
+      <p class="pain-sub">One specific sentence. The smallest first move you can make in the next twenty-four hours. If-then planning is the bridge between insight and behaviour.</p>
+      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." onblur="persistIntent()"></textarea>
     </div>
   </div>
 
@@ -1454,6 +1459,12 @@ function renderAnchoredOpener(prior){
   sub2.parentNode.insertBefore(div,sub2.nextSibling);
 }
 
+function persistIntent(){
+  var t=document.getElementById('intentInput');if(!t)return;
+  var v=t.value.trim();
+  var h=loadHistory();if(h.length){h[h.length-1].intent=v;saveHistory(h)}
+  if(lastResults)lastResults.intent=v;
+}
 function showSelfQuote(){
   var t1=document.getElementById('painInput').value.trim();
   var t2=document.getElementById('painInput5y').value.trim();

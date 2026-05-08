@@ -324,6 +324,19 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
   <p class="body-text" style="font-style:italic;color:var(--mid);font-size:15px;margin-top:8px">This is not another self-improvement instrument. Most of those become another form of masking. This one names the pattern, quantifies the cost, and steps back. The work, when it begins, is yours.</p>
 
+  <div class="framing-card" style="border-left:3px solid var(--navy);background:#FCF9F1">
+    <p style="font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.3;margin:0 0 14px 0">I should be finishing, but...</p>
+    <p style="font-family:var(--serif);font-size:clamp(17px,2.2vw,19px);font-weight:500;color:var(--body);line-height:1.6;margin:0;letter-spacing:-.005em">
+      ...I am checking again.<br>
+      ...I am planning again.<br>
+      ...I am starting something new.<br>
+      ...I am waiting until I feel ready.<br>
+      ...I am calling avoidance preparation.<br>
+      ...I am telling myself this year is different.
+    </p>
+    <p style="font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);margin:14px 0 0 0;line-height:1.55;letter-spacing:.005em">If any of this lands, you are in the right room. The First Hour is not a productivity tool. It is a diagnostic for what has been quietly running you.</p>
+  </div>
+
   <div class="framing-card">
     <p>The Mind that Stopped Thinking. The Body that Got Forgotten. The Word that Lost Weight. The Time that Disappeared. The Money that Owns You. The People You Are Performing With.</p>
     <p style="font-style:italic;color:var(--mid);font-size:15px;margin-top:12px">Six chambers. Six honest minutes each.</p>
@@ -436,6 +449,9 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
         <div class="self-quote-label">Your own words, written back to you</div>
         <div class="self-quote-text" id="selfQuoteText"></div>
       </div>
+      <p class="pain-q-second" style="margin-top:36px">When tomorrow begins, I will...</p>
+      <p class="pain-sub">One specific sentence. The smallest first move you can make in the next twenty-four hours. If-then planning is the bridge between insight and behavior.</p>
+      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." onblur="persistIntent()"></textarea>
     </div>
   </div>
 
@@ -456,8 +472,9 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   </div>
 
   <div class="r-block">
+    <span class="r-block-label" style="margin-bottom:10px;display:block">The Finishing System · A body of work, not a programme</span>
     <h3 class="ladder-h">The next door, when you are ready.</h3>
-    <p class="ladder-sub">House of Mastery is a body of work, not a programme. Three rooms, in order of depth. Walk in at any rung. Most begin at the first.</p>
+    <p class="ladder-sub"><b>The Finishing System</b> is the architecture for moving from The Unfinishing Life to The Finishing Life. Four rooms, in order of depth. Walk in at any rung. Most begin at the first.</p>
     <div class="ladder-list">
       <div class="rung r1">
         <span class="rung-eyebrow">Free · You are here</span>
@@ -1062,6 +1079,12 @@ function renderMovement(prior){
   document.getElementById('moveGrid').innerHTML=html;
 }
 
+function persistIntent(){
+  var t=document.getElementById('intentInput');if(!t)return;
+  var v=t.value.trim();
+  var h=loadHistory();if(h.length){h[h.length-1].intent=v;saveHistory(h)}
+  if(lastResults)lastResults.intent=v;
+}
 function showSelfQuote(){
   var t1=document.getElementById('painInput').value.trim();
   var t2=document.getElementById('painInput5y').value.trim();
