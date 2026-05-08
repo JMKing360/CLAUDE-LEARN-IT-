@@ -36,7 +36,7 @@ a:hover{color:var(--gold)}
 
 #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 
-/* Six-segment chamber progress — visible architecture */
+/* Six-segment chamber progress ,  visible architecture */
 #chamber-progress{position:fixed;top:55px;left:0;right:0;display:none;justify-content:center;gap:6px;padding:10px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
 #chamber-progress.shown{display:flex}
 .cp-seg{flex:0 1 70px;max-width:70px;height:3px;border-radius:2px;background:var(--rule);position:relative;transition:background .3s ease}
@@ -83,7 +83,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* WELCOME */
 #screen-welcome{padding:88px 0 96px}
-.eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;display:block}
+.eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
 .hero{font-family:var(--serif);font-size:clamp(34px,5.6vw,58px);font-weight:600;line-height:1.04;letter-spacing:-.025em;color:var(--ink);margin-bottom:32px}
 .hero em{font-style:italic;font-weight:600}
 .lede{font-family:var(--serif);font-size:clamp(20px,2.8vw,25px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:20px;letter-spacing:-.005em}
@@ -106,7 +106,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* TRANSITION */
 #screen-transition{padding:104px 0 140px}
-.tr-eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.tr-eyebrow{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
 .tr-h1{font-family:var(--serif);font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
 .tr-h1 em{font-style:italic;font-weight:600}
 .tr-text{font-family:var(--serif);font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:32px}
@@ -114,7 +114,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
-.q-section{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
+.q-section{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
 .q-prompt{font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);font-weight:500;font-style:italic;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em;line-height:1.45;max-width:620px}
 .q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
@@ -138,13 +138,13 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
-.r-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:block}
+.r-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
 .r-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,48px);font-weight:600;line-height:1.08;letter-spacing:-.025em;color:var(--ink);margin-bottom:14px}
 .r-h1 em{font-style:italic;font-weight:600}
 .r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:8px;letter-spacing:.005em}
 
 .r-block{margin:48px 0}
-.r-block-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mid);margin-bottom:18px;display:block}
+.r-block-label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;display:block}
 
 .profile-list{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:8px 22px}
 .profile-row{display:grid;grid-template-columns:1fr 1fr 110px;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
@@ -163,7 +163,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .tbl-legend b{color:var(--ink);font-weight:700}
 
 .feature-card{background:var(--navy);color:#fff;border-radius:22px;padding:44px 36px}
-.feature-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.feature-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
 .feature-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,34px);font-weight:600;color:#fff;letter-spacing:-.022em;line-height:1.18;margin-bottom:14px}
 .feature-h em{font-style:italic;font-weight:600;color:var(--gold-soft)}
 .feature-body{font-family:var(--sans);font-size:15px;font-weight:500;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:14px;letter-spacing:.005em}
@@ -171,13 +171,13 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 .cost-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .cost-cell{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:24px 22px}
-.cost-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.20em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+.cost-label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
 .cost-num{font-family:var(--serif);font-size:clamp(34px,4.6vw,46px);font-weight:600;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:6px}
 .cost-num em{font-size:.55em;font-weight:500;color:var(--gold);font-style:normal;margin-left:2px;letter-spacing:0}
 .cost-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
 
 .forecast{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--red)}
-.forecast-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:block}
+.forecast-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:block}
 .forecast-h{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.32;margin-bottom:18px}
 .forecast-row{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--body);line-height:1.6;padding:10px 0;border-bottom:1px dashed var(--rule-soft);letter-spacing:.005em}
 .forecast-row:last-child{border-bottom:none}
@@ -204,7 +204,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .rung.r2{border-left:3px solid var(--gold)}
 .rung.r3{border-left:3px solid var(--gold)}
 .rung.r4{border-left:3px solid var(--navy);background:var(--navy);color:#fff}
-.rung-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.rung-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:8px;display:block}
 .rung.r4 .rung-eyebrow{color:var(--gold-soft)}
 .rung-name{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.2;margin-bottom:8px}
 .rung.r4 .rung-name{color:#fff}
@@ -228,7 +228,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* Vow / lineage / retake */
 .vow-block{margin:48px 0 28px;padding:32px 28px;text-align:center;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
-.vow-eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:block}
+.vow-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
 .vow-text{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
 .vow-text em{color:var(--gold);font-style:italic;font-weight:600}
 
@@ -321,9 +321,9 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <span class="brand-stamp">The First Hour · A House of Mastery audit</span>
   <span class="eyebrow">THE FIRST HOUR · A six-chamber audit</span>
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
-  <p class="lede">There is a kind of life that runs you while you think you are running it. <strong>From the outside, it works.</strong> The biography reads well at weddings. From the inside, something is on mute. The work does not get done. The years pass. The room is full of people who think they know you. <strong>You are not lazy. You just never finish.</strong></p>
+  <p class="lede">There is a kind of life that runs you while you think you are running it. <strong>From the outside, it works.</strong> The biography reads well at weddings, even when it does not read well at home. From the inside, something is on mute, the work does not get done, the years pass, and the room is full of people who think they know you. <strong>You are not lazy, you just never finish.</strong></p>
   <p class="lede" style="font-size:clamp(18px,2.5vw,21px);color:var(--mid);margin-top:-6px">This is not breakdown. It is maturation. The diagnostic instrument is the room where the inventory becomes available before it arrives as a crisis.</p>
-  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACP, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Forty-two items. About twelve minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
+  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACP, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Forty-two items, about twelve minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
   <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
   <p class="body-text" style="font-style:italic;color:var(--mid);font-size:15px;margin-top:8px">This is not another self-improvement instrument. Most of those become another form of masking. This one names the pattern, quantifies the cost, and steps back. The work, when it begins, is yours.</p>
 
@@ -462,7 +462,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <span class="r-block-label">The canon · what you have just diagnosed</span>
     <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)">
       <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,21px);font-weight:500;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin:0">
-        What you have just named has a name. It is called <b>The Unfinishing Life</b>. It is not laziness. It is fragmentation. Open loops. Unkept promises. Half-built identities. The pattern has a body, a literature, and a path through it. The path moves through six layers, from outer architecture to sacred essence. It passes, eventually, through four questions every covenant with your future is built on.
+        What you have just named has a name. It is called <b>The Unfinishing Life</b>. It is not laziness, but fragmentation, made visible in open loops, unkept promises, and half-built identities. The pattern has a body, a literature, and a path through it. The path moves through six layers, from outer architecture to sacred essence. It passes, eventually, through four questions every covenant with your future is built on.
       </p>
       <ol style="font-family:var(--serif);font-size:clamp(17px,2.4vw,20px);font-weight:600;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:22px 0 0 22px;padding:0">
         <li style="margin-bottom:6px">Who do you want to be?</li>
@@ -504,7 +504,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
         <span class="rung-eyebrow">If the path is yours to walk</span>
         <div class="rung-name"><em>KOORA: The Finisher’s Protocol</em></div>
         <div class="rung-meta">180 days · Once a year · Twenty-four seats</div>
-        <div class="rung-body">A 180-day clinical-grade architecture for high-functioning professionals whose patterns have been running them quietly. <b>KOORA opens once a year.</b> Twenty-four seats. The number is structural. Each module is non-recoverable until the next intake. The diagnosis stays steady. Your relationship to it is what changes.</div>
+        <div class="rung-body">A 180-day clinical-grade architecture for high-functioning professionals whose patterns have been running them quietly. <b>KOORA opens once a year.</b> Twenty-four seats, a number that is structural rather than arbitrary. Each module is non-recoverable until the next intake. The diagnosis stays steady. Your relationship to it is what changes.</div>
         <a class="rung-action" href="https://www.houseofmastery.co/koora" target="_blank" rel="noopener">Read more at houseofmastery.co/koora →</a>
       </div>
     </div>
@@ -532,7 +532,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </main>
 
 <footer>
-  <p class="foot-credit"><b>THE FIRST HOUR</b> · A House of Mastery audit<br>Designed by <b>Dr. Job Mogire, MD, FACP, FACC</b>, board-certified cardiologist<br>Don’t die with an unfinishing life.</p>
+  <p class="foot-credit"><b>The First Hour</b>, an instrument of House of Mastery, designed by Dr. Job Mogire, MD, FACP, FACC. Don’t die with an unfinishing life.</p>
 </footer>
 
 <script>
@@ -610,18 +610,18 @@ var CHAMBERS=[
 
 var CHAMBER_PARAGRAPHS={
   mind:'Your mind has been running on outsourced track. Opinions you did not form. Beliefs you absorbed before you noticed. People who once knew you describe a kind of decalcification, where the wonder went somewhere and the curiosity dimmed. You have been bargaining with your own mind. "Ten more minutes." "Let me scroll first." "I will start tonight." The voice you hear at three in the morning is not your own voice. It is a borrowed voice. The sad story of you has begun to act like an identity. The first chamber to repair is the one that does the looking.',
-  body:'Your body has been filing a daily depletion report. The shoulder since June. The sleep that does not reach the bottom of you. The 2:30 a.m. window the body uses when no other is available. Movement reduced to management. As a cardiologist, I have watched what unspoken life does to a heart. The conversation you will not have is becoming chest pain. The body\u2019s requests do not expire. They accrue interest.',
+  body:'Your body has been filing a daily depletion report. The shoulder since June. The sleep that does not reach the bottom of you. The 2:30 a.m. window the body uses when no other is available. Movement has been reduced to management. As a cardiologist, I have watched what unspoken life does to a heart. The conversation you will not have is becoming chest pain. The body\u2019s requests do not expire. They accrue interest.',
   word:'Your word to yourself has lost weight. The person who makes the promise has stopped having credibility with the person who must keep it. The bank account of self-trust is overdrawn. Most of what you call procrastination is fear masquerading as willpower. The promise is not broken by weakness. It is held hostage by fear disguised as discernment. Until you are honest with yourself about a small thing, you cannot be honest with yourself about a large one.',
   time:'Your time has been disappearing in ways you cannot name. The days are full. The year is thin. You are running out of \u2018later\u2019 and somewhere you know it. "Someday" is not a date. It is a deferral mechanism. The biggest lie you have been telling yourself is that things will be better in the future. They will not, unless something changes today. The grand gnawing space between how you think you should feel and how you actually feel is largest here, in time. Time is the only resource that does not return.',
   money:'Your money operates by rules you did not consciously set. You earn more than you once dreamed of. You are not freer. Money has been reacting to fear, to image, to inherited script. The substitution economy: what you traded away for the thing you bought. Your ask has stopped being your dignity and started feeling like desperation. Until the rules are visible, the rules are running you.',
   people:'You have been performing relationships you used to live. The version of you at home is not the version at work. Both are managed. You may be lonely in rooms full of people who think they know you. Warmth without depth in your closest seats. The cost of pretending is paid in loneliness, then in chest pain, then in legacy. The people closest to you sense it before you say it.'
 };
 
-// Section transitions (between chambers) — firing at new 7-item boundaries
+// Section transitions (between chambers) ,  firing at new 7-item boundaries
 var TRANSITIONS=[
   {q:7, eyebrow:'Chamber one is done',h:'You looked at the mind.',text:'Now look at the body. <b>The body keeps the record the mind tries to misplace.</b>'},
   {q:14,eyebrow:'Chamber two is done',h:'You looked at the body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony.'},
-  {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done.',text:'Mind. Body. Word. Now turn to time, money, and the people you have been performing with.'},
+  {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done.',text:'Having looked at mind, body, and word, you now turn to time, money, and the people you have been performing with.'},
   {q:28,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules. Most rules were inherited.</b>'},
   {q:35,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been performing with. Stay here. The last seven items are the most honest.'}
 ];
@@ -1105,7 +1105,7 @@ function showSelfQuote(){
   var h=loadHistory();if(h.length){h[h.length-1].pain_text=t1;h[h.length-1].pain_text_5y=t2;saveHistory(h)}
 }
 
-// Email — silent send when assessment finishes, also resendable
+// Email ,  silent send when assessment finishes, also resendable
 function fireEmailQuiet(rec){
   if(!EMAILJS_OK)return;
   buildEmailPayload(rec).then(function(){}).catch(function(){});
