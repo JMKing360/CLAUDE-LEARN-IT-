@@ -115,7 +115,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
 .q-section{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:block}
-.q-prompt{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--mid);margin-bottom:22px;letter-spacing:.01em}
+.q-prompt{font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);font-weight:500;font-style:italic;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em;line-height:1.45;max-width:620px}
 .q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
 .opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
@@ -344,7 +344,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <div class="welcome-cta">
     <button class="btn-primary" onclick="startAssessment()" style="max-width:300px">Begin your first hour</button>
-    <p class="welcome-meta"><b>About ten minutes.</b> Press A, B, C, or D on your keyboard to answer. The next question follows in a moment.<br><br><em style="color:var(--ink);font-weight:600">Don’t die with an unfinished life.</em></p>
+    <p class="welcome-meta"><b>About ten minutes.</b> Press A, B, C, or D on your keyboard to answer. The next question follows in a moment.<br><br><em style="color:var(--ink);font-weight:600">Don’t live an unfinishing life.</em></p>
   </div>
 </section>
 
@@ -443,7 +443,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <span class="r-block-label">The canon · what you have just diagnosed</span>
     <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)">
       <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,21px);font-weight:500;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin:0">
-        What you have just named has a name. It is called <b>The Unfinished Life</b>. It is not laziness. It is fragmentation. Open loops. Unkept promises. Half-built identities. The pattern has a body, a literature, and a path through it. The path moves through six layers, from outer architecture to sacred essence. It passes, eventually, through four questions every covenant with your future is built on.
+        What you have just named has a name. It is called <b>The Unfinishing Life</b>. It is not laziness. It is fragmentation. Open loops. Unkept promises. Half-built identities. The pattern has a body, a literature, and a path through it. The path moves through six layers, from outer architecture to sacred essence. It passes, eventually, through four questions every covenant with your future is built on.
       </p>
       <ol style="font-family:var(--serif);font-size:clamp(17px,2.4vw,20px);font-weight:600;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:22px 0 0 22px;padding:0">
         <li style="margin-bottom:6px">Who do you want to be?</li>
@@ -512,7 +512,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </main>
 
 <footer>
-  <p class="foot-credit"><b>THE FIRST HOUR</b> · A House of Mastery audit<br>Designed by <b>Dr. Job Mogire, MD, FACP, FACC</b>, board-certified cardiologist<br>Don’t die with an unfinished life.</p>
+  <p class="foot-credit"><b>THE FIRST HOUR</b> · A House of Mastery audit<br>Designed by <b>Dr. Job Mogire, MD, FACP, FACC</b>, board-certified cardiologist<br>Don’t live an unfinishing life.</p>
 </footer>
 
 <script>
@@ -555,7 +555,7 @@ var QUESTIONS=[
   {n:18,sec:3,sn:'The Word that Lost Weight',       text:'My word to others is more reliable than my word to me.'},
   {n:19,sec:3,sn:'The Word that Lost Weight',       text:'I can list things I told myself I would do this year, and have not.'},
   {n:20,sec:3,sn:'The Word that Lost Weight',       text:'When I think of those unkept promises, something inside me tightens.'},
-  {n:21,sec:3,sn:'The Word that Lost Weight',       text:'There is a piece of work that, if I died with it unfinished, would be the unfinished life. I am postponing it.'},
+  {n:21,sec:3,sn:'The Word that Lost Weight',       text:'There is a piece of work that, if I died with it unfinished, would be The Unfinishing Life. I am postponing it.'},
   {n:22,sec:4,sn:'The Time that Disappeared',       text:'I cannot fully account for what the past five years actually built.'},
   {n:23,sec:4,sn:'The Time that Disappeared',       text:'I am older than I expected to be, without becoming who I expected to be.'},
   {n:24,sec:4,sn:'The Time that Disappeared',       text:'The days are full but the year feels empty.'},
@@ -715,12 +715,76 @@ function startAssessment(){
 }
 
 function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
+// Chamber prompts, six tiers per chamber, keyed to which return this is.
+// Tier rises with each return so language evolves through the six-month path.
+var CHAMBER_PROMPTS={
+  1:[ // Mind chamber
+    'When I notice what my mind has been doing these past thirty days...',
+    'I have been here once. What is my mind doing differently?',
+    'I used to think... What is true now?',
+    'Three returns in. I am beginning to see something about my own thinking.',
+    'I am no longer the person who thought what I once thought.',
+    'I am living evidence of a mind that has begun to think for itself again.'
+  ],
+  2:[ // Body chamber
+    'What my body has been telling me, when I have been willing to listen...',
+    'I have been here once. What has my body been carrying since then?',
+    'I used to ignore the body’s reports. What is happening now?',
+    'Three returns in. The body is speaking differently.',
+    'My body is no longer the vehicle. It is becoming a home.',
+    'My body and I are on speaking terms again.'
+  ],
+  3:[ // Word chamber
+    'When I check my own track record against the promises I have made...',
+    'I have been here once. Has my word held since?',
+    'I used to break promises quietly. What is happening now?',
+    'Three returns in. The word is becoming weight again.',
+    'I am beginning to believe my own commitments.',
+    'My word holds. It has receipts.'
+  ],
+  4:[ // Time chamber
+    'When I look honestly at where the past month actually went...',
+    'I have been here once. Where did the last thirty days go?',
+    'I used to lose my time. What is happening now?',
+    'Three returns in. Time is becoming visible.',
+    'I am no longer running out of later.',
+    'Time and I are on speaking terms again.'
+  ],
+  5:[ // Money chamber
+    'When I look at how money has been flowing through my life...',
+    'I have been here once. What has money been doing since?',
+    'I used to react. What is happening now?',
+    'Three returns in. The rules are becoming visible.',
+    'I am no longer carrying weight that is not mine.',
+    'Money is operating by rules I now consciously hold.'
+  ],
+  6:[ // People chamber
+    'In my closest relationships, the past month has been...',
+    'I have been here once. Who am I in those rooms now?',
+    'I used to perform. What is happening now?',
+    'Three returns in. The people closest to me are noticing.',
+    'I am no longer the version of me who had to hide.',
+    'I am being known. The hiding is over.'
+  ]
+};
+function retakeTier(){
+  // Tier 1 on first take, rises by one per completed return, capped at six.
+  var idx=priorRecords(participantEmail).length;
+  return Math.max(1,Math.min(6,idx+1));
+}
+function chamberPrompt(chamberNum){
+  var arr=CHAMBER_PROMPTS[chamberNum];
+  if(!arr)return '';
+  return arr[Math.min(arr.length-1,retakeTier()-1)];
+}
+
 function renderQuestion(n){
   cancelAdvance();
   var q=QUESTIONS[n-1];
   document.getElementById('qSection').textContent='Chamber '+q.sec+' of 6 · '+q.sn;
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
   document.getElementById('qText').textContent=q.text;
+  document.getElementById('qPrompt').textContent=chamberPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
   setChamberProgress(q.sec);
   var box=document.getElementById('qOptions');box.innerHTML='';
@@ -1024,7 +1088,7 @@ function resendEmail(){
   status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
   if(!EMAILJS_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
   buildEmailPayload(rec).then(function(){
-    status.style.color='var(--green)';status.textContent='Sent. A copy is on its way to '+rec.email+' and to mail@mogire.com.';
+    status.style.color='var(--green)';status.textContent='Sent. Your full report is on its way to '+rec.email+'.';
   },function(){
     status.style.color='var(--red)';status.textContent='Email did not go through. Try Download Report.';
   });
@@ -1037,7 +1101,7 @@ function buildEmailPayload(rec){
   return emailjs.send('service_76loif8','template_3j2uhtd',{
     to_name:rec.name,
     to_email:rec.email,
-    cc_email:'mail@mogire.com',
+    cc_email:'mogiremd@gmail.com',
     primary_reflex:loud.name,
     primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
     archetype_desc:'THE FIRST HOUR · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.',
@@ -1177,7 +1241,7 @@ function downloadPDF(){
   var v=doc.splitTextToSize('You are permitted to drift. You are not permitted to drift quietly.',W-M*2);
   doc.text(v,M,y);y+=v.length*5+6;
   doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
-  doc.text('We will email you in thirty days. mail@mogire.com is the cohort archive.',M,y);
+  doc.text('We will email you in thirty days. Replies reach Dr. Mogire’s team at mail@mogire.com.',M,y);
 
   footer(3);
   doc.save('TheFirstHour-Report-'+rec.name.replace(/\s+/g,'-')+'.pdf');
