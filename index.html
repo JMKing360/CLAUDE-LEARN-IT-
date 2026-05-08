@@ -1710,6 +1710,7 @@ function sendEmail(){
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
   rec.claim=claimValue;
+  rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
   var status=document.getElementById('emailStatus');
@@ -1739,7 +1740,7 @@ function sendEmail(){
     cc_email:'mogiremd@gmail.com',
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
+    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
     strategies_html:'<b>The Allegiance Matrix · fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
     summit_url:'mailto:mail@mogire.com'
@@ -1757,6 +1758,7 @@ function downloadPDF(){
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
   rec.claim=claimValue;
+  rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210,H=297,M=18;

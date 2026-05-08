@@ -1111,6 +1111,7 @@ function resendEmail(){
   var rec=lastResults;if(!rec)return;
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
   var status=document.getElementById('emailStatus');
   status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
   if(!EMAILJS_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
@@ -1131,7 +1132,7 @@ function buildEmailPayload(rec){
     cc_email:'mogiremd@gmail.com',
     primary_reflex:loud.name,
     primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'THE FIRST HOUR · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.',
+    archetype_desc:'THE FIRST HOUR · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.',
     traffic_summary:profileLines,
     strategies_html:'<b>The cost, this period</b><br>'+costLines+'<br><br><b>The five-year forecast</b><br>'+fcLines,
     summit_url:'https://www.houseofmastery.co'
@@ -1144,6 +1145,7 @@ function downloadPDF(){
   var rec=lastResults;if(!rec)return;
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
+  rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
   var W=210,H=297,M=18;
