@@ -1997,6 +1997,11 @@ function downloadPDF(){
   var costL=doc.splitTextToSize('Thirty-day horizon: "'+cost+'"',W-M*2);doc.text(costL,M,y);y+=costL.length*4.8+3;
   var cost5=rec.pain_text_5y||'(participant did not record this)';
   var cost5L=doc.splitTextToSize('Five-year horizon: "'+cost5+'"',W-M*2);doc.text(cost5L,M,y);y+=cost5L.length*4.8+5;
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(201,151,58);
+  doc.text('TOMORROW\u2019S FIRST MOVE',M,y);y+=5;
+  doc.setFont('times','italic');doc.setFontSize(10.5);doc.setTextColor(26,26,31);
+  var intentLK=doc.splitTextToSize('"When tomorrow begins, '+(rec.intent||'(not yet named)')+'"',W-M*2);
+  doc.text(intentLK,M,y);y+=intentLK.length*5.2+6;
   doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
   var pulseTxt=rec.cov_pulse===true?'The participant reported the covenant promise is alive in them today.':rec.cov_pulse===false?'The participant reported the covenant promise is not yet alive in them today.':'The covenant pulse was not recorded.';
   var pulseL=doc.splitTextToSize(pulseTxt,W-M*2);doc.text(pulseL,M,y);y+=pulseL.length*4.4+1.5;

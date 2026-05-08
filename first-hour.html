@@ -1239,7 +1239,12 @@ function downloadPDF(){
   y+=4;sectionLabel('Your own words',y);y+=7;
   doc.setFont('times','italic');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
   doc.text('Thirty-day horizon: "'+(rec.pain_text||'(not recorded)')+'"',M,y);y+=8;
-  doc.text('Five-year horizon: "'+(rec.pain_text_5y||'(not recorded)')+'"',M,y);y+=10;
+  doc.text('Five-year horizon: "'+(rec.pain_text_5y||'(not recorded)')+'"',M,y);y+=8;
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(201,151,58);
+  doc.text('TOMORROW\u2019S FIRST MOVE',M,y);y+=5;
+  doc.setFont('times','italic');doc.setFontSize(11);doc.setTextColor(26,26,31);
+  var intentL=doc.splitTextToSize('"When tomorrow begins, '+(rec.intent||'(not yet named)')+'"',W-M*2);
+  doc.text(intentL,M,y);y+=intentL.length*5.4+6;
 
   footer(2);doc.addPage();
 
