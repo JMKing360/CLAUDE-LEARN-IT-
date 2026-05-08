@@ -1470,8 +1470,8 @@ function showSelfQuote(){
   var t2=document.getElementById('painInput5y').value.trim();
   painText=t1;painText5y=t2;
   var combined='';
-  if(t1)combined='"'+t1+'"';
-  if(t2)combined+=(combined?'<br><br>':'')+'"'+t2+'"';
+  if(t1)combined='"'+safe(t1)+'"';
+  if(t2)combined+=(combined?'<br><br>':'')+'"'+safe(t2)+'"';
   if(!combined){document.getElementById('selfQuote').classList.remove('shown');return}
   document.getElementById('selfQuoteText').innerHTML=combined;
   document.getElementById('selfQuote').classList.add('shown');
