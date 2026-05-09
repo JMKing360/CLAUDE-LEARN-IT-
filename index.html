@@ -120,16 +120,16 @@
 <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"KOORA: The Finisher%E2%80%99s Protocol","short_name":"KOORA","description":"A House of Mastery diagnostic by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5}
+body{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"cv02","cv03","cv04","cv11";font-feature-settings:"cv02","cv03","cv04","cv11"}
 :root{
   --serif:'Source Serif 4',Georgia,serif;
-  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --sans:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
   --navy:#0D1F3C;--navy-soft:#1B2D4F;
   --gold:#C9973A;--gold-soft:#E8B85A;
   --ink:#1A1A1F;--body:#2D2D33;--mid:#52525A;--dim:#75757D;
@@ -212,7 +212,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* DASHBOARD */
 #screen-dashboard{padding:48px 0 96px}
-.dash-hello{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(36px,5.2vw,54px);font-weight:600;letter-spacing:-.024em;color:var(--ink);line-height:1.08;margin-bottom:16px}
+.dash-hello{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(38px,5.2vw,56px);font-weight:500;letter-spacing:-.022em;color:var(--ink);line-height:1.1;margin-bottom:18px;font-variation-settings:"opsz" 60}
 .dash-hello em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .dash-line{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:400;line-height:1.55;color:var(--mid);letter-spacing:-.005em;margin-bottom:18px}
 .dash-line b{color:var(--ink);font-weight:600}
@@ -266,11 +266,11 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* WELCOME */
 #screen-welcome{padding:80px 0 96px}
 .eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
-.hero{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(36px,5.4vw,54px);font-weight:600;line-height:1.08;letter-spacing:-.024em;color:var(--ink);margin-bottom:28px}
+.hero{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(38px,5.4vw,58px);font-weight:500;line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:28px;font-variation-settings:"opsz" 60}
 .hero em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .lede{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(21px,2.6vw,26px);font-weight:400;line-height:1.5;color:var(--body);margin-bottom:18px;letter-spacing:-.008em}
 .lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(16px,1.6vw,17.5px);font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px;letter-spacing:.002em}
+.body-text{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(16px,1.6vw,17.5px);font-weight:450;line-height:1.7;color:var(--body);margin-bottom:16px;letter-spacing:-.005em}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
 .field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
 .field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
@@ -326,7 +326,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
 .r-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
-.r-h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(32px,4.4vw,44px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin-bottom:10px}
+.r-h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px;font-variation-settings:"opsz" 60}
 .r-h1 em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .r-h1 em{font-style:italic;font-weight:600}
 .r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:6px;letter-spacing:.005em}
@@ -711,9 +711,90 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   .scoring-note__body code{background:var(--surface-3);color:var(--ink)}
   .save-pill{background:var(--surface-2);color:var(--body);border-color:var(--rule-soft)}
 }
+
+/* ============================================================
+   v3.6.0 — Iconography system + ambient gradient ground.
+   Icons fade faintly into the page rather than competing with prose.
+   ============================================================ */
+.icon{display:inline-block;width:1em;height:1em;flex-shrink:0;vertical-align:-.15em;color:currentColor;stroke:currentColor;fill:none}
+.icon--inline{font-size:18px;opacity:1;color:var(--gold)}
+.icon--featured{font-size:32px;opacity:.32;color:var(--navy)}
+.icon--ambient{font-size:160px;opacity:.06;color:var(--navy);position:absolute;pointer-events:none;z-index:0}
+.has-icon{display:flex;align-items:center;gap:10px}
+
+/* Ambient gradient ground — two soft orbs that sit behind type, never compete */
+.ambient-ground{position:relative;isolation:isolate}
+.ambient-ground::before,.ambient-ground::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(80px);opacity:.55;pointer-events:none;z-index:-1}
+.ambient-ground::before{top:-180px;right:-220px;background:radial-gradient(circle,rgba(201,151,58,.22) 0%,rgba(201,151,58,0) 70%)}
+.ambient-ground::after{bottom:-260px;left:-220px;background:radial-gradient(circle,rgba(13,31,60,.18) 0%,rgba(13,31,60,0) 70%)}
+@media (prefers-color-scheme: dark){
+  .ambient-ground::before{background:radial-gradient(circle,rgba(232,184,90,.14) 0%,rgba(232,184,90,0) 70%)}
+  .ambient-ground::after{background:radial-gradient(circle,rgba(123,168,255,.16) 0%,rgba(123,168,255,0) 70%)}
+}
+@media(max-width:560px){
+  .ambient-ground::before,.ambient-ground::after{width:320px;height:320px;filter:blur(60px)}
+  .ambient-ground::before{top:-120px;right:-150px}
+  .ambient-ground::after{bottom:-180px;left:-150px}
+}
+
+/* Six-covenant constellation behind welcome hero (KOORA only — semantic) */
+.cov-constellation{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.cov-constellation .icon{position:absolute}
+.cov-c--self{top:8%;right:6%;font-size:140px;opacity:.05;color:var(--navy)}
+.cov-c--body{top:32%;left:-2%;font-size:120px;opacity:.05;color:var(--gold)}
+.cov-c--craft{top:56%;right:-3%;font-size:130px;opacity:.045;color:var(--navy)}
+.cov-c--people{bottom:18%;left:8%;font-size:110px;opacity:.05;color:var(--gold)}
+.cov-c--future{bottom:6%;right:14%;font-size:120px;opacity:.045;color:var(--navy)}
+.cov-c--world{top:14%;left:18%;font-size:90px;opacity:.04;color:var(--gold)}
+@media(max-width:680px){.cov-constellation .icon{font-size:80px !important;opacity:.04 !important}}
+
+/* Covenant-entry: large background icon behind the eyebrow/headline */
+.covenant-entry{position:relative;overflow:hidden}
+.covenant-entry__icon{position:absolute;top:24px;right:28px;font-size:96px;opacity:.08;color:var(--navy);pointer-events:none}
+@media(max-width:560px){.covenant-entry__icon{font-size:64px;top:18px;right:18px}}
+
+/* Reaffirmation: small inline icon next to the covenant name */
+.reaffirm{position:relative;padding-left:64px}
+.reaffirm__icon{position:absolute;top:22px;left:22px;font-size:24px;color:var(--gold);opacity:1}
+@media(max-width:560px){.reaffirm{padding-left:54px}.reaffirm__icon{left:18px;font-size:22px}}
+
+/* Result-page section labels with inline icons */
+.tbl-h.has-icon{display:flex;align-items:center;gap:10px}
+.tbl-h .icon{font-size:18px;opacity:.7;color:var(--gold)}
+
+/* Breathing-room pass: hero sits lower in the frame, mirroring Meta/Apple */
+@media (min-width:680px){
+  #screen-welcome,#screen-dashboard{padding-top:88px;padding-bottom:128px}
+  #screen-welcome .hero,#screen-dashboard .dash-hello{margin-bottom:36px}
+  #screen-welcome .lede,#screen-dashboard .dash-line{margin-bottom:28px;max-width:640px}
+  #screen-welcome .body-text{max-width:640px}
+}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- v3.6.0 — icon sprite. 24×24 viewBox, 1.5px stroke, currentColor.
+         Three opacity tiers via .icon--ambient / .icon--featured / .icon--inline.
+         Six covenants, six chambers, four reflexes. -->
+    <symbol id="icon-self" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></symbol>
+    <symbol id="icon-body" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/></symbol>
+    <symbol id="icon-craft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3l3 3M3.5 20.5l8.6-8.6 3 3-8.6 8.6zM12.1 11.9l5.6-5.6 3 3-5.6 5.6"/></symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><path d="M15 14h2a3 3 0 0 1 3 3v2"/></symbol>
+    <symbol id="icon-future" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 8v3M9 9.5l3-2 3 2"/></symbol>
+    <symbol id="icon-world" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></symbol>
+    <symbol id="icon-mind" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6M9 11h4"/></symbol>
+    <symbol id="icon-word" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M4 12h16M4 16c2-2 4 0 6-1s4 1 6-1"/></symbol>
+    <symbol id="icon-time" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12"/><path d="M6 3c0 5 6 6 6 9s-6 4-6 9"/><path d="M18 3c0 5-6 6-6 9s6 4 6 9"/></symbol>
+    <symbol id="icon-money" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></symbol>
+    <symbol id="icon-people-alt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l5-5 4 4 4-2 5 5"/><path d="M3 13v5h18v-5"/></symbol>
+    <symbol id="icon-complaining" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M8 9h8M8 12h5"/></symbol>
+    <symbol id="icon-criticizing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/></symbol>
+    <symbol id="icon-comparing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M16 4v16M4 8h8M12 16h8"/></symbol>
+    <symbol id="icon-competing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18"/><path d="M5 4h12l-3 4 3 4H5"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+  </defs>
+</svg>
 <noscript>
   <div class="noscript-block" role="alert">
     <h1>This instrument needs JavaScript</h1>
@@ -779,7 +860,15 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </section>
 
 <!-- WELCOME -->
-<section class="screen" id="screen-welcome">
+<section class="screen ambient-ground" id="screen-welcome">
+  <div class="cov-constellation" aria-hidden="true">
+    <svg class="icon cov-c--self"><use href="#icon-self"/></svg>
+    <svg class="icon cov-c--body"><use href="#icon-body"/></svg>
+    <svg class="icon cov-c--craft"><use href="#icon-craft"/></svg>
+    <svg class="icon cov-c--people"><use href="#icon-people"/></svg>
+    <svg class="icon cov-c--future"><use href="#icon-future"/></svg>
+    <svg class="icon cov-c--world"><use href="#icon-world"/></svg>
+  </div>
   <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
   <span class="eyebrow">UNFINISHED · A diagnostic for the Finisher</span>
   <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
@@ -792,6 +881,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <!-- v3.3 — Covenant entry section, dayPicker-driven -->
   <div class="covenant-entry" id="covenantEntry" style="display:none">
+    <svg class="icon covenant-entry__icon" id="covEntryIcon" aria-hidden="true"><use href="#icon-self"/></svg>
     <div class="covenant-entry__eyebrow" id="covEntryEyebrow"></div>
     <h2 class="covenant-entry__h" id="covEntryH"></h2>
     <p class="covenant-entry__sub" id="covEntrySub"></p>
@@ -894,6 +984,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <!-- v3.3 — Reaffirmation block, shown only on repeat takes -->
   <div class="reaffirm" id="reaffirmBlock" style="display:none">
+    <svg class="icon reaffirm__icon" id="reaffirmIcon" aria-hidden="true"><use href="#icon-self"/></svg>
     <p id="reaffirmText"></p>
   </div>
 
@@ -1789,6 +1880,10 @@ function renderCovenantEntry(day){
   document.getElementById('covEntryEyebrow').textContent=data.eyebrow;
   document.getElementById('covEntryH').textContent=data.h;
   document.getElementById('covEntrySub').textContent=data.sub;
+  // v3.6.0 — wire covenant icon
+  var iconMap={1:'icon-self',2:'icon-body',3:'icon-craft',4:'icon-people',5:'icon-future',6:'icon-world'};
+  var iconEl=document.getElementById('covEntryIcon');
+  if(iconEl){var u=iconEl.querySelector('use');if(u)u.setAttribute('href','#'+(iconMap[entryDays[day]]||'icon-self'))}
   var ul=document.getElementById('covEntryList');ul.innerHTML='';
   for(var i=0;i<data.items.length;i++){
     var li=document.createElement('li');
@@ -2420,6 +2515,10 @@ function buildResults(rec){
       };
       var msg=lines[rec.day]||(nm+', you came back. <em>That itself is data.</em> The pattern of returning is the only proof of the protocol that matters. The covenant continues.');
       rt.innerHTML=msg;
+      // v3.6.0 — wire reaffirmation icon to active covenant
+      var raIconMap={Self:'icon-self',Body:'icon-body',Craft:'icon-craft',People:'icon-people',Future:'icon-future',World:'icon-world'};
+      var raIcon=document.getElementById('reaffirmIcon');
+      if(raIcon){var u=raIcon.querySelector('use');if(u)u.setAttribute('href','#'+(raIconMap[cov.name]||'icon-self'))}
       rb.style.display='block';
     }else{
       rb.style.display='none';

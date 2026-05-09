@@ -106,16 +106,16 @@
 <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"The First Hour","short_name":"First Hour","description":"A House of Mastery audit by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5}
+body{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"cv02","cv03","cv04","cv11";font-feature-settings:"cv02","cv03","cv04","cv11"}
 :root{
   --serif:'Source Serif 4',Georgia,serif;
-  --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --sans:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
   --navy:#0D1F3C;--navy-soft:#1B2D4F;
   --gold:#C9973A;--gold-soft:#E8B85A;
   --ink:#1A1A1F;--body:#2D2D33;--mid:#52525A;--dim:#75757D;
@@ -209,11 +209,11 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* WELCOME */
 #screen-welcome{padding:88px 0 96px}
 .eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
-.hero{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(36px,5.4vw,54px);font-weight:600;line-height:1.08;letter-spacing:-.024em;color:var(--ink);margin-bottom:28px}
+.hero{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(38px,5.4vw,58px);font-weight:500;line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:28px;font-variation-settings:"opsz" 60}
 .hero em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .lede{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(21px,2.6vw,26px);font-weight:400;line-height:1.5;color:var(--body);margin-bottom:18px;letter-spacing:-.008em}
 .lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(16px,1.6vw,17.5px);font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px;letter-spacing:.002em}
+.body-text{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(16px,1.6vw,17.5px);font-weight:450;line-height:1.7;color:var(--body);margin-bottom:16px;letter-spacing:-.005em}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
 .field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
 .field-input{display:block;width:100%;max-width:480px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
@@ -264,7 +264,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
 .r-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
-.r-h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(32px,4.4vw,44px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin-bottom:14px}
+.r-h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:"opsz" 60}
 .r-h1 em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .r-h1 em{font-style:italic;font-weight:600}
 .r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:8px;letter-spacing:.005em}
@@ -610,9 +610,75 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   .scoring-note__body code{background:var(--surface-3);color:var(--ink)}
   .save-pill{background:var(--surface-2);color:var(--body);border-color:var(--rule-soft)}
 }
+
+/* ============================================================
+   v3.6.0 — Iconography system + ambient gradient ground.
+   Icons fade faintly into the page rather than competing with prose.
+   ============================================================ */
+.icon{display:inline-block;width:1em;height:1em;flex-shrink:0;vertical-align:-.15em;color:currentColor;stroke:currentColor;fill:none}
+.icon--inline{font-size:18px;opacity:1;color:var(--gold)}
+.icon--featured{font-size:32px;opacity:.32;color:var(--navy)}
+.icon--ambient{font-size:160px;opacity:.06;color:var(--navy);position:absolute;pointer-events:none;z-index:0}
+.has-icon{display:flex;align-items:center;gap:10px}
+
+/* Ambient gradient ground — two soft orbs behind hero type */
+.ambient-ground{position:relative;isolation:isolate}
+.ambient-ground::before,.ambient-ground::after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(80px);opacity:.55;pointer-events:none;z-index:-1}
+.ambient-ground::before{top:-180px;right:-220px;background:radial-gradient(circle,rgba(201,151,58,.22) 0%,rgba(201,151,58,0) 70%)}
+.ambient-ground::after{bottom:-260px;left:-220px;background:radial-gradient(circle,rgba(13,31,60,.18) 0%,rgba(13,31,60,0) 70%)}
+@media (prefers-color-scheme: dark){
+  .ambient-ground::before{background:radial-gradient(circle,rgba(232,184,90,.14) 0%,rgba(232,184,90,0) 70%)}
+  .ambient-ground::after{background:radial-gradient(circle,rgba(123,168,255,.16) 0%,rgba(123,168,255,0) 70%)}
+}
+@media(max-width:560px){
+  .ambient-ground::before,.ambient-ground::after{width:320px;height:320px;filter:blur(60px)}
+  .ambient-ground::before{top:-120px;right:-150px}
+  .ambient-ground::after{bottom:-180px;left:-150px}
+}
+
+/* Six-chamber constellation behind welcome hero */
+.cov-constellation{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.cov-constellation .icon{position:absolute}
+.cov-c--mind{top:8%;right:6%;font-size:140px;opacity:.05;color:var(--navy)}
+.cov-c--body{top:32%;left:-2%;font-size:120px;opacity:.05;color:var(--gold)}
+.cov-c--word{top:56%;right:-3%;font-size:130px;opacity:.045;color:var(--navy)}
+.cov-c--time{bottom:18%;left:8%;font-size:110px;opacity:.05;color:var(--gold)}
+.cov-c--money{bottom:6%;right:14%;font-size:120px;opacity:.045;color:var(--navy)}
+.cov-c--people{top:14%;left:18%;font-size:90px;opacity:.04;color:var(--gold)}
+@media(max-width:680px){.cov-constellation .icon{font-size:80px !important;opacity:.04 !important}}
+
+/* Result-page chamber labels with inline icons */
+.tbl-h.has-icon{display:flex;align-items:center;gap:10px}
+.tbl-h .icon{font-size:18px;opacity:.7;color:var(--gold)}
+
+/* Breathing-room pass on welcome */
+@media (min-width:680px){
+  #screen-welcome{padding-top:88px;padding-bottom:128px}
+  #screen-welcome .hero{margin-bottom:36px}
+  #screen-welcome .lede{margin-bottom:28px;max-width:640px}
+  #screen-welcome .body-text{max-width:640px}
+}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- v3.6.0 — icon sprite. 24×24 viewBox, 1.5px stroke, currentColor.
+         Three opacity tiers via .icon--ambient / .icon--featured / .icon--inline. -->
+    <symbol id="icon-self" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></symbol>
+    <symbol id="icon-body" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/></symbol>
+    <symbol id="icon-craft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3l3 3M3.5 20.5l8.6-8.6 3 3-8.6 8.6zM12.1 11.9l5.6-5.6 3 3-5.6 5.6"/></symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1"/><path d="M15 14h2a3 3 0 0 1 3 3v2"/></symbol>
+    <symbol id="icon-future" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M7 18a5 5 0 0 1 10 0"/><path d="M12 8v3M9 9.5l3-2 3 2"/></symbol>
+    <symbol id="icon-world" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></symbol>
+    <symbol id="icon-mind" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6M9 11h4"/></symbol>
+    <symbol id="icon-word" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16M4 12h16M4 16c2-2 4 0 6-1s4 1 6-1"/></symbol>
+    <symbol id="icon-time" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12"/><path d="M6 3c0 5 6 6 6 9s-6 4-6 9"/><path d="M18 3c0 5-6 6-6 9s6 4 6 9"/></symbol>
+    <symbol id="icon-money" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></symbol>
+    <symbol id="icon-people-alt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l5-5 4 4 4-2 5 5"/><path d="M3 13v5h18v-5"/></symbol>
+    <symbol id="icon-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+  </defs>
+</svg>
 <noscript>
   <div class="noscript-block" role="alert">
     <h1>This instrument needs JavaScript</h1>
@@ -645,7 +711,15 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <main>
 
 <!-- WELCOME -->
-<section class="screen active" id="screen-welcome">
+<section class="screen active ambient-ground" id="screen-welcome">
+  <div class="cov-constellation" aria-hidden="true">
+    <svg class="icon cov-c--mind"><use href="#icon-mind"/></svg>
+    <svg class="icon cov-c--body"><use href="#icon-body"/></svg>
+    <svg class="icon cov-c--word"><use href="#icon-word"/></svg>
+    <svg class="icon cov-c--time"><use href="#icon-time"/></svg>
+    <svg class="icon cov-c--money"><use href="#icon-money"/></svg>
+    <svg class="icon cov-c--people"><use href="#icon-people-alt"/></svg>
+  </div>
   <span class="brand-stamp">The First Hour · A House of Mastery audit</span>
   <span class="eyebrow">THE FIRST HOUR · A six-chamber audit</span>
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
