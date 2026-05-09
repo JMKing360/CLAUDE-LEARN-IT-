@@ -2,6 +2,41 @@
 
 All notable changes to the House of Mastery diagnostic instruments are documented here. Versions follow [Semantic Versioning](https://semver.org/), where MAJOR is reserved for instrument-redesign-level changes that affect scoring or item set, MINOR for new features and content, and PATCH for fixes.
 
+## [3.5.0] — 2026-05-09 — Brand integration, accessibility hardening, small-text legibility
+
+### Brand integration (both files)
+- **House of Mastery mark** wired at `/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png` — replaces the legacy inline italic-`m` SVG used as favicon, apple-touch-icon, mask-icon, manifest icon, and the small `.hm-mark` glyph in the nav.
+- **Full HoM lock-up** wired at `/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png` — used at the top of the First Hour cover letter and as a footer trailing mark on KOORA. The legacy 3-icon favicon entry has been replaced with five proper-sized `<link rel="icon">` declarations spanning 32px, 192px, 180px Apple touch, mask-icon, and shortcut.
+- **Formal KOORA wordmark** wired at `/images/koora-logo.png` — used at the top of the KOORA cover letter and the foot-credit stamp; gold-accent inline-SVG koora-stamps preserved as small chrome on each screen.
+
+### Small-text legibility (both files)
+- `--mid` darkened from `#6E6E73` → `#52525A` (≈18% darker; AA → near-AAA contrast against `--surface`).
+- `--dim` darkened from `#98989E` → `#75757D`.
+- `--body` deepened slightly from `#3A3A40` → `#2D2D33`.
+- Smallest text classes bumped 12px → 13–13.5px and weight 500 → 600 across `foot-credit`, `welcome-meta`, `consent-line`, `tbl-legend`, `q-foot-meta`, `q-keyhint`, `lineage`, `cohort-whisper`, `unfinished-instructions`, `unfinished-desc`, `author-byline`.
+- `cover-letter__creds` and `meet-doctor__creds` gain `var(--gold)` colour for crisper credential prominence.
+
+### Accessibility hardening
+- `aria-required="true"`, `inputmode="text"|"email"`, `spellcheck="false"` on participant inputs (name, email).
+- `autocapitalize="off"` on email field.
+- `<div id="progress" role="progressbar" aria-valuemin/max/now>` properly attributed.
+- `<div id="chamber-progress" aria-live="polite" aria-atomic="true">` swapped from `aria-hidden="true"` so screen readers announce section progress.
+- Focus-visible 3px gold ring on `.btn-secondary`, `.unfinished-item`, `.emo-radio`.
+
+### SEO and crawl hygiene
+- `<link rel="canonical">` on both files (KOORA → `/koora`, First Hour → `/first-hour`).
+- `<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">`.
+- `<meta name="author" content="Dr. Job Mogire, MD, FACC">` (added FACC to canonical author meta).
+
+### UX polish
+- **Save-progress indicator** — small bottom-right `Progress saved` pill with a pulsing green dot, fires on every answer's localStorage autosave; auto-dismisses after 1.6s; `role="status"` `aria-live="polite"` for screen readers.
+- **`<noscript>` fallback** — friendly explanatory block that surfaces if JavaScript is disabled, including a paper-version contact path (`mail@mogire.com`).
+- **Print stylesheet** (`@media print`) — strips nav, CTAs, funnels, save-pill, and pre-result screens; preserves result blocks, page-breaks before Meet Dr. Job, A4-friendly typography in Georgia serif.
+- **Dark-mode contrast** bumps applied to v3.2-3.3 surfaces (cover letter, Meet Dr. Job, UNFINISHED block, emo block, scoring note, save-pill, covenant entry, reaffirmation).
+
+### Documentation
+- `images/README.md` updated with the canonical filenames the user uploaded (`House-of-Mastery-with-Dr-Job-Mogire-favicon.png`, `House-of-Mastery-with-Dr-Job-Mogire-logo.png`, `koora-logo.png`, plus the four portraits).
+
 ## [3.4.0] — 2026-05-09 — Six-tier variant prose complete, review strategy, 47% uplift
 
 ### Six-tier variant prose authoring complete (both instruments)

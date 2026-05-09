@@ -7,7 +7,9 @@
 <meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA: The Finishing Protocol.">
 <meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
-<meta name="author" content="Dr. Job Mogire">
+<meta name="author" content="Dr. Job Mogire, MD, FACC">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://hom.mogire.com/koora">
 <link rel="author" href="https://hom.mogire.com/#dr-job-mogire">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UNFINISHED · KOORA: The Finisher’s Protocol · House of Mastery">
@@ -93,9 +95,13 @@
   ]
 }
 </script>
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
-<link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
-<link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"KOORA: The Finishing Protocol","short_name":"KOORA","description":"A House of Mastery diagnostic","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C"}'>
+<link rel="icon" type="image/svg+xml" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
+<link rel="mask-icon" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png" color="#0D1F3C">
+<link rel="shortcut icon" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
+<link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"KOORA: The Finisher%E2%80%99s Protocol","short_name":"KOORA","description":"A House of Mastery diagnostic by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -110,7 +116,7 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;col
   --sans:'Plus Jakarta Sans',system-ui,sans-serif;
   --navy:#0D1F3C;--navy-soft:#1B2D4F;
   --gold:#C9973A;--gold-soft:#E8B85A;
-  --ink:#1A1A1F;--body:#3A3A40;--mid:#6E6E73;--dim:#98989E;
+  --ink:#1A1A1F;--body:#2D2D33;--mid:#52525A;--dim:#75757D;
   --rule:#D8D8DC;--rule-soft:#E8E8EC;
   --surface:#FBFBFD;--surface-2:#F5F5F7;--surface-3:#EFEFF2;
   --white:#FFFFFF;
@@ -587,12 +593,112 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 /* Formal KOORA logo (raster, for cover-letter / PDF / hero contexts) */
 .koora-formal{display:block;height:42px;width:auto;margin:0 0 18px}
 .koora-formal--center{margin-left:auto;margin-right:auto}
+
+/* ============================================================
+   v3.5 — small-text legibility, accessibility chrome,
+   save-progress indicator, print stylesheet, brandmarks.
+   ============================================================ */
+
+/* Cover-letter brandmark — formal logo at top of cover letter */
+.cover-letter__brandmark{display:block;height:36px;width:auto;margin:0 0 22px;opacity:.92}
+@media(max-width:560px){.cover-letter__brandmark{height:30px;margin-bottom:18px}}
+
+/* Bump the smallest text classes for legibility */
+.foot-credit{font-size:13.5px;font-weight:600;color:var(--mid);line-height:1.7}
+.welcome-meta{font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.65}
+.welcome-meta b,.welcome-meta strong{color:var(--ink);font-weight:700}
+.consent-line{font-size:13px;font-weight:500;color:var(--mid);line-height:1.6}
+.consent-line b,.consent-line strong{color:var(--ink);font-weight:600}
+.tbl-legend{font-size:13px;font-weight:500;color:var(--mid);line-height:1.6}
+.tbl-legend b,.tbl-legend strong{color:var(--ink);font-weight:600}
+.q-foot-meta{font-size:12.5px;font-weight:600;color:var(--mid);letter-spacing:.005em}
+.q-keyhint{font-size:13px;font-weight:500;color:var(--mid);line-height:1.55}
+.lineage{font-size:12.5px;font-weight:500;color:var(--mid);line-height:1.6}
+.cohort-whisper{font-size:13px;font-weight:600;color:var(--mid);line-height:1.55}
+.email-status{color:var(--ink)}
+.cover-letter__creds,.meet-doctor__creds{font-size:11.5px;color:var(--gold)}
+.author-byline{font-size:12px;font-weight:600;color:var(--mid)}
+.author-byline b{color:var(--ink);font-weight:700}
+.koora-funnel__eyebrow{font-size:11px;color:var(--gold-soft);font-weight:800}
+
+/* Result-page CTA focus rings (accessibility) */
+.btn-secondary:focus-visible,button.btn-secondary:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45);border-color:var(--gold)}
+.unfinished-item:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
+.emo-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
+
+/* Save-progress indicator (during the assessment) */
+.save-pill{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:999px;box-shadow:0 4px 14px rgba(13,31,60,.08);font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
+.save-pill.shown{opacity:1;transform:translateY(0)}
+.save-pill__dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(46,125,50,.4);animation:savepulse 1.4s ease-out 1}
+@keyframes savepulse{0%{box-shadow:0 0 0 0 rgba(46,125,50,.4)}100%{box-shadow:0 0 0 10px rgba(46,125,50,0)}}
+@media(max-width:560px){.save-pill{bottom:16px;right:16px;font-size:12px;padding:6px 12px}}
+
+/* Scoring transparency expandable */
+.scoring-note{margin:14px 0 28px;padding:0;border:1px solid var(--rule-soft);border-radius:3px;overflow:hidden;background:var(--surface)}
+.scoring-note summary{cursor:pointer;padding:14px 18px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.005em;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
+.scoring-note summary::-webkit-details-marker{display:none}
+.scoring-note summary::after{content:"+";font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold);transition:transform .2s ease}
+.scoring-note[open] summary::after{content:"−"}
+.scoring-note summary:hover{background:var(--surface-2)}
+.scoring-note__body{padding:0 18px 18px;font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--body)}
+.scoring-note__body p{margin-bottom:10px}
+.scoring-note__body p:last-child{margin-bottom:0}
+.scoring-note__body code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:2px;color:var(--ink)}
+
+/* Covenant transition message between sections during assessment */
+.cov-transition{font-family:var(--serif);font-style:italic;font-size:15.5px;color:var(--gold);text-align:center;margin:8px auto 18px;line-height:1.5;letter-spacing:.005em;max-width:480px}
+
+/* Print stylesheet — paper-friendly result */
+@media print{
+  *,*::before,*::after{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
+  nav,.dash-foot,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.btn-text,.q-back,.toggle-stack,.welcome-cta,.koora-funnel,.contact-block,.save-pill,.tr-cta,#screen-welcome,#screen-question,#screen-transition,#screen-ack,#screen-dashboard{display:none !important}
+  body{font-size:11pt;line-height:1.4;background:white !important;color:black !important;font-family:Georgia,serif}
+  main{max-width:none;padding:0}
+  #screen-results,#screen-results.active{display:block !important;padding:0 !important}
+  .r-eyebrow,.r-h1,.r-sub,.tbl-h,.tbl-legend{break-inside:avoid;page-break-inside:avoid}
+  .tbl-block,.r-block{break-inside:avoid;page-break-inside:avoid;margin-bottom:14pt}
+  a{text-decoration:underline;color:#000 !important}
+  .cover-letter,.koora-funnel,.author-byline,.unfinished-block,.scoring-note{display:none !important}
+  .meet-doctor{break-before:page;page-break-before:always}
+  .meet-doctor__grid img{max-width:140px}
+}
+
+/* No-script fallback */
+.noscript-block{padding:48px 28px;max-width:640px;margin:80px auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;font-family:var(--serif);text-align:center}
+.noscript-block h1{font-size:24px;font-weight:600;color:var(--ink);margin-bottom:14px}
+.noscript-block p{font-size:16px;line-height:1.6;color:var(--body);margin-bottom:12px}
+.noscript-block a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:1px}
+
+/* Dark-mode contrast bumps for new v3.2-3.3 surfaces */
+@media (prefers-color-scheme: dark){
+  .cover-letter{background:var(--surface-2);border-color:var(--rule-soft);border-left-color:var(--gold)}
+  .cover-letter__body{color:#D4D4D8}
+  .meet-doctor__bio{color:#D4D4D8}
+  .meet-doctor__bio strong{color:#F2F2F4}
+  .reaffirm{background:rgba(201,151,58,.08);color:#F2F2F4}
+  .covenant-entry{background:var(--surface-2);border-color:var(--rule-soft)}
+  .covenant-entry__item{color:#D4D4D8}
+  .covenant-entry__item b{color:#F2F2F4}
+  .covenant-entry__threshold{background:var(--surface-3);color:#F2F2F4}
+  .scoring-note{background:var(--surface-2);border-color:var(--rule-soft)}
+  .scoring-note__body{color:#D4D4D8}
+  .scoring-note__body code{background:var(--surface-3);color:#F2F2F4}
+  .save-pill{background:var(--surface-2);color:#D4D4D8;border-color:var(--rule-soft)}
+}
 </style>
 </head>
 <body>
+<noscript>
+  <div class="noscript-block" role="alert">
+    <h1>This instrument needs JavaScript</h1>
+    <p>UNFINISHED is a sixty-item diagnostic that runs entirely in your browser. Your responses never leave your device until you choose to email your result, so the instrument requires JavaScript to function.</p>
+    <p>Please enable JavaScript and reload, or write to <a href="mailto:mail@mogire.com">mail@mogire.com</a> to request a paper version of the audit.</p>
+    <p><b>Dr. Job Mogire, MD, FACC</b> · House of Mastery · KOORA</p>
+  </div>
+</noscript>
 <a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none">Skip to assessment</a>
-<div id="progress"></div>
-<div id="chamber-progress" aria-hidden="true">
+<div id="progress" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<div id="chamber-progress" aria-live="polite" aria-atomic="true" aria-label="Section progress">
   <div class="cp-seg" data-ch="1"></div>
   <div class="cp-seg" data-ch="2"></div>
   <div class="cp-seg" data-ch="3"></div>
@@ -604,13 +710,10 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <nav>
   <div class="nav-inner">
     <a class="nav-house" href="https://hom.mogire.com" target="_blank" rel="noopener" aria-label="House of Mastery">
-      <svg class="hm-mark" viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="48" fill="#0D1F3C"/>
-        <text x="50" y="74" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text>
-      </svg>
+      <img class="hm-mark" src="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png" alt="" width="24" height="24" onerror="this.onerror=null;this.src='/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png'">
       <span class="nav-house-text">house of mastery<span>hom.mogire.com</span></span>
     </a>
-    <span class="nav-koora" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span>
+    <span class="nav-koora" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" style="height:18px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:18px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Source Serif 4, Georgia, serif&quot; font-weight=&quot;700&quot; font-size=&quot;70&quot; letter-spacing=&quot;3&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
     <span class="nav-meta" id="navMeta">UNFINISHED</span>
   </div>
 </nav>
@@ -671,6 +774,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   </div>
 
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
+    <img src="/images/koora-logo.png" alt="KOORA" class="cover-letter__brandmark" onerror="this.style.display='none'">
     <div class="cover-letter__head">
       <img src="/images/dr-job-cover.jpg" alt="Dr. Job Mogire" loading="lazy" onerror="this.style.display='none'">
       <div>
@@ -693,7 +797,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <div class="field-stack">
     <label class="field-label" for="participantName">Your first name</label>
-    <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40">
+    <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false">
   </div>
 
   <div class="field-stack">
@@ -930,8 +1034,13 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 </main>
 
+<div class="save-pill" id="savePill" role="status" aria-live="polite" aria-atomic="true">
+  <span class="save-pill__dot" aria-hidden="true"></span>
+  <span>Progress saved</span>
+</div>
+
 <footer>
-  <p class="foot-credit"><b>UNFINISHED</b>, the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a House of Mastery body of work by <b>Dr. Job Mogire, MD, FACC</b> — cardiologist, author, speaker. Don’t die with an unfinishing life.<span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span></p>
+  <p class="foot-credit"><b>UNFINISHED</b>, the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a House of Mastery body of work by <b>Dr. Job Mogire, MD, FACC</b> — cardiologist, author, speaker. Don’t die with an unfinishing life.<span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><img src="/images/koora-logo.png" alt="KOORA" style="height:32px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:32px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Source Serif 4, Georgia, serif&quot; font-weight=&quot;700&quot; font-size=&quot;70&quot; letter-spacing=&quot;3&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin-top:10px;opacity:.7" onerror="this.style.display='none'"></span></p>
 </footer>
 
 <script>
@@ -2098,9 +2207,16 @@ function renderQuestion(n){
   }
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
 }
+var savePillTimer=null;
+function showSavePill(){
+  var p=document.getElementById('savePill');if(!p)return;
+  p.classList.add('shown');
+  if(savePillTimer)clearTimeout(savePillTimer);
+  savePillTimer=setTimeout(function(){p.classList.remove('shown')},1600);
+}
 function selectOption(n,score){
   answers[n]=score;
-  try{localStorage.setItem('koora_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,day:participantDay,enrolled:participantEnrolled}))}catch(e){}
+  try{localStorage.setItem('koora_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,day:participantDay,enrolled:participantEnrolled}));showSavePill()}catch(e){}
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   cancelAdvance();
