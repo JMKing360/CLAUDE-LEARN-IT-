@@ -347,6 +347,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .matrix-detail__close:hover{background:rgba(0,0,0,.06);color:var(--ink)}
 .matrix-detail__title{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 10px}
 .matrix-detail__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;line-height:1.55;color:var(--body);margin:0}
+.next-move-box{margin-top:24px;padding:22px 26px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0}
+.next-move-box__label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.next-move-box__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:600;line-height:1.55;color:var(--ink);margin:0}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
 .fingerprint-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -2697,8 +2700,8 @@ function renderMatrix(loud){
     if(quietest && quietest.key!==loud.key){
       fp+='<div class="fingerprint-row" style="border-top:1px solid var(--rule-soft);border-bottom:none;padding-top:18px;margin-top:8px"><div class="fingerprint-fac" style="color:var(--green)">Strength</div><div class="fingerprint-text"><b>'+quietest.name+'</b> is the reflex least loud. Lean on it as the ground while you address the others.</div></div>';
     }
-    fp+='<div class="fingerprint-row" style="border-bottom:none"><div class="fingerprint-fac" style="color:var(--gold)">Next move</div><div class="fingerprint-text">The implementation intention you write below is the first finishable move. The covenant of return begins by repairing one of these four faculties, in the next twenty-four hours.</div></div>';
     fp+='</div>';
+    fp+='<div class="next-move-box"><div class="next-move-box__label">YOUR NEXT MOVE</div><p class="next-move-box__text">The implementation intention you write below is the first finishable move. The covenant of return begins by repairing one of these four faculties, in the next twenty-four hours.</p></div>';
   }
   wrap.innerHTML=html+fp;
 }
