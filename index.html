@@ -636,10 +636,14 @@ body.footer-hidden footer{display:none}
 .covenant-entry__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 .covenant-entry__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.012em;margin-bottom:8px}
 .covenant-entry__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:16px;color:var(--mid);margin-bottom:24px;line-height:1.5}
-.covenant-entry__list{list-style:none;padding:0;margin:0 0 24px}
-.covenant-entry__item{padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--body)}
-.covenant-entry__item:last-child{border-bottom:none}
-.covenant-entry__item b{color:var(--ink);font-weight:600}
+.covenant-entry__list{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:8px}
+.covenant-entry__item{padding:0;border-bottom:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--body)}
+.covenant-entry__check{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;transition:border-color .15s,background .15s}
+.covenant-entry__check:hover{border-color:var(--gold-soft)}
+.covenant-entry__check:has(input:checked){border-color:var(--gold);background:#FAF6EC}
+.covenant-entry__check input[type=checkbox]{flex-shrink:0;width:18px;height:18px;accent-color:var(--gold);margin-top:2px;cursor:pointer}
+.covenant-entry__text{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:.005em}
+.covenant-entry__text b{color:var(--gold);font-weight:800;margin-right:4px}
 .covenant-entry__threshold{margin-top:18px;padding:18px 22px;background:var(--white);border:1px solid var(--gold-soft);border-radius:var(--r-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;color:var(--ink);font-style:italic}
 
 /* Author byline mark on result header */
@@ -917,7 +921,7 @@ body.footer-hidden footer{display:none}
     <svg class="icon covenant-entry__icon" id="covEntryIcon" aria-hidden="true"><use href="#icon-self"/></svg>
     <h2 class="covenant-entry__h" id="covEntryH"></h2>
     <p class="covenant-entry__sub" id="covEntrySub"></p>
-    <ol class="covenant-entry__list" id="covEntryList"></ol>
+    <ul class="covenant-entry__list" id="covEntryList"></ul>
     <p class="covenant-entry__threshold" id="covEntryThreshold"></p>
   </div>
 
@@ -1912,14 +1916,22 @@ function renderCovenantEntry(day){
   var iconEl=document.getElementById('covEntryIcon');
   if(iconEl){var u=iconEl.querySelector('use');if(u)u.setAttribute('href','#'+(iconMap[entryDays[day]]||'icon-self'))}
   var ul=document.getElementById('covEntryList');ul.innerHTML='';
+  var covIdx=entryDays[day];
+  var saved=[];try{saved=JSON.parse(localStorage.getItem('koora_cov_entry_'+covIdx)||'[]')}catch(e){}
   for(var i=0;i<data.items.length;i++){
     var li=document.createElement('li');
     li.className='covenant-entry__item';
-    li.innerHTML='<b>'+(i+1)+'.</b> '+data.items[i];
+    var checked=saved.indexOf(i)!==-1?' checked':'';
+    li.innerHTML='<label class="covenant-entry__check"><input type="checkbox" data-cov="'+covIdx+'" data-idx="'+i+'" onchange="persistCovEntrySel('+covIdx+')"'+checked+'><span class="covenant-entry__text"><b>'+(i+1)+'.</b> '+data.items[i]+'</span></label>';
     ul.appendChild(li);
   }
   document.getElementById('covEntryThreshold').textContent=data.threshold;
   box.style.display='block';
+}
+function persistCovEntrySel(covIdx){
+  var inputs=document.querySelectorAll('#covEntryList input[type=checkbox][data-cov="'+covIdx+'"]:checked');
+  var keys=[];for(var i=0;i<inputs.length;i++)keys.push(parseInt(inputs[i].getAttribute('data-idx'),10));
+  try{localStorage.setItem('koora_cov_entry_'+covIdx,JSON.stringify(keys))}catch(e){}
 }
 
 var COVENANTS=[
@@ -2487,11 +2499,15 @@ function buildRecord(){
   var fc=facultyScores();for(var i=0;i<fc.length;i++)scores['faculty_'+fc[i].key]=fc[i].score;
   for(var k in pr){if(k.charAt(0)!=='_')scores['practice_'+k]=pr[k].score}
   var ar=arcScores();for(var k in ar)scores['arc_'+k]=ar[k];
+  // Gather covenant-entry tickbox selections (1..6) so they travel with the record
+  var covEntrySel={};
+  for(var c=1;c<=6;c++){try{var s=localStorage.getItem('koora_cov_entry_'+c);if(s)covEntrySel[c]=JSON.parse(s)||[]}catch(e){}}
   return {
     date:new Date().toISOString(),day:participantDay,name:participantName,enrolled:participantEnrolled,
     answers:Object.assign({},answers),scores:scores,
     primary_reflex:loud.key,primary_level:levelNeg(loud.pct),active_stage:activeStage(),
-    cov_pulse:covPulseValue
+    cov_pulse:covPulseValue,
+    cov_entry_selected:covEntrySel
   };
 }
 
