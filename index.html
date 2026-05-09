@@ -338,6 +338,15 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .matrix-cell.q3{background:#FCDADA;color:var(--red)}
 .matrix-cell.q4{background:var(--red);color:#fff}
 .matrix-table tr.loudest .matrix-cell{box-shadow:inset 0 0 0 2px var(--gold)}
+.matrix-head-btn{background:none;border:none;padding:0;margin:0;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-align:inherit}
+.matrix-head-btn:hover .matrix-th-plus{background:var(--gold);color:#fff}
+.matrix-head-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px}
+.matrix-th-plus{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--gold-soft);color:var(--gold);font-weight:800;font-size:13px;line-height:1;transition:background .15s,color .15s;flex-shrink:0}
+.matrix-detail{margin-top:18px;padding:20px 48px 20px 24px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0;position:relative}
+.matrix-detail__close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;line-height:1;color:var(--mid);cursor:pointer;padding:6px 10px;border-radius:50%}
+.matrix-detail__close:hover{background:rgba(0,0,0,.06);color:var(--ink)}
+.matrix-detail__title{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin:0 0 10px}
+.matrix-detail__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;line-height:1.55;color:var(--body);margin:0}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
 .fingerprint-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -994,8 +1003,13 @@ body.footer-hidden footer{display:none}
 
   <div class="tbl-block">
     <span class="tbl-h">The Personal Allegiance Matrix</span>
-    <p class="narrative-read" id="matrixIntro"></p>
     <div class="matrix-wrap" id="matrixWrap"></div>
+    <p class="narrative-read" id="matrixIntro"></p>
+    <div id="matrixDetailPanel" class="matrix-detail" style="display:none">
+      <button class="matrix-detail__close" type="button" aria-label="Close" onclick="closeMatrixDetail()">×</button>
+      <h4 class="matrix-detail__title" id="matrixDetailTitle"></h4>
+      <p class="matrix-detail__text" id="matrixDetailText"></p>
+    </div>
   </div>
 
   <div class="tbl-block">
@@ -2616,29 +2630,64 @@ function renderReflexTable(prior){
   document.getElementById('reflexRead').textContent=loud.name+' was loudest this period.';
 }
 
+var REFLEX_EXPLAIN={
+  complaining:'You name what is wrong without naming what is yours to do about it. The complaint takes the energy the action wanted.',
+  criticizing:'You measure others against a standard you have not given to yourself. The judgement is louder than the practice.',
+  comparing:'You measure your inside against other people’s outside. The comparison hides the next move you would actually make.',
+  competing:'You stay in motion to feel ahead of others, instead of going deep into the work that is yours. The race obscures the direction.'
+};
+var FACULTY_EXPLAIN={
+  Attention:'Where your eyes and mind go when no one is asking for them. The first faculty to break is often the first to repair.',
+  Allegiance:'Whose voice has the final say inside you. When your own clear judgement loses to the loudest borrowed one, allegiance has broken.',
+  Integrity:'Whether what you do matches what you said. When word and action are different things, integrity has broken.',
+  Return:'How fast you come back when something throws you off — days, hours, or the same hour.'
+};
+function openMatrixDetail(type, key){
+  var panel=document.getElementById('matrixDetailPanel');
+  var titleEl=document.getElementById('matrixDetailTitle');
+  var textEl=document.getElementById('matrixDetailText');
+  if(!panel||!titleEl||!textEl)return;
+  if(type==='reflex'){
+    var r=null;for(var i=0;i<REFLEXES.length;i++){if(REFLEXES[i].key===key){r=REFLEXES[i];break}}
+    titleEl.textContent=r?r.name:key;
+    textEl.textContent=REFLEX_EXPLAIN[key]||'';
+  } else {
+    titleEl.textContent=key;
+    textEl.textContent=FACULTY_EXPLAIN[key]||'';
+  }
+  panel.style.display='block';
+  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeMatrixDetail(){
+  var panel=document.getElementById('matrixDetailPanel');
+  if(panel)panel.style.display='none';
+}
+
 function renderMatrix(loud){
+  closeMatrixDetail();
   var intro=document.getElementById('matrixIntro');
-  if(intro)intro.innerHTML='Your loudest reflex this period was <b>'+loud.name+'</b>. The matrix below shows how it weakened each of your four faculties — Attention, Allegiance, Integrity, Return. <b>The lowest score is your one move for the next fifteen days.</b>';
+  if(intro)intro.innerHTML='Your primary pattern is <b>'+loud.name+'</b>. It can break your attention, your allegiance, your integrity, and your ability to return. The matrix above shows where they interact — lower scores mean a louder break. <b>Touch + on any pattern or faculty</b> to see what it means, or download your complete report for the full explanation.';
   var wrap=document.getElementById('matrixWrap');wrap.innerHTML='';
   var rs=reflexScores();
   var faculties=['Attention','Allegiance','Integrity','Return'];
   var html='<table class="matrix-table"><thead><tr><th></th>';
-  for(var f=0;f<faculties.length;f++)html+='<th class="matrix-th">'+faculties[f]+'</th>';
+  for(var f=0;f<faculties.length;f++)html+='<th class="matrix-th"><button type="button" class="matrix-head-btn" onclick="openMatrixDetail(\'faculty\',\''+faculties[f]+'\')">'+faculties[f]+'<span class="matrix-th-plus" aria-hidden="true">+</span></button></th>';
   html+='</tr></thead><tbody>';
   for(var i=0;i<REFLEXES.length;i++){
     var r=REFLEXES[i],sc=rs[r.key].score,sMax=rs[r.key].max;
     var bandQ=sc/sMax;
     var bandClass=bandQ<=.25?'q1':bandQ<=.50?'q2':bandQ<=.75?'q3':'q4';
     var cls=(loud&&r.key===loud.key)?' class="loudest"':'';
-    html+='<tr'+cls+'><th class="matrix-th-row">'+r.name+'</th>';
+    html+='<tr'+cls+'><th class="matrix-th-row"><button type="button" class="matrix-head-btn" onclick="openMatrixDetail(\'reflex\',\''+r.key+'\')">'+r.name+'<span class="matrix-th-plus" aria-hidden="true">+</span></button></th>';
     for(var f=0;f<faculties.length;f++)html+='<td><div class="matrix-cell '+bandClass+'">'+sc+'</div></td>';
     html+='</tr>';
   }
   html+='</tbody></table>';
   var fp='';
   if(loud&&loud.key&&MATRIX[loud.key]){
+    var nm=participantName?safe(participantName)+', ':'';
     fp+='<div class="fingerprint"><div class="fingerprint-label">The fingerprint of '+loud.name.toLowerCase()+' this period</div>'+
-      '<div class="fingerprint-h">When this reflex ran, here is what broke.</div>';
+      '<div class="fingerprint-h">'+nm+(participantName?'when ':'When ')+'<b>'+loud.name.toLowerCase()+'</b> ran, here is what broke.</div>';
     for(var f=0;f<faculties.length;f++){
       fp+='<div class="fingerprint-row"><div class="fingerprint-fac">'+faculties[f]+'</div><div class="fingerprint-text">'+MATRIX[loud.key][faculties[f]]+'</div></div>';
     }
