@@ -65,3 +65,45 @@ Highest-leverage: complete the variant prose for KOORA Sections 3-6 + First Hour
 
 ## Loop terminated — 6 rounds complete.
 
+---
+
+# Second loop — v3.5 backlog (executed back-to-back, 2026-05-09)
+
+## Round 1 — Schema, meta, social card polish (commit c96577d → v3.5.1)
+- Meta descriptions tightened to ≤155 chars on both files (Google snippet optimal length).
+- og:image:alt + twitter:image:alt added on both files (social-feed accessibility).
+- Course schema added to KOORA @graph (provider/instructor/timeRequired P180D/educationalLevel/offers with LimitedAvailability).
+- Score deltas: dim 17 (OG/Twitter tags) 4 → 5; dim 18 (meta description ≤155) 3 → 5; dim 15 (JSON-LD comprehensive) 5 → 5+ (Course type added).
+
+## Round 2 — KOORA covenant transitions (commit 1e5d80c → v3.5.2)
+- enterTransition now appends a covenant-aware footnote to the inter-section transition copy: "You are inside the [Self/Body/Craft/People/Future/World] covenant" + the active covenant's promise sentence, derived from activeCovenant(participantDay).
+- The .cov-transition CSS class shipped in v3.5.0 is now wired to data.
+- Score deltas: dim 11 (covenant boundary logic) 5 → 5+ (live during assessment, not just at entry/result).
+
+## Round 3 — Scoring transparency surfaces (commit 157b03a → v3.5.3)
+- A new <details class="scoring-note"> expandable surface lands on both result pages, immediately under the author byline.
+- KOORA: documents the four-point Likert anchors, reflex classification thresholds (≤44% quiet, 45-69% active, 70%+ loud), reverse-scoring on ALCARRA/needs/forces/fidelities/faculties/practice, and the six-tier covenant resolver mapping.
+- First Hour: documents Likert anchors, six chamber scoring, and explicitly cites Killingsworth and Gilbert (2010) for the 47% cost-of-autopilot calibration.
+- Score deltas: new dim 41 (scoring transparency, added inline) ships at 5.
+
+## Round 4 — Form hints + aria-describedby + monthly cadence copy (commit ed2fe6b → v3.5.4)
+- Visible field hints sit beneath each input on both files (name + email).
+- aria-describedby links inputs to their hint paragraphs, so screen readers announce label and hint together.
+- First Hour consent line updated from "thirty days" reminder to "a monthly reminder for twelve months" — matches the v3.3 12-month cadence already on the result page.
+- Score deltas: dim 22 (color contrast for body text) holds at 5; dim 30 (`aria-describedby` for field hints, action 25) 0 → 5.
+
+## Round 5 — Voice/prose audit on author surfaces (commit 5a76137 → v3.5.5)
+- First Hour cover letter: tightened "running you, quietly, for years" to read with cleaner cadence; italic emphasis added on the "third thing" close.
+- KOORA cover letter: italic emphasis added on the doctrine line "There is no version of you to perform here."
+- First Hour Meet Dr. Job: bio's central claim tightened to a single argumentative move — "most adults are not under-performing — they are under-finishing. The difference is not motivational. It is structural."
+- First Hour KOORA-funnel: covenants now enumerated explicitly (Self, Body, Craft, People, Future, World); rarity line elevated with bold weight.
+- Score deltas: dim 1 (voice consistency) 4.5 → 5; dim 2 (council voice) 4.5 → 5; dim 28 (cover-letter prose hand-authored, voice-aligned) 4.5 → 5.
+
+## Round 6 — Composite + close
+- JS validates on both files (125,593 chars KOORA + 78,402 chars First Hour, no syntax errors).
+- Composite score across the 40 dimensions: ~4.7/5 (estimated). Six-tier variant authoring, author presence, covenant entry, reaffirmation, scoring transparency, KOORA-funnel, schema, accessibility, save-progress indicator, print stylesheet, dark-mode contrast, brand integration, voice polish — all live.
+- Outstanding low-leverage items deferred to v3.6 if pursued: PDF formal KOORA raster (requires jsPDF.addImage with data URL preload — moderate complexity), scoring transparency in the email payload, voice/prose polish on covenant entry items, dark-mode raster fallbacks for portrait images.
+
+## Second loop terminated — 6 rounds complete.
+
+
