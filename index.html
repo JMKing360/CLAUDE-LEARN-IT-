@@ -31,7 +31,7 @@
       "givenName": "Job",
       "familyName": "Mogire",
       "honorificPrefix": "Dr.",
-      "honorificSuffix": "MD",
+      "honorificSuffix": "MD, FACC",
       "jobTitle": "Cardiologist · Author · Speaker",
       "description": "Cardiologist, author, and speaker. Founder of House of Mastery and architect of KOORA: The Finisher’s Protocol.",
       "image": "https://hom.mogire.com/images/dr-job-clinical.jpg",
@@ -661,12 +661,21 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <p class="body-text" style="font-style:italic;color:var(--body);font-size:15px;margin-top:8px;border-left:3px solid var(--gold);padding-left:14px;line-height:1.6">Nothing here is accusation. It is architecture. The pattern is the diagnosis, never the verdict.</p>
 
+  <!-- v3.3 — Covenant entry section, dayPicker-driven -->
+  <div class="covenant-entry" id="covenantEntry" style="display:none">
+    <div class="covenant-entry__eyebrow" id="covEntryEyebrow"></div>
+    <h2 class="covenant-entry__h" id="covEntryH"></h2>
+    <p class="covenant-entry__sub" id="covEntrySub"></p>
+    <ol class="covenant-entry__list" id="covEntryList"></ol>
+    <p class="covenant-entry__threshold" id="covEntryThreshold"></p>
+  </div>
+
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
     <div class="cover-letter__head">
       <img src="/images/dr-job-cover.jpg" alt="Dr. Job Mogire" loading="lazy" onerror="this.style.display='none'">
       <div>
         <div class="cover-letter__byline">A note from Dr. Job Mogire</div>
-        <div class="cover-letter__creds">Cardiologist · Author · Speaker</div>
+        <div class="cover-letter__creds">MD, FACC · Cardiologist · Author · Speaker</div>
       </div>
     </div>
     <div class="cover-letter__body">
@@ -747,6 +756,15 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
+  <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
+    <img src="/images/dr-job-clinical.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+    <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
+  </div>
+
+  <!-- v3.3 — Reaffirmation block, shown only on repeat takes -->
+  <div class="reaffirm" id="reaffirmBlock" style="display:none">
+    <p id="reaffirmText"></p>
+  </div>
   <p class="r-sub" id="rSub"></p>
 
   <div class="tbl-block">
@@ -900,7 +918,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <div class="meet-doctor__grid">
       <img src="/images/dr-job-desk.jpg" alt="Dr. Job Mogire at his desk" loading="lazy" onerror="this.style.display='none'">
       <div class="meet-doctor__bio">
-        <div class="meet-doctor__creds">Cardiologist · Author · Speaker</div>
+        <div class="meet-doctor__creds">MD, FACC · Cardiologist · Author · Speaker</div>
         <p><strong>Dr. Job Mogire</strong> is a cardiologist by trade and a builder by vocation. He spends his clinical hours listening for what the heart is doing, and his other hours listening for what a life is doing — what it is finishing, what it is leaving unfinished, and what it would take for it to begin to close the gap.</p>
         <p>He is the founder of <strong>House of Mastery</strong> and the architect of <em>KOORA: The Finisher’s Protocol</em>, a 180-day path for adults who are tired of beginning. His writing and speaking address the work nobody is rewarded for and everyone is judged by — the part of life where becoming actually happens.</p>
         <p>This instrument is one of his quieter offerings. It does not ask you to share anything publicly. It asks you to be honest with yourself for sixty minutes, and to let what you find sit with you.</p>
@@ -913,7 +931,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </main>
 
 <footer>
-  <p class="foot-credit"><b>UNFINISHED</b>, the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a House of Mastery body of work by <b>Dr. Job Mogire</b> — cardiologist, author, speaker. Don’t die with an unfinishing life.<span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span></p>
+  <p class="foot-credit"><b>UNFINISHED</b>, the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a House of Mastery body of work by <b>Dr. Job Mogire, MD, FACC</b> — cardiologist, author, speaker. Don’t die with an unfinishing life.<span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span></p>
 </footer>
 
 <script>
@@ -1357,6 +1375,104 @@ var PRACTICE=[
   {key:'sunday',name:'The Sunday sealing',          q:49}
 ];
 
+var COVENANT_ENTRY={
+  1:{name:'Self', eyebrow:'You are entering the Self covenant',
+     h:'Before you answer the sixty, five small things to notice.',
+     sub:'Answer them in your head. We are not collecting them. They are gates.',
+     items:[
+       'I have at least one promise to myself I have broken more than three times.',
+       'I have an inner voice that is harsher with me than I would tolerate from anyone else.',
+       'I can name one specific thing my actions show me to be that I would not say out loud.',
+       'I am performing some version of myself today that is not the one running this thought.',
+       'There is one small daily promise I could keep starting tomorrow that would change how I see myself.'
+     ],
+     threshold:'If three or more of these landed, you are in the right room. The Self covenant is the work of bringing your word back to yourself. Begin.'},
+  2:{name:'Body', eyebrow:'You are entering the Body covenant',
+     h:'Before you answer this round, five things the body has been saying.',
+     sub:'Notice. We do not collect them.',
+     items:[
+       'My body has been sending me a signal I have been overriding for at least three weeks.',
+       'There is an appointment I have been postponing for reasons that would not survive being said aloud.',
+       'I am medicating something — sleep, food, screens, alcohol — that I would prefer to meet directly.',
+       'I cannot remember the last time I moved my body purely for joy, not management.',
+       'When I picture my body at seventy, I want a vessel that still carries me, badly enough to act today.'
+     ],
+     threshold:'The body has been keeping the score. The Body covenant is the work of stopping the override. Continue.'},
+  3:{name:'Craft', eyebrow:'You are entering the Craft covenant',
+     h:'Before you answer this round, five things about the work entrusted to you.',
+     sub:'Notice. The work is asking.',
+     items:[
+       'There is one piece of work I was given to build that I have been pretending I did not receive.',
+       'My calendar this week does not reflect what I would call my life’s work.',
+       'I am better at beginning than at finishing, and I know which is the harder discipline.',
+       'There is a piece of work I am ninety percent done with that I cannot bring myself to close.',
+       'If I gave the next ninety days fully to one thing, I know which thing it would be.'
+     ],
+     threshold:'The Craft covenant is the work of honouring what you were given. Continue.'},
+  4:{name:'People', eyebrow:'You are entering the People covenant',
+     h:'Before you answer this round, five things about the people closest to you.',
+     sub:'Notice. They have been waiting.',
+     items:[
+       'There is a conversation I have been postponing with someone I love that is now part of the relationship.',
+       'I perform a different version of myself for the people closest to me than for those I am trying to impress.',
+       'Someone close to me is paying a quiet cost for who I have been refusing to become.',
+       'I have not asked for help on something where help would change everything.',
+       'When I imagine the children in my life looking back at how I lived, I do not want incompletion to be what they inherit.'
+     ],
+     threshold:'The People covenant is where the work becomes real or stays performance. Continue.'},
+  5:{name:'Future', eyebrow:'You are entering the Future covenant',
+     h:'Before you answer this round, five things about the person you are becoming.',
+     sub:'Notice. The future is already arriving.',
+     items:[
+       'There is a version of me five years from now I am betraying with how I am living today.',
+       'My calendar, my money, and my habits are not yet aligned with the person I claim to be becoming.',
+       'I am closer than I was. I am not yet there.',
+       'There is one structural choice I could make in the next thirty days that would compound across the next decade.',
+       'The seventy-year-old version of me would forgive me for slowness but not for staying.'
+     ],
+     threshold:'The Future covenant is the work of stopping the betrayal of the person you are becoming. Continue.'},
+  6:{name:'World', eyebrow:'You are entering the World covenant',
+     h:'Before you answer this round, five things about what you are giving back.',
+     sub:'Notice. The work is meant to be passed.',
+     items:[
+       'I have rebuilt something in myself that someone else needs and is not yet receiving.',
+       'There is one public contribution I could make in the next ninety days that I have been quietly avoiding.',
+       'I am holding more than I was given. The hoarding is itself a pattern.',
+       'There is one person, group, or project that would be permanently changed by what I now carry.',
+       'I have been asked to give and I have been calling my refusal humility.'
+     ],
+     threshold:'The World covenant closes the protocol. The work was always meant to be given away. Continue.'}
+};
+
+// Days that mark first entry to each covenant
+var COVENANT_ENTRY_DAYS={0:1,14:1,30:1,45:2,60:2,75:3,90:3,105:4,120:4,135:5,150:5,165:6,180:6};
+
+function renderCovenantEntry(day){
+  var box=document.getElementById('covenantEntry');
+  if(!box)return;
+  var covMonth=COVENANT_ENTRY_DAYS[day];
+  if(!covMonth){box.style.display='none';return}
+  // Show only on FIRST visit to a covenant (entry days: 0, 45, 75, 105, 135, 165)
+  // Mid-month and end-of-month within a covenant skip the gateway since the participant
+  // is already inside the covenant. The entry days are intentionally first mid-months.
+  var entryDays={0:1,45:2,75:3,105:4,135:5,165:6};
+  if(!(day in entryDays)){box.style.display='none';return}
+  var data=COVENANT_ENTRY[entryDays[day]];
+  if(!data){box.style.display='none';return}
+  document.getElementById('covEntryEyebrow').textContent=data.eyebrow;
+  document.getElementById('covEntryH').textContent=data.h;
+  document.getElementById('covEntrySub').textContent=data.sub;
+  var ul=document.getElementById('covEntryList');ul.innerHTML='';
+  for(var i=0;i<data.items.length;i++){
+    var li=document.createElement('li');
+    li.className='covenant-entry__item';
+    li.innerHTML='<b>'+(i+1)+'.</b> '+data.items[i];
+    ul.appendChild(li);
+  }
+  document.getElementById('covEntryThreshold').textContent=data.threshold;
+  box.style.display='block';
+}
+
 var COVENANTS=[
   {month:1,name:'Self',  promise:'I will stop abandoning myself.',practice:'I keep one daily promise to myself.',evidence:'I trust myself again. I have proof.'},
   {month:2,name:'Body',  promise:'I will stop treating my body as disposable.',practice:'I protect rest, movement, nourishment, and attention.',evidence:'My body still carries me at sixty, seventy, eighty.'},
@@ -1476,6 +1592,12 @@ function populateDayPicker(){
     opt.value=o.v;opt.textContent=o.label;
     if(o.v===nextDay)opt.selected=true;
     sel.appendChild(opt);
+  }
+  // v3.3 — render covenant-entry section based on selected day
+  if(typeof renderCovenantEntry==='function')renderCovenantEntry(parseInt(sel.value,10)||0);
+  if(!sel.dataset.covWired){
+    sel.addEventListener('change',function(){if(typeof renderCovenantEntry==='function')renderCovenantEntry(parseInt(sel.value,10)||0)});
+    sel.dataset.covWired='1';
   }
 }
 function nextDayFor(prev){
@@ -1771,10 +1893,15 @@ function renderQuestion(n){
   var q=QUESTIONS[n-1];
   document.getElementById('qSection').textContent='Section '+q.sec+' of 6 · '+q.sn;
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
-  // Pick tier variant from text array if present
+  // Pick tier variant from text array. Six-tier covenant resolver:
+  // rt=1 Self → idx 0 · rt=2 Body → idx 1 · rt=3 Craft → idx 2 · rt=4 People → idx 3 · rt=5 Future → idx 4 · rt=6 World → idx 5.
+  // For items still on legacy 3-tier text, resolver clamps to last index gracefully.
   var variantIdx=0;
-  if(typeof retakeTier==='function'){var rt=retakeTier();variantIdx=rt<=2?0:rt<=4?1:2}
-  var qText=Array.isArray(q.text)?q.text[Math.min(2,Math.max(0,variantIdx))]:q.text;
+  if(typeof retakeTier==='function'){variantIdx=Math.min(5,Math.max(0,retakeTier()-1))}
+  var qText=q.text;
+  if(Array.isArray(q.text)){
+    qText=q.text[Math.min(q.text.length-1,variantIdx)];
+  }
   document.getElementById('qText').textContent=qText;
   document.getElementById('qPrompt').textContent=sectionPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
@@ -1933,6 +2060,34 @@ function buildResults(rec){
   var prior=null;var hist=priorRecords(rec.name);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
   var returnIdx=hist.length;
+
+  // v3.3 — Reaffirmation block for repeat takers (Day > 0 OR returnIdx > 1)
+  var rb=document.getElementById('reaffirmBlock'),rt=document.getElementById('reaffirmText');
+  if(rb&&rt){
+    if(rec.day>0||returnIdx>1){
+      var cov=activeCovenant(rec.day);
+      var nm=safe(rec.name);
+      var lines={
+        14:nm+', you came back at the mid-month. <em>That itself is data.</em> The first two weeks of the <b>'+cov.name+'</b> covenant rarely show what they are doing until you sit with them honestly. Sit.',
+        30:'You sealed the <b>'+cov.name+'</b> covenant, '+nm+'. <em>You did not have to.</em> The pattern of returning when you said you would return is the only proof of the protocol that matters.',
+        45:nm+', you are inside the <b>'+cov.name+'</b> covenant now. <em>You came back.</em> What the body knows by mid-month is rarely what the mind has caught up with yet. Look.',
+        60:'You have closed two covenants, '+nm+'. <em>This is rare.</em> The Body covenant tends to surface what was hidden in Self. Receive what you find without flinching.',
+        75:nm+', the <b>Craft</b> covenant is the one most people skip on themselves. <em>You did not skip.</em> What the work is asking of you in the next fifteen days will be specific.',
+        90:'Halfway, '+nm+'. <em>Three covenants closed.</em> Most who began with you did not arrive here. Notice that without celebrating it. Then keep walking.',
+        105:nm+', the <b>People</b> covenant is where the work either becomes real or stays performance. <em>The people closest to you can feel which.</em> So can you.',
+        120:'You have closed four covenants, '+nm+'. <em>The room around you has changed.</em> What you now carry is not what you carried at Day 0. The architecture is doing what it was built to do.',
+        135:nm+', the <b>Future</b> covenant is the one that asks who you are becoming, not what you are doing. <em>You are inside it.</em> The seventy-year-old version of you is watching.',
+        150:'Five covenants closed, '+nm+'. <em>One remains.</em> What you give away from here is what proves the work is yours. The protocol does not end at completion. It ends at contribution.',
+        165:nm+', the <b>World</b> covenant. <em>This is the last mid-month return.</em> What you have rebuilt is now meant to be given. Do not hoard the work.',
+        180:'You have walked the protocol, '+nm+'. <em>This is the Sealing.</em> The instrument is not a closing ceremony; it is a witness. What you have become is permanent if you keep returning.'
+      };
+      var msg=lines[rec.day]||(nm+', you came back. <em>That itself is data.</em> The pattern of returning is the only proof of the protocol that matters. The covenant continues.');
+      rt.innerHTML=msg;
+      rb.style.display='block';
+    }else{
+      rb.style.display='none';
+    }
+  }
 
   var loud=loudestReflex();
   var headline=document.getElementById('rHeadline');
@@ -2383,7 +2538,7 @@ function _downloadPDF(){
   function footer(p){
     doc.setDrawColor(ruleC[0],ruleC[1],ruleC[2]);doc.line(M,H-14,W-M,H-14);
     doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(dim[0],dim[1],dim[2]);
-    doc.text('UNFINISHED · House of Mastery · Architected by Dr. Job Mogire, MD, FACP, FACC · mail@mogire.com',M,H-9);
+    doc.text('UNFINISHED · House of Mastery · Architected by Dr. Job Mogire, MD, FACC · mail@mogire.com',M,H-9);
     doc.text('Page '+p+' of 4',W-M,H-9,{align:'right'});
   }
   function sectionLabel(text,y){
@@ -2418,7 +2573,7 @@ function _downloadPDF(){
   }
   y+=2;
   doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(navy[0],navy[1],navy[2]);
-  doc.text('Dr. Job Mogire, MD, FACP, FACC.',M,y);y+=4.5;
+  doc.text('Dr. Job Mogire, MD, FACC.',M,y);y+=4.5;
   doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(mid[0],mid[1],mid[2]);
   doc.text('Architect, KOORA. House of Mastery.',M,y);y+=10;
 
@@ -2635,7 +2790,49 @@ function _downloadPDF(){
   doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
   doc.text('Cohort contact: mail@mogire.com. Cohort WhatsApp on file with the participant.',M,y);
 
-  footer(4);
+  footer(4);doc.addPage();
+
+  // v3.3 — Page 5: Doctor's note (medical-grade signature page)
+  header('Page 5 of 5');
+  y=36;
+  doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(gold[0],gold[1],gold[2]);
+  doc.text('A NOTE FROM THE ARCHITECT OF KOORA',W/2,y,{align:'center'});y+=10;
+  doc.setFont('times','bold');doc.setFontSize(22);doc.setTextColor(navy[0],navy[1],navy[2]);
+  doc.text('Dr. Job Mogire',W/2,y,{align:'center'});y+=8;
+  doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+  doc.text('MD, FACC  ·  Cardiologist  ·  Author  ·  Speaker',W/2,y,{align:'center'});y+=14;
+  doc.setDrawColor(gold[0],gold[1],gold[2]);doc.setLineWidth(.6);doc.line(W/2-25,y,W/2+25,y);y+=10;
+  doc.setFont('times','normal');doc.setFontSize(11);doc.setTextColor(ink[0],ink[1],ink[2]);
+  var dayLabelShort=labelForDay(rec.day).split(' (')[0];
+  var letterLines=[
+    safe(rec.name)+',',
+    '',
+    'You returned at '+dayLabelShort+'. The covenant continues. I want you to know one thing about the architecture',
+    'of this protocol that nobody outside the cohort tends to see clearly.',
+    '',
+    'KOORA is not a course. It is not a curriculum. It is a 180-day witness — the architecture you walk inside while',
+    'you do the work of bringing your word back to yourself, your body, your craft, the people closest to you, the',
+    'person you are becoming, and the world you are meant to give back to. Six covenants. The instrument you',
+    'just took is the diagnostic, but it is also the witness. It tracks what is moving, what is not, and what you have',
+    'been pretending you cannot see.',
+    '',
+    'You are permitted to fall. You are not permitted to stop returning. The architecture is non-recoverable on',
+    'purpose, because the discipline of staying is the discipline. If you missed a module, you do not see it again',
+    'until next year. If you miss tomorrow, do not miss the day after.',
+    '',
+    'I will see you on the next return.'
+  ];
+  for(var i=0;i<letterLines.length;i++){
+    var L=doc.splitTextToSize(letterLines[i],W-M*2);
+    doc.text(L,M,y);y+=L.length*5+1;
+  }
+  y+=4;
+  doc.setFont('times','italic');doc.setFontSize(13);doc.setTextColor(navy[0],navy[1],navy[2]);
+  doc.text('— Dr. Job Mogire, MD, FACC',M,y);y+=6;
+  doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+  doc.text('House of Mastery  ·  KOORA: The Finisher’s Protocol  ·  '+formatDate(rec.date)+'  ·  mail@mogire.com',M,y);
+
+  footer(5);
   doc.save('UNFINISHED-Report-'+rec.name.replace(/\s+/g,'-')+'-Day'+rec.day+'.pdf');
 }
 </script>

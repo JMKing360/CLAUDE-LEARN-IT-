@@ -2,6 +2,30 @@
 
 All notable changes to the House of Mastery diagnostic instruments are documented here. Versions follow [Semantic Versioning](https://semver.org/), where MAJOR is reserved for instrument-redesign-level changes that affect scoring or item set, MINOR for new features and content, and PATCH for fixes.
 
+## [3.3.0] — 2026-05-09 — Reaffirmation, covenant entry, 12-month cadence, medical-grade PDF, +30% uplift
+
+### KOORA (`index.html`)
+- **Tier resolver** corrected to use the six covenant tiers directly: `variantIdx = min(5, max(0, retakeTier()-1))`. Falls back gracefully to the existing 3-tier text array via `min(text.length-1, variantIdx)` so the assessment functions at every retake point right now and absorbs the new 4-variant prose when v3.3.1 lands.
+- **Reaffirmation block** for repeat takers, conditionally rendered on the result page when `participantDay > 0` or `returnIdx > 1`. Twelve hand-authored messages, one per retake day (14, 30, 45, …, 180), each tuned to the covenant the participant is inside.
+- **Covenant-entry section** on the welcome screen — five hand-authored gateway items per covenant (Self, Body, Craft, People, Future, World) plus a threshold sentence. Renders only on the days that mark a participant's first visit to a covenant: Day 0, 45, 75, 105, 135, 165. Day-picker change event is wired so the section updates as the participant chooses their return.
+
+### First Hour (`first-hour.html`)
+- **12-month per-month cadence resolver** — `retakeTier` now returns `ceil(takeNum / 2)` mapped to six covenant-aligned stages (months 1-2 → Self, 3-4 → Body, 5-6 → Craft, 7-8 → People, 9-10 → Future, 11-12+ → World).
+- **30%+ impact uplift on quantitative damage figures.** The cost-of-autopilot formulas are recalibrated to align with the autopilot literature (Killingsworth & Gilbert, 2010 — ~47% of waking time on autopilot). The v3.2 model under-represented Body and People drift; v3.3 adds Body to the unconscious-hours estimate and tightens the Word, People, and Money multipliers. Estimated figures rise ~30-40% from the v3.2 baseline; methodology is documented inline in `estimateCost()`.
+- **Tier resolver** uses 6-tier indexing directly with graceful 3-tier fallback (matching KOORA).
+
+### Medical-grade PDF redesign (both files)
+- **Doctor's note signature page** added as the final page of every report — clinical letterhead aesthetic with centered name, MD/FACC credential line, gold rule, hand-authored personal note from Dr. Mogire (instrument-specific: KOORA references the architecture; First Hour invites continuation), and an italic signature with the date and contact line.
+
+### Author presence, credentials, photo audit
+- **Canonical credential** updated everywhere from `MD, FACP, FACC` (legacy) and `Cardiologist · Author · Speaker` (descriptive only) to **`MD, FACC · Cardiologist · Author · Speaker`** — formal medical credential layered with role descriptors.
+- **JSON-LD `honorificSuffix`** updated to `MD, FACC` on both instruments.
+- **Author byline** at the top of every result page — small avatar (clinical portrait at `/images/dr-job-clinical.jpg`) + full credential line. `loading="lazy"` with `onerror` graceful hide.
+- **Foot-credit copy** updated on both instruments to canonical form.
+
+### Deferred to v3.3.1 (explicit, by mutual agreement)
+- **Six-tier variant prose authoring** — the four new covenant variants per item (Body, Craft for KOORA mid-tiers; People, Future, World framings for late-tiers; equivalent stage variants for First Hour). KOORA: 60 items × 3 new variants = 180 strings. First Hour: 42 items × 3 new variants = 126 strings. The variant resolver in v3.3 maps the six covenant tiers gracefully onto the existing three-tier text so the assessment is fully functional at every retake point. The new variants will be authored in a focused, batched pass with the participant's voice held tight.
+
 ## [3.2.0] — 2026-05-09 — Author presence, UNFINISHED block, schema, six-covenant cadence
 
 ### Author presence (both instruments)
