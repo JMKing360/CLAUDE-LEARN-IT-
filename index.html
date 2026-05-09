@@ -351,6 +351,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .next-move-box__label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .next-move-box__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:600;line-height:1.55;color:var(--ink);margin:0}
 .deep-mark{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-left:8px;vertical-align:middle}
+.sub-label{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.005em;margin-left:6px}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
 .fingerprint-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -1024,13 +1025,13 @@ body.footer-hidden footer{display:none}
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The four needs · Filled, or substituted</span>
+    <span class="tbl-h">The Four Fundamental Needs</span>
     <table class="dtable" id="needTable"></table>
     <p class="narrative-read">Every need always gets fed. The only question is whether you feed it with the real thing, or with a false substitute. <b>Filled</b> is how much each need was met by the real thing. <b>Substituted</b> is how much you reached for the counterfeit. High filled with low substituted is health. <b>The reverse is the warning — where the substitute is loudest, the real need is most starved.</b></p>
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The forces of necessity · What moved you</span>
+    <span class="tbl-h">The Forces of Necessity</span>
     <table class="dtable" id="forceTable"></table>
     <p class="narrative-read">If two forces feel close, choose the heavier one. That is the active force for today.</p>
     <p class="tbl-legend"><b>How to read this:</b> The four forces are the obligations that move a Finisher from intention to motion. <b>Duty</b> is who you are honoring. <b>Opus</b> is what was given you to build. <b>Declaration</b> is what you put on record. <b>Identity</b> is who you must become.</p>
@@ -1766,10 +1767,10 @@ var NEEDS=[
 ];
 
 var FORCES=[
-  {key:'duty',name:'Duty',sub:'Whom I am honoring',q:32},
-  {key:'opus',name:'Opus',sub:'What was given me to build',q:33},
-  {key:'declaration',name:'Declaration',sub:'What I put on record',q:34},
-  {key:'identity',name:'Identity',sub:'Who I must become',q:35}
+  {key:'duty',name:'Duty',sub:'Whom am I honouring?',q:32},
+  {key:'opus',name:'Opus',sub:'What was I given to build?',q:33},
+  {key:'declaration',name:'Declaration',sub:'What have I put on record?',q:34},
+  {key:'identity',name:'Identity',sub:'Who must I become?',q:35}
 ];
 
 var FIDELITIES=[
@@ -2432,6 +2433,7 @@ function levelNeg(pct){return pct<=0.44?'quiet':pct<=0.69?'active':'loud'}
 function levelPos(pct){return pct<=0.44?'beg':pct<=0.69?'prac':'emb'}
 function levelLabelNeg(pct){return ({quiet:'Quiet',active:'Active',loud:'Loud'})[levelNeg(pct)]}
 function levelLabelPos(pct){return ({beg:'Beginning',prac:'Practicing',emb:'Embodied'})[levelPos(pct)]}
+function subLabel(score){return ['low sub','minimal sub','some sub','lots of sub'][Math.max(0,Math.min(3,(score|0)-1))]}
 
 // Finish
 function finishAssessment(){
@@ -2730,8 +2732,8 @@ function renderNeedTable(){
   for(var i=0;i<arr.length;i++){
     var h=arr[i];
     html+='<tr><td>'+h.name+' <span class="deep-mark">DEEP</span></td><td class="muted">'+h.sub+'</td>'+
-      '<td class="right">'+h.filled+'/4 · <span class="lvl-pill '+levelPos(h.filledPct)+'">'+levelLabelPos(h.filledPct)+'</span></td>'+
-      '<td class="right">'+h.subst+'/4 · <span class="lvl-pill '+levelNeg(h.substPct)+'">'+levelLabelNeg(h.substPct)+'</span></td></tr>';
+      '<td class="right">'+h.filled+'/4</td>'+
+      '<td class="right">'+h.subst+'/4 <span class="sub-label">'+subLabel(h.subst)+'</span></td></tr>';
   }
   html+='</tbody>';
   document.getElementById('needTable').innerHTML=html;
@@ -3093,14 +3095,19 @@ function _downloadPDF(){
     var h=nd[i];
     doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
     doc.text(h.name,M,y);
-    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(gold[0],gold[1],gold[2]);
+    doc.text('DEEP',M+27,y);
+    doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
     doc.text(h.sub,M+44,y);
-    doc.setFontSize(9);doc.setTextColor(lc[levelPos(h.filledPct)][0],lc[levelPos(h.filledPct)][1],lc[levelPos(h.filledPct)][2]);
+    doc.setFontSize(9);doc.setTextColor(ink[0],ink[1],ink[2]);
     doc.text('Filled '+h.filled+'/4',M+108,y);
-    doc.setTextColor(lc[levelNeg(h.substPct)][0],lc[levelNeg(h.substPct)][1],lc[levelNeg(h.substPct)][2]);
-    doc.text('Substituted '+h.subst+'/4',M+138,y);y+=6.4;
+    doc.setFontSize(9);doc.setTextColor(ink[0],ink[1],ink[2]);
+    doc.text('Substituted '+h.subst+'/4',M+138,y);
+    doc.setFontSize(7.5);doc.setTextColor(mid[0],mid[1],mid[2]);
+    doc.text('('+subLabel(h.subst)+')',M+170,y);
+    y+=6.4;
   }
-  y+=2;legend('High filled with low substituted is health. The reverse is the warning.',y);
+  y+=2;y=legend('Every need always gets fed — with the real thing, or with a substitute. High filled with low substituted is health. Where the substitute is loudest, the real need is most starved.',y);
 
   footer(2);doc.addPage();
 
