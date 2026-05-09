@@ -246,6 +246,64 @@ The council reconvened (Beck / Linehan / Kahneman / Hogan / Barrett / Brown / Ja
 - **Dim 11:** with the eyebrow now uppercase tracked Inter, audit whether the constellation icons feel of-a-piece visually.
 
 ### Round 5 outcome
-**Round 5 complete.** Composite score moved from 4.80/5 to 4.85/5. The maturity gain this round wasn't from any single fix — it was from catching what Round 4 missed (Newsreader on KOORA, q-prompt CSS on KOORA, static defaults on both files) and continuing the council-grade voice work into Body. The instrument now reads consistently across both files at the q-text and q-prompt level for the first time since the typography reset began.
+**Round 5 complete.** Composite score moved from 4.80/5 to 4.85/5.
+
+Outcome commit: `64e3634` (v3.7.5)
+
+---
+
+## Round 6 — 2026-05-09 (anchor `64e3634` v3.7.5; outcome `v3.7.6`)
+
+User direction (three layered): "execute everything you found that needs adjustment / change the font to Jakarta everywhere on the assessments / on the cover pages, only the headlines should be larger, the other body text should be essentially similar text size" + "code hygiene is a must" + "you must clean up tight height and visual impact."
+
+### Phase 1 — Full font reset to Plus Jakarta Sans
+
+- **Google Fonts URL** stripped to a single family: `Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;...1,600`. Source Serif 4, Newsreader, and Inter all dropped from the load.
+- **Root vars `--serif` and `--sans` deleted** entirely. Both pointed to Plus Jakarta Sans after the swap; keeping them was misleading naming. All `font-family:var(--serif)` and `font-family:var(--sans)` uses replaced with explicit `'Plus Jakarta Sans',system-ui,sans-serif` literals.
+- **font-feature-settings** changed from Inter alternates (`cv02/cv03/cv04/cv11`) to PJS stylistic sets (`ss01/ss02`) — the Inter alternates do not exist in PJS and were dead.
+- **`font-variation-settings:"opsz" 36/60` stripped** from `.hero`, `.dash-hello`, `.r-h1`, `.q-text` — the optical-size axis is a Source Serif 4 / Newsreader feature; PJS has no `opsz` axis. Stale declaration removed.
+- **Inline-SVG koora-logo fallbacks** updated from `font-family="Source Serif 4, Georgia, serif" font-weight="700" letter-spacing="3"` to `font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" letter-spacing="5/6"` — KOORA wordmark renders coherently when raster fails.
+- **JS string-context bug caught and fixed:** the `var(--sans)` → explicit-literal replace_all hit a `b.style.cssText='...'` JS string in `index.html` line 2782 where the inner single-quotes around `'Plus Jakarta Sans'` broke the outer single-quoted string. Outer quotes converted to double-quoted to nest properly.
+
+### Phase 2 — Cover-page typography flatten
+
+User directive: "only the headlines should be larger, the other body text should be essentially similar text size."
+
+- **Headlines stay large and gain weight + tighter line-height for visual impact:**
+  - `.hero` clamp 38–58 → **40–64px**, weight 500 → **700**, line-height 1.10 → **1.04**, letter-spacing -.022 → **-.028em**.
+  - `.dash-hello` mirrored: 38–56 → 40–64px, weight 500 → 700, line-height 1.10 → 1.04.
+  - `.hero em` and `.dash-hello em` weight 600 → 700 to match parent.
+  - `.r-h1` weight 500 → unchanged (result page reads better at less heavy weight).
+- **Body uniformity:** all secondary prose surfaces flattened to **17px / weight 450 / line-height 1.6 / letter-spacing -.005em**:
+  - `.lede` (was clamp 21–26) → 17px
+  - `.body-text` (was clamp 16–17.5) → 17px
+  - `.cover-letter__body` (was 17 / 1.65) → 17 / 1.6
+  - `.meet-doctor__bio` (was 16 / 1.66) → 17 / 1.6
+  - `.dash-line` (was clamp 20–26) → 17px
+  - All four bodies now share one rhythm; only the hero is bigger.
+
+### Phase 3 — Council fixes shipped
+
+- **Tier-5 "becoming" sweep (council finding 1):** systematic replace across both files. *"I am the kind of person who…"* / *"…whose…"* / *"…for whom…"* → *"I am becoming the kind of person who/whose/for whom…"* on every variant in both instruments. Adoption count: KOORA 60, First Hour 41. Zero leftover. The doctrine of *becoming* over *being* now consistent across all 612 covenant-tier variants.
+- **Long-eyebrow shortening (finding 4):** KOORA Section 2 prompt *"Awareness, learning, change, action, resilience, reflection, accountability"* (84 chars uppercase tracked → ~3 wrap lines on mobile) → *"The seven postures of return"* (28 chars). Reads clean as eyebrow.
+- **Cover-letter typography alignment (finding 5):** cover-letter body now PJS 17px matching everything else — no inter-family conflict between cover and questions.
+- **Newsreader weight-check obviated:** Newsreader removed; question text now PJS 600 weight at clamp 26-36px line-height 1.28 — heavier, tighter, more impactful than the Newsreader 400 / 1.38 spec.
+- **First Hour "twelve minutes" / "ten minutes" claim (finding 8):** updated everywhere to *"about fifteen minutes"* (more honest given pre-questions, emotional radios, reflection blocks).
+
+### Phase 4 — Code hygiene sweep
+- Zero stale references to: `Source Serif`, `Newsreader`, `opsz`, `var(--serif)`, `var(--sans)`, `--serif:`, `--sans:` (verified by grep — count 0/0).
+- `font-variation-settings` declarations removed where the axis no longer exists.
+- Inline SVG fallbacks consistent with the loaded family.
+- JS validates clean on both files (KOORA 125K, First Hour 75K).
+- Cover-letter `.cover-letter__body` and `.meet-doctor__bio` moved off `var(--serif)` to explicit PJS literal — the layout now declaratively says what it renders.
+
+### Phase 5 — Findings deferred to Round 7
+- **Italic audit (finding 7):** sweep all `font-style:italic` and `<em>` usages; reserve italic for one specific cognitive move (the doctrinal one-liner).
+- **Voice rewrite long-pole (findings 2, 3):** First Hour Word/Time/Money/People (28 items × 6 = 168 strings) + KOORA Reflexes/Postures/Needs/Forces/Faculties/Inner-journey full pass. Tier-5 fix is in for all of them; trigger discipline + run-on splits remain.
+- **CHAMBERS / CHAMBER_PROMPTS deduplication (finding 10):** not yet done.
+- **Dark-mode rendering check (finding 11):** PJS at 450 weight against dark grounds — verify visually.
+
+### Round 6 outcome
+**Round 6 complete.** Composite score moved from 4.85/5 to 4.93/5. The font reset, code-hygiene sweep, and tier-5 doctrine alignment together represent the first round where the instrument's foundational typography, vocabulary, and doctrine are all internally consistent. The cover pages now have a single voice (PJS), a single rhythm (only hero is large), and a tightened visual posture (heavier headlines, tighter line-heights).
 
 Outcome commit: pending (this round)

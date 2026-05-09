@@ -120,16 +120,14 @@
 <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"KOORA: The Finisher%E2%80%99s Protocol","short_name":"KOORA","description":"A House of Mastery diagnostic by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"cv02","cv03","cv04","cv11";font-feature-settings:"cv02","cv03","cv04","cv11"}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"ss01","ss02";font-feature-settings:"ss01","ss02"}
 :root{
-  --serif:'Source Serif 4',Georgia,serif;
-  --sans:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
   --navy:#0D1F3C;--navy-soft:#1B2D4F;
   --gold:#C9973A;--gold-soft:#E8B85A;
   --ink:#1A1A1F;--body:#2D2D33;--mid:#52525A;--dim:#75757D;
@@ -185,11 +183,11 @@ nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:satu
 .nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
 .nav-house:hover{opacity:.7}
 .hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
-.nav-house-text{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
+.nav-house-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
 .nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
 .nav-koora{display:inline-flex;align-items:center;height:18px}
 .nav-koora svg{height:18px;width:auto;display:block}
-.nav-meta{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--mid);text-transform:uppercase;display:none}
+.nav-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--mid);text-transform:uppercase;display:none}
 @media (min-width:680px){.nav-meta{display:inline}}
 
 main{max-width:760px;margin:0 auto;padding:0 28px}
@@ -215,35 +213,35 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* DASHBOARD */
 #screen-dashboard{padding:48px 0 96px}
-.dash-hello{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(38px,5.2vw,56px);font-weight:500;letter-spacing:-.022em;color:var(--ink);line-height:1.1;margin-bottom:18px;font-variation-settings:"opsz" 60}
-.dash-hello em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
-.dash-line{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:400;line-height:1.55;color:var(--mid);letter-spacing:-.005em;margin-bottom:18px}
+.dash-hello{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(40px,5.6vw,64px);font-weight:700;letter-spacing:-.028em;color:var(--ink);line-height:1.04;margin-bottom:20px}
+.dash-hello em{font-style:normal;font-weight:700;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
+.dash-line{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.55;color:var(--mid);letter-spacing:-.005em;margin-bottom:18px}
 .dash-line b{color:var(--ink);font-weight:600}
-.dash-anticipation{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.005em;margin-bottom:48px;line-height:1.5}
+.dash-anticipation{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--gold);letter-spacing:.005em;margin-bottom:48px;line-height:1.5}
 
 .tbl-block{margin-bottom:44px}
-.tbl-h{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:16px;display:block}
-.dtable{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;overflow:hidden;font-family:var(--sans)}
-.dtable th{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:left;padding:14px 18px;background:var(--surface-2);border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+.tbl-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:16px;display:block}
+.dtable{width:100%;border-collapse:separate;border-spacing:0;background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;overflow:hidden;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.dtable th{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:left;padding:14px 18px;background:var(--surface-2);border-bottom:1px solid var(--rule-soft);white-space:nowrap}
 .dtable th.right{text-align:right}
 .dtable td{padding:18px 18px;border-bottom:1px solid var(--rule-soft);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
 .dtable td.muted{color:var(--mid);font-weight:500;font-size:13px}
 .dtable td.right{text-align:right;font-variant-numeric:tabular-nums}
 .dtable tbody tr:last-child td{border-bottom:none}
 .dtable tbody tr.feature td{background:#FAF6EC}
-.dtable td.value-lg{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:-.015em}
-.delta-pill{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:8px;font-variant-numeric:tabular-nums}
+.dtable td.value-lg{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:22px;font-weight:600;letter-spacing:-.015em}
+.delta-pill{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:8px;font-variant-numeric:tabular-nums}
 .delta-pill.up{background:var(--green-soft);color:var(--green)}
 .delta-pill.down{background:var(--red-soft);color:var(--red)}
 .delta-pill.flat{background:var(--surface-2);color:var(--mid)}
-.lvl-pill{display:inline-block;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:3px 9px;border-radius:8px}
+.lvl-pill{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:3px 9px;border-radius:8px}
 .lvl-pill.quiet,.lvl-pill.emb{background:var(--green-soft);color:var(--green)}
 .lvl-pill.active,.lvl-pill.prac{background:var(--amber-soft);color:var(--amber)}
 .lvl-pill.loud{background:var(--red-soft);color:var(--red)}
 .lvl-pill.beg{background:var(--rule-soft);color:var(--mid)}
-.tbl-legend{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
+.tbl-legend{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
 .tbl-legend b{color:var(--ink);font-weight:700}
-.narrative-read{font-family:var(--serif);font-size:17px;font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;margin:14px 4px 0;letter-spacing:-.005em}
+.narrative-read{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;margin:14px 4px 0;letter-spacing:-.005em}
 
 .path-table td.path-mark-cell{width:36px;padding:18px 0 18px 18px}
 .path-mark{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:transparent}
@@ -254,39 +252,39 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .path-row.now td.right{color:var(--gold);font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
 
 .dash-cta{margin-top:8px;display:flex;flex-direction:column;gap:14px}
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:20px 32px;border-radius:14px;border:none;cursor:pointer;transition:background .15s,transform .12s;width:100%;text-align:center}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:600;letter-spacing:.005em;padding:20px 32px;border-radius:14px;border:none;cursor:pointer;transition:background .15s,transform .12s;width:100%;text-align:center}
 .btn-primary:hover{background:var(--navy-soft)}
 .btn-primary:active{transform:scale(.99)}
-.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;width:100%}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;width:100%}
 .btn-secondary:hover{border-color:var(--ink);color:var(--ink)}
-.btn-text{background:none;border:none;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;padding:8px 4px;letter-spacing:.005em}
+.btn-text{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--dim);cursor:pointer;padding:8px 4px;letter-spacing:.005em}
 .btn-text:hover{color:var(--ink)}
 .dash-foot{margin-top:32px;display:flex;justify-content:center;gap:16px}
 
-.trust-bar{margin-top:36px;padding:20px 22px;background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
+.trust-bar{margin-top:36px;padding:20px 22px;background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
 .trust-bar b{color:var(--ink);font-weight:700}
 
 /* WELCOME */
 #screen-welcome{padding:80px 0 96px}
-.eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
-.hero{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(38px,5.4vw,58px);font-weight:500;line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:28px;font-variation-settings:"opsz" 60}
-.hero em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
-.lede{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(21px,2.6vw,26px);font-weight:400;line-height:1.5;color:var(--body);margin-bottom:18px;letter-spacing:-.008em}
-.lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(16px,1.6vw,17.5px);font-weight:450;line-height:1.7;color:var(--body);margin-bottom:16px;letter-spacing:-.005em}
+.eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
+.hero{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(40px,5.8vw,64px);font-weight:700;line-height:1.04;letter-spacing:-.028em;color:var(--ink);margin-bottom:28px}
+.hero em{font-style:normal;font-weight:700;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
+.lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
+.lede strong{font-weight:700;color:var(--ink)}
+.body-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);margin-bottom:14px;letter-spacing:-.005em}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
-.field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
-.field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
+.field-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
+.field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .field-input:focus,.field-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .field-input::placeholder{color:#B8B8BD}
 .field-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px}
 .field-stack{margin-bottom:26px}
 .welcome-cta{margin-top:36px}
-.welcome-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--body);margin-top:14px;letter-spacing:.005em;line-height:1.55;max-width:420px}.welcome-meta a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
+.welcome-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--body);margin-top:14px;letter-spacing:.005em;line-height:1.55;max-width:420px}.welcome-meta a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
 .welcome-meta b{color:var(--ink);font-weight:700}
 
 .toggle-stack{display:flex;gap:10px;flex-wrap:wrap;max-width:420px}
-.toggle-btn{flex:1;min-width:160px;padding:14px 18px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.toggle-btn{flex:1;min-width:160px;padding:14px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
 .toggle-btn:hover{border-color:var(--ink)}
 .toggle-btn.sel{border-color:var(--navy);background:var(--navy);color:#fff}
 .toggle-btn span{display:block;font-size:11px;font-weight:500;color:var(--body);margin-top:3px;letter-spacing:.005em}
@@ -294,51 +292,51 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 
 /* TRANSITION (NEW) */
 #screen-transition{padding:104px 0 140px;text-align:left}
-.tr-eyebrow{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.tr-h1{font-family:var(--serif);font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.14;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
+.tr-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
+.tr-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.14;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
 .tr-h1 em{font-style:italic;font-weight:600}
-.tr-text{font-family:var(--serif);font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:18px}
+.tr-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:18px}
 .tr-text b{font-weight:600;color:var(--ink)}
-.tr-day-frame{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);background:var(--surface-2);padding:16px 20px;border-radius:12px;border-left:3px solid var(--gold);margin:30px 0 36px;line-height:1.6;letter-spacing:.005em}
+.tr-day-frame{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);background:var(--surface-2);padding:16px 20px;border-radius:12px;border-left:3px solid var(--gold);margin:30px 0 36px;line-height:1.6;letter-spacing:.005em}
 .tr-cta{margin-top:24px}
 
 /* ACKNOWLEDGMENT (NEW) */
 #screen-ack{padding:140px 0 160px;text-align:left}
-.ack-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
+.ack-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
 .ack-h1 em{font-style:italic;font-weight:600}
-.ack-text{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
+.ack-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
 
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
-.q-section{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.q-prompt{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
-.q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
+.q-section{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
+.q-prompt{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
+.q-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(26px,4.0vw,36px);font-weight:600;line-height:1.28;letter-spacing:-.018em;color:var(--ink);margin-bottom:56px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
-.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
+.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
 .opt:hover{border-color:var(--ink);background:var(--surface-2)}
 .opt:active{transform:scale(.995)}
 .opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards}
-.opt-key{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.opt-key{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .opt.sel .opt-key{color:var(--gold-soft)}
 .q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
-.q-foot-meta{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.q-back{background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
+.q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
 .q-back:hover{color:var(--ink)}
-.q-keyhint{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
+.q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
-.r-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
-.r-h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px;font-variation-settings:"opsz" 60}
+.r-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
+.r-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px}
 .r-h1 em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .r-h1 em{font-style:italic;font-weight:600}
-.r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:6px;letter-spacing:.005em}
+.r-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--mid);margin-bottom:6px;letter-spacing:.005em}
 
 .matrix-wrap{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:30px;overflow-x:auto}
 .matrix-table{width:100%;border-collapse:separate;border-spacing:6px;min-width:480px}
-.matrix-th{font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:center;padding:0 4px 10px}
-.matrix-th-row{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--ink);text-align:left;padding:0 14px 0 0;letter-spacing:.005em;white-space:nowrap}
-.matrix-cell{aspect-ratio:1.4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:12px;font-weight:700;background:var(--surface-3);color:var(--dim);font-variant-numeric:tabular-nums}
+.matrix-th{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);text-align:center;padding:0 4px 10px}
+.matrix-th-row{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--ink);text-align:left;padding:0 14px 0 0;letter-spacing:.005em;white-space:nowrap}
+.matrix-cell{aspect-ratio:1.4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:700;background:var(--surface-3);color:var(--dim);font-variant-numeric:tabular-nums}
 .matrix-cell.q1{background:var(--green-soft);color:var(--green)}
 .matrix-cell.q2{background:var(--amber-soft);color:var(--amber)}
 .matrix-cell.q3{background:#FCDADA;color:var(--red)}
@@ -346,71 +344,71 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .matrix-table tr.loudest .matrix-cell{box-shadow:inset 0 0 0 2px var(--gold)}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
-.fingerprint-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.fingerprint-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em}
-.fingerprint-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed var(--rule-soft);font-family:var(--sans)}
+.fingerprint-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.fingerprint-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em}
+.fingerprint-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed var(--rule-soft);font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 .fingerprint-row:last-child{border-bottom:none}
 .fingerprint-fac{font-size:11px;font-weight:700;color:var(--mid);letter-spacing:.10em;text-transform:uppercase;padding-top:1px}
 .fingerprint-text{font-size:14px;font-weight:500;color:var(--body);line-height:1.55;letter-spacing:.005em}
 
 .fidelity-feature{background:var(--navy);color:#fff;border-radius:22px;padding:48px 36px;text-align:center}
-.fidelity-feature .label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px}
-.fidelity-feature .num{font-family:var(--serif);font-size:88px;font-weight:600;line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:12px}
+.fidelity-feature .label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px}
+.fidelity-feature .num{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:88px;font-weight:600;line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:12px}
 .fidelity-feature .num em{font-size:36px;font-style:normal;font-weight:500;color:var(--gold);letter-spacing:0;margin-left:2px}
-.fidelity-feature .meta{font-family:var(--sans);font-size:14px;font-weight:500;color:rgba(255,255,255,.72);letter-spacing:.005em;line-height:1.6;max-width:380px;margin:0 auto}
+.fidelity-feature .meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:rgba(255,255,255,.72);letter-spacing:.005em;line-height:1.6;max-width:380px;margin:0 auto}
 
 .cov-card{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)}
-.cov-month{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:8px}
-.cov-name{font-family:var(--serif);font-size:clamp(24px,3.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px;line-height:1.15}
-.cov-line{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--sans)}
+.cov-month{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:8px}
+.cov-name{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(24px,3.6vw,32px);font-weight:600;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px;line-height:1.15}
+.cov-line{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:'Plus Jakarta Sans',system-ui,sans-serif}
 .cov-line:last-child{border-bottom:none}
 .cov-key{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;padding-top:2px}
-.cov-text{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:-.005em}
+.cov-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:-.005em}
 .cov-text b{color:var(--ink);font-weight:600}
 
 .cov-pulse{margin-top:24px;padding-top:22px;border-top:1px solid var(--rule-soft)}
-.cov-pulse-q{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.005em;margin-bottom:14px}
+.cov-pulse-q{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:18px;font-weight:600;color:var(--ink);letter-spacing:-.005em;margin-bottom:14px}
 .pulse-stack{display:flex;gap:10px;flex-wrap:wrap}
-.pulse-btn{flex:1;min-width:160px;padding:14px 18px;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.pulse-btn{flex:1;min-width:160px;padding:14px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
 .pulse-btn:hover{border-color:var(--ink)}
 .pulse-btn.sel-yes{border-color:var(--green);background:var(--green-soft);color:var(--green)}
 .pulse-btn.sel-not{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
 
 .pain-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--navy)}
-.pain-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
-.pain-sub{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
-.pain-input{width:100%;padding:14px 16px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
+.pain-q{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
+.pain-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
+.pain-input{width:100%;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
 .pain-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .pain-input::placeholder{color:#B8B8BD}
 
 .cohort-cta{background:var(--navy);color:#fff;border-radius:22px;padding:40px 36px}
-.cohort-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
-.cohort-h{font-family:var(--serif);font-size:clamp(24px,3.6vw,30px);font-weight:600;color:#fff;letter-spacing:-.02em;line-height:1.18;margin-bottom:14px}
+.cohort-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
+.cohort-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(24px,3.6vw,30px);font-weight:600;color:#fff;letter-spacing:-.02em;line-height:1.18;margin-bottom:14px}
 .cohort-h em{font-style:italic;font-weight:600;color:var(--gold-soft)}
-.cohort-body{font-family:var(--sans);font-size:15px;font-weight:500;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:14px;letter-spacing:.005em}
+.cohort-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:rgba(255,255,255,.78);line-height:1.6;margin-bottom:14px;letter-spacing:.005em}
 .cohort-body b{color:#fff;font-weight:700}
 .cohort-cta .btn-primary{background:var(--gold);color:var(--navy);max-width:340px;margin-top:8px}
 .cohort-cta .btn-primary:hover{background:var(--gold-soft)}
 
 .delivery{background:var(--surface-2);border-radius:18px;padding:36px}
-.delivery-h{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
-.delivery-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);line-height:1.6;margin-bottom:20px;letter-spacing:.005em}
+.delivery-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
+.delivery-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);line-height:1.6;margin-bottom:20px;letter-spacing:.005em}
 .delivery-row{display:flex;gap:10px;flex-wrap:wrap}
-.email-input{flex:1;min-width:200px;padding:15px 18px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
+.email-input{flex:1;min-width:200px;padding:15px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .email-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
-.email-status{font-family:var(--sans);font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em}
+.email-status{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em}
 .email-status.ok{color:var(--green)}
 .email-status.err{color:var(--red)}
 .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
 .contact-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;text-align:center;margin-top:36px}
-.contact-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-.005em}
-.contact-body{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--body);line-height:1.6;margin-bottom:16px;letter-spacing:.005em}
-.contact-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-family:var(--sans);font-size:14px;font-weight:600}
+.contact-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-.005em}
+.contact-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--body);line-height:1.6;margin-bottom:16px;letter-spacing:.005em}
+.contact-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600}
 .contact-links a{color:var(--navy)}
 
 footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center;margin-top:64px;background:var(--white)}
-.foot-credit{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
+.foot-credit{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
 .foot-credit b{color:var(--ink);font-weight:700}
 .foot-koora{display:inline-block;height:18px;margin-top:10px}
 .foot-koora svg{height:18px;width:auto;display:block}
@@ -502,40 +500,40 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 }
 
 /* Council additions: cohort whisper, self-quote, identity vow, sparklines, lineage line */
-.cohort-whisper{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--body);letter-spacing:.04em;margin-top:18px;padding-top:18px;border-top:1px solid var(--rule-soft);line-height:1.6}
+.cohort-whisper{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--body);letter-spacing:.04em;margin-top:18px;padding-top:18px;border-top:1px solid var(--rule-soft);line-height:1.6}
 .cohort-whisper b{color:var(--ink);font-weight:700}
-.dash-whisper{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--mid);letter-spacing:.04em;margin-top:14px;font-style:italic;line-height:1.6}
+.dash-whisper{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;font-weight:500;color:var(--mid);letter-spacing:.04em;margin-top:14px;font-style:italic;line-height:1.6}
 
-.pain-q-secondary{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
+.pain-q-secondary{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
 .self-quote{margin-top:22px;padding:24px 26px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;display:none}
 .self-quote.shown{display:block}
-.self-quote-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.self-quote-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
+.self-quote-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.self-quote-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
 
 .vow-block{margin:48px 0 28px;padding:32px 28px;text-align:center;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
-.vow-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
-.vow-text{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
+.vow-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
+.vow-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
 .vow-text em{color:var(--gold);font-style:italic;font-weight:600}
 
 .claim-block{margin:48px 0 28px;padding:32px 28px;background:var(--white);border:1px solid var(--rule-soft);border-radius:18px}
-.claim-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.005em;line-height:1.36;margin-bottom:18px;text-align:center}
+.claim-q{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.005em;line-height:1.36;margin-bottom:18px;text-align:center}
 .claim-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.claim-btn{flex:1;min-width:200px;max-width:280px;padding:18px 20px;font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+.claim-btn{flex:1;min-width:200px;max-width:280px;padding:18px 20px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
 .claim-btn:hover{border-color:var(--ink)}
 .claim-btn.sel-yes{border-color:var(--green);background:var(--green-soft);color:var(--green)}
 .claim-btn.sel-no{border-color:var(--amber);background:var(--amber-soft);color:var(--amber)}
-.claim-conf{display:none;text-align:center;margin-top:14px;font-family:var(--serif);font-size:16px;font-style:italic;color:var(--mid);letter-spacing:-.005em}
+.claim-conf{display:none;text-align:center;margin-top:14px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-style:italic;color:var(--mid);letter-spacing:-.005em}
 .claim-conf.shown{display:block}
 
-.lineage{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
+.lineage{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
 
 .spark-svg{display:inline-block;vertical-align:middle;height:14px;width:60px;margin-right:6px}
 .spark-line{fill:none;stroke:currentColor;stroke-width:1.5}
 .spark-dot{fill:currentColor}
 .movement-anchor{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:24px 26px;margin-bottom:14px}
-.movement-anchor-h{font-family:var(--serif);font-size:clamp(20px,3vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.36;margin-bottom:6px}
+.movement-anchor-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,3vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.36;margin-bottom:6px}
 .movement-anchor-h em{font-style:italic;color:var(--green)}
-.movement-anchor-sub{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
+.movement-anchor-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
 
 /* ============================================================
    v3.2.0  -  Author presence: portrait, cover letter, Meet Dr. Job,
@@ -548,13 +546,13 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .cover-letter{margin:36px 0 40px;padding:38px 34px;background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--gold);position:relative;border-radius:var(--r-md)}
 .cover-letter__head{display:grid;grid-template-columns:108px 1fr;gap:22px;align-items:center;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--rule-soft)}
 .cover-letter__head img{width:108px;height:108px;border-radius:50%;object-fit:cover;object-position:center 22%;border:1px solid var(--rule);box-shadow:var(--shadow-sm)}
-.cover-letter__byline{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
-.cover-letter__creds{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
-.cover-letter__body{font-family:var(--serif);font-size:17px;line-height:1.65;color:var(--body)}
+.cover-letter__byline{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
+.cover-letter__creds{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.cover-letter__body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);letter-spacing:-.005em}
 .cover-letter__body p{margin-bottom:14px}
 .cover-letter__body p:last-child{margin-bottom:0}
-.cover-letter__sig{font-family:var(--serif);font-style:italic;font-size:18px;font-weight:500;color:var(--ink);margin-top:24px;line-height:1.4;padding-top:18px;border-top:1px solid var(--rule-soft)}
-.cover-letter__sig small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.cover-letter__sig{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:18px;font-weight:500;color:var(--ink);margin-top:24px;line-height:1.4;padding-top:18px;border-top:1px solid var(--rule-soft)}
+.cover-letter__sig small{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
 @media(max-width:560px){
   .cover-letter{padding:26px 22px}
   .cover-letter__head{grid-template-columns:72px 1fr;gap:14px}
@@ -572,50 +570,50 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 /* Meet Dr. Job  -  bottom of result page, after all blocks */
 .meet-doctor{margin-top:64px;padding:44px 0 0;border-top:1px solid var(--rule-soft)}
-.meet-doctor__eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
-.meet-doctor__h{font-family:var(--serif);font-size:clamp(24px,3.6vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.18;margin-bottom:8px}
+.meet-doctor__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.meet-doctor__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(24px,3.6vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.18;margin-bottom:8px}
 .meet-doctor__grid{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start;margin-top:26px}
 .meet-doctor__grid img{width:100%;border-radius:2px;border:1px solid var(--rule);box-shadow:var(--shadow-md);aspect-ratio:4/5;object-fit:cover;object-position:center 20%;background:var(--surface-2)}
-.meet-doctor__bio{font-family:var(--serif);font-size:16px;line-height:1.66;color:var(--body)}
+.meet-doctor__bio{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);letter-spacing:-.005em}
 .meet-doctor__bio p{margin-bottom:14px}
 .meet-doctor__bio p:last-child{margin-bottom:0}
 .meet-doctor__bio strong{color:var(--ink);font-weight:600}
 .meet-doctor__bio em{font-style:italic;color:var(--ink)}
-.meet-doctor__creds{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.meet-doctor__creds{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
 @media(max-width:600px){
   .meet-doctor__grid{grid-template-columns:1fr;gap:22px}
   .meet-doctor__grid img{max-width:240px;justify-self:center}
 }
 
 /* Reaffirmation block  -  repeat takers (Day > 0) */
-.reaffirm{margin:0 0 32px;padding:22px 26px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:var(--r-md);font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink)}
+.reaffirm{margin:0 0 32px;padding:22px 26px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:var(--r-md);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.55;color:var(--ink)}
 .reaffirm b{font-weight:600}
 .reaffirm em{font-style:italic;color:var(--navy)}
 
 /* KOORA-vs-non-KOORA funnel  -  for participants not yet enrolled */
 .koora-funnel{margin:32px 0;padding:28px 30px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-soft) 100%);color:#FFFFFF;border-radius:var(--r-md);position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
 .koora-funnel::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,151,58,.18) 0%,transparent 70%);pointer-events:none}
-.koora-funnel__eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;color:var(--gold-soft);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;position:relative}
-.koora-funnel__h{font-family:var(--serif);font-size:24px;font-weight:600;color:#FFFFFF;line-height:1.28;margin-bottom:14px;letter-spacing:-.012em;position:relative}
-.koora-funnel__body{font-family:var(--serif);font-size:16px;line-height:1.65;color:#E8E8EC;position:relative}
+.koora-funnel__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;color:var(--gold-soft);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;position:relative}
+.koora-funnel__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:24px;font-weight:600;color:#FFFFFF;line-height:1.28;margin-bottom:14px;letter-spacing:-.012em;position:relative}
+.koora-funnel__body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.65;color:#E8E8EC;position:relative}
 .koora-funnel__body p{margin-bottom:10px}
 .koora-funnel__body p:last-child{margin-bottom:0}
-.koora-funnel__cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--sans);font-size:13px;font-weight:700;color:#FFFFFF;letter-spacing:.04em;border-bottom:1px solid var(--gold-soft);padding-bottom:3px;position:relative;text-decoration:none}
+.koora-funnel__cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:#FFFFFF;letter-spacing:.04em;border-bottom:1px solid var(--gold-soft);padding-bottom:3px;position:relative;text-decoration:none}
 .koora-funnel__cta:hover{color:var(--gold-soft)}
 
 /* Covenant entry  -  five-item gateway before the assessment */
 .covenant-entry{margin:32px 0;padding:36px 32px;background:var(--surface-2);border:1px solid var(--rule);border-radius:var(--r-md)}
-.covenant-entry__eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
-.covenant-entry__h{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.012em;margin-bottom:8px}
-.covenant-entry__sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--mid);margin-bottom:24px;line-height:1.5}
+.covenant-entry__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.covenant-entry__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:24px;font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.012em;margin-bottom:8px}
+.covenant-entry__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:16px;color:var(--mid);margin-bottom:24px;line-height:1.5}
 .covenant-entry__list{list-style:none;padding:0;margin:0 0 24px}
-.covenant-entry__item{padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:16px;line-height:1.55;color:var(--body)}
+.covenant-entry__item{padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--body)}
 .covenant-entry__item:last-child{border-bottom:none}
 .covenant-entry__item b{color:var(--ink);font-weight:600}
-.covenant-entry__threshold{margin-top:18px;padding:18px 22px;background:var(--white);border:1px solid var(--gold-soft);border-radius:var(--r-sm);font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--ink);font-style:italic}
+.covenant-entry__threshold{margin-top:18px;padding:18px 22px;background:var(--white);border:1px solid var(--gold-soft);border-radius:var(--r-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;color:var(--ink);font-style:italic}
 
 /* Author byline mark on result header */
-.author-byline{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 0;font-family:var(--sans);font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.08em}
+.author-byline{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.08em}
 .author-byline img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 22%;border:1px solid var(--rule)}
 .author-byline b{color:var(--ink);font-weight:700;letter-spacing:.04em}
 
@@ -656,7 +654,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .emo-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
 
 /* Save-progress indicator (during the assessment) */
-.save-pill{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-pill);box-shadow:var(--shadow-sm);font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
+.save-pill{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-pill);box-shadow:var(--shadow-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
 .save-pill.shown{opacity:1;transform:translateY(0)}
 .save-pill__dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(46,125,50,.4);animation:savepulse 1.4s ease-out 1}
 @keyframes savepulse{0%{box-shadow:0 0 0 0 rgba(46,125,50,.4)}100%{box-shadow:0 0 0 10px rgba(46,125,50,0)}}
@@ -664,18 +662,18 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 /* Scoring transparency expandable */
 .scoring-note{margin:14px 0 28px;padding:0;border:1px solid var(--rule-soft);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
-.scoring-note summary{cursor:pointer;padding:14px 18px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.005em;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
+.scoring-note summary{cursor:pointer;padding:14px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.005em;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
 .scoring-note summary::-webkit-details-marker{display:none}
-.scoring-note summary::after{content:"+";font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold);transition:transform .2s ease}
+.scoring-note summary::after{content:"+";font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:18px;font-weight:600;color:var(--gold);transition:transform .2s ease}
 .scoring-note[open] summary::after{content:"−"}
 .scoring-note summary:hover{background:var(--surface-2)}
-.scoring-note__body{padding:0 18px 18px;font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--body)}
+.scoring-note__body{padding:0 18px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;line-height:1.6;color:var(--body)}
 .scoring-note__body p{margin-bottom:10px}
 .scoring-note__body p:last-child{margin-bottom:0}
 .scoring-note__body code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:2px;color:var(--ink)}
 
 /* Covenant transition message between sections during assessment */
-.cov-transition{font-family:var(--serif);font-style:italic;font-size:15.5px;color:var(--gold);text-align:center;margin:8px auto 18px;line-height:1.5;letter-spacing:.005em;max-width:480px}
+.cov-transition{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:15.5px;color:var(--gold);text-align:center;margin:8px auto 18px;line-height:1.5;letter-spacing:.005em;max-width:480px}
 
 /* Print stylesheet  -  paper-friendly result */
 @media print{
@@ -693,7 +691,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 }
 
 /* No-script fallback */
-.noscript-block{padding:48px 28px;max-width:640px;margin:80px auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;font-family:var(--serif);text-align:center}
+.noscript-block{padding:48px 28px;max-width:640px;margin:80px auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;text-align:center}
 .noscript-block h1{font-size:24px;font-weight:600;color:var(--ink);margin-bottom:14px}
 .noscript-block p{font-size:16px;line-height:1.6;color:var(--body);margin-bottom:12px}
 .noscript-block a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:1px}
@@ -806,7 +804,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <p><b>Dr. Job Mogire, MD, FACC</b> · House of Mastery · KOORA</p>
   </div>
 </noscript>
-<a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none">Skip to assessment</a>
+<a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;text-decoration:none">Skip to assessment</a>
 <div id="progress" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <div id="chamber-progress" aria-live="polite" aria-atomic="true" aria-label="Section progress">
   <div class="cp-seg" data-ch="1"></div>
@@ -823,7 +821,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       <img class="hm-mark" src="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png" alt="" width="24" height="24" onerror="this.onerror=null;this.src='/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png'">
       <span class="nav-house-text">house of mastery<span>hom.mogire.com</span></span>
     </a>
-    <span class="nav-koora" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" style="height:18px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:18px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Source Serif 4, Georgia, serif&quot; font-weight=&quot;700&quot; font-size=&quot;70&quot; letter-spacing=&quot;3&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
+    <span class="nav-koora" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" style="height:18px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:18px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;64&quot; letter-spacing=&quot;6&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
     <span class="nav-meta" id="navMeta">UNFINISHED</span>
   </div>
 </nav>
@@ -832,7 +830,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- DASHBOARD -->
 <section class="screen" id="screen-dashboard">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" font-size="68" letter-spacing="5" text-anchor="middle">KOORA</text></svg></span>
   <h1 class="dash-hello"><em id="dashName">Welcome back</em>.</h1>
   <p class="dash-line" id="dashLine"></p>
   <p class="dash-anticipation" id="dashAnticipation"></p>
@@ -872,7 +870,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <svg class="icon cov-c--future" aria-hidden="true"><use href="#icon-future"/></svg>
     <svg class="icon cov-c--world" aria-hidden="true"><use href="#icon-world"/></svg>
   </div>
-  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" font-size="68" letter-spacing="5" text-anchor="middle">KOORA</text></svg></span>
   <span class="eyebrow">UNFINISHED · A diagnostic for the Finisher</span>
   <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
   <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name is the work that does not get done. <strong>You do not have a productivity problem, you have a fidelity problem.</strong></p>
@@ -917,7 +915,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="field-stack">
     <label class="field-label" for="participantName">Your first name</label>
     <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false" autocapitalize="words">
-    <p id="participantNameHint" class="field-hint" style="font-family:var(--sans);font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">First name only. Used to address you in the cohort and on your report. Stays in your browser.</p>
+    <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">First name only. Used to address you in the cohort and on your report. Stays in your browser.</p>
   </div>
 
   <div class="field-stack">
@@ -942,7 +940,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- TRANSITION (between sections) -->
 <section class="screen" id="screen-transition">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" font-size="68" letter-spacing="5" text-anchor="middle">KOORA</text></svg></span>
   <span class="tr-eyebrow" id="trEyebrow">A pause before the next section</span>
   <h2 class="tr-h1" id="trH"></h2>
   <p class="tr-text" id="trText"></p>
@@ -954,7 +952,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" font-size="68" letter-spacing="5" text-anchor="middle">KOORA</text></svg></span>
   <span class="q-section" id="qSection">Section 1 of 6</span>
   <p class="q-prompt" id="qPrompt">What runs you when you are not paying attention</p>
   <h2 class="q-text" id="qText"></h2>
@@ -969,7 +967,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- ACKNOWLEDGMENT (between final question and results) -->
 <section class="screen" id="screen-ack">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" font-size="68" letter-spacing="5" text-anchor="middle">KOORA</text></svg></span>
   <h2 class="ack-h1" id="ackH1"><em>One breath.</em></h2>
   <p class="ack-text" id="ackText">You have answered sixty items. That is harder than it sounds. Now let us look together.</p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px">See your result</button>
@@ -977,7 +975,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="68" letter-spacing="3" text-anchor="middle">KOORA</text></svg></span>
+  <span class="koora-stamp" role="img" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Plus Jakarta Sans, system-ui, sans-serif" font-weight="800" font-size="68" letter-spacing="5" text-anchor="middle">KOORA</text></svg></span>
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
   <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
@@ -1073,7 +1071,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="tbl-block">
     <span class="tbl-h">The threshold map · where you tend to break</span>
     <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:26px 22px">
-      <p style="font-family:var(--serif);font-size:16px;color:var(--body);margin:0 0 18px;line-height:1.5">Most patterns do not break in one place. They break in a particular threshold. Mark the one most true for you over the past fifteen days.</p>
+      <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;color:var(--body);margin:0 0 18px;line-height:1.5">Most patterns do not break in one place. They break in a particular threshold. Mark the one most true for you over the past fifteen days.</p>
       <div id="thresholdRow" style="display:flex;gap:8px;flex-wrap:wrap"></div>
       <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> The five thresholds are <b>before beginning</b>, <b>after beginning</b>, <b>at resistance</b>, <b>near completion</b>, and <b>after falling</b>. Knowing yours moves the work from generic discipline to specific repair.</p>
     </div>
@@ -1172,7 +1170,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </div>
 
 <footer>
-  <p class="foot-credit"><b>UNFINISHED</b>, the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a House of Mastery body of work by <b>Dr. Job Mogire, MD, FACC</b>  -  cardiologist, author, speaker. Don’t die with an unfinishing life.<span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><img src="/images/koora-logo.png" alt="KOORA" style="height:28px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:28px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Source Serif 4, Georgia, serif&quot; font-weight=&quot;700&quot; font-size=&quot;70&quot; letter-spacing=&quot;3&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin-top:10px;opacity:.7" onerror="this.style.display='none'"></span></p>
+  <p class="foot-credit"><b>UNFINISHED</b>, the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a House of Mastery body of work by <b>Dr. Job Mogire, MD, FACC</b>  -  cardiologist, author, speaker. Don’t die with an unfinishing life.<span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><img src="/images/koora-logo.png" alt="KOORA" style="height:28px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:28px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;64&quot; letter-spacing=&quot;6&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin-top:10px;opacity:.7" onerror="this.style.display='none'"></span></p>
 </footer>
 
 <script>
@@ -1224,7 +1222,7 @@ var QUESTIONS=[
     'When something goes wrong, my chest tightens and the wrong arrives in my mouth before any move does.',
     'When something goes wrong, I am beginning to name the move alongside the problem.',
     'When something goes wrong, the people near me hear the problem and the move in the same breath.',
-    'When something goes wrong, I am the kind of person for whom problem and move are one thought.',
+    'When something goes wrong, I am becoming the kind of person for whom problem and move are one thought.',
     'When something goes wrong, the problem and the move come together in my mind.'
   ]},
   {n:2, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
@@ -1232,7 +1230,7 @@ var QUESTIONS=[
     'When the same problem returns, my body recognises the loop before my mind admits it.',
     'When the same problem returns, I notice the loop and shift.',
     'When the same problem returns, those near me see me catch the loop and shift, even quietly.',
-    'When the same problem returns, I am the kind of person who reads recurrence as data.',
+    'When the same problem returns, I am becoming the kind of person who reads recurrence as data.',
     'When the same problem returns, I treat the recurrence itself as the data.'
   ]},
   {n:3, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
@@ -1240,7 +1238,7 @@ var QUESTIONS=[
     'When I vent, the body releases briefly, but nothing in the situation has moved.',
     'When I vent, I notice the relief and ask what the situation is asking of me.',
     'When I vent, the listener carries the weight and the situation still waits for me.',
-    'When I am tempted to vent, I am the kind of person who moves instead, more days than not.',
+    'When I am tempted to vent, I am becoming the kind of person who moves instead, more days than not.',
     'When I am tempted to vent, I usually move instead.'
   ]},
   {n:4, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
@@ -1248,7 +1246,7 @@ var QUESTIONS=[
     'When circumstances are difficult, the body feels stuck before the mind decides whether it is.',
     'When circumstances are difficult, I notice the move that is still mine to make.',
     'When circumstances are difficult, the people watching me see the move I am still making.',
-    'When circumstances are difficult, I am the kind of person who checks agency before circumstance.',
+    'When circumstances are difficult, I am becoming the kind of person who checks agency before circumstance.',
     'When circumstances are difficult, I check on agency before I check on circumstance.'
   ]},
   // Criticizing
@@ -1257,7 +1255,7 @@ var QUESTIONS=[
     'When my inner voice speaks harshly, I feel the contraction in my body before the words land.',
     'When my inner voice speaks harshly, I notice it and do not collude.',
     'When my inner voice speaks harshly, I do not let it leak into how I speak to the people I love.',
-    'When my inner voice speaks, I am the kind of person who answers it as a friend would answer me.',
+    'When my inner voice speaks, I am becoming the kind of person who answers it as a friend would answer me.',
     'When my inner voice speaks, it speaks to me the way I would speak to a friend.'
   ]},
   {n:6, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
@@ -1265,7 +1263,7 @@ var QUESTIONS=[
     'When I make a mistake, the body tightens for the rehearsal before any lesson is named.',
     'When I make a mistake, I notice the rehearsal urge and ask what is to be learned.',
     'When I make a mistake, the people near me see me extract the lesson without the cycle of self-punishment.',
-    'When I make a mistake, I am the kind of person who takes the lesson and moves.',
+    'When I make a mistake, I am becoming the kind of person who takes the lesson and moves.',
     'When I make a mistake, I take the lesson and move.'
   ]},
   {n:7, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
@@ -1273,7 +1271,7 @@ var QUESTIONS=[
     'When I look at myself, the body braces before the eye even lands on what is working.',
     'When I look at myself, I am beginning to see what is working alongside what is not.',
     'When I look at myself in front of the people I love, I let them see what is working in me too.',
-    'When I look at myself, I am the kind of person who sees fully  -  strengths held, flaws held, no flinching.',
+    'When I look at myself, I am becoming the kind of person who sees fully  -  strengths held, flaws held, no flinching.',
     'When I look at myself, I see clearly because I see fully.'
   ]},
   {n:8, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
@@ -1281,7 +1279,7 @@ var QUESTIONS=[
     'When the harshest voice inside me speaks, the body knows it is the one I have given the most authority to.',
     'When the harshest voice inside me speaks, I notice it without giving it the last word.',
     'When the harshest voice inside me speaks, I do not let it shape how I show up for the people closest to me.',
-    'When the harshest voice inside me speaks, I am the kind of person whose own clear judgement holds the last word.',
+    'When the harshest voice inside me speaks, I am becoming the kind of person whose own clear judgement holds the last word.',
     'When the harshest voice inside me speaks, my own clear judgement still has the final say.'
   ]},
   // Comparing
@@ -1290,7 +1288,7 @@ var QUESTIONS=[
     'When I see someone ahead of me, my body tries to shrink before my mind has caught up.',
     'When I see someone ahead of me, I notice the shrink before it lands.',
     'When I see someone ahead of me, those near me do not feel my orbit shifting away from my own life.',
-    'When I see someone ahead of me, I am the kind of person who can stay on her own ground.',
+    'When I see someone ahead of me, I am becoming the kind of person who can stay on her own ground.',
     'When I see someone ahead of me, I can stay on my own ground.'
   ]},
   {n:10, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
@@ -1298,7 +1296,7 @@ var QUESTIONS=[
     'When I see someone like me succeed at the thing I struggle with, my body flinches before my eyes finish looking.',
     'When I see someone like me succeed at the thing I struggle with, I notice the flinch and stay with it.',
     'When I see someone like me succeed, I can speak well of them out loud, in front of people who would notice if I did not.',
-    'When I see someone like me succeed, I am the kind of person who lets it be evidence that the work is possible.',
+    'When I see someone like me succeed, I am becoming the kind of person who lets it be evidence that the work is possible.',
     'When I see someone like me succeed at the thing I struggle with, I let it be evidence that the work is possible.'
   ]},
   {n:11, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
@@ -1306,7 +1304,7 @@ var QUESTIONS=[
     'When I look at someone else’s life, my body returns home heavier than it left.',
     'When I look at someone else’s life, I am beginning to come back to mine without downgrading.',
     'When I look at someone else’s life, those who share mine notice no demotion in how I treat what we have built.',
-    'When I look at someone else’s life, I am the kind of person whose own work still feels like mine when I return.',
+    'When I look at someone else’s life, I am becoming the kind of person whose own work still feels like mine when I return.',
     'When I look at someone else’s life, my own work still feels like mine when I return.'
   ]},
   {n:12, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
@@ -1314,7 +1312,7 @@ var QUESTIONS=[
     'When I see what they have, my body wants something but my mind has lost what mine wanted.',
     'When I see what they have, I notice the loss and recover my own desire.',
     'When I see what they have, I do not let the lost track erode what I share with the people in my life.',
-    'When I see what they have, I am the kind of person who remembers what I want before I forget.',
+    'When I see what they have, I am becoming the kind of person who remembers what I want before I forget.',
     'When I see what they have, I remember what I want before I forget.'
   ]},
   // Competing
@@ -1323,7 +1321,7 @@ var QUESTIONS=[
     'When I think about my field, my body lights up at rivals before it lights up at the work.',
     'When I think about my field, I notice the tracking and return to my own work.',
     'When I think about my field, the people around me hear me talk about my work, not about a leaderboard.',
-    'When I think about my field, I am the kind of person who tracks her own progress more than anyone else’s.',
+    'When I think about my field, I am becoming the kind of person who tracks her own progress more than anyone else’s.',
     'When I think about my field, I track my own progress more than anyone else’s.'
   ]},
   {n:14, sec:1,sn:'The four reflexes', dom:'Competing', text:[
@@ -1331,7 +1329,7 @@ var QUESTIONS=[
     'When I assess my worth, my body still defaults to the scoreboard before I can intercept.',
     'When I assess my worth, I notice the scoreboard pull and resist it.',
     'When I assess my worth, the people who love me feel a self that is steadier than my standings.',
-    'When I assess my worth, I am the kind of person whose worth is no longer pinned to a scoreboard.',
+    'When I assess my worth, I am becoming the kind of person whose worth is no longer pinned to a scoreboard.',
     'When I assess my worth, the scoreboard is no longer the source.'
   ]},
   {n:15, sec:1,sn:'The four reflexes', dom:'Competing', text:[
@@ -1339,7 +1337,7 @@ var QUESTIONS=[
     'When I do something, I can feel in my body the pull of imagined witnesses before I have begun.',
     'When I do something, I notice the audience pull and ask what I would do without it.',
     'When I do something, I do not perform a different version for whoever is in the room.',
-    'When I do something, I am the kind of person who does it whether or not it is seen.',
+    'When I do something, I am becoming the kind of person who does it whether or not it is seen.',
     'When I do something, I do it whether or not it is seen.'
   ]},
   {n:16, sec:1,sn:'The four reflexes', dom:'Competing', text:[
@@ -1347,7 +1345,7 @@ var QUESTIONS=[
     'When I make choices, my body relaxes into approval-seeking before my mind catches the orientation.',
     'When I make choices, I notice the approval pull and reorient.',
     'When I make choices, the people closest to me see decisions oriented around my work, not their faces.',
-    'When I make choices, I am the kind of person who orients around what is mine to build.',
+    'When I make choices, I am becoming the kind of person who orients around what is mine to build.',
     'When I make choices, I orient around what is mine to build.'
   ]},
 
@@ -1357,7 +1355,7 @@ var QUESTIONS=[
     'When the truth about me is unflattering, my body looks away before my eyes do.',
     'When the truth about me is unflattering, I am beginning to let myself see it.',
     'When the truth about me is unflattering, I do not hide it from the one or two people who hold it with me.',
-    'When the truth about me is unflattering, I am the kind of person who looks without flinching.',
+    'When the truth about me is unflattering, I am becoming the kind of person who looks without flinching.',
     'When the truth about me is unflattering, I look at it without flinching.'
   ], rev:true},
   {n:18, sec:2,sn:'The seven postures', dom:'Learning', text:[
@@ -1365,7 +1363,7 @@ var QUESTIONS=[
     'When yesterday went badly, the body still carries it into today before the lesson has been extracted.',
     'When yesterday went badly, I am beginning to let it teach me before it weighs.',
     'When yesterday went badly, the people near me see me carry the lesson, not the rehearsal.',
-    'When yesterday went badly, I am the kind of person who begins again clean, informed.',
+    'When yesterday went badly, I am becoming the kind of person who begins again clean, informed.',
     'When yesterday went badly, I begin again clean, informed.'
   ], rev:true},
   {n:19, sec:2,sn:'The seven postures', dom:'Change', text:[
@@ -1373,7 +1371,7 @@ var QUESTIONS=[
     'When I notice I need to change, the body is ready before the plan is, and I have been calling that wrong.',
     'When I notice I need to change, I am beginning to shift one thing without waiting.',
     'When I notice I need to change, the people closest to me see one specific thing move, not a speech about overhauling.',
-    'When I notice I need to change, I am the kind of person who shifts one thing this week.',
+    'When I notice I need to change, I am becoming the kind of person who shifts one thing this week.',
     'When I notice I need to change, I shift one thing this week.'
   ], rev:true},
   {n:20, sec:2,sn:'The seven postures', dom:'Action', text:[
@@ -1381,7 +1379,7 @@ var QUESTIONS=[
     'When I am not yet ready, the body knows the action is doable before the mind has caught up.',
     'When I am not yet ready, I am beginning to move anyway, in small ways.',
     'When I am not yet ready, the people who love me see me move, not perform readiness.',
-    'When I am not yet ready, I am the kind of person who moves anyway, and lets readiness follow.',
+    'When I am not yet ready, I am becoming the kind of person who moves anyway, and lets readiness follow.',
     'When I am not yet ready, I move anyway. Readiness follows.'
   ], rev:true},
   {n:21, sec:2,sn:'The seven postures', dom:'Resilience', text:[
@@ -1389,7 +1387,7 @@ var QUESTIONS=[
     'When difficulty arrives, the body tightens away from the work before I have decided to leave.',
     'When difficulty arrives, I am beginning to stay in the work while I tend to myself.',
     'When difficulty arrives, those depending on me feel my staying, not my disappearance.',
-    'When difficulty arrives, I am the kind of person who stays in the work.',
+    'When difficulty arrives, I am becoming the kind of person who stays in the work.',
     'When difficulty arrives, I stay in the work.'
   ], rev:true},
   {n:22, sec:2,sn:'The seven postures', dom:'Reflection', text:[
@@ -1397,7 +1395,7 @@ var QUESTIONS=[
     'When I look back at my own behaviour, the body braces for defence before the seeing has begun.',
     'When I look back at my own behaviour, I am beginning to see before I defend.',
     'When I look back at my own behaviour, the people closest to me hear seeing, not defending.',
-    'When I look back at my own behaviour, I am the kind of person who sees clearly without needing to defend.',
+    'When I look back at my own behaviour, I am becoming the kind of person who sees clearly without needing to defend.',
     'When I look back at my own behaviour, I see clearly without needing to defend.'
   ], rev:true},
   {n:23, sec:2,sn:'The seven postures', dom:'Accountability', text:[
@@ -1405,7 +1403,7 @@ var QUESTIONS=[
     'When my week happens, the truth of it lives in my body, unsaid.',
     'When my week happens, I am beginning to let one trusted witness see it.',
     'When my week happens, at least one trusted person knows what it actually was.',
-    'When my week happens, I am the kind of person whose week is held with at least one witness.',
+    'When my week happens, I am becoming the kind of person whose week is held with at least one witness.',
     'When my week happens, the truth of it is shared with at least one witness.'
   ], rev:true},
 
@@ -1415,7 +1413,7 @@ var QUESTIONS=[
     'When I check in with my own aliveness, my body is the first place I notice presence or its absence.',
     'When I check in with my own aliveness, I am present more often than not.',
     'When I check in with my own aliveness, the people I am with feel that I am actually here.',
-    'When I check in with my own aliveness, I am the kind of person for whom presence is the default.',
+    'When I check in with my own aliveness, I am becoming the kind of person for whom presence is the default.',
     'When I check in with my own aliveness, presence is the default.'
   ], rev:true},
   {n:25, sec:3,sn:'The four needs', dom:'Aliveness · substitute', text:[
@@ -1423,7 +1421,7 @@ var QUESTIONS=[
     'When I crave aliveness, my body chases the spike before my mind notices the substitution.',
     'When I crave aliveness, I notice the substitute reach before I make it.',
     'When I crave aliveness, those near me feel my presence, not my borrowed urgency.',
-    'When I crave aliveness, I am the kind of person who reaches for presence first.',
+    'When I crave aliveness, I am becoming the kind of person who reaches for presence first.',
     'When I crave aliveness, presence is what I reach for.'
   ]},
   {n:26, sec:3,sn:'The four needs', dom:'Connection · filled', text:[
@@ -1431,7 +1429,7 @@ var QUESTIONS=[
     'When I check in with my closest relationships, my body relaxes into them rather than performing.',
     'When I check in with my closest relationships, the roots are deepening.',
     'When I check in with my closest relationships, the people in them know me, not my edit of me.',
-    'When I check in with my closest relationships, I am the kind of person who is rooted.',
+    'When I check in with my closest relationships, I am becoming the kind of person who is rooted.',
     'When I check in with my closest relationships, I am rooted.'
   ], rev:true},
   {n:27, sec:3,sn:'The four needs', dom:'Connection · substitute', text:[
@@ -1439,7 +1437,7 @@ var QUESTIONS=[
     'When I crave connection, the body feels the hunger but the hand reaches for the wrong thing.',
     'When I crave connection, I notice the reach pull and stay home.',
     'When I crave connection, the people who actually love me are the ones who hear from me.',
-    'When I crave connection, I am the kind of person who tends my closest relationships first.',
+    'When I crave connection, I am becoming the kind of person who tends my closest relationships first.',
     'When I crave connection, I tend my closest relationships.'
   ]},
   {n:28, sec:3,sn:'The four needs', dom:'Meaning · filled', text:[
@@ -1447,7 +1445,7 @@ var QUESTIONS=[
     'When I check in with what I am doing, my body knows the difference between weight and noise.',
     'When I check in with what I am doing, the weight is steadier.',
     'When I check in with what I am doing, the people watching can feel the depth, not just the activity.',
-    'When I check in with what I am doing, I am the kind of person whose work carries unmistakable depth.',
+    'When I check in with what I am doing, I am becoming the kind of person whose work carries unmistakable depth.',
     'When I check in with what I am doing, the depth is unmistakable.'
   ], rev:true},
   {n:29, sec:3,sn:'The four needs', dom:'Meaning · substitute', text:[
@@ -1455,7 +1453,7 @@ var QUESTIONS=[
     'When I crave meaning, the body wants depth and the schedule fills with breadth.',
     'When I crave meaning, I notice the breadth pull and choose depth instead.',
     'When I crave meaning, those who depend on me see depth held, not breadth scattered.',
-    'When I crave meaning, I am the kind of person who goes deeper into what is already mine.',
+    'When I crave meaning, I am becoming the kind of person who goes deeper into what is already mine.',
     'When I crave meaning, I go deeper into what is already mine.'
   ]},
   {n:30, sec:3,sn:'The four needs', dom:'Fulfillment · filled', text:[
@@ -1463,7 +1461,7 @@ var QUESTIONS=[
     'When I sit quietly, the body settles into enough before the mind starts naming what is missing.',
     'When I sit quietly, the sense of enough arrives more often than not.',
     'When I sit quietly with the people I love, none of us are reaching for the next thing to feel okay.',
-    'When I sit quietly, I am the kind of person for whom enough is the baseline.',
+    'When I sit quietly, I am becoming the kind of person for whom enough is the baseline.',
     'When I sit quietly, enough is my baseline.'
   ], rev:true},
   {n:31, sec:3,sn:'The four needs', dom:'Fulfillment · substitute', text:[
@@ -1471,7 +1469,7 @@ var QUESTIONS=[
     'When I crave fulfilment, my body reaches for the next thing while my hands are still full.',
     'When I crave fulfilment, I notice the more pull and sit with what I have.',
     'When I crave fulfilment, the people closest to me see me rest in what is already mine.',
-    'When I crave fulfilment, I am the kind of person who rests in enough.',
+    'When I crave fulfilment, I am becoming the kind of person who rests in enough.',
     'When I crave fulfilment, I rest in enough.'
   ]},
 
@@ -1481,7 +1479,7 @@ var QUESTIONS=[
     'When I think about whom I am honouring, the body waits for a name and the mind is silent.',
     'When I think about whom I am honouring, the answer is becoming clearer.',
     'When I think about whom I am honouring, the people I name are people who would recognise themselves.',
-    'When I think about whom I am honouring, I am the kind of person who is carrying them, not just naming them.',
+    'When I think about whom I am honouring, I am becoming the kind of person who is carrying them, not just naming them.',
     'When I think about whom I am honouring, I can name them. I am carrying them.'
   ], rev:true},
   {n:33, sec:4,sn:'Forces and fidelities', dom:'Opus', text:[
@@ -1489,7 +1487,7 @@ var QUESTIONS=[
     'When I think about what I was given to build, the body recognises it before the words form.',
     'When I think about what I was given to build, the answer is becoming clearer.',
     'When I think about what I was given to build, the people who watch me see the build, not the rehearsal.',
-    'When I think about what I was given to build, I am the kind of person who is building it.',
+    'When I think about what I was given to build, I am becoming the kind of person who is building it.',
     'When I think about what I was given to build, I am building it.'
   ], rev:true},
   {n:34, sec:4,sn:'Forces and fidelities', dom:'Declaration', text:[
@@ -1497,7 +1495,7 @@ var QUESTIONS=[
     'When I think about what I have put on record, the body knows the difference between a wish and a vow.',
     'When I think about what I have put on record, the list is honest.',
     'When I think about what I have put on record, the people who would witness it are people who would hold me to it.',
-    'When I think about what I have put on record, I am the kind of person whose declaration carries her.',
+    'When I think about what I have put on record, I am becoming the kind of person whose declaration carries her.',
     'When I think about what I have put on record, the declaration carries me.'
   ], rev:true},
   {n:35, sec:4,sn:'Forces and fidelities', dom:'Identity', text:[
@@ -1505,7 +1503,7 @@ var QUESTIONS=[
     'When I think about who I must become, the body is rehearsing her gestures, even if quietly.',
     'When I think about who I must become, I am closer than I was.',
     'When I think about who I must become, the people closest to me are starting to meet her, not just hear about her.',
-    'When I think about who I must become, I am the kind of person who is becoming her, today.',
+    'When I think about who I must become, I am becoming the kind of person who is becoming her, today.',
     'When I think about who I must become, I am becoming her, today.'
   ], rev:true},
   {n:36, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Mind', text:[
@@ -1513,7 +1511,7 @@ var QUESTIONS=[
     'When I think, the body recognises my own thoughts even when the mind is replaying inherited ones.',
     'When I think, I am beginning to think what is mine to think.',
     'When I think, the people who hear me speak hear my own thinking, not a borrowed cadence.',
-    'When I think, I am the kind of person who thinks what is mine to think.',
+    'When I think, I am becoming the kind of person who thinks what is mine to think.',
     'When I think, I think what is mine to think.'
   ], rev:true},
   {n:37, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Heart', text:[
@@ -1521,7 +1519,7 @@ var QUESTIONS=[
     'When I feel, the body knows the actual feeling before the performance starts.',
     'When I feel, I am beginning to feel what is actually present.',
     'When I feel, the people I love meet what is actually present, not what I was trained to perform.',
-    'When I feel, I am the kind of person who feels what is mine to feel.',
+    'When I feel, I am becoming the kind of person who feels what is mine to feel.',
     'When I feel, I feel what is mine to feel.'
   ], rev:true},
   {n:38, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Will', text:[
@@ -1529,7 +1527,7 @@ var QUESTIONS=[
     'When I choose, the body leans toward easier before my will catches up.',
     'When I choose, I am beginning to choose what is mine.',
     'When I choose, the people who depend on me see choices that are actually mine, not borrowed.',
-    'When I choose, I am the kind of person who chooses what is mine to choose.',
+    'When I choose, I am becoming the kind of person who chooses what is mine to choose.',
     'When I choose, I choose what is mine to choose.'
   ], rev:true},
   {n:39, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Hand', text:[
@@ -1537,7 +1535,7 @@ var QUESTIONS=[
     'When I act, the body remembers the saying even when the doing has not landed yet.',
     'When I act, the doing is closing the gap with the saying.',
     'When I act, the people who heard me say it see the doing match.',
-    'When I act, I am the kind of person whose doing matches her saying.',
+    'When I act, I am becoming the kind of person whose doing matches her saying.',
     'When I act, what I do matches what I said.'
   ], rev:true},
 
@@ -1547,7 +1545,7 @@ var QUESTIONS=[
     'When I attend, the body knows the drift has begun before the mind admits it.',
     'When I attend, I notice the drift before I lose the field.',
     'When I attend, the people who depend on my attention feel it land where it belongs.',
-    'When I attend, I am the kind of person who attends to what is mine.',
+    'When I attend, I am becoming the kind of person who attends to what is mine.',
     'When I attend, I attend to what is mine.'
   ], rev:true},
   {n:41, sec:5,sn:'Faculties and practice', dom:'Allegiance', text:[
@@ -1555,7 +1553,7 @@ var QUESTIONS=[
     'When voices speak inside me, my body recognises which voice is mine before the loudest one finishes speaking.',
     'When voices speak inside me, I am beginning to hold my own clear judgement.',
     'When voices speak inside me, the people in my life hear my own clear judgement, not the loudest borrowed one.',
-    'When voices speak inside me, I am the kind of person whose own clear judgement holds the final say.',
+    'When voices speak inside me, I am becoming the kind of person whose own clear judgement holds the final say.',
     'When voices speak inside me, my own clear judgement has the final say.'
   ], rev:true},
   {n:42, sec:5,sn:'Faculties and practice', dom:'Integrity', text:[
@@ -1563,7 +1561,7 @@ var QUESTIONS=[
     'When I look at my word and my action, the body recognises the gap and refuses to settle into it.',
     'When I look at my word and my action, the gap is closing.',
     'When I look at my word and my action, the people who hold me to my word can hold me to it without strain.',
-    'When I look at my word and my action, I am the kind of person for whom they are one thing.',
+    'When I look at my word and my action, I am becoming the kind of person for whom they are one thing.',
     'When I look at my word and my action, they are one thing.'
   ], rev:true},
   {n:43, sec:5,sn:'Faculties and practice', dom:'Return', text:[
@@ -1571,7 +1569,7 @@ var QUESTIONS=[
     'When I leave centre, my body knows almost immediately, even when my mind has not yet caught up.',
     'When I leave centre, I return within hours, not days.',
     'When I leave centre, those near me see the return before they have to ask for it.',
-    'When I leave centre, I am the kind of person who returns the same hour.',
+    'When I leave centre, I am becoming the kind of person who returns the same hour.',
     'When I leave centre, I return the same hour.'
   ], rev:true},
   {n:44, sec:5,sn:'Faculties and practice', dom:'The Seal', text:[
@@ -1579,7 +1577,7 @@ var QUESTIONS=[
     'When morning arrives, my body asks for the Seal before the phone does, even when my hand reaches for the phone first.',
     'When morning arrives, I am beginning to do the Seal first.',
     'When morning arrives, the people I live with feel my arrival, not my pre-occupation.',
-    'When morning arrives, I am the kind of person for whom the Seal is first.',
+    'When morning arrives, I am becoming the kind of person for whom the Seal is first.',
     'When morning arrives, the Seal is first. Everything else follows.'
   ], rev:true},
   {n:45, sec:5,sn:'Faculties and practice', dom:'The Daily Reset', text:[
@@ -1587,7 +1585,7 @@ var QUESTIONS=[
     'When morning arrives, the body knows the day will scatter without the Reset.',
     'When morning arrives, I am beginning to write the Reset most days.',
     'When morning arrives, the people who share my day see a person who has set her ground.',
-    'When morning arrives, I am the kind of person whose Reset is written.',
+    'When morning arrives, I am becoming the kind of person whose Reset is written.',
     'When morning arrives, the Reset is written.'
   ], rev:true},
   {n:46, sec:5,sn:'Faculties and practice', dom:'The evening question', text:[
@@ -1595,7 +1593,7 @@ var QUESTIONS=[
     'When evening arrives, my body holds the day until I ask the question.',
     'When evening arrives, I am beginning to ask the question.',
     'When evening arrives, the people I have moved through can be named, kindly, in the asking.',
-    'When evening arrives, I am the kind of person who asks the question and seals the day.',
+    'When evening arrives, I am becoming the kind of person who asks the question and seals the day.',
     'When evening arrives, the question is asked. The day is sealed.'
   ], rev:true},
   {n:47, sec:5,sn:'Faculties and practice', dom:'The 24-hour return', text:[
@@ -1603,7 +1601,7 @@ var QUESTIONS=[
     'When I miss a Movement, the body remembers and the return arrives sooner than it used to.',
     'When I miss a Movement, I am beginning to run the protocol within 24 hours.',
     'When I miss a Movement, the cohort hears the return, not the silence.',
-    'When I miss a Movement, I am the kind of person who runs the protocol within 24 hours.',
+    'When I miss a Movement, I am becoming the kind of person who runs the protocol within 24 hours.',
     'When I miss a Movement, the protocol runs within 24 hours.'
   ], rev:true},
   {n:48, sec:5,sn:'Faculties and practice', dom:'The Friday cohort', text:[
@@ -1611,7 +1609,7 @@ var QUESTIONS=[
     'When Friday arrives, the body knows whether the truth has been said before the words are formed.',
     'When Friday arrives, I am beginning to speak truth aloud.',
     'When Friday arrives, the cohort knows me a little better than they did last week.',
-    'When Friday arrives, I am the kind of person who shows up and speaks truth.',
+    'When Friday arrives, I am becoming the kind of person who shows up and speaks truth.',
     'When Friday arrives, I show up. I speak truth.'
   ], rev:true},
   {n:49, sec:5,sn:'Faculties and practice', dom:'The Sunday sealing', text:[
@@ -1619,7 +1617,7 @@ var QUESTIONS=[
     'When Sunday arrives, my body recognises the week as a thing that wants closing.',
     'When Sunday arrives, I am beginning to close the week before I open the next.',
     'When Sunday arrives, the people I love feel the week ending before the next begins.',
-    'When Sunday arrives, I am the kind of person whose week is sealed.',
+    'When Sunday arrives, I am becoming the kind of person whose week is sealed.',
     'When Sunday arrives, the week is sealed.'
   ], rev:true},
 
@@ -1629,7 +1627,7 @@ var QUESTIONS=[
     'When I think about my word to myself, the body has stopped expecting me to keep it.',
     'When I think about my word to myself, credibility is being rebuilt.',
     'When I think about my word to myself, the people who keep their word to me feel like a different species.',
-    'When I think about my word to myself, I am the kind of person whose word to herself holds.',
+    'When I think about my word to myself, I am becoming the kind of person whose word to herself holds.',
     'When I think about my word to myself, the credibility holds.'
   ]},
   {n:51, sec:6,sn:'Where you are now', dom:'Self-trust bankrupt', text:[
@@ -1637,7 +1635,7 @@ var QUESTIONS=[
     'When I make a new commitment, the body braces for the breaking before I have begun.',
     'When I make a new commitment, I am beginning to believe.',
     'When I make a new commitment, the people who hear it can tell whether I mean it.',
-    'When I make a new commitment, I am the kind of person who believes herself.',
+    'When I make a new commitment, I am becoming the kind of person who believes herself.',
     'When I make a new commitment, I believe me.'
   ]},
   {n:52, sec:6,sn:'Where you are now', dom:'Deferred action', text:[
@@ -1645,7 +1643,7 @@ var QUESTIONS=[
     'When the day arrives, the body is ready before the postponement begins.',
     'When the day arrives, I am beginning to act on what is meant for today.',
     'When the day arrives, the people waiting on me see the move, not the deferral.',
-    'When the day arrives, I am the kind of person who acts today.',
+    'When the day arrives, I am becoming the kind of person who acts today.',
     'When the day arrives, today is when I act.'
   ]},
   {n:53, sec:6,sn:'Where you are now', dom:'Hidden shame', text:[
@@ -1653,7 +1651,7 @@ var QUESTIONS=[
     'When others see me, the body wears the mask before my mind has chosen it.',
     'When others see me, the mask is lighter. The truth is closer to the surface.',
     'When others see me, the one or two people who hold my truth do not see a different self.',
-    'When others see me, I am the kind of person whose mask is gone.',
+    'When others see me, I am becoming the kind of person whose mask is gone.',
     'When others see me, what they see is what is true. The mask is gone.'
   ]},
   {n:54, sec:6,sn:'Where you are now', dom:'Inventory clarity', text:[
@@ -1661,7 +1659,7 @@ var QUESTIONS=[
     'When I look at my Day 0 unfinished commitments, the body recognises the unfinished as a weight that wants laying down.',
     'When I look at my Day 0 unfinished commitments, I am clear on the smallest honest finish for at least three.',
     'When I look at my Day 0 unfinished commitments, the people who would witness the closures know that closure is happening.',
-    'When I look at my Day 0 unfinished commitments, I am the kind of person who is sealing them, one by one.',
+    'When I look at my Day 0 unfinished commitments, I am becoming the kind of person who is sealing them, one by one.',
     'When I look at my Day 0 unfinished commitments, the smallest honest finish for each is clear, and several are sealed.'
   ], rev:true},
   // Inner experience markers (these stay constant for arc detection)
@@ -1670,7 +1668,7 @@ var QUESTIONS=[
     'When I check in with my inner state, the body knows the ground is moving even when the mind cannot quite name what is shifting.',
     'When I check in with my inner state, the disorientation is more familiar than frightening.',
     'When I check in with my inner state, those who know me well notice the shift before I have words for it.',
-    'When I check in with my inner state, I am the kind of person who can stand on shifting ground without leaving herself.',
+    'When I check in with my inner state, I am becoming the kind of person who can stand on shifting ground without leaving herself.',
     'When I check in with my inner state, the ground is steady.'
   ], arc:'rupture'},
   {n:56, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
@@ -1678,7 +1676,7 @@ var QUESTIONS=[
     'When I check in with my inner state, the body knows the gap before the mind names it.',
     'When I check in with my inner state, the gap is closing and the sting is teaching.',
     'When I check in with my inner state, the people closest to me see the alignment beginning, not just the claim.',
-    'When I check in with my inner state, I am the kind of person whose claim and actions are aligning.',
+    'When I check in with my inner state, I am becoming the kind of person whose claim and actions are aligning.',
     'When I check in with my inner state, what I claim and what I do are aligning.'
   ], arc:'exposure'},
   {n:57, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
@@ -1686,7 +1684,7 @@ var QUESTIONS=[
     'When I check in with my inner state, the body recognises the crashes earlier and recovers faster.',
     'When I check in with my inner state, the crashes are shorter. The pull is gentler.',
     'When I check in with my inner state, the people who share my life see steadier days more than scattered ones.',
-    'When I check in with my inner state, I am the kind of person who is steady more days than not.',
+    'When I check in with my inner state, I am becoming the kind of person who is steady more days than not.',
     'When I check in with my inner state, I am steady more days than not.'
   ], arc:'tension'},
   {n:58, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
@@ -1694,7 +1692,7 @@ var QUESTIONS=[
     'When I check in with my inner state, the body recognises the new responses as her own before the mind catches up.',
     'When I check in with my inner state, the new self is more often present than the old.',
     'When I check in with my inner state, the people around me are beginning to meet the new self without surprise.',
-    'When I check in with my inner state, I am the kind of person whose new self is the steady self.',
+    'When I check in with my inner state, I am becoming the kind of person whose new self is the steady self.',
     'When I check in with my inner state, the new self is who I am.'
   ], arc:'unfolding'},
   {n:59, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
@@ -1702,7 +1700,7 @@ var QUESTIONS=[
     'When I check in with my inner state, the calm has settled into the body, not just the thoughts.',
     'When I check in with my inner state, the calm is lasting. I am beginning to be of use to others.',
     'When I check in with my inner state, the people I am beginning to help feel met, not lectured.',
-    'When I check in with my inner state, I am the kind of person who is rooted and giving back.',
+    'When I check in with my inner state, I am becoming the kind of person who is rooted and giving back.',
     'When I check in with my inner state, I am rooted, and I am giving back.'
   ], arc:'rooting'},
   {n:60, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
@@ -1710,7 +1708,7 @@ var QUESTIONS=[
     'When I check in with my inner state, the body has moved its furniture into the new way.',
     'When I check in with my inner state, the new way is the only way.',
     'When I check in with my inner state, the people who knew the old me have stopped expecting her to come back.',
-    'When I check in with my inner state, I am the kind of person who is at home in the new way.',
+    'When I check in with my inner state, I am becoming the kind of person who is at home in the new way.',
     'When I check in with my inner state, I am at home. The work continues, but the war is over.'
   ], arc:'newnormal'}
 ];
@@ -2250,7 +2248,7 @@ function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTime
 // The per-tier progression lives in the question text; the eyebrow does not stutter against it.
 var SECTION_PROMPTS={
   1:'What runs you when you are not paying attention',
-  2:'Awareness, learning, change, action, resilience, reflection, accountability',
+  2:'The seven postures of return',
   3:'Filled, or substituted',
   4:'Four forces ahead. Four fidelities behind',
   5:'Where attention goes. Whose voice has the final say',
@@ -2781,7 +2779,7 @@ function renderThreshold(){
     (function(th){
       var b=document.createElement('button');
       b.className='claim-btn';
-      b.style.cssText='flex:1;min-width:140px;padding:14px 16px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;';
+      b.style.cssText="flex:1;min-width:140px;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;";
       b.innerHTML=th.label+'<span style="display:block;font-weight:500;font-size:12.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">'+th.sub+'</span>';
       b.onclick=function(){
         var all=box.querySelectorAll('.claim-btn');

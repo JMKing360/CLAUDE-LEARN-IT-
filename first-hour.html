@@ -106,16 +106,14 @@
 <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"The First Hour","short_name":"First Hour","description":"A House of Mastery audit by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
 <!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"cv02","cv03","cv04","cv11";font-feature-settings:"cv02","cv03","cv04","cv11"}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"ss01","ss02";font-feature-settings:"ss01","ss02"}
 :root{
-  --serif:'Source Serif 4',Georgia,serif;
-  --sans:'Inter','Plus Jakarta Sans',system-ui,sans-serif;
   --navy:#0D1F3C;--navy-soft:#1B2D4F;
   --gold:#C9973A;--gold-soft:#E8B85A;
   --ink:#1A1A1F;--body:#2D2D33;--mid:#52525A;--dim:#75757D;
@@ -186,9 +184,9 @@ nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:satu
 .nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
 .nav-house:hover{opacity:.7}
 .hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
-.nav-house-text{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
+.nav-house-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
 .nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
-.nav-instrument{font-family:var(--serif);font-size:14px;font-weight:700;letter-spacing:.18em;color:var(--navy)}
+.nav-instrument{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;letter-spacing:.18em;color:var(--navy)}
 
 main{max-width:760px;margin:0 auto;padding:0 28px}
 .screen{display:none;animation:rise .35s cubic-bezier(.4,0,.2,1)}
@@ -207,177 +205,177 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 #screen-results.active .r-block:nth-of-type(8){animation-delay:.54s}
 @media (prefers-reduced-motion:reduce){#screen-results.active .r-block{animation:none}}
 
-.brand-stamp{font-family:var(--serif);font-weight:700;letter-spacing:.32em;color:var(--navy);font-size:11px;display:block;margin-bottom:14px;opacity:1;text-transform:uppercase}
+.brand-stamp{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;letter-spacing:.32em;color:var(--navy);font-size:11px;display:block;margin-bottom:14px;opacity:1;text-transform:uppercase}
 
 /* WELCOME */
 #screen-welcome{padding:88px 0 96px}
-.eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
-.hero{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(38px,5.4vw,58px);font-weight:500;line-height:1.1;letter-spacing:-.022em;color:var(--ink);margin-bottom:28px;font-variation-settings:"opsz" 60}
-.hero em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
-.lede{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(21px,2.6vw,26px);font-weight:400;line-height:1.5;color:var(--body);margin-bottom:18px;letter-spacing:-.008em}
-.lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(16px,1.6vw,17.5px);font-weight:450;line-height:1.7;color:var(--body);margin-bottom:16px;letter-spacing:-.005em}
+.eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
+.hero{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(40px,5.8vw,64px);font-weight:700;line-height:1.04;letter-spacing:-.028em;color:var(--ink);margin-bottom:28px}
+.hero em{font-style:normal;font-weight:700;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
+.lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
+.lede strong{font-weight:700;color:var(--ink)}
+.body-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);margin-bottom:14px;letter-spacing:-.005em}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
-.field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
-.field-input{display:block;width:100%;max-width:480px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
+.field-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
+.field-input{display:block;width:100%;max-width:480px;padding:16px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .field-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .field-input::placeholder{color:#B8B8BD}
 .field-stack{margin-bottom:22px}
 .welcome-cta{margin-top:32px}
-.welcome-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--body);margin-top:14px;line-height:1.6;letter-spacing:.005em;max-width:480px}
+.welcome-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--body);margin-top:14px;line-height:1.6;letter-spacing:.005em;max-width:480px}
 .welcome-meta b{color:var(--ink);font-weight:700}
-.consent-line{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--body);line-height:1.6;margin-top:10px;letter-spacing:.005em;max-width:480px}.consent-line b{color:var(--ink);font-weight:700}.consent-line a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
+.consent-line{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;font-weight:500;color:var(--body);line-height:1.6;margin-top:10px;letter-spacing:.005em;max-width:480px}.consent-line b{color:var(--ink);font-weight:700}.consent-line a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
 
 .framing-card{background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:22px 26px;margin:32px 0}
-.framing-card p{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:0}
+.framing-card p{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:0}
 .framing-card p+p{margin-top:10px}
 
 /* TRANSITION */
 #screen-transition{padding:104px 0 140px}
-.tr-eyebrow{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.tr-h1{font-family:var(--serif);font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
+.tr-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
+.tr-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(28px,4.6vw,42px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin-bottom:20px}
 .tr-h1 em{font-style:italic;font-weight:600}
-.tr-text{font-family:var(--serif);font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:32px}
+.tr-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:32px}
 .tr-text b{font-weight:600;color:var(--ink)}
 
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
-.q-section{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.q-prompt{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
-.q-text{font-family:'Newsreader','Source Serif 4',Georgia,serif;font-size:clamp(26px,4.4vw,38px);font-weight:400;line-height:1.38;letter-spacing:-.014em;color:var(--ink);margin-bottom:64px;font-variation-settings:"opsz" 36}
+.q-section{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
+.q-prompt{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
+.q-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(26px,4.0vw,36px);font-weight:600;line-height:1.28;letter-spacing:-.018em;color:var(--ink);margin-bottom:56px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
-.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r-md);padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
+.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r-md);padding:22px 26px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
 .opt:hover{border-color:var(--ink);background:var(--surface-2)}
 .opt:active{transform:scale(.995)}
 .opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards}
-.opt-key{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.opt-key{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .opt.sel .opt-key{color:var(--gold-soft)}
 .q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
-.q-foot-meta{font-family:var(--sans);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.q-back{background:none;border:none;font-family:var(--sans);font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
+.q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
 .q-back:hover{color:var(--ink)}
-.q-keyhint{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
+.q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* ACK */
 #screen-ack{padding:140px 0 160px}
-.ack-h1{font-family:var(--serif);font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
+.ack-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
 .ack-h1 em{font-style:italic;font-weight:600}
-.ack-text{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
+.ack-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
 
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
-.r-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
-.r-h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px;font-variation-settings:"opsz" 60}
+.r-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
+.r-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px}
 .r-h1 em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .r-h1 em{font-style:italic;font-weight:600}
-.r-sub{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--mid);margin-bottom:8px;letter-spacing:.005em}
+.r-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--mid);margin-bottom:8px;letter-spacing:.005em}
 
 .r-block{margin:48px 0}
-.r-block-label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;display:block}
+.r-block-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;display:block}
 
 .profile-list{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-md);padding:8px 22px}
 .profile-row{display:grid;grid-template-columns:1fr 1fr 110px;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
 .profile-row:last-child{border-bottom:none}
-.profile-name{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
+.profile-name{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
 .profile-name span{display:block;font-size:11px;font-weight:500;color:var(--mid);margin-top:3px;letter-spacing:.005em}
 .profile-bar{height:6px;background:var(--rule-soft);border-radius:3px;overflow:hidden}
 .profile-bar > div{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 .bar-quiet{background:var(--green)}.bar-active{background:var(--amber)}.bar-loud{background:var(--red)}
-.profile-val{font-family:var(--sans);font-size:11px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.profile-val{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
 .profile-val .lvl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .lvl-quiet{color:var(--green)}.lvl-active{color:var(--amber)}.lvl-loud{color:var(--red)}
 .profile-val .delta{font-size:10px;font-weight:600}
 .delta-up{color:var(--green)}.delta-down{color:var(--red)}.delta-flat{color:var(--mid)}
-.tbl-legend{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
+.tbl-legend{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
 .tbl-legend b{color:var(--ink);font-weight:700}
 
 .feature-card{background:var(--navy);color:var(--white);border-radius:var(--r-lg);padding:44px 36px}
-.feature-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
-.feature-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,34px);font-weight:600;color:#fff;letter-spacing:-.022em;line-height:1.18;margin-bottom:14px}
+.feature-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
+.feature-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(26px,3.6vw,34px);font-weight:600;color:#fff;letter-spacing:-.022em;line-height:1.18;margin-bottom:14px}
 .feature-h em{font-style:italic;font-weight:600;color:var(--gold-soft)}
-.feature-body{font-family:var(--sans);font-size:15px;font-weight:500;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:14px;letter-spacing:.005em}
+.feature-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:14px;letter-spacing:.005em}
 .feature-body b{color:#fff;font-weight:700}
 
 .cost-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .cost-cell{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-md);padding:24px 22px}
-.cost-label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
-.cost-num{font-family:var(--serif);font-size:clamp(34px,4.6vw,46px);font-weight:600;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:6px}
+.cost-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+.cost-num{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(34px,4.6vw,46px);font-weight:600;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:6px}
 .cost-num em{font-size:.55em;font-weight:500;color:var(--gold);font-style:normal;margin-left:2px;letter-spacing:0}
-.cost-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
+.cost-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
 
 .forecast{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-lg);padding:32px;border-top:3px solid var(--red)}
-.forecast-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:block}
-.forecast-h{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.32;margin-bottom:18px}
-.forecast-row{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--body);line-height:1.6;padding:10px 0;border-bottom:1px dashed var(--rule-soft);letter-spacing:.005em}
+.forecast-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:block}
+.forecast-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.32;margin-bottom:18px}
+.forecast-row{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--body);line-height:1.6;padding:10px 0;border-bottom:1px dashed var(--rule-soft);letter-spacing:.005em}
 .forecast-row:last-child{border-bottom:none}
 .forecast-row b{color:var(--ink);font-weight:700}
 
 .pain-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-lg);padding:32px;border-top:3px solid var(--navy)}
-.pain-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
-.pain-q-second{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
-.pain-sub{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
-.pain-input{width:100%;padding:14px 16px;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
+.pain-q{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
+.pain-q-second{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
+.pain-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
+.pain-input{width:100%;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
 .pain-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .pain-input::placeholder{color:#B8B8BD}
 .self-quote{margin-top:22px;padding:24px 26px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;display:none}
 .self-quote.shown{display:block}
-.self-quote-label{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.self-quote-text{font-family:var(--serif);font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
+.self-quote-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.self-quote-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.6vw,22px);font-weight:500;font-style:italic;color:var(--ink);line-height:1.5;letter-spacing:-.005em}
 
 /* Offer ladder */
-.ladder-h{font-family:var(--serif);font-size:clamp(24px,3.4vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.2;margin-bottom:8px}
-.ladder-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);margin-bottom:24px;line-height:1.55;letter-spacing:.005em}
+.ladder-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(24px,3.4vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.2;margin-bottom:8px}
+.ladder-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);margin-bottom:24px;line-height:1.55;letter-spacing:.005em}
 .ladder-list{display:flex;flex-direction:column;gap:14px}
 .rung{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-lg);padding:28px;position:relative}
 .rung.r1{border-left:3px solid var(--green)}
 .rung.r2{border-left:3px solid var(--gold)}
 .rung.r3{border-left:3px solid var(--gold)}
 .rung.r4{border-left:3px solid var(--navy);background:var(--navy);color:#fff}
-.rung-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:8px;display:block}
+.rung-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:8px;display:block}
 .rung.r4 .rung-eyebrow{color:var(--gold-soft)}
-.rung-name{font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.2;margin-bottom:8px}
+.rung-name{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.2;margin-bottom:8px}
 .rung.r4 .rung-name{color:#fff}
 .rung-name em{font-style:italic;font-weight:600}
-.rung-meta{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--mid);letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
+.rung-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--mid);letter-spacing:.04em;text-transform:uppercase;margin-bottom:14px}
 .rung.r4 .rung-meta{color:var(--gold)}
-.rung-body{font-family:var(--sans);font-size:14.5px;font-weight:500;color:var(--body);line-height:1.65;letter-spacing:.005em;margin-bottom:14px}
+.rung-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;font-weight:500;color:var(--body);line-height:1.65;letter-spacing:.005em;margin-bottom:14px}
 .rung.r4 .rung-body{color:rgba(255,255,255,.78)}
 .rung-body b{color:var(--ink);font-weight:700}
 .rung.r4 .rung-body b{color:#fff}
-.rung-action{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+.rung-action{display:inline-flex;align-items:center;gap:6px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
 .rung.r4 .rung-action{color:var(--gold)}
 
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:18px 32px;border-radius:var(--r-md);border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:var(--white);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:600;letter-spacing:.005em;padding:18px 32px;border-radius:var(--r-md);border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
 .btn-primary:hover{background:var(--navy-soft)}
 .btn-primary:active{transform:scale(.99)}
-.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;text-decoration:none}
+.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;text-decoration:none}
 .btn-secondary:hover{border-color:var(--ink);color:var(--ink)}
-.btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--navy);font-family:var(--sans);font-size:14.5px;font-weight:700;letter-spacing:.005em;padding:16px 28px;border-radius:12px;border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
+.btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--gold);color:var(--navy);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;font-weight:700;letter-spacing:.005em;padding:16px 28px;border-radius:12px;border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
 .btn-gold:hover{background:var(--gold-soft)}
 
 /* Vow / lineage / retake */
 .vow-block{margin:48px 0 28px;padding:32px 28px;text-align:center;border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
-.vow-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
-.vow-text{font-family:var(--serif);font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
+.vow-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
+.vow-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,3vw,26px);font-weight:600;font-style:italic;color:var(--ink);letter-spacing:-.012em;line-height:1.42}
 .vow-text em{color:var(--gold);font-style:italic;font-weight:600}
 
 .retake-block{background:var(--surface-2);border-radius:18px;padding:28px;margin:36px 0;text-align:center}
-.retake-h{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-.005em;margin-bottom:8px}
-.retake-body{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--body);line-height:1.6;letter-spacing:.005em}
+.retake-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:20px;font-weight:600;color:var(--ink);letter-spacing:-.005em;margin-bottom:8px}
+.retake-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--body);line-height:1.6;letter-spacing:.005em}
 
-.lineage{font-family:var(--sans);font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
+.lineage{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);text-align:center;margin-top:24px;letter-spacing:.04em;line-height:1.6}
 
 /* Movement panel */
 .move-grid{display:grid;grid-template-columns:1fr;gap:0}
-.move-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:16px 22px;background:var(--white);border:1px solid var(--rule-soft);border-bottom:none;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--body)}
+.move-row{display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center;padding:16px 22px;background:var(--white);border:1px solid var(--rule-soft);border-bottom:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--body)}
 .move-row:first-child{border-radius:12px 12px 0 0}
 .move-row:last-child{border-radius:0 0 12px 12px;border-bottom:1px solid var(--rule-soft)}
 .move-row b{font-weight:700;color:var(--ink)}
 .move-prev{font-size:11px;color:var(--mid);font-variant-numeric:tabular-nums;letter-spacing:.005em}
-.move-arrow{font-family:var(--sans);font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.move-arrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
 
 footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center;margin-top:64px;background:var(--white)}
-.foot-credit{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
+.foot-credit{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
 .foot-credit b{color:var(--ink);font-weight:700}
 
 /* Responsive */
@@ -430,13 +428,13 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .cover-letter{margin:36px 0 40px;padding:38px 34px;background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--gold);border-radius:var(--r-md)}
 .cover-letter__head{display:grid;grid-template-columns:108px 1fr;gap:22px;align-items:center;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--rule-soft)}
 .cover-letter__head img{width:108px;height:108px;border-radius:50%;object-fit:cover;object-position:center 22%;border:1px solid var(--rule);box-shadow:var(--shadow-sm)}
-.cover-letter__byline{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
-.cover-letter__creds{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
-.cover-letter__body{font-family:var(--serif);font-size:17px;line-height:1.65;color:var(--body)}
+.cover-letter__byline{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
+.cover-letter__creds{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.cover-letter__body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);letter-spacing:-.005em}
 .cover-letter__body p{margin-bottom:14px}
 .cover-letter__body p:last-child{margin-bottom:0}
-.cover-letter__sig{font-family:var(--serif);font-style:italic;font-size:18px;font-weight:500;color:var(--ink);margin-top:24px;line-height:1.4;padding-top:18px;border-top:1px solid var(--rule-soft)}
-.cover-letter__sig small{display:block;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.cover-letter__sig{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:18px;font-weight:500;color:var(--ink);margin-top:24px;line-height:1.4;padding-top:18px;border-top:1px solid var(--rule-soft)}
+.cover-letter__sig small{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
 @media(max-width:560px){
   .cover-letter{padding:26px 22px}
   .cover-letter__head{grid-template-columns:72px 1fr;gap:14px}
@@ -454,16 +452,16 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 /* Meet Dr. Job  -  bottom of result page */
 .meet-doctor{margin-top:64px;padding:44px 0 0;border-top:1px solid var(--rule-soft)}
-.meet-doctor__eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
-.meet-doctor__h{font-family:var(--serif);font-size:clamp(24px,3.6vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.18;margin-bottom:8px}
+.meet-doctor__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.meet-doctor__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(24px,3.6vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.18;margin-bottom:8px}
 .meet-doctor__grid{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start;margin-top:26px}
 .meet-doctor__grid img{width:100%;border-radius:var(--r-md);border:1px solid var(--rule);box-shadow:var(--shadow-md);aspect-ratio:4/5;object-fit:cover;object-position:center 20%;background:var(--surface-2)}
-.meet-doctor__bio{font-family:var(--serif);font-size:16px;line-height:1.66;color:var(--body)}
+.meet-doctor__bio{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);letter-spacing:-.005em}
 .meet-doctor__bio p{margin-bottom:14px}
 .meet-doctor__bio p:last-child{margin-bottom:0}
 .meet-doctor__bio strong{color:var(--ink);font-weight:600}
 .meet-doctor__bio em{font-style:italic;color:var(--ink)}
-.meet-doctor__creds{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
+.meet-doctor__creds{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
 @media(max-width:600px){
   .meet-doctor__grid{grid-template-columns:1fr;gap:22px}
   .meet-doctor__grid img{max-width:240px;justify-self:center}
@@ -471,19 +469,19 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 /* UNFINISHED selection block  -  result page, ten-letter taxonomy */
 .unfinished-block{margin:48px 0 40px;padding:38px 32px;background:linear-gradient(180deg,var(--surface-2) 0%,var(--surface) 100%);border:1px solid var(--rule);border-radius:var(--r-md)}
-.unfinished-block__h{font-family:var(--serif);font-size:clamp(26px,4.2vw,36px);font-weight:700;color:var(--navy);letter-spacing:.08em;text-align:center;margin-bottom:6px;line-height:1.1}
-.unfinished-block__sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--mid);text-align:center;margin-bottom:20px;line-height:1.5}
+.unfinished-block__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(26px,4.2vw,36px);font-weight:700;color:var(--navy);letter-spacing:.08em;text-align:center;margin-bottom:6px;line-height:1.1}
+.unfinished-block__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:16px;color:var(--mid);text-align:center;margin-bottom:20px;line-height:1.5}
 .unfinished-rule{display:block;width:60%;max-width:280px;height:2px;background:var(--gold);margin:0 auto 32px;border-radius:1px;opacity:.6}
 .unfinished-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .unfinished-item{display:flex;gap:14px;padding:16px 18px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-sm);cursor:pointer;transition:all .2s ease;user-select:none}
 .unfinished-item:hover{border-color:var(--gold);background:var(--surface)}
 .unfinished-item.selected{border-color:var(--gold);background:var(--gold-soft);box-shadow:inset 0 0 0 1px var(--gold)}
-.unfinished-letter{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--gold);line-height:1;flex-shrink:0;width:24px;text-align:center}
+.unfinished-letter{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:24px;font-weight:700;color:var(--gold);line-height:1;flex-shrink:0;width:24px;text-align:center}
 .unfinished-content{flex:1;min-width:0}
-.unfinished-name{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px}
-.unfinished-desc{font-family:var(--sans);font-size:13px;color:var(--body);line-height:1.5}
-.unfinished-instructions{font-family:var(--sans);font-size:13px;color:var(--mid);text-align:center;margin-top:24px;font-style:italic;line-height:1.5}
-.unfinished-count{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);text-align:center;margin-top:8px}
+.unfinished-name{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:4px}
+.unfinished-desc{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--body);line-height:1.5}
+.unfinished-instructions{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--mid);text-align:center;margin-top:24px;font-style:italic;line-height:1.5}
+.unfinished-count{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--navy);text-align:center;margin-top:8px}
 @media(max-width:600px){
   .unfinished-grid{grid-template-columns:1fr}
   .unfinished-block{padding:26px 18px}
@@ -492,12 +490,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 /* Two emotional commitment radios  -  pre-assessment, system-1 hits */
 .emo-block{margin:0 0 36px;padding:30px 28px;background:var(--surface);border:1px solid var(--rule-soft);border-radius:var(--r-md);border-top:3px solid var(--gold)}
-.emo-block__intro{font-family:var(--serif);font-size:18px;line-height:1.55;color:var(--body);margin-bottom:24px;letter-spacing:-.005em}
+.emo-block__intro{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;color:var(--body);margin-bottom:24px;letter-spacing:-.005em}
 .emo-block__intro b{color:var(--ink);font-weight:600}
 .emo-block__intro em{font-style:italic;color:var(--navy)}
 .emo-question{margin-bottom:22px}
 .emo-question:last-child{margin-bottom:0}
-.emo-question__text{font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink);margin-bottom:12px;font-weight:500;letter-spacing:-.005em}
+.emo-question__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.55;color:var(--ink);margin-bottom:12px;font-weight:500;letter-spacing:-.005em}
 .emo-radio-group{display:flex;gap:10px;flex-wrap:wrap}
 .emo-radio{flex:1 1 calc(50% - 5px);min-width:120px;display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-sm);cursor:pointer;transition:all .2s ease;position:relative}
 .emo-radio:hover{border-color:var(--navy);background:var(--surface-2)}
@@ -506,22 +504,22 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .emo-radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--rule);background:var(--white);flex-shrink:0;position:relative;transition:all .2s ease}
 .emo-radio.selected .emo-radio-dot{border-color:var(--gold);background:var(--gold)}
 .emo-radio.selected .emo-radio-dot::after{content:"";position:absolute;inset:3px;background:var(--white);border-radius:50%}
-.emo-radio-label{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);line-height:1.3}
+.emo-radio-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--ink);line-height:1.3}
 
 /* KOORA-funnel hooks  -  lead-gen surfaces */
 .koora-funnel{margin:32px 0;padding:28px 30px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-soft) 100%);color:#FFFFFF;border-radius:var(--r-md);position:relative;overflow:hidden;box-shadow:var(--shadow-lg)}
 .koora-funnel::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,151,58,.18) 0%,transparent 70%);pointer-events:none}
-.koora-funnel__eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;color:var(--gold-soft);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;position:relative}
-.koora-funnel__h{font-family:var(--serif);font-size:24px;font-weight:600;color:#FFFFFF;line-height:1.28;margin-bottom:14px;letter-spacing:-.012em;position:relative}
-.koora-funnel__body{font-family:var(--serif);font-size:16px;line-height:1.65;color:#E8E8EC;position:relative}
+.koora-funnel__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;color:var(--gold-soft);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;position:relative}
+.koora-funnel__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:24px;font-weight:600;color:#FFFFFF;line-height:1.28;margin-bottom:14px;letter-spacing:-.012em;position:relative}
+.koora-funnel__body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.65;color:#E8E8EC;position:relative}
 .koora-funnel__body p{margin-bottom:10px}
 .koora-funnel__body p:last-child{margin-bottom:0}
 .koora-funnel__body strong{color:#FFFFFF;font-weight:700}
-.koora-funnel__cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--sans);font-size:13px;font-weight:700;color:#FFFFFF;letter-spacing:.04em;border-bottom:1px solid var(--gold-soft);padding-bottom:3px;position:relative;text-decoration:none}
+.koora-funnel__cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:#FFFFFF;letter-spacing:.04em;border-bottom:1px solid var(--gold-soft);padding-bottom:3px;position:relative;text-decoration:none}
 .koora-funnel__cta:hover{color:var(--gold-soft)}
 
 /* Author byline mark */
-.author-byline{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 0;font-family:var(--sans);font-size:12px;font-weight:600;color:var(--mid);letter-spacing:.04em}
+.author-byline{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:600;color:var(--mid);letter-spacing:.04em}
 .author-byline img{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:center 22%;border:1px solid var(--rule)}
 .author-byline b{color:var(--ink);font-weight:700}
 
@@ -557,7 +555,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .emo-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
 
 /* Save-progress indicator (during the assessment) */
-.save-pill{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-pill);box-shadow:var(--shadow-sm);font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
+.save-pill{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-pill);box-shadow:var(--shadow-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
 .save-pill.shown{opacity:1;transform:translateY(0)}
 .save-pill__dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(46,125,50,.4);animation:savepulse 1.4s ease-out 1}
 @keyframes savepulse{0%{box-shadow:0 0 0 0 rgba(46,125,50,.4)}100%{box-shadow:0 0 0 10px rgba(46,125,50,0)}}
@@ -565,12 +563,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 /* Scoring transparency expandable */
 .scoring-note{margin:14px 0 28px;padding:0;border:1px solid var(--rule-soft);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
-.scoring-note summary{cursor:pointer;padding:14px 18px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.005em;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
+.scoring-note summary{cursor:pointer;padding:14px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.005em;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
 .scoring-note summary::-webkit-details-marker{display:none}
-.scoring-note summary::after{content:"+";font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold);transition:transform .2s ease}
+.scoring-note summary::after{content:"+";font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:18px;font-weight:600;color:var(--gold);transition:transform .2s ease}
 .scoring-note[open] summary::after{content:"−"}
 .scoring-note summary:hover{background:var(--surface-2)}
-.scoring-note__body{padding:0 18px 18px;font-family:var(--serif);font-size:14.5px;line-height:1.6;color:var(--body)}
+.scoring-note__body{padding:0 18px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;line-height:1.6;color:var(--body)}
 .scoring-note__body p{margin-bottom:10px}
 .scoring-note__body p:last-child{margin-bottom:0}
 .scoring-note__body code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:var(--r-md);color:var(--ink)}
@@ -590,7 +588,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 }
 
 /* No-script fallback */
-.noscript-block{padding:48px 28px;max-width:640px;margin:80px auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;font-family:var(--serif);text-align:center}
+.noscript-block{padding:48px 28px;max-width:640px;margin:80px auto;background:var(--surface);border:1px solid var(--rule);border-radius:3px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;text-align:center}
 .noscript-block h1{font-size:24px;font-weight:600;color:var(--ink);margin-bottom:14px}
 .noscript-block p{font-size:16px;line-height:1.6;color:var(--body);margin-bottom:12px}
 .noscript-block a{color:var(--navy);font-weight:600;border-bottom:1px solid var(--gold);padding-bottom:1px}
@@ -691,7 +689,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <p><b>Dr. Job Mogire, MD, FACC</b> · House of Mastery</p>
   </div>
 </noscript>
-<a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none">Skip to assessment</a>
+<a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:700;text-decoration:none">Skip to assessment</a>
 <div id="progress" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <div id="chamber-progress" aria-live="polite" aria-atomic="true" aria-label="Chamber progress">
   <div class="cp-seg" data-ch="1"></div>
@@ -729,13 +727,13 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
   <p class="lede">There is a kind of life that runs you while you think you are running it. <strong>From the outside, it works.</strong> The biography reads well at weddings, even when it does not read well at home. From the inside, something is on mute, the work does not get done, the years pass, and the room is full of people who think they know you. <strong>You are not lazy, you just never finish.</strong></p>
   <p class="lede" style="font-size:clamp(18px,2.5vw,21px);color:var(--body);margin-top:-6px">This is not breakdown. It is maturation. The diagnostic instrument is the room where the inventory becomes available before it arrives as a crisis.</p>
-  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Forty-two items, about twelve minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
+  <p class="body-text">The First Hour is a free six-chamber audit by <b>Dr. Job Mogire, MD, FACC</b>, a board-certified cardiologist who has spent twenty years watching what unspoken life does to the body. It names the patterns quietly shaping your life and what they have been costing your body, your relationships, and your years. Forty-two items, about fifteen minutes. The diagnosis is clinical. The voice is warm. There is no judgment in the room.</p>
   <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
   <p class="body-text" style="font-style:italic;color:var(--body);font-size:15px;margin-top:8px">This is not another self-improvement instrument. Most of those become another form of masking. This one names the pattern, quantifies the cost, and steps back. The work, when it begins, is yours.</p>
 
   <div class="framing-card" style="border-left:3px solid var(--navy);background:var(--gold-soft)">
-    <p style="font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.3;margin:0 0 14px 0">I should be finishing, but...</p>
-    <p style="font-family:var(--serif);font-size:clamp(17px,2.2vw,19px);font-weight:500;color:var(--body);line-height:1.6;margin:0;letter-spacing:-.005em">
+    <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.3;margin:0 0 14px 0">I should be finishing, but...</p>
+    <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(17px,2.2vw,19px);font-weight:500;color:var(--body);line-height:1.6;margin:0;letter-spacing:-.005em">
       ...I am checking again.<br>
       ...I am planning again.<br>
       ...I am starting something new.<br>
@@ -743,7 +741,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       ...I am calling avoidance preparation.<br>
       ...I am telling myself this year is different.
     </p>
-    <p style="font-family:var(--sans);font-size:14px;font-weight:500;color:var(--body);margin:14px 0 0 0;line-height:1.55;letter-spacing:.005em">If any of this lands, you are in the right room. The First Hour is not a productivity tool. It is a diagnostic for what has been quietly running you.</p>
+    <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--body);margin:14px 0 0 0;line-height:1.55;letter-spacing:.005em">If any of this lands, you are in the right room. The First Hour is not a productivity tool. It is a diagnostic for what has been quietly running you.</p>
   </div>
 
   <div class="framing-card">
@@ -762,7 +760,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     </div>
     <div class="cover-letter__body">
       <p>Most assessments flatter you. This one will not. It is built to surface the patterns running you quietly  -  the ones nobody brings up at dinner, the ones you have been outrunning for years.</p>
-      <p>You will not be asked to share anything publicly. You will be asked to be honest with yourself for about twelve minutes. Whatever you find, you may carry. You may bring it back, and we walk further together. Or you may close the tab and never see this again. Both are honest answers.</p>
+      <p>You will not be asked to share anything publicly. You will be asked to be honest with yourself for about fifteen minutes. Whatever you find, you may carry. You may bring it back, and we walk further together. Or you may close the tab and never see this again. Both are honest answers.</p>
       <p>What I would ask you not to do is the third thing  -  to take the assessment, recognise yourself in it, and then forget. <em>That is the pattern this instrument is built to interrupt.</em></p>
     </div>
     <div class="cover-letter__sig">
@@ -810,7 +808,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="field-stack">
     <label class="field-label" for="participantName">Your first name</label>
     <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false" autocapitalize="words">
-    <p id="participantNameHint" class="field-hint" style="font-family:var(--sans);font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">First name only. Used to address you on your report.</p>
+    <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">First name only. Used to address you on your report.</p>
   </div>
 
   <div class="field-stack">
@@ -937,16 +935,16 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="r-block">
     <span class="r-block-label">The canon · what you have just diagnosed</span>
     <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--gold)">
-      <p style="font-family:var(--serif);font-size:clamp(18px,2.5vw,21px);font-weight:500;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin:0">
+      <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.5vw,21px);font-weight:500;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin:0">
         What you have just named has a name. It is called <b>The Unfinishing Life</b>. It is not laziness, but fragmentation, made visible in open loops, unkept promises, and half-built identities. The pattern has a body, a literature, and a path through it. The path moves through six layers, from outer architecture to sacred essence. It passes, eventually, through four questions every covenant with your future is built on.
       </p>
-      <ol style="font-family:var(--serif);font-size:clamp(17px,2.4vw,20px);font-weight:600;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:22px 0 0 22px;padding:0">
+      <ol style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(17px,2.4vw,20px);font-weight:600;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:22px 0 0 22px;padding:0">
         <li style="margin-bottom:6px">Who do you want to be?</li>
         <li style="margin-bottom:6px">What do you want to do?</li>
         <li style="margin-bottom:6px">Where do you want to end up?</li>
         <li>Why these, and not the ones the world keeps suggesting on your behalf?</li>
       </ol>
-      <p style="font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--mid);margin-top:18px;line-height:1.55;letter-spacing:.005em">Most adults have never answered the four cleanly. The answers in your own voice are the work of the next door.</p>
+      <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:500;color:var(--mid);margin-top:18px;line-height:1.55;letter-spacing:.005em">Most adults have never answered the four cleanly. The answers in your own voice are the work of the next door.</p>
     </div>
   </div>
 
@@ -1091,7 +1089,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="r-block" style="text-align:center">
     <button class="btn-secondary" id="downloadBtn" onclick="downloadPDF()" style="margin-right:8px">Download report (PDF)</button>
     <button class="btn-secondary" onclick="resendEmail()">Email me my report</button>
-    <p class="email-status" id="emailStatus" style="font-family:var(--sans);font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em"></p>
+    <p class="email-status" id="emailStatus" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em"></p>
   </div>
 
   <!-- v3.2.0  -  Meet Dr. Job, the author -->
@@ -1274,7 +1272,7 @@ var QUESTIONS=[
     'When I make a promise to myself, the body knows whether I will keep it before I have finished saying it.',
     'When I make a promise to myself, I am beginning to notice the doubt before I commit.',
     'When I make a promise to myself in front of the people I love, the breaking does not stay private.',
-    'When I make a promise to myself, I am the kind of person whose own promises are kept first.',
+    'When I make a promise to myself, I am becoming the kind of person whose own promises are kept first.',
     'When I make a promise to myself, the doubt is quieter than it used to be.'
   ]},
   {n:16, sec:3, sn:'The Word that Lost Weight', text:[
@@ -1282,7 +1280,7 @@ var QUESTIONS=[
     'When I make a new commitment, the body recognises the lie before the mouth has finished.',
     'When I make a new commitment, I am beginning to ask honestly whether I can keep this one.',
     'When I make a new commitment, the people who would witness it know whether I am serious.',
-    'When I make a new commitment, I am the kind of person who keeps it, or does not make it.',
+    'When I make a new commitment, I am becoming the kind of person who keeps it, or does not make it.',
     'When I make a new commitment, I usually keep it, or I do not make it.'
   ]},
   {n:17, sec:3, sn:'The Word that Lost Weight', text:[
@@ -1290,7 +1288,7 @@ var QUESTIONS=[
     'When a resolution starts to fade, the body remembers the resolution even when the mind has filed it.',
     'When a resolution starts to fade, I am beginning to name it rather than let it disappear.',
     'When a resolution starts to fade, the people who heard it deserve the truth of its return or release.',
-    'When a resolution starts to fade, I am the kind of person who either returns to it or releases it cleanly.',
+    'When a resolution starts to fade, I am becoming the kind of person who either returns to it or releases it cleanly.',
     'When a resolution starts to fade, I either return to it or release it cleanly.'
   ]},
   {n:18, sec:3, sn:'The Word that Lost Weight', text:[
@@ -1298,7 +1296,7 @@ var QUESTIONS=[
     'When my word is on the line, the body knows the asymmetry and waits for me to close it.',
     'When my word is on the line, I notice the asymmetry and I am beginning to close it.',
     'When my word is on the line, the people I am most reliable to are no longer surprised that I keep it for myself too.',
-    'When my word is on the line, I am the kind of person who treats her own as she treats anyone else’s.',
+    'When my word is on the line, I am becoming the kind of person who treats her own as she treats anyone else’s.',
     'When my word is on the line, I treat my own as I treat anyone else’s.'
   ]},
   {n:19, sec:3, sn:'The Word that Lost Weight', text:[
@@ -1306,7 +1304,7 @@ var QUESTIONS=[
     'When I list the things I told myself I would do, the body remembers each one and the weight of its non-doing.',
     'When I list the things I told myself I would do, the list is shorter and more honest.',
     'When I list the things I told myself I would do, the people in my life can see the list shorten.',
-    'When I list the things I told myself I would do, I am the kind of person whose list is mostly done, in motion, or consciously released.',
+    'When I list the things I told myself I would do, I am becoming the kind of person whose list is mostly done, in motion, or consciously released.',
     'When I list the things I told myself I would do, most are done, in motion, or consciously released.'
   ]},
   {n:20, sec:3, sn:'The Word that Lost Weight', text:[
@@ -1314,7 +1312,7 @@ var QUESTIONS=[
     'When I think of my unkept promises, the body has been carrying the tightening for years, not minutes.',
     'When I think of my unkept promises, I notice the tightening and stay with it.',
     'When I think of my unkept promises, the people who would have benefited from the keeping are people I can name.',
-    'When I think of my unkept promises, I am the kind of person whose list is short enough that the tightening is brief.',
+    'When I think of my unkept promises, I am becoming the kind of person whose list is short enough that the tightening is brief.',
     'When I think of my unkept promises, the list is short enough that the tightening is brief.'
   ]},
   {n:21, sec:3, sn:'The Word that Lost Weight', text:[
@@ -1322,7 +1320,7 @@ var QUESTIONS=[
     'When I imagine being someone whose word holds, the body recognises the wanting as a thing that has been waiting.',
     'When I imagine being someone whose word holds, I am beginning to live like it.',
     'When I imagine being someone whose word holds, the people closest to me would notice the change before I named it.',
-    'When I imagine being someone whose word holds, I am the kind of person whose word holds, more days than not.',
+    'When I imagine being someone whose word holds, I am becoming the kind of person whose word holds, more days than not.',
     'When I imagine being someone whose word holds, I am that person, more days than not.'
   ]},
 
@@ -1332,7 +1330,7 @@ var QUESTIONS=[
     'When I look at what the past five years built, the body knows where the years went, even when the calendar will not say.',
     'When I look at what the past five years built, I can name some, even if not all.',
     'When I look at what the past five years built, the people who shared them with me see the work, not the blur.',
-    'When I look at what the past five years built, I am the kind of person who can see the work.',
+    'When I look at what the past five years built, I am becoming the kind of person who can see the work.',
     'When I look at what the past five years built, I see the work.'
   ]},
   {n:23, sec:4, sn:'The Time that Disappeared', text:[
@@ -1340,7 +1338,7 @@ var QUESTIONS=[
     'When I notice my age, the body knows the gap between who I am and who I expected to be.',
     'When I notice my age, I am beginning to close the gap between expectation and life.',
     'When I notice my age, the people who knew me younger can see who I have become without having to imagine her.',
-    'When I notice my age, I am the kind of person whose life is closer to her wanting than she once thought possible.',
+    'When I notice my age, I am becoming the kind of person whose life is closer to her wanting than she once thought possible.',
     'When I notice my age, who I am is closer to who I want to be than I once thought possible.'
   ]},
   {n:24, sec:4, sn:'The Time that Disappeared', text:[
@@ -1348,7 +1346,7 @@ var QUESTIONS=[
     'When I look at my year, the body recognises the difference between full days and a kept year.',
     'When I look at my year, I am beginning to see what the days are actually building.',
     'When I look at my year, the people who watched me move through it can name what was built.',
-    'When I look at my year, I am the kind of person whose year is full because the days are kept.',
+    'When I look at my year, I am becoming the kind of person whose year is full because the days are kept.',
     'When I look at my year, the year is full because the days have been kept.'
   ]},
   {n:25, sec:4, sn:'The Time that Disappeared', text:[
@@ -1356,7 +1354,7 @@ var QUESTIONS=[
     'When I think of when I will start, the body is tired of next quarter and the mouth is still saying it.',
     'When I think of when I will start, I notice the "next quarter" move and I refuse it.',
     'When I think of when I will start, the people who would witness the start hear a date, not a season.',
-    'When I think of when I will start, I am the kind of person whose answer is now or a specific date.',
+    'When I think of when I will start, I am becoming the kind of person whose answer is now or a specific date.',
     'When I think of when I will start, the answer is now or a specific date.'
   ]},
   {n:26, sec:4, sn:'The Time that Disappeared', text:[
@@ -1364,7 +1362,7 @@ var QUESTIONS=[
     'When I notice how time is moving, the body marks the years differently than the calendar does.',
     'When I notice how time is moving, I am beginning to slow it down by what I do with it.',
     'When I notice how time is moving, the people who have shared it with me feel the weight of what we have built.',
-    'When I notice how time is moving, I am the kind of person whose years carry weight rather than slipping past.',
+    'When I notice how time is moving, I am becoming the kind of person whose years carry weight rather than slipping past.',
     'When I notice how time is moving, my years carry weight rather than slipping past.'
   ]},
   {n:27, sec:4, sn:'The Time that Disappeared', text:[
@@ -1372,7 +1370,7 @@ var QUESTIONS=[
     'When I think of "later," the body knows it is running out before the mind admits it.',
     'When I think of "later," I am beginning to convert it into now where I can.',
     'When I think of "later," the people who have heard me say it would notice it disappearing from my speech.',
-    'When I think of "later," I am the kind of person for whom it is rarer in her vocabulary than it used to be.',
+    'When I think of "later," I am becoming the kind of person for whom it is rarer in her vocabulary than it used to be.',
     'When I think of "later," it is rarer in my vocabulary than it used to be.'
   ]},
   {n:28, sec:4, sn:'The Time that Disappeared', text:[
@@ -1380,7 +1378,7 @@ var QUESTIONS=[
     'When I imagine the year I would call honest, the body knows what she would feel like at the close of it.',
     'When I imagine the year I would call honest, I am beginning to live it in patches.',
     'When I imagine the year I would call honest, the people closest to me would call the same year honest.',
-    'When I imagine the year I would call honest, I am the kind of person who is living it.',
+    'When I imagine the year I would call honest, I am becoming the kind of person who is living it.',
     'When I imagine the year I would call honest, I am living it.'
   ]},
 
@@ -1390,7 +1388,7 @@ var QUESTIONS=[
     'When I make a financial decision, the body knows whether I am reacting before the mind has caught up.',
     'When I make a financial decision, I am beginning to notice the reaction before I act on it.',
     'When I make a financial decision, the people who depend on the choice see a decision, not a reaction.',
-    'When I make a financial decision, I am the kind of person who acts from a position she has actually chosen.',
+    'When I make a financial decision, I am becoming the kind of person who acts from a position she has actually chosen.',
     'When I make a financial decision, I act from a position I have actually chosen.'
   ]},
   {n:30, sec:5, sn:'The Money that Owns You', text:[
@@ -1398,7 +1396,7 @@ var QUESTIONS=[
     'When I look at how much I earn now, the body knows freedom would feel different than this.',
     'When I look at how much I earn, I am beginning to see what would actually free me.',
     'When I look at how much I earn, the people I love see the earning translating into actual life.',
-    'When I look at how much I earn, I am the kind of person whose earning has translated into freedom.',
+    'When I look at how much I earn, I am becoming the kind of person whose earning has translated into freedom.',
     'When I look at how much I earn, the earning has begun to translate into freedom.'
   ]},
   {n:31, sec:5, sn:'The Money that Owns You', text:[
@@ -1406,7 +1404,7 @@ var QUESTIONS=[
     'When I look at the financial weight I carry, the body knows what is mine and what was inherited.',
     'When I look at the financial weight I carry, I am beginning to separate what is mine from what is not.',
     'When I look at the financial weight I carry, the people who passed it to me are not the people who can lift it from me.',
-    'When I look at the financial weight I carry, I am the kind of person who carries mine and has set down what is not.',
+    'When I look at the financial weight I carry, I am becoming the kind of person who carries mine and has set down what is not.',
     'When I look at the financial weight I carry, I carry mine and I have set down what is not.'
   ]},
   {n:32, sec:5, sn:'The Money that Owns You', text:[
@@ -1414,7 +1412,7 @@ var QUESTIONS=[
     'When I spend, the body knows when the purchase is meant for someone else, not for me.',
     'When I spend, I am beginning to notice the proving move before I make the purchase.',
     'When I spend, the people I am actually trying to reach with the proving have moved on long ago.',
-    'When I spend, I am the kind of person who spends on what she actually wants.',
+    'When I spend, I am becoming the kind of person who spends on what she actually wants.',
     'When I spend, I spend on what I actually want, not on a story for someone else.'
   ]},
   {n:33, sec:5, sn:'The Money that Owns You', text:[
@@ -1422,7 +1420,7 @@ var QUESTIONS=[
     'When I think about my money, the body braces for looking before I have begun.',
     'When I think about my money, I am beginning to look despite the discomfort.',
     'When I think about my money, the people who share my financial life see me look, not avoid.',
-    'When I think about my money, I am the kind of person who looks. The discomfort is workable.',
+    'When I think about my money, I am becoming the kind of person who looks. The discomfort is workable.',
     'When I think about my money, I look. The discomfort is workable.'
   ]},
   {n:34, sec:5, sn:'The Money that Owns You', text:[
@@ -1430,7 +1428,7 @@ var QUESTIONS=[
     'When I notice my money behaving, the body recognises the rules even when the mind has not named them.',
     'When I notice my money behaving, I am beginning to surface the rules and choose new ones.',
     'When I notice my money behaving, the people who taught me the rules can be thanked for some, released from others.',
-    'When I notice my money behaving, I am the kind of person whose rules are consciously held.',
+    'When I notice my money behaving, I am becoming the kind of person whose rules are consciously held.',
     'When I notice my money behaving, it operates by rules I now consciously hold.'
   ]},
   {n:35, sec:5, sn:'The Money that Owns You', text:[
@@ -1438,7 +1436,7 @@ var QUESTIONS=[
     'When I imagine money as a tool I direct, the body recognises the wanting as a thing she has been waiting to claim.',
     'When I imagine money as a tool I direct, I am beginning to act like its director.',
     'When I imagine money as a tool I direct, the people who depend on me feel a different relationship to it.',
-    'When I imagine money as a tool I direct, I am the kind of person who directs it.',
+    'When I imagine money as a tool I direct, I am becoming the kind of person who directs it.',
     'When I imagine money as a tool I direct, I direct it.'
   ]},
 
@@ -1448,7 +1446,7 @@ var QUESTIONS=[
     'When I move between rooms, the body remembers each performance even when the mind has rehearsed them apart.',
     'When I move between rooms, I am beginning to notice the performance and let some of it drop.',
     'When I move between rooms, the people in each room are beginning to meet the same self.',
-    'When I move between rooms, I am the kind of person whose same self shows up in each.',
+    'When I move between rooms, I am becoming the kind of person whose same self shows up in each.',
     'When I move between rooms, the same self shows up in each.'
   ]},
   {n:37, sec:6, sn:'The People you are Performing With', text:[
@@ -1456,7 +1454,7 @@ var QUESTIONS=[
     'When I am with the people closest to me, the body holds the truth that has not been said.',
     'When I am with the people closest to me, I am beginning to risk the truth again.',
     'When I am with the people closest to me, they are starting to meet me again, not just my performance.',
-    'When I am with the people closest to me, I am the kind of person whose truth is what they meet.',
+    'When I am with the people closest to me, I am becoming the kind of person whose truth is what they meet.',
     'When I am with the people closest to me, what is true for me is what they meet.'
   ]},
   {n:38, sec:6, sn:'The People you are Performing With', text:[
@@ -1464,7 +1462,7 @@ var QUESTIONS=[
     'When I think of the conversations I most need to have, the body knows their cost is climbing.',
     'When I think of the conversations I most need to have, I am beginning to make them happen.',
     'When I think of the conversations I most need to have, the people on the other side of them are waiting longer than they should.',
-    'When I think of the conversations I most need to have, I am the kind of person whose queue is short.',
+    'When I think of the conversations I most need to have, I am becoming the kind of person whose queue is short.',
     'When I think of the conversations I most need to have, the queue is short.'
   ]},
   {n:39, sec:6, sn:'The People you are Performing With', text:[
@@ -1472,7 +1470,7 @@ var QUESTIONS=[
     'When I am in a room full of people who think they know me, the body knows the loneliness is real even when the room is loud.',
     'When I am in a room full of people who think they know me, I am beginning to let myself be known.',
     'When I am in a room full of people who think they know me, I am beginning to let one or two of them actually know me.',
-    'When I am in a room of people who know me, I am the kind of person whose loneliness is rare because the room knows her face.',
+    'When I am in a room of people who know me, I am becoming the kind of person whose loneliness is rare because the room knows her face.',
     'When I am in a room of people who know me, the loneliness is rare because the room is not full of strangers wearing my face.'
   ]},
   {n:40, sec:6, sn:'The People you are Performing With', text:[
@@ -1480,7 +1478,7 @@ var QUESTIONS=[
     'When I am with people I claim to love, the body recognises the score-keeping as a thing she has carried for years.',
     'When I am with people I claim to love, I notice the score-keeping and let it go more often.',
     'When I am with people I claim to love, they can feel whether a ledger is running between us.',
-    'When I am with people I love, I am the kind of person who is not running a ledger.',
+    'When I am with people I love, I am becoming the kind of person who is not running a ledger.',
     'When I am with people I love, I am not running a ledger.'
   ]},
   {n:41, sec:6, sn:'The People you are Performing With', text:[
@@ -1488,7 +1486,7 @@ var QUESTIONS=[
     'When I am with the person closest to me, the body knows the cost even when the words have not been spoken.',
     'When I am with the person closest to me, I am beginning to name the cost out loud.',
     'When I am with the person closest to me, they are paying for who I have not been willing to become.',
-    'When I am with the person closest to me, I am the kind of person who has named the cost and walked forward together.',
+    'When I am with the person closest to me, I am becoming the kind of person who has named the cost and walked forward together.',
     'When I am with the person closest to me, the cost has been named, the conversation has been had, and we are walking forward.'
   ]},
   {n:42, sec:6, sn:'The People you are Performing With', text:[
@@ -1496,7 +1494,7 @@ var QUESTIONS=[
     'When I imagine the children in my life looking back, the body recognises that they are watching, even when no one is saying so.',
     'When I imagine the children in my life looking back, I am beginning to act for the inheritance I want them to receive.',
     'When I imagine the children in my life looking back, the people they will become will inherit my actual life, not my speeches.',
-    'When I imagine the children in my life looking back, I am the kind of person whose inheritance to them is different from what I inherited.',
+    'When I imagine the children in my life looking back, I am becoming the kind of person whose inheritance to them is different from what I inherited.',
     'When I imagine the children in my life looking back, what they inherit will be different from what I inherited.'
   ]}
 ];
