@@ -2244,7 +2244,7 @@ function goDashboard(){
 function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
 // Section prompts, six tiers per section, keyed to which return this is.
 // KOORA tier rises by month across the 180-day path.
-// v3.7.4 — eyebrow stripped to short declarative section subtitle (single string per section).
+// v3.7.4 -- eyebrow stripped to short declarative section subtitle (single string per section).
 // The per-tier progression lives in the question text; the eyebrow does not stutter against it.
 var SECTION_PROMPTS={
   1:'What runs you when you are not paying attention',
@@ -2266,7 +2266,7 @@ function retakeTier(){
   return 6;
 }
 function sectionPrompt(secNum){
-  // v3.7.4 — single static subtitle per section; tier progression is in the question text.
+  // v3.7.4 -- single static subtitle per section; tier progression is in the question text.
   return SECTION_PROMPTS[secNum]||'';
 }
 

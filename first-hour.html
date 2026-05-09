@@ -1200,7 +1200,7 @@ var QUESTIONS=[
     'The three-a.m. audit is shorter than it used to be.'
   ]},
   {n:7, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'I want to think my own thoughts again — more than I let myself say out loud.',
+    'I want to think my own thoughts again -- more than I let myself say out loud.',
     'My body wants this more than I have let my mind admit.',
     'I am beginning to recognise that person in my own behaviour.',
     'The people who would meet her would prefer her to who I have been.',
@@ -1258,7 +1258,7 @@ var QUESTIONS=[
     'When my body asks for an appointment, I make it the same week.'
   ]},
   {n:14, sec:2, sn:'The Body that Got Forgotten', text:[
-    'I want a vessel that still carries me at sixty, seventy, eighty — badly enough to act today.',
+    'I want a vessel that still carries me at sixty, seventy, eighty -- badly enough to act today.',
     'My body knows the choices I am making today are the body she will inherit.',
     'I am beginning to act for the body I want at sixty.',
     'Those who will be alongside me deserve a vessel that can still meet them.',
@@ -1644,7 +1644,7 @@ function startAssessment(){
 function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
 // Chamber prompts, six tiers per chamber, keyed to which return this is.
 // Tier rises with each return so language evolves through the six-month path.
-// v3.7.4 — eyebrow stripped to short declarative chamber subtitle (single string per chamber).
+// v3.7.4 -- eyebrow stripped to short declarative chamber subtitle (single string per chamber).
 // The per-tier progression lives in the question text itself, not in a stuttering eyebrow.
 var CHAMBER_PROMPTS={
   1:'Borrowed opinions, scrolled certainties',
@@ -1667,7 +1667,7 @@ function retakeStageName(){
   return ['Self','Body','Craft','People','Future','World'][s-1]||'Self';
 }
 function chamberPrompt(chamberNum){
-  // v3.7.4 — single static subtitle per chamber; tier progression is in the question text.
+  // v3.7.4 -- single static subtitle per chamber; tier progression is in the question text.
   return CHAMBER_PROMPTS[chamberNum]||'';
 }
 
