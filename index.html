@@ -1086,6 +1086,15 @@ body.footer-hidden footer{display:none}
     <p class="seal-intro__text" id="sealIntroText"></p>
   </div>
 
+  <div class="claim-block">
+    <p class="claim-q">Before you go further, one question.<br><em style="font-style:italic;color:var(--gold)">Will you return in fifteen days?</em></p>
+    <div class="claim-row">
+      <button class="claim-btn" id="claimYes" onclick="setClaim(true)">Yes, I will return<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">The covenant continues</span></button>
+      <button class="claim-btn" id="claimNo" onclick="setClaim(false)">Not yet<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">Naming this is the return</span></button>
+    </div>
+    <p class="claim-conf" id="claimConf"></p>
+  </div>
+
   <div class="tbl-block" id="moveBlock" style="display:none">
     <span class="tbl-h">What moved · Since your last return</span>
     <table class="dtable" id="moveTable"></table>
@@ -1133,7 +1142,7 @@ body.footer-hidden footer{display:none}
   <div class="tbl-block">
     <div class="delivery">
       <h3 class="delivery-h">Send your results</h3>
-      <p class="delivery-sub">A copy reaches your inbox. A copy reaches Dr. Mogire’s team so the conversation can be picked up at the next sealing.</p>
+      <p class="delivery-sub">A copy reaches your inbox.</p>
       <div class="delivery-row">
         <input class="email-input" type="email" id="emailInput" placeholder="your@email.com">
         <button class="btn-primary" id="sendBtn" onclick="sendEmail()" style="flex:0 0 auto">Send</button>
@@ -1144,15 +1153,6 @@ body.footer-hidden footer{display:none}
         <button class="btn-secondary" onclick="goDashboard()">Back to your path</button>
       </div>
     </div>
-  </div>
-
-  <div class="claim-block">
-    <p class="claim-q">Before you close this page, one question.<br><em style="font-style:italic;color:var(--gold)">Will you return in fifteen days?</em></p>
-    <div class="claim-row">
-      <button class="claim-btn" id="claimYes" onclick="setClaim(true)">Yes, I will return<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">The covenant continues</span></button>
-      <button class="claim-btn" id="claimNo" onclick="setClaim(false)">Not yet<span style="display:block;font-weight:500;font-size:11.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">Naming this is the return</span></button>
-    </div>
-    <p class="claim-conf" id="claimConf"></p>
   </div>
 
   <div class="vow-block">
