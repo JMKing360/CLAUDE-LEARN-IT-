@@ -278,7 +278,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .bar-quiet{background:var(--green)}.bar-active{background:var(--amber)}.bar-loud{background:var(--red)}
 .profile-val{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
 .profile-val .lvl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.lvl-quiet{color:var(--green)}.lvl-active{color:var(--amber)}.lvl-loud{color:var(--red)}
+.lvl-quiet{color:var(--green)}.lvl-active{color:var(--amber)}.lvl-loud{color:#A46410}
 .profile-val .delta{font-size:10px;font-weight:600}
 .delta-up{color:var(--green)}.delta-down{color:var(--red)}.delta-flat{color:var(--mid)}
 .tbl-legend{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
@@ -834,6 +834,7 @@ body.footer-hidden footer{display:none}
   <div class="welcome-cta">
     <button class="btn-primary" onclick="startAssessment()" style="max-width:300px">Begin your first hour</button>
     <p class="welcome-meta"><b>About fifteen minutes.</b> Press A, B, C, or D on your keyboard, or tap. Take one breath. Notice your shoulders. Begin.<br><br><em style="color:var(--ink);font-weight:600">Don’t die with an unfinishing life.</em></p>
+    <p class="welcome-meta" style="margin-top:18px;font-size:13px;color:var(--mid)">If you want the deeper protocol when it opens, email <a href="mailto:mail@mogire.com?subject=KOORA%20WAITLIST" style="color:var(--gold);text-decoration:underline">mail@mogire.com</a> with subject <b>KOORA WAITLIST</b>.</p>
   </div>
 </section>
 
@@ -1087,8 +1088,9 @@ body.footer-hidden footer{display:none}
   </aside>
 
   <div class="retake-block">
-    <h3 class="retake-h">We will email you in thirty days. Then once a month, for a year.</h3>
-    <p class="retake-body">A reminder, with a link to retake your first hour. <b>The diagnosis will be steady.</b> What changes is whether anything in your life has actually moved. Twelve returns. The pattern reveals itself when you keep looking.</p>
+    <h3 class="retake-h" id="retakeH">We will email you in thirty days. Then once a month, for a year.</h3>
+    <p class="retake-body" id="retakeBody">A reminder, with a link to retake your first hour. <b>The diagnosis will be steady.</b> What changes is whether anything in your life has actually moved. Twelve returns. The pattern reveals itself when you keep looking.</p>
+    <p class="retake-body" id="retakeArc" style="margin-top:18px;font-weight:600;color:var(--ink)"></p>
   </div>
 
   <div class="vow-block">
@@ -1533,11 +1535,11 @@ var CHAMBER_PARAGRAPHS={
 
 // Section transitions (between chambers) ,  firing at new 7-item boundaries
 var TRANSITIONS=[
-  {q:7, eyebrow:'Chamber one is done',h:'You looked at the mind.',text:'Now look at the body. <b>The body keeps the record the mind tries to misplace.</b>'},
-  {q:14,eyebrow:'Chamber two is done',h:'You looked at the body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony.'},
-  {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done.',text:'Having looked at mind, body, and word, you now turn to time, money, and the people you have been pretending with.'},
-  {q:28,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules. Most rules were inherited.</b>'},
-  {q:35,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been pretending with. Stay here. The last seven items are the most honest.'}
+  {q:7, eyebrow:'Chamber one is done',h:'You looked at your mind.',text:'Now look at your body. <b>The body keeps the record the mind tries to misplace.</b>'},
+  {q:14,eyebrow:'Chamber two is done',h:'You looked at your body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony, are the foundation everything else stands on.'},
+  {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done. Most who start do not get here.',text:'Mind. Body. Word. You looked at all three. Now turn to time, money, and the people you have been pretending with. The honest answers cost something. Keep paying.'},
+  {q:28,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules you did not consciously set. Most of them were inherited.</b>'},
+  {q:35,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been pretending with. <b>The last seven items are the most honest.</b> Stay.'}
 ];
 
 // State
@@ -1583,6 +1585,22 @@ var painText='';
 var painText5y='';
 
 // Storage
+// Take-aware framing across the 12-month arc. Each take is a monthly return.
+// Take 1 is the baseline; Take 12 is the year-seal where the KOORA waitlist
+// invitation lands explicitly.
+function takeFraming(takeNum){
+  var n=Math.max(1,takeNum|0);
+  if(n===1) return 'This is take one. Your baseline. The first read is always the loudest. Notice it without flinching.';
+  if(n<=3)  return 'Take '+n+' of twelve. Early in the year. The pattern is still loud. The honesty of the read is the work.';
+  if(n<=5)  return 'Take '+n+' of twelve. Approaching the middle. Compare with kindness, not with judgement. What has actually moved?';
+  if(n===6) return 'Take six. Halfway through the year. Most who started are not here. You are. Notice that.';
+  if(n<=8)  return 'Take '+n+' of twelve. The second half. Momentum is built or lost in this stretch. Hold the line.';
+  if(n<=10) return 'Take '+n+' of twelve. The drift-watch. What you tracked early is now either practice or memory. Which one is it?';
+  if(n===11) return 'Take eleven. One return left. The year is almost in your hands. Use this one to set the close.';
+  if(n>=12) return 'Take twelve. The full year. Look back at the twelve reads. That is the arc. <b>If you want the deeper protocol, email <a href="mailto:mail@mogire.com?subject=KOORA%20WAITLIST" style="color:var(--gold);text-decoration:underline">mail@mogire.com</a> with subject KOORA WAITLIST.</b>';
+  return 'Take '+n+'. Keep looking.';
+}
+
 function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
 function saveHistory(arr){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(arr))}catch(e){}}
 function appendRecord(rec){var h=loadHistory();h.push(rec);saveHistory(h);return h}
@@ -1949,6 +1967,9 @@ function buildResults(rec){
   var prior=null;var hist=priorRecords(rec.email);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
   var returnIdx=hist.length;
+  // 12-month arc framing on the result page
+  var arcEl=document.getElementById('retakeArc');
+  if(arcEl)arcEl.innerHTML=takeFraming(returnIdx);
 
   var loud=loudestChamber();
   var headline=document.getElementById('rHeadline');
