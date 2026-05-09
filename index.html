@@ -907,8 +907,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       <p>Take your time. Be specific. Be honest. It will honour an honest answer.</p>
     </div>
     <div class="cover-letter__sig">
-      Dr. Job Mogire
-      <small>House of Mastery · KOORA · 2026</small>
+      Rooting for you.
+      <small>Job</small>
     </div>
   </aside>
 
@@ -917,7 +917,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="field-stack">
     <label class="field-label" for="participantName">Your first name</label>
     <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false" autocapitalize="words">
-    <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">First name only. Used to address you in the cohort and on your report. Stays in your browser.</p>
+    <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">No one else gets to see this, it's yours.</p>
   </div>
 
   <div class="field-stack">
@@ -935,7 +935,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <div class="welcome-cta">
     <button class="btn-primary" onclick="startAssessment()" style="max-width:280px">Begin</button>
-    <p class="welcome-meta"><b>About fifteen minutes.</b> Your responses are stored in your browser only. Nothing is shared until you choose to email your results. Replies and questions reach Dr. Mogire’s team at mail@mogire.com. Read our <a href="/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
+    <p class="welcome-meta"><b>About fifteen minutes.</b> Replies and questions reach Dr. Mogire’s team at mail@mogire.com. Read our <a href="/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
     <p class="cohort-whisper" id="welcomeWhisper"></p>
   </div>
 </section>
@@ -998,7 +998,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       <p>Each item uses a four-point Likert anchor: <code>Almost never</code> (1), <code>Some weeks</code> (2), <code>Most weeks</code> (3), <code>This is how I live</code> (4). The instrument has sixty items across six sections.</p>
       <p>The <b>four reflexes</b> (Complaining, Criticizing, Comparing, Competing) each score 4–16. We classify <code>quiet</code> at ≤44%, <code>active</code> at 45–69%, <code>loud</code> at 70%+. Reverse-scored items in ALCARRA, the four needs (filled), forces, fidelities, faculties, and the daily practice flip the scale so that high scores indicate embodied capacity rather than absence.</p>
       <p>The <b>tier resolver</b> selects which of the six covenant variants (Self · Body · Craft · People · Future · World) you see at each retake, mapped from your chosen day on the 180-day path. Day 0 is your baseline; Day 14/30 is the Self covenant; Day 45/60 is Body; and so on through to Day 180, the Sealing.</p>
-      <p>Your responses are stored in your browser only. Nothing is shared until you choose to email your report. The scoring methodology is observational  -  the pattern is the diagnosis, never the verdict.</p>
+      <p>The scoring methodology is observational  -  the pattern is the diagnosis, never the verdict.</p>
     </div>
   </details>
   <p class="r-sub" id="rSub"></p>
@@ -1799,16 +1799,17 @@ var PRACTICE=[
 
 var COVENANT_ENTRY={
   1:{name:'Self', eyebrow:'You are entering the Self covenant',
-     h:'Before you answer the sixty, five small things to notice.',
-     sub:'Answer them in your own chest. We are not collecting them. They are gates.',
+     h:'Before you answer the sixty, six small things to notice.',
+     sub:'Answer them honestly. We are not collecting them. They are gates.',
      items:[
        'I have broken more promises to myself than to anyone else and that sits sadly inside me.',
        'I am living my life for a faceless audience that has been judging me all my life.',
        'I do not believe I am afraid but my actions say I am, and that bothers me quietly.',
-       'I am running out of time and I am scared I might never feel true emotional freedom, not even for one day.',
+       'I am running out of time and I am scared I might never feel real emotional freedom, even one day.',
+       'I am not where I wished to be and my three year old self would be shocked to see my life today.',
        'I want to stop caring so much what other people think of me but I have no idea where to begin.'
      ],
-     threshold:'If any of these sit heavy in you, you are in the right room. The Self covenant is the work of coming home to your own self. Begin.'},
+     threshold:'If any of these sit heavy in you, you are in the right room. The Self covenant is the work of coming home to yourself. Begin.'},
   2:{name:'Body', eyebrow:'You are entering the Body covenant',
      h:'Before you answer this round, five things the body has been saying.',
      sub:'Notice. We do not collect them.',
@@ -1816,7 +1817,7 @@ var COVENANT_ENTRY={
        'My body has been calling me for weeks and I have been pretending I do not hear it.',
        'There is an appointment I keep postponing and the reason embarrasses me.',
        'I medicate my hard feelings with food or sleep or screens or alcohol and I am tired of being numb.',
-       'I cannot remember the last time I moved my body for pure joy and the quiet loss of it has been growing.',
+       'I cannot remember the last time I moved my body for pure joy, and that hurts more than I let on.',
        'I want to be alive in this body at seventy, badly enough to act today.'
      ],
      threshold:'If any of this sits in you, your body has been waiting. The Body covenant is the work of coming home to the vessel that carries you. Continue.'},
@@ -1824,9 +1825,9 @@ var COVENANT_ENTRY={
      h:'Before you answer this round, five things about the work entrusted to you.',
      sub:'Notice. The work is asking.',
      items:[
-       'There is work I was put here to build and I have been pretending I did not hear the call.',
+       'I know what work was given to me to build, and I have been pretending I did not.',
        'My calendar this week looks nothing like the life I claim I want.',
-       'I am better at beginning than at finishing, and the unfinished things are crowding my chest.',
+       'I am better at beginning than at finishing, and I feel the weight of every unfinished thing.',
        'There is a project at ninety percent that I cannot bring myself to close, and I am scared of why.',
        'If I had ninety days fully given to one thing, I know which thing it would be — and I have not given it.'
      ],
@@ -1836,20 +1837,20 @@ var COVENANT_ENTRY={
      sub:'Notice. They have been waiting.',
      items:[
        'There is a conversation I have been postponing for so long it has become part of the relationship.',
-       'The people closest to me do not know what I actually feel and that grief has been quiet.',
+       'The people closest to me do not know what I actually feel, and I have been carrying that alone.',
        'I perform a different self for the people I love than for the people I am trying to impress.',
-       'Someone close to me is paying a quiet cost for who I have been refusing to become.',
-       'When I imagine the children in my life looking back at how I lived, I do not want incompletion to be what they inherit — and I want this enough to act today.'
+       'Someone close to me is paying for who I have been refusing to be.',
+       'I do not want the children in my life to inherit my unfinished life. I want this enough to act today.'
      ],
      threshold:'If any of this lands, the people in your life have been waiting. The People covenant is where the work becomes real, or stays performance. Continue.'},
   5:{name:'Future', eyebrow:'You are entering the Future covenant',
      h:'Before you answer this round, five things about the person you are becoming.',
      sub:'Notice. The future is already arriving.',
      items:[
-       'I am not where I wished to be and my younger self would be shocked to see my life today.',
+       'There is a person I keep promising I will become, and I keep finding ways to delay her arrival.',
        'There is a version of me five years from now I am betraying with how I am living right now.',
        'My calendar, my money, and my habits do not yet match the person I claim I am becoming.',
-       'I am closer than I was and still not where I want to be — and the gap aches.',
+       'I am closer than I was, and still not where I want to be — and I feel that distance every day.',
        'The seventy-year-old version of me would forgive me for slowness but not for staying.'
      ],
      threshold:'If any of this sits in you, the future you is waiting. The Future covenant is the work of stopping the quiet betrayal of who you are becoming. Continue.'},
@@ -1947,7 +1948,7 @@ var painText5y='';
 function cohortWhisper(){
   var d=new Date();var dow=d.getDay();
   var phrases=[
-    'Cohort 1 sealed at sunrise in Nairobi today.',
+    'KOORA UNFINISHED DIAGNOSTIC is a tool used in KOORA: The Finisher Protocol, the 6-Month program that peels away your unfinished life. hom2026.com',
     'The cohort is keeping the Daily Reset this week, in Nairobi and beyond.',
     'The covenant is moving today, twenty-four Finishers walking it.',
     'A Friday cohort call closed an hour before this page loaded.',
