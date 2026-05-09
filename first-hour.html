@@ -121,6 +121,9 @@ body{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;background:#FB
   --ink:#1A1A1F;--body:#2D2D33;--mid:#52525A;--dim:#75757D;
   --rule:#D8D8DC;--rule-soft:#E8E8EC;
   --r-xs:2px;--r-sm:6px;--r-md:12px;--r-lg:18px;--r-pill:999px;
+  --shadow-sm:0 1px 2px rgba(13,31,60,.04),0 4px 12px rgba(13,31,60,.05);
+  --shadow-md:0 2px 6px rgba(13,31,60,.06),0 10px 28px rgba(13,31,60,.08);
+  --shadow-lg:0 4px 14px rgba(13,31,60,.10),0 22px 56px rgba(13,31,60,.16);
   --surface:#FBFBFD;--surface-2:#F5F5F7;--surface-3:#EFEFF2;
   --white:#FFFFFF;
   --green:#2E7D32;--green-soft:#E8F4E9;
@@ -243,7 +246,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .q-prompt{font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);font-weight:500;font-style:italic;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em;line-height:1.45;max-width:620px}
 .q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
-.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
+.opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r-md);padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
 .opt:hover{border-color:var(--ink);background:var(--surface-2)}
 .opt:active{transform:scale(.995)}
 .opt.sel{border-color:var(--navy);background:var(--navy);color:#fff;animation:selpulse 1.5s ease forwards}
@@ -272,7 +275,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .r-block{margin:48px 0}
 .r-block-label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:18px;display:block}
 
-.profile-list{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:8px 22px}
+.profile-list{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-md);padding:8px 22px}
 .profile-row{display:grid;grid-template-columns:1fr 1fr 110px;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule-soft)}
 .profile-row:last-child{border-bottom:none}
 .profile-name{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.005em}
@@ -288,7 +291,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .tbl-legend{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
 .tbl-legend b{color:var(--ink);font-weight:700}
 
-.feature-card{background:var(--navy);color:#fff;border-radius:22px;padding:44px 36px}
+.feature-card{background:var(--navy);color:var(--white);border-radius:var(--r-lg);padding:44px 36px}
 .feature-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
 .feature-h{font-family:var(--serif);font-size:clamp(26px,3.6vw,34px);font-weight:600;color:#fff;letter-spacing:-.022em;line-height:1.18;margin-bottom:14px}
 .feature-h em{font-style:italic;font-weight:600;color:var(--gold-soft)}
@@ -296,20 +299,20 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .feature-body b{color:#fff;font-weight:700}
 
 .cost-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.cost-cell{background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:24px 22px}
+.cost-cell{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-md);padding:24px 22px}
 .cost-label{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
 .cost-num{font-family:var(--serif);font-size:clamp(34px,4.6vw,46px);font-weight:600;line-height:1;letter-spacing:-.025em;color:var(--ink);margin-bottom:6px}
 .cost-num em{font-size:.55em;font-weight:500;color:var(--gold);font-style:normal;margin-left:2px;letter-spacing:0}
 .cost-meta{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;letter-spacing:.005em}
 
-.forecast{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--red)}
+.forecast{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-lg);padding:32px;border-top:3px solid var(--red)}
 .forecast-eyebrow{font-family:var(--sans);font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:14px;display:block}
 .forecast-h{font-family:var(--serif);font-size:clamp(22px,3vw,28px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.32;margin-bottom:18px}
 .forecast-row{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--body);line-height:1.6;padding:10px 0;border-bottom:1px dashed var(--rule-soft);letter-spacing:.005em}
 .forecast-row:last-child{border-bottom:none}
 .forecast-row b{color:var(--ink);font-weight:700}
 
-.pain-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:32px;border-top:3px solid var(--navy)}
+.pain-block{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-lg);padding:32px;border-top:3px solid var(--navy)}
 .pain-q{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.35;margin-bottom:8px}
 .pain-q-second{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.4;margin:28px 0 8px}
 .pain-sub{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
@@ -325,7 +328,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .ladder-h{font-family:var(--serif);font-size:clamp(24px,3.4vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.2;margin-bottom:8px}
 .ladder-sub{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--mid);margin-bottom:24px;line-height:1.55;letter-spacing:.005em}
 .ladder-list{display:flex;flex-direction:column;gap:14px}
-.rung{background:var(--white);border:1px solid var(--rule-soft);border-radius:18px;padding:28px;position:relative}
+.rung{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-lg);padding:28px;position:relative}
 .rung.r1{border-left:3px solid var(--green)}
 .rung.r2{border-left:3px solid var(--gold)}
 .rung.r3{border-left:3px solid var(--gold)}
@@ -344,7 +347,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .rung-action{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
 .rung.r4 .rung-action{color:var(--gold)}
 
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:18px 32px;border-radius:14px;border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--navy);color:var(--white);font-family:var(--sans);font-size:15px;font-weight:600;letter-spacing:.005em;padding:18px 32px;border-radius:var(--r-md);border:none;cursor:pointer;transition:background .15s,transform .12s;text-decoration:none}
 .btn-primary:hover{background:var(--navy-soft)}
 .btn-primary:active{transform:scale(.99)}
 .btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--mid);font-family:var(--sans);font-size:14px;font-weight:600;padding:14px 28px;border-radius:14px;border:1px solid var(--rule);cursor:pointer;transition:border-color .15s,color .15s;text-decoration:none}
@@ -513,6 +516,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .koora-funnel__body{font-family:var(--serif);font-size:16px;line-height:1.65;color:#E8E8EC;position:relative}
 .koora-funnel__body p{margin-bottom:10px}
 .koora-funnel__body p:last-child{margin-bottom:0}
+.koora-funnel__body strong{color:#FFFFFF;font-weight:700}
 .koora-funnel__cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--sans);font-size:13px;font-weight:700;color:#FFFFFF;letter-spacing:.04em;border-bottom:1px solid var(--gold-soft);padding-bottom:3px;position:relative;text-decoration:none}
 .koora-funnel__cta:hover{color:var(--gold-soft)}
 
@@ -729,7 +733,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <p class="body-text"><b>You will receive a full report by email</b> and an invitation to retake it in thirty days. Most patterns do not change on their own. The diagnosis is the door. What you do after is yours.</p>
   <p class="body-text" style="font-style:italic;color:var(--body);font-size:15px;margin-top:8px">This is not another self-improvement instrument. Most of those become another form of masking. This one names the pattern, quantifies the cost, and steps back. The work, when it begins, is yours.</p>
 
-  <div class="framing-card" style="border-left:3px solid var(--navy);background:#FCF9F1">
+  <div class="framing-card" style="border-left:3px solid var(--navy);background:var(--gold-soft)">
     <p style="font-family:var(--serif);font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.3;margin:0 0 14px 0">I should be finishing, but...</p>
     <p style="font-family:var(--serif);font-size:clamp(17px,2.2vw,19px);font-weight:500;color:var(--body);line-height:1.6;margin:0;letter-spacing:-.005em">
       ...I am checking again.<br>
@@ -1068,8 +1072,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <div class="koora-funnel__eyebrow">If any of those landed</div>
     <h3 class="koora-funnel__h" id="kooraFunnelH">KOORA is where the unfinished gets finished.</h3>
     <div class="koora-funnel__body">
-      <p>The First Hour names the pattern. <strong style="color:#FFFFFF">KOORA: The Finisher’s Protocol</strong> is the 180-day clinical-grade architecture that interrupts it. Six covenants — Self, Body, Craft, People, Future, World. Twelve retakes of UNFINISHED. One ledger you actually close.</p>
-      <p><strong style="color:#FFFFFF">Once a year. Twenty-four seats.</strong> The architecture is non-recoverable on purpose, because the discipline of staying is the discipline.</p>
+      <p>The First Hour names the pattern. <strong>KOORA: The Finisher’s Protocol</strong> is the 180-day clinical-grade architecture that interrupts it. Six covenants — Self, Body, Craft, People, Future, World. Twelve retakes of UNFINISHED. One ledger you actually close.</p>
+      <p><strong>Once a year. Twenty-four seats.</strong> The architecture is non-recoverable on purpose, because the discipline of staying is the discipline.</p>
     </div>
     <a class="koora-funnel__cta" href="https://www.houseofmastery.co/koora" target="_blank" rel="noopener">Read about KOORA →</a>
   </aside>
