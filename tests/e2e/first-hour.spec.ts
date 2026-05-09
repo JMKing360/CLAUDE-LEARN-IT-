@@ -58,3 +58,25 @@ test.describe('The First Hour — completion flow', () => {
     expect(inProgress).toBeTruthy();
   });
 });
+
+test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
+  test('personalize() handles all three placeholder positions', async ({ page }) => {
+    await page.goto('/first-hour.html');
+    const out = await page.evaluate(() => {
+      const W = window as unknown as { participantName: string; personalize: (s: string) => string };
+      W.participantName = 'Tina';
+      const a = W.personalize('{name,}you finished.');
+      const b = W.personalize('Are you ready{,name}?');
+      const c = W.personalize('Welcome, {name}.');
+      W.participantName = '';
+      const d = W.personalize('{name,}you finished.');
+      const e = W.personalize('Are you ready{,name}?');
+      return { a, b, c, d, e };
+    });
+    expect(out.a).toBe('Tina, you finished.');
+    expect(out.b).toBe('Are you ready, Tina?');
+    expect(out.c).toBe('Welcome, Tina.');
+    expect(out.d).toBe('You finished.');
+    expect(out.e).toBe('Are you ready?');
+  });
+});

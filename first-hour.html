@@ -1325,7 +1325,7 @@ var QUESTIONS=[
     'I am more reliable to other people than I am to myself.',
     'My body knows the asymmetry and waits for me to close it.',
     'When my word is on the line, I notice the asymmetry and I am closing it.',
-    'Those who depend on me are no longer surprised that I keep my word for myself too.',
+    'Those who depend on me see me keep my word for myself too.',
     'I am becoming the kind of person who treats her own word as she treats anyone else’s.',
     'I treat my own word as I treat anyone else’s.'
   ]},
@@ -1447,7 +1447,7 @@ var QUESTIONS=[
   ]},
   {n:33, sec:5, sn:'The Money that Owns You', text:[
     'When I think about my money, I avoid looking because looking is uncomfortable.',
-    'When I think about my money, my body braces for looking before I have begun.',
+    'When I think about my money, my body braces for looking before I begin.',
     'When I think about my money, I am beginning to look despite the discomfort.',
     'When I think about my money, the people who share my financial life see me look, not avoid.',
     'When I think about my money, I am becoming the kind of person who looks. The discomfort is workable.',
@@ -1599,6 +1599,23 @@ var painText='';
 var painText5y='';
 
 // Storage
+// Name placeholders. Mirrors KOORA's personalize() to keep voice doctrine
+// consistent across instruments (and to prepare for shared-module extraction).
+//   {name,} → "Name, " (sentence-start direct address)
+//   {,name} → ", Name" (sentence-end direct address)
+//   {name}  → "Name"   (mid-sentence)
+// Without participantName, all drop cleanly and the first letter is
+// re-capitalised so the sentence still reads.
+function personalize(s){
+  if(!s)return '';
+  if(participantName){
+    var nm=safe(participantName);
+    return s.replace(/\{name,\}/g, nm+', ').replace(/\{,name\}/g, ', '+nm).replace(/\{name\}/g, nm);
+  }
+  var r=s.replace(/\{name,\}/g,'').replace(/\{,name\}/g,'').replace(/\{name\}/g,'you');
+  return r.charAt(0).toUpperCase()+r.slice(1);
+}
+
 // Take-aware framing across the 12-month arc. Each take is a monthly return.
 // Take 1 is the baseline; Take 12 is the year-seal where the KOORA waitlist
 // invitation lands explicitly.
@@ -1817,9 +1834,19 @@ function exitTransition(){
 }
 
 function enterAck(){
-  var nm=participantName?safe(participantName)+', ':'';
-  document.getElementById('ackH1').innerHTML=nm+(participantName?'you finished.':'You finished.');
-  document.getElementById('ackText').innerHTML='Forty-two items. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result'+(participantName?', '+safe(participantName):'')+'?</b>';
+  var prior=priorRecords(participantEmail);
+  var takeNum=Math.max(1,prior.length+1);
+  var bodyCue;
+  if(takeNum===1)        bodyCue='Forty-two items. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water.';
+  else if(takeNum<=3)    bodyCue='Forty-two items, again. The repetition is the practice. Take one breath. Notice what was easier this time, and what was not.';
+  else if(takeNum<=5)    bodyCue='Forty-two items. Take '+takeNum+'. You are approaching the middle of the year. Take one breath. The honest read is the work.';
+  else if(takeNum===6)   bodyCue='Forty-two items. Halfway through the year. Most who started are not here. You are. Take one breath. Notice that.';
+  else if(takeNum<=8)    bodyCue='Forty-two items. The second half. Momentum is built or lost in this stretch. Take one breath. Hold the line.';
+  else if(takeNum<=10)   bodyCue='Forty-two items. The drift-watch. What you tracked early is now either practice or memory. Take one breath. See which one it became.';
+  else if(takeNum===11)  bodyCue='Forty-two items. One return left after this one. The arc is almost complete. Take one breath. Use this read to set the close.';
+  else                   bodyCue='Forty-two items. The twelfth read. The full year is now in your hands. Take one breath. Look back at what these reads built.';
+  document.getElementById('ackH1').innerHTML=personalize('{name,}you finished.');
+  document.getElementById('ackText').innerHTML=bodyCue+' <b>'+personalize('Are you ready to see your result{,name}?')+'</b>';
   hideChamberProgress();show('screen-ack');setProgress(100);
 }
 function afterAck(){finishAssessment()}
@@ -1990,11 +2017,11 @@ function buildResults(rec){
   var sub=document.getElementById('rSub');
 
   if(returnIdx===1){
-    headline.innerHTML=safe(rec.name)+', <em>this is what has been running you when you are not watching.</em>';
+    headline.innerHTML=personalize('{name,}')+'<em>this is what has been running you when you are not watching.</em>';
     sub.textContent='First Hour · First take · '+formatDate(rec.date);
   }else{
     var daysSinceFirst=daysBetween(hist[0].date,rec.date);
-    headline.innerHTML=safe(rec.name)+', <em>you have lived '+daysSinceFirst+' more days the same way.</em>';
+    headline.innerHTML=personalize('{name,}')+'<em>you have lived '+daysSinceFirst+' more days the same way.</em>';
     sub.textContent='First Hour · Return '+returnIdx+' · '+daysSinceFirst+' days since your first hour · '+formatDate(rec.date);
   }
 
