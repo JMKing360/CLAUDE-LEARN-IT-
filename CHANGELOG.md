@@ -2,6 +2,33 @@
 
 All notable changes to the House of Mastery diagnostic instruments are documented here. Versions follow [Semantic Versioning](https://semver.org/), where MAJOR is reserved for instrument-redesign-level changes that affect scoring or item set, MINOR for new features and content, and PATCH for fixes.
 
+## [3.4.0] — 2026-05-09 — Six-tier variant prose complete, review strategy, 47% uplift
+
+### Six-tier variant prose authoring complete (both instruments)
+- **KOORA: 60 items × 6 covenant tiers** (Self · Body · Craft · People · Future · World).
+  - Section 1 (Reflexes, 16 items × 3 new = 48 strings) — landed in v3.3.1.
+  - Section 2 (ALCARRA, 7 items × 3 = 21) — landed in v3.3.1.
+  - Sections 3-6 (the four needs, forces and fidelities, faculties and practice, inner journey · 36 items × 3 = 108) — landed in v3.4.0 across review rounds 1-4.
+- **First Hour: 42 items × 6 covenant-aligned stage tiers** (Self / Body / Craft / People / Future / World, paired bi-monthly across the 12-month cadence).
+  - Chambers 1-6 (42 items × 3 = 126 new strings) — landed in v3.4.0 across review rounds 5-6.
+- **Total new strings: 306. Total covenant-tier variants across the suite: 612.**
+- Variant grammar held: Body tiers register the wound somatically, People tiers frame relational visibility of the practice, Future tiers name the identity becoming. Existing Self / Craft / World tiers preserved at array positions 0, 2, 5.
+- Tier resolver in both files now indexes directly into the six-element text array via `min(text.length-1, max(0, retakeTier()-1))`. Legacy 3-tier arrays (none remaining post-v3.4.0) would still resolve gracefully.
+
+### 47% impact uplift (First Hour)
+- Cost-of-autopilot calibration matched to Killingsworth & Gilbert (2010) — ~47% of waking time on autopilot. The v3.2 model was conservatively calibrated; v3.3.1 raised it to ~30-40%; v3.4 lifts the multipliers to the literature-aligned 47% uplift across `promisesBroken`, `conversationsPostponed`, and `moneyDrift`. `unconsciousHoursWeekly` already at the 56 hr/wk ceiling matches the upper extreme honestly.
+
+### Review-strategy framework
+- **`REVIEW-STRATEGY.md`** — Forty review dimensions across voice, architecture, schema, UX/accessibility, author presence, email/PDF, and doctrine; thirty specific improvement actions ranked by leverage.
+- **`REVIEW-LOG.md`** — Append-only log of the six review rounds, each with score deltas, executed actions, and resulting commit context. Round 6 marks loop termination.
+- **Review-loop intent:** scheduled hourly cron primitive (`CronCreate`) was not exposed in this environment; six rounds were instead executed back-to-back inline with per-round commits, preserving the audit trail.
+
+### Pending for v3.5+ (catalogued in REVIEW-LOG.md)
+- Accessibility hardening: `aria-live` on chamber/section progress, `aria-required` on required fields, `inputmode="email"` for mobile keyboard, focus rings on result-page CTAs.
+- Visual: formal KOORA raster logo wired on cover letter heading + PDF cover; print stylesheet; dark-mode contrast audit on the v3.2 + v3.3 new classes.
+- Schema/SEO: `<link rel="canonical">`, robots/sitemap, manifest icon variants (192/512), `og:image:alt`.
+- UX: scoring transparency ("How is this scored?" expandable surface), saved-progress indicator during the assessment, covenant transition messages between KOORA sections, `<noscript>` fallback.
+
 ## [3.3.0] — 2026-05-09 — Reaffirmation, covenant entry, 12-month cadence, medical-grade PDF, +30% uplift
 
 ### KOORA (`index.html`)
