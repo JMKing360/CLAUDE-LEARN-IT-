@@ -955,9 +955,9 @@ body.footer-hidden footer{display:none}
 
 <!-- ACKNOWLEDGMENT (between final question and results) -->
 <section class="screen" id="screen-ack">
-  <h2 class="ack-h1" id="ackH1"><em>One breath.</em></h2>
-  <p class="ack-text" id="ackText">You have answered sixty items. That is harder than it sounds. Now let us look together.</p>
-  <button class="btn-primary" onclick="afterAck()" style="max-width:280px">See your result</button>
+  <h2 class="ack-h1" id="ackH1">You finished.</h2>
+  <p class="ack-text" id="ackText">Sixty items. That is harder than it sounds — especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
+  <button class="btn-primary" onclick="afterAck()" style="max-width:280px;background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em">SHOW ME :)</button>
 </section>
 
 <!-- RESULTS -->
@@ -2358,7 +2358,8 @@ function exitTransition(){
 }
 
 function enterAck(){
-  document.getElementById('ackText').innerHTML=safe(participantName)+', you have answered sixty items. That is harder than it sounds. Take one breath. Now let us look together.';
+  document.getElementById('ackH1').innerHTML=personalize('{name,}you finished.');
+  document.getElementById('ackText').innerHTML=personalize('Sixty items. That is harder than it sounds — especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result{,name}?</b>');
   hideChamberProgress();show('screen-ack');setProgress(100);
 }
 function afterAck(){
