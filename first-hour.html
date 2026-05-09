@@ -106,7 +106,7 @@
 <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"The First Hour","short_name":"First Hour","description":"A House of Mastery audit by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500;1,8..60,600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
@@ -243,8 +243,8 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
 .q-section{font-family:var(--sans);font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.q-prompt{font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);font-weight:500;font-style:italic;color:var(--ink);margin-bottom:18px;letter-spacing:-.005em;line-height:1.45;max-width:620px}
-.q-text{font-family:var(--serif);font-size:clamp(26px,4.4vw,38px);font-weight:500;line-height:1.36;letter-spacing:-.018em;color:var(--ink);margin-bottom:64px}
+.q-prompt{font-family:'Inter','Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
+.q-text{font-family:'Newsreader','Source Serif 4',Georgia,serif;font-size:clamp(26px,4.4vw,38px);font-weight:400;line-height:1.38;letter-spacing:-.014em;color:var(--ink);margin-bottom:64px;font-variation-settings:"opsz" 36}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
 .opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r-md);padding:22px 26px;font-family:var(--sans);font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
 .opt:hover{border-color:var(--ink);background:var(--surface-2)}
@@ -1154,60 +1154,60 @@ var OPTIONS=[
 var QUESTIONS=[
   // Chamber 1: The Mind that Stopped Thinking
   {n:1, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When I form an opinion, I find I scrolled into it more than I thought into it.',
-    'When I form an opinion, the body knows when it is borrowed even when the mind has not noticed.',
-    'When I form an opinion, I am beginning to notice whether it is mine or borrowed.',
-    'When I form an opinion in front of others, I do not pass off scrolled certainty as my own thinking.',
-    'When I form an opinion, I am the kind of person who can trace its origin before she acts on it.',
-    'When I form an opinion, I can usually trace its origin before I act on it.'
+    'I scroll into more opinions than I think into.',
+    'My body recognises a borrowed opinion before my mind catches up.',
+    'I am beginning to ask whose opinion this is, before I act on it.',
+    'In front of others, I no longer pass off scrolled certainty as my own thinking.',
+    'I am becoming the kind of person who traces an opinion before acting on it.',
+    'I can trace where an opinion came from before I act on it.'
   ]},
   {n:2, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When someone says something I disagree with, I nod because disagreeing is too tiring.',
-    'When someone says something I disagree with, the body knows I am nodding before the head moves.',
-    'When someone says something I disagree with, I notice the nod before I give it.',
-    'When someone says something I disagree with, the people who watch me see a position held, not a nod given.',
-    'When someone says something I disagree with, I am the kind of person who can hold her position without needing to win.',
-    'When someone says something I disagree with, I can hold my position without needing to win.'
+    'When someone says something I disagree with, I nod. Disagreement is too tiring.',
+    'My body knows I am nodding before I have decided to.',
+    'I notice the nod before I give it.',
+    'In front of those watching me, a position is held, not a nod given.',
+    'I am becoming the kind of person who holds a position without needing to win it.',
+    'I can hold my position without needing to win.'
   ]},
   {n:3, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When I look for the last time I genuinely changed my mind on something that mattered, I draw a blank.',
-    'When I look for the last time I changed my mind, the body remembers the shift even when the date is fuzzy.',
-    'When I look for the last time I changed my mind, I can name one moment, even if barely.',
-    'When I look for the last time I changed my mind, the person who shifted me would also remember the conversation.',
-    'When I look for the last time I changed my mind, I am the kind of person whose recent moments include a real shift.',
-    'When I look for the last time I changed my mind, the moment is recent enough that I remember it clearly.'
+    'I cannot recall the last time I genuinely changed my mind on something that mattered.',
+    'My body remembers shifts the calendar has lost.',
+    'I can name one recent moment, even barely, where I changed my mind.',
+    'The person who shifted me would also remember the conversation.',
+    'I am becoming the kind of person whose recent weeks include a real shift.',
+    'The last time I changed my mind is recent enough that I remember it clearly.'
   ]},
   {n:4, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When I hear my inner voice, it sounds more like the people who raised me than like me.',
-    'When I hear my inner voice, the body knows whose voice it is before the words are decoded.',
-    'When I hear my inner voice, I am beginning to notice whose voice is speaking through me.',
-    'When I hear my inner voice, the people who raised me are no longer the only ones living inside it.',
-    'When I hear my inner voice, I am the kind of person who can recognise it as her own.',
-    'When I hear my inner voice, I can recognise it as my own.'
+    'My inner voice sounds more like the people who raised me than like me.',
+    'My body knows whose voice is speaking before the words are decoded.',
+    'I am beginning to notice whose voice is speaking through me.',
+    'The people who raised me no longer crowd out my own voice inside.',
+    'I am becoming the kind of person who can hear her own voice clearly.',
+    'I recognise my inner voice as my own.'
   ]},
   {n:5, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When a problem comes back to my mind, I replay it without arriving at any decision.',
-    'When a problem comes back to my mind, the body recognises the loop and tightens before the replay begins.',
-    'When a problem comes back to my mind, I notice the loop before I sink into it again.',
-    'When a problem comes back to my mind, the people who hear me name it hear a decision, not a rerun.',
-    'When a problem comes back to my mind, I am the kind of person who closes the loop with a decision.',
-    'When a problem comes back to my mind, I close the loop with a decision, even a small one.'
+    'When a problem returns to mind, I replay it without arriving at a decision.',
+    'When a problem returns, my body tightens for the replay before I have begun.',
+    'When a problem returns, I notice the loop before I sink into it again.',
+    'When I name a returning problem to someone now, they hear a decision, not a rerun.',
+    'I am becoming the kind of person who closes loops with decisions, even small ones.',
+    'When a problem returns, I close the loop with a decision.'
   ]},
   {n:6, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When I wake at three in the morning, my mind audits my life and I cannot pass back through the audit.',
-    'When I wake at three in the morning, the body recognises the audit before the mind has begun.',
-    'When I wake at three in the morning, I am beginning to recognise the audit as a pattern, not the truth.',
-    'When I wake at three in the morning, the audit no longer rewrites who I am to the people I love.',
-    'When I wake at three in the morning, I am the kind of person whose audit is shorter than it used to be.',
-    'When I wake at three in the morning, the audit is shorter than it used to be.'
+    'At three in the morning, my mind audits my life and I cannot pass the audit back through.',
+    'At three in the morning, my body knows the audit before my mind has begun.',
+    'I am beginning to recognise the three-a.m. audit as a pattern, not the truth.',
+    'The three-a.m. audit no longer rewrites who I am to the people I love.',
+    'I am becoming the kind of person whose audit is shorter than it used to be.',
+    'The three-a.m. audit is shorter than it used to be.'
   ]},
   {n:7, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When I imagine becoming someone who thinks their own thoughts again, I want it more than I let myself say out loud.',
-    'When I imagine becoming someone who thinks their own thoughts, the body wants it before the words form.',
-    'When I imagine becoming someone who thinks their own thoughts, I am beginning to recognise that person in my own behaviour.',
-    'When I imagine becoming someone who thinks their own thoughts, the people who would meet her would prefer her to who I have been.',
-    'When I imagine someone who thinks their own thoughts, I am the kind of person who has stopped waiting to begin.',
-    'When I imagine someone who thinks their own thoughts, I am no longer waiting to begin.'
+    'I want to think my own thoughts again — more than I let myself say out loud.',
+    'My body wants this more than I have let my mind admit.',
+    'I am beginning to recognise that person in my own behaviour.',
+    'The people who would meet her would prefer her to who I have been.',
+    'I am becoming the kind of person who has stopped waiting to begin.',
+    'I am no longer waiting to begin thinking my own thoughts.'
   ]},
 
   // Chamber 2: The Body that Got Forgotten
@@ -1646,55 +1646,15 @@ function startAssessment(){
 function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
 // Chamber prompts, six tiers per chamber, keyed to which return this is.
 // Tier rises with each return so language evolves through the six-month path.
+// v3.7.4 — eyebrow stripped to short declarative chamber subtitle (single string per chamber).
+// The per-tier progression lives in the question text itself, not in a stuttering eyebrow.
 var CHAMBER_PROMPTS={
-  1:[ // Mind chamber
-    'When I notice what my mind has been doing these past thirty days...',
-    'I have been here once. What is my mind doing differently?',
-    'I used to think... What is true now?',
-    'Three returns in. I am beginning to see something about my own thinking.',
-    'I am no longer the person who thought what I once thought.',
-    'I am living evidence of a mind that has begun to think for itself again.'
-  ],
-  2:[ // Body chamber
-    'What my body has been telling me, when I have been willing to listen...',
-    'I have been here once. What has my body been carrying since then?',
-    'I used to ignore the body’s reports. What is happening now?',
-    'Three returns in. The body is speaking differently.',
-    'My body is no longer the vehicle. It is becoming a home.',
-    'My body and I are on speaking terms again.'
-  ],
-  3:[ // Word chamber
-    'When I check my own track record against the promises I have made...',
-    'I have been here once. Has my word held since?',
-    'I used to break promises quietly. What is happening now?',
-    'Three returns in. The word is becoming weight again.',
-    'I am beginning to believe my own commitments.',
-    'My word holds. It has receipts.'
-  ],
-  4:[ // Time chamber
-    'When I look honestly at where the past month actually went...',
-    'I have been here once. Where did the last thirty days go?',
-    'I used to lose my time. What is happening now?',
-    'Three returns in. Time is becoming visible.',
-    'I am no longer running out of later.',
-    'Time and I are on speaking terms again.'
-  ],
-  5:[ // Money chamber
-    'When I look at how money has been flowing through my life...',
-    'I have been here once. What has money been doing since?',
-    'I used to react. What is happening now?',
-    'Three returns in. The rules are becoming visible.',
-    'I am no longer carrying weight that is not mine.',
-    'Money is operating by rules I now consciously hold.'
-  ],
-  6:[ // People chamber
-    'In my closest relationships, the past month has been...',
-    'I have been here once. Who am I in those rooms now?',
-    'I used to perform. What is happening now?',
-    'Three returns in. The people closest to me are noticing.',
-    'I am no longer the version of me who had to hide.',
-    'I am being known. The hiding is over.'
-  ]
+  1:'Borrowed opinions, scrolled certainties',
+  2:'The vessel as vehicle',
+  3:'Promises broken without ceremony',
+  4:'Years that cannot be accounted for',
+  5:'Inherited patterns, unspoken weight',
+  6:'Performance over presence, the inheritance'
 };
 function retakeTier(){
   // v3.3  -  12-month monthly cadence, mapped to six covenant-aligned stages.
@@ -1709,9 +1669,8 @@ function retakeStageName(){
   return ['Self','Body','Craft','People','Future','World'][s-1]||'Self';
 }
 function chamberPrompt(chamberNum){
-  var arr=CHAMBER_PROMPTS[chamberNum];
-  if(!arr)return '';
-  return arr[Math.min(arr.length-1,retakeTier()-1)];
+  // v3.7.4 — single static subtitle per chamber; tier progression is in the question text.
+  return CHAMBER_PROMPTS[chamberNum]||'';
 }
 
 function renderQuestion(n){

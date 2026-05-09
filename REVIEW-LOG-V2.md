@@ -147,4 +147,62 @@ Outcome commit: `8c34a70` (v3.7.2)
 ### Round 3 outcome
 **Round 3 complete.** Composite score moved from 4.60/5 to 4.72/5. Two dimensions reached 5/5 this round (11 icon accessibility, 31 function complexity reframed). Three findings carried to Round 4.
 
+Outcome commit: `acd4d32` (v3.7.3)
+
+---
+
+## Round 4 — 2026-05-09 (anchor `acd4d32` v3.7.3; outcome `v3.7.4`)
+
+User direction: "adopt the mind of a council of 7 geniuses in assessment tool design, let them read aloud the items and catch the nonsense... we should strip down the eyebrow text and include what's relevant in the respective questions, and make the questions mature, not formulaic."
+
+### Council convened (assessment-tool design)
+1. **Aaron Beck** — BDI/BAI item construction
+2. **Marsha Linehan** — DBT validating-language register
+3. **Daniel Kahneman** — survey methodology, cognitive load
+4. **Robert Hogan** — personality item rigor
+5. **Lisa Feldman Barrett** — emotion-granularity precision
+6. **Brené Brown** — clinical-vulnerability balance
+7. **William James** — observational psychology
+
+### Council reading the items aloud — what they caught
+- **Two "When I"s in a row.** The eyebrow + question both starting with "When I" reads like a stuttering sentence. The participant's eye lands on noise.
+- **Redundant triggers.** "When I hear my inner voice…" — the voice is always there, not triggered by hearing. "When I look for the last time I changed my mind…" — the looking is artificial; the recollection failure is the phenomenon.
+- **Formulaic template.** "When I [verb], I [find/notice/feel] I [past-participle] into it more than I [past-participle] into it" — repeated cadence reads as instrument-speak, not observation.
+- **Long compound run-ons.** Items try to do trigger + noticing + depth-claim in one sentence.
+
+### Phase 1 — Re-scoring sweep + voice audit
+- **Dim 1 (typographic hierarchy):** `.q-text` reads sharp at clamp 26-38px Source Serif 4 weight 500. **Newsreader at weight 400, opsz 36** is softer, more humane, designed for editorial reading. **Score 4 → 5.**
+- **Dim 17 (six-tier variant prose):** Council-grade reframe on the entire Mind chamber. Score raised on the sample; long-tail (12 chambers/sections) deferred to Round 5+.
+- **Dim 6 (whitespace rhythm) and Dim 1:** the eyebrow stuttering cost was real but small structurally. Eyebrow strip-down lifts both.
+- All other dimensions hold from Round 3.
+
+### Phase 2 — Highest-leverage fixes executed
+1. **Newsreader font added on `.q-text`** (both files). Source Serif 4 stays on headlines (hero, dash-hello, r-h1, ack-h1, tr-h1, cov-name, etc.) where its character earns. Newsreader takes the question text where the participant stares longest. Family declared with explicit fallback chain `'Newsreader','Source Serif 4',Georgia,serif`. Variable `font-variation-settings: "opsz" 36` for editorial optical size.
+2. **Eyebrow stripped to declarative subtitle** (both files). `CHAMBER_PROMPTS` and `SECTION_PROMPTS` collapsed from per-tier 6-string arrays to single static declarative phrases per chamber/section. The tier progression lives in the question text itself; the eyebrow is now an Inter uppercase tracked label (11.5px, gold, 0.18em letter-spacing, no italic), not a competing sentence:
+   - **First Hour:** Mind → "Borrowed opinions, scrolled certainties." Body → "The vessel as vehicle." Word → "Promises broken without ceremony." Time → "Years that cannot be accounted for." Money → "Inherited patterns, unspoken weight." People → "Performance over presence, the inheritance."
+   - **KOORA:** Reflexes → "What runs you when you are not paying attention." Postures → "Awareness, learning, change, action, resilience, reflection, accountability." Needs → "Filled, or substituted." Forces and fidelities → "Four forces ahead. Four fidelities behind." Faculties and practice → "Where attention goes. Whose voice has the final say." Inner journey → "Where you actually stand."
+3. **Mind chamber voice reframe (First Hour Q1-7 × 6 tiers = 42 strings)** — full council-grade pass:
+   - Q1 opinions: "When I form an opinion, I find I scrolled into it…" → "I scroll into more opinions than I think into."
+   - Q4 inner voice: "When I hear my inner voice, it sounds like…" → "My inner voice sounds more like the people who raised me than like me." (the trigger was redundant — the voice is always there)
+   - Q3 last-time-changed-mind: "When I look for the last time I changed my mind…" → "I cannot recall the last time I genuinely changed my mind on something that mattered." (the looking is artificial; the failure to recall is the phenomenon)
+   - Q2 disagreement: kept "When someone says something I disagree with" (real event-trigger), split the run-on "I nod because disagreeing is too tiring" into two short clauses.
+   - Q5 problem-loop: kept "When a problem returns" (real recurrence-trigger), tightened.
+   - Q6 3am audit: "When I wake at three in the morning…" → "At three in the morning…" (preposition-led, not verb-led; less formulaic).
+   - Q7 imagination: "When I imagine becoming someone…" → "I want to think my own thoughts again — more than I let myself say out loud." (declarative claim).
+   - Tier 5 across the chamber: "I am the kind of person who…" → "I am becoming the kind of person who…" (becoming is more honest than is, mirrors the doctrine).
+
+### Phase 3 — Overall sweep
+- JS validates clean on both files (KOORA 124K, First Hour 76K).
+- Newsreader font loads alongside Source Serif 4 + Inter via single Google Fonts request.
+- Eyebrow renders as Inter uppercase tracked label (no italic, no sentence-form).
+- Mind chamber Q1-7 prose reads as observation, not template. The council's read-aloud test passes.
+
+### Phase 4 — Findings deferred to Round 5
+- **Dim 17 long-tail (substantial):** apply the same council-grade reframe across all remaining chambers and sections — First Hour Body/Word/Time/Money/People (35 items × 6 tiers = 210 strings), KOORA Reflexes/Postures/Needs/Forces/Faculties/Inner-journey (60 items × 6 tiers = 360 strings minus already-tightened Section 5 Body-tier from Round 3). Estimated 10-15 strings per item × 90+ items = a substantial multi-round content effort.
+- **Dim 1 (sub-check):** verify Newsreader renders coherently in dark mode and at all clamp() endpoints.
+- **Dim 11 (icon visual coherence):** with the eyebrow now uppercase Inter, ensure the constellation icons still feel of-a-piece with the new typographic register.
+
+### Round 4 outcome
+**Round 4 complete.** Composite score moved from 4.72/5 to 4.80/5. The eyebrow stutter was a small but real architectural cost — its strip-down + the Newsreader font on questions + the council-grade Mind-chamber rewrite together change the *posture* of the assessment from instrument-template to observation. The doctrine voice now actually reads as Dr. Mogire's own cadence on the most-stared-at strings.
+
 Outcome commit: pending (this round)

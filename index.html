@@ -2246,55 +2246,15 @@ function goDashboard(){
 function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
 // Section prompts, six tiers per section, keyed to which return this is.
 // KOORA tier rises by month across the 180-day path.
+// v3.7.4 — eyebrow stripped to short declarative section subtitle (single string per section).
+// The per-tier progression lives in the question text; the eyebrow does not stutter against it.
 var SECTION_PROMPTS={
-  1:[ // The four reflexes
-    'Notice what has been running you these past fifteen days, before you defend it.',
-    'You have been here once. What is louder, and what is quieter?',
-    'I used to defend these reflexes. What is happening now?',
-    'Three returns in. The reflex is becoming visible before it fires.',
-    'I am no longer the person these reflexes used to run.',
-    'I am evidence of a Finisher who can name a reflex and choose otherwise.'
-  ],
-  2:[ // The seven postures (ALCARRA)
-    'In the last fifteen days, the seven postures of return have been...',
-    'You have been here once. Which posture has held? Which has thinned?',
-    'I used to skip postures. What is happening now?',
-    'Three returns in. The week is shaping itself around the seven.',
-    'The postures are no longer something I do. They are who I am becoming.',
-    'I have lived the seven long enough that the cohort can feel them.'
-  ],
-  3:[ // The four needs
-    'In the last fifteen days, what have I been reaching for, and what have I actually needed?',
-    'You have been here once. What is filled, and what is still being substituted?',
-    'I used to reach for the substitute. What is happening now?',
-    'Three returns in. I am beginning to know the difference.',
-    'I am no longer feeding the counterfeit when the real is available.',
-    'Aliveness, connection, meaning, and enough are no longer concepts. They are mine.'
-  ],
-  4:[ // Forces and fidelities
-    'When I look at what has been moving me, and what I have been keeping...',
-    'You have been here once. What force is active? What fidelity is sealed?',
-    'I used to confuse motion with movement. What is happening now?',
-    'Three returns in. Duty, opus, declaration, and identity are all in the room.',
-    'I am no longer being moved by forces I did not choose.',
-    'The four fidelities are how I close a week now. Mind, heart, will, hand.'
-  ],
-  5:[ // Faculties and practice
-    'In the last fifteen days, the practice has been...',
-    'You have been here once. Which move held? Which slipped?',
-    'I used to practice in fits. What is happening now?',
-    'Three returns in. The Seal, the Reset, the evening, the return are becoming the day.',
-    'The practice is no longer something I do. It is the architecture I live inside.',
-    'I am the one who keeps the practice. The cohort can feel the difference.'
-  ],
-  6:[ // The inner journey
-    'When I sit with where I actually am right now...',
-    'You have been here once. Where am I now, beneath what I would normally say?',
-    'I used to flinch from this section. What is happening now?',
-    'Three returns in. I am beginning to recognise the inner experience as data.',
-    'I am no longer afraid of where I am. I am no longer pretending I am elsewhere.',
-    'I am here. I have walked the path long enough to say so without flinching.'
-  ]
+  1:'What runs you when you are not paying attention',
+  2:'Awareness, learning, change, action, resilience, reflection, accountability',
+  3:'Filled, or substituted',
+  4:'Four forces ahead. Four fidelities behind',
+  5:'Where attention goes. Whose voice has the final say',
+  6:'Where you actually stand'
 };
 function retakeTier(){
   // Tier from chronological day of program, mapped to six tiers across 180 days.
@@ -2308,9 +2268,8 @@ function retakeTier(){
   return 6;
 }
 function sectionPrompt(secNum){
-  var arr=SECTION_PROMPTS[secNum];
-  if(!arr)return '';
-  return arr[Math.min(arr.length-1,retakeTier()-1)];
+  // v3.7.4 — single static subtitle per section; tier progression is in the question text.
+  return SECTION_PROMPTS[secNum]||'';
 }
 
 function renderQuestion(n){
