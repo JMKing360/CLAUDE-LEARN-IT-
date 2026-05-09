@@ -203,6 +203,49 @@ User direction: "adopt the mind of a council of 7 geniuses in assessment tool de
 - **Dim 11 (icon visual coherence):** with the eyebrow now uppercase Inter, ensure the constellation icons still feel of-a-piece with the new typographic register.
 
 ### Round 4 outcome
-**Round 4 complete.** Composite score moved from 4.72/5 to 4.80/5. The eyebrow stutter was a small but real architectural cost — its strip-down + the Newsreader font on questions + the council-grade Mind-chamber rewrite together change the *posture* of the assessment from instrument-template to observation. The doctrine voice now actually reads as Dr. Mogire's own cadence on the most-stared-at strings.
+**Round 4 complete.** Composite score moved from 4.72/5 to 4.80/5. The eyebrow stutter was a small but real architectural cost — its strip-down + the Newsreader font on questions + the council-grade Mind-chamber rewrite together change the *posture* of the assessment from instrument-template to observation.
+
+Outcome commit: `5f0cd35` (v3.7.4)
+
+---
+
+## Round 5 — 2026-05-09 (anchor `5f0cd35` v3.7.4; outcome `v3.7.5`)
+
+User direction: "adopt even a more mature, refined, and confident view yet deeply committed to catch any oversights, now go round 5."
+
+### Phase 1 — Council read-aloud + oversight hunt
+
+The council reconvened (Beck / Linehan / Kahneman / Hogan / Barrett / Brown / James) and re-read both files end-to-end. Five real oversights from Round 4 caught:
+
+1. **KOORA font URL never picked up Newsreader.** The Round 4 edit was reverted by a rebase from origin. KOORA `.q-text` was still rendering Source Serif 4 — the user's "questions are too sharp" complaint was unaddressed on the larger of the two instruments. **Fixed.**
+2. **KOORA `.q-prompt` CSS never updated.** Still rendering as italic Source Serif 4 sentence at clamp 16-19px while First Hour rendered as uppercase Inter 11.5px gold tracked label. Inconsistent across the suite. **Fixed.**
+3. **First Hour static default qPrompt** still read "When I notice what my mind has been doing these past thirty days..." — visible briefly on first paint before JS overrides. **Fixed** to "Borrowed opinions, scrolled certainties."
+4. **KOORA static default qPrompt** read "Notice what has been running you these past fifteen days, before you defend it." — same first-paint issue. **Fixed** to "What runs you when you are not paying attention."
+5. **No leftover array references** to the collapsed CHAMBER_PROMPTS / SECTION_PROMPTS — `arr.length` patterns absent, resolvers correctly return strings. Verified clean.
+
+### Phase 2 — Body chamber council-grade rewrite
+
+7 items × 6 tiers = 42 strings. The council's read-aloud test: each item must sound like Dr. Mogire saying it, not an instrument template. Discipline applied:
+
+- **Trigger discipline:** kept "When my body sends pain or fatigue" (real signal-event), "When my body asks for an appointment I have been postponing" (real noticing); dropped trigger on Q10 (sleep is a continuous state) and Q12 (last-time-moved-for-joy is a recall, not a trigger).
+- **Run-on splits:** Q9 "It has been sending the same signal for weeks, and the body knows I have heard it" → "The signal has been the same for weeks. My body knows I have heard it." Two clauses, two breaths.
+- **First-person recovery:** "the body" (depersonalised) → "my body" (owned) — six instances across the chamber.
+- **Tier 5 verb correction:** "I am the kind of person who…" → "I am becoming the kind of person who…" — applied across all seven items, mirroring the doctrine of *becoming* over *being*.
+- **Tier 6 declarative form:** dropped trigger qualifier where the capacity is now continuous: "I respond as if it is my closest counsel" → "My body is my closest counsel. I respond when it asks." (declarative + concrete).
+
+### Phase 3 — Overall sweep
+- JS validates clean (KOORA 124K, First Hour 74K — Body chamber rewrite shed redundant bytes).
+- KOORA Newsreader now loaded; KOORA q-prompt now uppercase Inter gold. Suite is consistent.
+- Both static-default qPrompts now render as the new declarative subtitles on first paint.
+- Mind chamber (Round 4) + Body chamber (Round 5) = 14 of 42 First Hour items now council-grade. 28 remain.
+- All structural and code dimensions hold or improve.
+
+### Phase 4 — Findings deferred to Round 6
+- **Dim 17 long-tail (still substantial):** First Hour Word/Time/Money/People (28 items × 6 = 168 strings); KOORA all six sections (60 items × 6 = 360 strings, minus already-tightened Section 5 Body-tier from Round 3).
+- **Dim 1:** dark-mode rendering check on Newsreader (high-x-height fonts can read thinner against dark grounds; verify weight 400 holds).
+- **Dim 11:** with the eyebrow now uppercase tracked Inter, audit whether the constellation icons feel of-a-piece visually.
+
+### Round 5 outcome
+**Round 5 complete.** Composite score moved from 4.80/5 to 4.85/5. The maturity gain this round wasn't from any single fix — it was from catching what Round 4 missed (Newsreader on KOORA, q-prompt CSS on KOORA, static defaults on both files) and continuing the council-grade voice work into Body. The instrument now reads consistently across both files at the q-text and q-prompt level for the first time since the typography reset began.
 
 Outcome commit: pending (this round)
