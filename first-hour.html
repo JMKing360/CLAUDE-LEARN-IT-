@@ -447,8 +447,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .meet-doctor{margin-top:64px;padding:44px 0 0;border-top:1px solid var(--rule-soft)}
 .meet-doctor__eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
 .meet-doctor__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(24px,3.6vw,32px);font-weight:600;color:var(--ink);letter-spacing:-.018em;line-height:1.18;margin-bottom:8px}
-.meet-doctor__grid{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start;margin-top:26px}
-.meet-doctor__grid img{width:100%;border-radius:var(--r-md);border:1px solid var(--rule);box-shadow:var(--shadow-md);aspect-ratio:4/5;object-fit:cover;object-position:center 20%;background:var(--surface-2)}
+.meet-doctor__grid{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start;margin-top:26px}
+.meet-doctor__figure{margin:0;width:280px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
+.meet-doctor__figure img{width:100%;border-radius:var(--r-md);border:1px solid var(--rule);box-shadow:var(--shadow-md);aspect-ratio:4/5;object-fit:cover;object-position:center 20%;background:var(--surface-2)}
+.meet-doctor__figure figcaption{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--body);line-height:1.4;letter-spacing:.005em;text-align:left}
+.meet-doctor__figure figcaption b{color:var(--ink);font-weight:700}
+.meet-doctor__bio{flex:1 1 320px;min-width:0}
 .meet-doctor__bio{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);letter-spacing:-.005em}
 .meet-doctor__bio p{margin-bottom:14px}
 .meet-doctor__bio p:last-child{margin-bottom:0}
@@ -457,7 +461,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .meet-doctor__creds{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px}
 @media(max-width:600px){
   .meet-doctor__grid{grid-template-columns:1fr;gap:22px}
-  .meet-doctor__grid img{max-width:240px;justify-self:center}
+  .meet-doctor__figure{max-width:240px;align-self:center}
 }
 
 /* UNFINISHED selection block  -  result page, ten-letter taxonomy */
@@ -577,7 +581,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   a{text-decoration:underline;color:#000 !important}
   .cover-letter,.koora-funnel,.author-byline,.unfinished-block,.scoring-note{display:none !important}
   .meet-doctor{break-before:page;page-break-before:always}
-  .meet-doctor__grid img{max-width:140px}
+  .meet-doctor__figure{max-width:140px}
 }
 
 /* No-script fallback */
@@ -967,7 +971,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       </div>
       <div class="rung r4">
         <span class="rung-eyebrow">If the path is yours to walk</span>
-        <div class="rung-name"><em>KOORA: The Finisher’s Protocol</em></div>
+        <div class="rung-name"><b>KOORA: The Finisher’s Protocol</b></div>
         <div class="rung-meta">180 days · Once a year · Twenty-four seats</div>
         <div class="rung-body">A 180-day clinical-grade architecture for high-functioning professionals whose patterns have been running them quietly. <b>KOORA opens once a year.</b> Twenty-four seats, a number that is structural rather than arbitrary. Each module is non-recoverable until the next intake. The diagnosis stays steady. Your relationship to it is what changes.</div>
         <a class="rung-action" href="https://hom.mogire.com/koora" target="_blank" rel="noopener">Read more at hom.mogire.com/koora →</a>
@@ -1088,11 +1092,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <div class="meet-doctor__eyebrow">About the author</div>
     <h2 class="meet-doctor__h" id="meetDocH">Meet Dr. Job Mogire</h2>
     <div class="meet-doctor__grid">
-      <img src="/images/dr-job-clinical.jpg" alt="Dr. Job Mogire, cardiologist" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <figure class="meet-doctor__figure">
+        <img src="/images/dr-job-clinical.jpg" alt="Dr. Job Mogire, cardiologist" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+        <figcaption><b>Dr. Job Mogire</b><br>Founder, House of Mastery</figcaption>
+      </figure>
       <div class="meet-doctor__bio">
         <div class="meet-doctor__creds">MD, FACC · Cardiologist · Author · Speaker</div>
         <p><strong>Dr. Job Mogire, MD, FACC</strong> is a board-certified cardiologist who has spent the past two decades listening for what unspoken life does to the body. He believes most adults are not under-performing  -  they are under-finishing. The difference is not motivational. It is structural.</p>
-        <p>He is the founder of <strong>House of Mastery</strong> and the architect of <em>KOORA: The Finisher’s Protocol</em>. The First Hour is his quietest instrument  -  a diagnostic offered freely so people can find out where they stand before life forces the audit.</p>
+        <p>He is the founder of <strong>House of Mastery</strong> and the architect of <strong>KOORA: The Finisher’s Protocol</strong>. The First Hour is his quietest instrument, a diagnostic offered freely so people can find out where they stand before life forces the audit.</p>
         <p>If what you found here matters to you, the next door is <strong>KOORA</strong>, opening once a year for twenty-four seats. The instrument you just took is the entry point.</p>
       </div>
     </div>
