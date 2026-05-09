@@ -65,7 +65,7 @@ Audit the 16 icons render with comparable ink-to-air ratio at the same opacity. 
 Voice, photo, credential, signature all in concert. Verify the cover letter on both files reads as Dr. Mogire's actual cadence (not assessment-speak), the portrait crops to face/upper-torso (`object-position: center 22%`), the credential line displays "MD, FACC · Cardiologist · Author · Speaker", and the italic signature ("Dr. Job Mogire") with the small caps sub-line (House of Mastery · KOORA · 2026 / House of Mastery · 2026) renders properly.
 
 ### 14. Meet Dr. Job section
-Verify the three-paragraph bio reads at council quality on both files. Check portrait selection: KOORA uses `dr-job-desk.png` (warm seated), First Hour uses `dr-job-clinical.png` (clinical lab coat). The credential line, the founder claim, and the "next door is KOORA" CTA on First Hour all read naturally.
+Verify the three-paragraph bio reads at council quality on both files. Check portrait selection: KOORA uses `dr-job-desk.jpg` (warm seated), First Hour uses `dr-job-clinical.jpg` (clinical lab coat). The credential line, the founder claim, and the "next door is KOORA" CTA on First Hour all read naturally.
 
 ### 15. Author byline at result top
 Verify the small (32×32) avatar + canonical credential line ("Diagnostic by Dr. Job Mogire, MD, FACC · Cardiologist · Author · Speaker" on KOORA; "Audit by..." on First Hour) sits at the top of every result page. The avatar uses the clinical portrait. The byline appears above the headline, after the eyebrow. `loading="lazy"` and `decoding="async"` are present.
