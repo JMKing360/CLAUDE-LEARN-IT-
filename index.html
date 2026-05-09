@@ -350,6 +350,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .next-move-box{margin-top:24px;padding:22px 26px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0}
 .next-move-box__label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
 .next-move-box__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:600;line-height:1.55;color:var(--ink);margin:0}
+.deep-mark{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-left:8px;vertical-align:middle}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
 .fingerprint-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -1759,10 +1760,10 @@ var ALCARRA=[
 ];
 
 var NEEDS=[
-  {key:'alive', name:'Aliveness',  filled:24, subst:25, sub:'Presence over intensity'},
-  {key:'conn',  name:'Connection', filled:26, subst:27, sub:'Roots over reach'},
-  {key:'mean',  name:'Meaning',    filled:28, subst:29, sub:'Depth over breadth'},
-  {key:'full',  name:'Fulfillment',filled:30, subst:31, sub:'Enough over more'}
+  {key:'alive', name:'Aliveness',  filled:24, subst:25, sub:'Presence, not just intensity'},
+  {key:'conn',  name:'Connection', filled:26, subst:27, sub:'Roots, not just reach'},
+  {key:'mean',  name:'Meaning',    filled:28, subst:29, sub:'Depth, not just breadth'},
+  {key:'full',  name:'Fulfillment',filled:30, subst:31, sub:'Enough, not just more'}
 ];
 
 var FORCES=[
@@ -2729,7 +2730,7 @@ function renderNeedTable(){
   var html='<thead><tr><th>Need</th><th>Frame</th><th class="right">Filled</th><th class="right">Substituted</th></tr></thead><tbody>';
   for(var i=0;i<arr.length;i++){
     var h=arr[i];
-    html+='<tr><td>'+h.name+'</td><td class="muted">'+h.sub+'</td>'+
+    html+='<tr><td>'+h.name+' <span class="deep-mark">DEEP</span></td><td class="muted">'+h.sub+'</td>'+
       '<td class="right">'+h.filled+'/4 · <span class="lvl-pill '+levelPos(h.filledPct)+'">'+levelLabelPos(h.filledPct)+'</span></td>'+
       '<td class="right">'+h.subst+'/4 · <span class="lvl-pill '+levelNeg(h.substPct)+'">'+levelLabelNeg(h.substPct)+'</span></td></tr>';
   }
