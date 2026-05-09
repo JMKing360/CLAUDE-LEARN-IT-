@@ -50,7 +50,10 @@ function validateInlineScripts(file, html) {
   while ((match = scriptPattern.exec(html))) {
     const attrs = match[1] || '';
     const body = match[2] || '';
-    if (/\bsrc\s*=/i.test(attrs) || !body.trim()) continue;
+    const typeMatch = attrs.match(/\btype\s*=\s*(["']?)([^"'\s>]+)\1/i);
+    const type = typeMatch ? typeMatch[2].toLowerCase() : 'text/javascript';
+    const isJavaScript = ['text/javascript', 'application/javascript', 'module'].includes(type);
+    if (/\bsrc\s*=/i.test(attrs) || !body.trim() || !isJavaScript) continue;
 
     count += 1;
     const tmpFile = path.join(tmpDir, `${path.basename(file)}-${count}.js`);
