@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNFINISHED · KOORA: The Finishing Protocol · House of Mastery</title>
-<meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA: The Finishing Protocol.">
+<meta name="description" content="UNFINISHED — sixty-item diagnostic by Dr. Job Mogire, MD, FACC. Six covenants, 180 days. The instrument of KOORA.">
 <meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Dr. Job Mogire, MD, FACC">
@@ -2253,7 +2253,10 @@ function enterTransition(trans){
   pendingAfterTransition=trans.q+1;
   document.getElementById('trEyebrow').textContent=trans.eyebrow;
   document.getElementById('trH').innerHTML=trans.h;
-  document.getElementById('trText').innerHTML=trans.text;
+  // v3.5.2 — append covenant-aware context to transition copy
+  var cov=activeCovenant(participantDay);
+  var covLine='<span class="cov-transition">You are inside the <b>'+cov.name+'</b> covenant. <em>'+cov.promise+'</em></span>';
+  document.getElementById('trText').innerHTML=trans.text+'<br><br>'+covLine;
   var dayLine='';
   // Halfway personal moment at transition 3 (after Q31)
   if(trans.q===31 && participantName)dayLine='Halfway, '+safe(participantName)+'. Notice your honesty so far. '+dayFraming(participantDay);
