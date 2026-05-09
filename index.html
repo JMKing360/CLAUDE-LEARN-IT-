@@ -352,6 +352,12 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .next-move-box__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:600;line-height:1.55;color:var(--ink);margin:0}
 .deep-mark{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:9.5px;font-weight:800;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-left:8px;vertical-align:middle}
 .sub-label{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.005em;margin-left:6px}
+.result-end-transition{margin:48px 0 32px;padding:40px 32px;background:var(--surface-2);border-radius:18px;text-align:center;border:1px solid var(--rule-soft)}
+.result-end-transition__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;color:var(--ink);margin:0 0 14px;letter-spacing:-.012em;line-height:1.2}
+.result-end-transition__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(15.5px,2vw,17px);font-weight:500;color:var(--body);line-height:1.55;margin:0 auto 24px;max-width:560px}
+.seal-intro{margin:8px 0 28px}
+.seal-intro__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;color:var(--ink);margin:0 0 10px;letter-spacing:-.012em;line-height:1.2}
+.seal-intro__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(15px,2vw,16.5px);font-weight:500;color:var(--body);line-height:1.55;margin:0;max-width:640px}
 .matrix-table tr.loudest .matrix-th-row{color:var(--gold)}
 .fingerprint{margin-top:22px;padding-top:22px;border-top:1px solid var(--rule-soft)}
 .fingerprint-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
@@ -1058,6 +1064,19 @@ body.footer-hidden footer{display:none}
     <p class="narrative-read" id="practiceRead"></p>
   </div>
 
+  <div class="result-end-transition" id="resultEndTransition">
+    <h3 class="result-end-transition__h">That is the end of your result.</h3>
+    <p class="result-end-transition__text">You will be able to seal your covenant afresh and download your report on the next page. <b>Are you ready to seal and download your report?</b></p>
+    <button class="btn-primary" onclick="revealSeal()" style="max-width:280px;background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em">I MUST FINISH!</button>
+  </div>
+
+  <div id="sealSection" style="display:none">
+
+  <div class="seal-intro">
+    <h2 class="seal-intro__h" id="sealIntroH"></h2>
+    <p class="seal-intro__text" id="sealIntroText"></p>
+  </div>
+
   <div class="tbl-block" id="moveBlock" style="display:none">
     <span class="tbl-h">What moved · Since your last return</span>
     <table class="dtable" id="moveTable"></table>
@@ -1066,11 +1085,11 @@ body.footer-hidden footer{display:none}
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The threshold map · where you tend to break</span>
+    <span class="tbl-h">The Threshold Map</span>
+    <p class="narrative-read">Most patterns break at one specific threshold. Knowing yours moves the work from generic discipline to specific repair.</p>
     <div style="background:var(--white);border:1px solid var(--rule-soft);border-radius:14px;padding:26px 22px">
-      <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;color:var(--body);margin:0 0 18px;line-height:1.5">Most patterns do not break in one place. They break in a particular threshold. Mark the one most true for you over the past fifteen days.</p>
+      <p style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.4vw,22px);font-weight:600;color:var(--ink);margin:0 0 20px;line-height:1.35;letter-spacing:-.005em">Where do you tend to break? Mark the one most true for the last fifteen days.</p>
       <div id="thresholdRow" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-      <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> The five thresholds are <b>before beginning</b>, <b>after beginning</b>, <b>at resistance</b>, <b>near completion</b>, and <b>after falling</b>. Knowing yours moves the work from generic discipline to specific repair.</p>
     </div>
   </div>
 
@@ -1156,6 +1175,8 @@ body.footer-hidden footer{display:none}
       </div>
     </div>
   </section>
+
+  </div><!-- /#sealSection -->
 
 </section>
 
@@ -2467,6 +2488,11 @@ function buildRecord(){
 function buildResults(rec){
   lastResults=rec;
   participantName=rec.name;participantDay=rec.day;answers=rec.answers||answers;
+  // Reset seal section visibility on each render
+  var seal=document.getElementById('sealSection');if(seal)seal.style.display='none';
+  var trans=document.getElementById('resultEndTransition');if(trans)trans.style.display='block';
+  var sH=document.getElementById('sealIntroH');if(sH)sH.innerHTML=personalize('Congratulations again{,name}.');
+  var sT=document.getElementById('sealIntroText');if(sT)sT.innerHTML='You did not just complete the assessment — you are ready to seal. The pattern that has been running you is now named, and named patterns can break. <b>Just three more moves and you are done.</b>';
   if(typeof rec.enrolled==='boolean')participantEnrolled=rec.enrolled;
   var prior=null;var hist=priorRecords(rec.name);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
@@ -2662,6 +2688,13 @@ function openMatrixDetail(type, key){
 function closeMatrixDetail(){
   var panel=document.getElementById('matrixDetailPanel');
   if(panel)panel.style.display='none';
+}
+function revealSeal(){
+  var seal=document.getElementById('sealSection');
+  var trans=document.getElementById('resultEndTransition');
+  if(seal)seal.style.display='block';
+  if(trans)trans.style.display='none';
+  if(seal)setTimeout(function(){seal.scrollIntoView({behavior:'smooth',block:'start'})},50);
 }
 
 function renderMatrix(loud){
