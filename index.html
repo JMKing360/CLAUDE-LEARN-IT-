@@ -1049,14 +1049,13 @@ body.footer-hidden footer{display:none}
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The practice · Sunrise, sunset, return</span>
+    <span class="tbl-h">The Daily Practice</span>
     <div class="fidelity-feature">
-      <div class="label">Fidelity rate</div>
+      <div class="label">Practice fidelity</div>
       <div class="num"><span id="fidNum">0</span><em>%</em></div>
-      <div class="meta" id="fidMeta">Across the six daily and weekly moves of the practice.</div>
+      <div class="meta" id="fidMeta">Across six daily and weekly practices.</div>
     </div>
     <p class="narrative-read" id="practiceRead"></p>
-    <p class="tbl-legend" style="margin-top:14px"><b>How to read this:</b> Six moves compose the practice. The Seal at sunrise. The Daily Reset after the Seal. The evening question at sunset. The 24-hour return when you fall. The Friday cohort. The Sunday sealing.</p>
   </div>
 
   <div class="tbl-block" id="moveBlock" style="display:none">
@@ -2770,17 +2769,17 @@ function renderFacTable(){
 function renderPracticeFidelity(prior){
   var p=practiceScores();
   document.getElementById('fidNum').textContent=p._rate;
-  var meta='Across the six daily and weekly moves of the practice.';
+  var meta='Across six daily and weekly practices.';
   var read='';
   if(prior&&prior.scores.fidelity_rate!=null){
     var d=p._rate-prior.scores.fidelity_rate;
-    if(d>0){meta+=' Up '+d+' points since last return.';read='You used to hold the practice less. You are holding it more.'}
-    else if(d<0){meta+=' Down '+Math.abs(d)+' points since last return.';read='Practice slipped this period. Notice the slip without judgment, and return.'}
+    if(d>0){meta+=' Up '+d+' points since last return.';read='You are holding more of the practice than you were.'}
+    else if(d<0){meta+=' Down '+Math.abs(d)+' points since last return.';read='The practice slipped this period. Notice the slip without judgment, and return.'}
     else{meta+=' Steady since last return.';read='The practice held steady. Steady is what compounds.'}
   }else{
-    if(p._rate>=70)read='Strong baseline. The architecture is in your week.';
-    else if(p._rate>=45)read='The architecture is partly in your week. The next return will tell us more.';
-    else read='The architecture is mostly outside your week. This is the place to begin.';
+    if(p._rate>=70)read='Strong baseline. The daily practice is alive in your week.';
+    else if(p._rate>=45)read='Some of the daily practice is alive in your week. Build from here.';
+    else read='Most of the daily practice is not yet in your week. This is where to begin.';
   }
   document.getElementById('fidMeta').textContent=meta;
   document.getElementById('practiceRead').textContent=read;
