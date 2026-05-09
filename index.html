@@ -1900,15 +1900,22 @@ var TRANSITIONS=[
   {q:31,eyebrow:'You are halfway. Notice it.',h:'Are your needs being filled or soothed with false substitutes?',text:'That was the question. Now name what moves you forward, and what you have been holding.'},
   {q:35,eyebrow:'The four forces are named',h:'{name,}you have just explored the four forces of necessity.',text:'They are the architecture that holds you every season. Next, the fidelities that shape your world.'},
   {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the practice and the faculties that overcome the sneaky reflexes that keep you stuck. <b>If you work them.</b>'},
-  {q:49,eyebrow:'Section five is sealed',h:'You have surveyed the full architecture.',text:'The last eleven items are the inner experience itself. <b>Let yourself be seen.</b>'}
+  {q:49,eyebrow:'The pit stop',h:'{name,}you just proved you can <em>finish</em>.',text:'Most who start this never finish it. You did. Eleven items remain — the inner experience itself, the most important part. Be willing to see yourself without defending. <b>Ready for the final push{,name}?</b>'}
 ];
 
-// {name,} placeholder expands to "Name, " when participantName is set,
-// or drops to '' and capitalises the next letter when it is not.
+// Name placeholders. With participantName set:
+//   {name,} → "Name, " (sentence-start direct address)
+//   {,name} → ", Name" (sentence-end direct address)
+//   {name}  → "Name"   (mid-sentence)
+// Without participantName, all drop cleanly and the first letter is
+// re-capitalised so the sentence still reads.
 function personalize(s){
   if(!s)return '';
-  if(participantName)return s.replace(/\{name,\}/g, safe(participantName)+', ');
-  var r=s.replace(/\{name,\}/g,'');
+  if(participantName){
+    var nm=safe(participantName);
+    return s.replace(/\{name,\}/g, nm+', ').replace(/\{,name\}/g, ', '+nm).replace(/\{name\}/g, nm);
+  }
+  var r=s.replace(/\{name,\}/g,'').replace(/\{,name\}/g,'').replace(/\{name\}/g,'you');
   return r.charAt(0).toUpperCase()+r.slice(1);
 }
 
