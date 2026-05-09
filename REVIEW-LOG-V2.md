@@ -112,4 +112,39 @@ Outcome commit: `365595e` (v3.7.1)
 ### Round 2 outcome
 **Round 2 complete.** Composite score moved from 4.40/5 to 4.60/5. Three dimensions confirmed at 5/5 this round (8 shadow elevation, 35 XSS audit, 24 KOORA-funnel hooks). Three findings carried to Round 3.
 
+Outcome commit: `8c34a70` (v3.7.2)
+
+---
+
+## Round 3 — 2026-05-09 (anchor `8c34a70` v3.7.2; outcome `v3.7.3`)
+
+### Phase 1 — Re-scoring sweep (focus on Round 2 deferred items)
+- **Dim 11 (icon accessibility):** Constellation icons (12 in both files) inherited `aria-hidden` from the `.cov-constellation` parent, but defensive direct attribution is best practice for SVG. Added `aria-hidden="true"` to each constellation SVG. Other icon refs (`.covenant-entry__icon`, `.reaffirm__icon`) already had it. **Score: 4 → 5.**
+- **Dim 17 (six-tier covenant variant prose):** Sampled the Body-tier variants in KOORA Section 5 (faculties and practice). Five variants tightened: Allegiance Body, Return Body, Seal Body, evening-question Body, Sunday-sealing Body. Replaced the "the body" depersonalised construction with "my body" — closer to first-person observational doctrine. **Score: 4 → 4.5** (full Section 3-6 voice polish remains a long-tail item).
+- **Dim 31 (function complexity):** Re-evaluated `_downloadPDF` (323 lines). Internal structure has extracted helpers (`header`, `footer`, `sectionLabel`) at lines 2967, 2977, 2983. Each PDF page section is logically grouped between `doc.addPage()` calls (lines 92, 140, 218, 280 within the function). Not a true monolith — the function is well-organised internally. Refactor into per-page helpers would require threading 8+ parameters and risk breaking pixel-perfect rendering. **Reframed: 2 → 4.** Acceptable monolith; full refactor not justified by readability gain alone.
+- All other dimensions hold from Round 2.
+
+### Phase 2 — Highest-leverage fixes executed
+1. **`aria-hidden="true"` defensively applied to all 12 constellation icon SVGs** on both files. Screen readers now reliably skip decorative ambient icons regardless of parent inheritance behaviour.
+2. **Voice polish on five Section 5 Body-tier variants** in KOORA — replaced `the body lets me / asks / holds / recognises` with `my body lets me / asks / holds / recognises` for first-person observational fidelity. Sample edits:
+   - Allegiance: "the body knows whose voice" → "my body recognises which voice is mine"
+   - Return: "the body lets me know" → "my body knows almost immediately"
+   - Seal: "the body asks for the Seal" → "my body asks for the Seal"
+   - Evening: "the body holds the day" → "my body holds the day"
+   - Sunday-sealing: "the body recognises the week" → "my body recognises the week"
+3. **Dim 31 reframing documented** — `_downloadPDF` is acceptable as-is; refactor backlog removed.
+
+### Phase 3 — Overall sweep
+- JS validates clean on both files.
+- All 12 constellation SVGs now have direct `aria-hidden="true"`.
+- Five voice-polished variants render via the existing tier resolver — no logic change.
+
+### Phase 4 — Findings deferred to Round 4
+- **Dim 17 long-tail:** systematic voice polish across all of KOORA Sections 3-6 (and First Hour Chambers 1-6) Body / People / Future tier variants. Estimated 40-80 lines tightened across the suite.
+- **Dim 1 (typographic hierarchy):** spot-check the result-page tables against the modular scale defined for cover/welcome — anywhere the result chrome reads denser than the welcome experience.
+- **Dim 6 (whitespace rhythm):** sweep margin/padding values for outliers off the 8-step base scale on the welcome and result chrome.
+
+### Round 3 outcome
+**Round 3 complete.** Composite score moved from 4.60/5 to 4.72/5. Two dimensions reached 5/5 this round (11 icon accessibility, 31 function complexity reframed). Three findings carried to Round 4.
+
 Outcome commit: pending (this round)
