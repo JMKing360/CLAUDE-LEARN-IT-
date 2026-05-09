@@ -405,6 +405,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .contact-links a{color:var(--navy)}
 
 footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center;margin-top:64px;background:var(--white)}
+body.footer-hidden footer{display:none}
 .foot-credit{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
 .foot-credit b{color:var(--ink);font-weight:700}
 .foot-koora{display:inline-block;height:18px;margin-top:10px}
@@ -1968,6 +1969,7 @@ function show(id){
   for(var i=0;i<screens.length;i++)screens[i].classList.remove('active');
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  document.body.classList.toggle('footer-hidden', id==='screen-question'||id==='screen-transition');
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
 function setChamberProgress(currentChamber){
