@@ -821,7 +821,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <div class="field-stack">
     <label class="field-label" for="participantName">Your first name</label>
-    <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false">
+    <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false" autocapitalize="words">
     <p id="participantNameHint" class="field-hint" style="font-family:var(--sans);font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">First name only. Used to address you in the cohort and on your report. Stays in your browser.</p>
   </div>
 
@@ -1711,7 +1711,7 @@ var COVENANT_ENTRY={
        'I am performing some version of myself today that is not the one running this thought.',
        'There is one small daily promise I could keep starting tomorrow that would change how I see myself.'
      ],
-     threshold:'If three or more of these landed, you are in the right room. The Self covenant is the work of bringing your word back to yourself. Begin.'},
+     threshold:'If three or more of these landed, you are in the right room. The Self covenant is the work of bringing your word back to your own ear. Begin.'},
   2:{name:'Body', eyebrow:'You are entering the Body covenant',
      h:'Before you answer this round, five things the body has been saying.',
      sub:'Notice. We do not collect them.',
@@ -1744,7 +1744,7 @@ var COVENANT_ENTRY={
        'I have not asked for help on something where help would change everything.',
        'When I imagine the children in my life looking back at how I lived, I do not want incompletion to be what they inherit.'
      ],
-     threshold:'The People covenant is where the work becomes real or stays performance. Continue.'},
+     threshold:'The People covenant is where the work becomes real, or stays performance. Continue.'},
   5:{name:'Future', eyebrow:'You are entering the Future covenant',
      h:'Before you answer this round, five things about the person you are becoming.',
      sub:'Notice. The future is already arriving.',
@@ -2819,7 +2819,7 @@ function sendEmail(){
     cc_email:'mogiremd@gmail.com',
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br>Threshold (self-reported): '+(rec.threshold||'(not selected)')+'<br><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
+    archetype_desc:'KOORA · UNFINISHED · By Dr. Job Mogire, MD, FACC<br>Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br>Threshold (self-reported): '+(rec.threshold||'(not selected)')+'<br><br><i>Scoring methodology: 60-item Likert (1-4); 6-tier covenant resolver mapped from Day-of-Path; reflexes classified at ≤44% quiet, 45-69% active, 70%+ loud. Reverse-scored items in ALCARRA, needs (filled), forces, fidelities, faculties, and daily practice flip the scale. Pattern is the diagnosis, never the verdict.</i><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
     strategies_html:'<b>The Allegiance Matrix · fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,
     summit_url:'mailto:mail@mogire.com'
