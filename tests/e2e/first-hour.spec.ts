@@ -33,7 +33,7 @@ test.describe('The First Hour — completion flow', () => {
       }
     }
 
-    await expect(page.getByRole('heading', { name: /one breath/i })).toBeVisible({ timeout: 5000 });
+    await expect(page.getByRole('heading', { name: /you finished/i })).toBeVisible({ timeout: 5000 });
   });
 
   test('skip-to-content link is the first focusable element', async ({ page }) => {
