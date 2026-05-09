@@ -993,10 +993,9 @@ body.footer-hidden footer{display:none}
   </div>
 
   <div class="tbl-block">
-    <span class="tbl-h">The Allegiance Matrix · How the loudest reflex broke each faculty</span>
+    <span class="tbl-h">The Allegiance Matrix</span>
+    <p class="narrative-read" id="matrixIntro"></p>
     <div class="matrix-wrap" id="matrixWrap"></div>
-    <p class="narrative-read">Choose one faculty. That is your one move for the next fifteen days.</p>
-    <p class="tbl-legend"><b>How to read this:</b> The matrix shows the four reflexes against the four faculties of fidelity. The gold-bordered row is your loudest reflex this period. Below it, the fingerprint shows specifically how that reflex broke each faculty.</p>
   </div>
 
   <div class="tbl-block">
@@ -2614,10 +2613,12 @@ function renderReflexTable(prior){
   html+='</tbody>';
   document.getElementById('reflexTable').innerHTML=html;
   var loud=loudestReflex();
-  document.getElementById('reflexRead').textContent=loud.name+' was loudest this period. The Allegiance Matrix below shows what it broke.';
+  document.getElementById('reflexRead').textContent=loud.name+' was loudest this period.';
 }
 
 function renderMatrix(loud){
+  var intro=document.getElementById('matrixIntro');
+  if(intro)intro.innerHTML='Your loudest reflex this period was <b>'+loud.name+'</b>. The matrix below shows how it weakened each of your four faculties — Attention, Allegiance, Integrity, Return. <b>The lowest score is your one move for the next fifteen days.</b>';
   var wrap=document.getElementById('matrixWrap');wrap.innerHTML='';
   var rs=reflexScores();
   var faculties=['Attention','Allegiance','Integrity','Return'];
