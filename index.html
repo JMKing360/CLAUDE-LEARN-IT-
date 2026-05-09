@@ -2857,11 +2857,11 @@ function renderMovement(prior){
 function renderThreshold(){
   var box=document.getElementById('thresholdRow');if(!box)return;
   var thresholds=[
-    {k:'before',label:'Before beginning',sub:'I procrastinate like a champion'},
-    {k:'after',label:'After beginning',sub:'I lose interest and drift like a balloon'},
-    {k:'resist',label:'At resistance',sub:'I reorganise everything except the actual work'},
-    {k:'near',label:'Near completion',sub:'I find a brilliant reason to start over'},
-    {k:'fall',label:'After falling',sub:'I ghost the work like an ex'}
+    {k:'before',title:'THE CHAMPION',label:'Before beginning',sub:'I procrastinate like a champion'},
+    {k:'after',title:'THE BALLOONIST',label:'After beginning',sub:'I lose interest and drift like a hot air balloon'},
+    {k:'resist',title:'THE REORGANISER',label:'At resistance',sub:'I reorganise everything except the actual work'},
+    {k:'near',title:'THE RESTARTER',label:'Near completion',sub:'I find a brilliant reason to start over, again, and again'},
+    {k:'fall',title:'THE GHOSTER',label:'After falling',sub:'I ghost the work like an ex who owes me money'}
   ];
   box.innerHTML='';
   for(var i=0;i<thresholds.length;i++){
@@ -2869,7 +2869,7 @@ function renderThreshold(){
       var b=document.createElement('button');
       b.className='claim-btn';
       b.style.cssText="flex:1;min-width:140px;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;";
-      b.innerHTML=th.label+'<span style="display:block;font-weight:500;font-size:12.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">'+th.sub+'</span>';
+      b.innerHTML='<span style="display:block;font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--gold);margin-bottom:6px">'+th.title+'</span>'+th.label+'<span style="display:block;font-weight:500;font-size:12.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">'+th.sub+'</span>';
       b.onclick=function(){
         var all=box.querySelectorAll('.claim-btn');
         for(var k=0;k<all.length;k++){all[k].style.borderColor='var(--rule)';all[k].style.background='var(--white)';all[k].style.color='var(--ink)'}
