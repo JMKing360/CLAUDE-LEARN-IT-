@@ -203,10 +203,6 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 #screen-results.active .tbl-block:nth-of-type(8){animation-delay:.54s}
 @media (prefers-reduced-motion:reduce){#screen-results.active .tbl-block{animation:none}}
 
-.koora-stamp{display:inline-block;height:22px;margin-bottom:14px;opacity:.85}
-.koora-stamp img{height:22px;width:auto;display:block}
-.koora-stamp svg{height:22px;width:auto;display:block}
-.koora-stamp svg text{fill:var(--gold)}
 
 /* DASHBOARD */
 #screen-dashboard{padding:48px 0 96px}
@@ -295,6 +291,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .tr-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(19px,2.6vw,22px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:18px}
 .tr-text b{font-weight:600;color:var(--ink)}
 .tr-day-frame{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);background:var(--surface-2);padding:16px 20px;border-radius:12px;border-left:3px solid var(--gold);margin:30px 0 36px;line-height:1.6;letter-spacing:.005em}
+.tr-day-frame__line{display:inline}
+.tr-day-frame__line+.tr-day-frame__line{margin-left:.25em}
+@media (max-width:560px){.tr-day-frame__line{display:block}.tr-day-frame__line+.tr-day-frame__line{margin-left:0;margin-top:6px}}
 .tr-cta{margin-top:24px}
 
 /* ACKNOWLEDGMENT (NEW) */
@@ -408,8 +407,6 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 body.footer-hidden footer{display:none}
 .foot-credit{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);line-height:1.7;letter-spacing:.005em}
 .foot-credit b{color:var(--ink);font-weight:700}
-.foot-koora{display:inline-block;height:18px;margin-top:10px}
-.foot-koora svg{height:18px;width:auto;display:block}
 
 /* Large desktop (≥1280) ,  generous breath */
 @media (min-width:1280px){
@@ -667,7 +664,9 @@ body.footer-hidden footer{display:none}
 .scoring-note__body code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:13px;background:var(--surface-2);padding:1px 5px;border-radius:2px;color:var(--ink)}
 
 /* Covenant transition message between sections during assessment */
-.cov-transition{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:15.5px;color:var(--gold);text-align:center;margin:8px auto 18px;line-height:1.5;letter-spacing:.005em;max-width:480px}
+.cov-transition{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:15.5px;font-weight:600;color:var(--gold);text-align:center;margin:8px auto 18px;line-height:1.5;letter-spacing:.005em;max-width:480px}
+.cov-transition b{font-weight:700}
+.cov-transition em{font-weight:600}
 
 /* Print stylesheet  -  paper-friendly result */
 @media print{
@@ -823,7 +822,6 @@ body.footer-hidden footer{display:none}
 
 <!-- DASHBOARD -->
 <section class="screen" id="screen-dashboard">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" loading="eager" decoding="async" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;68&quot; letter-spacing=&quot;5&quot; text-anchor=&quot;middle&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
   <h1 class="dash-hello"><em id="dashName">Welcome back</em>.</h1>
   <p class="dash-line" id="dashLine"></p>
   <p class="dash-anticipation" id="dashAnticipation"></p>
@@ -863,7 +861,6 @@ body.footer-hidden footer{display:none}
     <svg class="icon cov-c--future" aria-hidden="true"><use href="#icon-future"/></svg>
     <svg class="icon cov-c--world" aria-hidden="true"><use href="#icon-world"/></svg>
   </div>
-  <span class="koora-stamp" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" loading="eager" decoding="async" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;68&quot; letter-spacing=&quot;5&quot; text-anchor=&quot;middle&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
   <span class="eyebrow">UNFINISHED · A diagnostic for the Finisher</span>
   <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
   <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name is the work that does not get done. <strong>You do not have a productivity problem, you have a fidelity problem.</strong></p>
@@ -933,7 +930,6 @@ body.footer-hidden footer{display:none}
 
 <!-- TRANSITION (between sections) -->
 <section class="screen" id="screen-transition">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" loading="eager" decoding="async" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;68&quot; letter-spacing=&quot;5&quot; text-anchor=&quot;middle&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
   <span class="tr-eyebrow" id="trEyebrow">A pause before the next section</span>
   <h2 class="tr-h1" id="trH"></h2>
   <p class="tr-text" id="trText"></p>
@@ -945,7 +941,6 @@ body.footer-hidden footer{display:none}
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" loading="eager" decoding="async" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;68&quot; letter-spacing=&quot;5&quot; text-anchor=&quot;middle&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
   <span class="q-section" id="qSection">Section 1 of 6</span>
   <p class="q-prompt" id="qPrompt">What runs you when you are not paying attention</p>
   <h2 class="q-text" id="qText"></h2>
@@ -960,7 +955,6 @@ body.footer-hidden footer{display:none}
 
 <!-- ACKNOWLEDGMENT (between final question and results) -->
 <section class="screen" id="screen-ack">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" loading="eager" decoding="async" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;68&quot; letter-spacing=&quot;5&quot; text-anchor=&quot;middle&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
   <h2 class="ack-h1" id="ackH1"><em>One breath.</em></h2>
   <p class="ack-text" id="ackText">You have answered sixty items. That is harder than it sounds. Now let us look together.</p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px">See your result</button>
@@ -968,7 +962,6 @@ body.footer-hidden footer{display:none}
 
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
-  <span class="koora-stamp" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" loading="eager" decoding="async" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;68&quot; letter-spacing=&quot;5&quot; text-anchor=&quot;middle&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
   <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
@@ -1163,7 +1156,7 @@ body.footer-hidden footer{display:none}
 </div>
 
 <footer>
-  <p class="foot-credit">©House of Mastery with Dr Job Mogire™ . KOORA™ . The Unfinished Life™ . Don't Die With An Unfinished Life™ . <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><span class="foot-koora" role="img" aria-label="KOORA" style="display:block;margin-top:14px"><img src="/images/koora-logo.png" alt="KOORA" style="height:28px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:28px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;64&quot; letter-spacing=&quot;6&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin-top:10px;opacity:.7" onerror="this.style.display='none'"></span></p>
+  <p class="foot-credit">©House of Mastery with Dr Job Mogire™ . KOORA™ . The Unfinished Life™ . Don't Die With An Unfinished Life™ . <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin:14px auto 0;opacity:.7" onerror="this.style.display='none'"></p>
 </footer>
 
 <script>
@@ -1910,11 +1903,12 @@ var TRANSITIONS=[
 ];
 
 function dayFraming(day){
-  if(day===0)return 'This is your baseline. Be honest, not flattering. Honesty is the only useful answer here.';
-  if(day<=60)return 'You have begun. The pattern is still loud. Notice it without judgment.';
-  if(day<=120)return 'You have walked the middle. The pattern may already feel different. Answer for the last fifteen days, not the journey so far.';
-  if(day<=180)return 'You are near the seal. The pattern is now familiar to you. Notice if it lands differently this time.';
-  return 'The path is yours now. Use this return to keep the work honest.';
+  function stack(s){return s.split(/\.\s+/).filter(function(p){return p.length}).map(function(p,i,a){var t=safe(p)+(i<a.length-1?'.':(/[.!?]$/.test(p)?'':'.'));return '<span class="tr-day-frame__line">'+t+'</span>'}).join('')}
+  if(day===0)return stack('This is your baseline. Be honest, not flattering. Honesty is the only useful answer here.');
+  if(day<=60)return stack('You have begun. The pattern is still loud. Notice it without judgment.');
+  if(day<=120)return stack('You have walked the middle. The pattern may already feel different. Answer for the last fifteen days, not the journey so far.');
+  if(day<=180)return stack('You are near the seal. The pattern is now familiar to you. Notice if it lands differently this time.');
+  return stack('The path is yours now. Use this return to keep the work honest.');
 }
 
 var ARC_INTERNAL={
@@ -2334,9 +2328,9 @@ function enterTransition(trans){
   document.getElementById('trText').innerHTML=trans.text+'<br><br>'+covLine;
   var dayLine='';
   // Halfway personal moment at transition 3 (after Q31)
-  if(trans.q===31 && participantName)dayLine='Halfway, '+safe(participantName)+'. Notice your honesty so far. '+dayFraming(participantDay);
+  if(trans.q===31 && participantName)dayLine='<span class="tr-day-frame__line">Halfway, '+safe(participantName)+'.</span><span class="tr-day-frame__line">Notice your honesty so far.</span>'+dayFraming(participantDay);
   else dayLine=dayFraming(participantDay);
-  document.getElementById('trDayFrame').textContent=dayLine;
+  document.getElementById('trDayFrame').innerHTML=dayLine;
   hideChamberProgress();show('screen-transition');
   setProgress(Math.round((trans.q/TOTAL)*98));
 }
