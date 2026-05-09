@@ -2,18 +2,28 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.0.0';
+const VERSION = 'hom-v3.7.20';
 const CORE = [
   '/',
   '/first-hour.html',
   '/index.html',
   '/privacy.html',
-  '/manifest.json'
+  '/manifest.json',
+  '/images/koora-logo.png',
+  '/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png',
+  '/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png',
+  '/images/dr-job-clinical.jpg',
+  '/images/dr-job-cover.jpg',
+  '/images/dr-job-desk.jpg'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(VERSION).then((cache) => cache.addAll(CORE)).then(() => self.skipWaiting())
+    caches.open(VERSION).then((cache) =>
+      Promise.all(
+        CORE.map((url) => cache.add(url).catch(() => null))
+      )
+    ).then(() => self.skipWaiting())
   );
 });
 
