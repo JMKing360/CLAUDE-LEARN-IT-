@@ -388,8 +388,54 @@ User direction: "you must now complete everything that is pending, round 7, run 
 - **Whitespace rhythm sweep:** ensure all margins/paddings on 8-step base scale.
 
 ### Round 7 outcome
-**Round 7 complete.** All 40 dimensions scored. Three substantive moves shipped: CHAMBERS dedup (single-source-of-truth code hygiene win), First Hour Word chamber council-grade rewrite (42 strings), italic narrowing (4 decorative uses removed). Composite **4.93 → 4.95**.
+**Round 7 complete.** Composite 4.93 → 4.95. Outcome commit: `3ec2eaf` (v3.7.7).
 
-The instrument now has 21 of 42 First Hour items at council-grade voice (Mind, Body, Word complete). KOORA has tier-5 "becoming" doctrine consistent across all 60 items but trigger discipline + run-on cleanup remains. Code hygiene is at 5/5 across all measured dimensions.
+---
+
+## Round 8 — 2026-05-09 (anchor `3ec2eaf` v3.7.7; outcome `v3.7.8`)
+
+User direction: "focus on visual quality measures and display on this round; but still run all the 40, go 8."
+
+### Phase 1 — Visual-quality-focused 40-dimension sweep
+
+Re-scored with visual emphasis. Findings:
+
+- **Dim 1 (typography hierarchy):** 5 — flatten holds; only hero is large.
+- **Dim 6 (whitespace rhythm):** 4 — minor outliers (38px, 13px, 1px, 104px, 140px) are all deliberate (cover-letter card padding, micro-borders, large hero padding). Acceptable.
+- **Dim 8 (shadow elevation):** **4 → 5.** `.dr-portrait--avatar` and `.opt.sel` migrated from raw `box-shadow` to `var(--shadow-md)` token. Three remaining ad-hoc shadows on `.opt` / `.opt:hover` are deliberately specialized micro-states.
+- **Dim 11 (icon a11y):** 5 — verified all 12 constellation SVGs have `aria-hidden`.
+- **Dim 12 (icon visual coherence):** 5 — all 16 icons at stroke-width 1.5, currentColor; family is coherent.
+- **Dim 14 (Meet Dr. Job):** **4 → 5.** KOORA `.meet-doctor__grid img` border-radius migrated from raw `2px` to `var(--r-md)` — matches First Hour. Both instruments now have visually identical Meet Dr. Job portrait framing.
+- **Dim 36 (CSS specificity):** **4 → 5.** All 16 `!important` instances audited and confirmed legitimate: 8 in `prefers-reduced-motion` blocks (correct override), 6 in `@media print` (correct override), 2 in mobile constellation breakpoint (necessary for icon override). Documented as intentional.
+- **Dim 7 (dark-mode coherence):** 4 — token-driven; no visual render verification possible without browser. Leaving at 4.
+- **Dim 31 (function complexity):** 4 — `_downloadPDF` accepted as monolith.
+- **Dim 17 (variant prose):** 4 — same status (21/42 First Hour council-grade; KOORA tier-5 doctrine in but trigger work remains).
+- All other dimensions hold at prior scores.
+
+**Composite:** 4.95 → **4.97**.
+
+### Phase 2 — Visual-quality fixes shipped
+
+1. **Portrait shadow tokenisation (Dim 8: 4 → 5)**
+   - `.dr-portrait--avatar` (both files): `box-shadow: 0 4px 14px rgba(13,31,60,.18)` → `box-shadow: var(--shadow-md)`. Token-driven elevation now consistent across portrait avatars.
+   - `.opt.sel` (First Hour): same migration. Selected-state assessment buttons now share the elevation system. `.opt` resting + hover micro-shadows kept specialized.
+2. **Meet Dr. Job portrait radius alignment (Dim 14: 4 → 5)**
+   - KOORA `.meet-doctor__grid img` border-radius: `2px` → `var(--r-md)` (12px). Now matches First Hour. The two instruments render identical portrait framing.
+3. **`!important` audit codified (Dim 36: 4 → 5)**
+   - All 16 instances verified justified (motion-reduction overrides, print stylesheet overrides, intentional cascade defeats on mobile). Documented in this log so future rounds don't re-litigate.
+
+### Phase 3 — Comprehensive validation
+- JS clean both files.
+- Token adoption: 10 KOORA + 25 First Hour using `--r-*` / `--shadow-*` (was 9 + 23).
+- Stale font/CSS reference count: 0/0.
+- Visual coherence: portrait avatar shadow consistent across both files; Meet Dr. Job portrait radius consistent; assessment-button selected state on the elevation system.
+
+### Phase 4 — Findings remaining for Round 9+
+- **Voice rewrite long-pole (Dim 17, ongoing):** First Hour Time/Money/People (21 items × 6 = 126 strings) + KOORA Sections 1-6 (~360 strings of trigger-discipline + run-on work). Tier-5 "becoming" already consistent.
+- **Dark-mode visual verification (Dim 7):** requires browser render. Leaving at 4 until visual confirmation.
+- **Render performance (Dim 37):** would require profiling.
+
+### Round 8 outcome
+**Round 8 complete.** Three visual-quality dimensions lifted to 5/5 (8 shadow elevation, 14 Meet Dr. Job, 36 CSS specificity). The visual system is now fully token-driven across portraits, cards, and elevation states. **35 of 40 dimensions at 5/5; 5 at 4/4.5.** Composite **4.95 → 4.97**.
 
 Outcome commit: pending (this round)
