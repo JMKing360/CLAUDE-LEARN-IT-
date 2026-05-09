@@ -1,0 +1,50 @@
+{
+  "name": "house-of-mastery-instruments",
+  "version": "3.0.0",
+  "description": "Diagnostic instruments of House of Mastery, the body of work of Dr. Job Mogire, MD, FACP, FACC.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.js,.html",
+    "lint:fix": "eslint . --ext .ts,.js,.html --fix",
+    "format": "prettier --write \"**/*.{ts,js,html,css,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,html,css,md,json}\"",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:a11y": "axe-cli http://localhost:4173",
+    "test:lighthouse": "lhci autorun",
+    "verify": "npm run lint && npm run type-check && npm run test && npm run format:check",
+    "validate:html": "node scripts/validate-html.js",
+    "sbom": "cyclonedx-bom -o sbom.cdx.json",
+    "audit:security": "npm audit --audit-level=moderate"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "typescript": "^5.5.0",
+    "@types/node": "^22.0.0",
+    "vitest": "^2.0.0",
+    "@playwright/test": "^1.48.0",
+    "@axe-core/cli": "^4.10.0",
+    "@lhci/cli": "^0.14.0",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "prettier": "^3.3.0",
+    "@cyclonedx/bom": "^4.0.0",
+    "stryker-mutator": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Dr. Job Mogire, MD, FACP, FACC",
+    "email": "mail@mogire.com",
+    "url": "https://www.houseofmastery.co"
+  }
+}

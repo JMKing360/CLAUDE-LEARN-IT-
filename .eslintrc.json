@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2022": true, "node": true },
+  "parserOptions": { "ecmaVersion": 2022, "sourceType": "module" },
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "no-console": "off",
+    "no-irregular-whitespace": ["error", { "skipStrings": true, "skipComments": true, "skipRegExps": true, "skipTemplates": true }]
+  },
+  "ignorePatterns": ["node_modules/", "dist/", "reference/", "*.min.js"]
+}

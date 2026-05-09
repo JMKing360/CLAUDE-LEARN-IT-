@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The First Hour · Embeddable Edition</title>
+<meta name="description" content="The First Hour, embeddable inside any partner site.">
+<meta name="referrer" content="no-referrer">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40}
+.embed-shell{display:flex;flex-direction:column;height:100vh}
+.embed-bar{padding:10px 18px;border-bottom:1px solid #E8E8EC;display:flex;align-items:center;justify-content:space-between;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1A1A1F}
+.embed-bar a{color:#0D1F3C;text-decoration:none}
+.embed-frame{flex:1;border:0;width:100%}
+@media (max-width:560px){.embed-bar{display:none}}
+</style>
+</head>
+<body>
+<div class="embed-shell">
+  <div class="embed-bar">
+    <span>House of Mastery · Embeddable Edition</span>
+    <a href="https://www.houseofmastery.co/first-hour" target="_top" rel="noopener">Open in full →</a>
+  </div>
+  <iframe class="embed-frame" id="hom-frame" src="/first-hour.html?embed=1" title="The First Hour" loading="eager" allow="clipboard-write"></iframe>
+</div>
+<script>
+// Resize host page hint via postMessage (optional for partner integration)
+window.addEventListener('message', function(e){
+  if (e.origin !== location.origin) return;
+  if (e.data && e.data.hom === 'height' && parent !== window) {
+    parent.postMessage({hom:'height',value:e.data.value}, '*');
+  }
+});
+</script>
+</body>
+</html>
