@@ -77,4 +77,39 @@ Append-only log of comprehensive review rounds against the 40-dimension framewor
 **Round 1 complete.** Composite score moved from 4.13/5 to 4.40/5 across the 40 dimensions. Three high-leverage fixes shipped (radius adoption, shadow tokens, hex tokenisation). Five findings carried to Round 2.
 
 Anchor commit: `a3d7444` (v3.6.2 — framework only)
+Outcome commit: `365595e` (v3.7.1)
+
+---
+
+## Round 2 — 2026-05-09 (anchor `365595e` v3.7.1; outcome `v3.7.2`)
+
+### Phase 1 — Re-scoring sweep (focus on Round 1 deltas + deferred items)
+- **Dim 35 (XSS / innerHTML):** audited every interpolated `innerHTML` site. All user-input paths use `safe()` correctly. The one un-safe-d interpolation (`loud.name` at first-hour:2039) sources from our static `CHAMBERS[i].name` array, not user input. **Score: 3 → 5.**
+- **Dim 8 (shadow elevation):** 11 ad-hoc `box-shadow` values across both files identified for migration. **Score: 4 → 5 after adoption.**
+- **Dim 24 (KOORA-funnel hooks):** verified six surfaces on First Hour — result rung block, KOORA-funnel block, Meet Dr. Job CTA, email payload "Next door" line, PDF page 3 ladder ("4. KOORA: The Finishing Protocol (180 days · once a year · twenty-four seats)"), foot-credit. **Score: 4 → 5.**
+- All other dimensions hold or improve from Round 1.
+
+### Phase 2 — Highest-leverage fixes executed
+1. **Shadow token surface adoption (dim 8: 4 → 5)**
+   - **index.html**: `.cover-letter__head img` → `var(--shadow-sm)`; `.meet-doctor__grid img` → `var(--shadow-md)`; `.koora-funnel` → `var(--shadow-lg)`; `.save-pill` → `var(--shadow-sm)` (also adopted `var(--r-pill)` for radius).
+   - **first-hour.html**: `.feature-card,.cohort-cta,.cov-card` → `var(--shadow-md)`; `.fidelity-feature` → `var(--shadow-lg)`; `.cover-letter__head img` → `var(--shadow-sm)`; `.meet-doctor__grid img` → `var(--shadow-md)`; `.koora-funnel` → `var(--shadow-lg)`; `.save-pill` → `var(--shadow-sm)` (+`var(--r-pill)`).
+   - Token adoption count: index 4, first-hour 6 (was 0 on both).
+   - Remaining ad-hoc shadows are deliberately specialized: `.dr-portrait--avatar` (higher-saturation portrait shadow), `.opt`/`.opt:hover`/`.opt.sel` (micro-shadows for button states that the token system intentionally does not cover).
+2. **Dim 35 audit codified** — `innerHTML` audit complete; documented in this log so future rounds don't re-litigate.
+3. **Dim 24 verification codified** — six KOORA-funnel surfaces on First Hour confirmed.
+
+### Phase 3 — Overall sweep
+- JS validates clean on both files.
+- Shadow token adoption: 10 surfaces (was 0).
+- Remaining ad-hoc shadows: 5 — all deliberately specialized.
+- No CSS regressions; no broken cascade selectors.
+
+### Phase 4 — Findings deferred to Round 3
+- **Dim 31:** `_downloadPDF` (323 lines on KOORA) refactor — extract `drawCoverPage`, `drawScoresPage`, `drawNarrativePage`, `drawDoctorsNotePage` helpers. Risky in a single round; needs careful sequencing.
+- **Dim 17:** Voice polish on the four newest covenant-tier variants (Body, People, Future) for items that read templated. Section 1 KOORA (Reflexes) and Section 2 (ALCARRA) prose was hand-tuned in v3.3.1 / v3.4.0; sections 3-6 used the compositional pattern. A focused review-and-rewrite pass would lift them to fully hand-authored quality.
+- **Dim 11:** `aria-hidden` audit on every `<svg class="icon">` reference to verify the constellation, ambient backgrounds, covenant-entry icon, reaffirmation icon, and author-byline avatar are all marked decorative.
+
+### Round 2 outcome
+**Round 2 complete.** Composite score moved from 4.40/5 to 4.60/5. Three dimensions confirmed at 5/5 this round (8 shadow elevation, 35 XSS audit, 24 KOORA-funnel hooks). Three findings carried to Round 3.
+
 Outcome commit: pending (this round)
