@@ -362,6 +362,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .intent-item:has(input:checked){border-color:var(--gold);background:#FAF6EC}
 .intent-letter{flex-shrink:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:18px;font-weight:800;color:var(--gold);width:22px;text-align:center;letter-spacing:0;line-height:1.1;margin-top:1px}
 .intent-text{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
+.intent-fidelity{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-left:8px;vertical-align:middle}
 .intent-action{display:block;font-size:12.5px;font-weight:500;color:var(--body);margin-top:4px;letter-spacing:.005em;line-height:1.45}
 .seal-intro{margin:8px 0 28px}
 .seal-intro__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;color:var(--ink);margin:0 0 10px;letter-spacing:-.012em;line-height:1.2}
@@ -2612,23 +2613,23 @@ function renderAnchoredOpener(prior){
 }
 
 var INTENT_ACTIONS=[
-  {key:'U',letter:'U',name:'Unkept Promises',action:'Keep one promise to myself.'},
-  {key:'N1',letter:'N',name:'Negotiating Constantly',action:'Stop bargaining. Act now.'},
-  {key:'F',letter:'F',name:'Fragmented Identity',action:'Show up as one self.'},
-  {key:'I1',letter:'I',name:'Inherited Patterns',action:'Pause one inherited pattern.'},
-  {key:'N2',letter:'N',name:'Neglected Completion',action:'Push one thing past ninety percent.'},
-  {key:'I2',letter:'I',name:'Intelligence Weaponized',action:'Drop one excuse.'},
-  {key:'S',letter:'S',name:'Self-Trust Bankrupt',action:'Believe my own word once.'},
-  {key:'H',letter:'H',name:'Hidden Shame',action:'Let one person see the truth.'},
-  {key:'E',letter:'E',name:'Exhausted From Carrying',action:'Lay down one weight.'},
-  {key:'D',letter:'D',name:'Deferred Action As Lifestyle',action:'Do one deferred thing.'}
+  {key:'U',letter:'U',name:'Unkept Promises',fidelity:'DO',action:'Keep one promise to myself.'},
+  {key:'N1',letter:'N',name:'Negotiating Constantly',fidelity:'CHOOSE',action:'Stop bargaining. Act now.'},
+  {key:'F',letter:'F',name:'Fragmented Identity',fidelity:'CHOOSE',action:'Show up as one self.'},
+  {key:'I1',letter:'I',name:'Inherited Patterns',fidelity:'THINK',action:'Pause one inherited pattern.'},
+  {key:'N2',letter:'N',name:'Neglected Completion',fidelity:'DO',action:'Push one thing past ninety percent.'},
+  {key:'I2',letter:'I',name:'Intelligence Weaponized',fidelity:'THINK',action:'Drop one excuse.'},
+  {key:'S',letter:'S',name:'Self-Trust Bankrupt',fidelity:'FEEL',action:'Believe my own word once.'},
+  {key:'H',letter:'H',name:'Hidden Shame',fidelity:'FEEL',action:'Let one person see the truth.'},
+  {key:'E',letter:'E',name:'Exhausted From Carrying',fidelity:'FEEL',action:'Lay down one weight.'},
+  {key:'D',letter:'D',name:'Deferred Action As Lifestyle',fidelity:'DO',action:'Do one deferred thing.'}
 ];
 function renderIntentChecklist(){
   var box=document.getElementById('intentChecklist');if(!box)return;
   var selected=(lastResults&&lastResults.intent_actions)?lastResults.intent_actions:[];
   box.innerHTML=INTENT_ACTIONS.map(function(a){
     var checked=selected.indexOf(a.key)!==-1?' checked':'';
-    return '<label class="intent-item"><input type="checkbox" value="'+a.key+'" onchange="persistIntent()"'+checked+'><span class="intent-letter">'+a.letter+'</span><span class="intent-text"><b>'+a.name+'</b><span class="intent-action">'+a.action+'</span></span></label>';
+    return '<label class="intent-item"><input type="checkbox" value="'+a.key+'" onchange="persistIntent()"'+checked+'><span class="intent-letter">'+a.letter+'</span><span class="intent-text"><b>'+a.name+'</b><span class="intent-fidelity">'+a.fidelity+'</span><span class="intent-action">'+a.action+'</span></span></label>';
   }).join('');
 }
 function persistIntent(){
