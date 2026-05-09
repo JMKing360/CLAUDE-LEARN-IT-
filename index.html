@@ -16,6 +16,8 @@
 <meta property="og:description" content="The diagnostic instrument of KOORA, the Finisher’s Protocol. Designed by Dr. Job Mogire — cardiologist, author, speaker.">
 <meta property="og:image" content="https://hom.mogire.com/koora-og.png">
 <meta property="og:image:alt" content="UNFINISHED — the diagnostic instrument of KOORA, by Dr. Job Mogire, MD, FACC">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://hom.mogire.com/koora">
 <meta property="og:site_name" content="House of Mastery">
 <meta name="twitter:card" content="summary_large_image">
@@ -554,6 +556,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   .cover-letter__head img{width:72px;height:72px}
   .cover-letter__body{font-size:16px}
 }
+@media(max-width:380px){
+  .cover-letter{padding:22px 18px;margin:28px 0 32px}
+  .cover-letter__head{grid-template-columns:60px 1fr;gap:12px;margin-bottom:18px}
+  .cover-letter__head img{width:60px;height:60px}
+  .cover-letter__byline{font-size:17px}
+  .cover-letter__body{font-size:15.5px;line-height:1.6}
+  .cover-letter__sig{font-size:16px;margin-top:18px;padding-top:14px}
+}
 
 /* Meet Dr. Job — bottom of result page, after all blocks */
 .meet-doctor{margin-top:64px;padding:44px 0 0;border-top:1px solid var(--rule-soft)}
@@ -790,7 +800,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
     <img src="/images/koora-logo.png" alt="KOORA" class="cover-letter__brandmark" onerror="this.style.display='none'">
     <div class="cover-letter__head">
-      <img src="/images/dr-job-cover.jpg" alt="Dr. Job Mogire" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/dr-job-cover.jpg" alt="Dr. Job Mogire" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div>
         <div class="cover-letter__byline">A note from Dr. Job Mogire</div>
         <div class="cover-letter__creds">MD, FACC · Cardiologist · Author · Speaker</div>
@@ -876,7 +886,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
   <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
-    <img src="/images/dr-job-clinical.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+    <img src="/images/dr-job-clinical.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
     <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
   </div>
 
@@ -1046,7 +1056,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <div class="meet-doctor__eyebrow">About the author</div>
     <h2 class="meet-doctor__h" id="meetDocH">Meet Dr. Job Mogire</h2>
     <div class="meet-doctor__grid">
-      <img src="/images/dr-job-desk.jpg" alt="Dr. Job Mogire at his desk" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/dr-job-desk.jpg" alt="Dr. Job Mogire at his desk" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="meet-doctor__bio">
         <div class="meet-doctor__creds">MD, FACC · Cardiologist · Author · Speaker</div>
         <p><strong>Dr. Job Mogire</strong> is a cardiologist by trade and a builder by vocation. He spends his clinical hours listening for what the heart is doing, and his other hours listening for what a life is doing — what it is finishing, what it is leaving unfinished, and what it would take for it to begin to close the gap.</p>
@@ -1719,7 +1729,7 @@ var COVENANT_ENTRY={
      items:[
        'There is one piece of work I was given to build that I have been pretending I did not receive.',
        'My calendar this week does not reflect what I would call my life’s work.',
-       'I am better at beginning than at finishing, and I know which is the harder discipline.',
+       'I am better at beginning than at finishing, and I know which is the harder of the two.',
        'There is a piece of work I am ninety percent done with that I cannot bring myself to close.',
        'If I gave the next ninety days fully to one thing, I know which thing it would be.'
      ],

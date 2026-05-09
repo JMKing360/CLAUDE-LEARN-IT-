@@ -16,6 +16,8 @@
 <meta property="og:description" content="A six-chamber community audit by Dr. Job Mogire — cardiologist, author, speaker — for the life you have been living without quite meaning to.">
 <meta property="og:image" content="https://hom.mogire.com/first-hour-og.png">
 <meta property="og:image:alt" content="The First Hour — a six-chamber audit by Dr. Job Mogire, MD, FACC">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://hom.mogire.com/first-hour">
 <meta property="og:site_name" content="House of Mastery">
 <meta name="twitter:card" content="summary_large_image">
@@ -436,6 +438,14 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   .cover-letter__head img{width:72px;height:72px}
   .cover-letter__body{font-size:16px}
 }
+@media(max-width:380px){
+  .cover-letter{padding:22px 18px;margin:28px 0 32px}
+  .cover-letter__head{grid-template-columns:60px 1fr;gap:12px;margin-bottom:18px}
+  .cover-letter__head img{width:60px;height:60px}
+  .cover-letter__byline{font-size:17px}
+  .cover-letter__body{font-size:15.5px;line-height:1.6}
+  .cover-letter__sig{font-size:16px;margin-top:18px;padding-top:14px}
+}
 
 /* Meet Dr. Job — bottom of result page */
 .meet-doctor{margin-top:64px;padding:44px 0 0;border-top:1px solid var(--rule-soft)}
@@ -664,7 +674,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
     <img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" class="cover-letter__brandmark" onerror="this.style.display='none'">
     <div class="cover-letter__head">
-      <img src="/images/dr-job-cover.jpg" alt="Dr. Job Mogire" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/dr-job-cover.jpg" alt="Dr. Job Mogire" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div>
         <div class="cover-letter__byline">A note from Dr. Job Mogire</div>
         <div class="cover-letter__creds">MD, FACC · Cardiologist · Author · Speaker</div>
@@ -773,7 +783,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <span class="r-eyebrow">Your result</span>
   <h1 class="r-h1" id="rHeadline"></h1>
   <div class="author-byline" aria-label="Audit by Dr. Job Mogire">
-    <img src="/images/dr-job-clinical.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+    <img src="/images/dr-job-clinical.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
     <span>Audit by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
   </div>
 
@@ -1009,7 +1019,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
     <div class="meet-doctor__eyebrow">About the author</div>
     <h2 class="meet-doctor__h" id="meetDocH">Meet Dr. Job Mogire</h2>
     <div class="meet-doctor__grid">
-      <img src="/images/dr-job-clinical.jpg" alt="Dr. Job Mogire, cardiologist" loading="lazy" onerror="this.style.display='none'">
+      <img src="/images/dr-job-clinical.jpg" alt="Dr. Job Mogire, cardiologist" loading="lazy" decoding="async" onerror="this.style.display='none'">
       <div class="meet-doctor__bio">
         <div class="meet-doctor__creds">MD, FACC · Cardiologist · Author · Speaker</div>
         <p><strong>Dr. Job Mogire, MD, FACC</strong> is a board-certified cardiologist who has spent the past two decades listening for what unspoken life does to the body. He believes most adults are not under-performing — they are under-finishing. The difference is not motivational. It is structural.</p>
