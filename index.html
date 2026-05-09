@@ -1189,6 +1189,7 @@ var JSPDF_OK=(typeof window.jspdf!=='undefined');
 var TOTAL=60;
 var STORAGE_KEY='koora_unfinished_v4';
 var AUTO_ADVANCE_MS=1500;
+var SAVE_PILL_MS=1600; // duration the "Progress saved" pill stays visible after autosave
 var COHORT_2_LAUNCH='November 2026';
 
 var DAY_OPTIONS=[
@@ -2307,7 +2308,7 @@ function showSavePill(){
   var p=document.getElementById('savePill');if(!p)return;
   p.classList.add('shown');
   if(savePillTimer)clearTimeout(savePillTimer);
-  savePillTimer=setTimeout(function(){p.classList.remove('shown')},1600);
+  savePillTimer=setTimeout(function(){p.classList.remove('shown')},SAVE_PILL_MS);
 }
 function selectOption(n,score){
   answers[n]=score;
