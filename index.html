@@ -1351,7 +1351,7 @@ var QUESTIONS=[
   ]},
 
   // Section 2: ALCARRA (7 items, one per posture)
-  {n:17, sec:2,sn:'The seven postures', dom:'Awareness', text:[
+  {n:17, sec:2,sn:'The seven pillars of the practice', dom:'Awareness', text:[
     'When the truth about me is unflattering, I avoid looking at it directly.',
     'When the truth about me is unflattering, my body looks away before my eyes do.',
     'When the truth about me is unflattering, I am beginning to let myself see it.',
@@ -1359,7 +1359,7 @@ var QUESTIONS=[
     'When the truth about me is unflattering, I am becoming the kind of person who looks without flinching.',
     'When the truth about me is unflattering, I look at it without flinching.'
   ], rev:true},
-  {n:18, sec:2,sn:'The seven postures', dom:'Learning', text:[
+  {n:18, sec:2,sn:'The seven pillars of the practice', dom:'Learning', text:[
     'When yesterday went badly, I let it weigh on today instead of letting it teach.',
     'When yesterday went badly, the body still carries it into today before the lesson has been extracted.',
     'When yesterday went badly, I am beginning to let it teach me before it weighs.',
@@ -1367,7 +1367,7 @@ var QUESTIONS=[
     'When yesterday went badly, I am becoming the kind of person who begins again clean, informed.',
     'When yesterday went badly, I begin again clean, informed.'
   ], rev:true},
-  {n:19, sec:2,sn:'The seven postures', dom:'Change', text:[
+  {n:19, sec:2,sn:'The seven pillars of the practice', dom:'Change', text:[
     'When I notice I need to change, I wait until I can overhaul everything before I shift one thing.',
     'When I notice I need to change, the body is ready before the plan is, and I have been calling that wrong.',
     'When I notice I need to change, I am beginning to shift one thing without waiting.',
@@ -1375,7 +1375,7 @@ var QUESTIONS=[
     'When I notice I need to change, I am becoming the kind of person who shifts one thing this week.',
     'When I notice I need to change, I shift one thing this week.'
   ], rev:true},
-  {n:20, sec:2,sn:'The seven postures', dom:'Action', text:[
+  {n:20, sec:2,sn:'The seven pillars of the practice', dom:'Action', text:[
     'When I am not yet ready, I wait to act.',
     'When I am not yet ready, the body knows the action is doable before the mind has caught up.',
     'When I am not yet ready, I am beginning to move anyway, in small ways.',
@@ -1383,7 +1383,7 @@ var QUESTIONS=[
     'When I am not yet ready, I am becoming the kind of person who moves anyway, and lets readiness follow.',
     'When I am not yet ready, I move anyway. Readiness follows.'
   ], rev:true},
-  {n:21, sec:2,sn:'The seven postures', dom:'Resilience', text:[
+  {n:21, sec:2,sn:'The seven pillars of the practice', dom:'Resilience', text:[
     'When difficulty arrives, I leave the work and tend to my emotions elsewhere.',
     'When difficulty arrives, the body tightens away from the work before I have decided to leave.',
     'When difficulty arrives, I am beginning to stay in the work while I tend to myself.',
@@ -1391,7 +1391,7 @@ var QUESTIONS=[
     'When difficulty arrives, I am becoming the kind of person who stays in the work.',
     'When difficulty arrives, I stay in the work.'
   ], rev:true},
-  {n:22, sec:2,sn:'The seven postures', dom:'Reflection', text:[
+  {n:22, sec:2,sn:'The seven pillars of the practice', dom:'Reflection', text:[
     'When I look back at my own behaviour, I defend before I see.',
     'When I look back at my own behaviour, the body braces for defence before the seeing has begun.',
     'When I look back at my own behaviour, I am beginning to see before I defend.',
@@ -1399,7 +1399,7 @@ var QUESTIONS=[
     'When I look back at my own behaviour, I am becoming the kind of person who sees clearly without needing to defend.',
     'When I look back at my own behaviour, I see clearly without needing to defend.'
   ], rev:true},
-  {n:23, sec:2,sn:'The seven postures', dom:'Accountability', text:[
+  {n:23, sec:2,sn:'The seven pillars of the practice', dom:'Accountability', text:[
     'When my week happens, I keep the truth of it to myself.',
     'When my week happens, the truth of it lives in my body, unsaid.',
     'When my week happens, I am beginning to let one trusted witness see it.',
@@ -2268,7 +2268,7 @@ function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTime
 // The per-tier progression lives in the question text; the eyebrow does not stutter against it.
 var SECTION_PROMPTS={
   1:'Sneaky reflexes',
-  2:'The seven postures of return',
+  2:'The seven pillars of the practice',
   3:'Fundamental needs',
   4:'Forces of necessity',
   5:'Whose voice has the final say?',
@@ -2719,8 +2719,8 @@ function renderAlcarraTable(){
   html+='</tbody>';
   document.getElementById('alcTable').innerHTML=html;
   var read='';
-  if(thinPosture && thinScore<=2)read=thinPosture+' was the thinnest posture. Notice what it asked of you that you did not give.';
-  else read='The seven postures held this period. The architecture is breathing.';
+  if(thinPosture && thinScore<=2)read=thinPosture+' was the thinnest practice. Notice what it asked of you that you did not give.';
+  else read='The seven practices held this period. The architecture is breathing.';
   document.getElementById('alcRead').textContent=read;
 }
 
@@ -3072,7 +3072,7 @@ function _downloadPDF(){
   }
   y+=2;y=legend('The reflex broke each faculty in a specific way. The covenant of return begins by repairing one of these four.',y)+4;
 
-  sectionLabel('The seven postures · ALCARRA',y);y+=7;
+  sectionLabel('The ALCARRA Practice',y);y+=7;
   var alc=alcarraScores();
   for(var i=0;i<alc.length;i++){
     var a=alc[i],lvl=levelPos(a.pct),c=lc[lvl];
@@ -3222,7 +3222,7 @@ function _downloadPDF(){
 
   sectionLabel('Methodology · for peer review',y);y+=7;
   var meth=[
-    'Construct base. Six domains derived from the KOORA Master Architecture: the four reflexes of escape; the seven postures of return (ALCARRA); the four needs underneath the patterns; the four forces of necessity and the four fidelities sealed in the weekly covenant; the four faculties of fidelity broken by each reflex; and the practice of return.',
+    'Construct base. Six domains derived from the KOORA Master Architecture: the four reflexes of escape; the seven practices of return (ALCARRA); the four needs underneath the patterns; the four forces of necessity and the four fidelities sealed in the weekly covenant; the four faculties of fidelity broken by each reflex; and the practice of return.',
     'Items. Sixty items. Subscale composition: four reflexes × four items each (16); ALCARRA seven; four needs × two items (8); forces four, fidelities four (8); faculties four, practice six (10); UNFINISHED, inventory, and inner-experience markers (11). Items written as first-person, observational statements.',
     'Scale. Four-point Likert: rarely or never (1), sometimes (2), often (3), most of the time (4). Recall window fifteen days, held constant.',
     'Scoring. Subscale scores are unweighted sums normalised to percentage of maximum. Cutpoints at 0.44 and 0.69 yield three-band classifications.',
