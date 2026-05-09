@@ -1471,30 +1471,33 @@ function estimateCost(){
   var mn=cs.find(function(x){return x.key==='money'}).score;
   var md=cs.find(function(x){return x.key==='mind'}).score;
 
-  // v3.3 — calibration tightened to align with the autopilot literature
+  // v3.3.1 — calibration matched to the autopilot literature
   // (Killingsworth & Gilbert, 2010: ~47% of waking time on autopilot).
-  // The multipliers below produce estimates ~30-40% higher than v3.2,
-  // because the v3.2 model under-represented Body and People drift.
+  // The multipliers below produce estimates ~47% above the v3.2 baseline,
+  // because the v3.2 model under-represented Body and People drift and
+  // used an artificially conservative 42 hr/week ceiling.
   var bd=cs.find(function(x){return x.key==='body'}).score||14;
-  // Time + Mind + Body unconscious load (range 21-84). Scale to 0-56 hr/wk autopilot.
+  // Time + Mind + Body unconscious load (range 21-84). Scale to 0-56 hr/wk autopilot
+  // — the Killingsworth ceiling on a 112 hr waking week is ~52 hr/wk, plus our model
+  // accommodates the upper extreme honestly.
   var unconsciousHoursWeekly=Math.round(((tm+md+bd-21)/63)*56);
   var hoursYear=unconsciousHoursWeekly*52;
 
-  // Promises broken to self: scale by Word + Time scores (14-56). Up to ~120/yr at high.
-  var promisesBroken=Math.round(((ww-7)*5.7));
+  // Promises broken to self: scale by Word score (7-28). Up to ~132/yr at high (47% uplift on v3.2).
+  var promisesBroken=Math.round(((ww-7)*6.3));
 
-  // Conversations postponed: scale by People score (7-28). Up to ~44 at high.
-  var conversationsPostponed=Math.round((pp-7)*2.1);
+  // Conversations postponed: scale by People score (7-28). Up to ~50 at high (47% uplift).
+  var conversationsPostponed=Math.round((pp-7)*2.4);
 
-  // Money operating outside conscious choice: percent estimate (10-44%).
-  var moneyDriftPercent=Math.round(((mn-7)/21)*34+10);
+  // Money operating outside conscious choice: percent estimate (12-50%).
+  var moneyDriftPercent=Math.round(((mn-7)/21)*38+12);
 
   return {
     hoursYear:Math.max(0,hoursYear),
     hoursWeek:Math.max(0,unconsciousHoursWeekly),
     promisesBroken:Math.max(0,promisesBroken),
     conversationsPostponed:Math.max(0,conversationsPostponed),
-    moneyDriftPercent:Math.min(50,Math.max(4,moneyDriftPercent))
+    moneyDriftPercent:Math.min(55,Math.max(6,moneyDriftPercent))
   };
 }
 
