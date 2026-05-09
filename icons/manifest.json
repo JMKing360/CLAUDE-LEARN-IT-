@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "shipped_in": "v3.6.0",
+  "author_attribution": "House of Mastery — Dr. Job Mogire, MD, FACC",
+  "design_system": {
+    "viewBox": "0 0 24 24",
+    "stroke": "currentColor",
+    "stroke_width": 1.5,
+    "stroke_linecap": "round",
+    "stroke_linejoin": "round",
+    "fill": "none",
+    "default_render_size": "48x48",
+    "intended_use_size_range": "16px – 320px"
+  },
+  "opacity_tiers": {
+    "ambient": {
+      "css_class": "icon--ambient",
+      "opacity": 0.06,
+      "use": "Large background marks behind hero text. Disappear faintly."
+    },
+    "featured": {
+      "css_class": "icon--featured",
+      "opacity": 0.32,
+      "use": "Medium decorative marks on cards (covenant entry section)."
+    },
+    "inline": {
+      "css_class": "icon--inline",
+      "opacity": 1.0,
+      "use": "Functional placement inside text or next to a label."
+    }
+  },
+  "brand_colours": {
+    "navy": "#0D1F3C",
+    "gold": "#C9973A",
+    "note": "Icons inherit colour via currentColor; brand colours are applied to the parent element."
+  },
+  "icons": [
+    {
+      "id": "icon-self",
+      "file": "icon-self.svg",
+      "category": "covenant",
+      "ordinal": 1,
+      "concept": "Self looking at self — the eye of awareness watching its own centre.",
+      "glyph_description": "Two concentric circles, small inside large.",
+      "used_for": ["KOORA covenant 1 (Self)", "Welcome constellation", "Days 0, 14, 30 (covenant entry, reaffirmation)"]
+    },
+    {
+      "id": "icon-body",
+      "file": "icon-body.svg",
+      "category": "covenant_and_chamber",
+      "ordinal": 2,
+      "concept": "The vessel that carries you.",
+      "glyph_description": "Heart in pure outline.",
+      "used_for": ["KOORA covenant 2 (Body)", "First Hour chamber 2 (Body)", "Welcome constellation", "Days 45, 60 (covenant entry, reaffirmation)"]
+    },
+    {
+      "id": "icon-craft",
+      "file": "icon-craft.svg",
+      "category": "covenant",
+      "ordinal": 3,
+      "concept": "Honouring the work entrusted to you.",
+      "glyph_description": "Chisel angled across the field, mid-stroke.",
+      "used_for": ["KOORA covenant 3 (Craft)", "Welcome constellation", "Days 75, 90"]
+    },
+    {
+      "id": "icon-people",
+      "file": "icon-people.svg",
+      "category": "covenant",
+      "ordinal": 4,
+      "concept": "Becoming different at home before being different anywhere else.",
+      "glyph_description": "Two figures, head-and-shoulders silhouettes, sharing a baseline.",
+      "used_for": ["KOORA covenant 4 (People)", "Welcome constellation", "Days 105, 120"]
+    },
+    {
+      "id": "icon-future",
+      "file": "icon-future.svg",
+      "category": "covenant",
+      "ordinal": 5,
+      "concept": "Acting on behalf of your seventy-year-old self.",
+      "glyph_description": "Horizon with a sun rising and an upward arrow.",
+      "used_for": ["KOORA covenant 5 (Future)", "Welcome constellation", "Days 135, 150"]
+    },
+    {
+      "id": "icon-world",
+      "file": "icon-world.svg",
+      "category": "covenant",
+      "ordinal": 6,
+      "concept": "Giving back from the life you have rebuilt.",
+      "glyph_description": "Globe with equator and two longitudinal arcs.",
+      "used_for": ["KOORA covenant 6 (World)", "Welcome constellation", "Days 165, 180"]
+    },
+    {
+      "id": "icon-mind",
+      "file": "icon-mind.svg",
+      "category": "chamber",
+      "ordinal": 1,
+      "concept": "The Mind that Stopped Thinking — borrowed opinions, scrolled certainties.",
+      "glyph_description": "Open notebook with horizontal rule lines.",
+      "used_for": ["First Hour chamber 1 (Mind)", "Welcome constellation"]
+    },
+    {
+      "id": "icon-word",
+      "file": "icon-word.svg",
+      "category": "chamber",
+      "ordinal": 3,
+      "concept": "The Word that Lost Weight — promises broken without ceremony.",
+      "glyph_description": "Three horizontal lines; bottom line scripted as a signature.",
+      "used_for": ["First Hour chamber 3 (Word)", "Welcome constellation"]
+    },
+    {
+      "id": "icon-time",
+      "file": "icon-time.svg",
+      "category": "chamber",
+      "ordinal": 4,
+      "concept": "The Time that Disappeared — years that cannot be accounted for.",
+      "glyph_description": "Hourglass — two triangles meeting at the waist.",
+      "used_for": ["First Hour chamber 4 (Time)", "Welcome constellation"]
+    },
+    {
+      "id": "icon-money",
+      "file": "icon-money.svg",
+      "category": "chamber",
+      "ordinal": 5,
+      "concept": "The Money that Owns You — inherited patterns, unspoken weight.",
+      "glyph_description": "Coin face inscribed with an S-curve dollar glyph.",
+      "used_for": ["First Hour chamber 5 (Money)", "Welcome constellation"]
+    },
+    {
+      "id": "icon-people-alt",
+      "file": "icon-people-alt.svg",
+      "category": "chamber",
+      "ordinal": 6,
+      "concept": "The People you are Performing With — performance over presence. Distinct from the covenant People glyph: the chamber is rendered as shared terrain, not as silhouettes.",
+      "glyph_description": "Mountain ridge with two peaks and a baseline floor.",
+      "used_for": ["First Hour chamber 6 (People)", "Welcome constellation"]
+    },
+    {
+      "id": "icon-complaining",
+      "file": "icon-complaining.svg",
+      "category": "reflex",
+      "ordinal": 1,
+      "concept": "Naming what is wrong faster than what to do about it.",
+      "glyph_description": "Speech bubble with two horizontal lines inside; tail descending.",
+      "used_for": ["KOORA reflex 1 (Complaining)", "Available for result-page reflex labels"]
+    },
+    {
+      "id": "icon-criticizing",
+      "file": "icon-criticizing.svg",
+      "category": "reflex",
+      "ordinal": 2,
+      "concept": "Letting the harshest inner voice have the final say.",
+      "glyph_description": "Circle with vertical stroke and dot — caution rendered as observation, not reprimand.",
+      "used_for": ["KOORA reflex 2 (Criticizing)", "Available for result-page reflex labels"]
+    },
+    {
+      "id": "icon-comparing",
+      "file": "icon-comparing.svg",
+      "category": "reflex",
+      "ordinal": 3,
+      "concept": "Losing your own ground when you see someone else's.",
+      "glyph_description": "Two parallel verticals with horizontal arms reaching across.",
+      "used_for": ["KOORA reflex 3 (Comparing)", "Available for result-page reflex labels"]
+    },
+    {
+      "id": "icon-competing",
+      "file": "icon-competing.svg",
+      "category": "reflex",
+      "ordinal": 4,
+      "concept": "Tracking the scoreboard instead of the work.",
+      "glyph_description": "Flag on a pole; flag billowing into a forked tail.",
+      "used_for": ["KOORA reflex 4 (Competing)", "Available for result-page reflex labels"]
+    },
+    {
+      "id": "icon-spark",
+      "file": "icon-spark.svg",
+      "category": "ornament",
+      "ordinal": null,
+      "concept": "A small ornamental mark for threshold transitions or section separators.",
+      "glyph_description": "Eight-point radiating star.",
+      "used_for": ["Optional decorative use"]
+    }
+  ]
+}
