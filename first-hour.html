@@ -7,11 +7,24 @@
 <meta name="description" content="THE FIRST HOUR, a six-chamber community audit by Dr. Job Mogire, MD, FACC, for the life you have been living without quite meaning to.">
 <meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The First Hour · House of Mastery">
+<meta property="og:description" content="A free six-chamber audit by Dr. Job Mogire, MD, FACP, FACC, for the life you have been living without quite meaning to.">
+<meta property="og:image" content="https://www.houseofmastery.co/first-hour-og.png">
+<meta property="og:url" content="https://www.houseofmastery.co/first-hour">
+<meta property="og:site_name" content="House of Mastery">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The First Hour · House of Mastery">
+<meta name="twitter:description" content="A free six-chamber audit. Don’t die with an unfinishing life.">
+<meta name="twitter:image" content="https://www.houseofmastery.co/first-hour-og.png">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
+<link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
+<link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"The First Hour","short_name":"First Hour","description":"A House of Mastery audit","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzBEMUYzQyIvPjx0ZXh0IHg9IjUwIiB5PSI3NCIgZm9udC1mYW1pbHk9IlNvdXJjZSBTZXJpZiA0LEdlb3JnaWEsc2VyaWYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZm9udC1zaXplPSI3NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPm08L3RleHQ+PC9zdmc+","sizes":"512x512","type":"image/svg+xml"}]}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+<!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -29,11 +42,27 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;col
   --amber:#C77700;--amber-soft:#FBF1DD;
   --red:#B22222;--red-soft:#FAE8E8;
 }
+@media (prefers-color-scheme: dark){
+  :root{
+    --navy:#7BA8FF;--navy-soft:#5C8DEB;
+    --gold:#E8B85A;--gold-soft:#F0CB7E;
+    --ink:#F2F2F4;--body:#D4D4D8;--mid:#9899A0;--dim:#6B6C72;
+    --rule:#3A3A40;--rule-soft:#2A2A30;
+    --surface:#0F1014;--surface-2:#16171C;--surface-3:#1D1E24;
+    --white:#16171C;
+    --green:#9CD9A4;--green-soft:#1F2D24;
+    --amber:#E0B065;--amber-soft:#2D2418;
+    --red:#F2B5B5;--red-soft:#2A1818;
+  }
+  body{background:var(--surface)}
+  nav{background:rgba(15,16,20,.92)}
+}
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;color:inherit}
 a{color:var(--navy);text-decoration:none}
 a:hover{color:var(--gold)}
 
+.skip-link:focus{left:18px;top:18px}
 #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 
 /* Six-segment chamber progress ,  visible architecture */
@@ -78,6 +107,17 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .screen.active{display:block}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes selpulse{0%{opacity:1}70%{opacity:1}100%{opacity:.78}}
+@keyframes blockReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+#screen-results.active .r-block{animation:blockReveal .5s cubic-bezier(.4,0,.2,1) backwards}
+#screen-results.active .r-block:nth-of-type(1){animation-delay:.05s}
+#screen-results.active .r-block:nth-of-type(2){animation-delay:.12s}
+#screen-results.active .r-block:nth-of-type(3){animation-delay:.19s}
+#screen-results.active .r-block:nth-of-type(4){animation-delay:.26s}
+#screen-results.active .r-block:nth-of-type(5){animation-delay:.33s}
+#screen-results.active .r-block:nth-of-type(6){animation-delay:.4s}
+#screen-results.active .r-block:nth-of-type(7){animation-delay:.47s}
+#screen-results.active .r-block:nth-of-type(8){animation-delay:.54s}
+@media (prefers-reduced-motion:reduce){#screen-results.active .r-block{animation:none}}
 
 .brand-stamp{font-family:var(--serif);font-weight:700;letter-spacing:.32em;color:var(--gold);font-size:11px;display:block;margin-bottom:14px;opacity:.86;text-transform:uppercase}
 
@@ -88,7 +128,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .hero em{font-style:italic;font-weight:600}
 .lede{font-family:var(--serif);font-size:clamp(20px,2.8vw,25px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:20px;letter-spacing:-.005em}
 .lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
+.body-text{font-family:var(--sans);font-size:clamp(15.5px,1.6vw,17px);font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
 .field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;display:block}
 .field-input{display:block;width:100%;max-width:480px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
@@ -291,6 +331,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </style>
 </head>
 <body>
+<a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none">Skip to assessment</a>
 <div id="progress"></div>
 <div id="chamber-progress" aria-hidden="true">
   <div class="cp-seg" data-ch="1"></div>
@@ -355,7 +396,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <div class="field-stack">
     <label class="field-label" for="participantEmail">Your email</label>
     <input class="field-input" type="email" id="participantEmail" placeholder="your@email.com" autocomplete="email">
-    <p class="consent-line">We send your full report to this email and one reminder thirty days from now to retake your first hour. We do not sell your data. You can unsubscribe at any time. Replies go to <b>mail@mogire.com</b>.</p>
+    <p class="consent-line">We send your full report to this email and one reminder thirty days from now to retake your first hour. We do not sell your data. You can unsubscribe at any time. Replies go to <b>mail@mogire.com</b>. Read our <a href="/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
   </div>
 
   <div class="welcome-cta">
@@ -547,56 +588,235 @@ var STORAGE_KEY='hom_firsthour_history_v2';
 var AUTO_ADVANCE_MS=1500;
 
 var OPTIONS=[
-  {label:'Rarely or never',score:1,key:'A'},
-  {label:'Sometimes',score:2,key:'B'},
-  {label:'Often',score:3,key:'C'},
-  {label:'Most of the time',score:4,key:'D'}
+  {label:'Almost never',score:1,key:'A'},
+  {label:'Some weeks',score:2,key:'B'},
+  {label:'Most weeks',score:3,key:'C'},
+  {label:'This is how I live',score:4,key:'D'}
 ];
 
-// 42 questions across 6 chambers, 7 per chamber, expanded to cover the top 20 East African pain points
+// 42 items across 6 chambers, each with 3 tier variants (start / mid / end).
 var QUESTIONS=[
-  {n:1, sec:1,sn:'The Mind that Stopped Thinking', text:'I have not had a thought I would call entirely my own in the past month.'},
-  {n:2, sec:1,sn:'The Mind that Stopped Thinking', text:'I share opinions I formed by scrolling, not by thinking.'},
-  {n:3, sec:1,sn:'The Mind that Stopped Thinking', text:'I cannot remember the last time I changed my mind on something that actually matters.'},
-  {n:4, sec:1,sn:'The Mind that Stopped Thinking', text:'My positions on most things were already inside me before I read anything about them.'},
-  {n:5, sec:1,sn:'The Mind that Stopped Thinking', text:'The voice in my head sounds more like my parents, my pastor, or my employer than like me.'},
-  {n:6, sec:1,sn:'The Mind that Stopped Thinking', text:'When I ask why I believe what I believe, I do not have a clean answer.'},
-  {n:7, sec:1,sn:'The Mind that Stopped Thinking', text:'I have read enough books, taken enough courses, and listened to enough podcasts. The pattern has not changed.'},
-  {n:8, sec:2,sn:'The Body that Got Forgotten',     text:'I treat my body as a vehicle to get me through the week.'},
-  {n:9, sec:2,sn:'The Body that Got Forgotten',     text:'My body is carrying pain I have not named to anyone.'},
-  {n:10,sec:2,sn:'The Body that Got Forgotten',     text:'I am tired in ways sleep does not fix.'},
-  {n:11,sec:2,sn:'The Body that Got Forgotten',     text:'I have medicated feelings I have not asked what they are.'},
-  {n:12,sec:2,sn:'The Body that Got Forgotten',     text:'The last time I moved my body just for joy, not to manage it, I cannot quite remember.'},
-  {n:13,sec:2,sn:'The Body that Got Forgotten',     text:'There are appointments with my body I keep postponing.'},
-  {n:14,sec:2,sn:'The Body that Got Forgotten',     text:'There is an hour at night when my mind audits my life, and the audit will not let me sleep through it.'},
-  {n:15,sec:3,sn:'The Word that Lost Weight',       text:'The promises I most easily break are the ones I make to myself.'},
-  {n:16,sec:3,sn:'The Word that Lost Weight',       text:'I have stopped trusting my own commitments to myself.'},
-  {n:17,sec:3,sn:'The Word that Lost Weight',       text:'I make resolutions and quietly let them die.'},
-  {n:18,sec:3,sn:'The Word that Lost Weight',       text:'My word to others is more reliable than my word to me.'},
-  {n:19,sec:3,sn:'The Word that Lost Weight',       text:'I can list things I told myself I would do this year, and have not.'},
-  {n:20,sec:3,sn:'The Word that Lost Weight',       text:'When I think of those unkept promises, something inside me tightens.'},
-  {n:21,sec:3,sn:'The Word that Lost Weight',       text:'There is a piece of work that, if I died with it unfinished, would be The Unfinishing Life. I am postponing it.'},
-  {n:22,sec:4,sn:'The Time that Disappeared',       text:'I cannot fully account for what the past five years actually built.'},
-  {n:23,sec:4,sn:'The Time that Disappeared',       text:'I am older than I expected to be, without becoming who I expected to be.'},
-  {n:24,sec:4,sn:'The Time that Disappeared',       text:'The days are full but the year feels empty.'},
-  {n:25,sec:4,sn:'The Time that Disappeared',       text:'I have been telling myself "next quarter" for several quarters in a row.'},
-  {n:26,sec:4,sn:'The Time that Disappeared',       text:'The years pass faster every year, and I do not know why.'},
-  {n:27,sec:4,sn:'The Time that Disappeared',       text:'I am running out of "later" and somewhere I know it.'},
-  {n:28,sec:4,sn:'The Time that Disappeared',       text:'I have been telling myself "this year is different" for several years in a row.'},
-  {n:29,sec:5,sn:'The Money that Owns You',         text:'My financial decisions are reactions, not chosen positions.'},
-  {n:30,sec:5,sn:'The Money that Owns You',         text:'I earn more now than I once dreamed of, and I am not actually freer.'},
-  {n:31,sec:5,sn:'The Money that Owns You',         text:'I carry financial weight that is not mine, and I cannot put it down.'},
-  {n:32,sec:5,sn:'The Money that Owns You',         text:'I spend on things that prove a story about me to people I do not particularly like.'},
-  {n:33,sec:5,sn:'The Money that Owns You',         text:'I avoid looking at my money, because looking is uncomfortable.'},
-  {n:34,sec:5,sn:'The Money that Owns You',         text:'My money operates by rules I never consciously set.'},
-  {n:35,sec:5,sn:'The Money that Owns You',         text:'Each pay rise has been absorbed by the next standard of living, not by freedom.'},
-  {n:36,sec:6,sn:'The People you are Performing With', text:'I perform a version of me at home, another at work, another with friends.'},
-  {n:37,sec:6,sn:'The People you are Performing With', text:'I have stopped showing the people closest to me what is actually true for me.'},
-  {n:38,sec:6,sn:'The People you are Performing With', text:'The conversations I most need to have are the ones I keep avoiding.'},
-  {n:39,sec:6,sn:'The People you are Performing With', text:'I am lonely in rooms full of people who think they know me.'},
-  {n:40,sec:6,sn:'The People you are Performing With', text:'I keep score with people I claim to love.'},
-  {n:41,sec:6,sn:'The People you are Performing With', text:'I have not been honest with the person closest to me about the cost of staying as I am.'},
-  {n:42,sec:6,sn:'The People you are Performing With', text:'The children in my life are learning my pattern of incompletion from how I live, not from what I tell them.'}
+  // Chamber 1: The Mind that Stopped Thinking
+  {n:1, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When I form an opinion, I find I scrolled into it more than I thought into it.',
+    'When I form an opinion, I am beginning to notice whether it is mine or borrowed.',
+    'When I form an opinion, I can usually trace its origin before I act on it.'
+  ]},
+  {n:2, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When someone says something I disagree with, I nod because disagreeing is too tiring.',
+    'When someone says something I disagree with, I notice the nod before I give it.',
+    'When someone says something I disagree with, I can hold my position without needing to win.'
+  ]},
+  {n:3, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When I look for the last time I genuinely changed my mind on something that mattered, I draw a blank.',
+    'When I look for the last time I changed my mind, I can name one moment, even if barely.',
+    'When I look for the last time I changed my mind, the moment is recent enough that I remember it clearly.'
+  ]},
+  {n:4, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When I hear my inner voice, it sounds more like the people who raised me than like me.',
+    'When I hear my inner voice, I am beginning to notice whose voice is speaking through me.',
+    'When I hear my inner voice, I can recognise it as my own.'
+  ]},
+  {n:5, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When a problem comes back to my mind, I replay it without arriving at any decision.',
+    'When a problem comes back to my mind, I notice the loop before I sink into it again.',
+    'When a problem comes back to my mind, I close the loop with a decision, even a small one.'
+  ]},
+  {n:6, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When I wake at three in the morning, my mind audits my life and I cannot pass back through the audit.',
+    'When I wake at three in the morning, I am beginning to recognise the audit as a pattern, not the truth.',
+    'When I wake at three in the morning, the audit is shorter than it used to be.'
+  ]},
+  {n:7, sec:1, sn:'The Mind that Stopped Thinking', text:[
+    'When I imagine becoming someone who thinks their own thoughts again, I want it more than I let myself say out loud.',
+    'When I imagine becoming someone who thinks their own thoughts, I am beginning to recognise that person in my own behaviour.',
+    'When I imagine someone who thinks their own thoughts, I am no longer waiting to begin.'
+  ]},
+
+  // Chamber 2: The Body that Got Forgotten
+  {n:8, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When my body asks for something, I treat it as a vehicle that just needs to get me through the week.',
+    'When my body asks for something, I am beginning to listen the same day.',
+    'When my body asks for something, I respond as if it is my closest counsel.'
+  ]},
+  {n:9, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When my body sends pain or fatigue, I push it down and keep moving.',
+    'When my body sends pain or fatigue, I name it before I push past it.',
+    'When my body sends pain or fatigue, I treat it as information rather than interruption.'
+  ]},
+  {n:10, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When I sleep, the rest does not reach the bottom of me.',
+    'When I sleep, I am noticing what reaches and what does not.',
+    'When I sleep, the rest reaches further than it used to.'
+  ]},
+  {n:11, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When a feeling rises that I would rather not feel, I medicate it before I ask what it is.',
+    'When a feeling rises that I would rather not feel, I am beginning to ask what it is first.',
+    'When a feeling rises, I can usually meet it without needing to medicate.'
+  ]},
+  {n:12, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When I think of the last time I moved my body purely for joy, not for management, I cannot quite remember.',
+    'When I think of the last time I moved my body for joy, it is recent enough to remember.',
+    'When I think of the last time I moved my body for joy, it was this week, by my own choice.'
+  ]},
+  {n:13, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When the body asks for an appointment I have been postponing, I postpone it again.',
+    'When the body asks for an appointment, I am beginning to make it before the situation forces it.',
+    'When the body asks for an appointment, I make it the same week.'
+  ]},
+  {n:14, sec:2, sn:'The Body that Got Forgotten', text:[
+    'When I imagine my body at sixty, seventy, eighty, I want a vessel that still carries me. I want this badly enough to act today.',
+    'When I imagine my body at sixty, seventy, eighty, I am beginning to act for that future.',
+    'When I imagine my body at sixty, seventy, eighty, I am acting for it now.'
+  ]},
+
+  // Chamber 3: The Word that Lost Weight
+  {n:15, sec:3, sn:'The Word that Lost Weight', text:[
+    'When I make a promise, the ones I most easily break are the ones I make to myself.',
+    'When I make a promise to myself, I am beginning to notice the doubt before I commit.',
+    'When I make a promise to myself, the doubt is quieter than it used to be.'
+  ]},
+  {n:16, sec:3, sn:'The Word that Lost Weight', text:[
+    'When I make a new commitment to myself, part of me already knows I will not keep it.',
+    'When I make a new commitment, I am beginning to ask honestly whether I can keep this one.',
+    'When I make a new commitment, I usually keep it, or I do not make it.'
+  ]},
+  {n:17, sec:3, sn:'The Word that Lost Weight', text:[
+    'When a resolution starts to fade, I let it die quietly and pretend it did not happen.',
+    'When a resolution starts to fade, I am beginning to name it rather than let it disappear.',
+    'When a resolution starts to fade, I either return to it or release it cleanly.'
+  ]},
+  {n:18, sec:3, sn:'The Word that Lost Weight', text:[
+    'When my word is on the line, I am more reliable to other people than to myself.',
+    'When my word is on the line, I notice the asymmetry and I am beginning to close it.',
+    'When my word is on the line, I treat my own as I treat anyone else’s.'
+  ]},
+  {n:19, sec:3, sn:'The Word that Lost Weight', text:[
+    'When I list the things I told myself I would do this year and have not, the list is long.',
+    'When I list the things I told myself I would do, the list is shorter and more honest.',
+    'When I list the things I told myself I would do, most are done, in motion, or consciously released.'
+  ]},
+  {n:20, sec:3, sn:'The Word that Lost Weight', text:[
+    'When I think of my unkept promises, something in my chest or stomach tightens.',
+    'When I think of my unkept promises, I notice the tightening and stay with it.',
+    'When I think of my unkept promises, the list is short enough that the tightening is brief.'
+  ]},
+  {n:21, sec:3, sn:'The Word that Lost Weight', text:[
+    'When I imagine being someone whose word holds, I want this more than I want most of what I am chasing.',
+    'When I imagine being someone whose word holds, I am beginning to live like it.',
+    'When I imagine being someone whose word holds, I am that person, more days than not.'
+  ]},
+
+  // Chamber 4: The Time that Disappeared
+  {n:22, sec:4, sn:'The Time that Disappeared', text:[
+    'When I look honestly at what the past five years actually built, I cannot fully account for them.',
+    'When I look at what the past five years built, I can name some, even if not all.',
+    'When I look at what the past five years built, I see the work.'
+  ]},
+  {n:23, sec:4, sn:'The Time that Disappeared', text:[
+    'When I notice my age, I am older than I expected to be without becoming who I expected to be.',
+    'When I notice my age, I am beginning to close the gap between expectation and life.',
+    'When I notice my age, who I am is closer to who I want to be than I once thought possible.'
+  ]},
+  {n:24, sec:4, sn:'The Time that Disappeared', text:[
+    'When I look at how my year is shaping up, the days are full but the year feels thin.',
+    'When I look at my year, I am beginning to see what the days are actually building.',
+    'When I look at my year, the year is full because the days have been kept.'
+  ]},
+  {n:25, sec:4, sn:'The Time that Disappeared', text:[
+    'When I think of when I will start what I have been postponing, I find myself saying "next quarter" again.',
+    'When I think of when I will start, I notice the "next quarter" move and I refuse it.',
+    'When I think of when I will start, the answer is now or a specific date.'
+  ]},
+  {n:26, sec:4, sn:'The Time that Disappeared', text:[
+    'When I notice how time has been moving, the years pass faster every year, and I do not know why.',
+    'When I notice how time is moving, I am beginning to slow it down by what I do with it.',
+    'When I notice how time is moving, my years carry weight rather than slipping past.'
+  ]},
+  {n:27, sec:4, sn:'The Time that Disappeared', text:[
+    'When I think of "later," I know somewhere that I am running out of it.',
+    'When I think of "later," I am beginning to convert it into now where I can.',
+    'When I think of "later," it is rarer in my vocabulary than it used to be.'
+  ]},
+  {n:28, sec:4, sn:'The Time that Disappeared', text:[
+    'When I imagine the year I would call honest, I want it badly. I am tired of the gap between calendar and life.',
+    'When I imagine the year I would call honest, I am beginning to live it in patches.',
+    'When I imagine the year I would call honest, I am living it.'
+  ]},
+
+  // Chamber 5: The Money that Owns You
+  {n:29, sec:5, sn:'The Money that Owns You', text:[
+    'When I make a financial decision, it is more often a reaction than a chosen position.',
+    'When I make a financial decision, I am beginning to notice the reaction before I act on it.',
+    'When I make a financial decision, I act from a position I have actually chosen.'
+  ]},
+  {n:30, sec:5, sn:'The Money that Owns You', text:[
+    'When I look at how much I earn now compared to once, I am not actually freer.',
+    'When I look at how much I earn, I am beginning to see what would actually free me.',
+    'When I look at how much I earn, the earning has begun to translate into freedom.'
+  ]},
+  {n:31, sec:5, sn:'The Money that Owns You', text:[
+    'When I look at the financial weight I carry, much of it is not mine, and I cannot put it down.',
+    'When I look at the financial weight I carry, I am beginning to separate what is mine from what is not.',
+    'When I look at the financial weight I carry, I carry mine and I have set down what is not.'
+  ]},
+  {n:32, sec:5, sn:'The Money that Owns You', text:[
+    'When I spend, I sometimes spend on things to prove a story about me to people I do not particularly like.',
+    'When I spend, I am beginning to notice the proving move before I make the purchase.',
+    'When I spend, I spend on what I actually want, not on a story for someone else.'
+  ]},
+  {n:33, sec:5, sn:'The Money that Owns You', text:[
+    'When I think about my money, I avoid looking because looking is uncomfortable.',
+    'When I think about my money, I am beginning to look despite the discomfort.',
+    'When I think about my money, I look. The discomfort is workable.'
+  ]},
+  {n:34, sec:5, sn:'The Money that Owns You', text:[
+    'When I notice my money behaving, it operates by rules I never consciously set.',
+    'When I notice my money behaving, I am beginning to surface the rules and choose new ones.',
+    'When I notice my money behaving, it operates by rules I now consciously hold.'
+  ]},
+  {n:35, sec:5, sn:'The Money that Owns You', text:[
+    'When I imagine money behaving as a tool I direct rather than a force that directs me, I want this more than I let myself acknowledge.',
+    'When I imagine money as a tool I direct, I am beginning to act like its director.',
+    'When I imagine money as a tool I direct, I direct it.'
+  ]},
+
+  // Chamber 6: The People you are Performing With
+  {n:36, sec:6, sn:'The People you are Performing With', text:[
+    'When I move between home, work, and friends, I perform a different version of me in each room.',
+    'When I move between rooms, I am beginning to notice the performance and let some of it drop.',
+    'When I move between rooms, the same self shows up in each.'
+  ]},
+  {n:37, sec:6, sn:'The People you are Performing With', text:[
+    'When I am with the people closest to me, I have stopped showing them what is actually true for me.',
+    'When I am with the people closest to me, I am beginning to risk the truth again.',
+    'When I am with the people closest to me, what is true for me is what they meet.'
+  ]},
+  {n:38, sec:6, sn:'The People you are Performing With', text:[
+    'When I think of the conversations I most need to have, they are the ones I keep avoiding.',
+    'When I think of the conversations I most need to have, I am beginning to make them happen.',
+    'When I think of the conversations I most need to have, the queue is short.'
+  ]},
+  {n:39, sec:6, sn:'The People you are Performing With', text:[
+    'When I am in a room full of people who think they know me, I am lonely there.',
+    'When I am in a room full of people who think they know me, I am beginning to let myself be known.',
+    'When I am in a room of people who know me, the loneliness is rare because the room is not full of strangers wearing my face.'
+  ]},
+  {n:40, sec:6, sn:'The People you are Performing With', text:[
+    'When I am with people I claim to love, I notice myself keeping score.',
+    'When I am with people I claim to love, I notice the score-keeping and let it go more often.',
+    'When I am with people I love, I am not running a ledger.'
+  ]},
+  {n:41, sec:6, sn:'The People you are Performing With', text:[
+    'When I am with the person closest to me, I have not been honest about what staying as I am is costing both of us.',
+    'When I am with the person closest to me, I am beginning to name the cost out loud.',
+    'When I am with the person closest to me, the cost has been named, the conversation has been had, and we are walking forward.'
+  ]},
+  {n:42, sec:6, sn:'The People you are Performing With', text:[
+    'When I imagine the children in my life looking back at how I lived, I do not want incompletion to be what they inherit. I want this enough to act today.',
+    'When I imagine the children in my life looking back, I am beginning to act for the inheritance I want them to receive.',
+    'When I imagine the children in my life looking back, what they inherit will be different from what I inherited.'
+  ]}
 ];
 
 var CHAMBERS=[
@@ -685,6 +905,10 @@ function countUpEl(el,target,duration,format){
   requestAnimationFrame(tick);
 }
 
+function loadInProgress(){
+  try{var raw=localStorage.getItem('hom_firsthour_inprogress');if(!raw)return null;var d=JSON.parse(raw);if(!d||!d.answers||Object.keys(d.answers).length===0)return null;return d}catch(e){return null}
+}
+function clearInProgress(){try{localStorage.removeItem('hom_firsthour_inprogress')}catch(e){}}
 document.addEventListener('DOMContentLoaded',function(){
   // Pre-fill from URL params (for retake links from email)
   try{
@@ -803,7 +1027,11 @@ function renderQuestion(n){
   var q=QUESTIONS[n-1];
   document.getElementById('qSection').textContent='Chamber '+q.sec+' of 6 · '+q.sn;
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
-  document.getElementById('qText').textContent=q.text;
+  // Pick tier variant: tier 1-2 -> 0 (start), 3-4 -> 1 (mid), 5-6 -> 2 (end)
+  var variantIdx=0;
+  if(typeof retakeTier==='function'){var rt=retakeTier();variantIdx=rt<=2?0:rt<=4?1:2}
+  var qText=Array.isArray(q.text)?q.text[Math.min(2,Math.max(0,variantIdx))]:q.text;
+  document.getElementById('qText').textContent=qText;
   document.getElementById('qPrompt').textContent=chamberPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
   setChamberProgress(q.sec);
@@ -821,6 +1049,8 @@ function renderQuestion(n){
 }
 function selectOption(n,score){
   answers[n]=score;
+  // Autosave in-progress assessment so refresh does not lose work
+  try{localStorage.setItem('hom_firsthour_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,email:participantEmail,started:Date.now()}))}catch(e){}
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   cancelAdvance();
@@ -919,6 +1149,7 @@ function fiveYearForecast(){
 // Finish
 function finishAssessment(){
   setProgress(100);
+  clearInProgress();
   var rec=buildRecord();
   appendRecord(rec);
   buildResults(rec);
@@ -1143,8 +1374,23 @@ function buildEmailPayload(rec){
 }
 
 // PDF
+var JSPDF_LOADING=null;
+function ensureJsPdf(){
+  if(typeof window.jspdf!=='undefined'){return Promise.resolve()}
+  if(JSPDF_LOADING)return JSPDF_LOADING;
+  JSPDF_LOADING=new Promise(function(resolve,reject){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.crossOrigin='anonymous';s.onload=resolve;s.onerror=reject;
+    document.head.appendChild(s);
+  });
+  return JSPDF_LOADING;
+}
 function downloadPDF(){
-  if(!JSPDF_OK||typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
+  ensureJsPdf().then(function(){_downloadPDF()}).catch(function(){alert('PDF script could not be loaded. Check connection and try again.')});
+}
+function _downloadPDF(){
+  if(typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
   var rec=lastResults;if(!rec)return;
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
