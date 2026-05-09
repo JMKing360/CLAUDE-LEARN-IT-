@@ -355,6 +355,14 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .result-end-transition{margin:48px 0 32px;padding:40px 32px;background:var(--surface-2);border-radius:18px;text-align:center;border:1px solid var(--rule-soft)}
 .result-end-transition__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;color:var(--ink);margin:0 0 14px;letter-spacing:-.012em;line-height:1.2}
 .result-end-transition__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(15.5px,2vw,17px);font-weight:500;color:var(--body);line-height:1.55;margin:0 auto 24px;max-width:560px}
+.intent-checklist{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:10px}
+.intent-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s}
+.intent-item:hover{border-color:var(--gold-soft)}
+.intent-item input[type=checkbox]{flex-shrink:0;width:18px;height:18px;accent-color:var(--gold);margin-top:2px;cursor:pointer}
+.intent-item:has(input:checked){border-color:var(--gold);background:#FAF6EC}
+.intent-letter{flex-shrink:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:18px;font-weight:800;color:var(--gold);width:22px;text-align:center;letter-spacing:0;line-height:1.1;margin-top:1px}
+.intent-text{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
+.intent-action{display:block;font-size:12.5px;font-weight:500;color:var(--body);margin-top:4px;letter-spacing:.005em;line-height:1.45}
 .seal-intro{margin:8px 0 28px}
 .seal-intro__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:700;color:var(--ink);margin:0 0 10px;letter-spacing:-.012em;line-height:1.2}
 .seal-intro__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(15px,2vw,16.5px);font-weight:500;color:var(--body);line-height:1.55;margin:0;max-width:640px}
@@ -975,7 +983,7 @@ body.footer-hidden footer{display:none}
 <!-- ACKNOWLEDGMENT (between final question and results) -->
 <section class="screen" id="screen-ack">
   <h2 class="ack-h1" id="ackH1">You finished.</h2>
-  <p class="ack-text" id="ackText">Sixty items. That is harder than it sounds — especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
+  <p class="ack-text" id="ackText">Sixty items. That is harder than it sounds. Especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px;background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em">SHOW ME :)</button>
 </section>
 
@@ -1033,13 +1041,13 @@ body.footer-hidden footer{display:none}
   <div class="tbl-block">
     <span class="tbl-h">The Four Fundamental Needs</span>
     <table class="dtable" id="needTable"></table>
-    <p class="narrative-read">Every need always gets fed. The only question is whether you feed it with the real thing, or with a false substitute. <b>Filled</b> is how much each need was met by the real thing. <b>Substituted</b> is how much you reached for the counterfeit. High filled with low substituted is health. <b>The reverse is the warning — where the substitute is loudest, the real need is most starved.</b></p>
+    <p class="narrative-read">Every need always gets fed. The only question is whether you feed it with the real thing, or with a false substitute. <b>Filled</b> is how much each need was met by the real thing. <b>Substituted</b> is how much you reached for the counterfeit. High filled with low substituted is health. <b>The reverse is the warning. Where the substitute is loudest, the real need is most starved.</b></p>
   </div>
 
   <div class="tbl-block">
     <span class="tbl-h">The Forces of Necessity</span>
     <table class="dtable" id="forceTable"></table>
-    <p class="narrative-read">The four forces work together, not separately. Most people carry a bit of each — <b>Duty</b> (whom you honour), <b>Opus</b> (what you were given to build), <b>Declaration</b> (what you put on record), <b>Identity</b> (who you must become). <b>Real power lies in having a lot of each, all working together.</b></p>
+    <p class="narrative-read">The four forces work together, not separately. Most people carry a bit of each. <b>Duty</b> (whom you honour), <b>Opus</b> (what you were given to build), <b>Declaration</b> (what you put on record), <b>Identity</b> (who you must become). <b>Real power lies in having a lot of each, all working together.</b></p>
   </div>
 
   <div class="tbl-block">
@@ -1051,7 +1059,7 @@ body.footer-hidden footer{display:none}
   <div class="tbl-block">
     <span class="tbl-h">The Four Faculties of Fidelity</span>
     <table class="dtable" id="facTable"></table>
-    <p class="narrative-read"><b>Attention</b>, <b>Allegiance</b>, <b>Integrity</b>, <b>Return</b> — these are the four inner faculties the reflexes break. When measured directly, they show you exactly where the repair is asked. <b>The lowest score is your next move; the highest is the strength to lean on while you make it.</b></p>
+    <p class="narrative-read"><b>Attention</b>, <b>Allegiance</b>, <b>Integrity</b>, <b>Return</b>. These are the four inner faculties the reflexes break. When measured directly, they show you exactly where the repair is asked. <b>The lowest score is your next move; the highest is the strength to lean on while you make it.</b></p>
   </div>
 
   <div class="tbl-block">
@@ -1112,8 +1120,8 @@ body.footer-hidden footer{display:none}
         <div class="self-quote-text" id="selfQuoteText"></div>
       </div>
       <p class="pain-q-secondary" style="margin-top:36px">When tomorrow begins, I will...</p>
-      <p class="pain-sub">One specific sentence. The smallest first move you can make in the next twenty-four hours. If-then planning is the bridge between insight and behaviour.</p>
-      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." onblur="persistIntent()"></textarea>
+      <p class="pain-sub">Pick one or more positive moves you will take in the next twenty-four hours. These map to the U.N.F.I.N.I.S.H.E.D. patterns.</p>
+      <div id="intentChecklist" class="intent-checklist"></div>
     </div>
   </div>
 
@@ -1616,12 +1624,12 @@ var QUESTIONS=[
     'The question is asked. The day is sealed.'
   ], rev:true},
   {n:47, sec:5,sn:'Faculties of agency', dom:'The 24-hour return', text:[
-    'I am consistent when life is predictable. When things change — travel, a hard week, anything unfamiliar — I lose my rhythm.',
+    'I am consistent when life is predictable. When things change, like travel or a hard week, I lose my rhythm.',
     'My body knows when the rhythm breaks before my mind names what changed.',
     'I am beginning to hold my rhythm through small disruptions, not only quiet weeks.',
     'The people around me see me hold steady through travel and change.',
     'I am becoming the kind of person whose rhythm holds through disruption.',
-    'My rhythm holds through disruption — travel, hard weeks, the unexpected.'
+    'My rhythm holds through disruption, whether travel, hard weeks, or the unexpected.'
   ], rev:true},
   {n:48, sec:5,sn:'Faculties of agency', dom:'The Friday cohort', text:[
     'I am tired at the end of most days. By Friday, I can barely wake up, let alone show up fully to what matters.',
@@ -1674,7 +1682,7 @@ var QUESTIONS=[
     'What people see is what is true. The mask is gone.'
   ]},
   {n:54, sec:6,sn:'Where you are now', dom:'Inventory clarity', text:[
-    'When I look at my goals, my pending business, my overdue tasks — for most of them, I am not clear what the next honest move would be.',
+    'When I look at my goals, my pending business, my overdue tasks, I am not clear what the next honest move would be for most of them.',
     'My body recognises the unfinished as a weight that wants laying down.',
     'For at least three of my open goals or tasks, I am clear on the next honest move.',
     'The people who would notice me closing things see closure happening.',
@@ -1845,7 +1853,7 @@ var COVENANT_ENTRY={
        'My calendar this week looks nothing like the life I claim I want.',
        'I am better at beginning than at finishing, and I feel the weight of every unfinished thing.',
        'There is a project at ninety percent that I cannot bring myself to close, and I am scared of why.',
-       'If I had ninety days fully given to one thing, I know which thing it would be — and I have not given it.'
+       'If I had ninety days fully given to one thing, I know which thing it would be. And I have not given it.'
      ],
      threshold:'If any of this is true, your work is waiting. The Craft covenant is the work of honouring what was given to you. Continue.'},
   4:{name:'People', eyebrow:'You are entering the People covenant',
@@ -1866,7 +1874,7 @@ var COVENANT_ENTRY={
        'There is a person I keep promising I will become, and I keep finding ways to delay her arrival.',
        'There is a version of me five years from now I am betraying with how I am living right now.',
        'My calendar, my money, and my habits do not yet match the person I claim I am becoming.',
-       'I am closer than I was, and still not where I want to be — and I feel that distance every day.',
+       'I am closer than I was, and still not where I want to be. And I feel that distance every day.',
        'The seventy-year-old version of me would forgive me for slowness but not for staying.'
      ],
      threshold:'If any of this sits in you, the future you is waiting. The Future covenant is the work of stopping the quiet betrayal of who you are becoming. Continue.'},
@@ -1918,7 +1926,7 @@ function renderCovenantEntry(day){
 var COVENANTS=[
   {month:1,name:'Self',  promise:'I will stop abandoning myself.',practice:'I keep one daily promise to myself.',evidence:'I am willing to build proof that I am trusting myself again.'},
   {month:2,name:'Body',  promise:'I will stop treating my body as disposable.',practice:'I protect rest, movement, nourishment, and attention.',evidence:'I am willing to build the kind of body that still carries me at sixty, seventy, eighty.'},
-  {month:3,name:'Craft', promise:'I will honor the work entrusted to me.',practice:'I serve the work daily. The work does not serve me.',evidence:'I am willing to build a track record of finishing — not perfect, finished.'},
+  {month:3,name:'Craft', promise:'I will honor the work entrusted to me.',practice:'I serve the work daily. The work does not serve me.',evidence:'I am willing to build a track record of finishing. Not perfect, finished.'},
   {month:4,name:'People',promise:'I will become different at home before I am different anywhere else.',practice:'I repair what I broke. I show up when I said I would.',evidence:'I am willing to build a self the people closest to me can feel, not just hear about.'},
   {month:5,name:'Future',promise:'I will stop betraying the person I am becoming.',practice:'I act on behalf of the seventy-year-old version of me.',evidence:'I am willing to build a calendar, money, and habits that agree with my future.'},
   {month:6,name:'World', promise:'I will give back from the life I have rebuilt.',practice:'I do not abandon the work for easier invitations. I make one public contribution.',evidence:'I am willing to build proof that I came back stronger, and gave something back.'}
@@ -1931,7 +1939,7 @@ var TRANSITIONS=[
   {q:31,eyebrow:'You are halfway. Notice it.',h:'Are your needs being filled or soothed with false substitutes?',text:'That was the question. Now name what moves you forward, and what you have been holding.'},
   {q:35,eyebrow:'The four forces are named',h:'{name,}you have just explored the four forces of necessity.',text:'They are the architecture that holds you every season. Next, the fidelities that shape your world.'},
   {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the practice and the faculties that overcome the sneaky reflexes that keep you stuck. <b>If you work them.</b>'},
-  {q:49,eyebrow:'The pit stop',h:'{name,}you just proved you can <em>finish</em>.',text:'Most who start this never finish it. You did. Eleven items remain — the inner experience itself, the most important part. Be willing to see yourself without defending. <b>Ready for the final push{,name}?</b>'}
+  {q:49,eyebrow:'The pit stop',h:'{name,}you just proved you can <em>finish</em>.',text:'Most who start this never finish it. You did. Eleven items remain. The inner experience itself, the most important part. Be willing to see yourself without defending. <b>Ready for the final push{,name}?</b>'}
 ];
 
 // Name placeholders. With participantName set:
@@ -2390,7 +2398,7 @@ function exitTransition(){
 
 function enterAck(){
   document.getElementById('ackH1').innerHTML=personalize('{name,}you finished.');
-  document.getElementById('ackText').innerHTML=personalize('Sixty items. That is harder than it sounds — especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result{,name}?</b>');
+  document.getElementById('ackText').innerHTML=personalize('Sixty items. That is harder than it sounds. Especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result{,name}?</b>');
   hideChamberProgress();show('screen-ack');setProgress(100);
 }
 function afterAck(){
@@ -2492,7 +2500,7 @@ function buildResults(rec){
   var seal=document.getElementById('sealSection');if(seal)seal.style.display='none';
   var trans=document.getElementById('resultEndTransition');if(trans)trans.style.display='block';
   var sH=document.getElementById('sealIntroH');if(sH)sH.innerHTML=personalize('Congratulations again{,name}.');
-  var sT=document.getElementById('sealIntroText');if(sT)sT.innerHTML='You did not just complete the assessment — you are ready to seal. The pattern that has been running you is now named, and named patterns can break. <b>Just three more moves and you are done.</b>';
+  var sT=document.getElementById('sealIntroText');if(sT)sT.innerHTML='You did not just complete the assessment. You are ready to seal. The pattern that has been running you is now named, and named patterns can break. <b>Just three more moves and you are done.</b>';
   if(typeof rec.enrolled==='boolean')participantEnrolled=rec.enrolled;
   var prior=null;var hist=priorRecords(rec.name);
   for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
@@ -2556,6 +2564,7 @@ function buildResults(rec){
   renderMovement(prior);
   renderCovenant(rec.day);
   renderThreshold();
+  renderIntentChecklist();
   renderCohortCta(returnIdx);
 
   // Reset participant inputs
@@ -2602,11 +2611,34 @@ function renderAnchoredOpener(prior){
   sub2.parentNode.insertBefore(div,sub2.nextSibling);
 }
 
+var INTENT_ACTIONS=[
+  {key:'U',letter:'U',name:'Unkept Promises',action:'Keep one small promise to myself today.'},
+  {key:'N1',letter:'N',name:'Negotiating Constantly',action:'Stop bargaining. Do the thing now.'},
+  {key:'F',letter:'F',name:'Fragmented Identity',action:'Choose one self and show up as her.'},
+  {key:'I1',letter:'I',name:'Inherited Patterns',action:'Notice one pattern I did not invent. Pause it.'},
+  {key:'N2',letter:'N',name:'Neglected Completion',action:'Take one thing from ninety percent to one hundred.'},
+  {key:'I2',letter:'I',name:'Intelligence Weaponized',action:'Drop one excuse my mind built today.'},
+  {key:'S',letter:'S',name:'Self-Trust Bankrupt',action:'Believe my own word. Once. Today.'},
+  {key:'H',letter:'H',name:'Hidden Shame',action:'Let one trusted person see what I have hidden.'},
+  {key:'E',letter:'E',name:'Exhausted From Carrying',action:'Lay down one thing I have been dragging.'},
+  {key:'D',letter:'D',name:'Deferred Action As Lifestyle',action:'Do one thing I have been deferring.'}
+];
+function renderIntentChecklist(){
+  var box=document.getElementById('intentChecklist');if(!box)return;
+  var selected=(lastResults&&lastResults.intent_actions)?lastResults.intent_actions:[];
+  box.innerHTML=INTENT_ACTIONS.map(function(a){
+    var checked=selected.indexOf(a.key)!==-1?' checked':'';
+    return '<label class="intent-item"><input type="checkbox" value="'+a.key+'" onchange="persistIntent()"'+checked+'><span class="intent-letter">'+a.letter+'</span><span class="intent-text"><b>'+a.name+'</b><span class="intent-action">'+a.action+'</span></span></label>';
+  }).join('');
+}
 function persistIntent(){
-  var t=document.getElementById('intentInput');if(!t)return;
-  var v=t.value.trim();
-  var h=loadHistory();if(h.length){h[h.length-1].intent=v;saveHistory(h)}
-  if(lastResults)lastResults.intent=v;
+  var box=document.getElementById('intentChecklist');if(!box)return;
+  var checks=box.querySelectorAll('input[type=checkbox]:checked');
+  var keys=[];for(var i=0;i<checks.length;i++)keys.push(checks[i].value);
+  var labelMap={};INTENT_ACTIONS.forEach(function(a){labelMap[a.key]=a.action});
+  var v=keys.map(function(k){return labelMap[k]||k}).join(' / ');
+  var h=loadHistory();if(h.length){h[h.length-1].intent=v;h[h.length-1].intent_actions=keys;saveHistory(h)}
+  if(lastResults){lastResults.intent=v;lastResults.intent_actions=keys}
 }
 function showSelfQuote(){
   var t1=document.getElementById('painInput').value.trim();
@@ -2667,7 +2699,7 @@ var FACULTY_EXPLAIN={
   Attention:'Where your eyes and mind go when no one is asking for them. The first faculty to break is often the first to repair.',
   Allegiance:'Whose voice has the final say inside you. When your own clear judgement loses to the loudest borrowed one, allegiance has broken.',
   Integrity:'Whether what you do matches what you said. When word and action are different things, integrity has broken.',
-  Return:'How fast you come back when something throws you off — days, hours, or the same hour.'
+  Return:'How fast you come back when something throws you off. Days, hours, or the same hour.'
 };
 function openMatrixDetail(type, key){
   var panel=document.getElementById('matrixDetailPanel');
@@ -2700,7 +2732,7 @@ function revealSeal(){
 function renderMatrix(loud){
   closeMatrixDetail();
   var intro=document.getElementById('matrixIntro');
-  if(intro)intro.innerHTML='Your primary pattern is <b>'+loud.name+'</b>. It can break your attention, your allegiance, your integrity, and your ability to return. The matrix above shows where they interact — lower scores mean a louder break. <b>Touch + on any pattern or faculty</b> to see what it means, or download your complete report for the full explanation.';
+  if(intro)intro.innerHTML='Your primary pattern is <b>'+loud.name+'</b>. It can break your attention, your allegiance, your integrity, and your ability to return. The matrix above shows where they interact. Lower scores mean a louder break. <b>Touch + on any pattern or faculty</b> to see what it means, or download your complete report for the full explanation.';
   var wrap=document.getElementById('matrixWrap');wrap.innerHTML='';
   var rs=reflexScores();
   var faculties=['Attention','Allegiance','Integrity','Return'];
@@ -2732,7 +2764,7 @@ function renderMatrix(loud){
       fp+='<div class="fingerprint-row" style="border-top:1px solid var(--rule-soft);border-bottom:none;padding-top:18px;margin-top:8px"><div class="fingerprint-fac" style="color:var(--green)">Strength</div><div class="fingerprint-text"><b>'+quietest.name+'</b> is the reflex least loud. Lean on it as the ground while you address the others.</div></div>';
     }
     fp+='</div>';
-    fp+='<div class="next-move-box"><div class="next-move-box__label">YOUR NEXT MOVE</div><p class="next-move-box__text">Choose one of the four faculties to repair. That is your move for the next fifteen days. <b>The first concrete action begins in the next twenty-four hours — write it below.</b></p></div>';
+    fp+='<div class="next-move-box"><div class="next-move-box__label">YOUR NEXT MOVE</div><p class="next-move-box__text">Choose one of the four faculties to repair. That is your move for the next fifteen days. <b>The first concrete action begins in the next twenty-four hours. Write it below.</b></p></div>';
   }
   wrap.innerHTML=html+fp;
 }
@@ -2938,7 +2970,7 @@ function sendEmail(){
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
   rec.claim=claimValue;
-  rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
+  persistIntent();rec.intent=(lastResults&&lastResults.intent)||'';rec.intent_actions=(lastResults&&lastResults.intent_actions)||[];
   rec.threshold=rec.threshold||null;
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
@@ -3002,7 +3034,7 @@ function _downloadPDF(){
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
   rec.claim=claimValue;
-  rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
+  persistIntent();rec.intent=(lastResults&&lastResults.intent)||'';rec.intent_actions=(lastResults&&lastResults.intent_actions)||[];
   rec.threshold=rec.threshold||null;
   var jsPDFCtor=window.jspdf.jsPDF;
   var doc=new jsPDFCtor({orientation:'portrait',unit:'mm',format:'a4'});
@@ -3136,7 +3168,7 @@ function _downloadPDF(){
     doc.text('('+subLabel(h.subst)+')',M+170,y);
     y+=6.4;
   }
-  y+=2;y=legend('Every need always gets fed — with the real thing, or with a substitute. High filled with low substituted is health. Where the substitute is loudest, the real need is most starved.',y);
+  y+=2;y=legend('Every need always gets fed. With the real thing, or with a substitute. High filled with low substituted is health. Where the substitute is loudest, the real need is most starved.',y);
 
   footer(2);doc.addPage();
 
