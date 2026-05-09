@@ -180,12 +180,7 @@ a:hover{color:var(--gold)}
 .opt.sel{box-shadow:var(--shadow-md)}
 
 nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
-.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
-.nav-house:hover{opacity:.7}
-.hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
-.nav-house-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
-.nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:center;gap:14px}
 .nav-instrument{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;letter-spacing:.18em;color:var(--navy)}
 
 main{max-width:760px;margin:0 auto;padding:0 28px}
@@ -387,8 +382,6 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   main{padding:0 22px}
   #screen-welcome,#screen-question,#screen-results,#screen-transition,#screen-ack{padding-top:40px;padding-bottom:80px}
   .nav-inner{padding:12px 18px;gap:10px}
-  .nav-house-text{font-size:10px}
-  .nav-house-text span{display:none}
   .nav-instrument{font-size:13px}
   .feature-card,.forecast,.pain-block,.rung{padding:26px 22px}
   .opt{padding:18px 20px;font-size:15px}
@@ -704,10 +697,6 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-house" href="https://hom.mogire.com" target="_blank" rel="noopener" aria-label="House of Mastery">
-      <img class="hm-mark" src="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png" alt="" width="24" height="24" loading="eager" decoding="async" onerror="this.style.display='none'">
-      <span class="nav-house-text">house of mastery<span>hom.mogire.com</span></span>
-    </a>
     <span class="nav-instrument">THE FIRST HOUR</span>
   </div>
 </nav>

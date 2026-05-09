@@ -179,16 +179,12 @@ a:hover{color:var(--gold)}
 
 
 nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
-.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.nav-house{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;transition:opacity .15s}
-.nav-house:hover{opacity:.7}
-.hm-mark{width:24px;height:24px;flex-shrink:0;display:block}
-.nav-house-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink);text-transform:lowercase;line-height:1.1}
-.nav-house-text span{display:block;font-size:9px;font-weight:600;color:var(--mid);letter-spacing:.05em;margin-top:1px}
+.nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:center;gap:14px}
 .nav-koora{display:inline-flex;align-items:center;height:18px}
 .nav-koora svg{height:18px;width:auto;display:block}
+.nav-dot{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--mid);line-height:1;display:none}
 .nav-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--mid);text-transform:uppercase;display:none}
-@media (min-width:680px){.nav-meta{display:inline}}
+@media (min-width:680px){.nav-meta,.nav-dot{display:inline}}
 
 main{max-width:760px;margin:0 auto;padding:0 28px}
 .screen{display:none;animation:rise .35s cubic-bezier(.4,0,.2,1)}
@@ -438,8 +434,6 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   main{padding:0 22px}
   #screen-welcome,#screen-question,#screen-results,#screen-dashboard,#screen-transition,#screen-ack{padding-top:40px;padding-bottom:80px}
   .nav-inner{padding:12px 18px;gap:10px}
-  .nav-house-text{font-size:10px}
-  .nav-house-text span{display:none}
   .nav-koora svg{height:16px}
   .actions .btn-primary,.actions .btn-secondary{width:100%}
   .delivery,.fidelity-feature,.cov-card,.cohort-cta,.pain-block{padding:28px 22px}
@@ -469,9 +463,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 @media (max-width:420px){
   main{padding:0 18px}
   .nav-inner{padding:10px 14px;gap:8px}
-  .nav-house-text{font-size:9.5px}
   .nav-koora svg{height:14px}
-  .hm-mark{width:22px;height:22px}
   #screen-welcome,#screen-question,#screen-results,#screen-dashboard,#screen-transition,#screen-ack{padding-top:32px;padding-bottom:72px}
   .hero{font-size:28px}
   .dash-hello{font-size:28px}
@@ -820,11 +812,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-house" href="https://hom.mogire.com" target="_blank" rel="noopener" aria-label="House of Mastery">
-      <img class="hm-mark" src="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png" alt="" width="24" height="24" loading="eager" decoding="async" onerror="this.style.display='none'">
-      <span class="nav-house-text">house of mastery<span>hom.mogire.com</span></span>
-    </a>
     <span class="nav-koora" role="img" aria-label="KOORA"><img src="/images/koora-logo.png" alt="KOORA" style="height:18px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:18px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;64&quot; letter-spacing=&quot;6&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
+    <span class="nav-dot" aria-hidden="true">•</span>
     <span class="nav-meta" id="navMeta">UNFINISHED</span>
   </div>
 </nav>
