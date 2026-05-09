@@ -2324,7 +2324,7 @@ function enterTransition(trans){
   document.getElementById('trH').innerHTML=trans.h;
   // v3.5.2  -  append covenant-aware context to transition copy
   var cov=activeCovenant(participantDay);
-  var covLine='<span class="cov-transition">You are inside the <b>'+cov.name+'</b> covenant. <em>'+cov.promise+'</em></span>';
+  var covLine='<span class="cov-transition">You are inside the <b>'+cov.name+'</b> covenant.</span>';
   document.getElementById('trText').innerHTML=trans.text+'<br><br>'+covLine;
   var dayLine='';
   // Halfway personal moment at transition 3 (after Q31)
