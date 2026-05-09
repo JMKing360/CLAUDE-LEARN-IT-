@@ -873,7 +873,6 @@ body.footer-hidden footer{display:none}
   <!-- v3.3  -  Covenant entry section, dayPicker-driven -->
   <div class="covenant-entry" id="covenantEntry" style="display:none">
     <svg class="icon covenant-entry__icon" id="covEntryIcon" aria-hidden="true"><use href="#icon-self"/></svg>
-    <div class="covenant-entry__eyebrow" id="covEntryEyebrow"></div>
     <h2 class="covenant-entry__h" id="covEntryH"></h2>
     <p class="covenant-entry__sub" id="covEntrySub"></p>
     <ol class="covenant-entry__list" id="covEntryList"></ol>
@@ -987,7 +986,7 @@ body.footer-hidden footer{display:none}
   <p class="r-sub" id="rSub"></p>
 
   <div class="tbl-block">
-    <span class="tbl-h">The four reflexes · Pattern profile</span>
+    <span class="tbl-h">Pattern profile</span>
     <table class="dtable" id="reflexTable"></table>
     <p class="narrative-read" id="reflexRead"></p>
     <p class="tbl-legend"><b>How to read this:</b> Each reflex scores 0 to 16. <b>Quiet</b> ran rarely. <b>Active</b> ran often enough to notice. <b>Loud</b> dominated this period. The arrow shows movement since your last return.</p>
@@ -1865,7 +1864,6 @@ function renderCovenantEntry(day){
   if(!(day in entryDays)){box.style.display='none';return}
   var data=COVENANT_ENTRY[entryDays[day]];
   if(!data){box.style.display='none';return}
-  document.getElementById('covEntryEyebrow').textContent=data.eyebrow;
   document.getElementById('covEntryH').textContent=data.h;
   document.getElementById('covEntrySub').textContent=data.sub;
   // v3.6.0  -  wire covenant icon
@@ -2603,7 +2601,7 @@ function syncClaim(){
 
 function renderReflexTable(prior){
   var rs=reflexScores();
-  var html='<thead><tr><th>Reflex</th><th>Forfeits</th><th class="right">Score</th><th class="right">Level</th><th class="right">Since last</th></tr></thead><tbody>';
+  var html='<thead><tr><th>Reflex</th><th class="right">Score</th><th class="right">Level</th><th class="right">Since last</th></tr></thead><tbody>';
   for(var i=0;i<REFLEXES.length;i++){
     var r=REFLEXES[i],s=rs[r.key],lvl=levelNeg(s.pct);
     var deltaCell='<span class="muted" style="font-size:12.5px">first return</span>';
@@ -2611,7 +2609,7 @@ function renderReflexTable(prior){
       var prev=prior.scores['reflex_'+r.key]?prior.scores['reflex_'+r.key].score:prior.scores[r.key];
       if(prev!=null){deltaCell=renderDeltaPill(s.score-prev,'down')}
     }
-    html+='<tr><td>'+r.name+'</td><td class="muted">'+r.forfeits+'</td><td class="right">'+s.score+' / '+s.max+'</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelNeg(s.pct)+'</span></td><td class="right">'+deltaCell+'</td></tr>';
+    html+='<tr><td>'+r.name+'</td><td class="right">'+s.score+' / '+s.max+'</td><td class="right"><span class="lvl-pill '+lvl+'">'+levelLabelNeg(s.pct)+'</span></td><td class="right">'+deltaCell+'</td></tr>';
   }
   html+='</tbody>';
   document.getElementById('reflexTable').innerHTML=html;
@@ -2996,8 +2994,6 @@ function _downloadPDF(){
     var r=REFLEXES[i],s=rs[r.key],lvl=levelNeg(s.pct),c=lc[lvl];
     doc.setFontSize(10);doc.setFont('helvetica','bold');doc.setTextColor(ink[0],ink[1],ink[2]);
     doc.text(r.name,M,y);
-    doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(mid[0],mid[1],mid[2]);
-    doc.text('forfeits '+r.forfeits,M+34,y);
     doc.setFillColor(235,235,239);doc.roundedRect(M+76,y-3,80,4,1,1,'F');
     doc.setFillColor(c[0],c[1],c[2]);doc.roundedRect(M+76,y-3,80*s.pct,4,1,1,'F');
     doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(c[0],c[1],c[2]);
