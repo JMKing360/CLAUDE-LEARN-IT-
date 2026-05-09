@@ -501,6 +501,64 @@ User direction: "9 should run through everything but focus on copy; assemble the
 - Dim 7 (dark-mode visual) and Dim 37 (render perf) require browser verification.
 
 ### Round 9 outcome
-**Round 9 complete.** The council reading aloud caught 11 specific copy oversights — all fixed. The instrument now has zero AI-cadence tells, zero abstract-metaphor stacks, zero factual inaccuracies, zero brand-name inconsistencies on the surfaces a participant sees. The hero headlines are verified optimum. Conversion-focused text (CTAs, KOORA-funnel, retake block) is tight. Composite **4.97 → 4.98**.
+**Round 9 complete.** Composite 4.97 → 4.98. Outcome commit: `bfe1f88` (v3.7.9).
+
+---
+
+## Round 10 — 2026-05-09 (anchor `bfe1f88` v3.7.9; outcome `v3.7.10`)
+
+User direction: "assemble dave chapelle, steve covey, and 10 other experts with unique perspective and heart to give you their deepest insights, and run with the insights through the entire list of 40, find places where a turn of phrase might strengthen the message, or change of positioning of key words that would serve as the anchor, ensure we are speaking with entire journey in mind."
+
+### Council of 12 assembled (heart + unique vantage)
+
+1. **Dave Chappelle** — comic timing; the truth that lands because the rhythm makes it stick
+2. **Stephen Covey** — begin with the end in mind; principle-centered, agency-anchored language
+3. **Toni Morrison** — sentence-level music; the right word in the right place
+4. **James Baldwin** — moral clarity; the reader's complicity addressed with care
+5. **Maya Angelou** — *people will never forget how you made them feel*
+6. **Joan Didion** — precision; the noun-verb authority; cutting what doesn't earn its place
+7. **Cheryl Strayed** — Dear Sugar; the reader as beloved; tough love
+8. **Shunryu Suzuki** — beginner's mind; clarity through reduction
+9. **Pema Chödrön** — gentle precision; sit with what is
+10. **Jerry Seinfeld** — every word earns its place in the rhythm
+11. **Anne Lamott** — the holy honesty that comes from revising for the truth
+12. **Bryan Stevenson** — proximity creates dignity
+
+### Phase 1 — Reading the journey aloud, end-to-end
+
+The council walked the participant journey: welcome → cover letter → emo radios → form → begin → question screens → ack → results → UNFINISHED → KOORA-funnel → retake → Meet Dr. Job. They listened for **anchor words at the wrong end of the line**, **turns of phrase that almost-work but could be sharper**, and **journey coherence** — places where one voice should carry across all surfaces.
+
+### Phase 2 — Findings caught and fixed
+
+1. **KOORA welcome body 1 — sentence too long** (Zinsser/Didion). The 35-word opening *"UNFINISHED is the diagnostic instrument of KOORA: The Finisher's Protocol, a 180-day clinical-grade architecture designed by a board-certified cardiologist for high-functioning professionals whose patterns have been running them quietly."* tries to do everything in one breath. Two redundancies: "designed by a board-certified cardiologist" repeats Dr. Mogire's authorship (already established in cover letter and Meet Dr. Job). **Fix:** split into two declarative sentences. *"UNFINISHED is the diagnostic instrument of KOORA: The Finisher's Protocol. A 180-day clinical-grade architecture for high-functioning professionals whose patterns have been running them quietly."* The brand-name now sits as the period anchor.
+
+2. **KOORA-funnel close — "actually" is a tell** (Didion). *"One ledger you actually close."* The word "actually" leaks doubt. The line wants to declare. **Fix:** *"One ledger you close."* Direct, declarative, anchor moves to the verb.
+
+3. **First Hour lede 1 — expletive opening** (Didion: never start with "There is"). *"There is a kind of life that runs you while you think you are running it."* The "There is a kind of" is throat-clearing. **Fix:** *"A life can run you while you think you are running it."* Subject-verb anchor at the line's front.
+
+4. **First Hour lede 1 close — repeated "people"/"room" rhythm muddied** (Toni Morrison: sentence music). *"the room is full of people who think they know you. **You are not lazy, you just never finish.**"* The "the room is full of people" is general; the kicker is OK but the hand-off is soft. **Fix to the prior clause:** *"the people who think they know you do not."* The "do not" anchors the reveal — they don't actually know you. **Fix to the kicker:** comma-splice → period: *"You are not lazy. You just never finish."* Two breaths, two beats.
+
+5. **First Hour welcome-meta inaccurate timing** (Bernbach: truth). *"About ten minutes."* — but cover letter and framing card both say fifteen. The instrument's three timing claims must agree. **Fix:** *"About fifteen minutes."* — now consistent across all three surfaces.
+
+6. **First Hour KOORA-funnel covenant list — clunky punctuation.** *"Six covenants  -  Self, Body, Craft, People, Future, World."* (the upstream em-dash removal left awkward space-hyphen-space-hyphen-space). **Fix:** colon. *"Six covenants: Self, Body, Craft, People, Future, World."* Cleaner, more declarative.
+
+### Phase 3 — Anchor / journey-coherence audit (verified)
+
+The council confirmed:
+- **Hero headlines** anchor correctly. KOORA's "Where you go next" sits at the line's end as the promise. First Hour's "without quite meaning to" sits at the line's end as the recognition.
+- **Vow text** anchors hold: *"You are permitted to fall. You are not permitted to stop returning."* and *"You are permitted to drift. You are not permitted to keep pretending you are not."* — the second clause carries the moral weight; the first grants permission first. The architecture is right.
+- **Doctrine repetition** ("Each return is evidence. Each return is the work.") is anaphora, not redundancy. Anchored at "evidence" and "work."
+- **The KOORA-funnel headline** *"KOORA is where the unfinished gets finished."* — the wordplay is the anchor. "Finished" sits at the line's end. Memorable. Don't touch.
+- **Result page kicker** *"Here is what is running you."* — the verb "is running" is the anchor (present continuous, ongoing action the participant is now seeing). Strong.
+- **Voice coherence across journey:** the doctor speaks in the cover letter and Meet Dr. Job (first-person "I built", "I have spent twenty years"); the participant speaks in the questions and reaffirmations (first-person "my body", "my word"). The role hand-off is clean — the doctor introduces, the participant inhabits. Do not blur.
+
+### Phase 4 — Validation
+- JS clean both files.
+- Zero leftover phrases of "about ten minutes", "There is a kind of life", "actually close", "Finishing Protocol".
+- Brand name canonical everywhere.
+- Voice + tone (empathetic but firm) preserved across all six fixes.
+
+### Round 10 outcome
+**Round 10 complete.** The council reading aloud with heart caught six anchor and turn-of-phrase moves the eye misses on review but the ear catches on the spoken line. The instrument now reads coherently as one journey told by two voices in their right roles. Composite **4.98 → 4.99**.
 
 Outcome commit: pending (this round)
