@@ -542,7 +542,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .dr-portrait--avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;object-position:center 22%;border:3px solid var(--white);box-shadow:0 4px 14px rgba(13,31,60,.18)}
 
 /* Cover letter — appears on the dashboard / pre-assessment surface */
-.cover-letter{margin:36px 0 40px;padding:38px 34px;background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--gold);position:relative;border-radius:2px}
+.cover-letter{margin:36px 0 40px;padding:38px 34px;background:var(--surface);border:1px solid var(--rule-soft);border-left:3px solid var(--gold);position:relative;border-radius:var(--r-md)}
 .cover-letter__head{display:grid;grid-template-columns:108px 1fr;gap:22px;align-items:center;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--rule-soft)}
 .cover-letter__head img{width:108px;height:108px;border-radius:50%;object-fit:cover;object-position:center 22%;border:1px solid var(--rule);box-shadow:0 4px 12px rgba(13,31,60,.12)}
 .cover-letter__byline{font-family:var(--serif);font-size:19px;font-weight:600;color:var(--ink);line-height:1.3;letter-spacing:-.005em}
@@ -585,12 +585,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 }
 
 /* Reaffirmation block — repeat takers (Day > 0) */
-.reaffirm{margin:0 0 32px;padding:22px 26px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:2px;font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink)}
+.reaffirm{margin:0 0 32px;padding:22px 26px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:var(--r-md);font-family:var(--serif);font-size:17px;line-height:1.55;color:var(--ink)}
 .reaffirm b{font-weight:600}
 .reaffirm em{font-style:italic;color:var(--navy)}
 
 /* KOORA-vs-non-KOORA funnel — for participants not yet enrolled */
-.koora-funnel{margin:32px 0;padding:28px 30px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-soft) 100%);color:#FFFFFF;border-radius:3px;position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(13,31,60,.2)}
+.koora-funnel{margin:32px 0;padding:28px 30px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-soft) 100%);color:#FFFFFF;border-radius:var(--r-md);position:relative;overflow:hidden;box-shadow:0 8px 32px rgba(13,31,60,.2)}
 .koora-funnel::before{content:"";position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,151,58,.18) 0%,transparent 70%);pointer-events:none}
 .koora-funnel__eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;color:var(--gold-soft);letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px;position:relative}
 .koora-funnel__h{font-family:var(--serif);font-size:24px;font-weight:600;color:#FFFFFF;line-height:1.28;margin-bottom:14px;letter-spacing:-.012em;position:relative}
@@ -601,7 +601,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .koora-funnel__cta:hover{color:var(--gold-soft)}
 
 /* Covenant entry — five-item gateway before the assessment */
-.covenant-entry{margin:32px 0;padding:36px 32px;background:var(--surface-2);border:1px solid var(--rule);border-radius:2px}
+.covenant-entry{margin:32px 0;padding:36px 32px;background:var(--surface-2);border:1px solid var(--rule);border-radius:var(--r-md)}
 .covenant-entry__eyebrow{font-family:var(--sans);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
 .covenant-entry__h{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--ink);line-height:1.25;letter-spacing:-.012em;margin-bottom:8px}
 .covenant-entry__sub{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--mid);margin-bottom:24px;line-height:1.5}
@@ -609,7 +609,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 .covenant-entry__item{padding:14px 0;border-bottom:1px solid var(--rule-soft);font-family:var(--serif);font-size:16px;line-height:1.55;color:var(--body)}
 .covenant-entry__item:last-child{border-bottom:none}
 .covenant-entry__item b{color:var(--ink);font-weight:600}
-.covenant-entry__threshold{margin-top:18px;padding:18px 22px;background:var(--white);border:1px solid var(--gold-soft);border-radius:2px;font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--ink);font-style:italic}
+.covenant-entry__threshold{margin-top:18px;padding:18px 22px;background:var(--white);border:1px solid var(--gold-soft);border-radius:var(--r-sm);font-family:var(--serif);font-size:15px;line-height:1.6;color:var(--ink);font-style:italic}
 
 /* Author byline mark on result header */
 .author-byline{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 0;font-family:var(--sans);font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.08em}
@@ -660,7 +660,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 @media(max-width:560px){.save-pill{bottom:16px;right:16px;font-size:12px;padding:6px 12px}}
 
 /* Scoring transparency expandable */
-.scoring-note{margin:14px 0 28px;padding:0;border:1px solid var(--rule-soft);border-radius:3px;overflow:hidden;background:var(--surface)}
+.scoring-note{margin:14px 0 28px;padding:0;border:1px solid var(--rule-soft);border-radius:var(--r-md);overflow:hidden;background:var(--surface)}
 .scoring-note summary{cursor:pointer;padding:14px 18px;font-family:var(--sans);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.005em;list-style:none;display:flex;align-items:center;justify-content:space-between;user-select:none}
 .scoring-note summary::-webkit-details-marker{display:none}
 .scoring-note summary::after{content:"+";font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold);transition:transform .2s ease}
@@ -2020,12 +2020,12 @@ function renderDashboard(name){
     var fidPrev=earlier?earlier.scores.fidelity_rate:null;
 
     snap.innerHTML='<thead><tr><th>Indicator</th><th class="right">Value</th><th class="right">Since last</th></tr></thead><tbody>'+
-      '<tr class="feature"><td><b>Loudest reflex</b><div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">The pattern that ran you most this period</div></td>'+
-        '<td class="right value-lg">'+(loud&&loud.name?loud.name:'not yet')+'<div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">'+(loud?loud.score+' of '+loud.max+', '+levelLabelNeg(loud.pct):'')+'</div></td>'+
-        '<td class="right">'+(loudPrev?renderDeltaPill(loud.score-loudPrev.score,'down'):'<span class="muted" style="font-size:11px">first return</span>')+'</td></tr>'+
-      '<tr><td><b>Practice fidelity</b><div class="muted" style="font-size:11px;font-weight:500;margin-top:3px">Across six daily and weekly moves</div></td>'+
+      '<tr class="feature"><td><b>Loudest reflex</b><div class="muted" style="font-size:13px;font-weight:500;margin-top:4px">The pattern that ran you most this period</div></td>'+
+        '<td class="right value-lg">'+(loud&&loud.name?loud.name:'not yet')+'<div class="muted" style="font-size:13px;font-weight:500;margin-top:4px">'+(loud?loud.score+' of '+loud.max+', '+levelLabelNeg(loud.pct):'')+'</div></td>'+
+        '<td class="right">'+(loudPrev?renderDeltaPill(loud.score-loudPrev.score,'down'):'<span class="muted" style="font-size:12.5px">first return</span>')+'</td></tr>'+
+      '<tr><td><b>Practice fidelity</b><div class="muted" style="font-size:13px;font-weight:500;margin-top:4px">Across six daily and weekly moves</div></td>'+
         '<td class="right value-lg">'+(fid!=null?fid+'%':'not yet')+'</td>'+
-        '<td class="right">'+(fidPrev!=null?renderDeltaPill(fid-fidPrev,'up'):'<span class="muted" style="font-size:11px">first return</span>')+'</td></tr>'+
+        '<td class="right">'+(fidPrev!=null?renderDeltaPill(fid-fidPrev,'up'):'<span class="muted" style="font-size:12.5px">first return</span>')+'</td></tr>'+
       '</tbody>';
   }else{
     snap.innerHTML='<tbody><tr><td class="muted">No prior return yet. Begin with the baseline.</td></tr></tbody>';
@@ -2540,7 +2540,7 @@ function renderReflexTable(prior){
   var html='<thead><tr><th>Reflex</th><th>Forfeits</th><th class="right">Score</th><th class="right">Level</th><th class="right">Since last</th></tr></thead><tbody>';
   for(var i=0;i<REFLEXES.length;i++){
     var r=REFLEXES[i],s=rs[r.key],lvl=levelNeg(s.pct);
-    var deltaCell='<span class="muted" style="font-size:11px">first return</span>';
+    var deltaCell='<span class="muted" style="font-size:12.5px">first return</span>';
     if(prior){
       var prev=prior.scores['reflex_'+r.key]?prior.scores['reflex_'+r.key].score:prior.scores[r.key];
       if(prev!=null){deltaCell=renderDeltaPill(s.score-prev,'down')}
@@ -2721,7 +2721,7 @@ function renderThreshold(){
       var b=document.createElement('button');
       b.className='claim-btn';
       b.style.cssText='flex:1;min-width:140px;padding:14px 16px;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:12px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s;';
-      b.innerHTML=th.label+'<span style="display:block;font-weight:500;font-size:11px;color:var(--mid);margin-top:3px;letter-spacing:.005em">'+th.sub+'</span>';
+      b.innerHTML=th.label+'<span style="display:block;font-weight:500;font-size:12.5px;color:var(--mid);margin-top:4px;letter-spacing:.005em">'+th.sub+'</span>';
       b.onclick=function(){
         var all=box.querySelectorAll('.claim-btn');
         for(var k=0;k<all.length;k++){all[k].style.borderColor='var(--rule)';all[k].style.background='var(--white)';all[k].style.color='var(--ink)'}
@@ -2745,8 +2745,8 @@ function renderCovenant(day){
     '<div class="cov-line"><div class="cov-key">Evidence</div><div class="cov-text">'+c.evidence+'</div></div>'+
     '<div class="cov-pulse"><div class="cov-pulse-q">Is this promise alive in you today?</div>'+
       '<div class="pulse-stack">'+
-        '<button class="pulse-btn" id="pulseYes" onclick="setPulse(true)">Yes, returning<span style="display:block;font-weight:500;font-size:11px;color:var(--mid);margin-top:3px">The promise still holds</span></button>'+
-        '<button class="pulse-btn" id="pulseNo" onclick="setPulse(false)">Not yet<span style="display:block;font-weight:500;font-size:11px;color:var(--mid);margin-top:3px">Naming this is the return</span></button>'+
+        '<button class="pulse-btn" id="pulseYes" onclick="setPulse(true)">Yes, returning<span style="display:block;font-weight:500;font-size:12.5px;color:var(--mid);margin-top:4px">The promise still holds</span></button>'+
+        '<button class="pulse-btn" id="pulseNo" onclick="setPulse(false)">Not yet<span style="display:block;font-weight:500;font-size:12.5px;color:var(--mid);margin-top:4px">Naming this is the return</span></button>'+
       '</div></div>';
   syncPulse();
 }
