@@ -2612,16 +2612,16 @@ function renderAnchoredOpener(prior){
 }
 
 var INTENT_ACTIONS=[
-  {key:'U',letter:'U',name:'Unkept Promises',action:'Keep one small promise to myself today.'},
-  {key:'N1',letter:'N',name:'Negotiating Constantly',action:'Stop bargaining. Do the thing now.'},
-  {key:'F',letter:'F',name:'Fragmented Identity',action:'Choose one self and show up as her.'},
-  {key:'I1',letter:'I',name:'Inherited Patterns',action:'Notice one pattern I did not invent. Pause it.'},
-  {key:'N2',letter:'N',name:'Neglected Completion',action:'Take one thing from ninety percent to one hundred.'},
-  {key:'I2',letter:'I',name:'Intelligence Weaponized',action:'Drop one excuse my mind built today.'},
-  {key:'S',letter:'S',name:'Self-Trust Bankrupt',action:'Believe my own word. Once. Today.'},
-  {key:'H',letter:'H',name:'Hidden Shame',action:'Let one trusted person see what I have hidden.'},
-  {key:'E',letter:'E',name:'Exhausted From Carrying',action:'Lay down one thing I have been dragging.'},
-  {key:'D',letter:'D',name:'Deferred Action As Lifestyle',action:'Do one thing I have been deferring.'}
+  {key:'U',letter:'U',name:'Unkept Promises',action:'Keep one promise to myself.'},
+  {key:'N1',letter:'N',name:'Negotiating Constantly',action:'Stop bargaining. Act now.'},
+  {key:'F',letter:'F',name:'Fragmented Identity',action:'Show up as one self.'},
+  {key:'I1',letter:'I',name:'Inherited Patterns',action:'Pause one inherited pattern.'},
+  {key:'N2',letter:'N',name:'Neglected Completion',action:'Push one thing past ninety percent.'},
+  {key:'I2',letter:'I',name:'Intelligence Weaponized',action:'Drop one excuse.'},
+  {key:'S',letter:'S',name:'Self-Trust Bankrupt',action:'Believe my own word once.'},
+  {key:'H',letter:'H',name:'Hidden Shame',action:'Let one person see the truth.'},
+  {key:'E',letter:'E',name:'Exhausted From Carrying',action:'Lay down one weight.'},
+  {key:'D',letter:'D',name:'Deferred Action As Lifestyle',action:'Do one deferred thing.'}
 ];
 function renderIntentChecklist(){
   var box=document.getElementById('intentChecklist');if(!box)return;
@@ -2944,10 +2944,12 @@ function syncPulse(){
 function renderCohortCta(returnIdx){
   var box=document.getElementById('cohortCta');
   if(participantEnrolled){
+    var nextRoundLine=returnIdx<13?'See you in <b>ROUND '+(returnIdx+1)+'</b> in 15 days.':'The path is sealed.';
     box.innerHTML='<span class="cohort-eyebrow">Inside the protocol</span>'+
       '<div class="cohort-h">You are inside the once-a-year intake. <em>Twenty-three other Finishers</em> are walking the same covenant this month.</div>'+
       '<div class="cohort-body">This is return '+returnIdx+' of thirteen across the 180-day path of <b>KOORA: The Finisher’s Protocol</b>. Each module opens in the first week of its month. If you miss it, you do not see it again until the next year. The architecture is non-recoverable on purpose. The discipline of staying is the discipline.</div>'+
-      '<div class="cohort-body">The covenant is not perfection. The covenant is return. <b>You are returning.</b></div>';
+      '<div class="cohort-body">The covenant is not perfection. The covenant is return. <b>You are returning.</b></div>'+
+      '<div class="cohort-body">You are here... you are a <b>FINISHER</b>. You have done what most people never do... finish what they start. You have already accumulated some evidence that you can win back all of your self-trust. This is the time to decide whether this was a fluke, or this is your new way. <b>ROUND '+returnIdx+'</b> is done. '+nextRoundLine+'</div>';
   }else{
     box.innerHTML='<span class="cohort-eyebrow">If the path is yours to walk</span>'+
       '<div class="cohort-h">You have just named the diagnosis. <em>KOORA is the discipline that meets it.</em></div>'+
