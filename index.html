@@ -962,8 +962,7 @@ body.footer-hidden footer{display:none}
 
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
-  <span class="r-eyebrow">Your result</span>
-  <h1 class="r-h1" id="rHeadline">Here is what is running you.</h1>
+  <h1 class="r-h1" id="rHeadline">Here is what is <em>running you</em>.</h1>
   <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
     <img src="/images/dr-job-clinical.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
     <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
@@ -2497,7 +2496,7 @@ function buildResults(rec){
   var headline=document.getElementById('rHeadline');
   var sub=document.getElementById('rSub');
   if(returnIdx===1){
-    headline.innerHTML=safe(rec.name)+', <em>this is what has been running you</em>.';
+    headline.innerHTML=safe(rec.name)+', this is what has been <em>running you</em>.';
   }else if(rec.day>=180){
     headline.innerHTML=safe(rec.name)+', <em>this is what you have walked through</em>.';
   }else{
