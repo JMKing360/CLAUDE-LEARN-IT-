@@ -32,3 +32,8 @@ build/
 NOTES.md
 TODO.local.md
 scratch/
+
+# Test artifacts
+playwright-report/
+test-results/
+lhci-report/

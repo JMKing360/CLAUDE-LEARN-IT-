@@ -21,7 +21,7 @@ export default defineConfig({
     { name: 'mobile-safari', use: { ...devices['iPhone 14'] } },
   ],
   webServer: {
-    command: 'npx http-server -p 4173 -c-1 .',
+    command: 'npx vite --host 127.0.0.1 --port 4173',
     port: 4173,
     reuseExistingServer: !process.env.CI,
     timeout: 30_000,

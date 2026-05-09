@@ -16,19 +16,24 @@ test.describe('The First Hour — completion flow', () => {
   });
 
   test('full assessment completes when answered', async ({ page }) => {
-    test.slow();
     await page.goto('/first-hour.html');
     await page.fill('#participantName', 'Test');
     await page.fill('#participantEmail', 'test@example.com');
     await page.getByRole('button', { name: /begin your first hour/i }).click();
-    // Answer 42 questions with the second option
+
+    const transitionQuestions = new Set([7, 14, 21, 28, 35]);
+
     for (let i = 1; i <= 42; i++) {
+      await expect(page.locator('#qCount')).toContainText(`Question ${i} of 42`);
       await page.locator('.opt').nth(1).click();
-      // Either auto-advance or transition; wait briefly
-      await page.waitForTimeout(1700);
+      await page.keyboard.press('Enter');
+
+      if (transitionQuestions.has(i)) {
+        await page.getByRole('button', { name: /continue/i }).click();
+      }
     }
-    // Eventually we land on the ack screen, then results
-    await expect(page.getByText('One breath')).toBeVisible({ timeout: 5000 });
+
+    await expect(page.getByRole('heading', { name: /one breath/i })).toBeVisible({ timeout: 5000 });
   });
 
   test('skip-to-content link is the first focusable element', async ({ page }) => {

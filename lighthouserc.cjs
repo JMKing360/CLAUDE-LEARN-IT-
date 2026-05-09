@@ -1,0 +1,29 @@
+module.exports = {
+  ci: {
+    collect: {
+      startServerCommand: 'npx vite preview --host 127.0.0.1 --port 4173',
+      startServerReadyPattern: 'Local:',
+      url: [
+        'http://127.0.0.1:4173/',
+        'http://127.0.0.1:4173/first-hour.html',
+        'http://127.0.0.1:4173/privacy.html'
+      ],
+      numberOfRuns: 1,
+      settings: {
+        chromeFlags: '--no-sandbox --headless=new'
+      }
+    },
+    assert: {
+      assertions: {
+        'categories:accessibility': ['error', { minScore: 0.9 }],
+        'categories:best-practices': ['warn', { minScore: 0.8 }],
+        'categories:seo': ['warn', { minScore: 0.8 }],
+        'categories:performance': ['warn', { minScore: 0.45 }]
+      }
+    },
+    upload: {
+      target: 'filesystem',
+      outputDir: './lhci-report'
+    }
+  }
+};

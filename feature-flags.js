@@ -24,7 +24,7 @@
       p.forEach(function (v, k) {
         if (k.indexOf('flag.') === 0) out[k.slice(5)] = v;
       });
-    } catch (e) {}
+    } catch {}
     return out;
   }
 
