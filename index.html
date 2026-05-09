@@ -7,11 +7,24 @@
 <meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA: The Finisher’s Protocol.">
 <meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="UNFINISHED · KOORA: The Finishing Protocol · House of Mastery">
+<meta property="og:description" content="The diagnostic instrument of KOORA: The Finishing Protocol, designed by Dr. Job Mogire, MD, FACP, FACC.">
+<meta property="og:image" content="https://www.houseofmastery.co/koora-og.png">
+<meta property="og:url" content="https://www.houseofmastery.co/kooraassess">
+<meta property="og:site_name" content="House of Mastery">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UNFINISHED · KOORA · House of Mastery">
+<meta name="twitter:description" content="Don’t die with an unfinishing life.">
+<meta name="twitter:image" content="https://www.houseofmastery.co/koora-og.png">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
+<link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
+<link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"KOORA: The Finishing Protocol","short_name":"KOORA","description":"A House of Mastery diagnostic","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C"}'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+<!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
@@ -29,11 +42,27 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;col
   --amber:#C77700;--amber-soft:#FBF1DD;
   --red:#B22222;--red-soft:#FAE8E8;
 }
+@media (prefers-color-scheme: dark){
+  :root{
+    --navy:#7BA8FF;--navy-soft:#5C8DEB;
+    --gold:#E8B85A;--gold-soft:#F0CB7E;
+    --ink:#F2F2F4;--body:#D4D4D8;--mid:#9899A0;--dim:#6B6C72;
+    --rule:#3A3A40;--rule-soft:#2A2A30;
+    --surface:#0F1014;--surface-2:#16171C;--surface-3:#1D1E24;
+    --white:#16171C;
+    --green:#9CD9A4;--green-soft:#1F2D24;
+    --amber:#E0B065;--amber-soft:#2D2418;
+    --red:#F2B5B5;--red-soft:#2A1818;
+  }
+  body{background:var(--surface)}
+  nav{background:rgba(15,16,20,.92)}
+}
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;color:inherit}
 a{color:var(--navy);text-decoration:none}
 a:hover{color:var(--gold)}
 
+.skip-link:focus{left:18px;top:18px}
 #progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--gold);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 /* Six-segment chamber progress */
 #chamber-progress{position:fixed;top:55px;left:0;right:0;display:none;justify-content:center;gap:6px;padding:10px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
@@ -66,6 +95,17 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .screen.active{display:block}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @keyframes selpulse{0%{opacity:1}70%{opacity:1}100%{opacity:.78}}
+@keyframes blockReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+#screen-results.active .tbl-block{animation:blockReveal .5s cubic-bezier(.4,0,.2,1) backwards}
+#screen-results.active .tbl-block:nth-of-type(1){animation-delay:.05s}
+#screen-results.active .tbl-block:nth-of-type(2){animation-delay:.12s}
+#screen-results.active .tbl-block:nth-of-type(3){animation-delay:.19s}
+#screen-results.active .tbl-block:nth-of-type(4){animation-delay:.26s}
+#screen-results.active .tbl-block:nth-of-type(5){animation-delay:.33s}
+#screen-results.active .tbl-block:nth-of-type(6){animation-delay:.4s}
+#screen-results.active .tbl-block:nth-of-type(7){animation-delay:.47s}
+#screen-results.active .tbl-block:nth-of-type(8){animation-delay:.54s}
+@media (prefers-reduced-motion:reduce){#screen-results.active .tbl-block{animation:none}}
 
 .koora-stamp{display:inline-block;height:14px;margin-bottom:14px;opacity:.62}
 .koora-stamp svg{height:14px;width:auto;display:block}
@@ -131,7 +171,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .hero em{font-style:italic;font-weight:600}
 .lede{font-family:var(--serif);font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
 .lede strong{font-weight:600;color:var(--ink)}
-.body-text{font-family:var(--sans);font-size:16px;font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
+.body-text{font-family:var(--sans);font-size:clamp(15.5px,1.6vw,17px);font-weight:500;line-height:1.7;color:var(--body);margin-bottom:16px}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
 .field-label{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mid);margin-bottom:10px;display:block}
 .field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:var(--sans);font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
@@ -396,6 +436,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </style>
 </head>
 <body>
+<a href="#screen-welcome" class="skip-link" style="position:absolute;left:-9999px;top:0;z-index:200;padding:12px 18px;background:var(--navy);color:#fff;font-family:var(--sans);font-weight:700;text-decoration:none">Skip to assessment</a>
 <div id="progress"></div>
 <div id="chamber-progress" aria-hidden="true">
   <div class="cp-seg" data-ch="1"></div>
@@ -488,7 +529,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
   <div class="welcome-cta">
     <button class="btn-primary" onclick="startAssessment()" style="max-width:280px">Begin</button>
-    <p class="welcome-meta"><b>About fifteen minutes.</b> Your responses are stored in your browser only. Nothing is shared until you choose to email your results. Replies and questions reach Dr. Mogire’s team at mail@mogire.com.</p>
+    <p class="welcome-meta"><b>About fifteen minutes.</b> Your responses are stored in your browser only. Nothing is shared until you choose to email your results. Replies and questions reach Dr. Mogire’s team at mail@mogire.com. Read our <a href="/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
     <p class="cohort-whisper" id="welcomeWhisper"></p>
   </div>
 </section>
@@ -716,74 +757,330 @@ var DAY_OPTIONS=[
 ];
 
 var OPTIONS=[
-  {label:'Rarely or never',score:1,key:'A'},
-  {label:'Sometimes',score:2,key:'B'},
-  {label:'Often',score:3,key:'C'},
-  {label:'Most of the time',score:4,key:'D'}
+  {label:'Almost never',score:1,key:'A'},
+  {label:'Some weeks',score:2,key:'B'},
+  {label:'Most weeks',score:3,key:'C'},
+  {label:'This is how I live',score:4,key:'D'}
 ];
 
-// 60 items, 6 sections
+// 60 items across 6 sections, each with 3 tier variants (start / mid / end).
 var QUESTIONS=[
-  {n:1, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I named what was wrong faster than I named what I would do about it.'},
-  {n:2, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I described the same problem more than once and changed nothing.'},
-  {n:3, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I felt the relief of venting, but the situation stayed the same.'},
-  {n:4, sec:1,sn:'The four reflexes', dom:'Complaining', text:'I treated my circumstances as the reason I could not move.'},
-  {n:5, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'The voice in my head spoke to me in ways I would never speak to someone I love.'},
-  {n:6, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'I rehearsed mistakes longer than I extracted lessons from them.'},
-  {n:7, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'I noticed my flaws faster than I noticed what was working.'},
-  {n:8, sec:1,sn:'The four reflexes', dom:'Criticizing', text:'I let the harshest voice inside me have the final say.'},
-  {n:9, sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I measured my pace against someone else’s pace.'},
-  {n:10,sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I felt smaller after looking at someone’s life than before I looked.'},
-  {n:11,sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I lost track of what I want when I saw what they have.'},
-  {n:12,sec:1,sn:'The four reflexes', dom:'Comparing',   text:'I downgraded my own progress when I saw someone else’s.'},
-  {n:13,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I tracked who is ahead of me in my field.'},
-  {n:14,sec:1,sn:'The four reflexes', dom:'Competing',   text:'My sense of worth moved with whether I was winning.'},
-  {n:15,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I did things mainly to be seen doing them.'},
-  {n:16,sec:1,sn:'The four reflexes', dom:'Competing',   text:'I oriented around approval rather than what is mine to build.'},
-  {n:17,sec:2,sn:'The seven postures',dom:'Awareness',     text:'I let myself see what was true, even where the truth was unflattering.', rev:true},
-  {n:18,sec:2,sn:'The seven postures',dom:'Learning',      text:'I let yesterday teach me, and I began again clean.', rev:true},
-  {n:19,sec:2,sn:'The seven postures',dom:'Change',        text:'I shifted one thing this period rather than waiting to overhaul everything.', rev:true},
-  {n:20,sec:2,sn:'The seven postures',dom:'Action',        text:'I moved before I felt ready, instead of waiting to feel ready.', rev:true},
-  {n:21,sec:2,sn:'The seven postures',dom:'Resilience',    text:'When difficulty arrived, I stayed in the work.', rev:true},
-  {n:22,sec:2,sn:'The seven postures',dom:'Reflection',    text:'I looked back at my own behavior without defending it.', rev:true},
-  {n:23,sec:2,sn:'The seven postures',dom:'Accountability',text:'I let one trusted witness see the truth of my week.', rev:true},
-  {n:24,sec:3,sn:'The four needs', dom:'Aliveness · filled',     text:'I felt genuinely alive. Present, in my body, awake to what is here.', rev:true},
-  {n:25,sec:3,sn:'The four needs', dom:'Aliveness · substitute', text:'I reached for intensity, urgency, or drama when what I wanted was presence.'},
-  {n:26,sec:3,sn:'The four needs', dom:'Connection · filled',    text:'I felt rooted in real relationships, not curated ones.', rev:true},
-  {n:27,sec:3,sn:'The four needs', dom:'Connection · substitute',text:'I reached for reach, like followers or wider audience, when what I wanted was roots.'},
-  {n:28,sec:3,sn:'The four needs', dom:'Meaning · filled',       text:'I sensed depth in what I was doing. It carried weight beyond performance.', rev:true},
-  {n:29,sec:3,sn:'The four needs', dom:'Meaning · substitute',   text:'I reached for breadth, like more topics or more options, when what I wanted was depth.'},
-  {n:30,sec:3,sn:'The four needs', dom:'Fulfillment · filled',   text:'I felt enough. The quiet sense that I have what I need.', rev:true},
-  {n:31,sec:3,sn:'The four needs', dom:'Fulfillment · substitute',text:'I reached for more, like more income or recognition, when what I wanted was enough.'},
-  {n:32,sec:4,sn:'Forces and fidelities',dom:'Duty',                text:'I carried someone forward this period because I said I would.', rev:true, ff:'force'},
-  {n:33,sec:4,sn:'Forces and fidelities',dom:'Opus',                text:'I kept building the thing only I can build, even where no one applauded.', rev:true, ff:'force'},
-  {n:34,sec:4,sn:'Forces and fidelities',dom:'Declaration',         text:'I held a commitment I had spoken aloud to a witness who remembers.', rev:true, ff:'force'},
-  {n:35,sec:4,sn:'Forces and fidelities',dom:'Identity',            text:'I behaved like the person I want to become, even when no one was watching.', rev:true, ff:'force'},
-  {n:36,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Mind',    text:'I thought what was mine to think, not the inherited script.', rev:true, ff:'fidelity'},
-  {n:37,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Heart',   text:'I felt what was mine to feel, not what I was trained to perform.', rev:true, ff:'fidelity'},
-  {n:38,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Will',    text:'I chose what was mine to choose, not what was easier or expected.', rev:true, ff:'fidelity'},
-  {n:39,sec:4,sn:'Forces and fidelities',dom:'Fidelity to Hand',    text:'I did what was mine to do, and the doing matched the saying.', rev:true, ff:'fidelity'},
-  {n:40,sec:5,sn:'Faculties and practice', dom:'Attention',          text:'My attention stayed with what was mine to attend to, not what was easier to look at.', rev:true},
-  {n:41,sec:5,sn:'Faculties and practice', dom:'Allegiance',         text:'My own clear judgment had the final say inside me, not the loudest voice in the room.', rev:true},
-  {n:42,sec:5,sn:'Faculties and practice', dom:'Integrity',          text:'My word and my action were the same thing this period.', rev:true},
-  {n:43,sec:5,sn:'Faculties and practice', dom:'Return',             text:'When I left center, I returned. The return itself was the practice.', rev:true},
-  {n:44,sec:5,sn:'Faculties and practice', dom:'The Seal',           text:'I performed the Seal at sunrise. Hand on heart, one breath, before phone, coffee, or message.', rev:true},
-  {n:45,sec:5,sn:'Faculties and practice', dom:'The Daily Reset',    text:'I wrote five short prompts after the Seal. Five words or fewer per line.', rev:true},
-  {n:46,sec:5,sn:'Faculties and practice', dom:'The evening question',text:'At sunset I asked: where did I keep fidelity. Where did I break it. Where do I return tomorrow.', rev:true},
-  {n:47,sec:5,sn:'Faculties and practice', dom:'The 24-hour return', text:'When I missed a day, I returned the next day. No shame spiral. No abandonment.', rev:true},
-  {n:48,sec:5,sn:'Faculties and practice', dom:'The Friday cohort',  text:'I spoke truth aloud where the cohort could hear it.', rev:true},
-  {n:49,sec:5,sn:'Faculties and practice', dom:'The Sunday sealing', text:'I closed the week before I opened the next one.', rev:true},
-  {n:50,sec:6,sn:'Where you are now', dom:'Unkept promises',      text:'My word to myself lost credibility. I made promises and broke them quietly.'},
-  {n:51,sec:6,sn:'Where you are now', dom:'Self-trust bankrupt',  text:'I did not believe my own word when I made a new commitment.'},
-  {n:52,sec:6,sn:'Where you are now', dom:'Deferred action',      text:'Later was my operating system. The day arrived, and I postponed it again.'},
-  {n:53,sec:6,sn:'Where you are now', dom:'Hidden shame',         text:'I performed public confidence over private shame. The mask was heavy.'},
-  {n:54,sec:6,sn:'Where you are now', dom:'Inventory clarity',    text:'I am clear on the smallest honest finish for at least three of my unfinished commitments right now.', rev:true},
-  {n:55,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I felt disoriented, like the ground was shifting under me, and I was still here.', arc:'rupture'},
-  {n:56,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I was confronting the gap between what I claim and what I do, and it stung.', arc:'exposure'},
-  {n:57,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I had great days followed by crashes back into old patterns.', arc:'tension'},
-  {n:58,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I caught myself responding from a self I have not been before, and it surprised me.', arc:'unfolding'},
-  {n:59,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'I wanted to help others through what I have walked through.', arc:'rooting'},
-  {n:60,sec:6,sn:'Where you are now', dom:'Inner experience',     text:'The new way is now my default. Going back would take more effort than continuing.', arc:'newnormal'}
+  // Section 1: The four reflexes (16 items, 4 per reflex)
+  // Complaining
+  {n:1, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
+    'When something goes wrong, I name what is wrong faster than I name what I would do about it.',
+    'When something goes wrong, I am beginning to name the move alongside the problem.',
+    'When something goes wrong, the problem and the move come together in my mind.'
+  ]},
+  {n:2, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
+    'When the same problem returns, I describe it again without changing my approach.',
+    'When the same problem returns, I notice the loop and shift.',
+    'When the same problem returns, I treat the recurrence itself as the data.'
+  ]},
+  {n:3, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
+    'When I vent, I feel relief but the situation stays the same.',
+    'When I vent, I notice the relief and ask what the situation is asking of me.',
+    'When I am tempted to vent, I usually move instead.'
+  ]},
+  {n:4, sec:1,sn:'The four reflexes', dom:'Complaining', text:[
+    'When circumstances are difficult, I treat them as the reason I cannot move.',
+    'When circumstances are difficult, I notice the move that is still mine to make.',
+    'When circumstances are difficult, I check on agency before I check on circumstance.'
+  ]},
+  // Criticizing
+  {n:5, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+    'When my inner voice speaks to me, it speaks in ways I would never speak to someone I love.',
+    'When my inner voice speaks harshly, I notice it and do not collude.',
+    'When my inner voice speaks, it speaks to me the way I would speak to a friend.'
+  ]},
+  {n:6, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+    'When I make a mistake, I rehearse it longer than I extract any lesson from it.',
+    'When I make a mistake, I notice the rehearsal urge and ask what is to be learned.',
+    'When I make a mistake, I take the lesson and move.'
+  ]},
+  {n:7, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+    'When I look at myself, I notice my flaws faster than what is working.',
+    'When I look at myself, I am beginning to see what is working alongside what is not.',
+    'When I look at myself, I see clearly because I see fully.'
+  ]},
+  {n:8, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+    'When the harshest voice inside me speaks, I let it have the final say.',
+    'When the harshest voice inside me speaks, I notice it without giving it the last word.',
+    'When the harshest voice inside me speaks, my own clear judgement still has the final say.'
+  ]},
+  // Comparing
+  {n:9, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
+    'When I see someone ahead of me, I shrink.',
+    'When I see someone ahead of me, I notice the shrink before it lands.',
+    'When I see someone ahead of me, I can stay on my own ground.'
+  ]},
+  {n:10, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
+    'When I see someone like me succeed at the thing I struggle with, I scroll past and pretend I did not see it.',
+    'When I see someone like me succeed at the thing I struggle with, I notice the flinch and stay with it.',
+    'When I see someone like me succeed at the thing I struggle with, I let it be evidence that the work is possible.'
+  ]},
+  {n:11, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
+    'When I look at someone else’s life, I downgrade my own progress on the way back to mine.',
+    'When I look at someone else’s life, I am beginning to come back to mine without downgrading.',
+    'When I look at someone else’s life, my own work still feels like mine when I return.'
+  ]},
+  {n:12, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
+    'When I see what they have, I lose track of what I want.',
+    'When I see what they have, I notice the loss and recover my own desire.',
+    'When I see what they have, I remember what I want before I forget.'
+  ]},
+  // Competing
+  {n:13, sec:1,sn:'The four reflexes', dom:'Competing', text:[
+    'When I think about my field, I track who is ahead of me.',
+    'When I think about my field, I notice the tracking and return to my own work.',
+    'When I think about my field, I track my own progress more than anyone else’s.'
+  ]},
+  {n:14, sec:1,sn:'The four reflexes', dom:'Competing', text:[
+    'When I assess my worth, it moves with whether I am winning.',
+    'When I assess my worth, I notice the scoreboard pull and resist it.',
+    'When I assess my worth, the scoreboard is no longer the source.'
+  ]},
+  {n:15, sec:1,sn:'The four reflexes', dom:'Competing', text:[
+    'When I do something, I do it mainly to be seen doing it.',
+    'When I do something, I notice the audience pull and ask what I would do without it.',
+    'When I do something, I do it whether or not it is seen.'
+  ]},
+  {n:16, sec:1,sn:'The four reflexes', dom:'Competing', text:[
+    'When I make choices, I orient around approval rather than what is mine to build.',
+    'When I make choices, I notice the approval pull and reorient.',
+    'When I make choices, I orient around what is mine to build.'
+  ]},
+
+  // Section 2: ALCARRA (7 items, one per posture)
+  {n:17, sec:2,sn:'The seven postures', dom:'Awareness', text:[
+    'When the truth about me is unflattering, I avoid looking at it directly.',
+    'When the truth about me is unflattering, I am beginning to let myself see it.',
+    'When the truth about me is unflattering, I look at it without flinching.'
+  ], rev:true},
+  {n:18, sec:2,sn:'The seven postures', dom:'Learning', text:[
+    'When yesterday went badly, I let it weigh on today instead of letting it teach.',
+    'When yesterday went badly, I am beginning to let it teach me before it weighs.',
+    'When yesterday went badly, I begin again clean, informed.'
+  ], rev:true},
+  {n:19, sec:2,sn:'The seven postures', dom:'Change', text:[
+    'When I notice I need to change, I wait until I can overhaul everything before I shift one thing.',
+    'When I notice I need to change, I am beginning to shift one thing without waiting.',
+    'When I notice I need to change, I shift one thing this week.'
+  ], rev:true},
+  {n:20, sec:2,sn:'The seven postures', dom:'Action', text:[
+    'When I am not yet ready, I wait to act.',
+    'When I am not yet ready, I am beginning to move anyway, in small ways.',
+    'When I am not yet ready, I move anyway. Readiness follows.'
+  ], rev:true},
+  {n:21, sec:2,sn:'The seven postures', dom:'Resilience', text:[
+    'When difficulty arrives, I leave the work and tend to my emotions elsewhere.',
+    'When difficulty arrives, I am beginning to stay in the work while I tend to myself.',
+    'When difficulty arrives, I stay in the work.'
+  ], rev:true},
+  {n:22, sec:2,sn:'The seven postures', dom:'Reflection', text:[
+    'When I look back at my own behaviour, I defend before I see.',
+    'When I look back at my own behaviour, I am beginning to see before I defend.',
+    'When I look back at my own behaviour, I see clearly without needing to defend.'
+  ], rev:true},
+  {n:23, sec:2,sn:'The seven postures', dom:'Accountability', text:[
+    'When my week happens, I keep the truth of it to myself.',
+    'When my week happens, I am beginning to let one trusted witness see it.',
+    'When my week happens, the truth of it is shared with at least one witness.'
+  ], rev:true},
+
+  // Section 3: The four needs (8 items, alternating filled / substituted)
+  {n:24, sec:3,sn:'The four needs', dom:'Aliveness · filled', text:[
+    'When I check in with my own aliveness, I find I am here, in my body, awake to what is in front of me.',
+    'When I check in with my own aliveness, I am present more often than not.',
+    'When I check in with my own aliveness, presence is the default.'
+  ], rev:true},
+  {n:25, sec:3,sn:'The four needs', dom:'Aliveness · substitute', text:[
+    'When I crave aliveness, I reach for intensity, urgency, or drama as a substitute for presence.',
+    'When I crave aliveness, I notice the substitute reach before I make it.',
+    'When I crave aliveness, presence is what I reach for.'
+  ]},
+  {n:26, sec:3,sn:'The four needs', dom:'Connection · filled', text:[
+    'When I check in with my closest relationships, I find roots, not curated surfaces.',
+    'When I check in with my closest relationships, the roots are deepening.',
+    'When I check in with my closest relationships, I am rooted.'
+  ], rev:true},
+  {n:27, sec:3,sn:'The four needs', dom:'Connection · substitute', text:[
+    'When I crave connection, I reach for reach (followers, network, audience) as a substitute for roots.',
+    'When I crave connection, I notice the reach pull and stay home.',
+    'When I crave connection, I tend my closest relationships.'
+  ]},
+  {n:28, sec:3,sn:'The four needs', dom:'Meaning · filled', text:[
+    'When I check in with what I am doing, I sense it carries weight beyond performance.',
+    'When I check in with what I am doing, the weight is steadier.',
+    'When I check in with what I am doing, the depth is unmistakable.'
+  ], rev:true},
+  {n:29, sec:3,sn:'The four needs', dom:'Meaning · substitute', text:[
+    'When I crave meaning, I reach for breadth (more topics, more options) as a substitute for depth.',
+    'When I crave meaning, I notice the breadth pull and choose depth instead.',
+    'When I crave meaning, I go deeper into what is already mine.'
+  ]},
+  {n:30, sec:3,sn:'The four needs', dom:'Fulfillment · filled', text:[
+    'When I sit quietly, I find the sense that I have enough, that I am enough.',
+    'When I sit quietly, the sense of enough arrives more often than not.',
+    'When I sit quietly, enough is my baseline.'
+  ], rev:true},
+  {n:31, sec:3,sn:'The four needs', dom:'Fulfillment · substitute', text:[
+    'When I crave fulfilment, I reach for more (income, recognition, achievement) as a substitute for enough.',
+    'When I crave fulfilment, I notice the more pull and sit with what I have.',
+    'When I crave fulfilment, I rest in enough.'
+  ]},
+
+  // Section 4: Forces (4) and Fidelities (4)
+  {n:32, sec:4,sn:'Forces and fidelities', dom:'Duty', text:[
+    'When I think about whom I am honouring by finishing this, no one comes clearly to mind.',
+    'When I think about whom I am honouring, the answer is becoming clearer.',
+    'When I think about whom I am honouring, I can name them. I am carrying them.'
+  ], rev:true},
+  {n:33, sec:4,sn:'Forces and fidelities', dom:'Opus', text:[
+    'When I think about what I was given to build, I cannot articulate it cleanly.',
+    'When I think about what I was given to build, the answer is becoming clearer.',
+    'When I think about what I was given to build, I am building it.'
+  ], rev:true},
+  {n:34, sec:4,sn:'Forces and fidelities', dom:'Declaration', text:[
+    'When I think about what I have put on record I cannot take back, the list is short.',
+    'When I think about what I have put on record, the list is honest.',
+    'When I think about what I have put on record, the declaration carries me.'
+  ], rev:true},
+  {n:35, sec:4,sn:'Forces and fidelities', dom:'Identity', text:[
+    'When I think about who I must become to carry this, I am not yet that person.',
+    'When I think about who I must become, I am closer than I was.',
+    'When I think about who I must become, I am becoming her, today.'
+  ], rev:true},
+  {n:36, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Mind', text:[
+    'When I think, I think the inherited script more than my own thoughts.',
+    'When I think, I am beginning to think what is mine to think.',
+    'When I think, I think what is mine to think.'
+  ], rev:true},
+  {n:37, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Heart', text:[
+    'When I feel, I perform what I was trained to perform more than what is actually present.',
+    'When I feel, I am beginning to feel what is actually present.',
+    'When I feel, I feel what is mine to feel.'
+  ], rev:true},
+  {n:38, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Will', text:[
+    'When I choose, I choose what is easier or expected more than what is mine.',
+    'When I choose, I am beginning to choose what is mine.',
+    'When I choose, I choose what is mine to choose.'
+  ], rev:true},
+  {n:39, sec:4,sn:'Forces and fidelities', dom:'Fidelity to Hand', text:[
+    'When I act, the doing does not match the saying.',
+    'When I act, the doing is closing the gap with the saying.',
+    'When I act, what I do matches what I said.'
+  ], rev:true},
+
+  // Section 5: Faculties (4) and Practice (6)
+  {n:40, sec:5,sn:'Faculties and practice', dom:'Attention', text:[
+    'When I attend, my attention drifts toward what is easier to look at, not what is mine to attend to.',
+    'When I attend, I notice the drift before I lose the field.',
+    'When I attend, I attend to what is mine.'
+  ], rev:true},
+  {n:41, sec:5,sn:'Faculties and practice', dom:'Allegiance', text:[
+    'When voices speak inside me, the loudest voice in the room has the final say.',
+    'When voices speak inside me, I am beginning to hold my own clear judgement.',
+    'When voices speak inside me, my own clear judgement has the final say.'
+  ], rev:true},
+  {n:42, sec:5,sn:'Faculties and practice', dom:'Integrity', text:[
+    'When I look at my word and my action, they are not the same thing.',
+    'When I look at my word and my action, the gap is closing.',
+    'When I look at my word and my action, they are one thing.'
+  ], rev:true},
+  {n:43, sec:5,sn:'Faculties and practice', dom:'Return', text:[
+    'When I leave centre, I do not return for days.',
+    'When I leave centre, I return within hours, not days.',
+    'When I leave centre, I return the same hour.'
+  ], rev:true},
+  {n:44, sec:5,sn:'Faculties and practice', dom:'The Seal', text:[
+    'When morning arrives, I check the phone before I check on myself.',
+    'When morning arrives, I am beginning to do the Seal first.',
+    'When morning arrives, the Seal is first. Everything else follows.'
+  ], rev:true},
+  {n:45, sec:5,sn:'Faculties and practice', dom:'The Daily Reset', text:[
+    'When morning arrives, I do not write the Daily Reset.',
+    'When morning arrives, I am beginning to write the Reset most days.',
+    'When morning arrives, the Reset is written.'
+  ], rev:true},
+  {n:46, sec:5,sn:'Faculties and practice', dom:'The evening question', text:[
+    'When evening arrives, I do not ask where I kept fidelity, where I broke it, where I return tomorrow.',
+    'When evening arrives, I am beginning to ask the question.',
+    'When evening arrives, the question is asked. The day is sealed.'
+  ], rev:true},
+  {n:47, sec:5,sn:'Faculties and practice', dom:'The 24-hour return', text:[
+    'When I miss a Movement, I do not run the protocol.',
+    'When I miss a Movement, I am beginning to run the protocol within 24 hours.',
+    'When I miss a Movement, the protocol runs within 24 hours.'
+  ], rev:true},
+  {n:48, sec:5,sn:'Faculties and practice', dom:'The Friday cohort', text:[
+    'When Friday arrives, I do not show up to the cohort, or I show up without speaking truth.',
+    'When Friday arrives, I am beginning to speak truth aloud.',
+    'When Friday arrives, I show up. I speak truth.'
+  ], rev:true},
+  {n:49, sec:5,sn:'Faculties and practice', dom:'The Sunday sealing', text:[
+    'When Sunday arrives, I do not close the week before I open the next.',
+    'When Sunday arrives, I am beginning to close the week before I open the next.',
+    'When Sunday arrives, the week is sealed.'
+  ], rev:true},
+
+  // Section 6: Inner journey (11 items)
+  {n:50, sec:6,sn:'Where you are now', dom:'Unkept promises', text:[
+    'When I think about my word to myself, the credibility is overdrawn.',
+    'When I think about my word to myself, credibility is being rebuilt.',
+    'When I think about my word to myself, the credibility holds.'
+  ]},
+  {n:51, sec:6,sn:'Where you are now', dom:'Self-trust bankrupt', text:[
+    'When I make a new commitment, I do not believe my own word.',
+    'When I make a new commitment, I am beginning to believe.',
+    'When I make a new commitment, I believe me.'
+  ]},
+  {n:52, sec:6,sn:'Where you are now', dom:'Deferred action', text:[
+    'When the day arrives, I postpone what was meant for today.',
+    'When the day arrives, I am beginning to act on what is meant for today.',
+    'When the day arrives, today is when I act.'
+  ]},
+  {n:53, sec:6,sn:'Where you are now', dom:'Hidden shame', text:[
+    'When others see me, they see public confidence over private shame. The mask is heavy.',
+    'When others see me, the mask is lighter. The truth is closer to the surface.',
+    'When others see me, what they see is what is true. The mask is gone.'
+  ]},
+  {n:54, sec:6,sn:'Where you are now', dom:'Inventory clarity', text:[
+    'When I look at my Day 0 unfinished commitments, I am unclear on the smallest honest finish for any of them.',
+    'When I look at my Day 0 unfinished commitments, I am clear on the smallest honest finish for at least three.',
+    'When I look at my Day 0 unfinished commitments, the smallest honest finish for each is clear, and several are sealed.'
+  ], rev:true},
+  // Inner experience markers (these stay constant for arc detection)
+  {n:55, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
+    'When I check in with my inner state, I feel disoriented, fragile. The ground feels like it is moving under me, and I am still here.',
+    'When I check in with my inner state, the disorientation is more familiar than frightening.',
+    'When I check in with my inner state, the ground is steady.'
+  ], arc:'rupture'},
+  {n:56, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
+    'When I check in with my inner state, I am confronting the gap between who I claim to be and who my actions show me to be, and it stings.',
+    'When I check in with my inner state, the gap is closing and the sting is teaching.',
+    'When I check in with my inner state, what I claim and what I do are aligning.'
+  ], arc:'exposure'},
+  {n:57, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
+    'When I check in with my inner state, I have great days followed by crashes back into old patterns. I feel pulled in two directions.',
+    'When I check in with my inner state, the crashes are shorter. The pull is gentler.',
+    'When I check in with my inner state, I am steady more days than not.'
+  ], arc:'tension'},
+  {n:58, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
+    'When I check in with my inner state, I am catching myself responding from a self I have not been before, and it feels surprisingly easy.',
+    'When I check in with my inner state, the new self is more often present than the old.',
+    'When I check in with my inner state, the new self is who I am.'
+  ], arc:'unfolding'},
+  {n:59, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
+    'When I check in with my inner state, I feel calm confidence. When I see another person stuck in a pattern I used to run, I want to help them through it.',
+    'When I check in with my inner state, the calm is lasting. I am beginning to be of use to others.',
+    'When I check in with my inner state, I am rooted, and I am giving back.'
+  ], arc:'rooting'},
+  {n:60, sec:6,sn:'Where you are now', dom:'Inner experience', text:[
+    'When I check in with my inner state, the new way is now my default. Going back to the old way would take more effort than continuing.',
+    'When I check in with my inner state, the new way is the only way.',
+    'When I check in with my inner state, I am at home. The work continues, but the war is over.'
+  ], arc:'newnormal'}
 ];
 
 var REFLEXES=[
@@ -1273,7 +1570,11 @@ function renderQuestion(n){
   var q=QUESTIONS[n-1];
   document.getElementById('qSection').textContent='Section '+q.sec+' of 6 · '+q.sn;
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
-  document.getElementById('qText').textContent=q.text;
+  // Pick tier variant from text array if present
+  var variantIdx=0;
+  if(typeof retakeTier==='function'){var rt=retakeTier();variantIdx=rt<=2?0:rt<=4?1:2}
+  var qText=Array.isArray(q.text)?q.text[Math.min(2,Math.max(0,variantIdx))]:q.text;
+  document.getElementById('qText').textContent=qText;
   document.getElementById('qPrompt').textContent=sectionPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
   setChamberProgress(q.sec);
@@ -1291,6 +1592,7 @@ function renderQuestion(n){
 }
 function selectOption(n,score){
   answers[n]=score;
+  try{localStorage.setItem('koora_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,day:participantDay,enrolled:participantEnrolled}))}catch(e){}
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   cancelAdvance();
@@ -1393,6 +1695,7 @@ function levelLabelPos(pct){return ({beg:'Beginning',prac:'Practicing',emb:'Embo
 // Finish
 function finishAssessment(){
   setProgress(100);
+  try{localStorage.removeItem('koora_inprogress')}catch(e){}
   var rec=buildRecord();
   appendRecord(rec);
   buildResults(rec);
@@ -1832,8 +2135,23 @@ function sendEmail(){
 }
 
 // 4-page PDF report (with founder cover letter on page 1)
+var JSPDF_LOADING=null;
+function ensureJsPdf(){
+  if(typeof window.jspdf!=='undefined'){return Promise.resolve()}
+  if(JSPDF_LOADING)return JSPDF_LOADING;
+  JSPDF_LOADING=new Promise(function(resolve,reject){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.crossOrigin='anonymous';s.onload=resolve;s.onerror=reject;
+    document.head.appendChild(s);
+  });
+  return JSPDF_LOADING;
+}
 function downloadPDF(){
-  if(!JSPDF_OK||typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
+  ensureJsPdf().then(function(){_downloadPDF()}).catch(function(){alert('PDF script could not be loaded. Check connection and try again.')});
+}
+function _downloadPDF(){
+  if(typeof window.jspdf==='undefined'){alert('PDF unavailable. Use email or screenshot instead.');return}
   var rec=lastResults;if(!rec)return;
   rec.pain_text=document.getElementById('painInput').value.trim();
   rec.pain_text_5y=document.getElementById('painInput5y').value.trim();
