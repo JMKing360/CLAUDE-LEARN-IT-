@@ -419,6 +419,8 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .delivery-h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:22px;font-weight:600;color:var(--ink);margin-bottom:8px;letter-spacing:-.005em}
 .delivery-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);line-height:1.6;margin-bottom:20px;letter-spacing:.005em}
 .delivery-row{display:flex;gap:10px;flex-wrap:wrap}
+.delivery-form{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.delivery-form input{flex:1 1 220px;min-width:0}
 .email-input{flex:1;min-width:200px;padding:15px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .email-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
 .email-status{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;margin-top:14px;display:none;letter-spacing:.005em}
@@ -1141,24 +1143,19 @@ body.footer-hidden footer{display:none}
 
   <div class="tbl-block">
     <div class="delivery">
-      <h3 class="delivery-h">Send your results</h3>
-      <p class="delivery-sub">A copy reaches your inbox.</p>
-      <div class="delivery-row">
-        <input class="email-input" type="email" id="emailInput" placeholder="your@email.com">
-        <button class="btn-primary" id="sendBtn" onclick="sendEmail()" style="flex:0 0 auto">Send</button>
+      <div class="delivery-form">
+        <input class="email-input" type="text" id="firstNameInput" placeholder="First name" autocomplete="given-name" autocapitalize="words">
+        <input class="email-input" type="text" id="lastNameInput" placeholder="Last name" autocomplete="family-name" autocapitalize="words">
+        <input class="email-input" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email" inputmode="email" spellcheck="false">
       </div>
       <p class="email-status" id="emailStatus"></p>
       <div class="actions">
-        <button class="btn-secondary" id="downloadBtn" onclick="downloadPDF()">Download report (PDF)</button>
+        <button class="btn-primary" id="getReportBtn" onclick="getReport()" style="background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em;max-width:320px">GET MY REPORT</button>
         <button class="btn-secondary" onclick="goDashboard()">Back to your path</button>
       </div>
     </div>
   </div>
 
-  <div class="vow-block">
-    <span class="vow-eyebrow">A line you may carry</span>
-    <p class="vow-text"><em>You are permitted to fall.</em> You are not permitted to stop returning.</p>
-  </div>
 
   <div class="contact-block">
     <h3 class="contact-h">Questions, returns, or a missed day</h3>
@@ -1167,7 +1164,6 @@ body.footer-hidden footer{display:none}
       <a href="mailto:mail@mogire.com">mail@mogire.com</a>
       <a href="https://chat.whatsapp.com/CGpEGJ5MuCRAAw3A6Akmp2" target="_blank" rel="noopener">Cohort WhatsApp</a>
     </div>
-    <p class="lineage">Derived from the KOORA Master Architecture v3, held privately within the cohort. UNFINISHED is one instrument among several. Once a year. Twenty-four seats.</p>
   </div>
 
   <!-- v3.2.0  -  Meet Dr. Job, the author -->
@@ -3027,6 +3023,22 @@ function ensureJsPdf(){
     document.head.appendChild(s);
   });
   return JSPDF_LOADING;
+}
+function getReport(){
+  var fn=(document.getElementById('firstNameInput')||{value:''}).value.trim();
+  var ln=(document.getElementById('lastNameInput')||{value:''}).value.trim();
+  var em=(document.getElementById('emailInput')||{value:''}).value.trim();
+  var status=document.getElementById('emailStatus');
+  status.style.display='block';
+  if(!fn){status.className='email-status err';status.textContent='Please enter your first name.';return}
+  if(!ln){status.className='email-status err';status.textContent='Please enter your last name.';return}
+  if(!em||em.indexOf('@')<0||em.indexOf('.')<0){status.className='email-status err';status.textContent='Please enter a valid email address.';return}
+  status.className='email-status';status.style.display='none';status.textContent='';
+  participantName=fn;participantEmail=em;
+  if(lastResults){lastResults.name=fn;lastResults.lastName=ln;lastResults.email=em}
+  var h=loadHistory();if(h.length){h[h.length-1].name=fn;h[h.length-1].lastName=ln;h[h.length-1].email=em;saveHistory(h)}
+  if(EMAIL_OK)try{sendEmail()}catch(e){}
+  downloadPDF();
 }
 function downloadPDF(){
   ensureJsPdf().then(function(){_downloadPDF()}).catch(function(){alert('PDF script could not be loaded. Check connection and try again.')});
