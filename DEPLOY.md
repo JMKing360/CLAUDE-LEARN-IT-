@@ -28,20 +28,20 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
    - Output directory: empty (root)
    - Deploy
 3. **Add custom domains**:
-   - Project → Custom domains → add `firsthour.houseofmastery.co`
-   - Add `kooraassess.houseofmastery.co`
-   - DNS will be auto-created if `houseofmastery.co` is on Cloudflare
+   - Project → Custom domains → ensure `hom.mogire.com` is attached to the HOM Pages project
+   - Serve KOORA at the clean path `https://hom.mogire.com/koora`
+   - DNS will be auto-created if `hom.mogire.com` is on Cloudflare
 4. **Add a Configuration Rule** so the right file serves at each subdomain:
-   - `firsthour.houseofmastery.co/*` → rewrite to `/first-hour.html` for `/`, otherwise pass-through
-   - `kooraassess.houseofmastery.co/*` → rewrite to `/index.html` for `/`, otherwise pass-through
-   - Privacy at `houseofmastery.co/privacy` → rewrite to `/privacy.html`
+   - `hom.mogire.com/first-hour/*` → rewrite to `/first-hour.html` for `/`, otherwise pass-through
+   - `hom.mogire.com/koora/*` → rewrite to `/index.html` for `/`, otherwise pass-through
+   - Privacy at `hom.mogire.com/privacy` and `/privacy/` → rewrite to `/privacy.html`
 5. **Verify security headers** at `securityheaders.com`. Target A or A+.
 6. **Walk both instruments end to end on a real phone** before announcing.
 
 ### Verification checklist
-- [ ] `https://firsthour.houseofmastery.co` loads and shows the welcome hero
-- [ ] `https://kooraassess.houseofmastery.co` loads
-- [ ] `https://www.houseofmastery.co/privacy` loads the privacy policy
+- [ ] `https://hom.mogire.com/first-hour` loads and shows the welcome hero
+- [ ] `https://hom.mogire.com/koora` loads
+- [ ] `https://hom.mogire.com/privacy` loads the privacy policy
 - [ ] `securityheaders.com` shows A or A+ for both subdomains
 - [ ] Service worker registers (DevTools → Application → Service Workers)
 - [ ] Manifest is recognised (DevTools → Application → Manifest)
@@ -90,11 +90,11 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 1. **Create a Sentry project** at sentry.io
    - Platform: Browser JavaScript
    - Get the DSN
-2. **Create a Plausible site** at plausible.io for `houseofmastery.co`
+2. **Create a Plausible site** at plausible.io for `hom.mogire.com`
 3. **Set window.HOM_CONFIG before observability.js loads**, in each instrument:
    - Add a small `<script>` block in the `<head>` of `first-hour.html`, `index.html`:
      ```html
-     <script>window.HOM_CONFIG = { sentryDsn: 'YOUR_DSN_HERE', plausibleDomain: 'houseofmastery.co', release: 'hom@3.0.0', environment: 'production' };</script>
+     <script>window.HOM_CONFIG = { sentryDsn: 'YOUR_DSN_HERE', plausibleDomain: 'hom.mogire.com', release: 'hom@3.0.0', environment: 'production' };</script>
      <script src="/observability.js" defer></script>
      ```
 4. Push, redeploy, verify events in Sentry and Plausible
@@ -201,7 +201,7 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 2. **Generate proper PNG icons** at 192×192 and 512×512 from the SVG mark; place in `/icons/`
 3. **Document the iframe embed** for partner integrators:
    ```html
-   <iframe src="https://firsthour.houseofmastery.co/embed/" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
+   <iframe src="https://hom.mogire.com/first-hour/embed/" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
    ```
 4. **Set up the `/embed/*` route** in Cloudflare Pages so the looser CSP applies (already in `_headers`)
 5. **Optional**: server-renderable build via Vite SSR for SEO
@@ -278,8 +278,8 @@ Already covered above in **Phase 2**. Once Sentry and Plausible are live, layer:
 | Privacy questions | `mail@mogire.com` |
 | Security reports | `mail@mogire.com` with subject "Security report" |
 | Cohort archive | `mogiremd@gmail.com` (silent CC) |
-| Public site | `houseofmastery.co` |
-| First Hour | `firsthour.houseofmastery.co` |
-| KOORA | `kooraassess.houseofmastery.co` |
-| Privacy | `houseofmastery.co/privacy` |
-| Security disclosure | `houseofmastery.co/.well-known/security.txt` |
+| Public site | `hom.mogire.com` |
+| First Hour | `hom.mogire.com/first-hour` |
+| KOORA | `hom.mogire.com/koora` |
+| Privacy | `hom.mogire.com/privacy` |
+| Security disclosure | `hom.mogire.com/.well-known/security.txt` |

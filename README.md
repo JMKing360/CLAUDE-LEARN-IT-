@@ -94,14 +94,14 @@ Cloudflare Pages production setup:
 2. **Build command**: empty
 3. **Output directory**: empty (serves from repository root)
 4. **Custom domains**:
-   - `firsthour.houseofmastery.co` → root index of First Hour build (or rename `first-hour.html` to `index.html` in a Pages routing rule)
-   - `kooraassess.houseofmastery.co` → root index of KOORA build
-   - `houseofmastery.co/privacy` → `privacy.html`
+   - `hom.mogire.com/first-hour` → root index of First Hour build (or rename `first-hour.html` to `index.html` in a Pages routing rule)
+   - `hom.mogire.com/koora` → root index of KOORA build
+   - `hom.mogire.com/privacy` → `privacy.html`
 
 For retake email links, use URL parameters:
 
 ```
-https://firsthour.houseofmastery.co/?name=Job&email=jobsm2005@gmail.com
+https://hom.mogire.com/first-hour/?name=Job&email=jobsm2005@gmail.com
 ```
 
 The page reads URL params and prefills the form.
@@ -141,7 +141,7 @@ node --check /tmp/check.js
 **Architect**: Dr. Job Mogire, MD, FACP, FACC.
 **Entity**: House of Mastery.
 **Public contact**: [mail@mogire.com](mailto:mail@mogire.com)
-**Site**: [houseofmastery.co](https://www.houseofmastery.co)
+**Site**: [hom.mogire.com](https://hom.mogire.com)
 
 ---
 

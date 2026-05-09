@@ -10,7 +10,7 @@ The House of Mastery diagnostic instruments are static, client-only HTML applica
 |---|---|
 | HTTPS only | Enforced by Cloudflare Pages |
 | HSTS | Set in `_headers` with `max-age=63072000; includeSubDomains; preload` |
-| Content Security Policy | Set in `_headers`, restricts scripts to self + two named CDN origins, blocks framing except from `houseofmastery.co` |
+| Content Security Policy | Set in `_headers`, restricts scripts to self + two named CDN origins, blocks framing except from `hom.mogire.com` |
 | Subresource Integrity | To be added in Phase 6 build |
 | User input escaping (XSS) | All user-supplied text passes through `safe()` before any innerHTML composition |
 | Lazy-load of jsPDF | Reduces initial-load attack surface and improves Core Web Vitals |

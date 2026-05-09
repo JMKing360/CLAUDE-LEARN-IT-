@@ -1,0 +1,7 @@
+# Cloudflare Pages clean-path rewrites for the separate House of Mastery tools
+/first-hour /first-hour.html 200
+/first-hour/ /first-hour.html 200
+/koora /index.html 200
+/koora/ /index.html 200
+/privacy /privacy.html 200
+/privacy/ /privacy.html 200

@@ -12,8 +12,8 @@
 
 ## 30 days
 
-- Cloudflare Pages deploy of both instruments at `firsthour.houseofmastery.co` and `kooraassess.houseofmastery.co`
-- Privacy policy live at `houseofmastery.co/privacy`
+- Cloudflare Pages deploy of both instruments at `hom.mogire.com/first-hour` and `hom.mogire.com/koora`
+- Privacy policy live at `hom.mogire.com/privacy`
 - Sentry + Plausible integration on production (drop-in `observability.js`)
 - Real-device walk-through on iOS and Android with one external tester
 - First cohort intake measurement

@@ -14,7 +14,7 @@ Please do not disclose the issue publicly until we have had a reasonable opportu
 
 In scope:
 
-- The HTML files served from `houseofmastery.co/first-hour`, `houseofmastery.co/kooraassess`, and any subdomain serving the instruments
+- The HTML files served from `hom.mogire.com/first-hour`, `hom.mogire.com/kooraassess`, and any subdomain serving the instruments
 - Any associated build scripts in this repository
 - Email-delivery integration with the GoHighLevel inbound webhook
 - PDF generation with jsPDF

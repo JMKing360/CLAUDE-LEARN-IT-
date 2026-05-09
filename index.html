@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNFINISHED · KOORA: The Finisher’s Protocol · House of Mastery</title>
-<meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA: The Finisher’s Protocol.">
+<title>UNFINISHED · KOORA: The Finishing Protocol · House of Mastery</title>
+<meta name="description" content="UNFINISHED, a diagnostic for the Finisher. Sixty items, six domains, taken every fifteen days across the 180-day path of KOORA: The Finishing Protocol.">
 <meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UNFINISHED · KOORA: The Finishing Protocol · House of Mastery">
 <meta property="og:description" content="The diagnostic instrument of KOORA: The Finishing Protocol, designed by Dr. Job Mogire, MD, FACP, FACC.">
-<meta property="og:image" content="https://www.houseofmastery.co/koora-og.png">
-<meta property="og:url" content="https://www.houseofmastery.co/kooraassess">
+<meta property="og:image" content="https://hom.mogire.com/koora-og.png">
+<meta property="og:url" content="https://hom.mogire.com/koora">
 <meta property="og:site_name" content="House of Mastery">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="UNFINISHED · KOORA · House of Mastery">
 <meta name="twitter:description" content="Don’t die with an unfinishing life.">
-<meta name="twitter:image" content="https://www.houseofmastery.co/koora-og.png">
+<meta name="twitter:image" content="https://hom.mogire.com/koora-og.png">
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
 <link rel="apple-touch-icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230D1F3C"/><text x="50" y="74" font-family="Source Serif 4,Georgia,serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text></svg>'>
 <link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"KOORA: The Finishing Protocol","short_name":"KOORA","description":"A House of Mastery diagnostic","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C"}'>
@@ -449,12 +449,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-house" href="https://www.houseofmastery.co" target="_blank" rel="noopener" aria-label="House of Mastery">
+    <a class="nav-house" href="https://hom.mogire.com" target="_blank" rel="noopener" aria-label="House of Mastery">
       <svg class="hm-mark" viewBox="0 0 100 100" aria-hidden="true">
         <circle cx="50" cy="50" r="48" fill="#0D1F3C"/>
         <text x="50" y="74" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-style="italic" font-size="76" text-anchor="middle" fill="white">m</text>
       </svg>
-      <span class="nav-house-text">house of mastery<span>houseofmastery.co</span></span>
+      <span class="nav-house-text">house of mastery<span>hom.mogire.com</span></span>
     </a>
     <span class="nav-koora" aria-label="KOORA"><svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg"><text x="150" y="62" font-family="Source Serif 4, Georgia, serif" font-weight="700" font-size="70" letter-spacing="3" text-anchor="middle" fill="#0D1F3C">KOORA</text></svg></span>
     <span class="nav-meta" id="navMeta">UNFINISHED</span>
@@ -501,7 +501,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <span class="eyebrow">UNFINISHED · A diagnostic for the Finisher</span>
   <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
   <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name is the work that does not get done. <strong>You do not have a productivity problem, you have a fidelity problem.</strong></p>
-  <p class="body-text">UNFINISHED is the diagnostic instrument of <b>KOORA: The Finisher’s Protocol</b>, a 180-day clinical-grade architecture designed by a board-certified cardiologist for high-functioning professionals whose patterns have been running them quietly. Sixty items across six domains, taken every fifteen days. The pattern is the diagnosis, never the verdict.</p>
+  <p class="body-text">UNFINISHED is the diagnostic instrument of <b>KOORA: The Finishing Protocol</b>, a 180-day clinical-grade architecture designed by a board-certified cardiologist for high-functioning professionals whose patterns have been running them quietly. Sixty items across six domains, taken every fifteen days. The pattern is the diagnosis, never the verdict.</p>
   <p class="body-text"><b>KOORA opens once a year.</b> Cohort 1 launched May 2026 in Nairobi. Cohort 2 opens November 2026. Twenty-four seats, a number that is structural rather than arbitrary. Each module opens in the first week of its month. If you miss a module, you do not see it again until the following year. The architecture is non-recoverable on purpose.</p>
   <p class="body-text">About fifteen minutes. Each return is evidence. Each return is the work.</p>
 
@@ -690,7 +690,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
       </div>
       <p class="email-status" id="emailStatus"></p>
       <div class="actions">
-        <button class="btn-secondary" onclick="downloadPDF()">Download report (PDF)</button>
+        <button class="btn-secondary" id="downloadBtn" onclick="downloadPDF()">Download report (PDF)</button>
         <button class="btn-secondary" onclick="goDashboard()">Back to your path</button>
       </div>
     </div>
@@ -734,8 +734,8 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 // or replace the literal default below. The webhook receives a JSON payload and triggers
 // an email automation in GHL that delivers the report to the participant and to the
 // silent cohort archive.
-var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'https://services.leadconnectorhq.com/hooks/REPLACE_WITH_YOUR_LOCATION_ID/REPLACE_WITH_YOUR_WEBHOOK_ID';
-var EMAIL_OK=true;
+var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'';
+var EMAIL_OK=!!(GHL_WEBHOOK_URL&&/^https:\/\/services\.leadconnectorhq\.com\/hooks\//.test(GHL_WEBHOOK_URL));
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=60;
@@ -1428,10 +1428,10 @@ function renderDashboard(name){
   // Trust bar
   var trust=document.getElementById('trustBar');
   if(prior&&participantEnrolled){
-    trust.innerHTML='<b>You are inside the once-a-year intake.</b> KOORA: The Finisher’s Protocol is a clinical-grade architecture designed by a board-certified cardiologist. The architecture is non-recoverable: a missed module waits twelve months. That structure is intentional. The covenant is not perfection. The covenant is return.';
+    trust.innerHTML='<b>You are inside the once-a-year intake.</b> KOORA: The Finishing Protocol is a clinical-grade architecture designed by a board-certified cardiologist. The architecture is non-recoverable: a missed module waits twelve months. That structure is intentional. The covenant is not perfection. The covenant is return.';
     trust.style.display='block';
   }else if(prior&&!participantEnrolled){
-    trust.innerHTML='<b>You are tracking your own pattern outside the cohort.</b> KOORA: The Finisher’s Protocol opens once a year. Cohort 2 opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats. If you miss this window, the next is November 2027. Each monthly module opens in the first week of its month and is non-recoverable until the next year.';
+    trust.innerHTML='<b>You are tracking your own pattern outside the cohort.</b> KOORA: The Finishing Protocol opens once a year. Cohort 2 opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats. If you miss this window, the next is November 2027. Each monthly module opens in the first week of its month and is non-recoverable until the next year.';
     trust.style.display='block';
   }else{
     trust.style.display='none';
@@ -2077,20 +2077,21 @@ function renderCohortCta(returnIdx){
   if(participantEnrolled){
     box.innerHTML='<span class="cohort-eyebrow">Inside the protocol</span>'+
       '<div class="cohort-h">You are inside the once-a-year intake. <em>Twenty-three other Finishers</em> are walking the same covenant this month.</div>'+
-      '<div class="cohort-body">This is return '+returnIdx+' of thirteen across the 180-day path of <b>KOORA: The Finisher’s Protocol</b>. Each module opens in the first week of its month. If you miss it, you do not see it again until the next year. The architecture is non-recoverable on purpose. The discipline of staying is the discipline.</div>'+
+      '<div class="cohort-body">This is return '+returnIdx+' of thirteen across the 180-day path of <b>KOORA: The Finishing Protocol</b>. Each module opens in the first week of its month. If you miss it, you do not see it again until the next year. The architecture is non-recoverable on purpose. The discipline of staying is the discipline.</div>'+
       '<div class="cohort-body">The covenant is not perfection. The covenant is return. <b>You are returning.</b></div>';
   }else{
     box.innerHTML='<span class="cohort-eyebrow">If the path is yours to walk</span>'+
       '<div class="cohort-h">You have just named the diagnosis. <em>KOORA is the discipline that meets it.</em></div>'+
-      '<div class="cohort-body"><b>KOORA opens once a year.</b> Cohort 2 of <b>KOORA: The Finisher’s Protocol</b> opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats, a number that is structural rather than arbitrary. The next window after that is November 2027.</div>'+
+      '<div class="cohort-body"><b>KOORA opens once a year.</b> Cohort 2 of <b>KOORA: The Finishing Protocol</b> opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats, a number that is structural rather than arbitrary. The next window after that is November 2027.</div>'+
       '<div class="cohort-body">Each monthly module opens in the first week of its month. If you miss a module, you do not see it again until the next year. The architecture is non-recoverable on purpose. The work asks for that.</div>'+
       '<div class="cohort-body">The pattern you just saw will run again within twenty-four hours. The instrument named it. The cohort is the place that holds the return.</div>'+
-      '<a class="btn-primary" href="https://www.houseofmastery.co" target="_blank" rel="noopener">Reserve your place at houseofmastery.co</a>';
+      '<a class="btn-primary" href="https://hom.mogire.com" target="_blank" rel="noopener">Reserve your place at hom.mogire.com</a>';
   }
 }
 
 // Email
 function sendToGhl(payload){
+  if(!EMAIL_OK)return Promise.reject(new Error('GHL webhook not configured'));
   return fetch(GHL_WEBHOOK_URL,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
     .then(function(res){if(!res.ok)throw new Error('webhook '+res.status);return res});
 }
@@ -2209,7 +2210,7 @@ function _downloadPDF(){
   var letterParas=[
     rec.name+', you have just spent twenty minutes naming what has been running you. That is harder than it sounds.',
     'The pattern is not new. The instrument did not invent it. It found language for what has been running for years.',
-    'I built KOORA: The Finisher’s Protocol because I needed it. Eight years of cardiology in Kenya before American residency taught me what unfinished does to the body. ENGAKO is the Ekegusii word for the pocket of still water behind a rock, where the fish rests in a fast river. This is that pocket.'
+    'I built KOORA: The Finishing Protocol because I needed it. Eight years of cardiology in Kenya before American residency taught me what unfinished does to the body. ENGAKO is the Ekegusii word for the pocket of still water behind a rock, where the fish rests in a fast river. This is that pocket.'
   ];
   if(!participantEnrolled)letterParas.push('KOORA opens once a year. Cohort 2 opens '+COHORT_2_LAUNCH+'. Twenty-four seats. The next window after that is November 2027. Each module is non-recoverable until the following year. The work asks for that.');
   letterParas.push('The diagnosis stays steady. Your relationship to it is what changes.');
@@ -2439,6 +2440,13 @@ function _downloadPDF(){
 
   footer(4);
   doc.save('UNFINISHED-Report-'+rec.name.replace(/\s+/g,'-')+'-Day'+rec.day+'.pdf');
+}
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/service-worker.js').catch(function(){ /* non-blocking */ });
+  });
 }
 </script>
 </body>
