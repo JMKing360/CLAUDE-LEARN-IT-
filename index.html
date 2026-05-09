@@ -1959,7 +1959,11 @@ function personalize(s){
 
 function dayFraming(day){
   function stack(s){return s.split(/\.\s+/).filter(function(p){return p.length}).map(function(p,i,a){var t=safe(p)+(i<a.length-1?'.':(/[.!?]$/.test(p)?'':'.'));return '<span class="tr-day-frame__line">'+t+'</span>'}).join('')}
+  // Hollis / Frankl: Day-specific landmarks override the generic ranges below.
   if(day===0)return stack('This is your baseline. Be honest, not flattering. Honesty is the only useful answer here.');
+  if(day===90)return stack('Halfway. Most who began are not here. You are. Notice that, then keep going.');
+  if(day===180)return stack('This is the Sealing. The last return of the path. What you carry forward is yours to keep, or to let go.');
+  // Generic ranges
   if(day<=60)return stack('You have begun. The pattern is still loud. Notice it without judgment.');
   if(day<=120)return stack('You have walked the middle. The pattern may already feel different. Answer for the last fifteen days, not the journey so far.');
   if(day<=180)return stack('You are near the seal. The pattern is now familiar to you. Notice if it lands differently this time.');
