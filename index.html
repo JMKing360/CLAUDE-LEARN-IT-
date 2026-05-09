@@ -1528,12 +1528,12 @@ var QUESTIONS=[
 
   // Section 5: Faculties (4) and Practice (6)
   {n:40, sec:5,sn:'Faculties of agency', dom:'Attention', text:[
-    'My attention drifts toward what is easier to look at, not what is mine to attend to.',
-    'My body knows the drift has begun before my mind admits it.',
-    'I notice the drift before I lose the field.',
+    'When I am not paying attention on purpose, I do not know where my mind goes.',
+    'My body knows the drift has begun before my mind notices.',
+    'I am beginning to notice where my mind goes when it is not held.',
     'The people who depend on my attention feel it land where it belongs.',
-    'I am becoming the kind of person who attends to what is mine.',
-    'I attend to what is mine.'
+    'I am becoming the kind of person who knows where her mind goes, and brings it back.',
+    'I know where my mind goes when I am not holding it. I bring it back.'
   ], rev:true},
   {n:41, sec:5,sn:'Faculties of agency', dom:'Allegiance', text:[
     'When voices speak inside me, the loudest one has the final say. Often it is not mine.',
@@ -1552,12 +1552,12 @@ var QUESTIONS=[
     'My word and my action are one thing.'
   ], rev:true},
   {n:43, sec:5,sn:'Faculties of agency', dom:'Return', text:[
-    'When I leave my centre, I do not return for days.',
-    'My body knows almost immediately that I have left, even when my mind has not caught up.',
-    'When I leave, I return within hours, not days.',
-    'Those near me see the return before they have to ask for it.',
-    'I am becoming the kind of person who returns the same hour.',
-    'When I leave, I return the same hour.'
+    'When something throws me off, I do not get back to myself for days.',
+    'My body knows immediately that I have been thrown, even when my mind has not caught up.',
+    'When I lose my footing, I find it again within hours, not days.',
+    'The people near me see me come back before they have to ask.',
+    'I am becoming the kind of person who recovers the same hour.',
+    'I come back to myself the same hour.'
   ], rev:true},
   {n:44, sec:5,sn:'Faculties of agency', dom:'The Seal', text:[
     'In the morning, I check the phone before I check on myself.',
@@ -1568,12 +1568,12 @@ var QUESTIONS=[
     'The Seal is first. Everything else follows.'
   ], rev:true},
   {n:45, sec:5,sn:'Faculties of agency', dom:'The Daily Reset', text:[
-    'In the morning, I do not write the Daily Reset.',
-    'My body knows the day will scatter without the Reset.',
-    'I am beginning to write the Reset most mornings.',
-    'The people who share my day see a person who has set her ground.',
-    'I am becoming the kind of person whose Reset is written.',
-    'The Reset is written.'
+    'Even when I write a Daily Reset, I forget most of it as the day moves on.',
+    'My body knows the Reset is meant to anchor the day, but it slips before noon.',
+    'I am beginning to glance back at the Reset during the day, not just at the start.',
+    'The people who share my day see me holding the Reset, not only having written it.',
+    'I am becoming the kind of person whose Reset stays alive through the day.',
+    'My Reset stays alive through the day. I keep coming back to it.'
   ], rev:true},
   {n:46, sec:5,sn:'Faculties of agency', dom:'The evening question', text:[
     'In the evening, I do not ask where I kept my word, where I broke it, where I return tomorrow.',
@@ -1893,14 +1893,24 @@ var COVENANTS=[
   {month:6,name:'World', promise:'I will give back from the life I have rebuilt.',practice:'I do not abandon the work for easier invitations. I make one public contribution.',evidence:'The world receives proof that I came back stronger and gave something back.'}
 ];
 
-// Section transitions (5) ,  tighter, three-sentence target
+// Section transitions ,  tighter, three-sentence target
 var TRANSITIONS=[
   {q:16,eyebrow:'Section one is sealed',h:'You looked at what runs you.',text:'Now look at what asks more of you. <b>Without defending.</b>'},
   {q:23,eyebrow:'Section two is sealed',h:'ALCARRA names what the week asks.',text:'The next eight items name what you have been carrying underneath.'},
   {q:31,eyebrow:'You are halfway. Notice it.',h:'Are your needs being filled or soothed with false substitutes?',text:'That was the question. Now name what moves you forward, and what you have been holding.'},
-  {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the daily practice and the four faculties the reflexes break.'},
+  {q:35,eyebrow:'The four forces are named',h:'{name,}you have just explored the four forces of necessity.',text:'They are the architecture that holds you every season. Next, the fidelities that shape your world.'},
+  {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the practice and the faculties that overcome the sneaky reflexes that keep you stuck. <b>If you work them.</b>'},
   {q:49,eyebrow:'Section five is sealed',h:'You have surveyed the full architecture.',text:'The last eleven items are the inner experience itself. <b>Let yourself be seen.</b>'}
 ];
+
+// {name,} placeholder expands to "Name, " when participantName is set,
+// or drops to '' and capitalises the next letter when it is not.
+function personalize(s){
+  if(!s)return '';
+  if(participantName)return s.replace(/\{name,\}/g, safe(participantName)+', ');
+  var r=s.replace(/\{name,\}/g,'');
+  return r.charAt(0).toUpperCase()+r.slice(1);
+}
 
 function dayFraming(day){
   function stack(s){return s.split(/\.\s+/).filter(function(p){return p.length}).map(function(p,i,a){var t=safe(p)+(i<a.length-1?'.':(/[.!?]$/.test(p)?'':'.'));return '<span class="tr-day-frame__line">'+t+'</span>'}).join('')}
@@ -2321,11 +2331,11 @@ function prevQuestion(){cancelAdvance();if(currentQ>1){currentQ--;renderQuestion
 function enterTransition(trans){
   pendingAfterTransition=trans.q+1;
   document.getElementById('trEyebrow').textContent=trans.eyebrow;
-  document.getElementById('trH').innerHTML=trans.h;
+  document.getElementById('trH').innerHTML=personalize(trans.h);
   // v3.5.2  -  append covenant-aware context to transition copy
   var cov=activeCovenant(participantDay);
   var covLine='<span class="cov-transition">You are inside the <b>'+cov.name+'</b> covenant.</span>';
-  document.getElementById('trText').innerHTML=trans.text+'<br><br>'+covLine;
+  document.getElementById('trText').innerHTML=personalize(trans.text)+'<br><br>'+covLine;
   var dayLine='';
   // Halfway personal moment at transition 3 (after Q31)
   if(trans.q===31 && participantName)dayLine='<span class="tr-day-frame__line">Halfway, '+safe(participantName)+'.</span><span class="tr-day-frame__line">Notice your honesty so far.</span>'+dayFraming(participantDay);
