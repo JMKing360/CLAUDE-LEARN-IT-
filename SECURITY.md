@@ -16,13 +16,13 @@ In scope:
 
 - The HTML files served from `houseofmastery.co/first-hour`, `houseofmastery.co/kooraassess`, and any subdomain serving the instruments
 - Any associated build scripts in this repository
-- Email-delivery integration with EmailJS
+- Email-delivery integration with the GoHighLevel inbound webhook
 - PDF generation with jsPDF
 - localStorage usage and data handling
 
 Out of scope:
 
-- Issues in third-party services (EmailJS, Google Fonts, jsPDF, Cloudflare Pages) that are not under our direct control. Please report those upstream.
+- Issues in third-party services (GoHighLevel, Google Fonts, jsPDF, Cloudflare Pages) that are not under our direct control. Please report those upstream.
 - Issues that require physical access to a victim's device
 
 ## Current security posture
@@ -35,8 +35,8 @@ Out of scope:
 | Strict-Transport-Security header | To be added |
 | User input escaping (XSS) | Live: `safe()` wraps all innerHTML composition of user-supplied text |
 | localStorage namespacing | Live: `hom_firsthour_*` and `koora_*` prefixes |
-| External-script allowlist | Two only: EmailJS `@4.4.1` and jsPDF `2.5.1` (jsPDF lazy-loaded on demand) |
-| Secret management | EmailJS public key is intentionally client-side. No private keys exposed. |
+| External-script allowlist | One only: jsPDF `2.5.1` (lazy-loaded on demand). Email is delivered via a `fetch` POST to a GoHighLevel inbound webhook — no third-party SDK is loaded in the browser. |
+| Secret management | The GHL inbound-webhook URL is a non-secret endpoint by design (it accepts unauthenticated POSTs from the browser). No private keys are exposed. |
 | Dependency CVE scanning | To be added in Phase 6 |
 | OWASP ZAP baseline scan | To be run before each major release |
 | SBOM | To be generated in Phase 6 |
@@ -53,7 +53,7 @@ We follow coordinated disclosure. Once a vulnerability has been confirmed and re
 ## What this product does and does not do
 
 - **Does** store user-entered name, email, assessment answers, and reflection text in the browser's `localStorage` on their own device.
-- **Does** send a copy of the report by email through EmailJS when the user clicks Send Results, with a silent CC to the cohort archive.
+- **Does** send a copy of the report by email through a GoHighLevel automation when the user clicks Send Results, with a silent CC to the cohort archive.
 - **Does** allow URL-parameter prefilling for retake links (`?name=X&email=Y`).
 - **Does not** store user data on a server we control. There is no backend application database.
 - **Does not** track users across the web. There are no third-party trackers in production.
@@ -61,7 +61,7 @@ We follow coordinated disclosure. Once a vulnerability has been confirmed and re
 
 ## Cryptographic posture
 
-The instruments do not handle secrets. Email delivery happens over TLS via EmailJS. Local storage is unencrypted by design (the data is on the participant's own device). When server-side persistence is added (future phase), encryption at rest will be required of any provider we adopt.
+The instruments do not handle secrets. Email delivery happens over TLS via the GoHighLevel inbound-webhook endpoint. Local storage is unencrypted by design (the data is on the participant's own device). When server-side persistence is added (future phase), encryption at rest will be required of any provider we adopt.
 
 ## Update cadence
 

@@ -34,7 +34,7 @@ The promised direction is **The Finishing Life**, delivered through **The Finish
 Each instrument is a single self-contained HTML file with inline CSS and JavaScript. The only external dependencies are:
 
 - **Google Fonts** (Source Serif 4 + Plus Jakarta Sans) loaded over HTTPS
-- **EmailJS browser SDK** (pinned `@4.4.1`) for sending the report
+- **GoHighLevel inbound webhook** for delivering the report by email (no client-side SDK; the instrument POSTs JSON to the webhook URL)
 - **jsPDF** (pinned `2.5.1`) loaded **on demand** when the participant clicks Download Report
 
 State persists in `localStorage` with namespace keys:
@@ -74,13 +74,13 @@ Cost estimation uses the participant's own answers and is rough but defensible. 
 
 ## Email delivery
 
-Reports send via EmailJS:
+Reports send via a **GoHighLevel inbound webhook**. The instrument constructs a JSON payload client-side and POSTs it to the configured webhook URL. A GoHighLevel automation receives the payload, formats the email, and dispatches it to the participant with a silent CC to the cohort archive.
 
-- Service: `service_76loif8`
-- Template: `template_3j2uhtd`
-- Public key: `FEEOw8NA0cwBM4Vum`
-- Silent CC: `mogiremd@gmail.com` (not surfaced to the participant)
+- Webhook URL: configured per-environment via `window.HOM_CONFIG.ghlWebhookUrl`
+- Silent CC archive: `mogiremd@gmail.com` (set inside the GHL automation, not surfaced to the participant)
 - Public contact: `mail@mogire.com`
+
+Payload variables sent: `to_name`, `to_email`, `cc_email`, `intent`, `primary_reflex`, `primary_level`, `archetype_desc`, `traffic_summary`, `strategies_html`, `pain_text`, `pain_text_5y`, `threshold`, `summit_url`. Map these into a GoHighLevel email template inside the receiving automation.
 
 ## Privacy & compliance
 

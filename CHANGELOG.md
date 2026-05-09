@@ -2,6 +2,18 @@
 
 All notable changes to the House of Mastery diagnostic instruments are documented here. Versions follow [Semantic Versioning](https://semver.org/), where MAJOR is reserved for instrument-redesign-level changes that affect scoring or item set, MINOR for new features and content, and PATCH for fixes.
 
+## [3.1.0] — 2026-05-09 — Email infrastructure migration
+
+### Changed
+- **Email delivery migrated from EmailJS to GoHighLevel inbound webhook.** Both `first-hour.html` and `index.html` now POST a JSON payload to a configurable webhook URL (`window.HOM_CONFIG.ghlWebhookUrl`). A GoHighLevel automation receives the payload and dispatches the email with a silent CC to `mogiremd@gmail.com`.
+- Removed the `@emailjs/browser@4.4.1` external script. The browser no longer loads any third-party email SDK; delivery is a single `fetch` POST.
+- CSP `connect-src` updated from `https://api.emailjs.com` to `https://services.leadconnectorhq.com`.
+- Service-worker bypass comment updated to reflect the new outbound endpoint.
+
+### Docs
+- README, SECURITY, SPEC, DEPLOY, and the investor data-room (`01-architecture.md`, `02-security-posture.md`, `07-unit-economics.md`) updated for the new email path.
+- Added `MANUS-RUNBOOK.md` — the standalone deployment runbook for Manus to execute.
+
 ## [3.0.0] — 2026-05-08 — Phase 1 redesign
 
 ### Changed (breaking)

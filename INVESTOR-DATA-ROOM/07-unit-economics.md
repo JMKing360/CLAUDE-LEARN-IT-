@@ -10,7 +10,7 @@ Fill in once revenue and cost data become available. Currently the instruments a
 | Price per seat | TBD | Set at intake |
 | Gross revenue | TBD | |
 | Direct cohort cost | TBD | Live sessions, materials, founder time |
-| Tech infrastructure cost | <$50/mo | Cloudflare Pages, EmailJS, Sentry, Plausible (early-stage) |
+| Tech infrastructure cost | <$50/mo | Cloudflare Pages, GoHighLevel (existing account), Sentry, Plausible (early-stage) |
 | Gross margin | TBD | |
 
 ## The First Hour (top-of-funnel)

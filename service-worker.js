@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Bypass for EmailJS API and any cross-origin POSTs
+  // Bypass for the GoHighLevel inbound webhook and any cross-origin POSTs
   if (url.origin !== self.location.origin) {
     event.respondWith(
       fetch(req).catch(() => new Response('Offline', { status: 503 }))

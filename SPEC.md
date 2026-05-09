@@ -15,7 +15,7 @@ A deep diagnostic taken by enrolled KOORA participants every 15 days across the 
 - Cadence: Day 0 (baseline), 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, then Alumni (Day 181+)
 - Visual language: inherits from `4CKOORASCREEN.html` (slide-based UX, smooth transitions, navy/gold/cream palette, Source Serif 4 + Plus Jakarta Sans)
 - Storage: `localStorage` only (no backend). Past assessments power the dashboard's journey timeline and the deltas on the results page.
-- Delivery: in-browser results + email send (EmailJS) + PDF download (jsPDF) + 1080×1080 PNG share image.
+- Delivery: in-browser results + email send via GoHighLevel inbound webhook + PDF download (jsPDF) + 1080×1080 PNG share image.
 
 ---
 
@@ -380,13 +380,13 @@ Comparison:
 
 ---
 
-## 12. Email payload (EmailJS template `template_3j2uhtd`)
+## 12. Email payload (GoHighLevel inbound webhook)
 
-Same EmailJS service ID `service_76loif8` and public key `FEEOw8NA0cwBM4Vum` as the original screen. Update template variables:
+Email is delivered by POSTing JSON to a GoHighLevel inbound-webhook URL configured per environment via `window.HOM_CONFIG.ghlWebhookUrl`. A GoHighLevel automation receives the payload, formats the email using these variables, and dispatches it.
 
 ```
 to_name, to_email
-cc_email = mail@mogire.com
+cc_email = mogiremd@gmail.com
 day_label, day_number
 primary_reflex, primary_level
 unstuck_path_html (the 7-step prescription rendered)
@@ -399,16 +399,17 @@ arc_stage_internal           // facilitator-only field; rendered in email but no
 arc_alignment_internal       // 'with' | 'ahead' | 'behind'
 ```
 
-CC `mail@mogire.com` so the facilitator receives a copy of every assessment, including the internal arc data.
+CC `mogiremd@gmail.com` is set inside the GHL automation so the facilitator receives a silent copy of every assessment, including the internal arc data.
 
 ---
 
 ## 13. Required external scripts (pinned, with crossorigin)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
 ```
+
+Email delivery uses a same-page `fetch` POST to the GoHighLevel inbound-webhook URL — no SDK is loaded in the browser.
 
 Defensive: both load behind `try/catch`; if either fails, the relevant button shows a graceful message and the rest of the assessment still works.
 

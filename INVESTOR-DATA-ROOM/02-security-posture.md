@@ -15,7 +15,7 @@ The House of Mastery diagnostic instruments are static, client-only HTML applica
 | User input escaping (XSS) | All user-supplied text passes through `safe()` before any innerHTML composition |
 | Lazy-load of jsPDF | Reduces initial-load attack surface and improves Core Web Vitals |
 | localStorage only | No server-side PII store; all participant data lives on the participant's own device |
-| Silent CC archive | Reports BCC'd to `mogiremd@gmail.com` over EmailJS TLS |
+| Silent CC archive | Reports BCC'd to `mogiremd@gmail.com` from inside the GoHighLevel automation, over TLS |
 | Em-dash sweep | Automated CI check ensures no synthetic-looking copy ships |
 | Em-dash + voice rules | Documented in `CONTRIBUTING.md` |
 | Disclosure path | `SECURITY.md` and `.well-known/security.txt` published |
@@ -26,7 +26,7 @@ The House of Mastery diagnostic instruments are static, client-only HTML applica
 |---|---|
 | Spoofing | Custom domain on Cloudflare, HSTS preload, no inbound auth surface |
 | Tampering | CSP + SRI (Phase 6), CDN integrity, signed deploys |
-| Repudiation | Cloudflare logs (30-day), EmailJS message log retained per their policy |
+| Repudiation | Cloudflare logs (30-day); GoHighLevel automation run-history and outbound-email logs retained per their account-level policy |
 | Information disclosure | No backend store, localStorage-only, opt-in email |
 | Denial of service | Cloudflare in front; static files; no application logic to exhaust |
 | Elevation of privilege | No accounts, no privileged paths |
@@ -34,7 +34,7 @@ The House of Mastery diagnostic instruments are static, client-only HTML applica
 ## Open items
 
 - CSP currently uses `'unsafe-inline'` for inline scripts and styles. Phase 4 build pipeline will move to nonces.
-- SRI hashes on the two CDN scripts (EmailJS, jsPDF) will be added in Phase 6.
+- SRI hash on the one CDN script (jsPDF) will be added in Phase 6. Email delivery uses a same-origin-style `fetch` POST to the GoHighLevel inbound webhook and loads no external SDK in the browser.
 - OWASP ZAP baseline scan to be run before each major release.
 - Pen-test post-revenue.
 

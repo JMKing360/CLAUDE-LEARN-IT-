@@ -49,17 +49,33 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 
 ---
 
-## Phase 1 — Email send wiring *(do this within 24 hours of phase 0)*
+## Phase 1 — Email send wiring via GoHighLevel *(do this within 24 hours of phase 0)*
 
 **Outcome:** participants receive their reports; cohort archive populates.
 
 ### What you need to do
-1. Log into the EmailJS dashboard for the existing service `service_76loif8`
-2. Verify the template `template_3j2uhtd` includes the variables we send:
-   - `to_name`, `to_email`, `cc_email`, `primary_reflex`, `primary_level`, `archetype_desc`, `traffic_summary`, `strategies_html`, `summit_url`
-3. Confirm `mogiremd@gmail.com` receives the silent CC
-4. Send a test result through each instrument and verify both inboxes
-5. Set up a Gmail filter on `mogiremd@gmail.com` to label and archive the cohort reports automatically
+1. **Create the inbound webhook in GoHighLevel**
+   - GHL → Automation → Workflows → New Workflow → Trigger: **Inbound Webhook**
+   - Save the workflow once to generate the URL. It looks like `https://services.leadconnectorhq.com/hooks/<LOCATION_ID>/<WEBHOOK_ID>`
+   - Copy the URL.
+2. **Set the URL in production** by adding a `<script>` block in the `<head>` of `first-hour.html` and `index.html`:
+   ```html
+   <script>window.HOM_CONFIG = Object.assign(window.HOM_CONFIG||{}, { ghlWebhookUrl: 'https://services.leadconnectorhq.com/hooks/.../...' });</script>
+   ```
+   (Or replace the literal default in the JS — search for `GHL_WEBHOOK_URL` in each file.)
+3. **Build the GHL automation** that consumes the webhook payload:
+   - Add a **"Send Email"** action after the trigger
+   - Set the recipient to `{{inboundWebhookData.to_email}}`
+   - BCC `mogiremd@gmail.com` (silent cohort archive)
+   - Subject: `Your First Hour result · {{inboundWebhookData.primary_reflex}}` (or KOORA equivalent)
+   - Map these payload variables into the email template body:
+     - `to_name`, `to_email`, `cc_email`
+     - `intent`, `primary_reflex`, `primary_level`
+     - `archetype_desc`, `traffic_summary`, `strategies_html`
+     - `pain_text`, `pain_text_5y`, `threshold`, `summit_url`
+4. **Send a test result** through each instrument and verify both the participant inbox and `mogiremd@gmail.com`.
+5. **Set up a Gmail filter** on `mogiremd@gmail.com` to label and archive the cohort reports automatically.
+6. **Update CSP if needed.** The current `_headers` allows `connect-src` to `https://services.leadconnectorhq.com`. Verify the browser console shows no CSP violation when the test result is sent.
 
 ---
 

@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
+<!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -730,8 +730,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <script>
 "use strict";
 
-var EMAILJS_OK=false;
-try{if(typeof emailjs!=='undefined'){emailjs.init('FEEOw8NA0cwBM4Vum');EMAILJS_OK=true}}catch(e){}
+// GoHighLevel inbound webhook URL. Set per-environment via window.HOM_CONFIG.ghlWebhookUrl,
+// or replace the literal default below. The webhook receives a JSON payload and triggers
+// an email automation in GHL that delivers the report to the participant and to the
+// silent cohort archive.
+var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'https://services.leadconnectorhq.com/hooks/REPLACE_WITH_YOUR_LOCATION_ID/REPLACE_WITH_YOUR_WEBHOOK_ID';
+var EMAIL_OK=true;
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=60;
@@ -2086,6 +2090,10 @@ function renderCohortCta(returnIdx){
 }
 
 // Email
+function sendToGhl(payload){
+  return fetch(GHL_WEBHOOK_URL,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(res){if(!res.ok)throw new Error('webhook '+res.status);return res});
+}
 function sendEmail(){
   var rec=lastResults;if(!rec)return;
   rec.cov_pulse=covPulseValue;
@@ -2099,7 +2107,7 @@ function sendEmail(){
   var status=document.getElementById('emailStatus');
   var btn=document.getElementById('sendBtn');
   if(!email||email.indexOf('@')<0||email.indexOf('.')<0){status.className='email-status err';status.textContent='Enter a valid email address.';status.style.display='block';return}
-  if(!EMAILJS_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
+  if(!EMAIL_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
 
   // Persist updates to record
   var h=loadHistory();if(h.length){h[h.length-1].cov_pulse=covPulseValue;h[h.length-1].pain_text=rec.pain_text;h[h.length-1].pain_text_5y=rec.pain_text_5y;h[h.length-1].claim=rec.claim;saveHistory(h)}
@@ -2117,7 +2125,7 @@ function sendEmail(){
   status.className='email-status';status.textContent='Sending...';status.style.display='block';
   btn.disabled=true;var prevBtn=btn.textContent;btn.textContent='Sending...';
 
-  emailjs.send('service_76loif8','template_3j2uhtd',{
+  sendToGhl({
     to_name:rec.name,
     to_email:email,
     cc_email:'mogiremd@gmail.com',

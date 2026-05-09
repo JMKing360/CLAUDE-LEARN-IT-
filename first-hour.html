@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js" crossorigin="anonymous"></script>
+<!-- Email delivery via GoHighLevel inbound webhook (configured below) -->
 <!-- jsPDF lazy-loaded on demand -->
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -579,8 +579,16 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <script>
 "use strict";
 
-var EMAILJS_OK=false;
-try{if(typeof emailjs!=='undefined'){emailjs.init('FEEOw8NA0cwBM4Vum');EMAILJS_OK=true}}catch(e){}
+// GoHighLevel inbound webhook URL. Set per-environment via window.HOM_CONFIG.ghlWebhookUrl,
+// or replace the literal default below. The webhook receives a JSON payload and triggers
+// an email automation in GHL that delivers the report to the participant and to the
+// silent cohort archive.
+var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'https://services.leadconnectorhq.com/hooks/REPLACE_WITH_YOUR_LOCATION_ID/REPLACE_WITH_YOUR_WEBHOOK_ID';
+var EMAIL_OK=true;
+function sendToGhl(payload){
+  return fetch(GHL_WEBHOOK_URL,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(res){if(!res.ok)throw new Error('webhook '+res.status);return res});
+}
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=42;
@@ -1338,7 +1346,7 @@ function showSelfQuote(){
 
 // Email ,  silent send when assessment finishes, also resendable
 function fireEmailQuiet(rec){
-  if(!EMAILJS_OK)return;
+  if(!EMAIL_OK)return;
   buildEmailPayload(rec).then(function(){}).catch(function(){});
 }
 function resendEmail(){
@@ -1348,7 +1356,7 @@ function resendEmail(){
   rec.intent=(document.getElementById('intentInput')||{value:''}).value.trim();
   var status=document.getElementById('emailStatus');
   status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
-  if(!EMAILJS_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
+  if(!EMAIL_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
   buildEmailPayload(rec).then(function(){
     status.style.color='var(--green)';status.textContent='Sent. Your full report is on its way to '+rec.email+'.';
   },function(){
@@ -1360,7 +1368,7 @@ function buildEmailPayload(rec){
   var profileLines=chamberScores().map(function(x){return x.name+': '+x.score+' / '+x.max+' ('+levelLabel(x.pct)+')'}).join('<br>');
   var costLines='Hours of unconscious life this year: ~'+c.hoursYear.toLocaleString()+'<br>Promises broken to yourself this year: ~'+c.promisesBroken+'<br>Conversations postponed: ~'+c.conversationsPostponed+'<br>Money operating outside conscious choice: ~'+c.moneyDriftPercent+'%';
   var fcLines='Hours lost over five years: ~'+f.hoursLost.toLocaleString()+'<br>Promises that will be broken: ~'+f.promisesBroken+'<br>Conversations not had: ~'+f.conversationsLost+'<br>Money still operating outside conscious choice: ~'+f.moneyDriftPercent+'%';
-  return emailjs.send('service_76loif8','template_3j2uhtd',{
+  return sendToGhl({
     to_name:rec.name,
     to_email:rec.email,
     cc_email:'mogiremd@gmail.com',
