@@ -1144,6 +1144,9 @@ body.footer-hidden footer{display:none}
       <p class="pain-q-secondary" style="margin-top:36px">When tomorrow begins, I will...</p>
       <p class="pain-sub">Pick one or more positive moves you will take in the next twenty-four hours. These map to the U.N.F.I.N.I.S.H.E.D. patterns.</p>
       <div id="intentChecklist" class="intent-checklist"></div>
+      <p class="pain-q-secondary" style="margin-top:30px">And the time...</p>
+      <p class="pain-sub">Name the hour today you will take the first move. A specific time turns intent into action.</p>
+      <input type="text" id="intentTime" class="pain-input" placeholder="e.g., 3pm, after lunch, before bed" maxlength="60" onblur="persistIntent()">
     </div>
   </div>
 
@@ -2622,6 +2625,8 @@ function renderIntentChecklist(){
     var checked=selected.indexOf(a.key)!==-1?' checked':'';
     return '<label class="intent-item"><input type="checkbox" value="'+a.key+'" onchange="persistIntent()"'+checked+'><span class="intent-letter">'+a.letter+'</span><span class="intent-text"><b>'+a.name+'</b><span class="intent-fidelity">'+a.fidelity+'</span><span class="intent-action">'+a.action+'</span></span></label>';
   }).join('');
+  var timeEl=document.getElementById('intentTime');
+  if(timeEl)timeEl.value=(lastResults&&lastResults.intent_time)||'';
 }
 function persistIntent(){
   var box=document.getElementById('intentChecklist');if(!box)return;
@@ -2629,8 +2634,11 @@ function persistIntent(){
   var keys=[];for(var i=0;i<checks.length;i++)keys.push(checks[i].value);
   var labelMap={};INTENT_ACTIONS.forEach(function(a){labelMap[a.key]=a.action});
   var v=keys.map(function(k){return labelMap[k]||k}).join(' / ');
-  var h=loadHistory();if(h.length){h[h.length-1].intent=v;h[h.length-1].intent_actions=keys;saveHistory(h)}
-  if(lastResults){lastResults.intent=v;lastResults.intent_actions=keys}
+  var timeEl=document.getElementById('intentTime');
+  var t=timeEl?timeEl.value.trim():'';
+  if(t)v=v?v+' @ '+t:'@ '+t;
+  var h=loadHistory();if(h.length){h[h.length-1].intent=v;h[h.length-1].intent_actions=keys;h[h.length-1].intent_time=t;saveHistory(h)}
+  if(lastResults){lastResults.intent=v;lastResults.intent_actions=keys;lastResults.intent_time=t}
 }
 function showSelfQuote(){
   var t1=document.getElementById('painInput').value.trim();
