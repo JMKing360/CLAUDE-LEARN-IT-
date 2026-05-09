@@ -14,9 +14,9 @@ Drop the following files into this directory. The HTML references them by exact 
 
 | File | Used by | Purpose | Recommended crop |
 |------|---------|---------|-----------------|
-| `dr-job-cover.jpg` | `cover-letter` block on welcome screens (both instruments) | Executive credibility — circular crop (108×108 desktop, 72×72 mobile) | `object-position: center 22%` — favour face/upper torso |
-| `dr-job-desk.jpg` | KOORA `Meet Dr. Job` section | Warm/approachable — rectangular 4:5 crop | `object-position: center 20%` |
-| `dr-job-clinical.jpg` | First Hour `Meet Dr. Job` + author byline avatar at top of result pages + medical-grade PDF avatar | Clinical credibility — rectangular 4:5 crop | `object-position: center 18%` — favour face/lab-coat embroidery |
+| `dr-job-cover.png` | `cover-letter` block on welcome screens (both instruments) | Executive credibility — circular crop (108×108 desktop, 72×72 mobile) | `object-position: center 22%` — favour face/upper torso |
+| `dr-job-desk.png` | KOORA `Meet Dr. Job` section | Warm/approachable — rectangular 4:5 crop | `object-position: center 20%` |
+| `dr-job-clinical.png` | First Hour `Meet Dr. Job` + author byline avatar at top of result pages + medical-grade PDF avatar | Clinical credibility — rectangular 4:5 crop | `object-position: center 18%` — favour face/lab-coat embroidery |
 
 Cropping is handled at render time via CSS `object-fit: cover` + `object-position`, so original images can be uploaded at full resolution. Recommended minimum: 1200px on the long edge for portraits, JPEG at 82% quality. Logos: native vector if SVG, otherwise PNG at 2× display size with transparent background.
 
