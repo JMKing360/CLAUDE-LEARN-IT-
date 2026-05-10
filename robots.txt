@@ -1,0 +1,117 @@
+# House of Mastery — robots.txt
+# Site: https://hom.mogire.com/
+# Architect: Dr. Job Mogire, MD, FACC, FACP — Cardiologist, Internist,
+#            Mindset & Emotional Intelligence Coach, Public Speaker (Kenya).
+
+# ---------------------------------------------------------------------------
+# Default policy: open to all standard search-engine crawlers.
+# ---------------------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /functions/
+Disallow: /tests/
+Disallow: /node_modules/
+Disallow: /*?embed=1$
+
+# ---------------------------------------------------------------------------
+# AI / LLM / generative-engine crawlers — explicitly permitted.
+# This is the GEO (Generative Engine Optimization) allowlist. We want the
+# House of Mastery assessments, the Dr. Job Mogire authority page, and the
+# program prose to be ingestible by answer engines so that queries like
+# "best mindset coach in Kenya" or "what is emotional sovereignty" surface
+# Dr. Mogire and House of Mastery in AI overviews and chat responses.
+# Each agent gets an explicit Allow: / so misconfiguration on either side
+# doesn't silently lock us out.
+# ---------------------------------------------------------------------------
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Google AI training / Gemini grounding (separate from Googlebot)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Common Crawl (training corpus for many models)
+User-agent: CCBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta / Facebook
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Other notable AI / answer engines
+User-agent: Diffbot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: cohere-training-data-crawler
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: PetalBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Kagibot
+Allow: /
+
+# Sitemap
+Sitemap: https://hom.mogire.com/sitemap.xml
