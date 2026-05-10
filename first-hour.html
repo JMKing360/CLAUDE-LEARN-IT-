@@ -1040,7 +1040,7 @@ body.footer-hidden footer{display:none}
     <span>Audit by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
   </div>
 
-  <p class="result-toc"><span class="result-toc__label">In this result:</span> The Nine Chambers · Your Agency Matrix · The Cost in Your Life · What Has Changed · Your Own Words · What You Have Just Diagnosed · The Finishing System · Twelve-Month Arc</p>
+  <p class="result-toc"><span class="result-toc__label">In this result:</span> The Nine Chambers · The Pattern Named · Spirit Pulse · Your Agency Matrix · Cost &amp; Five-Year Forecast · Your Own Words · The Finishing System</p>
 
   <!-- v3.5.3. Scoring transparency surface -->
   <details class="scoring-note">
@@ -2098,8 +2098,15 @@ function buildResults(rec){
   lastResults=rec;
   participantName=rec.name;participantEmail=rec.email;answers=rec.answers||answers;
 
-  var prior=null;var hist=priorRecords(rec.email);
-  for(var i=hist.length-1;i>=0;i--)if(hist[i].date<rec.date){prior=hist[i];break}
+  var hist=priorRecords(rec.email);
+  // returnIdx counts all prior takes including legacy v2 records (so the
+  // takeFraming arc respects "this is your Nth return"). prior is used for
+  // score-comparison diff arrows; legacy records lack a scores object, so
+  // we walk back to the most recent NON-legacy record for that comparison.
+  var prior=null;
+  for(var i=hist.length-1;i>=0;i--){
+    if(hist[i].date<rec.date && !hist[i].legacy && hist[i].scores){prior=hist[i];break}
+  }
   var returnIdx=hist.length;
   // 12-month arc framing on the result page
   var arcEl=document.getElementById('retakeArc');
