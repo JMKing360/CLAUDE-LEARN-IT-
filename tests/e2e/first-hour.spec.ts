@@ -21,10 +21,10 @@ test.describe('The First Hour — completion flow', () => {
     await page.fill('#participantEmail', 'test@example.com');
     await page.getByRole('button', { name: /begin your first hour/i }).click();
 
-    const transitionQuestions = new Set([7, 14, 21, 28, 35]);
+    const transitionQuestions = new Set([18, 30, 48]);
 
-    for (let i = 1; i <= 42; i++) {
-      await expect(page.locator('#qCount')).toContainText(`Question ${i} of 42`);
+    for (let i = 1; i <= 54; i++) {
+      await expect(page.locator('#qCount')).toContainText(`Question ${i} of 54`);
       await page.locator('.opt').nth(1).click();
       await page.keyboard.press('Enter');
 

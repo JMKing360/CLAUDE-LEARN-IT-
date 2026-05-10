@@ -745,6 +745,9 @@ body.footer-hidden footer{display:none}
   <div class="cp-seg" data-ch="4"></div>
   <div class="cp-seg" data-ch="5"></div>
   <div class="cp-seg" data-ch="6"></div>
+  <div class="cp-seg" data-ch="7"></div>
+  <div class="cp-seg" data-ch="8"></div>
+  <div class="cp-seg" data-ch="9"></div>
 </div>
 </header>
 
@@ -901,7 +904,7 @@ body.footer-hidden footer{display:none}
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <span class="q-section" id="qSection">Chamber 1 of 6</span>
+  <span class="q-section" id="qSection">Chamber 1 of 9</span>
   <p class="q-prompt" id="qPrompt">Borrowed opinions, scrolled certainties</p>
   <h2 class="q-text" id="qText"></h2>
   <div class="options" id="qOptions"></div>
@@ -916,7 +919,7 @@ body.footer-hidden footer{display:none}
 <!-- ACK -->
 <section class="screen" id="screen-ack">
   <h2 class="ack-h1" id="ackH1">You finished.</h2>
-  <p class="ack-text" id="ackText">Forty-two items. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
+  <p class="ack-text" id="ackText">Fifty-four items, plus a six-question agency check. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px;background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em">SHOW ME :)</button>
 </section>
 
@@ -934,8 +937,8 @@ body.footer-hidden footer{display:none}
   <details class="scoring-note">
     <summary>How is this scored?</summary>
     <div class="scoring-note__body">
-      <p>Each of the forty-two items uses a four-point Likert anchor: <code>Almost never</code> (1), <code>Some weeks</code> (2), <code>Most weeks</code> (3), <code>This is how I live</code> (4). The instrument is observational, not aspirational.</p>
-      <p>Six chambers (Mind, Body, Word, Time, Money, People) each carry seven items. We classify the loudest chamber at <code>quiet</code>, <code>active</code>, or <code>loud</code> based on the percentage of the chamber's possible score (4–16 per item).</p>
+      <p>The fifty-four core items use a four-point Likert anchor: <code>Almost never</code> (1), <code>Some weeks</code> (2), <code>Most weeks</code> (3), <code>This is how I live</code> (4). The six final agency-matrix items are binary YES/NO. The instrument is observational, not aspirational.</p>
+      <p>Nine chambers (Money, Time, Attention, Body, Mind, Word, Promise, People, Spirit) each carry six items. They group into three triads: The Stolen Resources, The Inner Ruins, The Broken Vessels. Eight chambers are scored as drift; the ninth, Spirit, is scored as readiness pulse. We classify the loudest drift chamber at <code>quiet</code>, <code>active</code>, or <code>loud</code> based on the percentage of the chamber's possible score (1–4 per item).</p>
       <p>The <b>cost-of-autopilot</b> figures (hours/year on autopilot, promises broken, conversations postponed, money operating outside conscious choice) are calibrated to the autopilot literature. Killingsworth and Gilbert (2010) found that adults spend ~47% of waking time on autopilot, and our multipliers track that ceiling. Figures are estimates derived from your responses, not measurements.</p>
       <p>The diagnosis is the door, not the destination.</p>
     </div>
@@ -1208,8 +1211,12 @@ function sendToGhl(payload){
 }
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
-var TOTAL=42;
-var STORAGE_KEY='hom_firsthour_history_v2';
+// 54 core diagnostic items + 6 binary agency-matrix items rendered on a single
+// final page = 60 total. The chamber-progress bar tracks 9 chambers; the
+// agency matrix is its own screen and not counted in chamber-progress.
+var TOTAL=54;
+var AGENCY_TOTAL=6;
+var STORAGE_KEY='hom_firsthour_history_v3';
 var AUTO_ADVANCE_MS=1500;
 // SAVE_PILL_MS loaded from /shared.js
 
@@ -1220,387 +1227,129 @@ var OPTIONS=[
   {label:'This is how I live',score:4,key:'D'}
 ];
 
-// 42 items across 6 chambers, each with 3 tier variants (start / mid / end).
+// 54 single-statement items across 9 chambers in 3 triads. Question
+// presentation runs in journey order: outer (Stolen Resources) -> embodied
+// (Body, Mind) -> relational (Broken Vessels) -> deep interior (Spirit).
+// Spirit is the readiness/wanting chamber and is treated as a pulse signal,
+// not a drift signal (pulse:true on the chamber). The 6 binary agency-matrix
+// items are rendered separately on the final page (see AGENCY_QUESTIONS).
 var QUESTIONS=[
-  // Chamber 1: The Mind that Stopped Thinking
-  {n:1, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'I scroll into more opinions than I think into.',
-    'My body recognises a borrowed opinion before my mind catches up.',
-    'I am beginning to ask whose opinion this is, before I act on it.',
-    'In front of others, I no longer pass off scrolled certainty as my own thinking.',
-    'I am becoming the kind of person who traces an opinion before acting on it.',
-    'I can trace where an opinion came from before I act on it.'
-  ]},
-  {n:2, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When someone says something I disagree with, I nod. Disagreement is too tiring.',
-    'My body knows I am nodding before I have decided to.',
-    'I notice the nod before I give it.',
-    'In front of those watching me, a position is held, not a nod given.',
-    'I am becoming the kind of person who holds a position without needing to win it.',
-    'I can hold my position without needing to win.'
-  ]},
-  {n:3, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'I cannot recall the last time I genuinely changed my mind on something that mattered.',
-    'My body remembers shifts the calendar has lost.',
-    'I can name one recent moment, even barely, where I changed my mind.',
-    'The person who shifted me would also remember the conversation.',
-    'I am becoming the kind of person whose recent weeks include a real shift.',
-    'The last time I changed my mind is recent enough that I remember it clearly.'
-  ]},
-  {n:4, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'My inner voice sounds more like the people who raised me than like me.',
-    'My body knows whose voice is speaking before the words are decoded.',
-    'I am beginning to notice whose voice is speaking through me.',
-    'The people who raised me no longer crowd out my own voice inside.',
-    'I am becoming the kind of person who can hear her own voice clearly.',
-    'I recognise my inner voice as my own.'
-  ]},
-  {n:5, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'When a problem returns to mind, I replay it without arriving at a decision.',
-    'When a problem returns, my body tightens for the replay before I have begun.',
-    'When a problem returns, I notice the loop before I sink into it again.',
-    'When I name a returning problem to someone now, they hear a decision, not a rerun.',
-    'I am becoming the kind of person who closes loops with decisions, even small ones.',
-    'When a problem returns, I close the loop with a decision.'
-  ]},
-  {n:6, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'At three in the morning, my mind audits my life and I cannot pass the audit back through.',
-    'At three in the morning, my body knows the audit before my mind has begun.',
-    'I am beginning to recognise the three-a.m. audit as a pattern, not the truth.',
-    'The three-a.m. audit no longer rewrites who I am to the people I love.',
-    'I am becoming the kind of person whose audit is shorter than it used to be.',
-    'The three-a.m. audit is shorter than it used to be.'
-  ]},
-  {n:7, sec:1, sn:'The Mind that Stopped Thinking', text:[
-    'I want to think my own thoughts again, more than I let myself say out loud.',
-    'My body wants this more than I have let my mind admit.',
-    'I am beginning to recognise that person in my own behaviour.',
-    'The people who would meet her would prefer her to who I have been.',
-    'I am becoming the kind of person who has stopped waiting to begin.',
-    'I am no longer waiting to begin thinking my own thoughts.'
-  ]},
+  // Chamber 1 (Triad 3): The Money that Owns You
+  {n:1, sec:1, sn:'The Money that Owns You', text:'When I think about my money, I avoid looking because looking is uncomfortable.'},
+  {n:2, sec:1, sn:'The Money that Owns You', text:'When I look at how much I earn now compared to before, I am not actually freer.'},
+  {n:3, sec:1, sn:'The Money that Owns You', text:'When I notice my money behaving, it operates by rules I never consciously set.'},
+  {n:4, sec:1, sn:'The Money that Owns You', text:'When I spend, I sometimes spend on things to prove a story about me to people I do not particularly like.'},
+  {n:5, sec:1, sn:'The Money that Owns You', text:'When I look at the financial weight I carry, much of it is not mine, and I cannot put it down.'},
+  {n:6, sec:1, sn:'The Money that Owns You', text:'When I imagine money behaving as a tool I direct rather than a force that directs me, I want this more than I let myself acknowledge.'},
 
-  // Chamber 2: The Body that Got Forgotten
-  {n:8, sec:2, sn:'The Body that Got Forgotten', text:[
-    'I treat my body as a vehicle. When it asks for something, I override.',
-    'The asking is loud. I have been calling it noise.',
-    'I am beginning to listen the same day my body asks.',
-    'Those who care for me see me listen, not override.',
-    'I am becoming the kind of person who treats her body as her closest counsel.',
-    'My body is my closest counsel. I respond when it asks.'
-  ]},
-  {n:9, sec:2, sn:'The Body that Got Forgotten', text:[
-    'When my body sends pain or fatigue, I push it down and keep moving.',
-    'The signal has been the same for weeks. My body knows I have heard it.',
-    'When pain or fatigue arrives, I name it before I push past.',
-    'Those who depend on me see me tend to it, not power through.',
-    'I am becoming the kind of person who treats pain as information, not interruption.',
-    'I treat pain and fatigue as information rather than interruption.'
-  ]},
-  {n:10, sec:2, sn:'The Body that Got Forgotten', text:[
-    'Sleep does not reach the bottom of me.',
-    'My body knows the difference between rest and unconsciousness.',
-    'I am beginning to notice what reaches me when I sleep, and what does not.',
-    'When I sleep well, the people I wake to meet a steadier self.',
-    'I am becoming the kind of person whose rest reaches the bottom.',
-    'Sleep reaches further than it used to.'
-  ]},
-  {n:11, sec:2, sn:'The Body that Got Forgotten', text:[
-    'When a feeling rises that I would rather not feel, I medicate it before I ask what it is.',
-    'My body knows the medication is coming before I have decided.',
-    'When a hard feeling rises, I am beginning to ask what it is, before I medicate.',
-    'In front of the people I love, I do not disappear into the substitute.',
-    'I am becoming the kind of person who can meet a feeling without medicating.',
-    'I can meet a hard feeling without needing to medicate.'
-  ]},
-  {n:12, sec:2, sn:'The Body that Got Forgotten', text:[
-    'I cannot quite remember the last time I moved my body purely for joy, not for management.',
-    'My body remembers what the calendar has lost.',
-    'The last time I moved for joy is recent enough to remember.',
-    'What others would have seen would be joy, not management.',
-    'I am becoming the kind of person who moves this week, by her own choice.',
-    'I moved my body for joy this week, by my own choice.'
-  ]},
-  {n:13, sec:2, sn:'The Body that Got Forgotten', text:[
-    'When my body asks for an appointment I have been postponing, I postpone it again.',
-    'My body knows the cost is mounting on what I keep deferring.',
-    'I am beginning to make the appointment before the situation forces it.',
-    'Those who depend on me see the appointment made, not deferred.',
-    'I am becoming the kind of person who makes the appointment the same week.',
-    'When my body asks for an appointment, I make it the same week.'
-  ]},
-  {n:14, sec:2, sn:'The Body that Got Forgotten', text:[
-    'I want a body that still carries me at sixty, seventy, eighty, badly enough to act today.',
-    'My body knows the choices I am making today are the body she will inherit.',
-    'I am beginning to act for the body I want at sixty.',
-    'The people who will be alongside me deserve a body that can still meet them.',
-    'I am becoming the kind of person who is acting for it now.',
-    'I am acting for the body I want at sixty, seventy, eighty.'
-  ]},
+  // Chamber 2 (Triad 3): The Time that Disappeared
+  {n:7, sec:2, sn:'The Time that Disappeared', text:'I start my day feeling tired before I even begin the first task.'},
+  {n:8, sec:2, sn:'The Time that Disappeared', text:'When I look at how my year is shaping up, the days are full but the year feels thin.'},
+  {n:9, sec:2, sn:'The Time that Disappeared', text:'When I think of "later," I know somewhere that I am running out of it.'},
+  {n:10, sec:2, sn:'The Time that Disappeared', text:'When I notice how time has been moving, the years pass faster every year, and I do not know why.'},
+  {n:11, sec:2, sn:'The Time that Disappeared', text:'When I notice my age, I am older than I expected to be without becoming who I expected to be.'},
+  {n:12, sec:2, sn:'The Time that Disappeared', text:'When I look honestly at what the past five years actually built, I cannot fully account for them.'},
 
-  // Chamber 3: The Word that Lost Weight
-  {n:15, sec:3, sn:'The Word that Lost Weight', text:[
-    'The promises I most easily break are the ones I make to myself.',
-    'My body knows whether I will keep a promise to myself before the words finish.',
-    'When I make a promise to myself, I notice the doubt before I commit.',
-    'In front of those I love, the breaking of a self-promise no longer stays private.',
-    'I am becoming the kind of person whose own promises are kept first.',
-    'My promises to myself hold.'
-  ]},
-  {n:16, sec:3, sn:'The Word that Lost Weight', text:[
-    'When I make a new commitment to myself, part of me already knows I will not keep it.',
-    'My body recognises the lie before my mouth has finished.',
-    'When I make a new commitment, I ask honestly whether I can keep this one.',
-    'Those who would witness a new commitment of mine know whether I am serious.',
-    'I am becoming the kind of person who keeps a commitment, or does not make it.',
-    'I keep my commitments, or I do not make them.'
-  ]},
-  {n:17, sec:3, sn:'The Word that Lost Weight', text:[
-    'When a resolution starts to fade, I let it die quietly and pretend it did not happen.',
-    'My body remembers a resolution my mind has filed away.',
-    'When a resolution starts to fade, I name it instead of letting it disappear.',
-    'Those who heard the resolution deserve the truth of its return or its release.',
-    'I am becoming the kind of person who returns to a resolution or releases it cleanly.',
-    'When a resolution fades, I either return to it or release it cleanly.'
-  ]},
-  {n:18, sec:3, sn:'The Word that Lost Weight', text:[
-    'I am more reliable to other people than I am to myself.',
-    'My body knows the asymmetry and waits for me to close it.',
-    'When my word is on the line, I notice the asymmetry and I am closing it.',
-    'Those who depend on me see me keep my word for myself too.',
-    'I am becoming the kind of person who treats her own word as she treats anyone else’s.',
-    'I treat my own word as I treat anyone else’s.'
-  ]},
-  {n:19, sec:3, sn:'The Word that Lost Weight', text:[
-    'The list of things I told myself I would do this year and have not is long.',
-    'My body remembers each one, and the weight of its non-doing.',
-    'The list of unfinished commitments is shorter and more honest now.',
-    'The people in my life can see the list shorten.',
-    'I am becoming the kind of person whose list is mostly done, in motion, or consciously released.',
-    'Most of what I told myself I would do is done, in motion, or consciously released.'
-  ]},
-  {n:20, sec:3, sn:'The Word that Lost Weight', text:[
-    'When I think of my unkept promises, something in my chest or stomach tightens.',
-    'My body has been carrying that tightening for years, not minutes.',
-    'When I think of my unkept promises, I notice the tightening and stay with it.',
-    'The people who would have benefited from each kept promise are people I can name.',
-    'I am becoming the kind of person whose unkept list is short enough that the tightening is brief.',
-    'My list of unkept promises is short. The tightening is brief.'
-  ]},
-  {n:21, sec:3, sn:'The Word that Lost Weight', text:[
-    'I want to be someone whose word holds, more than I want most of what I am chasing.',
-    'My body has been waiting for this wanting to become real.',
-    'I am beginning to live like someone whose word holds.',
-    'Those closest to me would notice the change before I named it.',
-    'I am becoming the kind of person whose word holds, more days than not.',
-    'My word holds, more days than not.'
-  ]},
+  // Chamber 3 (Triad 3): The Attention that Got Farmed
+  {n:13, sec:3, sn:'The Attention that Got Farmed', text:'The first hour of my day does not belong to me. It belongs to whatever notification arrived while I was sleeping.'},
+  {n:14, sec:3, sn:'The Attention that Got Farmed', text:'I start my day by checking messages and news instead of focusing on my priorities.'},
+  {n:15, sec:3, sn:'The Attention that Got Farmed', text:'I notice how my attention scatters to many tasks without finishing any of them.'},
+  {n:16, sec:3, sn:'The Attention that Got Farmed', text:'I want to finish what I start not for applause but because I am tired of carrying the weight of what I left undone.'},
+  {n:17, sec:3, sn:'The Attention that Got Farmed', text:'I catch myself starting something new to escape the work I already started but did not finish.'},
+  {n:18, sec:3, sn:'The Attention that Got Farmed', text:'I find it easier to start new projects than to finish the ones I am already tired of.'},
 
-  // Chamber 4: The Time that Disappeared
-  {n:22, sec:4, sn:'The Time that Disappeared', text:[
-    'When I look honestly at what the past five years actually built, I cannot fully account for them.',
-    'When I look at what the past five years built, my body knows where the years went, even when the calendar will not say.',
-    'When I look at what the past five years built, I can name some, even if not all.',
-    'When I look at what the past five years built, the people who shared them with me see the work, not the blur.',
-    'When I look at what the past five years built, I am becoming the kind of person who can see the work.',
-    'When I look at what the past five years built, I see the work.'
-  ]},
-  {n:23, sec:4, sn:'The Time that Disappeared', text:[
-    'When I notice my age, I am older than I expected to be without becoming who I expected to be.',
-    'When I notice my age, my body knows the gap between who I am and who I expected to be.',
-    'When I notice my age, I am beginning to close the gap between expectation and life.',
-    'When I notice my age, the people who knew me younger can see who I have become without having to imagine her.',
-    'When I notice my age, I am becoming the kind of person whose life is closer to her wanting than she once thought possible.',
-    'When I notice my age, who I am is closer to who I want to be than I once thought possible.'
-  ]},
-  {n:24, sec:4, sn:'The Time that Disappeared', text:[
-    'When I look at how my year is shaping up, the days are full but the year feels thin.',
-    'When I look at my year, my body recognises the difference between full days and a kept year.',
-    'When I look at my year, I am beginning to see what the days are actually building.',
-    'When I look at my year, the people who watched me move through it can name what was built.',
-    'When I look at my year, I am becoming the kind of person whose year is full because the days are kept.',
-    'When I look at my year, the year is full because the days have been kept.'
-  ]},
-  {n:25, sec:4, sn:'The Time that Disappeared', text:[
-    'When I think of when I will start what I have been postponing, I find myself saying "next quarter" again.',
-    'When I think of when I will start, my body is tired of next quarter and my mouth is still saying it.',
-    'When I think of when I will start, I notice the "next quarter" move and I refuse it.',
-    'When I think of when I will start, the people who would witness the start hear a date, not a season.',
-    'When I think of when I will start, I am becoming the kind of person whose answer is now or a specific date.',
-    'When I think of when I will start, the answer is now or a specific date.'
-  ]},
-  {n:26, sec:4, sn:'The Time that Disappeared', text:[
-    'When I notice how time has been moving, the years pass faster every year, and I do not know why.',
-    'When I notice how time is moving, my body marks the years differently than the calendar does.',
-    'When I notice how time is moving, I am beginning to slow it down by what I do with it.',
-    'When I notice how time is moving, the people who have shared it with me feel the weight of what we have built.',
-    'When I notice how time is moving, I am becoming the kind of person whose years carry weight rather than slipping past.',
-    'When I notice how time is moving, my years carry weight rather than slipping past.'
-  ]},
-  {n:27, sec:4, sn:'The Time that Disappeared', text:[
-    'When I think of "later," I know somewhere that I am running out of it.',
-    'When I think of "later," my body knows it is running out before my mind admits it.',
-    'When I think of "later," I am beginning to convert it into now where I can.',
-    'When I think of "later," the people who have heard me say it would notice it disappearing from my speech.',
-    'When I think of "later," I am becoming the kind of person for whom it is rarer in her vocabulary than it used to be.',
-    'When I think of "later," it is rarer in my vocabulary than it used to be.'
-  ]},
-  {n:28, sec:4, sn:'The Time that Disappeared', text:[
-    'When I imagine the year I would call honest, I want it badly. I am tired of the gap between calendar and life.',
-    'When I imagine the year I would call honest, my body knows what she would feel like at the close of it.',
-    'When I imagine the year I would call honest, I am beginning to live it in patches.',
-    'When I imagine the year I would call honest, the people closest to me would call the same year honest.',
-    'When I imagine the year I would call honest, I am becoming the kind of person who is living it.',
-    'When I imagine the year I would call honest, I am living it.'
-  ]},
+  // Chamber 4 (Triad 1): The Body that Got Forgotten
+  {n:19, sec:4, sn:'The Body that Got Forgotten', text:'I treat my body as a vehicle. When it asks for something, I override it.'},
+  {n:20, sec:4, sn:'The Body that Got Forgotten', text:'I push through pain or fatigue to keep working, even when my body clearly needs rest.'},
+  {n:21, sec:4, sn:'The Body that Got Forgotten', text:'I feel guilty when I rest because I think I should be working on unfinished tasks.'},
+  {n:22, sec:4, sn:'The Body that Got Forgotten', text:'Sleep does not reach the bottom of me because guilt lives in the basement.'},
+  {n:23, sec:4, sn:'The Body that Got Forgotten', text:'When my body asks for an appointment I have been postponing, I postpone it again.'},
+  {n:24, sec:4, sn:'The Body that Got Forgotten', text:'I carry the silent weight of my unkept promises in my body more than in my mind.'},
 
-  // Chamber 5: The Money that Owns You
-  {n:29, sec:5, sn:'The Money that Owns You', text:[
-    'When I make a financial decision, it is more often a reaction than a chosen position.',
-    'When I make a financial decision, my body knows whether I am reacting before my mind has caught up.',
-    'When I make a financial decision, I am beginning to notice the reaction before I act on it.',
-    'When I make a financial decision, the people who depend on the choice see a decision, not a reaction.',
-    'When I make a financial decision, I am becoming the kind of person who acts from a position she has actually chosen.',
-    'When I make a financial decision, I act from a position I have actually chosen.'
-  ]},
-  {n:30, sec:5, sn:'The Money that Owns You', text:[
-    'When I look at how much I earn now compared to once, I am not actually freer.',
-    'When I look at how much I earn now, my body knows freedom would feel different than this.',
-    'When I look at how much I earn, I am beginning to see what would actually free me.',
-    'When I look at how much I earn, the people I love see the earning translating into actual life.',
-    'When I look at how much I earn, I am becoming the kind of person whose earning has translated into freedom.',
-    'When I look at how much I earn, the earning has begun to translate into freedom.'
-  ]},
-  {n:31, sec:5, sn:'The Money that Owns You', text:[
-    'When I look at the financial weight I carry, much of it is not mine, and I cannot put it down.',
-    'When I look at the financial weight I carry, my body knows what is mine and what was inherited.',
-    'When I look at the financial weight I carry, I am beginning to separate what is mine from what is not.',
-    'When I look at the financial weight I carry, the people who passed it to me are not the people who can lift it from me.',
-    'When I look at the financial weight I carry, I am becoming the kind of person who carries mine and has set down what is not.',
-    'When I look at the financial weight I carry, I carry mine and I have set down what is not.'
-  ]},
-  {n:32, sec:5, sn:'The Money that Owns You', text:[
-    'When I spend, I sometimes spend on things to prove a story about me to people I do not particularly like.',
-    'When I spend, my body knows when the purchase is meant for someone else, not for me.',
-    'When I spend, I am beginning to notice the proving move before I make the purchase.',
-    'When I spend, the people I am actually trying to reach with the proving have moved on long ago.',
-    'When I spend, I am becoming the kind of person who spends on what she actually wants.',
-    'When I spend, I spend on what I actually want, not on a story for someone else.'
-  ]},
-  {n:33, sec:5, sn:'The Money that Owns You', text:[
-    'When I think about my money, I avoid looking because looking is uncomfortable.',
-    'When I think about my money, my body braces for looking before I begin.',
-    'When I think about my money, I am beginning to look despite the discomfort.',
-    'When I think about my money, the people who share my financial life see me look, not avoid.',
-    'When I think about my money, I am becoming the kind of person who looks. The discomfort is workable.',
-    'When I think about my money, I look. The discomfort is workable.'
-  ]},
-  {n:34, sec:5, sn:'The Money that Owns You', text:[
-    'When I notice my money behaving, it operates by rules I never consciously set.',
-    'When I notice my money behaving, my body recognises the rules even when the mind has not named them.',
-    'When I notice my money behaving, I am beginning to surface the rules and choose new ones.',
-    'When I notice my money behaving, the people who taught me the rules can be thanked for some, released from others.',
-    'When I notice my money behaving, I am becoming the kind of person whose rules are consciously held.',
-    'When I notice my money behaving, it operates by rules I now consciously hold.'
-  ]},
-  {n:35, sec:5, sn:'The Money that Owns You', text:[
-    'When I imagine money behaving as a tool I direct rather than a force that directs me, I want this more than I let myself acknowledge.',
-    'When I imagine money as a tool I direct, my body recognises the wanting as a thing she has been waiting to claim.',
-    'When I imagine money as a tool I direct, I am beginning to act like its director.',
-    'When I imagine money as a tool I direct, the people who depend on me feel a different relationship to it.',
-    'When I imagine money as a tool I direct, I am becoming the kind of person who directs it.',
-    'When I imagine money as a tool I direct, I direct it.'
-  ]},
+  // Chamber 5 (Triad 1): The Mind that Stopped Thinking
+  {n:25, sec:5, sn:'The Mind that Stopped Thinking', text:'I scroll into more opinions than I think into.'},
+  {n:26, sec:5, sn:'The Mind that Stopped Thinking', text:'When someone says something I disagree with, I nod along because pushing back feels too draining.'},
+  {n:27, sec:5, sn:'The Mind that Stopped Thinking', text:'I find myself comparing my progress to others and feeling like I am falling behind.'},
+  {n:28, sec:5, sn:'The Mind that Stopped Thinking', text:'My inner voice sounds more like the people who raised me than like me.'},
+  {n:29, sec:5, sn:'The Mind that Stopped Thinking', text:'When a problem returns to mind, I replay it without finding a way forward.'},
+  {n:30, sec:5, sn:'The Mind that Stopped Thinking', text:'I am not tired because I worked hard. I am tired because I carried what I did not finish.'},
 
-  // Chamber 6: The People You Are Pretending With
-  {n:36, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I move between home, work, and friends, I show up as a different version of me in each room.',
-    'When I move between rooms, my body remembers each version even when my mind has rehearsed them apart.',
-    'When I move between rooms, I am beginning to notice the pretending and let some of it drop.',
-    'When I move between rooms, the people in each room are beginning to meet the same self.',
-    'When I move between rooms, I am becoming the kind of person whose same self shows up in each.',
-    'When I move between rooms, the same self shows up in each.'
-  ]},
-  {n:37, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I am with the people closest to me, I have stopped showing them what is actually true for me.',
-    'When I am with the people closest to me, my body holds the truth that has not been said.',
-    'When I am with the people closest to me, I am beginning to risk the truth again.',
-    'When I am with the people closest to me, they are starting to meet me again, not the pretending self.',
-    'When I am with the people closest to me, I am becoming the kind of person whose truth is what they meet.',
-    'When I am with the people closest to me, what is true for me is what they meet.'
-  ]},
-  {n:38, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I think of the conversations I most need to have, they are the ones I keep avoiding.',
-    'When I think of the conversations I most need to have, my body knows their cost is climbing.',
-    'When I think of the conversations I most need to have, I am beginning to make them happen.',
-    'When I think of the conversations I most need to have, the people on the other side of them are waiting longer than they should.',
-    'When I think of the conversations I most need to have, I am becoming the kind of person whose queue is short.',
-    'When I think of the conversations I most need to have, the queue is short.'
-  ]},
-  {n:39, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I am in a room full of people who think they know me, I am lonely there.',
-    'When I am in a room full of people who think they know me, my body knows the loneliness is real even when the room is loud.',
-    'When I am in a room full of people who think they know me, I am beginning to let myself be known.',
-    'When I am in a room full of people who think they know me, I am beginning to let one or two of them actually know me.',
-    'When I am in a room of people who know me, I am becoming the kind of person whose loneliness is rare because the room knows her face.',
-    'When I am in a room of people who know me, the loneliness is rare because the room is not full of strangers wearing my face.'
-  ]},
-  {n:40, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I am with people I claim to love, I notice myself keeping score.',
-    'When I am with people I claim to love, my body recognises the score-keeping as a thing she has carried for years.',
-    'When I am with people I claim to love, I notice the score-keeping and let it go more often.',
-    'When I am with people I claim to love, they can feel whether a ledger is running between us.',
-    'When I am with people I love, I am becoming the kind of person who is not running a ledger.',
-    'When I am with people I love, I am not running a ledger.'
-  ]},
-  {n:41, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I am with the person closest to me, I have not been honest about what staying as I am is costing both of us.',
-    'When I am with the person closest to me, my body knows the cost even when the words have not been spoken.',
-    'When I am with the person closest to me, I am beginning to name the cost out loud.',
-    'When I am with the person closest to me, they are paying for who I have not been willing to become.',
-    'When I am with the person closest to me, I am becoming the kind of person who has named the cost and walked forward together.',
-    'When I am with the person closest to me, the cost has been named, the conversation has been had, and we are walking forward.'
-  ]},
-  {n:42, sec:6, sn:'The People You Are Pretending With', text:[
-    'When I imagine the children in my life looking back at how I lived, I do not want incompletion to be what they inherit. I want this enough to act today.',
-    'When I imagine the children in my life looking back, my body recognises that they are watching, even when no one is saying so.',
-    'When I imagine the children in my life looking back, I am beginning to act for the inheritance I want them to receive.',
-    'When I imagine the children in my life looking back, the people they will become will inherit my actual life, not my speeches.',
-    'When I imagine the children in my life looking back, I am becoming the kind of person whose inheritance to them is different from what I inherited.',
-    'When I imagine the children in my life looking back, what they inherit will be different from what I inherited.'
-  ]}
+  // Chamber 6 (Triad 2): The Word that Weighs on Strangers
+  {n:31, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel shame when I realize how many promises I have broken to myself this year.'},
+  {n:32, sec:6, sn:'The Word that Weighs on Strangers', text:'The promises I break most often are the ones I make to myself.'},
+  {n:33, sec:6, sn:'The Word that Weighs on Strangers', text:'When I make a commitment, part of me already doubts I can keep it.'},
+  {n:34, sec:6, sn:'The Word that Weighs on Strangers', text:'I hesitate to keep promises to myself because I expect to fail again.'},
+  {n:35, sec:6, sn:'The Word that Weighs on Strangers', text:'I am more reliable to other people than I am to myself.'},
+  {n:36, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel that my word to myself has less weight than my word to others.'},
+
+  // Chamber 7 (Triad 2): The Promise that Got Postponed
+  {n:37, sec:7, sn:'The Promise that Got Postponed', text:'I often tell myself I need to finish tomorrow because today I am too tired or distracted.'},
+  {n:38, sec:7, sn:'The Promise that Got Postponed', text:'When a resolution starts to fade, I let it die quietly and pretend it did not happen.'},
+  {n:39, sec:7, sn:'The Promise that Got Postponed', text:'The list of things I told myself I would do this year and have not done is long.'},
+  {n:40, sec:7, sn:'The Promise that Got Postponed', text:'I feel like I am carrying many undone commitments that I cannot face.'},
+  {n:41, sec:7, sn:'The Promise that Got Postponed', text:'The body sends signals. I send them to voicemail. Then I wonder why I am exhausted.'},
+  {n:42, sec:7, sn:'The Promise that Got Postponed', text:'When I think of when I will start what I have been postponing, I find myself saying "next quarter" again.'},
+
+  // Chamber 8 (Triad 2): The People You Are Pretending With
+  {n:43, sec:8, sn:'The People You Are Pretending With', text:'I feel pressure to appear like I have it all together, even when I am struggling inside.'},
+  {n:44, sec:8, sn:'The People You Are Pretending With', text:'I feel like I am living two lives: one I show others, and one where unfinished work piles up.'},
+  {n:45, sec:8, sn:'The People You Are Pretending With', text:'When I am in a room full of people who think they know me, I am lonely there.'},
+  {n:46, sec:8, sn:'The People You Are Pretending With', text:'When I think of the conversations I most need to have, they are the ones I keep avoiding.'},
+  {n:47, sec:8, sn:'The People You Are Pretending With', text:'I have been performing competence for so long that I am not sure where the performance ends and I begin.'},
+  {n:48, sec:8, sn:'The People You Are Pretending With', text:'When I am with the people closest to me, I have not been honest about what staying as I am is costing both of us.'},
+
+  // Chamber 9 (Triad 1): The Spirit that Got Silenced - readiness pulse, not drift
+  {n:49, sec:9, sn:'The Spirit that Got Silenced', text:'I want to think my own thoughts again, more than I let myself say out loud.'},
+  {n:50, sec:9, sn:'The Spirit that Got Silenced', text:'I want to keep my word to myself more than I want to chase new achievements.'},
+  {n:51, sec:9, sn:'The Spirit that Got Silenced', text:'I want to be someone whose word holds, more than I want most of what I am chasing.'},
+  {n:52, sec:9, sn:'The Spirit that Got Silenced', text:'I want to trust myself again, but I am afraid it will only lead to more disappointment.'},
+  {n:53, sec:9, sn:'The Spirit that Got Silenced', text:'I want a body that still carries me at sixty, seventy, eighty, badly enough to act today.'},
+  {n:54, sec:9, sn:'The Spirit that Got Silenced', text:'When I imagine the children in my life looking back at how I lived, I do not want incompletion to be what they inherit. I want this enough to act today.'}
+];
+
+// Triads group chambers conceptually. Question flow runs in journey order
+// (outer -> embodied -> relational -> deep interior), which crosses triads.
+var TRIADS=[
+  {n:1, key:'inner',     name:'The Inner Ruins',       chambers:['body','mind','spirit']},
+  {n:2, key:'vessels',   name:'The Broken Vessels',    chambers:['word','promise','people']},
+  {n:3, key:'resources', name:'The Stolen Resources',  chambers:['money','time','attention']}
 ];
 
 var CHAMBERS=[
-  {key:'mind', n:1,name:'The Mind that Stopped Thinking',sub:'Borrowed opinions, scrolled certainties',qs:[1,2,3,4,5,6,7]},
-  {key:'body', n:2,name:'The Body that Got Forgotten',sub:'The body as vehicle',qs:[8,9,10,11,12,13,14]},
-  {key:'word', n:3,name:'The Word that Lost Weight',sub:'Promises broken without ceremony',qs:[15,16,17,18,19,20,21]},
-  {key:'time', n:4,name:'The Time that Disappeared',sub:'Years that cannot be accounted for',qs:[22,23,24,25,26,27,28]},
-  {key:'money',n:5,name:'The Money that Owns You',sub:'Inherited patterns, unspoken weight',qs:[29,30,31,32,33,34,35]},
-  {key:'people',n:6,name:'The People You Are Pretending With',sub:'Pretending over presence, the inheritance',qs:[36,37,38,39,40,41,42]}
+  {key:'money',     n:1, triad:3, name:'The Money that Owns You',           sub:'Am I building, or just surviving?',                    qs:[1,2,3,4,5,6]},
+  {key:'time',      n:2, triad:3, name:'The Time that Disappeared',         sub:'Did my first hour choose me, or did it drift?',         qs:[7,8,9,10,11,12]},
+  {key:'attention', n:3, triad:3, name:'The Attention that Got Farmed',     sub:'Who owned my gaze before I chose it today?',            qs:[13,14,15,16,17,18]},
+  {key:'body',      n:4, triad:1, name:'The Body that Got Forgotten',       sub:'When did I last listen before pain forced me?',         qs:[19,20,21,22,23,24]},
+  {key:'mind',      n:5, triad:1, name:'The Mind that Stopped Thinking',    sub:'Do I think, or do I replay?',                          qs:[25,26,27,28,29,30]},
+  {key:'word',      n:6, triad:2, name:'The Word that Weighs on Strangers', sub:'Who gets my kept promises?',                            qs:[31,32,33,34,35,36]},
+  {key:'promise',   n:7, triad:2, name:'The Promise that Got Postponed',    sub:'What am I carrying that I said I would close?',         qs:[37,38,39,40,41,42]},
+  {key:'people',    n:8, triad:2, name:'The People You Are Pretending With',sub:'Who sees the real pile, not the presented order?',      qs:[43,44,45,46,47,48]},
+  {key:'spirit',    n:9, triad:1, name:'The Spirit that Got Silenced',      sub:'What do I want that I no longer say out loud?',         qs:[49,50,51,52,53,54], pulse:true}
 ];
 
 var CHAMBER_PARAGRAPHS={
-  mind:'Your mind has been running on someone else’s tracks. Opinions you did not form. Beliefs you absorbed before you noticed. People who once knew you say something has changed: the wonder went somewhere, the curiosity dimmed. You have been bargaining with yourself. "Ten more minutes." "Let me scroll first." "I will start tonight." The voice you hear at three in the morning is borrowed. The story you keep telling yourself has begun to feel like who you are. The first chamber to repair is the one that does the looking.',
-  body:'Your body has been filing a daily depletion report. The shoulder since June. The sleep that does not reach the bottom of you. The 2:30 a.m. window the body uses when no other is available. Movement has been reduced to management. As a cardiologist, I have watched what unspoken life does to a heart. The conversation you will not have is becoming chest pain. The body\u2019s requests do not expire. They accrue interest.',
-  word:'Your word to yourself has lost weight. The person who makes the promise has stopped having credibility with the person who must keep it. The bank account of self-trust is overdrawn. Most of what you call procrastination is fear masquerading as willpower. The promise is not broken by weakness. It is held hostage by fear disguised as discernment. Until you are honest with yourself about a small thing, you cannot be honest with yourself about a large one.',
-  time:'Your time has been disappearing in ways you cannot name. The days are full. The year is thin. You are running out of \u2018later\u2019 and somewhere you know it. "Someday" is not a date. It is a deferral mechanism. The biggest lie you have been telling yourself is that things will be better in the future. They will not, unless something changes today. The grand gnawing space between how you think you should feel and how you actually feel is largest here, in time. Time is the only resource that does not return.',
-  money:'Your money operates by rules you did not consciously set. You earn more than you once dreamed of. You are not freer. Money has been reacting to fear, to image, to inherited script. What you traded away for the thing you bought has not yet been counted. Your ask has stopped being your dignity and started feeling like desperation. Until the rules are visible, the rules are running you.',
-  people:'You have been pretending at the relationships you used to live. The version of you at home is not the version at work. Both are managed. You may be lonely in rooms full of people who think they know you. Warmth without depth in your closest seats. The cost of pretending is paid in loneliness, then in chest pain, then in legacy. The people closest to you sense it before you say it.'
+  money:'Money operates by rules you did not consciously set. You earn more than you once dreamed of, but you are not freer. The pressure to hustle harder is constant, even when every part of you is exhausted. Money has stopped being a tool you direct and become a force that directs you. The question is not how much you have. It is who decides how you spend your hours. If the answer is the money, not you, you are not building. You are surviving.',
+  time:'Your time has been disappearing in ways you cannot name. The days are full. The year is thin. You wake without choosing how the day will begin. You slide into it, checking and reacting, and somehow it is noon. You did many small things, but you did not choose. Time was not stolen. It was surrendered, a minute at a time. You wake the next day and tell yourself today will be different. The drift begins again.',
+  attention:'Your gaze now belongs to others before you ever choose where to point it. The phone is the first thing you reach for, not because you need to but because something might have happened. You start each day donating the opening moments of your consciousness to anyone who wanted to reach you. Your attention is being farmed, harvested in small increments, packaged as engagement, sold as a product. By the time you finally turn to your own priorities, your attention is already tired.',
+  body:'Your body has been filing a daily depletion report. The shoulder. The sleep that does not reach the bottom of you. Movement reduced to management. As a cardiologist, I have watched what unspoken life does to a heart. The conversation you will not have is becoming chest pain. The body’s requests do not expire. They accrue interest. You have learned to ignore every signal until it becomes a scream, and even then you call it dedication.',
+  mind:'Your mind has been caught in a loop, replaying worries without finding a way forward. You wake and the same troubling thought is already there. You turn it over, you examine it, you find no new answer, and yet you cannot stop. Thinking moves somewhere. Rumination stays exactly where it started, burning energy without motion. Your inner voice sounds more like the people who raised you than like you. The mind that stopped thinking is not empty. It is full of the same question asked a thousand times.',
+  word:'Your word has learned to distribute its weight unfairly. You tell a colleague you will send something by Friday and you send it. You tell a friend you will show up at noon and you show up. But you tell yourself you will rest, finish the project, exercise, and somehow those words float away like smoke. You are not unreliable. You are selectively reliable, and you are the one excluded from your own reliability.',
+  promise:'Your promise that got postponed is no longer something you will do. It is something you have not done. It started with hope. You meant it. Then the weight did not lift. You moved it to tomorrow, then to next week, then to next month. Now the promise has become a ghost. It does not leave. It haunts the edges of every quiet moment. It clears its throat when you try to start something new.',
+  people:'You perform competence before an audience while private disorder piles up behind the curtain. The version they see has it together. The version that is managing. The pretending is not malicious. It is protective. You protect them from your mess. You protect yourself from their disappointment. But the protection becomes a prison. If they never see the real pile, you never have to face it. And the pile grows.',
+  spirit:'Deep inside, there is a wanting. Wanting to keep your word to yourself. Wanting to finish what you start. Wanting to feel reliable in your own eyes. But that wanting has been betrayed so many times that it no longer speaks at full volume. It murmurs. It tests the waters before committing to hope. You hear it in quiet moments, when you are alone, when the mask slips. This chamber is not a deficit. It is the door to repair. The wanting did not disappear. It went underground.'
 };
 
-// Section transitions (between chambers) ,  firing at new 7-item boundaries
+// Triad bridge transitions (3 total): after Q18 (Triad 3 done), Q30 (halfway
+// Frankl punch + outer-to-relational), Q48 (Triad 2 done, Spirit ahead).
 var TRANSITIONS=[
-  {q:7, eyebrow:'Chamber one is done',h:'You looked at your mind.',text:'Now look at your body. <b>The body keeps the record the mind tries to misplace.</b>'},
-  {q:14,eyebrow:'Chamber two is done',h:'You looked at your body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony. <b>Everything else stands on them.</b>'},
-  {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done. Most who start do not get here.',text:'Mind. Body. Word. You looked at all three. Now turn to time, money, and the people you have been pretending with. The honest answers cost something. Keep paying.'},
-  {q:28,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules you did not consciously set. Most of them were inherited.</b>'},
-  {q:35,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been pretending with. <b>The last seven items are the most honest.</b> Stay.'}
+  {q:18,eyebrow:'Triad three is sealed',h:'You looked at the resources slipping out.',text:'Money. Time. Attention. <b>Now turn inward.</b> The body and the mind have been waiting.'},
+  {q:30,eyebrow:'Halfway. Notice it.',h:'Five chambers down. Most who start do not get here.',text:'You looked outside, then inside. Now look at the people you have been pretending with, and the promises that follow you. <b>The honest answers cost something. Keep paying.</b>'},
+  {q:48,eyebrow:'Triad two is sealed',h:'You looked at the word, the promise, the people.',text:'One chamber remains. The deepest. <b>The Spirit that Got Silenced.</b> Stay.'}
 ];
 
 // State
 // Pre-Audit Examen — eight honesty-naming items shown on welcome before
-// the 42-item diagnostic. Selections persist in localStorage and travel
+// the 54-item diagnostic. Selections persist in localStorage and travel
 // with the report payload.
 var EXAMEN_ITEMS=[
   'I have been postponing a conversation for more than three months; the silence sits between us.',
@@ -1791,16 +1540,9 @@ function chamberPrompt(chamberNum){
 function renderQuestion(n){
   cancelAdvance();
   var q=QUESTIONS[n-1];
-  document.getElementById('qSection').textContent='Chamber '+q.sec+' of 6 · '+q.sn;
+  document.getElementById('qSection').textContent='Chamber '+q.sec+' of 9 · '+q.sn;
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
-  // v3.3. Six-tier resolver indexed directly. Falls back gracefully to 3-tier text.
-  var variantIdx=0;
-  if(typeof retakeTier==='function'){variantIdx=Math.min(5,Math.max(0,retakeTier()-1))}
-  var qText=q.text;
-  if(Array.isArray(q.text)){
-    qText=q.text[Math.min(q.text.length-1,variantIdx)];
-  }
-  document.getElementById('qText').textContent=qText;
+  document.getElementById('qText').textContent=q.text;
   document.getElementById('qPrompt').textContent=chamberPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
   setChamberProgress(q.sec);
@@ -1862,14 +1604,14 @@ function enterAck(){
   var prior=priorRecords(participantEmail);
   var takeNum=Math.max(1,prior.length+1);
   var bodyCue;
-  if(takeNum===1)        bodyCue='Forty-two items. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water.';
-  else if(takeNum<=3)    bodyCue='Forty-two items, again. The repetition is the practice. Take one breath. Notice what was easier this time, and what was not.';
-  else if(takeNum<=5)    bodyCue='Forty-two items. Take '+takeNum+'. You are approaching the middle of the year. Take one breath. The honest read is the work.';
-  else if(takeNum===6)   bodyCue='Forty-two items. Halfway through the year. Most who started are not here. You are. Take one breath. Notice that.';
-  else if(takeNum<=8)    bodyCue='Forty-two items. The second half. Momentum is built or lost in this stretch. Take one breath. Hold the line.';
-  else if(takeNum<=10)   bodyCue='Forty-two items. The drift-watch. What you tracked early is now either practice or memory. Take one breath. See which one it became.';
-  else if(takeNum===11)  bodyCue='Forty-two items. One return left after this one. The arc is almost complete. Take one breath. Use this read to set the close.';
-  else                   bodyCue='Forty-two items. The twelfth read. The full year is now in your hands. Take one breath. Look back at what these reads built.';
+  if(takeNum===1)        bodyCue='Fifty-four items. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water.';
+  else if(takeNum<=3)    bodyCue='Fifty-four items, again. The repetition is the practice. Take one breath. Notice what was easier this time, and what was not.';
+  else if(takeNum<=5)    bodyCue='Fifty-four items. Take '+takeNum+'. You are approaching the middle of the year. Take one breath. The honest read is the work.';
+  else if(takeNum===6)   bodyCue='Fifty-four items. Halfway through the year. Most who started are not here. You are. Take one breath. Notice that.';
+  else if(takeNum<=8)    bodyCue='Fifty-four items. The second half. Momentum is built or lost in this stretch. Take one breath. Hold the line.';
+  else if(takeNum<=10)   bodyCue='Fifty-four items. The drift-watch. What you tracked early is now either practice or memory. Take one breath. See which one it became.';
+  else if(takeNum===11)  bodyCue='Fifty-four items. One return left after this one. The arc is almost complete. Take one breath. Use this read to set the close.';
+  else                   bodyCue='Fifty-four items. The twelfth read. The full year is now in your hands. Take one breath. Look back at what these reads built.';
   document.getElementById('ackH1').innerHTML=personalize('{name,}you finished.');
   document.getElementById('ackText').innerHTML=bodyCue+' <b>'+personalize('Are you ready to see your result{,name}?')+'</b>';
   hideChamberProgress();show('screen-ack');setProgress(100);
@@ -1879,12 +1621,20 @@ function afterAck(){finishAssessment()}
 // Scoring
 function sumQs(qs){var s=0;for(var i=0;i<qs.length;i++)s+=answers[qs[i]]||0;return s}
 function chamberScores(){
-  return CHAMBERS.map(function(c){var s=sumQs(c.qs),max=c.qs.length*4;return{key:c.key,name:c.name,sub:c.sub,score:s,max:max,pct:s/max}});
+  return CHAMBERS.map(function(c){var s=sumQs(c.qs),max=c.qs.length*4;return{key:c.key,name:c.name,sub:c.sub,score:s,max:max,pct:s/max,pulse:!!c.pulse,triad:c.triad}});
 }
+// Loudest chamber considers drift chambers only; the Spirit chamber is a
+// readiness pulse (high score = high wanting), not drift, so it is excluded.
 function loudestChamber(){
-  var arr=chamberScores();var best=arr[0];
+  var arr=chamberScores().filter(function(c){return !c.pulse});
+  var best=arr[0];
   for(var i=1;i<arr.length;i++)if(arr[i].score>best.score)best=arr[i];
   return best;
+}
+// Spirit pulse: aggregate readiness signal across chamber 9 alone.
+function spiritPulse(){
+  for(var i=0;i<CHAMBERS.length;i++)if(CHAMBERS[i].pulse){var c=CHAMBERS[i];return{key:c.key,name:c.name,score:sumQs(c.qs),max:c.qs.length*4,pct:sumQs(c.qs)/(c.qs.length*4)}}
+  return null;
 }
 function totalScore(){var s=0;for(var k in answers)s+=answers[k];return s}
 function levelNeg(pct){return pct<=0.44?'quiet':pct<=0.69?'active':'loud'}
@@ -1892,7 +1642,7 @@ function levelLabel(pct){return ({quiet:'Quiet',active:'Active',loud:'Loud'})[le
 
 // Cost estimation, rough but defensible.
 // All numbers anchor to the participant's own self-reports.
-// With 7 items per chamber × 4-point Likert, scores range 7 (low) to 28 (high) per chamber.
+// With 6 items per chamber × 4-point Likert, scores range 6 (low) to 24 (high) per chamber.
 function estimateCost(){
   var cs=chamberScores();
   var tm=cs.find(function(x){return x.key==='time'}).score;
@@ -1901,26 +1651,25 @@ function estimateCost(){
   var mn=cs.find(function(x){return x.key==='money'}).score;
   var md=cs.find(function(x){return x.key==='mind'}).score;
 
-  // v3.3.1. Calibration matched to the autopilot literature
+  // Calibration matched to the autopilot literature
   // (Killingsworth & Gilbert, 2010: ~47% of waking time on autopilot).
-  // The multipliers below produce estimates ~47% above the v3.2 baseline,
-  // because the v3.2 model under-represented Body and People drift and
-  // used an artificially conservative 42 hr/week ceiling.
-  var bd=cs.find(function(x){return x.key==='body'}).score||14;
-  // Time + Mind + Body unconscious load (range 21-84). Scale to 0-56 hr/wk autopilot
-  //. The Killingsworth ceiling on a 112 hr waking week is ~52 hr/wk, plus our model
-  // accommodates the upper extreme honestly.
-  var unconsciousHoursWeekly=Math.round(((tm+md+bd-21)/63)*56);
+  // Re-anchored for the 9-chamber 6-question structure: each chamber score
+  // ranges 6 (low) to 24 (high). The Killingsworth ceiling on a 112 hr
+  // waking week is ~52 hr/wk; our scale lets honest answers reach the
+  // upper extreme.
+  var bd=cs.find(function(x){return x.key==='body'}).score||12;
+  // Time + Mind + Body unconscious load (range 18-72). Scale to 0-56 hr/wk autopilot.
+  var unconsciousHoursWeekly=Math.round(((tm+md+bd-18)/54)*56);
   var hoursYear=unconsciousHoursWeekly*52;
 
-  // Promises broken to self: scale by Word score (7-28). Up to ~132/yr at high (47% uplift on v3.2).
-  var promisesBroken=Math.round(((ww-7)*6.3));
+  // Promises broken to self: scale by Word score (6-24). Up to ~132/yr at high.
+  var promisesBroken=Math.round(((ww-6)*7.3));
 
-  // Conversations postponed: scale by People score (7-28). Up to ~50 at high (47% uplift).
-  var conversationsPostponed=Math.round((pp-7)*2.4);
+  // Conversations postponed: scale by People score (6-24). Up to ~50 at high.
+  var conversationsPostponed=Math.round((pp-6)*2.8);
 
   // Money operating outside conscious choice: percent estimate (12-50%).
-  var moneyDriftPercent=Math.round(((mn-7)/21)*38+12);
+  var moneyDriftPercent=Math.round(((mn-6)/18)*38+12);
 
   return {
     hoursYear:Math.max(0,hoursYear),
@@ -2232,7 +1981,7 @@ function buildEmailPayload(rec){
     cc_email:'mogiremd@gmail.com',
     primary_reflex:loud.name,
     primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
-    archetype_desc:'THE FIRST HOUR · By Dr. Job Mogire, MD, FACC · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Pre-Audit Examen (truths named before the audit): '+examenLine+'<br><br>UNFINISHED self-named: '+unfLine+'<br>Pre-assessment commitments. '+emoLine+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.<br><br><i>Scoring methodology: 42-item Likert (1-4) across six chambers. Cost-of-autopilot figures calibrated to Killingsworth & Gilbert (2010). Adults spend ~47% of waking time on autopilot. Figures are estimates derived from responses, not measurements.</i>',
+    archetype_desc:'THE FIRST HOUR · By Dr. Job Mogire, MD, FACC · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Pre-Audit Examen (truths named before the audit): '+examenLine+'<br><br>UNFINISHED self-named: '+unfLine+'<br>Pre-assessment commitments. '+emoLine+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.<br><br><i>Scoring methodology: 54-item Likert (1-4) across nine chambers in three triads, plus a six-item agency-matrix binary check. Cost-of-autopilot figures calibrated to Killingsworth & Gilbert (2010). Adults spend ~47% of waking time on autopilot. Figures are estimates derived from responses, not measurements.</i>',
     traffic_summary:profileLines,
     strategies_html:'<b>The cost, this period</b><br>'+costLines+'<br><br><b>The five-year forecast</b><br>'+fcLines+'<br><br><b>UNFINISHED self-named</b><br>'+unfLine,
     summit_url:'https://hom.mogire.com'
@@ -2316,7 +2065,7 @@ function _downloadPDF(){
   doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
   var L=doc.splitTextToSize(CHAMBER_PARAGRAPHS[loud.key],W-M*2);doc.text(L,M,y);y+=L.length*4.6+8;
 
-  sectionLabel('Audit profile · The six chambers',y);y+=7;
+  sectionLabel('Audit profile · The nine chambers',y);y+=7;
   var cs=chamberScores();
   for(var i=0;i<cs.length;i++){
     var c=cs[i],lvl=levelNeg(c.pct),col=lc[lvl];
