@@ -1150,6 +1150,7 @@ body.footer-hidden footer{display:none}
   <p class="foot-credit">©House of Mastery with Dr Job Mogire™ . KOORA™ . The Unfinished Life™ . Don't Die With An Unfinished Life™ . <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a></p>
 </footer>
 
+<script src="/shared.js"></script>
 <script>
 "use strict";
 
@@ -1550,7 +1551,7 @@ var CHAMBER_PARAGRAPHS={
 // Section transitions (between chambers) ,  firing at new 7-item boundaries
 var TRANSITIONS=[
   {q:7, eyebrow:'Chamber one is done',h:'You looked at your mind.',text:'Now look at your body. <b>The body keeps the record the mind tries to misplace.</b>'},
-  {q:14,eyebrow:'Chamber two is done',h:'You looked at your body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony, are the foundation everything else stands on.'},
+  {q:14,eyebrow:'Chamber two is done',h:'You looked at your body.',text:'Now look at your word. The promises you make to yourself, kept or broken without ceremony. <b>Everything else stands on them.</b>'},
   {q:21,eyebrow:'Halfway. Notice it.',h:'Three chambers done. Most who start do not get here.',text:'Mind. Body. Word. You looked at all three. Now turn to time, money, and the people you have been pretending with. The honest answers cost something. Keep paying.'},
   {q:28,eyebrow:'Chamber four is done',h:'You looked at time.',text:'Now look at money. <b>Money operates by rules you did not consciously set. Most of them were inherited.</b>'},
   {q:35,eyebrow:'Chamber five is done',h:'You looked at money.',text:'One chamber remains. The people you have been pretending with. <b>The last seven items are the most honest.</b> Stay.'}
@@ -1599,22 +1600,8 @@ var painText='';
 var painText5y='';
 
 // Storage
-// Name placeholders. Mirrors KOORA's personalize() to keep voice doctrine
-// consistent across instruments (and to prepare for shared-module extraction).
-//   {name,} → "Name, " (sentence-start direct address)
-//   {,name} → ", Name" (sentence-end direct address)
-//   {name}  → "Name"   (mid-sentence)
-// Without participantName, all drop cleanly and the first letter is
-// re-capitalised so the sentence still reads.
-function personalize(s){
-  if(!s)return '';
-  if(participantName){
-    var nm=safe(participantName);
-    return s.replace(/\{name,\}/g, nm+', ').replace(/\{,name\}/g, ', '+nm).replace(/\{name\}/g, nm);
-  }
-  var r=s.replace(/\{name,\}/g,'').replace(/\{,name\}/g,'').replace(/\{name\}/g,'you');
-  return r.charAt(0).toUpperCase()+r.slice(1);
-}
+// personalize() and safe() are loaded from /shared.js (extracted Round 4
+// for cross-instrument parity with index.html).
 
 // Take-aware framing across the 12-month arc. Each take is a monthly return.
 // Take 1 is the baseline; Take 12 is the year-seal where the KOORA waitlist
@@ -1723,7 +1710,7 @@ function relTime(iso){
 }
 function daysBetween(a,b){return Math.floor((new Date(b).getTime()-new Date(a).getTime())/86400000)}
 function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
-function safe(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+// safe() loaded from /shared.js
 function isValidEmail(e){return e&&e.indexOf('@')>0&&e.indexOf('.')>0}
 
 // Flow

@@ -1202,6 +1202,7 @@ body.footer-hidden footer{display:none}
   <p class="foot-credit">©House of Mastery with Dr Job Mogire™ . KOORA™ . The Unfinished Life™ . Don't Die With An Unfinished Life™ . <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin:14px auto 0;opacity:.7" onerror="this.style.display='none'"></p>
 </footer>
 
+<script src="/shared.js"></script>
 <script>
 "use strict";
 
@@ -1662,7 +1663,7 @@ var QUESTIONS=[
   ]},
   {n:51, sec:6,sn:'Where you are now', dom:'Self-trust bankrupt', text:[
     'When I make a new commitment, I want to believe myself. But a quiet part of me already doubts I will follow through.',
-    'My body braces for the breaking before I have begun.',
+    'My body braces for the breaking before I begin.',
     'I am starting to believe my own word again, even if quietly.',
     'The people who hear me make a commitment can tell whether I mean it.',
     'I am becoming the kind of person who believes her own word.',
@@ -1962,24 +1963,11 @@ var TRANSITIONS=[
   {q:31,eyebrow:'You are halfway. Notice it.',h:'Are your needs being filled or soothed with false substitutes?',text:'That was the question. Now name what moves you forward, and what you have been holding.'},
   {q:35,eyebrow:'The four forces are named',h:'{name,}you have just explored the four forces of necessity.',text:'They are the architecture that holds you every season. Next, the fidelities that shape your world.'},
   {q:39,eyebrow:'Section four is sealed',h:'Forces are the architecture. Fidelities are the seal.',text:'The next ten items are the practice and the faculties that overcome the sneaky reflexes that keep you stuck. <b>If you work them.</b>'},
-  {q:49,eyebrow:'The pit stop',h:'{name,}you just proved you can <em>finish</em>.',text:'Most start. Few finish. You did. Eleven items remain. The inner experience itself, the most important part. Be willing to see yourself without defending. <b>Ready for the final push{,name}?</b>'}
+  {q:49,eyebrow:'The pit stop',h:'{name,}you just proved you can <em>finish</em>.',text:'Most start. Few finish. You did. Eleven items remain. The inner experience itself is the most important part. Be willing to see yourself without defending. <b>Ready for the final push{,name}?</b>'}
 ];
 
-// Name placeholders. With participantName set:
-//   {name,} → "Name, " (sentence-start direct address)
-//   {,name} → ", Name" (sentence-end direct address)
-//   {name}  → "Name"   (mid-sentence)
-// Without participantName, all drop cleanly and the first letter is
-// re-capitalised so the sentence still reads.
-function personalize(s){
-  if(!s)return '';
-  if(participantName){
-    var nm=safe(participantName);
-    return s.replace(/\{name,\}/g, nm+', ').replace(/\{,name\}/g, ', '+nm).replace(/\{name\}/g, nm);
-  }
-  var r=s.replace(/\{name,\}/g,'').replace(/\{,name\}/g,'').replace(/\{name\}/g,'you');
-  return r.charAt(0).toUpperCase()+r.slice(1);
-}
+// personalize() and safe() are loaded from /shared.js (extracted Round 4
+// for cross-instrument parity with first-hour.html).
 
 function dayFraming(day){
   function stack(s){return s.split(/\.\s+/).filter(function(p){return p.length}).map(function(p,i,a){var t=safe(p)+(i<a.length-1?'.':(/[.!?]$/.test(p)?'':'.'));return '<span class="tr-day-frame__line">'+t+'</span>'}).join('')}
@@ -2138,7 +2126,7 @@ function relTime(iso){
 function labelForDay(d){var o=DAY_OPTIONS.find(function(o){return o.v===d});return o?o.label:('Day '+d)}
 function formatShortDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
 function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
-function safe(s){var d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
+// safe() loaded from /shared.js
 function nameDayPhrase(day){
   if(day===0)return 'baseline';
   if(day===180)return 'sealing';
