@@ -286,7 +286,8 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .welcome-meta b{color:var(--ink);font-weight:700}
 
 .toggle-stack{display:flex;gap:10px;flex-wrap:wrap;max-width:420px}
-.toggle-btn{flex:1;min-width:160px;padding:14px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.toggle-btn{flex:1;min-width:160px;padding:14px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;text-align:left;transition:border-color .15s,background .15s,box-shadow .15s}
+.toggle-btn--caps{text-align:center;font-weight:800;font-size:13px;letter-spacing:.10em;padding:16px 18px;line-height:1.2}
 .toggle-btn:hover{border-color:var(--ink)}
 .toggle-btn.sel{border-color:var(--gold);background:var(--gold);color:var(--navy);box-shadow:0 2px 10px rgba(201,151,58,.28)}
 .toggle-btn span{display:block;font-size:11px;font-weight:500;color:var(--body);margin-top:3px;letter-spacing:.005em}
@@ -992,6 +993,16 @@ body.footer-hidden footer{display:none}
   <div class="field-stack">
     <label class="field-label" for="dayPicker">Which return is this?</label>
     <select class="field-select" id="dayPicker"></select>
+  </div>
+
+  <div class="field-stack">
+    <label class="field-label">Are you in KOORA?</label>
+    <div class="toggle-stack" id="enrollToggle">
+      <button class="toggle-btn toggle-btn--caps" type="button" data-enroll="1" onclick="setEnroll(true)">I AM IN KOORA</button>
+      <button class="toggle-btn toggle-btn--caps" type="button" data-enroll="0" onclick="setEnroll(false)">NOT YET IN KOORA</button>
+    </div>
+    <p id="enrollHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;color:var(--mid);margin-top:8px;line-height:1.55">Pick one before you begin.</p>
+    <p id="enrollErr" class="field-hint" style="display:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;color:var(--red);font-weight:600;margin-top:8px">Please select one before you begin.</p>
   </div>
 
   <div class="welcome-cta">
@@ -2041,7 +2052,7 @@ var answers={};
 var currentQ=1;
 var participantName='';
 var participantDay=0;
-var participantEnrolled=true;
+var participantEnrolled=null;
 var participantEmail='';
 var lastResults=null;
 var advanceTimer=null;
@@ -2140,7 +2151,11 @@ function nextDayFor(prev){
   return 181;
 }
 
-function setEnroll(yes){participantEnrolled=!!yes;syncEnrollToggle()}
+function setEnroll(yes){
+  participantEnrolled=!!yes;syncEnrollToggle();
+  var err=document.getElementById('enrollErr');if(err)err.style.display='none';
+  var hint=document.getElementById('enrollHint');if(hint)hint.style.display='block';
+}
 function syncEnrollToggle(){
   var btns=document.querySelectorAll('#enrollToggle .toggle-btn');
   for(var i=0;i<btns.length;i++){
@@ -2335,6 +2350,12 @@ function welcomeBeginClick(){
   var nameEl=document.getElementById('participantName');
   var name=(nameEl.value||'').trim();
   if(!name){nameEl.focus();return}
+  if(participantEnrolled===null||typeof participantEnrolled==='undefined'){
+    var err=document.getElementById('enrollErr');var hint=document.getElementById('enrollHint');
+    if(err)err.style.display='block';if(hint)hint.style.display='none';
+    var firstBtn=document.querySelector('#enrollToggle .toggle-btn');if(firstBtn)firstBtn.focus();
+    return;
+  }
   document.getElementById('welcomeBeginBtn').style.display='none';
   var gate=document.getElementById('welcomeEmailGate');
   gate.style.display='block';
