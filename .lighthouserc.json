@@ -2,8 +2,8 @@
   "ci": {
     "collect": {
       "url": [
-        "http://localhost:4173/first-hour.html",
-        "http://localhost:4173/index.html",
+        "http://localhost:4173/first-hour/",
+        "http://localhost:4173/",
         "http://localhost:4173/privacy.html"
       ],
       "startServerCommand": "npx http-server -p 4173 -c-1 .",

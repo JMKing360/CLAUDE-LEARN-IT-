@@ -1,6 +1,7 @@
 // House of Mastery - shared helpers
 // Loaded before the inline assessment scripts on both index.html (KOORA
-// UNFINISHED) and first-hour.html (The First Hour). Contains the small,
+// UNFINISHED, served at /) and first-hour/index.html (The First Hour,
+// served at /first-hour/). Contains the small,
 // stable utility surface that the two instruments use identically.
 //
 // Voice-doctrine helpers live here so the personalize/escape contract is

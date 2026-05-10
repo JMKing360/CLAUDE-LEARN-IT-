@@ -2,13 +2,15 @@
 
 This repository holds the source for the diagnostic instruments of **House of Mastery**, the body of work of **Dr. Job Mogire, MD, FACP, FACC**.
 
-| File | Instrument | Audience | Cadence |
-|---|---|---|---|
-| `first-hour.html` | The First Hour | General professional, top of funnel | Every 30 days, six retakes |
-| `index.html` | UNFINISHED, the diagnostic of KOORA: The Finishing Protocol | Enrolled cohort | Every 15 days, thirteen returns |
-| `privacy.html` | Privacy policy (GDPR + CCPA + Kenya DPA + LGPD) | All | Static |
-| `SPEC.md` | Build specification | Internal | Static |
-| `reference/4CKOORASCREEN.html` | UX baseline reference | Internal | Static |
+Each instrument is independent — its own URL, its own state, its own service-worker cache scope.
+
+| Path on disk | Served at | Instrument | Audience | Cadence |
+|---|---|---|---|---|
+| `index.html` | `/` (also `/koora` 301 → `/`) | UNFINISHED, the diagnostic of KOORA: The Finishing Protocol | Enrolled cohort | Every 15 days, thirteen returns |
+| `first-hour/index.html` | `/first-hour/` | The First Hour | General professional, top of funnel | Every 30 days, six retakes |
+| `privacy.html` | `/privacy` (rewrite) | Privacy policy (GDPR + CCPA + Kenya DPA + LGPD) | All | Static |
+| `SPEC.md` | n/a | Build specification | Internal | Static |
+| `reference/4CKOORASCREEN.html` | n/a | UX baseline reference | Internal | Static |
 
 The instruments are single-file static HTML, runnable from any host that serves files.
 
@@ -90,13 +92,14 @@ Full policy in `privacy.html`. Compliant with GDPR (EU + UK), CCPA + CPRA, Kenya
 
 Cloudflare Pages production setup:
 
-1. **Branch**: `main` (merge `claude/build-mature-assessment-k6AT9` first)
-2. **Build command**: empty
-3. **Output directory**: empty (serves from repository root)
-4. **Custom domains**:
-   - `hom.mogire.com/first-hour` → root index of First Hour build (or rename `first-hour.html` to `index.html` in a Pages routing rule)
-   - `hom.mogire.com/koora` → root index of KOORA build
-   - `hom.mogire.com/privacy` → `privacy.html`
+1. **Branch**: `main` (merge feature branch first)
+2. **Build command**: `npx vite build` (produces `dist/`); or empty if serving the repository root statically.
+3. **Output directory**: `dist/` if using vite, else repository root.
+4. **Routing** (declared in `_redirects`):
+   - `/` → `index.html` (KOORA, the homepage)
+   - `/first-hour/` → `first-hour/index.html` (directory route, no rewrite needed)
+   - `/koora` and `/koora/` → `301` to `/`
+   - `/privacy` and `/privacy/` → `200` rewrite to `/privacy.html`
 
 For retake email links, use URL parameters:
 
@@ -114,14 +117,15 @@ The instruments are vanilla HTML / CSS / JavaScript. No build step. To work on t
 git clone <repo>
 cd CLAUDE-LEARN-IT-
 git checkout claude/build-mature-assessment-k6AT9
-# Open the file in any browser
-open first-hour.html
+# Open either file in any browser
+open first-hour/index.html
+open index.html
 ```
 
 To validate the JS embedded in either file:
 
 ```bash
-awk '/^<script>$/{flag=1;next}/^<\/script>$/{flag=0}flag' first-hour.html > /tmp/check.js
+awk '/^<script>$/{flag=1;next}/^<\/script>$/{flag=0}flag' first-hour/index.html > /tmp/check.js
 node --check /tmp/check.js
 ```
 

@@ -2,13 +2,13 @@ import { test, expect } from '@playwright/test';
 
 test.describe('The First Hour — completion flow', () => {
   test('welcome screen renders with hero copy', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     await expect(page.getByText('without quite meaning to', { exact: false })).toBeVisible();
     await expect(page.getByText('You are not lazy')).toBeVisible();
   });
 
   test('begin button requires name and email', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     const begin = page.getByRole('button', { name: /begin your first hour/i });
     await begin.click();
     // Focus should fall to the empty required field
@@ -16,7 +16,7 @@ test.describe('The First Hour — completion flow', () => {
   });
 
   test('full assessment completes when answered', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     await page.fill('#participantName', 'Test');
     await page.fill('#participantEmail', 'test@example.com');
     await page.getByRole('button', { name: /begin your first hour/i }).click();
@@ -47,7 +47,7 @@ test.describe('The First Hour — completion flow', () => {
   });
 
   test('matrixResolve follows the binary spec (red/green only)', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     const out = await page.evaluate(() => {
       const W = window as unknown as {
         matrixResolve: (a: Record<number, string>) => Record<string, string>;
@@ -69,14 +69,14 @@ test.describe('The First Hour — completion flow', () => {
   });
 
   test('skip-to-content link is the first focusable element', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     await page.keyboard.press('Tab');
     const focused = await page.evaluate(() => document.activeElement?.textContent || '');
     expect(focused.toLowerCase()).toContain('skip');
   });
 
   test('autosave persists across reload', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     await page.fill('#participantName', 'Persisted');
     await page.fill('#participantEmail', 'persist@example.com');
     await page.getByRole('button', { name: /begin/i }).click();
@@ -93,7 +93,7 @@ test.describe('The First Hour — completion flow', () => {
 
 test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
   test('personalize() handles all three placeholder positions', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     const out = await page.evaluate(() => {
       const W = window as unknown as { participantName: string; personalize: (s: string) => string };
       W.participantName = 'Tina';
@@ -113,7 +113,7 @@ test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
   });
 
   test('safe() escapes HTML in user-supplied strings', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     const out = await page.evaluate(() => {
       const W = window as unknown as { safe: (s: string) => string };
       return {
@@ -132,7 +132,7 @@ test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
   });
 
   test('formatDate() returns en-GB long form', async ({ page }) => {
-    await page.goto('/first-hour.html');
+    await page.goto('/first-hour/');
     const out = await page.evaluate(() => {
       const W = window as unknown as { formatDate: (iso: string) => string };
       return W.formatDate('2026-05-10T12:00:00.000Z');

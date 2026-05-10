@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 
-const files = ['index.html', 'first-hour.html', 'privacy.html', 'embed.html'];
+const files = ['index.html', 'first-hour/index.html', 'privacy.html', 'embed.html'];
 const voidTags = new Set([
   'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link',
   'meta', 'param', 'source', 'track', 'wbr'

@@ -2,7 +2,7 @@
 
 A 35-item review framework for ongoing world-class quality passes
 on KOORA UNFINISHED (`index.html`, 60 items) and The First Hour
-(`first-hour.html`, 54 chamber items + 6 agency items). Replaces
+(`first-hour/index.html`, 54 chamber items + 6 agency items). Replaces
 v2.0's 40-dimension framework and the 8-tier 41-item lattice used
 through Round 8.
 

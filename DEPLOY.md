@@ -24,23 +24,24 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 2. **Connect Cloudflare Pages to the repo**:
    - dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git
    - Pick `JMKing360/CLAUDE-LEARN-IT-`, production branch `main`
-   - Build command: empty
-   - Output directory: empty (root)
+   - Build command: `npx vite build` (or empty if serving the repository root statically)
+   - Output directory: `dist/` (or empty if serving the repository root)
    - Deploy
 3. **Add custom domains**:
    - Project → Custom domains → ensure `hom.mogire.com` is attached to the HOM Pages project
-   - Serve KOORA at the clean path `https://hom.mogire.com/koora`
    - DNS will be auto-created if `hom.mogire.com` is on Cloudflare
-4. **Add a Configuration Rule** so the right file serves at each subdomain:
-   - `hom.mogire.com/first-hour/*` → rewrite to `/first-hour.html` for `/`, otherwise pass-through
-   - `hom.mogire.com/koora/*` → rewrite to `/index.html` for `/`, otherwise pass-through
-   - Privacy at `hom.mogire.com/privacy` and `/privacy/` → rewrite to `/privacy.html`
+4. **Routing is declared in `_redirects`** at the project root. The current contract:
+   - `/` serves `index.html` (KOORA, the homepage)
+   - `/first-hour/` serves `first-hour/index.html` via directory routing — no rewrite needed
+   - `/koora` and `/koora/` 301-redirect to `/` (canonicalisation only)
+   - `/privacy` and `/privacy/` rewrite to `/privacy.html`
 5. **Verify security headers** at `securityheaders.com`. Target A or A+.
 6. **Walk both instruments end to end on a real phone** before announcing.
 
 ### Verification checklist
-- [ ] `https://hom.mogire.com/first-hour` loads and shows the welcome hero
-- [ ] `https://hom.mogire.com/koora` loads
+- [ ] `https://hom.mogire.com/` loads KOORA
+- [ ] `https://hom.mogire.com/first-hour/` loads The First Hour
+- [ ] `https://hom.mogire.com/koora` 301-redirects to `https://hom.mogire.com/`
 - [ ] `https://hom.mogire.com/privacy` loads the privacy policy
 - [ ] `securityheaders.com` shows A or A+ for both subdomains
 - [ ] Service worker registers (DevTools → Application → Service Workers)
@@ -58,7 +59,7 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
    - GHL → Automation → Workflows → New Workflow → Trigger: **Inbound Webhook**
    - Save the workflow once to generate the URL. It looks like `https://services.leadconnectorhq.com/hooks/<LOCATION_ID>/<WEBHOOK_ID>`
    - Copy the URL.
-2. **Set the URL in production** by adding a `<script>` block in the `<head>` of `first-hour.html` and `index.html`:
+2. **Set the URL in production** by adding a `<script>` block in the `<head>` of `first-hour/index.html` and `index.html`:
    ```html
    <script>window.HOM_CONFIG = Object.assign(window.HOM_CONFIG||{}, { ghlWebhookUrl: 'https://services.leadconnectorhq.com/hooks/.../...' });</script>
    ```
@@ -92,7 +93,7 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
    - Get the DSN
 2. **Create a Plausible site** at plausible.io for `hom.mogire.com`
 3. **Set window.HOM_CONFIG before observability.js loads**, in each instrument:
-   - Add a small `<script>` block in the `<head>` of `first-hour.html`, `index.html`:
+   - Add a small `<script>` block in the `<head>` of `first-hour/index.html`, `index.html`:
      ```html
      <script>window.HOM_CONFIG = { sentryDsn: 'YOUR_DSN_HERE', plausibleDomain: 'hom.mogire.com', release: 'hom@3.0.0', environment: 'production' };</script>
      <script src="/observability.js" defer></script>
@@ -279,7 +280,7 @@ Already covered above in **Phase 2**. Once Sentry and Plausible are live, layer:
 | Security reports | `mail@mogire.com` with subject "Security report" |
 | Cohort archive | `mogiremd@gmail.com` (silent CC) |
 | Public site | `hom.mogire.com` |
-| First Hour | `hom.mogire.com/first-hour` |
-| KOORA | `hom.mogire.com/koora` |
+| First Hour | `hom.mogire.com/first-hour/` |
+| KOORA | `hom.mogire.com/` (`/koora` 301 → `/`) |
 | Privacy | `hom.mogire.com/privacy` |
 | Security disclosure | `hom.mogire.com/.well-known/security.txt` |

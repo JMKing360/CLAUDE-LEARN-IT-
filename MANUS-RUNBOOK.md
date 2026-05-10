@@ -45,7 +45,7 @@ This runbook is the single, end-to-end instruction set for taking the two House 
 - `embed.html` — iframe widget for partner sites
 - `.well-known/security.txt` — security disclosure path
 - `privacy.html` — privacy policy (postal address still pending in Phase 3)
-- `first-hour.html`, `index.html` — the two instruments
+- `first-hour/index.html`, `index.html` — the two instruments
 
 ### Steps
 
@@ -64,12 +64,10 @@ This runbook is the single, end-to-end instruction set for taking the two House 
    - Serve KOORA at the clean path `https://hom.mogire.com/koora`
    - Use the existing `hom.mogire.com` Cloudflare Pages custom domain
    - DNS should point `hom.mogire.com` to the HOM Cloudflare Pages project; the assessment tools are served by clean-path rewrites.
-4. **Add Cloudflare Pages Configuration Rules** so the right file serves at each subdomain
-   - `hom.mogire.com/first-hour` and `/first-hour/` → rewrite to `/first-hour.html`
-   - `hom.mogire.com/first-hour/*` → pass-through where a concrete asset exists; otherwise keep `/first-hour.html` as the tool entry point
-   - `hom.mogire.com/koora` and `/koora/` → rewrite to `/index.html`
-   - `hom.mogire.com/koora/*` → pass-through where a concrete asset exists; otherwise keep `/index.html` as the KOORA tool entry point
-   - `hom.mogire.com/privacy` and `/privacy/` → rewrite to `/privacy.html`
+4. **Routing is declared in `_redirects`** at the project root:
+   - `/first-hour/` serves `first-hour/index.html` via directory routing (no rewrite needed)
+   - `/koora` and `/koora/` → `301` to `/` (canonicalisation; KOORA is the homepage at `/`)
+   - `/privacy` and `/privacy/` → `200` rewrite to `/privacy.html`
 5. **Verify security headers** at `https://securityheaders.com`. Target A or A+. If anything below A, check that `_headers` was deployed (View Source, then Network → Response Headers).
 6. **Walk both instruments end to end on a real phone** (iOS Safari + Android Chrome) before announcing.
 
@@ -102,7 +100,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
      `https://services.leadconnectorhq.com/hooks/<LOCATION_ID>/<WEBHOOK_ID>`
    - Copy the URL.
 2. **Wire the URL into both instruments**
-   - In `first-hour.html` and `index.html`, add this `<script>` block in the `<head>` (before `</head>`):
+   - In `first-hour/index.html` and `index.html`, add this `<script>` block in the `<head>` (before `</head>`):
      ```html
      <script>
        window.HOM_CONFIG = Object.assign(window.HOM_CONFIG || {}, {
@@ -196,7 +194,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
    - Platform: Browser JavaScript
    - Copy the DSN.
 2. **Create a Plausible site** at plausible.io for `hom.mogire.com`
-3. **Set `window.HOM_CONFIG` before observability.js loads**, in the `<head>` of `first-hour.html` and `index.html`. Combine with the GHL config from Phase 1:
+3. **Set `window.HOM_CONFIG` before observability.js loads**, in the `<head>` of `first-hour/index.html` and `index.html`. Combine with the GHL config from Phase 1:
    ```html
    <script>
      window.HOM_CONFIG = Object.assign(window.HOM_CONFIG || {}, {
@@ -243,7 +241,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
 - [ ] `npm run lint` passes
 - [ ] `npm run type-check` passes
 - [ ] `npm test` passes
-- [ ] The deployed `dist/first-hour.html` and `dist/index.html` match the previous behaviour byte-for-byte where possible (visual regression diff)
+- [ ] The deployed `dist/first-hour/index.html` and `dist/index.html` match the previous behaviour byte-for-byte where possible (visual regression diff)
 
 ---
 
@@ -461,7 +459,7 @@ If every row passes, the instruments are ready for public announcement. If any r
 
 ## Appendix A — Configuration cheatsheet
 
-Single `<script>` block to drop into the `<head>` of both `first-hour.html` and `index.html` (after Phase 1 + Phase 2):
+Single `<script>` block to drop into the `<head>` of both `first-hour/index.html` and `index.html` (after Phase 1 + Phase 2):
 
 ```html
 <script>
@@ -483,7 +481,7 @@ Place this **before** `<script src="/observability.js" defer></script>` and befo
 
 | File | Purpose |
 |---|---|
-| `first-hour.html` | The First Hour instrument (42 items, 6 chambers) |
+| `first-hour/index.html` | The First Hour instrument (42 items, 6 chambers) |
 | `index.html` | KOORA · The Finishing Protocol (60 items, 6 sections) |
 | `privacy.html` | Privacy policy (GDPR + CCPA + Kenya DPA + LGPD) |
 | `embed.html` | Iframe widget for partner placement |

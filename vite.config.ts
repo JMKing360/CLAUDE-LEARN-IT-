@@ -6,7 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         koora: resolve(__dirname, 'index.html'),
-        firstHour: resolve(__dirname, 'first-hour.html'),
+        firstHour: resolve(__dirname, 'first-hour/index.html'),
         privacy: resolve(__dirname, 'privacy.html'),
       },
     },

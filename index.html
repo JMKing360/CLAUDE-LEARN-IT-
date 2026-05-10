@@ -2027,7 +2027,7 @@ var TRANSITIONS=[
 ];
 
 // personalize() and safe() are loaded from /shared.js (extracted Round 4
-// for cross-instrument parity with first-hour.html).
+// for cross-instrument parity with first-hour/index.html).
 
 function dayFraming(day){
   function stack(s){return s.split(/\.\s+/).filter(function(p){return p.length}).map(function(p,i,a){var t=safe(p)+(i<a.length-1?'.':(/[.!?]$/.test(p)?'':'.'));return '<span class="tr-day-frame__line">'+t+'</span>'}).join('')}

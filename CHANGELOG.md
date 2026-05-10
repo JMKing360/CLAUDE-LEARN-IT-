@@ -2,6 +2,28 @@
 
 All notable changes to the House of Mastery diagnostic instruments are documented here. Versions follow [Semantic Versioning](https://semver.org/), where MAJOR is reserved for instrument-redesign-level changes that affect scoring or item set, MINOR for new features and content, and PATCH for fixes.
 
+## [3.5.1] — 2026-05-10 — Directory routing migration
+
+The First Hour now lives at `first-hour/index.html` and is served at `/first-hour/` via directory routing. KOORA remains at the repository root and is served at `/`; `/koora` 301-redirects to `/` for canonicalisation. Each assessment is independent: its own URL, its own state, its own service-worker cache scope.
+
+### Repo layout
+- **Moved** `first-hour.html` → `first-hour/index.html` via `git mv` (history preserved).
+- KOORA `index.html` unchanged at the root.
+- Privacy `privacy.html` unchanged at the root.
+
+### Routing (`_redirects`)
+- Dropped `/first-hour` and `/first-hour/` rewrites — directory routing serves the file directly now.
+- Added `/koora` and `/koora/` `301` redirects to `/` (canonicalisation).
+- `/privacy` and `/privacy/` retain the `200` rewrite to `/privacy.html`.
+
+### Source updates wired to the new path
+- `vite.config.ts` — `firstHour` rollup input now `first-hour/index.html`.
+- `service-worker.js` — CORE list and offline fallback updated to `/first-hour/`; SW bumped to `hom-v3.7.33`.
+- `embed.html` — iframe `src` now `/first-hour/?embed=1`.
+- `tests/e2e/first-hour.spec.ts` — all nine `page.goto` calls updated to `/first-hour/`.
+- `.lighthouserc.json` and `lighthouserc.cjs` — URLs updated to `/` and `/first-hour/`.
+- `shared.js`, `CONTRIBUTING.md`, `README.md`, `DEPLOY.md` — references to `first-hour.html` migrated to `first-hour/index.html` (or `/first-hour/` for the served route).
+
 ## [3.5.0] — 2026-05-09 — Brand integration, accessibility hardening, small-text legibility
 
 ### Brand integration (both files)

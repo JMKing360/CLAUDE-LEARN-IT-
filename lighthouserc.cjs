@@ -5,7 +5,7 @@ module.exports = {
       startServerReadyPattern: 'Local:',
       url: [
         'http://127.0.0.1:4173/',
-        'http://127.0.0.1:4173/first-hour.html',
+        'http://127.0.0.1:4173/first-hour/',
         'http://127.0.0.1:4173/privacy.html'
       ],
       numberOfRuns: 1,

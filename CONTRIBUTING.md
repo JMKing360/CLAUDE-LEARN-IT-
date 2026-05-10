@@ -65,7 +65,7 @@ Example scopes: `Round X`, `Phase X`, `KOORA`, `First Hour`, `Doctrine`, `Privac
 Before pushing any change to JavaScript, run:
 
 ```bash
-awk '/^<script>$/{flag=1;next}/^<\/script>$/{flag=0}flag' first-hour.html > /tmp/check.js
+awk '/^<script>$/{flag=1;next}/^<\/script>$/{flag=0}flag' first-hour/index.html > /tmp/check.js
 node --check /tmp/check.js
 
 awk '/^<script>$/{flag=1;next}/^<\/script>$/{flag=0}flag' index.html > /tmp/check.js
@@ -77,7 +77,7 @@ Both must report no syntax error.
 For copy changes, run a final em-dash sweep:
 
 ```bash
-grep -nP '[\x{2014}]' first-hour.html index.html
+grep -nP '[\x{2014}]' first-hour/index.html index.html
 ```
 
 Should return nothing.

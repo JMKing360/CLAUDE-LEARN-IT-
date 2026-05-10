@@ -2,10 +2,10 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.32';
+const VERSION = 'hom-v3.7.33';
 const CORE = [
   '/',
-  '/first-hour.html',
+  '/first-hour/',
   '/index.html',
   '/privacy.html',
   '/shared.js',
@@ -56,7 +56,7 @@ self.addEventListener('fetch', (event) => {
         const copy = res.clone();
         caches.open(VERSION).then((cache) => cache.put(req, copy));
         return res;
-      }).catch(() => caches.match(req).then((cached) => cached || caches.match('/first-hour.html')))
+      }).catch(() => caches.match(req).then((cached) => cached || caches.match('/first-hour/')))
     );
     return;
   }
