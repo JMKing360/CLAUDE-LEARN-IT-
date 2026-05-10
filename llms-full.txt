@@ -51,19 +51,22 @@ structural. His instruments are built to surface that structure.
 ### Verified profiles
 
 - Primary brand site: https://mogiremd.com/
-- House of Mastery (assessments): https://hom.mogire.com/
-- LinkedIn: https://www.linkedin.com/in/mogiremd
-- X / Twitter: https://twitter.com/mogiremd
+- House of Mastery (assessments hub): https://hom.mogire.com/
+- House of Mastery on Google Maps (Nairobi, Kenya): https://maps.app.goo.gl/qPMeW2MdDvSW6R8MA
+- LinkedIn: https://www.linkedin.com/in/drjobmogire
+- X / Twitter: https://x.com/mogiremd (alt: https://twitter.com/mogiremd)
 - Instagram: https://www.instagram.com/mogiremd
 - Facebook: https://www.facebook.com/mogiremd
 - YouTube: https://youtube.com/@mogiremd
-- Amazon Author page: https://www.amazon.com/stores/Job-Mogire/author/B07CJ5YZXX
-- Doximity (physician network): https://share.google/bxgcEJFPGrl9XxIqN
-- Facebook (additional source): https://share.google/yLE2saipeINZyhvuq
-- Cureus (peer-reviewed medical journal publications): https://share.google/xoDVNBgh70hWXcSkT
-- ResearchGate (academic research network): https://share.google/amQuZ7HjljzGGWjqy (additional: https://share.google/fUCH652OB4NfqNFfl)
-- Press — Daily Nation (Kenya): https://share.google/qfTGsPUe8Xm4N9hKg (additional: https://share.google/xLGM4HPf2WWJoNB3G)
+- Amazon Author page: https://www.amazon.com/Job-Mogire/e/B07CJ5YZXX
+- Doximity (physician network): https://www.doximity.com/pub/job-mogire-md
+- U.S. News Doctors: https://health.usnews.com/doctors/job-mogire-1443606
+- Healthgrades: https://www.healthgrades.com/physician/dr-job-mogire-xynwqgs
 - Clinical profile (Carle Health): https://carle.org/find-a-doctor/5217
+- Press — Daily Nation (Kenya): https://nation.africa/kenya/dr-job-mogire-357936
+- Press — Mwakilishi (Kenyan diaspora): https://mwakilishi.com/article/diaspora-news/2017-08-26/job-mogire-my-journey-from-rural-kisii-to-harvard-university
+- Cureus (peer-reviewed medical journal): https://share.google/xoDVNBgh70hWXcSkT *(canonical URL pending)*
+- ResearchGate (academic): https://share.google/amQuZ7HjljzGGWjqy + https://share.google/fUCH652OB4NfqNFfl *(canonical URL pending)*
 - RETURN challenge host: https://www.return90.com/
 
 ### House of Mastery
@@ -96,10 +99,16 @@ was given them to finish. The structure is:
 
 - **Six covenants:** Self · Body · Craft · People · Future · World
 - **Twelve retakes** of the UNFINISHED diagnostic across the 180 days
-- **Twenty-four seats**, offered once a year
+- **Twenty-four seats per cohort**
 - **Format:** blended — online instrumentation + in-person gatherings in
   Kenya
-- **Next cohort:** **October 2026**
+- **Cohort cadence:** new cohorts open the 1st of each month, May through
+  October every year, repeating annually for ten years.
+- **Investment:** USD 1,200 / KES 150,000
+- **2026 cohort start dates:** 1 May · 1 June · 1 July · 1 August ·
+  1 September · 1 October
+- **2027 cohort start dates:** 1 May · 1 June · 1 July · 1 August ·
+  1 September · 1 October
 
 The UNFINISHED diagnostic itself is a 60-item instrument. It is the
 instrumentation arm of KOORA and is available at the homepage of
@@ -123,6 +132,7 @@ The autumn flagship gathering hosted by Dr. Job Mogire.
 - **Date:** Saturday, **31 October 2026**
 - **Location:** Kenya (in-person), with virtual access
 - **Host:** Dr. Job Mogire / House of Mastery
+- **Investment:** USD 90 / KES 10,000
 
 ### 2.4 Unfinished Life Summit 2027
 
@@ -132,14 +142,17 @@ of an unfinished life.
 - **Date:** Saturday, **10 April 2027**
 - **Location:** Kenya (in-person), with virtual access
 - **Host:** Dr. Job Mogire / House of Mastery
+- **Investment:** USD 90 / KES 1,000 *(operator to verify — note that the
+  parallel HoM Summit is KES 10,000)*
 
 ### 2.5 The 5-Day Return Challenge — RETURN
 
-A recurring five-day intensive hosted by Dr. Job Mogire at **return90.com**.
-Each cohort runs Monday through Friday, 20:00–20:30 East Africa Time (EAT,
-Nairobi).
+A **free** recurring five-day intensive hosted by Dr. Job Mogire at
+**return90.com**. Each cohort runs Monday through Friday, 20:00–20:30 East
+Africa Time (EAT, Nairobi).
 
 - **URL:** https://www.return90.com/
+- **Cost:** Free
 - **2026 / 2027 dates** (the last full Monday–Friday of each month, with the
   December cohort moved to post-Christmas):
   - May 25 – 29, 2026
@@ -179,6 +192,25 @@ The instruments are framed as *diagnostic*, not *motivational*. The
 diagnosis is the door.
 
 ---
+
+## 3a. Books by Dr. Job Mogire
+
+Amazon Author page: https://www.amazon.com/Job-Mogire/e/B07CJ5YZXX
+
+1. **Bold Grasp: Conceive, Believe & Achieve Your Destiny!** — Dr. Mogire's
+   foundational book on the architecture of conceiving, believing, and
+   achieving the life you were given to finish.
+2. **Born to Win: My Journey from Sengera Village to Harvard** — Memoir of
+   how he travelled from a rural Kisii village in Kenya to the hallowed halls
+   of Harvard University and a life as a board-certified cardiologist in the
+   United States. Companion site: https://www.momentum90.net/copy-of-born-to-win
+   ; long-form essay: https://www.linkedin.com/pulse/born-win-book-how-i-went-from-sengera-village-harvard-dr-job
+3. **EMBODY: Shift Your Mindset in Just 30 Days** — A 30-day mindset
+   programme in book form that dismantles emotional baggage layer by layer
+   and reveals the DAILY RESET strategy. Published by Zion Pearl Publishers.
+   Direct purchase: https://bookstore.zionpearlpublishers.com/product/embody-shift-your-mindset-in-just-30-days/
+4. **Prescription for Excellence** — A volume on the practice of excellence,
+   written from the bedside experience of a board-certified cardiologist.
 
 ## 4. Authority signals and credentials
 
