@@ -1364,7 +1364,7 @@ var QUESTIONS=[
   {n:6, sec:1, sn:'The Money that Owns You', text:'When I imagine money behaving as a tool I direct rather than a force that directs me, I want this more than I let myself acknowledge.'},
 
   // Chamber 2 (Triad 3): The Time that Disappeared
-  {n:7, sec:2, sn:'The Time that Disappeared', text:'I start my day already tired, before the first task even begins.'},
+  {n:7, sec:2, sn:'The Time that Disappeared', text:'I start my day feeling tired before I even begin the first task.'},
   {n:8, sec:2, sn:'The Time that Disappeared', text:'When I look at how my year is shaping up, the days are full but the year feels thin.'},
   {n:9, sec:2, sn:'The Time that Disappeared', text:'When I think of "later," I know somewhere that I am running out of it.'},
   {n:10, sec:2, sn:'The Time that Disappeared', text:'When I notice how time has been moving, the years pass faster every year, and I do not know why.'},
@@ -1372,10 +1372,10 @@ var QUESTIONS=[
   {n:12, sec:2, sn:'The Time that Disappeared', text:'When I look honestly at what the past five years actually built, I cannot fully account for them.'},
 
   // Chamber 3 (Triad 3): The Attention that Got Farmed
-  {n:13, sec:3, sn:'The Attention that Got Farmed', text:'The first hour of my day does not belong to me. It belongs to whatever notification arrived while I was sleeping.'},
-  {n:14, sec:3, sn:'The Attention that Got Farmed', text:'I start my day by checking messages and news. My own priorities come second.'},
+  {n:13, sec:3, sn:'The Attention that Got Farmed', text:'I start my day by checking messages and news instead of focusing on my priorities.'},
+  {n:14, sec:3, sn:'The Attention that Got Farmed', text:'I often start my day with many small tasks but finish none of them.'},
   {n:15, sec:3, sn:'The Attention that Got Farmed', text:'I notice how my attention scatters to many tasks without finishing any of them.'},
-  {n:16, sec:3, sn:'The Attention that Got Farmed', text:'I want to finish what I start not for applause but because I am tired of carrying the weight of what I left undone.'},
+  {n:16, sec:3, sn:'The Attention that Got Farmed', text:'I spend more time reorganizing my tasks than finishing what I actually started.'},
   {n:17, sec:3, sn:'The Attention that Got Farmed', text:'I catch myself starting something new to escape the work I already started but did not finish.'},
   {n:18, sec:3, sn:'The Attention that Got Farmed', text:'I find it easier to start new projects than to finish the ones I am already tired of.'},
 
@@ -1383,7 +1383,7 @@ var QUESTIONS=[
   {n:19, sec:4, sn:'The Body that Got Forgotten', text:'I treat my body as a vehicle. When it asks for something, I override it.'},
   {n:20, sec:4, sn:'The Body that Got Forgotten', text:'I push through pain or fatigue to keep working, even when my body clearly needs rest.'},
   {n:21, sec:4, sn:'The Body that Got Forgotten', text:'I feel guilty when I rest because I think I should be working on unfinished tasks.'},
-  {n:22, sec:4, sn:'The Body that Got Forgotten', text:'Sleep does not reach the bottom of me because guilt lives in the basement.'},
+  {n:22, sec:4, sn:'The Body that Got Forgotten', text:'Sleep does not reach the bottom of me.'},
   {n:23, sec:4, sn:'The Body that Got Forgotten', text:'When my body asks for an appointment I have been postponing, I postpone it again.'},
   {n:24, sec:4, sn:'The Body that Got Forgotten', text:'I carry the silent weight of my unkept promises in my body more than in my mind.'},
 
@@ -1393,31 +1393,32 @@ var QUESTIONS=[
   {n:27, sec:5, sn:'The Mind that Stopped Thinking', text:'I find myself comparing my progress to others and feeling like I am falling behind.'},
   {n:28, sec:5, sn:'The Mind that Stopped Thinking', text:'My inner voice sounds more like the people who raised me than like me.'},
   {n:29, sec:5, sn:'The Mind that Stopped Thinking', text:'When a problem returns to mind, I replay it without finding a way forward.'},
-  {n:30, sec:5, sn:'The Mind that Stopped Thinking', text:'I am not tired because I worked hard. I am tired because I carried what I did not finish.'},
+  {n:30, sec:5, sn:'The Mind that Stopped Thinking', text:'At three in the morning, my mind audits my life and I feel it doesn’t measure up.'},
 
   // Chamber 6 (Triad 2): The Word that Weighs on Strangers
-  // Word chamber - body-felt cool first (asymmetry), shame question later.
-  {n:31, sec:6, sn:'The Word that Weighs on Strangers', text:'I am more reliable to other people than I am to myself.'},
+  // Word chamber - spec order: shame leads (low-barrier emotional access),
+  // pre-failure belief deepens, asymmetry as the diagnostic close.
+  {n:31, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel shame when I realize how many promises I have broken to myself this year.'},
   {n:32, sec:6, sn:'The Word that Weighs on Strangers', text:'The promises I break most often are the ones I make to myself.'},
-  {n:33, sec:6, sn:'The Word that Weighs on Strangers', text:'My word to myself has less weight than my word to others.'},
-  {n:34, sec:6, sn:'The Word that Weighs on Strangers', text:'When I make a commitment, part of me already doubts I can keep it.'},
-  {n:35, sec:6, sn:'The Word that Weighs on Strangers', text:'I hesitate to make a new promise to myself because I expect to fail again.'},
-  {n:36, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel shame when I notice how many promises I have broken to myself this year.'},
+  {n:33, sec:6, sn:'The Word that Weighs on Strangers', text:'When I make a commitment, part of me already doubts I can keep it.'},
+  {n:34, sec:6, sn:'The Word that Weighs on Strangers', text:'I hesitate to keep promises to myself because I expect to fail again.'},
+  {n:35, sec:6, sn:'The Word that Weighs on Strangers', text:'I am more reliable to other people than I am to myself.'},
+  {n:36, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel that my word to myself has less weight than my word to others.'},
 
   // Chamber 7 (Triad 2): The Promise that Got Postponed
   {n:37, sec:7, sn:'The Promise that Got Postponed', text:'I often tell myself I need to finish tomorrow because today I am too tired or distracted.'},
   {n:38, sec:7, sn:'The Promise that Got Postponed', text:'When a resolution starts to fade, I let it die quietly and pretend it did not happen.'},
   {n:39, sec:7, sn:'The Promise that Got Postponed', text:'The list of things I told myself I would do this year and have not done is long.'},
   {n:40, sec:7, sn:'The Promise that Got Postponed', text:'I feel like I am carrying many undone commitments that I cannot face.'},
-  {n:41, sec:7, sn:'The Promise that Got Postponed', text:'The body sends signals. I send them to voicemail. Then I wonder why I am exhausted.'},
+  {n:41, sec:7, sn:'The Promise that Got Postponed', text:'When I think of my unkept promises, something in my chest or stomach tightens.'},
   {n:42, sec:7, sn:'The Promise that Got Postponed', text:'When I think of when I will start what I have been postponing, I find myself saying "next quarter" again.'},
 
   // Chamber 8 (Triad 2): The People You Are Pretending With
-  {n:43, sec:8, sn:'The People You Are Pretending With', text:'I perform "I am fine" to people who would still love me struggling.'},
+  {n:43, sec:8, sn:'The People You Are Pretending With', text:'I feel pressure to appear like I have it all together, even when I am struggling inside.'},
   {n:44, sec:8, sn:'The People You Are Pretending With', text:'I feel like I am living two lives: one I show others, and one where unfinished work piles up.'},
   {n:45, sec:8, sn:'The People You Are Pretending With', text:'When I am in a room full of people who think they know me, I am lonely there.'},
   {n:46, sec:8, sn:'The People You Are Pretending With', text:'When I think of the conversations I most need to have, they are the ones I keep avoiding.'},
-  {n:47, sec:8, sn:'The People You Are Pretending With', text:'I have been performing competence for so long that I am not sure where the performance ends and I begin.'},
+  {n:47, sec:8, sn:'The People You Are Pretending With', text:'When I am with people I claim to love, I notice myself keeping score.'},
   {n:48, sec:8, sn:'The People You Are Pretending With', text:'When I am with the people closest to me, I have not been honest about what staying as I am is costing both of us.'},
 
   // Chamber 9 (Triad 1): The Spirit that Got Silenced - readiness pulse, not drift
