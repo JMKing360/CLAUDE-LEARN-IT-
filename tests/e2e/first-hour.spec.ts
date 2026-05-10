@@ -79,4 +79,32 @@ test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
     expect(out.d).toBe('You finished.');
     expect(out.e).toBe('Are you ready?');
   });
+
+  test('safe() escapes HTML in user-supplied strings', async ({ page }) => {
+    await page.goto('/first-hour.html');
+    const out = await page.evaluate(() => {
+      const W = window as unknown as { safe: (s: string) => string };
+      return {
+        plain: W.safe('Tina'),
+        amp: W.safe('Tina & Job'),
+        script: W.safe('<script>alert(1)</script>'),
+        empty: W.safe(''),
+        falsy: W.safe(null as unknown as string),
+      };
+    });
+    expect(out.plain).toBe('Tina');
+    expect(out.amp).toBe('Tina &amp; Job');
+    expect(out.script).toBe('&lt;script&gt;alert(1)&lt;/script&gt;');
+    expect(out.empty).toBe('');
+    expect(out.falsy).toBe('');
+  });
+
+  test('formatDate() returns en-GB long form', async ({ page }) => {
+    await page.goto('/first-hour.html');
+    const out = await page.evaluate(() => {
+      const W = window as unknown as { formatDate: (iso: string) => string };
+      return W.formatDate('2026-05-10T12:00:00.000Z');
+    });
+    expect(out).toMatch(/10 May 2026/);
+  });
 });

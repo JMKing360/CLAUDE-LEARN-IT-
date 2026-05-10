@@ -205,9 +205,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* WELCOME */
 #screen-welcome{padding:88px 0 96px}
 .eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:22px;display:block}
-.hero{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(40px,5.8vw,64px);font-weight:700;line-height:1.04;letter-spacing:-.028em;color:var(--ink);margin-bottom:28px}
+.hero{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(40px,5.8vw,64px);font-weight:700;line-height:1.04;letter-spacing:-.028em;color:var(--ink);margin-bottom:28px;text-wrap:balance}
 .hero em{font-style:normal;font-weight:700;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
-.lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em}
+.lede{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.55;color:var(--body);margin-bottom:18px;letter-spacing:-.005em;text-wrap:pretty}
 .lede strong{font-weight:700;color:var(--ink)}
 .body-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:450;line-height:1.6;color:var(--body);margin-bottom:14px;letter-spacing:-.005em}
 .divider{height:1px;background:var(--rule-soft);margin:48px 0;border:0}
@@ -266,7 +266,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
 .r-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:18px;display:block}
-.r-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px}
+.r-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(32px,4.4vw,46px);font-weight:500;line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px;text-wrap:balance}
 .r-h1 em{font-style:normal;font-weight:600;color:var(--navy);background:linear-gradient(transparent 64%,var(--gold-soft) 64%,var(--gold-soft) 92%,transparent 92%);padding:0 .04em}
 .r-h1 em{font-style:italic;font-weight:600}
 .r-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--mid);margin-bottom:8px;letter-spacing:.005em}
@@ -1170,7 +1170,7 @@ var JSPDF_OK=(typeof window.jspdf!=='undefined');
 var TOTAL=42;
 var STORAGE_KEY='hom_firsthour_history_v2';
 var AUTO_ADVANCE_MS=1500;
-var SAVE_PILL_MS=1600; // duration the "Progress saved" pill stays visible after autosave
+// SAVE_PILL_MS loaded from /shared.js
 
 var OPTIONS=[
   {label:'Almost never',score:1,key:'A'},
@@ -1708,10 +1708,7 @@ function relTime(iso){
   if(d<60)return Math.floor(d/7)+' weeks ago';
   return Math.floor(d/30)+' months ago';
 }
-function daysBetween(a,b){return Math.floor((new Date(b).getTime()-new Date(a).getTime())/86400000)}
-function formatDate(iso){var dt=new Date(iso);return dt.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
-// safe() loaded from /shared.js
-function isValidEmail(e){return e&&e.indexOf('@')>0&&e.indexOf('.')>0}
+// daysBetween(), formatDate(), safe(), isValidEmail() loaded from /shared.js
 
 // Flow
 function startAssessment(){
@@ -2092,7 +2089,7 @@ function renderPattern(loud){
   // Mirror, Mechanism, Cost are inside CHAMBER_PARAGRAPHS. Append a strength line and a next-step pointer.
   var quietest=chamberScores().slice().sort(function(a,b){return a.score-b.score})[0];
   var strengthLine=' <b>What is still working in you:</b> '+quietest.name+' is the chamber least loud. Lean on it as the ground while you address the others.';
-  var nextStep=' <b>Your next step:</b> the implementation intention you write below is your first finishable move. The First Hour is not a meditation on the pattern. It is the place where the pattern meets the next twenty-four hours.';
+  var nextStep=' <b>Your next step:</b> the small specific move you write below is your first finishable one. The First Hour is not a meditation on the pattern. It is the place where the pattern meets the next twenty-four hours.';
   document.getElementById('patternBody').innerHTML=CHAMBER_PARAGRAPHS[loud.key]+'<br><br>'+strengthLine+'<br><br>'+nextStep;
 }
 
@@ -2382,9 +2379,9 @@ function _downloadPDF(){
   var letterLines=[
     safe(rec.name)+',',
     '',
-    'You took the assessment. That is harder than it sounds. Most people who arrive at this page do not arrive here',
-    'because they have a productivity problem. They arrive because something in their life has stopped feeling like',
-    'their own, and they want to find out why before life forces the audit.',
+    'You took the assessment. That is harder than it sounds. Most people who reach this report did not arrive',
+    'because they have a productivity problem. They arrived because something in their life has stopped feeling',
+    'like their own, and they want to find out why before life forces the audit.',
     '',
     'What you have in your hand is not a verdict. It is an instrument. The numbers and the language are real, the',
     'patterns are honest, and the cost is what it is. But the diagnosis is not the destination. The diagnosis is the door.',
