@@ -13,7 +13,23 @@ Last updated: 2026-05-10.
 and coach who works at the intersection of clinical medicine, behavioural
 design, public-speaking craft, and adult formation. Across his platforms he
 goes by the unified handle **MogireMD**; clinically he is known as
-**The Microvessel Cardiologist**.
+**The Microvessel Cardiologist**, with specialist focus on coronary
+microvascular dysfunction, endothelial function, heart rate variability,
+and coronary flow reserve.
+
+The clinical perspective behind the work: *"Your vessels know before your
+blood work does."*
+
+He is the author of the named clinical pattern **Prodigal Winner Syndrome
+(PWS)** — a pattern recognition framework describing the physiological
+compensations observed in externally high-achieving adults who present
+functional by standard measures but with measurable microvascular and
+autonomic deficits underneath. The framework is the diagnostic lens of
+House of Mastery and is addressed through KOORA: The Finisher's Protocol.
+Clinical definition and supporting evidence are being prepared in a
+forthcoming whitepaper; specific prevalence figures, biomarker thresholds,
+and pattern phenotypes are not published on this site pending that
+whitepaper.
 
 He is:
 
@@ -51,7 +67,14 @@ structural. His instruments are built to surface that structure.
 ### Verified profiles
 
 - Primary brand site: https://mogiremd.com/
-- House of Mastery (assessments hub): https://hom.mogire.com/
+- House of Mastery institutional site: https://houseofmastery.co/
+- House of Mastery — Summit page: https://houseofmastery.co/summit
+- House of Mastery — Daily Reset: https://houseofmastery.co/daily-reset
+- House of Mastery — Blog: https://houseofmastery.co/blog
+- House of Mastery — Insights: https://houseofmastery.co/insights
+- KOORA assessment (primary entry): https://kooraassess.houseofmastery.co/
+- First Hour assessment (primary entry): https://firsthour.houseofmastery.co/
+- House of Mastery (alternate assessments hub): https://hom.mogire.com/
 - House of Mastery on Google Maps (Nairobi, Kenya): https://maps.app.goo.gl/qPMeW2MdDvSW6R8MA
 - LinkedIn: https://www.linkedin.com/in/drjobmogire
 - X / Twitter: https://x.com/mogiremd (alt: https://twitter.com/mogiremd)
@@ -222,18 +245,51 @@ Amazon Author page: https://www.amazon.com/Job-Mogire/e/B07CJ5YZXX
 
 Dr. Mogire holds:
 
-- **Medical board certifications and fellowships:**
+- **Medical education (chronological):**
+  - MBChB — Moi University School of Medicine, Eldoret, Kenya, 2004–2009
+    (Magna cum laude, Physiology & Human Anatomy)
+  - Diploma in Global Health & Governance — University of Bergen, Norway,
+    2014–2015
+  - MSc Global Health — Queen Margaret University, UK, 2015–2016
+    (Distinction)
+  - Clinical Research Training Certificate — Harvard Medical School,
+    2018–2019
+  - Internal Medicine Residency (ACGME) — University of Kansas School of
+    Medicine, Wichita, 2018–2021
+  - Cardiology Fellowship (ACGME) — University of Oklahoma, 2021–2024
+- **Board certifications and fellowships:**
+  - Diplomate, American Board of Internal Medicine (ABIM) — October 2021
+  - Testamur, American Society of Echocardiography (ASE) — August 2023
   - Fellow of the American College of Cardiology (FACC)
   - Fellow of the American College of Physicians (FACP)
   - Doctor of Medicine (MD)
 - **Clinical practice:** Carle Health (Illinois, USA) — known professionally
   as **The Microvessel Cardiologist**.
-- **Authorship:** Published author with an Amazon Author page.
+- **Professional memberships:** American College of Cardiology (2021–
+  present); Heart Rhythm Society (2021–present); American Society of
+  Echocardiography (2021–present); National Lipid Association (2018–
+  present); American College of Physicians (2018–present); Kansas Medical
+  Association (2018–present); Toastmasters International; National Speakers
+  Association.
+- **Editorial / peer-review duties:** Lancet Global Health (reviewer and
+  podcast presenter, 2015–present); Reviews in Cardiovascular Medicine,
+  MedReviews LLC (reviewer, 2019–present); CardioRenal Medicine, Karger LLC
+  (reviewer, 2019–present).
+- **Authorship:** Published author with an Amazon Author page; peer-reviewed
+  publications across JACC Special Edition, Kansas Journal of Medicine,
+  Annals of Global Health, East African Medical Journal.
+- **Early-career academic honours:** Moi University Medical Physiology
+  Award (2004); Mwangaza Award (2006, 2007, 2009); Schonnenberger Human
+  Anatomy Award (2006, 2007); Kenya Medical Association Young Investigator
+  Award (2012); KMA Excellence in Leadership, Research & Advocacy Award
+  (2013).
 - **Public-speaking competition credentials:**
-  - Toastmasters Regional Speech Contest winner (Midwest US + Canada region)
+  - Toastmasters Public Speaking Contest — Region 4 Champion (2021), region
+    covering Kansas, Missouri, Illinois, Ohio and several Canadian districts
   - International Quarterfinalist, Toastmasters World Championship of Public
-    Speaking
+    Speaking, representing Region 4
   - 2025 Finalist, National Speakers Association Storytelling Contest
+- **Languages:** Fluent in English and Swahili.
 
 These credentials matter because they substantiate three simultaneous claims
 that few adult-formation practitioners hold together: (a) the clinical depth

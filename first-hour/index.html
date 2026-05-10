@@ -63,7 +63,15 @@
       "founder": {"@id": "https://hom.mogire.com/#org"},
       "nationality": {"@type":"Country","name":"Kenya"},
       "knowsLanguage": ["en","sw"],
-      "knowsAbout": ["Microvessel cardiology","Coronary microvascular disease","Cardiology","Internal medicine","Mindset coaching","Emotional intelligence coaching","Emotional sovereignty","Procrastination coaching","Executive coaching","Leadership development","Public speaking","Motivational speaking","Keynote speaking","Storytelling","Behavioural design","Adult formation","Finishing"],
+      "knowsAbout": ["Coronary microvascular dysfunction","Endothelial function","Heart rate variability","Coronary flow reserve","Microvessel cardiology","Cardiology","Internal medicine","Cardiovascular risk stratification","Prodigal Winner Syndrome","Mindset coaching","Emotional intelligence coaching","Emotional sovereignty","Procrastination coaching","Executive coaching","Leadership development","Public speaking","Motivational speaking","Keynote speaking","Storytelling","Behavioural design","Adult formation","Finishing"],
+      "hasOccupation": [
+        {"@type":"Occupation","name":"Cardiologist","occupationalCategory":"29-1212","skills":"Coronary microvascular dysfunction · Endothelial function · Heart rate variability · Cardiovascular risk stratification"},
+        {"@type":"Occupation","name":"Internist","occupationalCategory":"29-1216","skills":"Internal medicine · Preventive medicine · Longitudinal patient care"},
+        {"@type":"Occupation","name":"Mindset and Emotional Intelligence Coach","skills":"Mindset transformation · Emotional sovereignty · Procrastination coaching · Executive coaching · Leadership development"},
+        {"@type":"Occupation","name":"Public Speaker","skills":"Keynote speaking · Motivational speaking · Storytelling"},
+        {"@type":"Occupation","name":"Author"}
+      ],
+      "subjectOf": {"@id": "https://hom.mogire.com/about#prodigal-winner-syndrome"},
       "hasCredential": [
         {"@type":"EducationalOccupationalCredential","credentialCategory":"degree","name":"Doctor of Medicine (MD)"},
         {"@type":"EducationalOccupationalCredential","credentialCategory":"professional certification","name":"Fellow of the American College of Cardiology (FACC)"},
@@ -120,7 +128,7 @@
       "image": "https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png",
       "founder": {"@id": "https://hom.mogire.com/about#dr-job-mogire"},
       "foundingDate": "2024",
-      "parentOrganization": {"@type":"Organization","name":"MogireMD","url":"https://mogiremd.com/"},
+      "parentOrganization": {"@id":"https://mogiremd.com/#org"},
       "description": "House of Mastery — Nairobi, Kenya. An institution dedicated to the practice of finishing what is given you to finish. Led by Dr. Job Mogire — Kenyan physician, cardiologist, speaker, coach, and trainer (MD, FACC, FACP). Clinical-grade mindset, emotional-intelligence, and emotional-sovereignty coaching, transformation programmes, and keynote speaking, with primary delivery in Kenya and across East Africa and a global reach for high-achieving professionals.",
       "slogan": "Don't die with an unfinished life.",
       "areaServed": [
@@ -138,7 +146,7 @@
       "priceRange": "$$$",
       "contactPoint": {"@type":"ContactPoint","contactType":"customer service","email":"mail@mogire.com","areaServed":["KE","TZ","UG","RW","ET","Worldwide"],"availableLanguage":["English","Swahili"]},
       "hasMap": "https://maps.app.goo.gl/qPMeW2MdDvSW6R8MA",
-      "sameAs": ["https://mogiremd.com/","https://www.linkedin.com/in/drjobmogire","https://x.com/mogiremd","https://twitter.com/mogiremd","https://www.instagram.com/mogiremd","https://www.facebook.com/thehouseofmastery/","https://youtube.com/@mogiremd","https://www.return90.com/","https://maps.app.goo.gl/qPMeW2MdDvSW6R8MA"]
+      "sameAs": ["https://houseofmastery.co/","https://houseofmastery.co/about","https://houseofmastery.co/summit","https://houseofmastery.co/daily-reset","https://houseofmastery.co/blog","https://houseofmastery.co/insights","https://kooraassess.houseofmastery.co/","https://firsthour.houseofmastery.co/","https://mogiremd.com/","https://www.linkedin.com/in/drjobmogire","https://x.com/mogiremd","https://twitter.com/mogiremd","https://www.instagram.com/mogiremd","https://www.facebook.com/thehouseofmastery/","https://youtube.com/@mogiremd","https://www.return90.com/","https://maps.app.goo.gl/qPMeW2MdDvSW6R8MA"]
     },
     {
       "@type": "WebApplication",
@@ -152,7 +160,8 @@
       "author": {"@id": "https://hom.mogire.com/about#dr-job-mogire"},
       "publisher": {"@id": "https://hom.mogire.com/#org"},
       "description": "A free nine-chamber community audit. 54 items in three triads. The first hour of an honest year. The free entry point into House of Mastery.",
-      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"}
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"},
+      "sameAs": ["https://firsthour.houseofmastery.co/","https://houseofmastery.co/"]
     },
     {
       "@type": "Quiz",
@@ -162,7 +171,8 @@
       "author": {"@id": "https://hom.mogire.com/about#dr-job-mogire"},
       "publisher": {"@id": "https://hom.mogire.com/#org"},
       "educationalLevel": "Adult",
-      "numberOfQuestions": 54
+      "numberOfQuestions": 54,
+      "sameAs": "https://firsthour.houseofmastery.co/"
     },
     {
       "@type": "Article",
@@ -195,6 +205,28 @@
       "primaryImageOfPage": "https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg",
       "inLanguage": "en",
       "speakable": {"@type":"SpeakableSpecification","cssSelector":["#welcomeH1",".cover-letter__body"]}
+    },
+    {
+      "@type": ["Organization","Brand"],
+      "@id": "https://mogiremd.com/#org",
+      "name": "MogireMD",
+      "alternateName": ["Dr. Job Mogire","The Microvessel Cardiologist","RETURN Brand Ecosystem"],
+      "url": "https://mogiremd.com/",
+      "founder": {"@id": "https://hom.mogire.com/about#dr-job-mogire"},
+      "description": "The personal brand and umbrella ecosystem of Dr. Job Mogire, MD, FACC, FACP. Anchors his clinical authority as The Microvessel Cardiologist and the wider RETURN brand family.",
+      "subOrganization": [{"@id": "https://hom.mogire.com/#org"}],
+      "sameAs": ["https://www.linkedin.com/in/drjobmogire","https://x.com/mogiremd","https://www.instagram.com/mogiremd","https://youtube.com/@mogiremd","https://www.facebook.com/thehouseofmastery/","https://www.return90.com/","https://hom.mogire.com/"]
+    },
+    {
+      "@type": "MedicalCondition",
+      "@id": "https://hom.mogire.com/about#prodigal-winner-syndrome",
+      "name": "Prodigal Winner Syndrome",
+      "alternateName": "PWS",
+      "description": "A clinical pattern recognition framework named by Dr. Job Mogire describing the cluster of physiological compensations observed in externally high-achieving adults who present functional by standard measures but with measurable microvascular and autonomic deficits underneath. The framework is the diagnostic lens of House of Mastery and is addressed through KOORA: The Finisher's Protocol. Clinical definition and supporting evidence are detailed in the forthcoming whitepaper.",
+      "recognizingAuthority": {"@id": "https://hom.mogire.com/#org"},
+      "associatedAnatomy": [{"@type":"AnatomicalStructure","name":"Coronary microvasculature"},{"@type":"AnatomicalStructure","name":"Endothelium"},{"@type":"AnatomicalSystem","name":"Autonomic nervous system"}],
+      "category": "Cardiovascular pattern recognition framework",
+      "mainEntityOfPage": "https://hom.mogire.com/about"
     },
     {
       "@type": "BreadcrumbList",

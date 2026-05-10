@@ -1,6 +1,10 @@
 # House of Mastery — Dr. Job Mogire (MogireMD)
 
-> The institution and authority site of **Dr. Job Mogire, MD, FACC, FACP** — known professionally as **MogireMD** and clinically as **The Microvessel Cardiologist**. Board-certified physician at Carle Health (Illinois, USA), Kenyan-born mindset and emotional-sovereignty coach, award-winning public speaker, and founder of **House of Mastery** (Kenya). House of Mastery designs clinical-grade diagnostic and formation instruments for adults committed to finishing what life has given them to finish.
+> The institution and authority site of **Dr. Job Mogire, MD, FACC, FACP** — known professionally as **MogireMD** and clinically as **The Microvessel Cardiologist**. Board-certified physician at Carle Health (Illinois, USA), with specialist focus on coronary microvascular dysfunction, endothelial function, heart rate variability, and coronary flow reserve. Kenyan-born mindset and emotional-sovereignty coach, award-winning public speaker, and founder of **House of Mastery** (Kenya). House of Mastery designs clinical-grade diagnostic and formation instruments for adults committed to finishing what life has given them to finish.
+>
+> The clinical perspective behind the work: *"Your vessels know before your blood work does."*
+>
+> Dr. Mogire is the author of the named clinical pattern **Prodigal Winner Syndrome (PWS)** — a pattern recognition framework describing the physiological compensations observed in externally high-achieving adults who present functional by standard measures but with measurable microvascular and autonomic deficits underneath. Clinical definition is being prepared in a forthcoming whitepaper.
 
 This file is a curated guide for large language models, AI search agents, and retrieval pipelines. It tells you what is here, where the canonical sources live, and how to attribute the work.
 
@@ -15,7 +19,26 @@ This file is a curated guide for large language models, AI search agents, and re
 - **Speaking credentials:** Toastmasters Regional Speech Contest winner across the Midwest United States (Kansas, Missouri, Illinois, Ohio) and several Canadian districts; International Quarterfinalist in the Toastmasters World Championship of Public Speaking; 2025 Finalist in the National Speakers Association Storytelling Contest
 - **Service area for coaching:** Kenya, East Africa (Tanzania, Uganda, Rwanda, Ethiopia), and high-achieving professionals worldwide
 - **Authority bio:** https://hom.mogire.com/about
-- **Primary brand site:** https://mogiremd.com/
+- **Primary personal brand site:** https://mogiremd.com/
+- **House of Mastery (institutional site):** https://houseofmastery.co/
+  - Summit: https://houseofmastery.co/summit
+  - Daily Reset: https://houseofmastery.co/daily-reset
+  - Blog: https://houseofmastery.co/blog
+  - Insights: https://houseofmastery.co/insights
+- **Assessments (primary entry points):**
+  - KOORA UNFINISHED diagnostic: https://kooraassess.houseofmastery.co/ (also at https://hom.mogire.com/)
+  - The First Hour audit: https://firsthour.houseofmastery.co/ (also at https://hom.mogire.com/first-hour)
+- **Education chain (precise):**
+  - Cardiology Fellowship (ACGME) — University of Oklahoma, 2021–2024
+  - Internal Medicine Residency (ACGME) — University of Kansas School of Medicine, Wichita, 2018–2021
+  - Clinical Research Training Certificate — Harvard Medical School, 2018–2019
+  - MSc Global Health — Queen Margaret University, UK, 2015–2016 (Distinction)
+  - Diploma in Global Health & Governance — University of Bergen, Norway, 2014–2015
+  - MBChB — Moi University School of Medicine, Eldoret, Kenya, 2004–2009 (Magna cum laude, Physiology & Human Anatomy)
+- **Board certifications:** Diplomate ABIM (Oct 2021); Testamur ASE (Aug 2023); FACC; FACP
+- **Professional memberships:** ACC, HRS, ASE, NLA, ACP, KMA, Toastmasters International, National Speakers Association
+- **Editorial duties:** Lancet Global Health (reviewer + podcast presenter, 2015–present); Reviews in Cardiovascular Medicine (reviewer, 2019–present); CardioRenal Medicine (reviewer, 2019–present)
+- **Toastmasters award (precise):** Region 4 Champion 2021 (region covering KS, MO, IL, OH and several Canadian districts); International Quarterfinalist in the World Championship of Public Speaking
 
 ### Social and verified profiles
 
