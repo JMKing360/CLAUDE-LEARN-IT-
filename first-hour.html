@@ -230,18 +230,23 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .framing-card p{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;color:var(--ink);line-height:1.55;letter-spacing:-.005em;margin:0}
 .framing-card p+p{margin-top:10px}
 
-/* Triad list: 9 chambers, 3 triads. Replaces the prose chamber listing. */
+/* Triad list: 9 chambers, 3 triads. Each chamber renders as a distinct chip
+   button under its triad heading. The buttons are decorative on the welcome
+   page (no onclick); semantic <button> + tabindex=-1 keeps them out of the
+   tab order while preserving keyboard accessibility for screen readers that
+   choose to enter the list. */
 .triad-list{margin:32px 0;display:grid;gap:18px}
-.triad{background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:18px 22px}
-.triad__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 8px}
-.triad__chambers{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:600;color:var(--ink);line-height:1.5;letter-spacing:-.005em;margin:0;display:flex;flex-wrap:wrap;gap:6px 14px}
-.triad__chambers span{display:inline-flex;align-items:center}
-.triad__chambers span+span::before{content:"·";color:var(--gold);font-weight:800;margin-right:14px;margin-left:0}
+.triad{background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:20px 22px}
+.triad__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin:0 0 14px}
+.triad__chambers{margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.triad__chamber{display:inline-flex;align-items:center;padding:9px 16px;background:var(--white);border:1.5px solid var(--rule);border-radius:999px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.003em;line-height:1.3;cursor:default;transition:border-color .15s ease, background .15s ease;text-align:left}
+.triad__chamber:hover{border-color:var(--gold);background:var(--gold-soft)}
+.triad__chamber:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.25)}
 .triad-summary{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);text-align:center;margin:14px 0 0;letter-spacing:.005em}
 @media(max-width:560px){
-  .triad{padding:16px 18px}
-  .triad__chambers{font-size:16px;gap:4px 10px}
-  .triad__chambers span+span::before{margin-right:10px}
+  .triad{padding:18px 18px}
+  .triad__chamber{padding:8px 14px;font-size:13.5px}
+  .triad__chambers{gap:6px}
 }
 
 /* Mobile readability: gold box body weight bump + close-line size unification. */
@@ -893,15 +898,27 @@ body.footer-hidden footer{display:none}
   <div class="triad-list" aria-label="The nine chambers, grouped into three triads">
     <div class="triad">
       <p class="triad__h">Triad One · The Inner Ruins</p>
-      <p class="triad__chambers"><span>Mind that Stopped Thinking</span><span>Body that Got Forgotten</span><span>Spirit that Got Silenced</span></p>
+      <div class="triad__chambers" role="list">
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Mind that Stopped Thinking</button>
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Body that Got Forgotten</button>
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Spirit that Got Silenced</button>
+      </div>
     </div>
     <div class="triad">
       <p class="triad__h">Triad Two · The Broken Vessels</p>
-      <p class="triad__chambers"><span>Word that Weighs on Strangers</span><span>Promise that Got Postponed</span><span>People You Are Pretending With</span></p>
+      <div class="triad__chambers" role="list">
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Word that Weighs on Strangers</button>
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Promise that Got Postponed</button>
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">People You Are Pretending With</button>
+      </div>
     </div>
     <div class="triad">
       <p class="triad__h">Triad Three · The Stolen Resources</p>
-      <p class="triad__chambers"><span>Time that Disappeared</span><span>Attention that Got Farmed</span><span>Money that Owns You</span></p>
+      <div class="triad__chambers" role="list">
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Time that Disappeared</button>
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Attention that Got Farmed</button>
+        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Money that Owns You</button>
+      </div>
     </div>
   </div>
   <p class="triad-summary">Nine chambers. Three triads. Fifteen honest minutes. <b>You move outer first, deepest last</b> — the audit opens with what is being taken from you, and ends inside the wanting that is still yours.</p>
