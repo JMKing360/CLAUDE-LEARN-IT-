@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNFINISHED · KOORA: The Finisher’s Protocol · House of Mastery</title>
-<meta name="description" content="UNFINISHED — the 60-item diagnostic of KOORA: The Finisher's Protocol by Dr. Job Mogire, MD, FACC, FACP (MogireMD). Six covenants, 180 days. House of Mastery, Kenya. The October 2026 cohort is the next gate.">
+<meta name="description" content="UNFINISHED — the 60-item diagnostic of KOORA: The Finisher's Protocol by Dr. Job Mogire, MD, FACC, FACP. A clinical-grade 6-month protocol designed by a cardiologist for overcoming the unfinished life. Six covenants, one per month. One annual cohort May–October. Become a finisher. Don't die with an unfinished life.">
 <meta name="theme-color" content="#0D1F3C">
 <meta name="referrer" content="no-referrer">
 <meta name="author" content="Dr. Job Mogire, MD, FACC, FACP">
@@ -20,7 +20,7 @@
 <link rel="author" href="https://hom.mogire.com/about#dr-job-mogire">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UNFINISHED · KOORA: The Finisher's Protocol · House of Mastery, Kenya">
-<meta property="og:description" content="The diagnostic instrument of KOORA: The Finisher's Protocol — a 180-day clinical-grade programme by Dr. Job Mogire, MD, FACC, FACP. House of Mastery, Kenya. October 2026 cohort.">
+<meta property="og:description" content="The diagnostic of KOORA: The Finisher's Protocol — a clinical-grade 6-month protocol designed by a cardiologist (Dr. Job Mogire, MD, FACC, FACP) for overcoming the unfinished life. One annual cohort May–October. House of Mastery, Kenya.">
 <meta property="og:image" content="https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png">
 <meta property="og:image:alt" content="KOORA — The Finisher's Protocol by Dr. Job Mogire, MD, FACC, FACP, House of Mastery, Kenya">
 <meta property="og:image:width" content="1200">
@@ -170,23 +170,29 @@
       "@type": "Course",
       "@id": "https://hom.mogire.com/koora#course",
       "name": "KOORA: The Finisher's Protocol",
-      "description": "A 180-day clinical-grade architecture for adults committed to finishing what was given them to finish. Six covenants — Self, Body, Craft, People, Future, World. Twelve retakes of the UNFINISHED diagnostic. Once a year. Twenty-four seats. The next cohort opens October 2026.",
+      "description": "A clinical-grade protocol designed by a cardiologist for overcoming the unfinished life. Six months. Six covenants — Self · Body · Craft · People · Future · World — one covenant per month. One annual cohort each year, May through October. Prorated entry available at the start of any month; all participants complete together at the end of October. Become a finisher. Don't die with an unfinished life.",
       "provider": {"@id": "https://hom.mogire.com/#org"},
       "instructor": {"@id": "https://hom.mogire.com/about#dr-job-mogire"},
       "educationalLevel": "Adult",
-      "timeRequired": "P180D",
+      "timeRequired": "P6M",
       "courseMode": "blended",
       "inLanguage": "en",
-      "hasCourseInstance": {
-        "@type":"CourseInstance",
-        "name":"KOORA October 2026 cohort",
-        "startDate":"2026-10-01",
-        "endDate":"2027-03-31",
-        "courseMode":"blended",
-        "location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},
-        "instructor": {"@id": "https://hom.mogire.com/about#dr-job-mogire"}
-      },
-      "offers": {"@type":"Offer","availability":"https://schema.org/LimitedAvailability","priceCurrency":"USD","url":"https://hom.mogire.com/"}
+      "hasPart": [
+        {"@type":"Course","name":"KOORA Month 1 — Covenant with Self","provider":{"@id":"https://hom.mogire.com/#org"}},
+        {"@type":"Course","name":"KOORA Month 2 — Covenant with Body","provider":{"@id":"https://hom.mogire.com/#org"}},
+        {"@type":"Course","name":"KOORA Month 3 — Covenant with Craft","provider":{"@id":"https://hom.mogire.com/#org"}},
+        {"@type":"Course","name":"KOORA Month 4 — Covenant with People","provider":{"@id":"https://hom.mogire.com/#org"}},
+        {"@type":"Course","name":"KOORA Month 5 — Covenant with Future","provider":{"@id":"https://hom.mogire.com/#org"}},
+        {"@type":"Course","name":"KOORA Month 6 — Covenant with World","provider":{"@id":"https://hom.mogire.com/#org"}}
+      ],
+      "hasCourseInstance": [
+        {"@type":"CourseInstance","name":"KOORA 2026 — Annual Cohort","startDate":"2026-05-01","endDate":"2026-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"}},
+        {"@type":"CourseInstance","name":"KOORA 2027 — Annual Cohort","startDate":"2027-05-01","endDate":"2027-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"}}
+      ],
+      "offers": [
+        {"@type":"Offer","price":"1200","priceCurrency":"USD","availability":"https://schema.org/LimitedAvailability","url":"https://hom.mogire.com/"},
+        {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/LimitedAvailability","url":"https://hom.mogire.com/"}
+      ]
     },
     {
       "@type": ["Event","EducationalEvent"],
@@ -249,7 +255,7 @@
       "@type": "FAQPage",
       "@id": "https://hom.mogire.com/koora#faq",
       "mainEntity": [
-        {"@type":"Question","name":"What is KOORA: The Finisher's Protocol?","acceptedAnswer":{"@type":"Answer","text":"KOORA: The Finisher's Protocol is a 180-day clinical-grade formation programme by Dr. Job Mogire, MD, FACC, FACP. Six covenants — Self · Body · Craft · People · Future · World — with twelve retakes of the 60-item UNFINISHED diagnostic. Twenty-four seats, once a year. The October 2026 cohort is the next gate."}},
+        {"@type":"Question","name":"What is KOORA: The Finisher's Protocol?","acceptedAnswer":{"@type":"Answer","text":"KOORA: The Finisher's Protocol is a clinical-grade 6-month protocol designed by a cardiologist (Dr. Job Mogire, MD, FACC, FACP) for overcoming the unfinished life. Six months, six covenants — Self · Body · Craft · People · Future · World — one covenant per month. One annual cohort each year, May through October. Prorated entry available at the start of any month. USD 1,200 / KES 150,000. Become a finisher. Don't die with an unfinished life."}},
         {"@type":"Question","name":"Who is Dr. Job Mogire?","acceptedAnswer":{"@type":"Answer","text":"Dr. Job Mogire, MD, FACC, FACP (MogireMD) is a Kenyan-born board-certified physician — Fellow of the American College of Cardiology and the American College of Physicians, practising at Carle Health (Illinois, USA) as The Microvessel Cardiologist. He is a mindset and emotional intelligence coach, a published author, and an award-winning public speaker. He founded House of Mastery."}},
         {"@type":"Question","name":"Who is the best mindset coach in Kenya?","acceptedAnswer":{"@type":"Answer","text":"Dr. Job Mogire is widely regarded as one of Kenya's leading mindset and emotional intelligence coaches. He combines two decades of clinical practice as a board-certified physician with award-winning public-speaking craft and a distinctive diagnostic methodology delivered through House of Mastery."}},
         {"@type":"Question","name":"What is emotional sovereignty?","acceptedAnswer":{"@type":"Answer","text":"Emotional sovereignty is the capacity to live from chosen response rather than habitual reflex. At House of Mastery it is the structural endpoint of the formation work — a life in which the four reflexes (complaining, criticising, comparing, competing) have been replaced with practices and faculties that hold under pressure."}},
