@@ -104,7 +104,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <span class="eyebrow">House of Mastery · Privacy Policy</span>
 <h1>How we handle your information, <em>plainly stated.</em></h1>
 <p class="sub">This policy explains what House of Mastery, the body of work of Dr. Job Mogire, MD, FACP, FACC, collects when you take an assessment, attend a session, or correspond with us, and how we keep that information safe and lawful.</p>
-<p class="meta"><b>Effective date:</b> 8 May 2026 &nbsp;·&nbsp; <b>Last updated:</b> 10 May 2026 &nbsp;·&nbsp; <b>Version:</b> 1.1</p>
+<p class="meta"><b>Effective date:</b> 8 May 2026 &nbsp;·&nbsp; <b>Last updated:</b> 10 May 2026 &nbsp;·&nbsp; <b>Version:</b> 1.2</p>
 
 <div class="callout">
   This policy is written in plain language so a thoughtful adult can read it once and know where they stand. It satisfies the disclosure requirements of the EU and UK General Data Protection Regulation, the California Consumer Privacy Act and California Privacy Rights Act, the Brazilian Lei Geral de Proteção de Dados, the Kenyan Data Protection Act 2019, and equivalent frameworks in other jurisdictions where our participants live and work.
@@ -187,7 +187,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <p>We do not sell your personal information. We do not share your personal information with anyone except in the limited circumstances below.</p>
 <ul>
   <li><b>Service providers</b> who process information strictly on our behalf and under written terms that satisfy Article 28 GDPR. The principal categories are email-delivery infrastructure, web hosting, and analytics. Each provider is bound to confidentiality, security, sub-processor restrictions, and data-protection assistance.</li>
-  <li><b>Meta Platforms, Inc.</b> (the Meta Pixel) acts as an independent controller for measurement and audience-building purposes, processing only the page-view and milestone-event data described in section 12. Lawful basis: legitimate interest under Article 6(1)(f) GDPR; for California residents, business purposes under CPRA. We do not transfer your name, email, or assessment answers to Meta.</li>
+  <li><b>Meta Platforms, Inc.</b> (the Meta Pixel). Following <i>Fashion ID</i> (CJEU C-40/17) and Meta&rsquo;s own Joint Controller Addendum, we treat Meta as a <b>joint controller</b> with us for the collection and transmission of Pixel events, and as an <b>independent controller</b> for any further processing Meta performs for its own purposes. We do not transfer your name, email, or assessment answers to Meta. The events transmitted, the lawful basis, and your opt-out rights are described in detail in Section 12. We do not load the Pixel for visitors connecting from the European Economic Area, the United Kingdom, or Switzerland, and we suppress it for any visitor whose browser sends a Global Privacy Control signal.</li>
   <li><b>Dr. Job Mogire and the named members of the House of Mastery team</b> who have a need to see your information in order to deliver the work you have engaged us for.</li>
   <li><b>Authorities</b> when we are required to disclose by law, court order, or to protect rights, safety, or property.</li>
   <li><b>A successor</b> in the unlikely event of a merger, acquisition, or transfer of the work, on equivalent privacy terms.</li>
@@ -238,14 +238,21 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <h3>Sensitive personal information</h3>
 <p>We do not collect sensitive personal information for the purpose of inferring characteristics about you. We do not use or disclose sensitive personal information for purposes other than those permitted by California Civil Code Section 1798.121(a). You therefore have no need to exercise the right to limit the use and disclosure of sensitive personal information, but if you wish to do so anyway, please write to us.</p>
 <h3>Sale and sharing</h3>
-<p>We do <b>not</b> sell or share your personal information within the meaning of the CCPA, the CPRA, or any equivalent law. There is therefore no &ldquo;Do Not Sell or Share My Personal Information&rdquo; opt-out for you to exercise, because the opt-out has effectively already been applied.</p>
+<p>We do <b>not</b> sell your personal information for monetary consideration. Loading the Meta Pixel, however, qualifies as a &ldquo;share&rdquo; within the expanded definition of California Civil Code &sect;1798.140(ah) because it discloses limited online-activity information (page URL, event names, Meta-managed cookies, IP-derived location) to Meta Platforms, Inc. for cross-context behavioural advertising.</p>
+<p>To exercise your right to opt out of this sharing you have three independent paths, any of which is sufficient:</p>
+<ul>
+  <li>Send a <b>Global Privacy Control</b> signal from your browser. We honour <code>Sec-GPC: 1</code> at the edge: the Pixel and its noscript fallback are stripped from the page before it reaches your browser.</li>
+  <li>Use a browser that resides in the European Economic Area, the United Kingdom, or Switzerland. We suppress the Pixel for those regions by default.</li>
+  <li>Email <a href="mailto:mail@mogire.com">mail@mogire.com</a> with the words <em>California opt-out</em> in the subject. We will record the request and confirm by reply.</li>
+</ul>
+<p>We do not retaliate or change our service for users who opt out.</p>
 <h3>Your California rights</h3>
 <ul>
   <li>The right to <b>know</b> the categories and specific pieces of personal information we have collected, the categories of sources, the purposes for which we use the information, and the categories of third parties with whom we share it.</li>
   <li>The right to <b>delete</b> your personal information, subject to the statutory exceptions.</li>
   <li>The right to <b>correct</b> inaccurate personal information.</li>
   <li>The right to <b>limit</b> the use and disclosure of sensitive personal information.</li>
-  <li>The right to <b>opt out of sale or sharing</b>. As noted, we do not sell or share, but the right is yours nonetheless.</li>
+  <li>The right to <b>opt out of sale or sharing</b>. We do not sell, and our only &ldquo;share&rdquo; activity is the Meta Pixel disclosure described above; the three opt-out paths set out in <i>Sale and sharing</i> exercise this right.</li>
   <li>The right not to receive <b>discriminatory treatment</b> for exercising any of the rights above.</li>
   <li>The right to designate an <b>authorized agent</b> to exercise these rights on your behalf, with proof of authorization.</li>
 </ul>
@@ -259,7 +266,16 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <h2 id="cookies">12. Cookies and similar technologies</h2>
 <p>The assessment instruments themselves use your browser&rsquo;s local storage to save your assessment history on your own device; they do not set first-party tracking cookies of their own. The website may, where deployed, set strictly necessary cookies (for example, to maintain a session).</p>
-<p><b>Meta Pixel.</b> The website includes the Meta (Facebook) Pixel for measurement of campaign performance and to build audiences for legitimate-interest direct marketing under Article 6(1)(f) GDPR. The Pixel sets third-party cookies controlled by Meta Platforms, Inc., and transmits the following to Meta when you visit a page or complete a milestone: page URL, an event name (for example <i>PageView</i>, <i>ViewContent</i>, <i>Lead</i>, <i>CompleteRegistration</i>, or a custom milestone such as <i>section_transition</i>), browser/device characteristics, and an IP-derived approximate location. We do not pass your name, email, or assessment answers to Meta. You can opt out of Meta&rsquo;s ads-personalisation in your Meta account settings, browser-level (cookie controls / Global Privacy Control / Do Not Track), and via industry tools at <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info/choices</a> and <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener">youronlinechoices.eu</a>. Meta&rsquo;s own data practices are governed by the <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">Meta Privacy Policy</a>.</p>
+<p><b>Meta Pixel.</b> The website includes the Meta (Facebook) Pixel for measurement of campaign performance and to build audiences for direct marketing. Where it loads, the Pixel sets and reads cookies managed by Meta Platforms, Inc. (principally <code>_fbp</code>, and <code>_fbc</code> when you arrive via a Meta-served ad). The Pixel transmits the following to Meta on each page view or milestone event:</p>
+<ul>
+  <li>The page URL (we strip any <code>name</code>, <code>email</code>, <code>first</code>, <code>last</code>, and <code>token</code> query parameters before the Pixel is allowed to read the URL, so retake links from email do not leak personal identifiers);</li>
+  <li>The event name &mdash; <i>PageView</i>, <i>ViewContent</i>, the standard events <i>Lead</i> (you confirmed your email at the gate) and <i>CompleteRegistration</i> (you reached your assessment result), and our custom milestone events (such as the welcome screen being shown, the begin button being clicked, mid-assessment progress thresholds, and section transitions);</li>
+  <li>The custom event properties we attach &mdash; the instrument identifier (<i>koora</i> or <i>first-hour</i>), the assessment&rsquo;s content identifier, the question index at the moment of the event, and the synthetic conversion value used for ads optimisation;</li>
+  <li>Meta-managed first-party cookie identifiers (<code>_fbp</code>, <code>_fbc</code>) and any <code>fbclid</code> click identifier present in the URL;</li>
+  <li>The browser&rsquo;s document referrer, screen dimensions, language, time-zone offset, and an IP-derived approximate location.</li>
+</ul>
+<p>We do not transmit your name, email, phone number, or assessment answers to Meta. We have initialised the Pixel with <code>autoConfig: false</code>, which disables Meta&rsquo;s automatic configuration polling &mdash; the mechanism through which Automatic Advanced Matching would otherwise sniff and hash form-field values from the page. We do not load the Pixel for visitors connecting from the European Economic Area, the United Kingdom, or Switzerland, and we suppress it at the edge for any visitor whose browser sends a Global Privacy Control signal (<code>Sec-GPC: 1</code>) &mdash; in those cases, neither the Pixel script nor its non-JavaScript image fallback is present in the page you receive. We also suppress the Pixel when the assessment is loaded inside an embedded iframe.</p>
+<p>You can opt out of Meta&rsquo;s ads-personalisation through your Meta account settings, your browser&rsquo;s cookie controls, the Global Privacy Control standard (which we honour), and the industry opt-out tools at <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info/choices</a> and <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener">youronlinechoices.eu</a>. Meta&rsquo;s own data practices are governed by the <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">Meta Privacy Policy</a>.</p>
 <p>We will publish a separate cookie notice if and when our use of similar technologies materially changes.</p>
 
 <h2 id="changes">13. Changes to this policy</h2>

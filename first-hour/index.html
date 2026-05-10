@@ -824,8 +824,35 @@ body.footer-hidden footer{display:none}
 <script>window.HOM_CONFIG=window.HOM_CONFIG||{};</script>
 <script src="/feature-flags.js"></script>
 <script src="/observability.js" defer></script>
+<!-- Pre-Pixel guard: strip identifying URL params, gate Pixel on GPC / embed / EEA flag -->
+<script>
+(function(){
+  // 1) Strip name/email/etc. from URL BEFORE the Pixel reads location.href.
+  // Retake links from email arrive with ?name=&email=; stash on window.HOM_RETAKE
+  // so the existing prefill code can still consume them — without leaking to Meta.
+  try{
+    var url=new URL(window.location.href);
+    var stash={},stripped=false;
+    ['name','email','first','last','token','firstname','lastname'].forEach(function(k){
+      if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
+    });
+    if(stripped){
+      window.HOM_RETAKE=stash;
+      var qs=url.searchParams.toString();
+      history.replaceState(null,'',url.pathname+(qs?'?'+qs:'')+url.hash);
+    }
+  }catch(e){}
+  // 2) Disable Pixel for: Global Privacy Control, embedded iframes, EEA/UK
+  // (window.HOM_GEO_BLOCK_PIXEL is injected by /functions/_middleware.js).
+  var gpc=(navigator.globalPrivacyControl===true);
+  var embedded=false;
+  try{embedded=(window.top!==window.self)||new URLSearchParams(location.search).has('embed')}catch(e){embedded=true}
+  window.HOM_PIXEL_DISABLED=gpc||embedded||(window.HOM_GEO_BLOCK_PIXEL===true);
+})();
+</script>
 <!-- Meta Pixel Code -->
 <script>
+if(!window.HOM_PIXEL_DISABLED){
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -834,14 +861,20 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '748998691952331');
+// autoConfig:false disables Automatic Advanced Matching (which would otherwise
+// hash and ship form-field email/phone to Meta). Belt-and-braces: also turn it
+// off in the Meta Events Manager dashboard.
+fbq('init', '748998691952331', {}, {autoConfig: false});
 fbq('track', 'PageView');
 fbq('track', 'ViewContent', {
   content_name: 'The First Hour Assessment',
-  content_category: 'Assessment'
+  content_category: 'Assessment',
+  content_ids: ['first_hour_v1'],
+  content_type: 'assessment'
 });
+}
 </script>
-<noscript><img height="1" width="1" style="display:none"
+<noscript data-pixel><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
@@ -1706,6 +1739,7 @@ function priorRecords(email){
 function lastFor(email){var p=priorRecords(email);return p.length?p[p.length-1]:null}
 
 // Routing
+var _welcomeShownFired=false;
 function show(id){
   var screens=document.querySelectorAll('.screen');
   for(var i=0;i<screens.length;i++)screens[i].classList.remove('active');
@@ -1722,10 +1756,11 @@ function show(id){
     if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');
     try{target.focus({preventScroll:true})}catch(e){target.focus()}
   }
-  // Funnel telemetry → Plausible / Sentry / Meta Pixel via HOM_TRACK.
-  if(typeof HOM_TRACK==='function'){
-    if(id==='screen-transition')HOM_TRACK('section_transition',{instrument:'first-hour',q:currentQ});
-    else if(id==='screen-results')HOM_TRACK('assessment_completed',{instrument:'first-hour'});
+  // welcome_shown: fire only when the welcome screen actually becomes visible,
+  // and only once per session.
+  if(id==='screen-welcome' && !_welcomeShownFired && typeof HOM_TRACK==='function'){
+    _welcomeShownFired=true;
+    HOM_TRACK('welcome_shown',{instrument:'first-hour'});
   }
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
@@ -1763,10 +1798,11 @@ function loadInProgress(){
 }
 function clearInProgress(){try{localStorage.removeItem('hom_firsthour_inprogress')}catch(e){}}
 document.addEventListener('DOMContentLoaded',function(){
-  // Pre-fill from URL params (for retake links from email)
+  // Pre-fill from retake params. The pre-Pixel guard strips name/email from
+  // the URL and stashes them on window.HOM_RETAKE so they never reach Meta.
   try{
-    var p=new URLSearchParams(window.location.search);
-    var nm=p.get('name'),em=p.get('email');
+    var r=window.HOM_RETAKE||{};
+    var nm=r.name||r.firstname||'',em=r.email||'';
     if(nm)document.getElementById('participantName').value=nm;
     if(em)document.getElementById('participantEmail').value=em;
   }catch(e){}
@@ -1817,6 +1853,8 @@ function welcomeBeginClick(){
   var nameEl=document.getElementById('participantName');
   var name=(nameEl.value||'').trim();
   if(!name){nameEl.focus();return}
+  // Fire begin_clicked only after name validation passes.
+  if(typeof HOM_TRACK==='function')HOM_TRACK('begin_clicked',{instrument:'first-hour'});
   document.getElementById('welcomeBeginBtn').style.display='none';
   var gate=document.getElementById('welcomeEmailGate');
   gate.style.display='block';
@@ -1837,6 +1875,17 @@ function confirmEmailAndStart(){
   err.style.display='none';
   participantEmail=email;
   try{localStorage.setItem('hom_firsthour_participant_email',email)}catch(e){}
+  // Fire email_gate_confirmed (→ Meta Lead) only on validated email. Dedup per
+  // email so re-takers don't inflate Lead counts.
+  if(typeof HOM_TRACK==='function'){
+    var leadKey='hom_lead_fired_firsthour_'+email;
+    var alreadyFired=false;
+    try{alreadyFired=localStorage.getItem(leadKey)==='1'}catch(e){}
+    if(!alreadyFired){
+      HOM_TRACK('email_gate_confirmed',{instrument:'first-hour'});
+      try{localStorage.setItem(leadKey,'1')}catch(e){}
+    }
+  }
   startAssessment();
 }
 function startAssessment(){
@@ -1894,12 +1943,25 @@ function showSavePill(){
   if(savePillTimer)clearTimeout(savePillTimer);
   savePillTimer=setTimeout(function(){p.classList.remove('shown')},SAVE_PILL_MS);
 }
+// Mid-funnel milestones: one-shot per session, fired on first selection at
+// each threshold. Gives Meta dropout audiences between Lead (email gate) and
+// the first transition screen (q18 in First Hour).
+var _milestoneFired={};
+function fireMilestone(name){
+  if(_milestoneFired[name])return;
+  _milestoneFired[name]=true;
+  if(typeof HOM_TRACK==='function')HOM_TRACK(name,{instrument:'first-hour',q:currentQ});
+}
 function selectOption(n,score){
   answers[n]=score;
   // Autosave in-progress assessment so refresh does not lose work
   try{localStorage.setItem('hom_firsthour_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,email:participantEmail,started:Date.now()}));showSavePill()}catch(e){}
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
+  if(n===1)fireMilestone('first_question_answered');
+  if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
+  if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');
+  if(n>=Math.floor(TOTAL*3/4))fireMilestone('three_quarters_complete');
   cancelAdvance();
   advanceTimer=setTimeout(function(){
     if(answers[n]===score && currentQ===n){nextQuestion()}
@@ -1917,6 +1979,10 @@ function prevQuestion(){cancelAdvance();if(currentQ>1){currentQ--;renderQuestion
 
 function enterTransition(trans){
   pendingAfterTransition=trans.q+1;
+  // transition_shown → Meta custom event with semantically-correct fields:
+  // `after_q` is the question just completed; `entering_section` is the next
+  // section number (1-indexed). Avoids the ambiguity of a bare `q` prop.
+  if(typeof HOM_TRACK==='function')HOM_TRACK('transition_shown',{instrument:'first-hour',after_q:trans.q,entering_section:TRANSITIONS.indexOf(trans)+2});
   document.getElementById('trEyebrow').textContent=trans.eyebrow;
   document.getElementById('trH').innerHTML=trans.h;
   document.getElementById('trText').innerHTML=trans.text;
@@ -2101,6 +2167,17 @@ function finishAssessment(){
   // v3.2.0. Bind UNFINISHED selection block now that result DOM is present
   setTimeout(function(){if(typeof bindUnfinishedItems==='function')bindUnfinishedItems()},0);
   hideChamberProgress();show('screen-results');
+  // assessment_completed → Meta CompleteRegistration. Dedup on rec.date so
+  // re-views via priorRecords navigation never fire it again.
+  if(typeof HOM_TRACK==='function' && rec && rec.date){
+    var doneKey='hom_complete_fired_firsthour_'+rec.date;
+    var already=false;
+    try{already=localStorage.getItem(doneKey)==='1'}catch(e){}
+    if(!already){
+      HOM_TRACK('assessment_completed',{instrument:'first-hour'});
+      try{localStorage.setItem(doneKey,'1')}catch(e){}
+    }
+  }
   // Trigger an automatic email send so the participant receives the report regardless of what they do next
   fireEmailQuiet(rec);
 }
@@ -2481,6 +2558,8 @@ function resendEmail(){
   var status=document.getElementById('emailStatus');
   status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
   if(!EMAIL_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
+  // email_sent_clicked fires only on a real send attempt with EMAIL_OK gate.
+  if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour'});
   buildEmailPayload(rec).then(function(){
     status.style.color='var(--green)';status.textContent='Sent. Your full report is on its way to '+rec.email+'.';
   },function(){

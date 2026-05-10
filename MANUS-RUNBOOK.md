@@ -356,16 +356,22 @@ The webhook URL is *not* a secret — it's an unauthenticated endpoint by design
 Phase 2 wires Sentry + Plausible. Layer on top:
 
 1. **Datadog RUM** for production Core Web Vitals if you need finer-grained perf insight.
-2. **Custom event taxonomy** consistent with the funnel:
-   - `welcome_shown`
-   - `assessment_began`
-   - `chamber_completed` (with chamber number)
-   - `ack_reached`
-   - `result_viewed`
-   - `email_sent_clicked`
-   - `pdf_downloaded`
-   - `ladder_rung_clicked` (with rung name)
-3. **Conversion-funnel dashboard** reviewed weekly for the first 90 days.
+2. **Custom event taxonomy** consistent with the funnel (live as of v3.7.36, all routed through `HOM_TRACK` in `observability.js`):
+   - `welcome_shown` — fires when `screen-welcome` becomes the active screen (one-shot per session; returning users on dashboard don't fire it).
+   - `begin_clicked` — fires after name + enrollment validation passes in `welcomeBeginClick`.
+   - `email_gate_confirmed` (→ Meta `Lead`) — fires after email validation passes in `confirmEmailAndStart`. Deduped per email via `localStorage`.
+   - `first_question_answered` — fires once on first selection.
+   - `quarter_complete` / `half_complete` / `three_quarters_complete` — mid-funnel milestones (one-shot per session).
+   - `transition_shown` — fires from `enterTransition` with `after_q` and `entering_section` props.
+   - `agency_completed` — First Hour only, fires from `finishAgency`.
+   - `assessment_completed` (→ Meta `CompleteRegistration`) — fires from `finishAssessment`. Deduped per `rec.date` so result re-views don't double-count.
+   - `email_sent_clicked` — fires from KOORA `sendEmail` and First Hour `resendEmail` after EMAIL_OK gate.
+3. **Meta Events Manager — operator setup checklist** (one-time):
+   - Pixel ID: `748998691952331`.
+   - In **Settings → Automatic Advanced Matching**: confirm it is **OFF**. The Pixel is initialised with `autoConfig: false` for defense-in-depth, but the dashboard switch is the authoritative control.
+   - In **Custom Conversions**: define `assessment_completed` (CompleteRegistration) as the primary conversion event for ad campaigns; tier `email_gate_confirmed` (Lead) as upper-funnel.
+   - **Verify** noscript fallback is suppressed for EEA/GPC visitors via `curl -H 'CF-IPCountry: DE' https://hom.mogire.com/` and confirm the response has no `<noscript data-pixel>` block.
+4. **Conversion-funnel dashboard** reviewed weekly for the first 90 days.
 
 ---
 
