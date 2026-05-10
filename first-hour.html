@@ -288,6 +288,76 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* ACK */
+#screen-agency{padding:88px 0 140px}
+.agency-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block}
+.agency-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(28px,4.4vw,42px);font-weight:600;line-height:1.12;letter-spacing:-.022em;color:var(--ink);margin:0 0 16px;text-wrap:balance}
+.agency-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.6;color:var(--body);margin:0 0 32px;letter-spacing:-.005em;text-wrap:pretty}
+.agency-sub b{color:var(--ink);font-weight:700}
+.agency-grid{display:grid;gap:14px;margin-bottom:32px}
+.agency-row{background:var(--surface-2);border:1px solid var(--rule-soft);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0;padding:20px 24px;transition:border-left-color .15s,background .15s}
+.agency-row.answered{background:var(--white);border-color:var(--rule)}
+.agency-row.answered.no{border-left-color:#C44}
+.agency-row.answered.yes{border-left-color:#3A8E5C}
+.agency-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16.5px;font-weight:600;color:var(--ink);line-height:1.5;margin:0 0 14px;letter-spacing:-.005em}
+.agency-text .agency-num{display:inline-block;font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.05em;margin-right:8px;font-variant-numeric:tabular-nums}
+.agency-axis{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.18em;color:var(--mid);text-transform:uppercase;margin-left:10px;vertical-align:middle}
+.agency-radio-group{display:flex;gap:10px}
+.agency-radio{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r-md);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;font-weight:700;letter-spacing:.06em;color:var(--body);cursor:pointer;transition:border-color .15s,background .15s,color .15s;text-align:center;min-height:48px}
+.agency-radio:hover{border-color:var(--ink)}
+.agency-radio input{position:absolute;opacity:0;pointer-events:none}
+.agency-radio.sel-yes{border-color:#3A8E5C;background:rgba(58,142,92,.08);color:#246B43}
+.agency-radio.sel-no{border-color:#C44;background:rgba(196,68,68,.08);color:#8E2929}
+.agency-radio:focus-within{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
+.agency-cta{margin-top:32px;text-align:center}
+.agency-cta .btn-primary{display:block;margin:0 auto}
+.agency-cta .btn-primary[disabled]{cursor:not-allowed}
+.agency-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:500;color:var(--mid);margin-top:14px;letter-spacing:.005em}
+@media(max-width:560px){
+  #screen-agency{padding:64px 0 100px}
+  .agency-row{padding:18px 20px}
+  .agency-text{font-size:16px}
+  .agency-radio{font-size:14px;padding:12px 14px}
+}
+
+/* Result-page agency block: matrix table + RGB pills + action plan */
+.agency-block{margin:32px 0 8px;padding:28px 30px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0}
+.agency-block__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.agency-block__h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.25;margin:0 0 18px}
+.agency-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--rule-soft);border-radius:10px;overflow:hidden;margin:0 0 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px}
+.agency-table th{background:var(--surface-2);font-weight:700;color:var(--ink);text-align:center;padding:10px 8px;border-bottom:1px solid var(--rule-soft);letter-spacing:.04em;font-size:11.5px;text-transform:uppercase}
+.agency-table th.row-h{text-align:left;letter-spacing:0;text-transform:none;font-size:13.5px;font-weight:600;color:var(--ink);width:38%;padding:10px 14px}
+.agency-table td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--rule-soft);color:var(--mid);font-weight:600}
+.agency-table td.fill-think,.agency-table td.fill-feel,.agency-table td.fill-choose,.agency-table td.fill-do,.agency-table td.fill-all{color:var(--ink)}
+.agency-table tr:last-child td,.agency-table tr:last-child th{border-bottom:none}
+.agency-table .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--rule)}
+.agency-table .dot.lit{background:var(--gold)}
+.agency-block__hotspots{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.agency-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.agency-pill::before{content:'';display:inline-block;width:10px;height:10px;border-radius:50%}
+.agency-pill.red{background:rgba(196,68,68,.1);color:#8E2929}
+.agency-pill.red::before{background:#C44}
+.agency-pill.gold{background:rgba(201,151,58,.12);color:#7A5618}
+.agency-pill.gold::before{background:var(--gold)}
+.agency-pill.green{background:rgba(58,142,92,.1);color:#246B43}
+.agency-pill.green::before{background:#3A8E5C}
+.action-plan{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-md);padding:22px 24px;margin:0}
+.action-plan__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin:0 0 14px}
+.action-plan__group{margin-bottom:18px}
+.action-plan__group:last-child{margin-bottom:0}
+.action-plan__axis{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#8E2929;margin:0 0 8px;display:flex;align-items:center;gap:8px}
+.action-plan__axis::before{content:'';display:inline-block;width:10px;height:10px;border-radius:50%;background:#C44}
+.action-plan__list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.action-plan__list li{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;font-weight:500;color:var(--body);line-height:1.55;letter-spacing:-.003em;padding-left:18px;position:relative}
+.action-plan__list li::before{content:'\2022';color:var(--gold);position:absolute;left:0;font-weight:800}
+.agency-block__green{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14.5px;font-weight:500;color:var(--body);line-height:1.55;letter-spacing:-.003em;margin:18px 0 0;padding:14px 18px;background:rgba(58,142,92,.08);border-left:3px solid #3A8E5C;border-radius:0 8px 8px 0}
+@media(max-width:560px){
+  .agency-block{padding:22px 20px}
+  .agency-table{font-size:13px}
+  .agency-table th,.agency-table td{padding:8px 4px}
+  .agency-table th.row-h{font-size:12.5px;padding:8px 10px}
+  .action-plan{padding:18px 20px}
+}
+
 #screen-ack{padding:140px 0 160px}
 .ack-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
 .ack-h1 em{font-style:italic;font-weight:600}
@@ -917,6 +987,18 @@ body.footer-hidden footer{display:none}
 </section>
 
 <!-- ACK -->
+<!-- AGENCY MATRIX (final 6 binary questions on a single screen) -->
+<section class="screen" id="screen-agency">
+  <span class="agency-eyebrow">FINAL · YOUR AGENCY MATRIX</span>
+  <h1 class="agency-h1">Six questions to map where you stand.</h1>
+  <p class="agency-sub">YES or NO. Be honest. This is not a test. It is a mirror. The four columns are <b>What I think</b>, <b>What I feel</b>, <b>What I choose</b>, <b>What I do</b>. Together they show where your agency is strongest and where it is stuck.</p>
+  <div class="agency-grid" id="agencyGrid"></div>
+  <div class="agency-cta">
+    <button class="btn-primary" id="agencyContinueBtn" onclick="finishAgency()" disabled style="max-width:300px;letter-spacing:.05em;background:var(--gold);color:var(--navy);font-weight:800;opacity:.55">SEE MY DIAGNOSTIC</button>
+    <p class="agency-meta" id="agencyMeta">Answer all six to continue.</p>
+  </div>
+</section>
+
 <section class="screen" id="screen-ack">
   <h2 class="ack-h1" id="ackH1">You finished.</h2>
   <p class="ack-text" id="ackText">Fifty-four items, plus a six-question agency check. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
@@ -959,6 +1041,11 @@ body.footer-hidden footer{display:none}
       <div class="feature-h" id="patternH"></div>
       <div class="feature-body" id="patternBody"></div>
     </div>
+  </div>
+
+  <!-- Agency Matrix block (rendered by renderAgencyBlock when result loads) -->
+  <div class="r-block">
+    <div class="agency-block" id="agencyBlock"></div>
   </div>
 
   <div class="r-block">
@@ -1347,6 +1434,73 @@ var TRANSITIONS=[
   {q:48,eyebrow:'Triad two is sealed',h:'You looked at the word, the promise, the people.',text:'One chamber remains. The deepest. <b>The Spirit that Got Silenced.</b> Stay.'}
 ];
 
+// Six binary YES/NO statements that close the assessment. Each maps to an
+// agency axis (think/feel/choose/do); the last two are broad signals that
+// touch all four. Resolution: matrixResolve() turns the six answers into a
+// red/gold/green colour per axis. Q5 and Q6 are weighted 'all'.
+var AGENCY_QUESTIONS=[
+  {n:1, axis:'think',  text:'I know what I truly think, apart from what others tell me.'},
+  {n:2, axis:'feel',   text:'I allow myself to feel what is actually there, without numbing or escaping.'},
+  {n:3, axis:'choose', text:'I choose my first hour intentionally, before the day chooses for me.'},
+  {n:4, axis:'do',     text:'I do what I say I will do, especially the small promises to myself.'},
+  {n:5, axis:'all',    text:'I can name what I want, even if I am afraid to say it out loud.'},
+  {n:6, axis:'all',    text:'I finish what I start more often than I abandon it.'}
+];
+var AGENCY_AXES=['think','feel','choose','do'];
+var AGENCY_AXIS_LABEL={think:'WHAT I THINK',feel:'WHAT I FEEL',choose:'WHAT I CHOOSE',do:'WHAT I DO'};
+
+// Action plan, surfaced on the result page only when an axis resolves to
+// red. Each axis gets three concrete moves; 'all' shows when Q5 or Q6 is NO,
+// because those signal a deeper unfinishing pattern that calls for a
+// structural rather than tactical response.
+var ACTION_PLAN={
+  think:[
+    'Write down one opinion you hold that is actually yours. Not your family’s. Not your feed’s. Yours.',
+    'Before you scroll tomorrow morning, sit for sixty seconds with your own thoughts first.',
+    'Ask yourself: what do I actually believe about this situation? Then write the answer.'
+  ],
+  feel:[
+    'Name one emotion you have been pushing down. Say it out loud to yourself.',
+    'Set a timer for two minutes. Sit with whatever comes up. Do not medicate it. Do not solve it. Just feel it.',
+    'Before you numb, ask: what is this feeling trying to tell me?'
+  ],
+  choose:[
+    'Tomorrow morning, do not check your phone for the first fifteen minutes. Choose one small task instead.',
+    'Make one decision before noon that is not a reaction to anyone else’s request.',
+    'Ask yourself: if nothing was urgent, what would I choose to do first?'
+  ],
+  do:[
+    'Pick one promise you made to yourself that is less than ten minutes long. Do it today before lunch.',
+    'When you say you will do something, write it down. Cross it off only when done.',
+    'Ask yourself: what is one small finish I can complete before I allow myself to start anything new?'
+  ],
+  all:[
+    'You are not broken. You are carrying too many unfinished commitments. Put down three of them today. Just three. Give yourself permission to let them go or reschedule them without guilt.',
+    'Your deepest pattern is unfinishing. You need structure, not more willpower.',
+    'The most direct path forward is already built. The KOORA waitlist is below.'
+  ]
+};
+
+// Resolve six YES/NO answers into a red/gold/green colour per axis.
+// Rules (per spec):
+//   GREEN: the axis-direct Q is YES AND both broad Qs (5 and 6) are YES.
+//   GOLD:  the axis-direct Q is YES BUT at least one broad Q is NO.
+//   RED:   the axis-direct Q is NO (broad Qs amplify but do not override).
+// If Q5 or Q6 is NO, the action-plan also surfaces the 'all' card.
+function matrixResolve(ag){
+  var color={think:'green',feel:'green',choose:'green',do:'green'};
+  var direct={think:1,feel:2,choose:3,do:4};
+  var broadDown=(ag&&(ag[5]==='no'||ag[6]==='no'));
+  for(var i=0;i<AGENCY_AXES.length;i++){
+    var ax=AGENCY_AXES[i];
+    if(!ag||ag[direct[ax]]==null){color[ax]=null;continue}
+    if(ag[direct[ax]]==='no'){color[ax]='red';continue}
+    color[ax]=broadDown?'gold':'green';
+  }
+  return color;
+}
+function matrixHasAllRed(ag){return ag&&(ag[5]==='no'||ag[6]==='no')}
+
 // State
 // Pre-Audit Examen — eight honesty-naming items shown on welcome before
 // the 54-item diagnostic. Selections persist in localStorage and travel
@@ -1380,6 +1534,7 @@ function getExamenSelections(){
 }
 
 var answers={};
+var agencyAnswers={};
 var currentQ=1;
 var participantName='';
 var participantEmail='';
@@ -1581,7 +1736,7 @@ function nextQuestion(){
   if(!answers[currentQ])return;
   var trans=TRANSITIONS.find(function(t){return t.q===currentQ});
   if(trans){enterTransition(trans);return}
-  if(currentQ===TOTAL){enterAck();return}
+  if(currentQ===TOTAL){enterAgency();return}
   currentQ++;renderQuestion(currentQ);
 }
 function prevQuestion(){cancelAdvance();if(currentQ>1){currentQ--;renderQuestion(currentQ)}}
@@ -1598,6 +1753,70 @@ function exitTransition(){
   if(pendingAfterTransition==null)return;
   currentQ=pendingAfterTransition;pendingAfterTransition=null;
   renderQuestion(currentQ);show('screen-question');
+}
+
+// Agency Matrix screen: 6 binary YES/NO questions on a single page. Renders
+// once when entered; CONTINUE button gates on all six being answered.
+function enterAgency(){
+  hideChamberProgress();
+  setProgress(98);
+  document.body.classList.remove('footer-hidden');
+  renderAgency();
+  show('screen-agency');
+  refreshAgencyContinueGate();
+}
+function renderAgency(){
+  var grid=document.getElementById('agencyGrid');if(!grid)return;
+  grid.innerHTML='';
+  for(var i=0;i<AGENCY_QUESTIONS.length;i++){
+    var q=AGENCY_QUESTIONS[i];
+    var cur=agencyAnswers[q.n];
+    var row=document.createElement('div');
+    row.className='agency-row'+(cur?' answered '+cur:'');
+    row.dataset.q=q.n;
+    var axisLabel=q.axis==='all'?'<span class="agency-axis">Touches all four</span>':'<span class="agency-axis">'+AGENCY_AXIS_LABEL[q.axis]+'</span>';
+    row.innerHTML=
+      '<p class="agency-text"><span class="agency-num">'+q.n+'.</span>'+q.text+axisLabel+'</p>'+
+      '<div class="agency-radio-group" role="radiogroup" aria-label="Question '+q.n+'">'+
+        '<label class="agency-radio'+(cur==='yes'?' sel-yes':'')+'" tabindex="0" data-val="yes" data-q="'+q.n+'">'+
+          '<input type="radio" name="agency-q'+q.n+'" value="yes"'+(cur==='yes'?' checked':'')+'>YES</label>'+
+        '<label class="agency-radio'+(cur==='no'?' sel-no':'')+'" tabindex="0" data-val="no" data-q="'+q.n+'">'+
+          '<input type="radio" name="agency-q'+q.n+'" value="no"'+(cur==='no'?' checked':'')+'>NO</label>'+
+      '</div>';
+    grid.appendChild(row);
+  }
+  // Wire click + keyboard activation
+  var labels=grid.querySelectorAll('.agency-radio');
+  for(var j=0;j<labels.length;j++){
+    (function(l){
+      l.addEventListener('click',function(e){e.preventDefault();setAgency(parseInt(l.dataset.q,10),l.dataset.val)});
+      l.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();setAgency(parseInt(l.dataset.q,10),l.dataset.val)}});
+    })(labels[j]);
+  }
+}
+function setAgency(qn,val){
+  agencyAnswers[qn]=val;
+  // Persist with the in-progress payload so a reload mid-agency does not lose answers
+  try{var raw=localStorage.getItem('hom_firsthour_inprogress');var d=raw?JSON.parse(raw):{};d.agency=agencyAnswers;localStorage.setItem('hom_firsthour_inprogress',JSON.stringify(d));showSavePill()}catch(e){}
+  renderAgency();
+  refreshAgencyContinueGate();
+}
+function refreshAgencyContinueGate(){
+  var btn=document.getElementById('agencyContinueBtn');
+  var meta=document.getElementById('agencyMeta');
+  if(!btn)return;
+  var answered=0;
+  for(var i=1;i<=AGENCY_QUESTIONS.length;i++)if(agencyAnswers[i])answered++;
+  var ready=(answered===AGENCY_QUESTIONS.length);
+  btn.disabled=!ready;
+  btn.style.opacity=ready?'1':'.55';
+  if(meta)meta.textContent=ready?'All six answered. Continue.':'Answered '+answered+' of '+AGENCY_QUESTIONS.length+'. Answer the rest to continue.';
+}
+function finishAgency(){
+  var done=true;
+  for(var i=1;i<=AGENCY_QUESTIONS.length;i++)if(!agencyAnswers[i])done=false;
+  if(!done)return;
+  enterAck();
 }
 
 function enterAck(){
@@ -1763,6 +1982,8 @@ function buildRecord(){
   var cs=chamberScores();var loud=loudestChamber();
   var scores={total:totalScore()};
   for(var i=0;i<cs.length;i++)scores['ch_'+cs[i].key]=cs[i].score;
+  var pulse=spiritPulse();if(pulse)scores.spirit_pulse=pulse.score;
+  var matrix=matrixResolve(agencyAnswers);
   return {
     date:new Date().toISOString(),name:participantName,email:participantEmail,
     answers:Object.assign({},answers),scores:scores,
@@ -1770,7 +1991,10 @@ function buildRecord(){
     unfinished_selected:unfinishedSelected.slice(),
     examen_selected:getExamenSelections(),
     emo_resonance:emoChoices.resonance,
-    emo_readiness:emoChoices.readiness
+    emo_readiness:emoChoices.readiness,
+    agency_answers:Object.assign({},agencyAnswers),
+    agency_matrix:matrix,
+    agency_all_red:matrixHasAllRed(agencyAnswers)
   };
 }
 
@@ -1802,6 +2026,7 @@ function buildResults(rec){
   renderAnchor(prior,returnIdx);
   renderProfile(prior);
   renderPattern(loud);
+  renderAgencyBlock(rec);
   renderCost();
   renderForecast();
   renderMovement(prior);
@@ -1877,10 +2102,82 @@ function renderProfile(prior){
 function renderPattern(loud){
   document.getElementById('patternH').innerHTML='The chamber running you most is <em>'+loud.name+'</em>.';
   // Mirror, Mechanism, Cost are inside CHAMBER_PARAGRAPHS. Append a strength line and a next-step pointer.
-  var quietest=chamberScores().slice().sort(function(a,b){return a.score-b.score})[0];
+  // Quietest chamber considers drift chambers only - exclude Spirit (pulse).
+  var driftScores=chamberScores().filter(function(c){return !c.pulse});
+  var quietest=driftScores.slice().sort(function(a,b){return a.score-b.score})[0];
   var strengthLine=' <b>What is still working in you:</b> '+quietest.name+' is the chamber least loud. Lean on it as the ground while you address the others.';
   var nextStep=' <b>Your next step:</b> the small specific move you write below is your first finishable one. The First Hour is not a meditation on the pattern. It is the place where the pattern meets the next twenty-four hours.';
   document.getElementById('patternBody').innerHTML=CHAMBER_PARAGRAPHS[loud.key]+'<br><br>'+strengthLine+'<br><br>'+nextStep;
+}
+
+// Agency Matrix block on the result page. Renders a 6-row matrix table
+// showing which axis each question touches, a hot-spot pill list with
+// red/gold/green colours per axis, and an action-plan card if any axis is
+// red. The 'all' card shows when Q5 or Q6 was NO.
+function renderAgencyBlock(rec){
+  var box=document.getElementById('agencyBlock');if(!box)return;
+  var ag=rec.agency_answers||{};
+  var color=rec.agency_matrix||matrixResolve(ag);
+  // If no agency answers (defensive), hide the block.
+  var anyAnswer=false;for(var k in ag){if(ag[k]){anyAnswer=true;break}}
+  if(!anyAnswer){box.style.display='none';return}
+  box.style.display='block';
+
+  // Matrix table: rows = 6 statements, cols = 4 agency axes.
+  var rows=[
+    {label:'I know my own thoughts',          axes:['think']},
+    {label:'I feel without numbing',           axes:['feel']},
+    {label:'I choose my first hour',           axes:['choose']},
+    {label:'I do what I say',                  axes:['do']},
+    {label:'I name what I want',               axes:['think','feel','choose','do']},
+    {label:'I finish what I start',            axes:['think','feel','choose','do']}
+  ];
+  var html='<span class="agency-block__h">YOUR AGENCY MATRIX</span>'+
+           '<h3 class="agency-block__h2">Where your agency is strongest, and where it is stuck.</h3>';
+  html+='<table class="agency-table"><thead><tr><th class="row-h"></th>';
+  for(var i=0;i<AGENCY_AXES.length;i++)html+='<th>'+AGENCY_AXIS_LABEL[AGENCY_AXES[i]].replace(/^WHAT I /,'')+'</th>';
+  html+='</tr></thead><tbody>';
+  for(var r=0;r<rows.length;r++){
+    html+='<tr><th class="row-h">'+(r+1)+'. '+rows[r].label+'</th>';
+    for(var c=0;c<AGENCY_AXES.length;c++){
+      var lit=rows[r].axes.indexOf(AGENCY_AXES[c])>=0;
+      html+='<td><span class="dot'+(lit?' lit':'')+'" aria-hidden="true"></span></td>';
+    }
+    html+='</tr>';
+  }
+  html+='</tbody></table>';
+
+  // Hot-spot pills, one per axis, coloured by resolution.
+  html+='<div class="agency-block__hotspots">';
+  for(var a=0;a<AGENCY_AXES.length;a++){
+    var ax=AGENCY_AXES[a];var col=color[ax]||'green';
+    html+='<span class="agency-pill '+col+'">'+AGENCY_AXIS_LABEL[ax]+' <span style="opacity:.7">'+col.toUpperCase()+'</span></span>';
+  }
+  html+='</div>';
+
+  // Action plan: each red axis adds a group; 'all' adds the structural card.
+  var redAxes=[];
+  for(var b=0;b<AGENCY_AXES.length;b++)if(color[AGENCY_AXES[b]]==='red')redAxes.push(AGENCY_AXES[b]);
+  var allRed=rec.agency_all_red||matrixHasAllRed(ag);
+  if(redAxes.length || allRed){
+    html+='<div class="action-plan"><div class="action-plan__h">YOUR NEXT MOVES</div>';
+    for(var x=0;x<redAxes.length;x++){
+      var rax=redAxes[x];
+      html+='<div class="action-plan__group"><p class="action-plan__axis">'+AGENCY_AXIS_LABEL[rax]+'</p><ul class="action-plan__list">';
+      for(var z=0;z<ACTION_PLAN[rax].length;z++)html+='<li>'+ACTION_PLAN[rax][z]+'</li>';
+      html+='</ul></div>';
+    }
+    if(allRed){
+      html+='<div class="action-plan__group"><p class="action-plan__axis">THE STRUCTURAL ANSWER</p><ul class="action-plan__list">';
+      for(var z=0;z<ACTION_PLAN.all.length;z++)html+='<li>'+ACTION_PLAN.all[z]+'</li>';
+      html+='</ul></div>';
+    }
+    html+='</div>';
+  }else{
+    html+='<p class="agency-block__green">All four axes are functioning. Protect what is working. The KOORA waitlist below is for the next layer when you are ready.</p>';
+  }
+
+  box.innerHTML=html;
 }
 
 function renderCost(){

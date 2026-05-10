@@ -33,7 +33,36 @@ test.describe('The First Hour — completion flow', () => {
       }
     }
 
+    // Agency Matrix screen: 6 binary YES/NO questions, gated SEE MY DIAGNOSTIC
+    await expect(page.getByRole('heading', { name: /six questions to map where you stand/i })).toBeVisible({ timeout: 5000 });
+    const seeBtn = page.getByRole('button', { name: /see my diagnostic/i });
+    await expect(seeBtn).toBeDisabled();
+    for (let q = 1; q <= 6; q++) {
+      await page.locator(`.agency-radio[data-q="${q}"][data-val="yes"]`).click();
+    }
+    await expect(seeBtn).toBeEnabled();
+    await seeBtn.click();
+
     await expect(page.getByRole('heading', { name: /you finished/i })).toBeVisible({ timeout: 5000 });
+  });
+
+  test('agency continue button is disabled until all six are answered', async ({ page }) => {
+    await page.goto('/first-hour.html');
+    const out = await page.evaluate(() => {
+      const W = window as unknown as {
+        matrixResolve: (a: Record<number, string>) => Record<string, string>;
+        matrixHasAllRed: (a: Record<number, string>) => boolean;
+      };
+      const allYes = W.matrixResolve({1:'yes',2:'yes',3:'yes',4:'yes',5:'yes',6:'yes'});
+      const oneNoOnThink = W.matrixResolve({1:'no',2:'yes',3:'yes',4:'yes',5:'yes',6:'yes'});
+      const broadDownButAxisYes = W.matrixResolve({1:'yes',2:'yes',3:'yes',4:'yes',5:'no',6:'yes'});
+      const allRed = W.matrixHasAllRed({1:'yes',2:'yes',3:'yes',4:'yes',5:'no',6:'yes'});
+      return { allYes, oneNoOnThink, broadDownButAxisYes, allRed };
+    });
+    expect(out.allYes).toEqual({think:'green',feel:'green',choose:'green',do:'green'});
+    expect(out.oneNoOnThink).toEqual({think:'red',feel:'green',choose:'green',do:'green'});
+    expect(out.broadDownButAxisYes).toEqual({think:'gold',feel:'gold',choose:'gold',do:'gold'});
+    expect(out.allRed).toBe(true);
   });
 
   test('skip-to-content link is the first focusable element', async ({ page }) => {
