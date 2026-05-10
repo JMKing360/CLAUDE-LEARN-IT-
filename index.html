@@ -583,7 +583,7 @@ body.footer-hidden footer{display:none}
 .cover-letter__body p{margin-bottom:14px}
 .cover-letter__body p:last-child{margin-bottom:0}
 .cover-letter__sig{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:18px;font-weight:500;color:var(--ink);margin-top:24px;line-height:1.4;padding-top:18px;border-top:1px solid var(--rule-soft)}
-.cover-letter__sig small{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.cover-letter__sig small{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:18px;font-weight:500;color:var(--ink);letter-spacing:0;text-transform:none;margin-top:2px}
 @media(max-width:560px){
   .cover-letter{padding:26px 22px}
   .cover-letter__head{gap:14px}
@@ -596,6 +596,7 @@ body.footer-hidden footer{display:none}
   .cover-letter__head img{width:56px;height:56px}
   .cover-letter__body{font-size:15.5px;line-height:1.6}
   .cover-letter__sig{font-size:16px;margin-top:18px;padding-top:14px}
+  .cover-letter__sig small{font-size:16px}
 }
 
 /* Meet Dr. Job  -  bottom of result page, after all blocks */
@@ -950,7 +951,7 @@ body.footer-hidden footer{display:none}
   <div class="field-stack">
     <label class="field-label" for="participantName">Your first name</label>
     <input class="field-input" type="text" id="participantName" placeholder="Enter your first name" autocomplete="given-name" maxlength="40" aria-required="true" aria-describedby="participantNameHint" inputmode="text" spellcheck="false" autocapitalize="words">
-    <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;color:var(--mid);margin-top:6px;line-height:1.45">No one else gets to see this, it's yours.</p>
+    <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;color:var(--mid);margin-top:6px;line-height:1.55">No one else gets to see this, it’s yours.</p>
   </div>
 
   <div class="field-stack">
@@ -1014,7 +1015,7 @@ body.footer-hidden footer{display:none}
     <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
   </div>
 
-  <p class="result-toc"><span class="result-toc__label">In this result:</span> Snapshot · The Path · Pattern Profile · Allegiance Matrix · ALCARRA · Fundamental Needs · Forces of Necessity · Fidelities · Faculties · Daily Practice</p>
+  <p class="result-toc"><span class="result-toc__label">In this result:</span> Snapshot · The Path · Pattern Profile · Allegiance Matrix · ALCARRA · Fundamental Needs · Forces · Fidelities · Faculties · Daily Practice · Threshold Map · Covenant in Motion · Cost of the Pattern</p>
 
   <!-- v3.3  -  Reaffirmation block, shown only on repeat takes -->
   <div class="reaffirm" id="reaffirmBlock" style="display:none">
@@ -1199,7 +1200,7 @@ body.footer-hidden footer{display:none}
 </div>
 
 <footer>
-  <p class="foot-credit">©House of Mastery with Dr Job Mogire™ . KOORA™ . The Unfinished Life™ . Don't Die With An Unfinished Life™ . <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin:14px auto 0;opacity:.7" onerror="this.style.display='none'"></p>
+  <p class="foot-credit">©House of Mastery with Dr Job Mogire™ · KOORA™ · The Unfinished Life™ · Don't Die With An Unfinished Life™ · <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin:14px auto 0;opacity:.7" onerror="this.style.display='none'"></p>
 </footer>
 
 <script src="/shared.js"></script>
@@ -2977,8 +2978,8 @@ function renderCohortCta(returnIdx){
   }else{
     box.innerHTML='<span class="cohort-eyebrow">If the path is yours to walk</span>'+
       '<div class="cohort-h">You have just named the diagnosis. <em>KOORA is the discipline that meets it.</em></div>'+
-      '<div class="cohort-body"><b>KOORA opens once a year.</b> Cohort 2 of <b>KOORA: The Finisher’s Protocol</b> opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats, a number that is structural rather than arbitrary. The next window after that is November 2027.</div>'+
-      '<div class="cohort-body">Each monthly module opens in the first week of its month. If you miss a module, you do not see it again until the next year. The architecture is non-recoverable on purpose. The work asks for that.</div>'+
+      '<div class="cohort-body"><b>KOORA opens once a year.</b> Cohort 2 opens <b>'+COHORT_2_LAUNCH+'</b>. Twenty-four seats, a number that is structural rather than arbitrary. The next window after that is November 2027.</div>'+
+      '<div class="cohort-body">Each monthly module opens in the first week of its month. If you miss a module, you do not see it again until the next year. <b>The architecture is non-recoverable on purpose.</b></div>'+
       '<div class="cohort-body">The pattern you just saw will run again within twenty-four hours. The instrument named it. The cohort is the place that holds the return.</div>'+
       '<a class="btn-primary" href="https://hom.mogire.com" target="_blank" rel="noopener">Reserve your place at hom.mogire.com</a>';
   }
