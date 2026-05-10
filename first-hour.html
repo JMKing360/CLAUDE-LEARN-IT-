@@ -256,6 +256,11 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 }
 
 .welcome-brand{margin-bottom:28px}
+.rebuild-notice{position:relative;display:flex;flex-direction:column;gap:6px;padding:14px 44px 14px 18px;margin:0 0 24px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;line-height:1.55;letter-spacing:.005em}
+.rebuild-notice__h{font-weight:800;color:var(--ink);letter-spacing:.005em}
+.rebuild-notice__body{color:var(--body);font-weight:500}
+.rebuild-notice__close{position:absolute;top:10px;right:10px;width:24px;height:24px;border:none;background:transparent;color:var(--mid);font-size:18px;font-weight:700;cursor:pointer;line-height:1;border-radius:4px}
+.rebuild-notice__close:hover{color:var(--ink);background:rgba(13,31,60,.05)}
 .welcome-firsthour-mark{display:inline-block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:800;letter-spacing:.22em;color:var(--navy);text-transform:uppercase;margin-bottom:10px}
 .welcome-firsthour-mark b{color:var(--gold);font-weight:900}
 .welcome-tm{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:500;color:var(--mid);line-height:1.65;letter-spacing:.005em;margin:0;max-width:560px}
@@ -319,7 +324,20 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
   .agency-radio{font-size:14px;padding:12px 14px}
 }
 
-/* Result-page agency block: matrix table + RGB pills + action plan */
+/* Spirit Pulse callout: a readiness-positive block separate from drift signals */
+.spirit-pulse{margin:0;padding:24px 28px;background:linear-gradient(135deg, var(--gold-soft), var(--surface-2));border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0}
+.spirit-pulse__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.spirit-pulse__h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.25;margin:0 0 12px}
+.spirit-pulse__body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:500;color:var(--body);line-height:1.6;margin:0;letter-spacing:-.003em}
+.spirit-pulse__body b{color:var(--ink);font-weight:700}
+.spirit-pulse__meter{display:flex;align-items:center;gap:14px;margin:14px 0 16px}
+.spirit-pulse__bar{flex:1;height:8px;background:var(--rule-soft);border-radius:4px;overflow:hidden}
+.spirit-pulse__bar div{height:100%;border-radius:4px;background:var(--navy);transition:width .8s cubic-bezier(.4,0,.2,1)}
+.spirit-pulse__num{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.005em}
+.spirit-pulse__label{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+@media(max-width:560px){.spirit-pulse{padding:20px 22px}}
+
+/* Result-page agency block: matrix table + pills + action plan */
 .agency-block{margin:32px 0 8px;padding:28px 30px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0}
 .agency-block__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
 .agency-block__h2{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,26px);font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.25;margin:0 0 18px}
@@ -336,8 +354,6 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .agency-pill::before{content:'';display:inline-block;width:10px;height:10px;border-radius:50%}
 .agency-pill.red{background:rgba(196,68,68,.1);color:#8E2929}
 .agency-pill.red::before{background:#C44}
-.agency-pill.gold{background:rgba(201,151,58,.12);color:#7A5618}
-.agency-pill.gold::before{background:var(--gold)}
 .agency-pill.green{background:rgba(58,142,92,.1);color:#246B43}
 .agency-pill.green::before{background:#3A8E5C}
 .action-plan{background:var(--white);border:1px solid var(--rule-soft);border-radius:var(--r-md);padding:22px 24px;margin:0}
@@ -382,9 +398,15 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .profile-bar{height:6px;background:var(--rule-soft);border-radius:3px;overflow:hidden}
 .profile-bar > div{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 .bar-quiet{background:var(--green)}.bar-active{background:var(--amber)}.bar-loud{background:var(--red)}
+/* Pulse chamber (Spirit) - inverted semantics: high pct = good. Renders in
+   navy-and-gold so it is visually distinct from drift chambers. */
+.bar-pulse-quiet{background:rgba(13,31,60,.25)}.bar-pulse-build{background:var(--gold)}.bar-pulse-strong{background:var(--navy)}
+.profile-row--pulse{background:linear-gradient(to right, rgba(201,151,58,.05), transparent 60%);border-left:3px solid var(--gold);padding-left:14px;margin-left:-14px}
+.pulse-tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:.18em;color:var(--gold);background:var(--gold-soft);padding:2px 6px;border-radius:4px;vertical-align:middle;margin-left:8px}
 .profile-val{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
 .profile-val .lvl{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .lvl-quiet{color:var(--green)}.lvl-active{color:var(--amber)}.lvl-loud{color:#A46410}
+.lvl-pulse-quiet{color:var(--mid)}.lvl-pulse-build{color:var(--gold)}.lvl-pulse-strong{color:var(--navy)}
 .profile-val .delta{font-size:10px;font-weight:600}
 .delta-up{color:var(--green)}.delta-down{color:var(--red)}.delta-flat{color:var(--mid)}
 .tbl-legend{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);line-height:1.55;margin-top:12px;letter-spacing:.005em;padding:0 4px}
@@ -843,6 +865,11 @@ body.footer-hidden footer{display:none}
     <span class="welcome-firsthour-mark">THE FIRST HOUR <b>·</b> HOUSE OF MASTERY</span>
     <p class="welcome-tm">©House of Mastery with Dr Job Mogire™ · The First Hour™ · The Unfinished Life™ · Don't Die With An Unfinished Life™ · <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a></p>
   </div>
+  <div class="rebuild-notice" id="rebuildNotice" style="display:none">
+    <span class="rebuild-notice__h">The instrument was rebuilt.</span>
+    <span class="rebuild-notice__body">Nine chambers, three triads, sixty items. Your prior takes are preserved as anchor dates only — chamber scores cannot be carried across the rebuild cleanly.</span>
+    <button class="rebuild-notice__close" type="button" onclick="dismissRebuildNotice()" aria-label="Dismiss">×</button>
+  </div>
   <span class="eyebrow">THE FIRST HOUR · A nine-chamber audit</span>
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
   <p class="lede">A life can run you while you think you are running it. <strong>From the outside, it works.</strong> The biography reads well at weddings, even when it does not read well at home. From the inside, something is on mute, the work does not get done, the years pass, and the people who think they know you do not. <strong>You are not lazy. You just never finish.</strong></p>
@@ -877,7 +904,7 @@ body.footer-hidden footer{display:none}
       <p class="triad__chambers"><span>Time that Disappeared</span><span>Attention that Got Farmed</span><span>Money that Owns You</span></p>
     </div>
   </div>
-  <p class="triad-summary">Nine chambers. Three triads. Fifteen honest minutes.</p>
+  <p class="triad-summary">Nine chambers. Three triads. Fifteen honest minutes. <b>You move outer first, deepest last</b> — the audit opens with what is being taken from you, and ends inside the wanting that is still yours.</p>
 
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
     <img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" class="cover-letter__brandmark" onerror="this.style.display='none'">
@@ -1013,7 +1040,7 @@ body.footer-hidden footer{display:none}
     <span>Audit by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Author · Speaker</span>
   </div>
 
-  <p class="result-toc"><span class="result-toc__label">In this result:</span> The Six Chambers · The Cost in Your Life · What Has Changed · Your Own Words · What You Have Just Diagnosed · The Finishing System · Twelve-Month Arc</p>
+  <p class="result-toc"><span class="result-toc__label">In this result:</span> The Nine Chambers · Your Agency Matrix · The Cost in Your Life · What Has Changed · Your Own Words · What You Have Just Diagnosed · The Finishing System · Twelve-Month Arc</p>
 
   <!-- v3.5.3. Scoring transparency surface -->
   <details class="scoring-note">
@@ -1030,9 +1057,9 @@ body.footer-hidden footer{display:none}
   <div class="r-block" id="anchorBlock"></div>
 
   <div class="r-block">
-    <span class="r-block-label">The Six Chambers</span>
+    <span class="r-block-label">The Nine Chambers</span>
     <div class="profile-list" id="profileList"></div>
-    <p class="tbl-legend"><b>How to read this:</b> Each chamber scores 0 to 24. <b>Quiet</b> is rare drift. <b>Active</b> is noticeable drift. <b>Loud</b> is the chamber currently shaping your life. The arrow shows movement since your last return, when there is one.</p>
+    <p class="tbl-legend"><b>How to read this:</b> Each chamber scores 6 to 24. The first eight are <b>drift</b> chambers — <b>Quiet</b> is rare drift, <b>Active</b> is noticeable drift, <b>Loud</b> is the chamber currently shaping your life. The ninth, <b>Spirit</b>, is read differently — it is a <b>pulse</b>, not a drift. A <b>strong pulse</b> means the wanting in you is loud and usable. A <b>quiet pulse</b> means the wanting has gone underground. The arrow shows movement since your last return, when there is one.</p>
   </div>
 
   <div class="r-block">
@@ -1041,6 +1068,13 @@ body.footer-hidden footer{display:none}
       <div class="feature-h" id="patternH"></div>
       <div class="feature-body" id="patternBody"></div>
     </div>
+  </div>
+
+  <!-- Spirit Pulse callout (rendered by renderSpiritPulse). Surfaces the
+       readiness-pulse aggregate as a positive-frame block, separate from the
+       drift-coloured chamber profile. -->
+  <div class="r-block">
+    <div class="spirit-pulse" id="spiritPulseBlock"></div>
   </div>
 
   <!-- Agency Matrix block (rendered by renderAgencyBlock when result loads) -->
@@ -1330,7 +1364,7 @@ var QUESTIONS=[
   {n:6, sec:1, sn:'The Money that Owns You', text:'When I imagine money behaving as a tool I direct rather than a force that directs me, I want this more than I let myself acknowledge.'},
 
   // Chamber 2 (Triad 3): The Time that Disappeared
-  {n:7, sec:2, sn:'The Time that Disappeared', text:'I start my day feeling tired before I even begin the first task.'},
+  {n:7, sec:2, sn:'The Time that Disappeared', text:'I start my day already tired, before the first task even begins.'},
   {n:8, sec:2, sn:'The Time that Disappeared', text:'When I look at how my year is shaping up, the days are full but the year feels thin.'},
   {n:9, sec:2, sn:'The Time that Disappeared', text:'When I think of "later," I know somewhere that I am running out of it.'},
   {n:10, sec:2, sn:'The Time that Disappeared', text:'When I notice how time has been moving, the years pass faster every year, and I do not know why.'},
@@ -1339,7 +1373,7 @@ var QUESTIONS=[
 
   // Chamber 3 (Triad 3): The Attention that Got Farmed
   {n:13, sec:3, sn:'The Attention that Got Farmed', text:'The first hour of my day does not belong to me. It belongs to whatever notification arrived while I was sleeping.'},
-  {n:14, sec:3, sn:'The Attention that Got Farmed', text:'I start my day by checking messages and news instead of focusing on my priorities.'},
+  {n:14, sec:3, sn:'The Attention that Got Farmed', text:'I start my day by checking messages and news. My own priorities come second.'},
   {n:15, sec:3, sn:'The Attention that Got Farmed', text:'I notice how my attention scatters to many tasks without finishing any of them.'},
   {n:16, sec:3, sn:'The Attention that Got Farmed', text:'I want to finish what I start not for applause but because I am tired of carrying the weight of what I left undone.'},
   {n:17, sec:3, sn:'The Attention that Got Farmed', text:'I catch myself starting something new to escape the work I already started but did not finish.'},
@@ -1362,12 +1396,13 @@ var QUESTIONS=[
   {n:30, sec:5, sn:'The Mind that Stopped Thinking', text:'I am not tired because I worked hard. I am tired because I carried what I did not finish.'},
 
   // Chamber 6 (Triad 2): The Word that Weighs on Strangers
-  {n:31, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel shame when I realize how many promises I have broken to myself this year.'},
+  // Word chamber - body-felt cool first (asymmetry), shame question later.
+  {n:31, sec:6, sn:'The Word that Weighs on Strangers', text:'I am more reliable to other people than I am to myself.'},
   {n:32, sec:6, sn:'The Word that Weighs on Strangers', text:'The promises I break most often are the ones I make to myself.'},
-  {n:33, sec:6, sn:'The Word that Weighs on Strangers', text:'When I make a commitment, part of me already doubts I can keep it.'},
-  {n:34, sec:6, sn:'The Word that Weighs on Strangers', text:'I hesitate to keep promises to myself because I expect to fail again.'},
-  {n:35, sec:6, sn:'The Word that Weighs on Strangers', text:'I am more reliable to other people than I am to myself.'},
-  {n:36, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel that my word to myself has less weight than my word to others.'},
+  {n:33, sec:6, sn:'The Word that Weighs on Strangers', text:'My word to myself has less weight than my word to others.'},
+  {n:34, sec:6, sn:'The Word that Weighs on Strangers', text:'When I make a commitment, part of me already doubts I can keep it.'},
+  {n:35, sec:6, sn:'The Word that Weighs on Strangers', text:'I hesitate to make a new promise to myself because I expect to fail again.'},
+  {n:36, sec:6, sn:'The Word that Weighs on Strangers', text:'I feel shame when I notice how many promises I have broken to myself this year.'},
 
   // Chamber 7 (Triad 2): The Promise that Got Postponed
   {n:37, sec:7, sn:'The Promise that Got Postponed', text:'I often tell myself I need to finish tomorrow because today I am too tired or distracted.'},
@@ -1378,7 +1413,7 @@ var QUESTIONS=[
   {n:42, sec:7, sn:'The Promise that Got Postponed', text:'When I think of when I will start what I have been postponing, I find myself saying "next quarter" again.'},
 
   // Chamber 8 (Triad 2): The People You Are Pretending With
-  {n:43, sec:8, sn:'The People You Are Pretending With', text:'I feel pressure to appear like I have it all together, even when I am struggling inside.'},
+  {n:43, sec:8, sn:'The People You Are Pretending With', text:'I perform "I am fine" to people who would still love me struggling.'},
   {n:44, sec:8, sn:'The People You Are Pretending With', text:'I feel like I am living two lives: one I show others, and one where unfinished work piles up.'},
   {n:45, sec:8, sn:'The People You Are Pretending With', text:'When I am in a room full of people who think they know me, I am lonely there.'},
   {n:46, sec:8, sn:'The People You Are Pretending With', text:'When I think of the conversations I most need to have, they are the ones I keep avoiding.'},
@@ -1481,21 +1516,25 @@ var ACTION_PLAN={
   ]
 };
 
-// Resolve six YES/NO answers into a red/gold/green colour per axis.
-// Rules (per spec):
-//   GREEN: the axis-direct Q is YES AND both broad Qs (5 and 6) are YES.
-//   GOLD:  the axis-direct Q is YES BUT at least one broad Q is NO.
-//   RED:   the axis-direct Q is NO (broad Qs amplify but do not override).
-// If Q5 or Q6 is NO, the action-plan also surfaces the 'all' card.
+// Resolve six YES/NO answers into a red/green colour per axis.
+// Spec (binary):
+//   GREEN: the axis-direct Q is YES AND neither broad Q (5/6) is NO.
+//   RED:   the axis-direct Q is NO, OR Q5 is NO, OR Q6 is NO.
+// When Q5 or Q6 is NO, the spec floods all four axes RED ("ALL FOUR is red");
+// matrixHasAllRed surfaces the structural action card on the result page.
+// GOLD is reserved for a future scoring pass that takes chamber-level drift
+// into account; the binary resolver does not produce GOLD on its own.
 function matrixResolve(ag){
-  var color={think:'green',feel:'green',choose:'green',do:'green'};
-  var direct={think:1,feel:2,choose:3,do:4};
-  var broadDown=(ag&&(ag[5]==='no'||ag[6]==='no'));
+  var color={think:null,feel:null,choose:null,do:null};
+  if(!ag)return color;
+  var axisQ={think:1,feel:2,choose:3,do:4};
+  var broadDown=(ag[5]==='no'||ag[6]==='no');
   for(var i=0;i<AGENCY_AXES.length;i++){
     var ax=AGENCY_AXES[i];
-    if(!ag||ag[direct[ax]]==null){color[ax]=null;continue}
-    if(ag[direct[ax]]==='no'){color[ax]='red';continue}
-    color[ax]=broadDown?'gold':'green';
+    var aDirect=ag[axisQ[ax]];
+    if(aDirect==null && ag[5]==null && ag[6]==null){color[ax]=null;continue}
+    if(broadDown){color[ax]='red';continue}
+    color[ax]=(aDirect==='no')?'red':'green';
   }
   return color;
 }
@@ -1564,6 +1603,36 @@ function takeFraming(takeNum){
   return 'Take '+n+'. Keep looking.';
 }
 
+// One-time migration from the v2 6-chamber 42-item store into the v3
+// 9-chamber 54-item store. v2 chamber scores cannot be remapped onto v3
+// chambers cleanly (different chambers, different question count), so the
+// records carry over with a `legacy:true` flag and the new takeFraming /
+// reaffirm logic treats them as historical anchors only. Runs at most once.
+function dismissRebuildNotice(){
+  try{localStorage.setItem('hom_firsthour_v3_notice_dismissed','1')}catch(e){}
+  var n=document.getElementById('rebuildNotice');if(n)n.style.display='none';
+}
+function migrateHistoryV2toV3(){
+  try{
+    if(localStorage.getItem('hom_firsthour_v3_migrated')==='1')return;
+    var rawV2=localStorage.getItem('hom_firsthour_history_v2');
+    if(!rawV2){localStorage.setItem('hom_firsthour_v3_migrated','1');return}
+    var v2=JSON.parse(rawV2)||[];
+    var rawV3=localStorage.getItem(STORAGE_KEY);
+    var v3=rawV3?JSON.parse(rawV3):[];
+    var carried=[];
+    for(var i=0;i<v2.length;i++){
+      var r=v2[i];if(!r||!r.date)continue;
+      carried.push({date:r.date,name:r.name||'',email:r.email||'',legacy:true});
+    }
+    if(carried.length){
+      v3=carried.concat(v3);
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(v3));
+    }
+    localStorage.setItem('hom_firsthour_v3_migrated','1');
+  }catch(e){}
+}
+try{migrateHistoryV2toV3()}catch(e){}
 function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
 function saveHistory(arr){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(arr))}catch(e){}}
 function appendRecord(rec){var h=loadHistory();h.push(rec);saveHistory(h);return h}
@@ -1630,6 +1699,17 @@ document.addEventListener('DOMContentLoaded',function(){
 
   // Pre-Audit Examen on welcome
   if(typeof renderExamen==='function')renderExamen();
+
+  // One-time rebuild notice: shown only when v2 records were carried into v3
+  // and the participant has not yet dismissed the notice on this device.
+  try{
+    var migrated=loadHistory().some(function(r){return r&&r.legacy});
+    var dismissed=localStorage.getItem('hom_firsthour_v3_notice_dismissed')==='1';
+    if(migrated&&!dismissed){
+      var n=document.getElementById('rebuildNotice');
+      if(n)n.style.display='flex';
+    }
+  }catch(e){}
 
   document.addEventListener('keydown',function(e){
     var qScreen=document.getElementById('screen-question');
@@ -1858,17 +1938,21 @@ function spiritPulse(){
 function totalScore(){var s=0;for(var k in answers)s+=answers[k];return s}
 function levelNeg(pct){return pct<=0.44?'quiet':pct<=0.69?'active':'loud'}
 function levelLabel(pct){return ({quiet:'Quiet',active:'Active',loud:'Loud'})[levelNeg(pct)]}
+// Spirit chamber is read as readiness, not drift. High pct = strong wanting,
+// which is positive news. levelPulse() inverts the mental model: low pulse =
+// the wanting is barely audible; strong pulse = the wanting is clear and
+// usable. Renders next to the Spirit row only.
+function levelPulse(pct){return pct<=0.44?'quiet pulse':pct<=0.69?'building pulse':'strong pulse'}
+function levelPulseClass(pct){return pct<=0.44?'pulse-quiet':pct<=0.69?'pulse-build':'pulse-strong'}
 
 // Cost estimation, rough but defensible.
 // All numbers anchor to the participant's own self-reports.
 // With 6 items per chamber × 4-point Likert, scores range 6 (low) to 24 (high) per chamber.
 function estimateCost(){
   var cs=chamberScores();
-  var tm=cs.find(function(x){return x.key==='time'}).score;
-  var ww=cs.find(function(x){return x.key==='word'}).score;
-  var pp=cs.find(function(x){return x.key==='people'}).score;
-  var mn=cs.find(function(x){return x.key==='money'}).score;
-  var md=cs.find(function(x){return x.key==='mind'}).score;
+  var get=function(k){var f=cs.find(function(x){return x.key===k});return f?f.score:12};
+  var tm=get('time'), at=get('attention'), bd=get('body'), md=get('mind');
+  var ww=get('word'), pr=get('promise'), pp=get('people'), mn=get('money');
 
   // Calibration matched to the autopilot literature
   // (Killingsworth & Gilbert, 2010: ~47% of waking time on autopilot).
@@ -1876,13 +1960,17 @@ function estimateCost(){
   // ranges 6 (low) to 24 (high). The Killingsworth ceiling on a 112 hr
   // waking week is ~52 hr/wk; our scale lets honest answers reach the
   // upper extreme.
-  var bd=cs.find(function(x){return x.key==='body'}).score||12;
-  // Time + Mind + Body unconscious load (range 18-72). Scale to 0-56 hr/wk autopilot.
-  var unconsciousHoursWeekly=Math.round(((tm+md+bd-18)/54)*56);
+  //
+  // Phase 4 fix: unconscious-hours signal now includes Attention alongside
+  // Time + Mind + Body. Attention is literally the first-hour drift chamber,
+  // so it must contribute. Four chambers x range 18 = sum range 24 to 96.
+  var unconsciousHoursWeekly=Math.round(((tm+md+bd+at-24)/72)*56);
   var hoursYear=unconsciousHoursWeekly*52;
 
-  // Promises broken to self: scale by Word score (6-24). Up to ~132/yr at high.
-  var promisesBroken=Math.round(((ww-6)*7.3));
+  // Promises broken to self: combine Word (broken-on-day) and Promise
+  // (broken-by-deferral) signals. Both chambers run 6-24; sum 12-48.
+  // Upper end ~132/yr matches the prior single-Word ceiling.
+  var promisesBroken=Math.round(((ww+pr-12)/36)*132);
 
   // Conversations postponed: scale by People score (6-24). Up to ~50 at high.
   var conversationsPostponed=Math.round((pp-6)*2.8);
@@ -1984,6 +2072,10 @@ function buildRecord(){
   for(var i=0;i<cs.length;i++)scores['ch_'+cs[i].key]=cs[i].score;
   var pulse=spiritPulse();if(pulse)scores.spirit_pulse=pulse.score;
   var matrix=matrixResolve(agencyAnswers);
+  // Convenience summary fields - keep the GHL email template + downstream
+  // analytics simple by exposing the resolved axes directly.
+  var redAxes=[],greenAxes=[];
+  for(var ax in matrix){if(matrix[ax]==='red')redAxes.push(ax);else if(matrix[ax]==='green')greenAxes.push(ax)}
   return {
     date:new Date().toISOString(),name:participantName,email:participantEmail,
     answers:Object.assign({},answers),scores:scores,
@@ -1994,6 +2086,8 @@ function buildRecord(){
     emo_readiness:emoChoices.readiness,
     agency_answers:Object.assign({},agencyAnswers),
     agency_matrix:matrix,
+    agency_red_axes:redAxes,
+    agency_green_axes:greenAxes,
     agency_all_red:matrixHasAllRed(agencyAnswers)
   };
 }
@@ -2026,6 +2120,7 @@ function buildResults(rec){
   renderAnchor(prior,returnIdx);
   renderProfile(prior);
   renderPattern(loud);
+  renderSpiritPulse();
   renderAgencyBlock(rec);
   renderCost();
   renderForecast();
@@ -2079,21 +2174,26 @@ function renderProfile(prior){
   var arr=chamberScores();
   var html='';
   for(var i=0;i<arr.length;i++){
-    var c=arr[i],lvl=levelNeg(c.pct);
+    var c=arr[i];
+    var isPulse=!!c.pulse;
+    var lvl=isPulse?levelPulseClass(c.pct):levelNeg(c.pct);
+    var label=isPulse?levelPulse(c.pct):levelLabel(c.pct);
     var deltaH='';
     if(prior){
       var prev=prior.scores['ch_'+c.key]||0;
       if(prev>0){
         var d=c.score-prev;
+        // For pulse chambers, an upward score is good (more wanting), so
+        // flip the delta colour to mirror the drift convention's positive side.
         if(d===0)deltaH='<span class="delta delta-flat">no change</span>';
-        else if(d<0)deltaH='<span class="delta delta-up">↓ '+Math.abs(d)+'</span>';
-        else deltaH='<span class="delta delta-down">↑ '+d+'</span>';
+        else if(d<0)deltaH='<span class="delta '+(isPulse?'delta-down':'delta-up')+'">↓ '+Math.abs(d)+'</span>';
+        else deltaH='<span class="delta '+(isPulse?'delta-up':'delta-down')+'">↑ '+d+'</span>';
       }
     }
-    html+='<div class="profile-row">'+
-      '<div class="profile-name">'+c.name+'<span>'+c.sub+'</span></div>'+
+    html+='<div class="profile-row'+(isPulse?' profile-row--pulse':'')+'">'+
+      '<div class="profile-name">'+c.name+(isPulse?' <span class="pulse-tag">PULSE</span>':'')+'<span>'+c.sub+'</span></div>'+
       '<div class="profile-bar"><div class="bar-'+lvl+'" style="width:'+Math.round(c.pct*100)+'%"></div></div>'+
-      '<div class="profile-val lvl-'+lvl+'"><span>'+c.score+' / '+c.max+'</span><span class="lvl">'+levelLabel(c.pct)+'</span>'+deltaH+'</div>'+
+      '<div class="profile-val lvl-'+lvl+'"><span>'+c.score+' / '+c.max+'</span><span class="lvl">'+label+'</span>'+deltaH+'</div>'+
       '</div>';
   }
   document.getElementById('profileList').innerHTML=html;
@@ -2108,6 +2208,31 @@ function renderPattern(loud){
   var strengthLine=' <b>What is still working in you:</b> '+quietest.name+' is the chamber least loud. Lean on it as the ground while you address the others.';
   var nextStep=' <b>Your next step:</b> the small specific move you write below is your first finishable one. The First Hour is not a meditation on the pattern. It is the place where the pattern meets the next twenty-four hours.';
   document.getElementById('patternBody').innerHTML=CHAMBER_PARAGRAPHS[loud.key]+'<br><br>'+strengthLine+'<br><br>'+nextStep;
+}
+
+// Spirit Pulse callout: renders the readiness aggregate as its own positive
+// signal block. The drift-coloured profile bar above shows the score; this
+// block names the pulse and tells the participant what it means for action.
+function renderSpiritPulse(){
+  var box=document.getElementById('spiritPulseBlock');if(!box)return;
+  var p=spiritPulse();if(!p){box.style.display='none';return}
+  box.style.display='block';
+  var pct=p.pct;
+  var label=levelPulse(pct);
+  var pctNum=Math.round(pct*100);
+  var read;
+  if(pct<=0.44)        read='The wanting is barely audible. The chamber is not gone, only quiet. <b>Spending more time alone with no input</b> is how it begins to surface again.';
+  else if(pct<=0.69)   read='The wanting is forming. You can feel it on quiet days. <b>Letting it speak in the next twenty-four hours</b>, even briefly, is how it gets clearer.';
+  else                 read='The wanting is loud and usable. You already know what is yours to do. <b>The next move is acting on it without negotiating</b>, even one small move today.';
+  box.innerHTML=
+    '<span class="spirit-pulse__h">YOUR SPIRIT PULSE</span>'+
+    '<h3 class="spirit-pulse__h2">What you want, beneath the audit.</h3>'+
+    '<div class="spirit-pulse__meter">'+
+      '<span class="spirit-pulse__num">'+p.score+' / '+p.max+'</span>'+
+      '<div class="spirit-pulse__bar"><div style="width:'+pctNum+'%"></div></div>'+
+      '<span class="spirit-pulse__label">'+label+'</span>'+
+    '</div>'+
+    '<p class="spirit-pulse__body">'+read+'</p>';
 }
 
 // Agency Matrix block on the result page. Renders a 6-row matrix table
@@ -2376,9 +2501,49 @@ function _downloadPDF(){
 
   footer(1);doc.addPage();
 
-  // Page 2: cost + forecast + own words
+  // Page 2: agency matrix + cost + forecast + own words
   header('Page 2 of 3');
   y=32;
+
+  // Agency Matrix block - render as text/list (jsPDF table support is heavy
+  // and unnecessary here; the table on the web page already shows the
+  // dot-grid; the PDF surfaces the resolution + action items).
+  var color=rec.agency_matrix||matrixResolve(rec.agency_answers||{});
+  var hasAgency=false;for(var ak in (rec.agency_answers||{})){if(rec.agency_answers[ak]){hasAgency=true;break}}
+  if(hasAgency){
+    sectionLabel('Your agency matrix · resolved per axis',y);y+=7;
+    doc.setFont('helvetica','normal');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+    var axisLine=function(label,col){
+      var dot=col==='red'?'[RED]':col==='green'?'[GREEN]':'[--]';
+      doc.text('· '+dot+'  '+label,M,y);y+=5.4;
+    };
+    axisLine('WHAT I THINK',color.think);
+    axisLine('WHAT I FEEL',color.feel);
+    axisLine('WHAT I CHOOSE',color.choose);
+    axisLine('WHAT I DO',color.do);
+    y+=2;
+    var redAxesPdf=[];['think','feel','choose','do'].forEach(function(ax){if(color[ax]==='red')redAxesPdf.push(ax)});
+    if(redAxesPdf.length||rec.agency_all_red){
+      doc.setFont('helvetica','bold');doc.setFontSize(10);doc.setTextColor(ink[0],ink[1],ink[2]);
+      doc.text('Your next moves',M,y);y+=5.6;
+      doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.setTextColor(body[0],body[1],body[2]);
+      var pushMoves=function(label,key){
+        if(!ACTION_PLAN[key])return;
+        doc.setFont('helvetica','bold');doc.text(label+':',M,y);y+=4.8;
+        doc.setFont('helvetica','normal');
+        for(var z=0;z<ACTION_PLAN[key].length;z++){var L=doc.splitTextToSize('— '+ACTION_PLAN[key][z],W-M*2-4);doc.text(L,M+4,y);y+=L.length*4.6+1}
+        y+=2;
+      };
+      for(var rx=0;rx<redAxesPdf.length;rx++){pushMoves(({think:'WHAT I THINK',feel:'WHAT I FEEL',choose:'WHAT I CHOOSE',do:'WHAT I DO'})[redAxesPdf[rx]],redAxesPdf[rx])}
+      if(rec.agency_all_red)pushMoves('THE STRUCTURAL ANSWER','all');
+    }else{
+      doc.setFont('helvetica','italic');doc.setFontSize(10);doc.setTextColor(body[0],body[1],body[2]);
+      var L=doc.splitTextToSize('All four axes resolve green. Protect what is working. The KOORA waitlist below is for when the next layer calls.',W-M*2);
+      doc.text(L,M,y);y+=L.length*5+2;
+    }
+    y+=4;
+  }
+
   var co=estimateCost();var f=fiveYearForecast();
   sectionLabel('The cost · this period',y);y+=7;
   var costLines=[

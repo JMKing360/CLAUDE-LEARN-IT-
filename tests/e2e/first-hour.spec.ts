@@ -46,7 +46,7 @@ test.describe('The First Hour — completion flow', () => {
     await expect(page.getByRole('heading', { name: /you finished/i })).toBeVisible({ timeout: 5000 });
   });
 
-  test('agency continue button is disabled until all six are answered', async ({ page }) => {
+  test('matrixResolve follows the binary spec (red/green only)', async ({ page }) => {
     await page.goto('/first-hour.html');
     const out = await page.evaluate(() => {
       const W = window as unknown as {
@@ -55,14 +55,17 @@ test.describe('The First Hour — completion flow', () => {
       };
       const allYes = W.matrixResolve({1:'yes',2:'yes',3:'yes',4:'yes',5:'yes',6:'yes'});
       const oneNoOnThink = W.matrixResolve({1:'no',2:'yes',3:'yes',4:'yes',5:'yes',6:'yes'});
-      const broadDownButAxisYes = W.matrixResolve({1:'yes',2:'yes',3:'yes',4:'yes',5:'no',6:'yes'});
-      const allRed = W.matrixHasAllRed({1:'yes',2:'yes',3:'yes',4:'yes',5:'no',6:'yes'});
-      return { allYes, oneNoOnThink, broadDownButAxisYes, allRed };
+      // Per spec, broad NO (Q5 or Q6) floods all four axes RED.
+      const broadDownAxisYes = W.matrixResolve({1:'yes',2:'yes',3:'yes',4:'yes',5:'no',6:'yes'});
+      const broadDownQ6 = W.matrixResolve({1:'yes',2:'yes',3:'yes',4:'yes',5:'yes',6:'no'});
+      const allRedFlag = W.matrixHasAllRed({1:'yes',2:'yes',3:'yes',4:'yes',5:'no',6:'yes'});
+      return { allYes, oneNoOnThink, broadDownAxisYes, broadDownQ6, allRedFlag };
     });
     expect(out.allYes).toEqual({think:'green',feel:'green',choose:'green',do:'green'});
     expect(out.oneNoOnThink).toEqual({think:'red',feel:'green',choose:'green',do:'green'});
-    expect(out.broadDownButAxisYes).toEqual({think:'gold',feel:'gold',choose:'gold',do:'gold'});
-    expect(out.allRed).toBe(true);
+    expect(out.broadDownAxisYes).toEqual({think:'red',feel:'red',choose:'red',do:'red'});
+    expect(out.broadDownQ6).toEqual({think:'red',feel:'red',choose:'red',do:'red'});
+    expect(out.allRedFlag).toBe(true);
   });
 
   test('skip-to-content link is the first focusable element', async ({ page }) => {
