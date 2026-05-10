@@ -46,10 +46,16 @@
   var observe = function () {
     // Welcome shown
     if (document.getElementById('screen-welcome')) track('welcome_shown');
-    // Begin button click
-    var beginBtns = document.querySelectorAll('button[onclick="startAssessment()"]');
-    beginBtns.forEach(function (b) { b.addEventListener('click', function () { track('assessment_began'); }); });
-    // Send email button
+    // Begin button click — supports both the legacy startAssessment() inline handler
+    // and the new gated welcomeBeginClick() flow.
+    var beginBtns = document.querySelectorAll(
+      'button[onclick*="startAssessment"],button[onclick*="welcomeBeginClick"],#welcomeBeginBtn'
+    );
+    beginBtns.forEach(function (b) { b.addEventListener('click', function () { track('begin_clicked'); }); });
+    // Email gate confirm — fires when the participant clears the post-START email step
+    var emailGateBtns = document.querySelectorAll('button[onclick*="confirmEmailAndStart"]');
+    emailGateBtns.forEach(function (b) { b.addEventListener('click', function () { track('email_gate_confirmed'); }); });
+    // Send email button on the result page
     var sendBtn = document.getElementById('sendBtn');
     if (sendBtn) sendBtn.addEventListener('click', function () { track('email_sent_clicked'); });
   };

@@ -217,6 +217,16 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .field-input::placeholder{color:#B8B8BD}
 .field-stack{margin-bottom:22px}
 .welcome-cta{margin-top:32px;margin-bottom:8px}
+.welcome-email-gate{max-width:420px;padding:22px 22px 18px;margin-top:14px;background:var(--surface-2);border:1px solid var(--rule);border-radius:14px;animation:welcomeEmailGateIn .25s ease-out}
+.welcome-email-gate__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:600;color:var(--ink);line-height:1.45;letter-spacing:-.005em;margin:0 0 6px}
+.welcome-email-gate__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.55;margin:0 0 14px}
+.welcome-email-gate__sub a{color:var(--gold);text-decoration:underline}
+.welcome-email-gate__err{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--red);margin:6px 0 0}
+.welcome-email-gate__row{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.welcome-email-gate .btn-text{background:transparent;border:none;color:var(--mid);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;cursor:pointer;padding:8px 4px;letter-spacing:.005em;text-decoration:underline;text-underline-offset:2px;align-self:flex-start}
+.welcome-email-gate .btn-text:hover{color:var(--ink)}
+@keyframes welcomeEmailGateIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.welcome-email-gate{animation:none}}
 .welcome-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--body);margin-top:14px;line-height:1.6;letter-spacing:.005em;max-width:520px}
 .welcome-meta b{color:var(--ink);font-weight:700}
 .welcome-tagline{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--ink);margin:14px 0 0;line-height:1.5;letter-spacing:.005em}
@@ -319,7 +329,8 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .agency-radio:focus-within{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
 .agency-cta{margin-top:32px;text-align:center}
 .agency-cta .btn-primary{display:block;margin:0 auto}
-.agency-cta .btn-primary[disabled]{cursor:not-allowed}
+.agency-cta .btn-primary[disabled]{cursor:not-allowed;background:var(--rule);color:var(--mid);box-shadow:none}
+.agency-cta .btn-primary[disabled]:hover{background:var(--rule)}
 .agency-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:500;color:var(--mid);margin-top:14px;letter-spacing:.005em}
 @media(max-width:560px){
   #screen-agency{padding:64px 0 100px}
@@ -627,9 +638,9 @@ body.footer-hidden footer{display:none}
 .examen-block__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.6vw,24px);font-weight:600;color:var(--ink);margin:0 0 8px;letter-spacing:-.005em;line-height:1.3}
 .examen-block__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:500;color:var(--mid);line-height:1.5;margin:0 0 22px}
 .examen-grid{display:grid;grid-template-columns:1fr;gap:8px}
-.examen-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;transition:border-color .15s,background .15s}
+.examen-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .examen-item:hover{border-color:var(--gold-soft)}
-.examen-item:has(input:checked){border-color:var(--gold);background:#FAF6EC}
+.examen-item:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.22)}
 .examen-item input[type=checkbox]{flex-shrink:0;width:16px;height:16px;accent-color:var(--gold);margin-top:3px;cursor:pointer}
 .examen-item__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:-.005em}
 .emo-block{margin:0 0 36px;padding:30px 28px;background:var(--surface);border:1px solid var(--rule-soft);border-radius:var(--r-md);border-top:3px solid var(--gold)}
@@ -640,9 +651,9 @@ body.footer-hidden footer{display:none}
 .emo-question:last-child{margin-bottom:0}
 .emo-question__text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;line-height:1.55;color:var(--ink);margin-bottom:12px;font-weight:500;letter-spacing:-.005em}
 .emo-radio-group{display:flex;gap:10px;flex-wrap:wrap}
-.emo-radio{flex:1 1 calc(50% - 5px);min-width:120px;display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-sm);cursor:pointer;transition:all .2s ease;position:relative}
-.emo-radio:hover{border-color:var(--navy);background:var(--surface-2)}
-.emo-radio.selected{border-color:var(--gold);background:var(--gold-soft)}
+.emo-radio{flex:1 1 calc(50% - 5px);min-width:120px;display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-sm);cursor:pointer;transition:border-color .2s ease,box-shadow .2s ease;position:relative}
+.emo-radio:hover{border-color:var(--navy)}
+.emo-radio.selected{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.22)}
 .emo-radio input{position:absolute;opacity:0;pointer-events:none;width:0;height:0}
 .emo-radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--rule);background:var(--white);flex-shrink:0;position:relative;transition:all .2s ease}
 .emo-radio.selected .emo-radio-dot{border-color:var(--gold);background:var(--gold)}
@@ -698,7 +709,7 @@ body.footer-hidden footer{display:none}
 .emo-radio:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
 
 /* Save-progress indicator (during the assessment) */
-.save-pill{position:fixed;bottom:24px;right:24px;display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-pill);box-shadow:var(--shadow-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
+.save-pill{position:fixed;bottom:max(24px,env(safe-area-inset-bottom));right:max(24px,env(safe-area-inset-right));display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--rule);border-radius:var(--r-pill);box-shadow:var(--shadow-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12.5px;font-weight:600;color:var(--mid);opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;z-index:50;pointer-events:none}
 .save-pill.shown{opacity:1;transform:translateY(0)}
 .save-pill__dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(46,125,50,.4);animation:savepulse 1.4s ease-out 1}
 @keyframes savepulse{0%{box-shadow:0 0 0 0 rgba(46,125,50,.4)}100%{box-shadow:0 0 0 10px rgba(46,125,50,0)}}
@@ -754,6 +765,12 @@ body.footer-hidden footer{display:none}
   .scoring-note__body{color:var(--body)}
   .scoring-note__body code{background:var(--surface-3);color:var(--ink)}
   .save-pill{background:var(--surface-2);color:var(--body);border-color:var(--rule-soft)}
+  .foot-credit{color:var(--body)}
+  .foot-credit b{color:var(--ink)}
+  .profile-bar{background:var(--surface-3)}
+  .bar-quiet{background:var(--green)}
+  .bar-active{background:var(--amber)}
+  .bar-loud{background:var(--red)}
 }
 
 /* ============================================================
@@ -804,6 +821,9 @@ body.footer-hidden footer{display:none}
   #screen-welcome .body-text{max-width:640px}
 }
 </style>
+<script>window.HOM_CONFIG=window.HOM_CONFIG||{};</script>
+<script src="/feature-flags.js"></script>
+<script src="/observability.js" defer></script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
@@ -994,15 +1014,19 @@ body.footer-hidden footer{display:none}
     <p id="participantNameHint" class="field-hint" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;color:var(--mid);margin-top:6px;line-height:1.55">No one else gets to see this, it’s yours.</p>
   </div>
 
-  <div class="field-stack">
-    <label class="field-label" for="participantEmail">Your email</label>
-    <input class="field-input" type="email" id="participantEmail" placeholder="your@email.com" autocomplete="email" aria-required="true" aria-describedby="participantEmailHint" inputmode="email" spellcheck="false" autocapitalize="off">
-    <p id="participantEmailHint" class="consent-line">We send your full report to this email and a monthly reminder for twelve months to retake your first hour. We do not sell your data. You can unsubscribe at any time. Replies go to <b>mail@mogire.com</b>. Read our <a href="/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
-  </div>
-
   <div class="welcome-cta">
-    <button class="btn-primary" onclick="startAssessment()" style="max-width:300px;letter-spacing:.05em">BEGIN YOUR FIRST HOUR</button>
-    <p class="welcome-meta"><b>About fifteen minutes.</b> Press A, B, C, or D on your keyboard, or tap. Take one breath. Notice your shoulders. Begin.</p>
+    <button class="btn-primary" id="welcomeBeginBtn" onclick="welcomeBeginClick()" style="max-width:300px;letter-spacing:.05em">BEGIN YOUR FIRST HOUR</button>
+    <div class="welcome-email-gate" id="welcomeEmailGate" style="display:none">
+      <p class="welcome-email-gate__h">Your email — so the report can find you.</p>
+      <p class="welcome-email-gate__sub">We send your full report and a monthly reminder for twelve months. We do not sell your data. Replies reach <b>mail@mogire.com</b>. <a href="/privacy" target="_blank" rel="noopener">Privacy policy</a>.</p>
+      <input class="field-input" type="email" id="participantEmail" placeholder="your@email.com" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" maxlength="120">
+      <p class="welcome-email-gate__err" id="welcomeEmailErr" style="display:none">Enter a valid email address.</p>
+      <div class="welcome-email-gate__row">
+        <button class="btn-primary" onclick="confirmEmailAndStart()" style="max-width:300px;letter-spacing:.05em">CONTINUE</button>
+        <button class="btn-text" type="button" onclick="cancelEmailGate()">Back</button>
+      </div>
+    </div>
+    <p class="welcome-meta"><b>About fifteen minutes.</b> Take one breath. Notice your shoulders. Begin.</p>
     <p class="welcome-tagline"><em>Don’t die with an unfinished life.</em></p>
     <p class="welcome-waitlist">If you want the deeper protocol when it opens, email <a href="mailto:mail@mogire.com?subject=KOORA%20WAITLIST">mail@mogire.com</a> with subject <b>KOORA WAITLIST</b>.</p>
   </div>
@@ -1019,14 +1043,14 @@ body.footer-hidden footer{display:none}
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
   <span class="q-section" id="qSection">Chamber 1 of 9 · Money</span>
-  <h2 class="q-text" id="qText"></h2>
-  <div class="options" id="qOptions"></div>
+  <h2 class="q-text" id="qText" tabindex="-1"></h2>
+  <div class="options" id="qOptions" aria-describedby="qKeyhint"></div>
   <div class="q-foot">
     <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
-    <span class="q-foot-meta" id="qCount">Question 1 of 42</span>
+    <span class="q-foot-meta" id="qCount">Question 1 of 54</span>
     <span></span>
   </div>
-  <p class="q-keyhint">Press A, B, C, or D. The next question follows in a moment.</p>
+  <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap. The next question follows in a moment.</p>
 </section>
 
 <!-- ACK -->
@@ -1037,7 +1061,7 @@ body.footer-hidden footer{display:none}
   <p class="agency-sub">YES or NO. Be honest. This is not a test. It is a mirror. The four columns are <b>What I think</b>, <b>What I feel</b>, <b>What I choose</b>, <b>What I do</b>. Together they show where your agency is strongest and where it is stuck.</p>
   <div class="agency-grid" id="agencyGrid"></div>
   <div class="agency-cta">
-    <button class="btn-primary" id="agencyContinueBtn" onclick="finishAgency()" disabled style="max-width:300px;letter-spacing:.05em;background:var(--gold);color:var(--navy);font-weight:800;opacity:.55">SEE MY DIAGNOSTIC</button>
+    <button class="btn-primary" id="agencyContinueBtn" onclick="finishAgency()" disabled style="max-width:300px;letter-spacing:.05em;font-weight:800">SEE MY DIAGNOSTIC</button>
     <p class="agency-meta" id="agencyMeta">Answer all six to continue.</p>
   </div>
 </section>
@@ -1664,9 +1688,19 @@ function lastFor(email){var p=priorRecords(email);return p.length?p[p.length-1]:
 function show(id){
   var screens=document.querySelectorAll('.screen');
   for(var i=0;i<screens.length;i++)screens[i].classList.remove('active');
-  document.getElementById(id).classList.add('active');
+  var next=document.getElementById(id);
+  next.classList.add('active');
   window.scrollTo(0,0);
   document.body.classList.toggle('footer-hidden', id==='screen-question'||id==='screen-transition');
+  // Focus management: drop focus into the new screen so keyboard / SR users
+  // pick up the new content without tabbing past stale chrome. Question text
+  // already has tabindex=-1; for screens without an explicit focus target,
+  // fall back to the section element itself.
+  var target=next.querySelector('h1,h2,[data-screen-focus]')||next;
+  if(target&&typeof target.focus==='function'){
+    if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');
+    try{target.focus({preventScroll:true})}catch(e){target.focus()}
+  }
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
 function setChamberProgress(currentChamber){
@@ -1753,14 +1787,38 @@ function relTime(iso){
 // daysBetween(), formatDate(), safe(), isValidEmail() loaded from /shared.js
 
 // Flow
+function welcomeBeginClick(){
+  var nameEl=document.getElementById('participantName');
+  var name=(nameEl.value||'').trim();
+  if(!name){nameEl.focus();return}
+  document.getElementById('welcomeBeginBtn').style.display='none';
+  var gate=document.getElementById('welcomeEmailGate');
+  gate.style.display='block';
+  var em=document.getElementById('participantEmail');
+  try{var saved=localStorage.getItem('hom_firsthour_participant_email')||'';if(saved&&!em.value)em.value=saved}catch(e){}
+  setTimeout(function(){em.focus()},80);
+}
+function cancelEmailGate(){
+  document.getElementById('welcomeEmailGate').style.display='none';
+  document.getElementById('welcomeBeginBtn').style.display='inline-flex';
+  var err=document.getElementById('welcomeEmailErr');if(err)err.style.display='none';
+}
+function confirmEmailAndStart(){
+  var em=document.getElementById('participantEmail');
+  var email=(em.value||'').trim();
+  var err=document.getElementById('welcomeEmailErr');
+  if(!isValidEmail(email)){err.style.display='block';em.focus();return}
+  err.style.display='none';
+  participantEmail=email;
+  try{localStorage.setItem('hom_firsthour_participant_email',email)}catch(e){}
+  startAssessment();
+}
 function startAssessment(){
   var nameEl=document.getElementById('participantName');
-  var emailEl=document.getElementById('participantEmail');
   var name=(nameEl.value||'').trim();
-  var email=(emailEl.value||'').trim();
-  if(!name){nameEl.focus();return}
-  if(!isValidEmail(email)){emailEl.focus();return}
-  participantName=name;participantEmail=email;
+  if(!name){cancelEmailGate();nameEl.focus();return}
+  if(!isValidEmail(participantEmail||'')){cancelEmailGate();return}
+  participantName=name;
   answers={};currentQ=1;painText='';painText5y='';
   renderQuestion(1);show('screen-question');
 }
@@ -1899,7 +1957,6 @@ function refreshAgencyContinueGate(){
   for(var i=1;i<=AGENCY_QUESTIONS.length;i++)if(agencyAnswers[i])answered++;
   var ready=(answered===AGENCY_QUESTIONS.length);
   btn.disabled=!ready;
-  btn.style.opacity=ready?'1':'.55';
   if(meta)meta.textContent=ready?'All six answered. Continue.':'Answered '+answered+' of '+AGENCY_QUESTIONS.length+'. Answer the rest to continue.';
 }
 function finishAgency(){
