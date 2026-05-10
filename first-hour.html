@@ -282,7 +282,6 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
 .q-section{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.q-prompt{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
 .q-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(26px,4.0vw,36px);font-weight:600;line-height:1.28;letter-spacing:-.018em;color:var(--ink);margin-bottom:56px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
 .opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:var(--r-md);padding:22px 26px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
@@ -1019,8 +1018,7 @@ body.footer-hidden footer{display:none}
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <span class="q-section" id="qSection">Chamber 1 of 9</span>
-  <p class="q-prompt" id="qPrompt">Borrowed opinions, scrolled certainties</p>
+  <span class="q-section" id="qSection">Chamber 1 of 9 · Money</span>
   <h2 class="q-text" id="qText"></h2>
   <div class="options" id="qOptions"></div>
   <div class="q-foot">
@@ -1457,15 +1455,15 @@ var TRIADS=[
 ];
 
 var CHAMBERS=[
-  {key:'money',     n:1, triad:3, name:'The Money that Owns You',           sub:'Am I building, or just surviving?',                    qs:[1,2,3,4,5,6]},
-  {key:'time',      n:2, triad:3, name:'The Time that Disappeared',         sub:'Did my first hour choose me, or did it drift?',         qs:[7,8,9,10,11,12]},
-  {key:'attention', n:3, triad:3, name:'The Attention that Got Farmed',     sub:'Who owned my gaze before I chose it today?',            qs:[13,14,15,16,17,18]},
-  {key:'body',      n:4, triad:1, name:'The Body that Got Forgotten',       sub:'When did I last listen before pain forced me?',         qs:[19,20,21,22,23,24]},
-  {key:'mind',      n:5, triad:1, name:'The Mind that Stopped Thinking',    sub:'Do I think, or do I replay?',                          qs:[25,26,27,28,29,30]},
-  {key:'word',      n:6, triad:2, name:'The Word that Weighs on Strangers', sub:'Who gets my kept promises?',                            qs:[31,32,33,34,35,36]},
-  {key:'promise',   n:7, triad:2, name:'The Promise that Got Postponed',    sub:'What am I carrying that I said I would close?',         qs:[37,38,39,40,41,42]},
-  {key:'people',    n:8, triad:2, name:'The People You Are Pretending With',sub:'Who sees the real pile, not the presented order?',      qs:[43,44,45,46,47,48]},
-  {key:'spirit',    n:9, triad:1, name:'The Spirit that Got Silenced',      sub:'What do I want that I no longer say out loud?',         qs:[49,50,51,52,53,54], pulse:true}
+  {key:'money',     n:1, triad:3, name:'The Money that Owns You',           short:'Money',     qs:[1,2,3,4,5,6]},
+  {key:'time',      n:2, triad:3, name:'The Time that Disappeared',         short:'Time',      qs:[7,8,9,10,11,12]},
+  {key:'attention', n:3, triad:3, name:'The Attention that Got Farmed',     short:'Attention', qs:[13,14,15,16,17,18]},
+  {key:'body',      n:4, triad:1, name:'The Body that Got Forgotten',       short:'Body',      qs:[19,20,21,22,23,24]},
+  {key:'mind',      n:5, triad:1, name:'The Mind that Stopped Thinking',    short:'Mind',      qs:[25,26,27,28,29,30]},
+  {key:'word',      n:6, triad:2, name:'The Word that Weighs on Strangers', short:'Word',      qs:[31,32,33,34,35,36]},
+  {key:'promise',   n:7, triad:2, name:'The Promise that Got Postponed',    short:'Promise',   qs:[37,38,39,40,41,42]},
+  {key:'people',    n:8, triad:2, name:'The People You Are Pretending With',short:'People',    qs:[43,44,45,46,47,48]},
+  {key:'spirit',    n:9, triad:1, name:'The Spirit that Got Silenced',      short:'Spirit',    qs:[49,50,51,52,53,54], pulse:true}
 ];
 
 var CHAMBER_PARAGRAPHS={
@@ -1772,7 +1770,6 @@ function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTime
 // Tier rises with each return so language evolves through the six-month path.
 // v3.7.7 -- chamber prompt resolved from CHAMBERS[].sub (single source of truth).
 // Each chamber's declarative subtitle is owned by the CHAMBERS data array; the
-// chamberPrompt() function reads it directly. CHAMBER_PROMPTS removed.
 function retakeTier(){
   // v3.3. 12-month monthly cadence, mapped to six covenant-aligned stages.
   // Months 1-2 → Self, 3-4 → Body, 5-6 → Craft, 7-8 → People, 9-10 → Future, 11-12+ → World.
@@ -1785,19 +1782,13 @@ function retakeStageName(){
   var s=retakeTier();
   return ['Self','Body','Craft','People','Future','World'][s-1]||'Self';
 }
-function chamberPrompt(chamberNum){
-  // v3.7.7 -- read from CHAMBERS[i].sub (single source). Returns '' if not found.
-  for(var i=0;i<CHAMBERS.length;i++){if(CHAMBERS[i].n===chamberNum)return CHAMBERS[i].sub||''}
-  return '';
-}
-
 function renderQuestion(n){
   cancelAdvance();
   var q=QUESTIONS[n-1];
-  document.getElementById('qSection').textContent='Chamber '+q.sec+' of 9 · '+q.sn;
+  var ch=null;for(var ci=0;ci<CHAMBERS.length;ci++){if(CHAMBERS[ci].n===q.sec){ch=CHAMBERS[ci];break}}
+  document.getElementById('qSection').textContent='Chamber '+q.sec+' of 9 · '+(ch?ch.short:'');
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
   document.getElementById('qText').textContent=q.text;
-  document.getElementById('qPrompt').textContent=chamberPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
   setChamberProgress(q.sec);
   var box=document.getElementById('qOptions');box.innerHTML='';

@@ -305,7 +305,6 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 /* QUESTION */
 #screen-question{padding:64px 0 140px}
 .q-section{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:28px;display:block}
-.q-prompt{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;line-height:1.4;max-width:620px}
 .q-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(26px,4.0vw,36px);font-weight:600;line-height:1.28;letter-spacing:-.018em;color:var(--ink);margin-bottom:56px}
 .options{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
 .opt{display:flex;align-items:center;gap:18px;background:var(--white);border:1.5px solid var(--rule);border-radius:14px;padding:22px 26px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left;line-height:1.4;transition:border-color .15s,background .15s,transform .12s,color .15s}
@@ -987,8 +986,7 @@ body.footer-hidden footer{display:none}
 
 <!-- QUESTION -->
 <section class="screen" id="screen-question">
-  <span class="q-section" id="qSection">Section 1 of 6</span>
-  <p class="q-prompt" id="qPrompt">What runs you when you are not paying attention</p>
+  <span class="q-section" id="qSection">Section 1 of 6 · Reflexes</span>
   <h2 class="q-text" id="qText"></h2>
   <div class="options" id="qOptions"></div>
   <p class="q-keyboard-hint" aria-hidden="true" style="font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:600;color:var(--mid);letter-spacing:.04em;margin-top:-32px;margin-bottom:32px">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b> on your keyboard, or tap.</p>
@@ -2304,17 +2302,15 @@ function goDashboard(){
 
 // Question render with auto-advance
 function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
-// Section prompts, six tiers per section, keyed to which return this is.
-// KOORA tier rises by month across the 180-day path.
-// v3.7.4 -- eyebrow stripped to short declarative section subtitle (single string per section).
-// The per-tier progression lives in the question text; the eyebrow does not stutter against it.
-var SECTION_PROMPTS={
-  1:'Sneaky reflexes',
-  2:'The seven pillars of the practice',
-  3:'Fundamental needs',
-  4:'Forces of necessity',
-  5:'Whose voice has the final say?',
-  6:'What is honestly happening inside you?'
+// Section short labels for the qSection eyebrow. Single word, neutral, no
+// priming. The per-tier diagnostic progression lives in the question text.
+var SECTION_SHORTS={
+  1:'Reflexes',
+  2:'Practice',
+  3:'Needs',
+  4:'Forces',
+  5:'Faculties',
+  6:'Inner'
 };
 function retakeTier(){
   // Tier from chronological day of program, mapped to six tiers across 180 days.
@@ -2327,15 +2323,12 @@ function retakeTier(){
   if(d<=150)return 5;
   return 6;
 }
-function sectionPrompt(secNum){
-  // v3.7.4 -- single static subtitle per section; tier progression is in the question text.
-  return SECTION_PROMPTS[secNum]||'';
-}
+function sectionShort(secNum){return SECTION_SHORTS[secNum]||''}
 
 function renderQuestion(n){
   cancelAdvance();
   var q=QUESTIONS[n-1];
-  document.getElementById('qSection').textContent='Section '+q.sec+' of 6 · '+q.sn;
+  document.getElementById('qSection').textContent='Section '+q.sec+' of 6 · '+sectionShort(q.sec);
   document.getElementById('qCount').textContent='Question '+n+' of '+TOTAL;
   // Pick tier variant from text array. Six-tier covenant resolver:
   // rt=1 Self → idx 0 · rt=2 Body → idx 1 · rt=3 Craft → idx 2 · rt=4 People → idx 3 · rt=5 Future → idx 4 · rt=6 World → idx 5.
@@ -2347,7 +2340,6 @@ function renderQuestion(n){
     qText=q.text[Math.min(q.text.length-1,variantIdx)];
   }
   document.getElementById('qText').textContent=qText;
-  document.getElementById('qPrompt').textContent=sectionPrompt(q.sec);
   setProgress(Math.round(((n-1)/TOTAL)*98));
   setChamberProgress(q.sec);
   var box=document.getElementById('qOptions');box.innerHTML='';
