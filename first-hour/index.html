@@ -824,6 +824,27 @@ body.footer-hidden footer{display:none}
 <script>window.HOM_CONFIG=window.HOM_CONFIG||{};</script>
 <script src="/feature-flags.js"></script>
 <script src="/observability.js" defer></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '748998691952331');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {
+  content_name: 'The First Hour Assessment',
+  content_category: 'Assessment'
+});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
@@ -1701,6 +1722,11 @@ function show(id){
     if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');
     try{target.focus({preventScroll:true})}catch(e){target.focus()}
   }
+  // Funnel telemetry → Plausible / Sentry / Meta Pixel via HOM_TRACK.
+  if(typeof HOM_TRACK==='function'){
+    if(id==='screen-transition')HOM_TRACK('section_transition',{instrument:'first-hour',q:currentQ});
+    else if(id==='screen-results')HOM_TRACK('assessment_completed',{instrument:'first-hour'});
+  }
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
 function setChamberProgress(currentChamber){
@@ -1963,6 +1989,7 @@ function finishAgency(){
   var done=true;
   for(var i=1;i<=AGENCY_QUESTIONS.length;i++)if(!agencyAnswers[i])done=false;
   if(!done)return;
+  if(typeof HOM_TRACK==='function')HOM_TRACK('agency_completed',{instrument:'first-hour'});
   enterAck();
 }
 
