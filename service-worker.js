@@ -2,7 +2,7 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.29';
+const VERSION = 'hom-v3.7.30';
 const CORE = [
   '/',
   '/first-hour.html',
