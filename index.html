@@ -274,6 +274,15 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .field-stack{margin-bottom:26px}
 .welcome-cta{margin-top:36px}
 .welcome-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--body);margin-top:14px;letter-spacing:.005em;line-height:1.55;max-width:420px}.welcome-meta a{text-decoration:underline;text-underline-offset:2px;font-weight:600}
+.welcome-email-gate{max-width:420px;padding:22px 22px 18px;background:var(--surface-2);border:1px solid var(--rule);border-radius:14px;animation:welcomeEmailGateIn .25s ease-out}
+.welcome-email-gate__h{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:600;color:var(--ink);line-height:1.45;letter-spacing:-.005em;margin:0 0 6px}
+.welcome-email-gate__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13.5px;font-weight:500;color:var(--mid);line-height:1.55;margin:0 0 14px}
+.welcome-email-gate__err{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--red);margin:6px 0 0}
+.welcome-email-gate__row{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.welcome-email-gate .btn-text{background:transparent;border:none;color:var(--mid);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:600;cursor:pointer;padding:8px 4px;letter-spacing:.005em;text-decoration:underline;text-underline-offset:2px;align-self:flex-start}
+.welcome-email-gate .btn-text:hover{color:var(--ink)}
+@keyframes welcomeEmailGateIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.welcome-email-gate{animation:none}}
 .welcome-meta b{color:var(--ink);font-weight:700}
 
 .toggle-stack{display:flex;gap:10px;flex-wrap:wrap;max-width:420px}
@@ -502,7 +511,7 @@ body.footer-hidden footer{display:none}
   .hero{font-size:28px}
   .dash-hello{font-size:28px}
   .lede{font-size:18px}
-  .body-text{font-size:15px}
+  .body-text{font-size:16.5px}
   .opt{padding:16px 18px;font-size:14.5px;gap:14px;min-height:56px}
   .fidelity-feature{padding:32px 22px}
   .fidelity-feature .num{font-size:54px}
@@ -581,8 +590,8 @@ body.footer-hidden footer{display:none}
 .cover-letter__body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:17px;font-weight:500;line-height:1.6;color:var(--body);letter-spacing:-.005em}
 .cover-letter__body p{margin-bottom:14px}
 .cover-letter__body p:last-child{margin-bottom:0}
-.cover-letter__sig{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:18px;font-weight:500;color:var(--ink);margin-top:24px;line-height:1.4;padding-top:18px;border-top:1px solid var(--rule-soft)}
-.cover-letter__sig small{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:18px;font-weight:500;color:var(--ink);letter-spacing:0;text-transform:none;margin-top:2px}
+.cover-letter__sig{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;font-size:17px;font-weight:450;color:var(--ink);margin-top:24px;line-height:1.6;padding-top:18px;border-top:1px solid var(--rule-soft);letter-spacing:-.005em}
+.cover-letter__sig small{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;font-size:17px;font-weight:450;color:var(--ink);letter-spacing:-.005em;text-transform:none;margin-top:2px}
 @media(max-width:560px){
   .cover-letter{padding:26px 22px}
   .cover-letter__head{gap:14px}
@@ -638,13 +647,40 @@ body.footer-hidden footer{display:none}
 .covenant-entry__sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-style:italic;font-size:16px;color:var(--mid);margin-bottom:24px;line-height:1.5}
 .covenant-entry__list{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:8px}
 .covenant-entry__item{padding:0;border-bottom:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--body)}
-.covenant-entry__check{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;transition:border-color .15s,background .15s}
+.covenant-entry__check{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border:1.5px solid var(--rule);border-radius:10px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
 .covenant-entry__check:hover{border-color:var(--gold-soft)}
-.covenant-entry__check:has(input:checked){border-color:var(--gold);background:#FAF6EC}
+.covenant-entry__check:has(input:checked){border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.22)}
 .covenant-entry__check input[type=checkbox]{flex-shrink:0;width:18px;height:18px;accent-color:var(--gold);margin-top:2px;cursor:pointer}
 .covenant-entry__text{display:block;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15.5px;font-weight:500;color:var(--body);line-height:1.5;letter-spacing:.005em}
-.covenant-entry__text b{color:var(--gold);font-weight:800;margin-right:4px}
 .covenant-entry__threshold{margin-top:18px;padding:18px 22px;background:var(--white);border:1px solid var(--gold-soft);border-radius:var(--r-sm);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;line-height:1.6;color:var(--ink);font-style:italic}
+.cov-load-gauge{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 18px;background:var(--white);border:1px solid var(--rule);border-radius:12px}
+.cov-load-gauge__label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mid)}
+.cov-load-gauge__capsule{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;background:var(--white);border:2px solid var(--rule);border-radius:999px;transition:border-color .25s,box-shadow .25s,color .25s;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.cov-load-gauge__capsule__count{font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.02em;line-height:1;min-width:14px;text-align:center}
+.cov-load-gauge__capsule__text{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);line-height:1}
+.cov-load-gauge__capsule[data-load="0"]{border-color:var(--rule);box-shadow:none}
+.cov-load-gauge__capsule[data-load="0"] .cov-load-gauge__capsule__text{color:var(--dim)}
+.cov-load-gauge__capsule[data-load="1"]{border-color:var(--green);box-shadow:0 0 0 4px rgba(46,125,50,.22)}
+.cov-load-gauge__capsule[data-load="1"] .cov-load-gauge__capsule__text{color:var(--green)}
+.cov-load-gauge__capsule[data-load="2"]{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,151,58,.26)}
+.cov-load-gauge__capsule[data-load="2"] .cov-load-gauge__capsule__text{color:var(--gold)}
+.cov-load-gauge__capsule[data-load="3"]{border-color:var(--red);box-shadow:0 0 0 4px rgba(178,34,34,.24)}
+.cov-load-gauge__capsule[data-load="3"] .cov-load-gauge__capsule__text{color:var(--red)}
+.cov-load-gauge__capsule[data-load="4"]{border-color:var(--red);box-shadow:0 0 0 4px rgba(178,34,34,.32);animation:covLoadPulse 1.8s ease-in-out infinite}
+.cov-load-gauge__capsule[data-load="4"] .cov-load-gauge__capsule__text{color:var(--red)}
+@keyframes covLoadPulse{
+  0%,100%{box-shadow:0 0 0 4px rgba(178,34,34,.22)}
+  50%{box-shadow:0 0 0 8px rgba(178,34,34,.10)}
+}
+@media(prefers-reduced-motion:reduce){
+  .cov-load-gauge__capsule[data-load="4"]{animation:none}
+}
+@media(max-width:560px){
+  .cov-load-gauge{padding:12px 14px;gap:10px;flex-wrap:wrap}
+  .cov-load-gauge__capsule{padding:7px 14px}
+  .cov-load-gauge__capsule__count{font-size:17px}
+  .cov-load-gauge__capsule__text{font-size:11.5px;letter-spacing:.12em}
+}
 
 /* Author byline mark on result header */
 .author-byline{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.08em}
@@ -904,11 +940,9 @@ body.footer-hidden footer{display:none}
     <svg class="icon cov-c--future" aria-hidden="true"><use href="#icon-future"/></svg>
     <svg class="icon cov-c--world" aria-hidden="true"><use href="#icon-world"/></svg>
   </div>
-  <h1 class="hero">What is running you. What is holding you. <em>Where you go next.</em></h1>
+  <h1 class="hero">An instrument for the part of life <em>that does not announce itself.</em></h1>
   <p class="lede">There is a kind of suffering that does not look like suffering. The work that carries your name is the work that does not get done. <strong>You do not have a productivity problem, you have a fidelity problem.</strong></p>
-  <p class="body-text" style="font-weight:600;color:var(--ink);margin-top:18px">KOORA is a sixty-item audit in six sections — Reflexes, Practice, Needs, Forces, Faculties, Inner. <b>About fifteen minutes.</b> You will receive a written report by email naming the pattern and the path forward.</p>
-  <p class="body-text"><b>KOORA opens once a year, twenty-four seats.</b> The architecture is non-recoverable on purpose. The full cohort path will meet you on the result page; for now, the audit.</p>
-  <p class="body-text">Take one breath. Notice your shoulders. Begin.</p>
+  <p class="body-text">Below are six statements written for the part of you that has been quietly carrying the most. <strong>Notice which ones land.</strong> That is the room this audit was built for. After the statements, a note from the man who built it, then the audit itself.</p>
 
   <p class="body-text" style="color:var(--body);font-size:16px;font-weight:600;margin-top:8px;border-left:3px solid var(--gold);padding-left:14px;line-height:1.55">Nothing here is accusation. It is architecture. The pattern is the diagnosis, never the verdict.</p>
 
@@ -918,6 +952,13 @@ body.footer-hidden footer{display:none}
     <h2 class="covenant-entry__h" id="covEntryH"></h2>
     <p class="covenant-entry__sub" id="covEntrySub"></p>
     <ul class="covenant-entry__list" id="covEntryList"></ul>
+    <div class="cov-load-gauge" id="covLoadGauge" aria-live="polite">
+      <span class="cov-load-gauge__label">YOUR LOAD</span>
+      <span class="cov-load-gauge__capsule" id="covLoadCapsule" data-load="0">
+        <span class="cov-load-gauge__capsule__count" id="covLoadCount">0</span>
+        <span class="cov-load-gauge__capsule__text" id="covLoadText">NONE TICKED</span>
+      </span>
+    </div>
     <p class="covenant-entry__threshold" id="covEntryThreshold"></p>
   </div>
 
@@ -953,18 +994,19 @@ body.footer-hidden footer{display:none}
     <select class="field-select" id="dayPicker"></select>
   </div>
 
-  <div class="field-stack">
-    <label class="field-label">Are you enrolled in KOORA?</label>
-    <div class="toggle-stack" id="enrollToggle">
-      <button class="toggle-btn sel" data-enroll="1" onclick="setEnroll(true)">Yes, I am enrolled<span>Inside the protocol</span></button>
-      <button class="toggle-btn" data-enroll="0" onclick="setEnroll(false)">Not yet<span>Considering the path</span></button>
-    </div>
-  </div>
-
   <div class="welcome-cta">
-    <button class="btn-primary" onclick="startAssessment()" style="max-width:280px;letter-spacing:.05em">BEGIN</button>
-    <p class="welcome-meta"><b>About fifteen minutes.</b> Replies and questions reach Dr. Mogire’s team at mail@mogire.com. Read our <a href="/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
-    <p class="cohort-whisper" id="welcomeWhisper"></p>
+    <button class="btn-primary" id="welcomeBeginBtn" onclick="welcomeBeginClick()" style="max-width:280px;letter-spacing:.05em">BEGIN</button>
+    <div class="welcome-email-gate" id="welcomeEmailGate" style="display:none">
+      <p class="welcome-email-gate__h">Your email — so the report can find you.</p>
+      <p class="welcome-email-gate__sub">Your responses stay on your device until you choose to send. <a href="/privacy" target="_blank" rel="noopener">Privacy policy</a>.</p>
+      <input class="field-input" type="email" id="welcomeEmailInput" placeholder="your@email.com" autocomplete="email" inputmode="email" spellcheck="false" maxlength="120">
+      <p class="welcome-email-gate__err" id="welcomeEmailErr" style="display:none">Enter a valid email address.</p>
+      <div class="welcome-email-gate__row">
+        <button class="btn-primary" onclick="confirmEmailAndStart()" style="max-width:280px;letter-spacing:.05em">CONTINUE</button>
+        <button class="btn-text" type="button" onclick="cancelEmailGate()">Back</button>
+      </div>
+    </div>
+    <p class="welcome-meta"><b>About fifteen minutes.</b> Replies reach Dr. Mogire’s team at mail@mogire.com.</p>
   </div>
 </section>
 
@@ -1917,16 +1959,29 @@ function renderCovenantEntry(day){
     var li=document.createElement('li');
     li.className='covenant-entry__item';
     var checked=saved.indexOf(i)!==-1?' checked':'';
-    li.innerHTML='<label class="covenant-entry__check"><input type="checkbox" data-cov="'+covIdx+'" data-idx="'+i+'" onchange="persistCovEntrySel('+covIdx+')"'+checked+'><span class="covenant-entry__text"><b>'+(i+1)+'.</b> '+data.items[i]+'</span></label>';
+    li.innerHTML='<label class="covenant-entry__check"><input type="checkbox" data-cov="'+covIdx+'" data-idx="'+i+'" onchange="persistCovEntrySel('+covIdx+');renderCovLoadGauge('+covIdx+')"'+checked+'><span class="covenant-entry__text">'+data.items[i]+'</span></label>';
     ul.appendChild(li);
   }
   document.getElementById('covEntryThreshold').textContent=data.threshold;
+  renderCovLoadGauge(covIdx);
   box.style.display='block';
 }
 function persistCovEntrySel(covIdx){
   var inputs=document.querySelectorAll('#covEntryList input[type=checkbox][data-cov="'+covIdx+'"]:checked');
   var keys=[];for(var i=0;i<inputs.length;i++)keys.push(parseInt(inputs[i].getAttribute('data-idx'),10));
   try{localStorage.setItem('koora_cov_entry_'+covIdx,JSON.stringify(keys))}catch(e){}
+}
+function renderCovLoadGauge(covIdx){
+  var capsule=document.getElementById('covLoadCapsule');
+  var countEl=document.getElementById('covLoadCount');
+  var textEl=document.getElementById('covLoadText');
+  if(!capsule||!countEl||!textEl)return;
+  var n=document.querySelectorAll('#covEntryList input[type=checkbox][data-cov="'+covIdx+'"]:checked').length;
+  var bucket=n>=4?4:n;
+  var labels={0:'NONE TICKED',1:'LIGHT LOAD',2:'MEDIUM LOAD',3:'HEAVY LOAD',4:'VERY HEAVY'};
+  capsule.setAttribute('data-load',String(bucket));
+  countEl.textContent=String(n);
+  textEl.textContent=labels[bucket];
 }
 // Render the participant's covenant-entry tickbox selections for the active
 // covenant in plain text, so they travel into the email payload.
@@ -1987,6 +2042,7 @@ var currentQ=1;
 var participantName='';
 var participantDay=0;
 var participantEnrolled=true;
+var participantEmail='';
 var lastResults=null;
 var advanceTimer=null;
 var pendingAfterTransition=null;
@@ -2046,12 +2102,13 @@ function setNavMeta(text){var el=document.getElementById('navMeta');el.textConte
 
 function init(){
   populateDayPicker();
-  document.getElementById('welcomeWhisper').innerHTML=cohortWhisper()+' <b>This instrument is part of that movement.</b>';
   var h=loadHistory();
   if(h.length){
-    var name=h[h.length-1].name||'';
+    var last=h[h.length-1];
+    var name=last.name||'';
     document.getElementById('participantName').value=name;
-    if(typeof h[h.length-1].enrolled==='boolean'){participantEnrolled=h[h.length-1].enrolled;syncEnrollToggle()}
+    if(typeof last.enrolled==='boolean'){participantEnrolled=last.enrolled;syncEnrollToggle()}
+    if(last.email){try{localStorage.setItem('koora_participant_email',last.email)}catch(e){}}
     renderDashboard(name);
     show('screen-dashboard');
   }else{
@@ -2274,10 +2331,37 @@ function showResultsFromHistory(){
   if(typeof p.enrolled==='boolean')participantEnrolled=p.enrolled;
   buildResults(p);show('screen-results');
 }
-function startAssessment(){
+function welcomeBeginClick(){
   var nameEl=document.getElementById('participantName');
   var name=(nameEl.value||'').trim();
   if(!name){nameEl.focus();return}
+  document.getElementById('welcomeBeginBtn').style.display='none';
+  var gate=document.getElementById('welcomeEmailGate');
+  gate.style.display='block';
+  var em=document.getElementById('welcomeEmailInput');
+  try{var saved=localStorage.getItem('koora_participant_email')||'';if(saved&&!em.value)em.value=saved}catch(e){}
+  setTimeout(function(){em.focus()},80);
+}
+function cancelEmailGate(){
+  document.getElementById('welcomeEmailGate').style.display='none';
+  document.getElementById('welcomeBeginBtn').style.display='inline-flex';
+  var err=document.getElementById('welcomeEmailErr');if(err)err.style.display='none';
+}
+function confirmEmailAndStart(){
+  var em=document.getElementById('welcomeEmailInput');
+  var email=(em.value||'').trim();
+  var err=document.getElementById('welcomeEmailErr');
+  var ok=(typeof isValidEmail==='function')?isValidEmail(email):(email.indexOf('@')>0&&email.lastIndexOf('.')>email.indexOf('@')+1);
+  if(!ok){err.style.display='block';em.focus();return}
+  err.style.display='none';
+  participantEmail=email;
+  try{localStorage.setItem('koora_participant_email',email)}catch(e){}
+  startAssessment();
+}
+function startAssessment(){
+  var nameEl=document.getElementById('participantName');
+  var name=(nameEl.value||'').trim();
+  if(!name){cancelEmailGate();nameEl.focus();return}
   participantName=name;
   var dayEl=document.getElementById('dayPicker');
   participantDay=parseInt(dayEl.value,10)||0;
@@ -2492,6 +2576,7 @@ function buildRecord(){
   for(var c=1;c<=6;c++){try{var s=localStorage.getItem('koora_cov_entry_'+c);if(s)covEntrySel[c]=JSON.parse(s)||[]}catch(e){}}
   return {
     date:new Date().toISOString(),day:participantDay,name:participantName,enrolled:participantEnrolled,
+    email:participantEmail||'',
     answers:Object.assign({},answers),scores:scores,
     primary_reflex:loud.key,primary_level:levelNeg(loud.pct),active_stage:activeStage(),
     cov_pulse:covPulseValue,
