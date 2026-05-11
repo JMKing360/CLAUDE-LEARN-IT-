@@ -11,6 +11,7 @@ Allow: /
 Disallow: /functions/
 Disallow: /tests/
 Disallow: /node_modules/
+Disallow: /embed.html
 Disallow: /*?embed=1$
 
 # ---------------------------------------------------------------------------

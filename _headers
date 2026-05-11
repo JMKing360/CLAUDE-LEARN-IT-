@@ -5,18 +5,37 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: accelerometer=(), attribution-reporting=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), fenced-frame=(), fullscreen=(self), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), join-ad-interest-group=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), private-aggregation=(), private-state-token-issuance=(), private-state-token-redemption=(), run-ad-auction=(), screen-wake-lock=(), serial=(), shared-storage=(), shared-storage-select-url=(), usb=()
+  Permissions-Policy: accelerometer=(), attribution-reporting=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), fenced-frame=(), fullscreen=(self), geolocation=(), gyroscope=(), hid=(), idle-detection=(), join-ad-interest-group=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), private-aggregation=(), private-state-token-issuance=(), private-state-token-redemption=(), run-ad-auction=(), screen-wake-lock=(), serial=(), shared-storage=(), shared-storage-select-url=(), usb=()
   Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self' https://services.leadconnectorhq.com; object-src 'none'; manifest-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://connect.facebook.net https://www.facebook.com https://plausible.io https://browser.sentry-cdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://www.facebook.com https://fonts.gstatic.com; connect-src 'self' https://services.leadconnectorhq.com https://connect.facebook.net https://www.facebook.com https://plausible.io https://*.ingest.sentry.io; frame-src 'self' https://www.facebook.com; frame-ancestors 'self' https://houseofmastery.co
   Cross-Origin-Opener-Policy: same-origin
-  Cross-Origin-Resource-Policy: same-site
+  Cross-Origin-Resource-Policy: same-origin
+
+# /embed.html is intentionally partner-framed (houseofmastery.co per CSP
+# frame-ancestors). CORP must permit cross-origin framing for that to work.
+/embed.html
+  Cross-Origin-Resource-Policy: cross-origin
+  Cross-Origin-Embedder-Policy: unsafe-none
 
 # Vary: CF-IPCountry, Sec-GPC applies to HTML only - the middleware rewrites
-# Pixel snippets based on these signals, and adding Vary on /* fragments
-# Cloudflare cache for every static asset (icons, fonts, JS) unnecessarily.
-/*.html
-  Vary: CF-IPCountry, Sec-GPC
-
+# Pixel snippets based on these signals. Cloudflare Pages _headers matches the
+# REQUEST URL (pre-rewrite), so every clean-URL entry point that resolves to
+# HTML needs its own line. Static assets (icons, fonts, JS) deliberately do
+# NOT get Vary, to keep CDN cache efficient.
 /
+  Vary: CF-IPCountry, Sec-GPC
+/about
+  Vary: CF-IPCountry, Sec-GPC
+/privacy
+  Vary: CF-IPCountry, Sec-GPC
+/koora-faq
+  Vary: CF-IPCountry, Sec-GPC
+/first-hour-faq
+  Vary: CF-IPCountry, Sec-GPC
+/first-hour
+  Vary: CF-IPCountry, Sec-GPC
+/first-hour/
+  Vary: CF-IPCountry, Sec-GPC
+/*.html
   Vary: CF-IPCountry, Sec-GPC
 
 # Embeddable widget — partner-framed via /embed.html, which iframes /first-hour/

@@ -23,8 +23,8 @@
 <meta property="og:description" content="The diagnostic of KOORA: The Finisher's Protocol — a physician-designed 6-month protocol by Dr. Job Mogire, MD, FACC, FACP for overcoming the unfinished life. One annual cohort May–October. House of Mastery, Kenya.">
 <meta property="og:image" content="https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png">
 <meta property="og:image:alt" content="KOORA — The Finisher's Protocol by Dr. Job Mogire, MD, FACC, FACP, House of Mastery, Kenya">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1058">
+<meta property="og:image:height" content="228">
 <meta property="og:url" content="https://hom.mogire.com/">
 <meta property="og:site_name" content="House of Mastery">
 <meta property="og:locale" content="en_KE">
@@ -217,7 +217,8 @@
         ]},
         {"@type":"CourseInstance","name":"KOORA 2027 — Annual Cohort","startDate":"2027-05-01","endDate":"2027-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"offers":[
           {"@type":"Offer","price":"1200","priceCurrency":"USD","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31"},
-          {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31"}
+          {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31"},
+          {"@type":"Offer","price":"25000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","priceSpecification":{"@type":"UnitPriceSpecification","price":"25000","priceCurrency":"KES","unitText":"MONTH","billingDuration":"P1M"}}
         ]}
       ]
     },
@@ -303,14 +304,14 @@
       "@type": "BreadcrumbList",
       "itemListElement": [
         {"@type":"ListItem","position":1,"name":"House of Mastery","item":"https://hom.mogire.com/"},
-        {"@type":"ListItem","position":2,"name":"KOORA: The Finisher's Protocol","item":"https://hom.mogire.com/koora"}
+        {"@type":"ListItem","position":2,"name":"KOORA: The Finisher's Protocol","item":"https://hom.mogire.com/"}
       ]
     },
     {
       "@type": "FAQPage",
       "@id": "https://hom.mogire.com/koora#faq",
       "mainEntity": [
-        {"@type":"Question","name":"What is KOORA: The Finisher's Protocol?","acceptedAnswer":{"@type":"Answer","text":"KOORA is six covenants in 180 days. Each month names one covenant (Self, then Body, then Craft, then People, then Future, then World) and follows the same four-week rhythm: name it, practice it, test it, seal it. The daily protocol is ALCARRA — Awareness, Learning, Change, Action, Resilience, Reflection, Accountability — anchored by the three-minute Daily Reset. The cohort witnesses each completion. One annual cohort, May 1 to October 31. Prorated entry at the start of any later month. Investment for the 2026 cohort (current): KES 90,000 paid in full, or KES 15,000 per month for six months. Investment for the 2027 cohort (next): USD 1,200 / KES 150,000. By the end, the participant has six kept covenants rather than six unfinished resolutions."}},
+        {"@type":"Question","name":"What is KOORA: The Finisher's Protocol?","acceptedAnswer":{"@type":"Answer","text":"KOORA is six covenants in 180 days. Each month names one covenant (Self, then Body, then Craft, then People, then Future, then World) and follows the same four-week rhythm: name it, practice it, test it, seal it. The daily protocol is ALCARRA — Awareness, Learning, Change, Action, Resilience, Reflection, Accountability — anchored by the three-minute Daily Reset. The cohort witnesses each completion. One annual cohort, May 1 to October 31. Prorated entry at the start of any later month. Investment for the 2026 cohort (current): KES 90,000 paid in full, or KES 15,000 per month for six months. Investment for the 2027 cohort (next): USD 1,200 / KES 150,000 paid in full, or KES 25,000 per month for six months. By the end, the participant has six kept covenants rather than six unfinished resolutions."}},
         {"@type":"Question","name":"Who is Dr. Job Mogire?","acceptedAnswer":{"@type":"Answer","text":"Dr. Job Mogire, MD, FACC, FACP (MogireMD) is a Kenyan-born board-certified physician — Fellow of the American College of Cardiology and the American College of Physicians, practising at Carle Health (Illinois, USA) as The Microvessel Cardiologist. He is a mindset and emotional intelligence coach, a published author, and an award-winning public speaker. He founded House of Mastery."}},
         {"@type":"Question","name":"Who is the best mindset coach in Kenya?","acceptedAnswer":{"@type":"Answer","text":"Dr. Job Mogire is widely regarded as one of Kenya's leading mindset and emotional intelligence coaches. He combines two decades of clinical training and practice — board-certified in Internal Medicine (ABIM, 2021) and Cardiovascular Medicine (FACC) — with award-winning public-speaking craft and a distinctive diagnostic methodology delivered through House of Mastery."}},
         {"@type":"Question","name":"What is emotional sovereignty?","acceptedAnswer":{"@type":"Answer","text":"Emotional sovereignty is the capacity to live from chosen response rather than habitual reflex. At House of Mastery it is the structural endpoint of the formation work — a life in which the four reflexes (complaining, criticising, comparing, competing) have been replaced with practices and faculties that hold under pressure."}},
@@ -960,8 +961,14 @@ body.footer-hidden footer{display:none}
 
 /* Print stylesheet  -  paper-friendly result */
 @media print{
-  *,*::before,*::after{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
+  /* Universal flatten - but allow semantic status colours to win via the
+     allow-list below. */
+  body,p,h1,h2,h3,h4,h5,h6,li,td,th,div{color:#000 !important;background:transparent !important;text-shadow:none !important;box-shadow:none !important}
   nav,.dash-foot,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.btn-text,.q-back,.toggle-stack,.welcome-cta,.koora-funnel,.contact-block,.save-pill,.tr-cta,#screen-welcome,#screen-question,#screen-transition,#screen-ack,#screen-dashboard{display:none !important}
+  /* Hide PII input fields from print - emailInput, firstNameInput,
+     lastNameInput, painInput*, intentTime - so a printed report does not
+     carry the participant's identity in plain text. */
+  .delivery,.delivery-form,.email-input,#firstNameInput,#lastNameInput,#emailInput,#painInput,#painInput5y,#intentTime,.pain-input{display:none !important}
   body{font-size:11pt;line-height:1.4;background:white !important;color:black !important;font-family:Georgia,serif}
   main{max-width:none;padding:0}
   #screen-results,#screen-results.active{display:block !important;padding:0 !important}
@@ -971,6 +978,10 @@ body.footer-hidden footer{display:none}
   .cover-letter,.koora-funnel,.author-byline,.unfinished-block,.scoring-note{display:none !important}
   .meet-doctor{break-before:page;page-break-before:always}
   .meet-doctor__grid img{max-width:140px}
+  /* Status colours preserved via allow-list. */
+  .pip-red,.path-row.now td.right{color:#B22222 !important}
+  .pip-amber{color:#C77700 !important}
+  .pip-green{color:#2E7D32 !important}
 }
 
 /* No-script fallback */
@@ -1076,7 +1087,11 @@ body.footer-hidden footer{display:none}
   try{
     var url=new URL(window.location.href);
     var stash={},stripped=false;
-    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','mc_cid','vero_id','_branch_match_id','utm_id'].forEach(function(k){
+    // PII-only strip. Ad-attribution tokens (gclid/msclkid/ttclid/fbclid/wbraid/
+    // gbraid) and campaign tokens (utm_*, mc_cid) are NOT stripped - they carry
+    // attribution downstream. mc_eid IS stripped because Mailchimp emails encode
+    // the subscriber identity into it.
+    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','vero_id','_branch_match_id'].forEach(function(k){
       if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
     });
     if(stripped){
@@ -1116,12 +1131,18 @@ fbq('track', 'PageView');
   var fired = false;
   function fireVC(){
     if(fired) return; fired = true;
+    // Generate an eventID so a future CAPI dispatcher can dedup
+    // browser-side ViewContent against the server-side fire.
+    var __vcID;
+    try { __vcID = (crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+'-'+Math.random().toString(36).slice(2)); }
+    catch(e){ __vcID = Date.now()+'-'+Math.random().toString(36).slice(2); }
+    window.HOM_VIEWCONTENT_EVENT_ID = __vcID;
     fbq('track', 'ViewContent', {
       content_name: 'KOORA UNFINISHED Assessment',
       content_category: 'Assessment',
       content_ids: ['koora_unfinished_v1'],
       content_type: 'assessment'
-    });
+    }, { eventID: __vcID });
   }
   // Belt-and-braces arm so a missing #screen-welcome at first DOMContentLoaded
   // does not silently drop ViewContent. We try: (1) IntersectionObserver if
@@ -1388,7 +1409,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <summary>How is this scored?</summary>
     <div class="scoring-note__body">
       <p>Each item uses a four-point Likert anchor: <code>Almost never</code> (1), <code>Some weeks</code> (2), <code>Most weeks</code> (3), <code>This is how I live</code> (4). The instrument has sixty items across six sections.</p>
-      <p>The <b>four reflexes</b> (Complaining, Criticizing, Comparing, Competing) each score 4–16. We classify <code>quiet</code> at ≤44%, <code>active</code> at 45–69%, <code>loud</code> at 70%+. Reverse-scored items in ALCARRA, the four needs (filled), forces, fidelities, faculties, and the daily practice flip the scale so that high scores indicate embodied capacity rather than absence.</p>
+      <p>The <b>four reflexes</b> (Complaining, Criticising, Comparing, Competing) each score 4–16. We classify <code>quiet</code> at ≤44%, <code>active</code> at 45–69%, <code>loud</code> at 70%+. Reverse-scored items in ALCARRA, the four needs (filled), forces, fidelities, faculties, and the daily practice flip the scale so that high scores indicate embodied capacity rather than absence.</p>
       <p>The <b>tier resolver</b> selects which of the six covenant variants (Self · Body · Craft · People · Future · World) you see at each retake, mapped from your chosen day on the 180-day path. Day 0 is your baseline; Day 14/30 is the Self covenant; Day 45/60 is Body; and so on through to Day 180, the Sealing.</p>
       <p>The scoring methodology is observational  -  the pattern is the diagnosis, never the verdict.</p>
     </div>
@@ -1504,10 +1525,10 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
       <p class="pain-q">If this pattern continues for thirty more days, what does it cost you?</p>
       <p class="pain-sub">One sentence. Concrete. Optional, but powerful. What you write travels with your report.</p>
       <label class="sr-only" for="painInput">Name the 30-day cost of your unfinished</label>
-      <textarea class="pain-input" id="painInput" placeholder="The day my unfinished costs me ..." aria-label="Name the 30-day cost of your unfinished" onblur="showSelfQuote()"></textarea>
+      <textarea class="pain-input" id="painInput" placeholder="The day my unfinished costs me ..." onblur="showSelfQuote()"></textarea>
       <p class="pain-q-secondary">Five years from now, what will you wish you had named?</p>
       <label class="sr-only" for="painInput5y">Name the five-year cost of staying unfinished</label>
-      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will regret most ..." aria-label="Name the five-year cost of staying unfinished" onblur="showSelfQuote()"></textarea>
+      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will regret most ..." onblur="showSelfQuote()"></textarea>
       <div class="self-quote" id="selfQuote">
         <div class="self-quote-label">Your own words, written back to you</div>
         <div class="self-quote-text" id="selfQuoteText"></div>
@@ -1518,7 +1539,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
       <p class="pain-q-secondary" style="margin-top:30px">And the time...</p>
       <p class="pain-sub">Name the hour today you will take the first move. A specific time turns intent into action.</p>
       <label class="sr-only" for="intentTime">Name the hour you will take the first move</label>
-      <input type="text" id="intentTime" class="pain-input" placeholder="e.g., 3pm, after lunch, before bed" maxlength="60" aria-label="Name the hour you will take the first move" onblur="persistIntent()">
+      <input type="text" id="intentTime" class="pain-input" placeholder="e.g., 3pm, after lunch, before bed" maxlength="60" onblur="persistIntent()">
     </div>
   </div>
 
@@ -1594,7 +1615,9 @@ if(!EMAIL_OK){
     var showBanner=false;
     var h=location.hostname;
     // Production hostnames NEVER show the banner regardless of localStorage flag.
-    var isProd=(h==='hom.mogire.com'||h==='www.hom.mogire.com');
+    // Covers hom.mogire.com, www.hom.mogire.com, and any *.houseofmastery.co
+    // host (kooraassess, firsthour, root, www).
+    var isProd=(h==='hom.mogire.com'||h==='www.hom.mogire.com'||/(?:^|\.)houseofmastery\.co$/i.test(h));
     if(!isProd){
       if(h==='localhost'||h.indexOf('.pages.dev')>=0||h.indexOf('127.0.0.1')>=0)showBanner=true;
       try{if(localStorage.getItem('HOM_OPS_BANNER')==='1')showBanner=true;}catch(_e){}
@@ -1603,7 +1626,7 @@ if(!EMAIL_OK){
       // Reserve banner space pre-paint so injection doesn't cause CLS.
       document.documentElement.classList.add('hom-ops-banner-on');
       var __style=document.createElement('style');
-      __style.textContent='.hom-ops-banner-on body{padding-top:48px}.hom-ops-banner{position:fixed;top:0;left:0;right:0;height:48px;z-index:99999;background:#B22222;color:#fff;font:600 13px/24px system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em;box-sizing:border-box}';
+      __style.textContent='.hom-ops-banner-on body{padding-top:48px}.hom-ops-banner{position:fixed;top:0;left:0;right:0;height:48px;z-index:99999;background:#B22222;color:#fff;font:600 13px/24px system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em;box-sizing:border-box}.hom-ops-banner button:focus-visible{outline:2px solid #fff;outline-offset:2px}';
       document.head.appendChild(__style);
       document.addEventListener('DOMContentLoaded',function(){
         var b=document.createElement('div');
@@ -1707,7 +1730,7 @@ var QUESTIONS=[
     'When circumstances are difficult, I check on agency before I check on circumstance.'
   ]},
   // Criticizing
-  {n:5, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+  {n:5, sec:1,sn:'The four reflexes', dom:'Criticising', text:[
     'My inner voice speaks to me in ways I would never speak to someone I love.',
     'When my inner voice speaks harshly, I feel the contraction in my body before the words land.',
     'When my inner voice speaks harshly, I notice it and do not collude.',
@@ -1715,7 +1738,7 @@ var QUESTIONS=[
     'When my inner voice speaks, I am becoming the kind of person who answers it as a friend would answer me.',
     'When my inner voice speaks, it speaks to me the way I would speak to a friend.'
   ]},
-  {n:6, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+  {n:6, sec:1,sn:'The four reflexes', dom:'Criticising', text:[
     'I rehearse my mistakes longer than I extract any lesson.',
     'When I make a mistake, my body tightens for the rehearsal before any lesson is named.',
     'When I make a mistake, I notice the rehearsal urge and ask what is to be learned.',
@@ -1723,7 +1746,7 @@ var QUESTIONS=[
     'When I make a mistake, I am becoming the kind of person who takes the lesson and moves.',
     'When I make a mistake, I take the lesson and move.'
   ]},
-  {n:7, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+  {n:7, sec:1,sn:'The four reflexes', dom:'Criticising', text:[
     'When I look at myself, I notice my flaws faster than what is working.',
     'When I look at myself, my body braces before the eye even lands on what is working.',
     'When I look at myself, I am beginning to see what is working alongside what is not.',
@@ -1731,7 +1754,7 @@ var QUESTIONS=[
     'When I look at myself, I am becoming the kind of person who sees fully  -  strengths held, flaws held, no flinching.',
     'When I look at myself, I see clearly because I see fully.'
   ]},
-  {n:8, sec:1,sn:'The four reflexes', dom:'Criticizing', text:[
+  {n:8, sec:1,sn:'The four reflexes', dom:'Criticising', text:[
     'The harshest voice inside me has the final say.',
     'When the harshest voice inside me speaks, my body knows it is the one I have given the most authority to.',
     'When the harshest voice inside me speaks, I notice it without giving it the last word.',
@@ -2172,7 +2195,7 @@ var QUESTIONS=[
 
 var REFLEXES=[
   {key:'complaining',name:'Complaining',qs:[1,2,3,4],   forfeits:'agency'},
-  {key:'criticizing',name:'Criticizing',qs:[5,6,7,8],   forfeits:'authority'},
+  {key:'criticizing',name:'Criticising',qs:[5,6,7,8],   forfeits:'authority'},
   {key:'comparing', name:'Comparing', qs:[9,10,11,12],  forfeits:'ground'},
   {key:'competing', name:'Competing', qs:[13,14,15,16], forfeits:'direction'}
 ];
@@ -2806,10 +2829,14 @@ function confirmEmailAndStart(){
   try{localStorage.setItem('koora_participant_email',email)}catch(e){}
   // Fire email_gate_confirmed (→ Meta Lead) only on validated email. Dedup per
   // email so re-takers don't inflate Lead counts.
-  // Seed Meta Pixel Advanced Matching with the confirmed email so all
-  // subsequent events carry EMQ uplift. Meta hashes client-side.
+  // Seed Meta Pixel Advanced Matching with the confirmed email + first name
+  // (the gate-time data) so all subsequent events carry EMQ uplift. Last
+  // name is collected at the results form; another re-seed happens there.
   if(typeof HOM_PIXEL_ADVANCED_MATCH==='function'){
-    HOM_PIXEL_ADVANCED_MATCH({em:email});
+    var __am={em:email};
+    var __fn=(participantName||'').toLowerCase();
+    if(__fn)__am.fn=__fn;
+    HOM_PIXEL_ADVANCED_MATCH(__am);
   }
   if(typeof HOM_TRACK==='function'){
     // Dedup Lead-fire per email without putting the email in the localStorage
@@ -3610,12 +3637,14 @@ function sendEmail(){
   // dispatcher can dedup server-side events against browser-side Pixel fires.
   var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed'):null;
   var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed'):null;
+  var metaViewContentEvtId=window.HOM_VIEWCONTENT_EVENT_ID||null;
   sendToGhl({
     to_name:rec.name,
     to_email:email,
     cc_email:'mogiremd@gmail.com',
     meta_event_id_lead:metaLeadEvtId,
     meta_event_id_completed:metaCompletedEvtId,
+    meta_event_id_view_content:metaViewContentEvtId,
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
     archetype_desc:'KOORA · UNFINISHED · By Dr. Job Mogire, MD, FACC<br>Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Covenant entry self-named: '+covEntrySelfNamed(rec)+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br>Threshold (self-reported): '+(rec.threshold||'(not selected)')+'<br><br><i>Scoring methodology: 60-item Likert (1-4); 6-tier covenant resolver mapped from Day-of-Path; reflexes classified at ≤44% quiet, 45-69% active, 70%+ loud. Reverse-scored items in ALCARRA, needs (filled), forces, fidelities, faculties, and daily practice flip the scale. Pattern is the diagnosis, never the verdict.</i><br><i>Internal · arc stage: '+arcMeta.name+'</i>',

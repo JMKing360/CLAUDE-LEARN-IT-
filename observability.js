@@ -7,6 +7,12 @@
   var cfg = window.HOM_CONFIG || {};
 
   // ---------- Sentry (error tracking) ----------
+  if (!cfg.sentryDsn) {
+    // No DSN configured: replace the queue stub with a no-op so HOM_SENTRY_WARN
+    // calls don't grow HOM_SENTRY_QUEUE unboundedly across the session.
+    window.HOM_SENTRY_QUEUE = null;
+    window.HOM_SENTRY_WARN = function () {};
+  }
   if (cfg.sentryDsn) {
     var s = document.createElement('script');
     s.src = 'https://browser.sentry-cdn.com/7.119.0/bundle.tracing.min.js';
@@ -91,17 +97,26 @@
   }
   // Per-event-name record of the last eventID we fired. Used by GHL → CAPI
   // to dedup browser-side Pixel events against server-side CAPI events.
-  // Persisted in sessionStorage so a returner whose Pixel-side Lead-fire was
-  // deduped (because their email was already in hom_lead_fired_*) still has
-  // a stable eventID to forward to GHL; the persisted ID then deduplicates
-  // against the server-side CAPI fire for the same conversion.
+  // Persisted in localStorage (not sessionStorage) so a genuine returner
+  // arriving in a new tab/session retains a stable eventID for the dedup
+  // window. TTL purge >30 days so the store does not grow unbounded.
+  var EVENT_ID_TTL_MS = 30 * 24 * 60 * 60 * 1000;
   var lastEventIDs = {};
   try {
-    var __cached = sessionStorage.getItem('HOM_LAST_EVENT_IDS');
-    if (__cached) lastEventIDs = JSON.parse(__cached);
+    var __cached = localStorage.getItem('HOM_LAST_EVENT_IDS');
+    if (__cached) {
+      var parsed = JSON.parse(__cached);
+      var now = Date.now();
+      // Stored shape: {name: {id, ts}} - prune anything older than TTL.
+      for (var k in parsed) {
+        if (parsed[k] && parsed[k].ts && (now - parsed[k].ts) < EVENT_ID_TTL_MS) {
+          lastEventIDs[k] = parsed[k];
+        }
+      }
+    }
   } catch (e) {}
   function persistEventIDs() {
-    try { sessionStorage.setItem('HOM_LAST_EVENT_IDS', JSON.stringify(lastEventIDs)); } catch (e) {}
+    try { localStorage.setItem('HOM_LAST_EVENT_IDS', JSON.stringify(lastEventIDs)); } catch (e) {}
   }
 
   function track(name, props) {
@@ -111,7 +126,7 @@
     if (window.fbq && !window.HOM_PIXEL_DISABLED) {
       try {
         var eventID = newEventID();
-        lastEventIDs[name] = eventID;
+        lastEventIDs[name] = { id: eventID, ts: Date.now() };
         persistEventIDs();
         var standard = META_STANDARD[name];
         if (standard) {
@@ -155,7 +170,10 @@
   // CAPI-dedup helper. Returns the last eventID fired for the named event,
   // so the GHL webhook payload can forward it as meta_event_id_<name> and the
   // server-side CAPI dispatcher can dedup against the browser-side fire.
-  window.HOM_LAST_EVENT_ID = function (name) { return lastEventIDs[name] || null; };
+  window.HOM_LAST_EVENT_ID = function (name) {
+    var rec = lastEventIDs[name];
+    return rec ? (rec.id || rec) : null;
+  };
   // Drain any calls queued before this deferred script executed. The HTML
   // head defines a stub HOM_TRACK that pushes to HOM_TRACK_QUEUE so cold-load
   // events (welcome_shown etc.) are not lost while we wait for the deferred

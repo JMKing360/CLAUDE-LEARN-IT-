@@ -164,8 +164,7 @@
         {"@type":"Brand","name":"RETURN","url":"https://www.return90.com/"}
       ],
       "subjectOf": [
-        {"@id": "https://hom.mogire.com/about#prodigal-winner-syndrome"},
-        {"@id":"https://www.cureus.com/articles/25370#article"}
+        {"@id": "https://hom.mogire.com/about#prodigal-winner-syndrome"}
       ],
       "sameAs": [
         "https://mogire.com/",
@@ -323,8 +322,9 @@
           {"@type":"Offer","price":"15000","priceCurrency":"KES","availability":"https://schema.org/LimitedAvailability","url":"https://houseofmastery.co/daily-reset","validFrom":"2026-05-01","validThrough":"2026-10-31","description":"2026 cohort — monthly payment plan (KES 15,000 / month × 6 months).","priceSpecification":{"@type":"UnitPriceSpecification","price":"15000","priceCurrency":"KES","unitText":"MONTH","billingDuration":"P1M"}}
         ]},
         {"@type":"CourseInstance","name":"KOORA 2027 — Annual Cohort","startDate":"2027-05-01","endDate":"2027-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"description":"The single annual cohort for 2027. Prorated entry available at the start of each month, May through October. All participants complete together at the end of October 2027.","offers":[
-          {"@type":"Offer","price":"1200","priceCurrency":"USD","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — full programme. Prorated entry available at the start of any month May–October 2027."},
-          {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — full programme. Prorated entry available at the start of any month May–October 2027."}
+          {"@type":"Offer","price":"1200","priceCurrency":"USD","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — full programme, paid in full (USD 1,200). Prorated entry available at the start of any month May–October 2027."},
+          {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — full programme, paid in full (KES 150,000). Prorated entry available at the start of any month May–October 2027."},
+          {"@type":"Offer","price":"25000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — monthly payment plan (KES 25,000 / month × 6 months).","priceSpecification":{"@type":"UnitPriceSpecification","price":"25000","priceCurrency":"KES","unitText":"MONTH","billingDuration":"P1M"}}
         ]}
       ]
     },
@@ -408,9 +408,11 @@
       "inLanguage": "en",
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["#bio-summary",".faq-q",".faq-a"]
+        "cssSelector": ["#bio-summary","#quote-vessels-know","#quote-vascular-record",".faq-q",".faq-a"]
       }
     },
+    {"@type":"Quotation","@id":"https://hom.mogire.com/about#quote-vessels-know","text":"Your vessels know before your blood work does.","creator":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"isPartOf":{"@id":"https://hom.mogire.com/about#about"}},
+    {"@type":"Quotation","@id":"https://hom.mogire.com/about#quote-vascular-record","text":"The body keeps a vascular record of every compromise the mind normalised.","creator":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"isPartOf":{"@id":"https://hom.mogire.com/about#about"}},
     {
       "@type":"WebSite",
       "@id":"https://hom.mogire.com/#website",
@@ -533,7 +535,7 @@
         {
           "@type":"Question",
           "name":"What is the best emotional intelligence training in Kenya?",
-          "acceptedAnswer":{"@type":"Answer","text":"House of Mastery — founded by Dr. Job Mogire — offers a physician-designed emotional intelligence and emotional sovereignty curriculum that distinguishes itself from typical EI training by measuring reflexes rather than self-reported intentions. The free entry point is The First Hour audit at https://hom.mogire.com/first-hour. The flagship is KOORA: The Finisher's Protocol — a physician-designed 6-month protocol by a board-certified cardiologist for overcoming the unfinished life. One annual cohort each year, May through October."}
+          "acceptedAnswer":{"@type":"Answer","text":"House of Mastery — founded by Dr. Job Mogire — offers a physician-designed emotional intelligence and emotional sovereignty curriculum that distinguishes itself from typical EI training by measuring reflexes rather than self-reported intentions. The free entry point is The First Hour audit at https://hom.mogire.com/first-hour. The flagship is KOORA: The Finisher's Protocol — a physician-designed 6-month protocol by a board-certified cardiologist for overcoming the unfinished life. One annual cohort each year, May through October. Adjacent to KOORA: the free 5-Day Return Challenge at https://www.return90.com/, the monthly Mastery Hour, and the annual House of Mastery / Unfinished Life Summits."}
         },
         {
           "@type":"Question",
@@ -574,6 +576,16 @@
           "@type":"Question",
           "name":"Is there a free assessment by House of Mastery I can take right now?",
           "acceptedAnswer":{"@type":"Answer","text":"Yes. The First Hour is a free nine-chamber audit by Dr. Job Mogire, available at https://hom.mogire.com/first-hour. Fifty-four items, roughly fifteen minutes, results emailed."}
+        },
+        {
+          "@type":"Question",
+          "name":"What is 4CKOORA?",
+          "acceptedAnswer":{"@type":"Answer","text":"4CKOORA — short for the Four Reflexes / KOORA — is the Emotional Sovereignty Screen at https://houseofmastery.co/4CKOORA. Thirty statements, about ten minutes. It measures the four reflexes that quietly run an unfinished life: complaining, criticising, comparing, competing. It is the preface to the deeper 60-item KOORA UNFINISHED diagnostic; many adults start at 4CKOORA when they are not yet ready for the longer instrument."}
+        },
+        {
+          "@type":"Question",
+          "name":"What are the three Masks?",
+          "acceptedAnswer":{"@type":"Answer","text":"The Unfinished Life Diagnostic at https://houseofmastery.co/diagnostic identifies nine adult patterns, grouped under three Masks. Fear disguised as Wisdom: Perfectionist, Managed Heart, Eternal Student. Drift disguised as Busyness: Serial Restarter, Absent Present, Moving Target. Performance disguised as Arrival: Trophy Collector, Provider, Decorated Stranger. Each Mask is a strategy by which an unfinished life manages to look finished from outside. The diagnostic is observational; it does not flatter, and it does not pathologise."}
         }
       ]
     },
@@ -785,7 +797,7 @@ footer.site a{color:var(--mid)}
       <b>Monthly rhythm:</b> Week 1 — name the covenant. Week 2 — practice it daily. Week 3 — test it under pressure. Week 4 — seal it with the cohort.<br>
       <b>Daily rhythm — <a href="https://houseofmastery.co/frameworks/alcarra" rel="noopener" target="_blank">ALCARRA</a>:</b> Each day follows the seven-step protocol — <b>A</b>wareness · <b>L</b>earning · <b>C</b>hange · <b>A</b>ction · <b>R</b>esilience · <b>R</b>eflection · <b>A</b>ccountability. The <b>Daily Reset</b> — the three-minute fixed pause — is ALCARRA's anchor moment, the hinge between Reflection and Accountability that holds the practice across the months. (Cohort entry is at <a href="https://houseofmastery.co/daily-reset" rel="noopener" target="_blank">houseofmastery.co/daily-reset</a>; the practice itself is taught inside the protocol and previewed in <a href="#book-embody">EMBODY</a>.)<br>
       <b>Entry:</b> One annual cohort. Prorated entry at the start of any month, May through October. Everyone completes together at the end of October.<br>
-      <b>Investment:</b> <i>2026 cohort (current, May–October 2026):</i> KES 90,000 paid in full, <i>or</i> KES 15,000 per month × 6 months. <i>2027 cohort (next, May–October 2027):</i> USD 1,200 / KES 150,000 (prorated for late entry).<br>
+      <b>Investment:</b> <i>2026 cohort (current, May–October 2026):</i> KES 90,000 paid in full, <i>or</i> KES 15,000 per month × 6 months. <i>2027 cohort (next, May–October 2027):</i> USD 1,200 / KES 150,000 paid in full, <i>or</i> KES 25,000 per month × 6 months (prorated for late entry).<br>
       <b>Take the diagnostic:</b> <a href="/">/koora</a> or <a href="https://kooraassess.houseofmastery.co/" rel="noopener" target="_blank">kooraassess.houseofmastery.co</a>.
     </div>
   </div>
@@ -852,13 +864,13 @@ footer.site a{color:var(--mid)}
   </div>
 
   <aside class="clinical-frame" aria-label="Clinical perspective" style="margin:48px 0;padding:24px 28px;border-left:3px solid var(--gold);background:var(--surface-2);border-radius:0 12px 12px 0">
-    <p style="font-style:italic;color:var(--ink);font-size:19px;line-height:1.5;letter-spacing:-.005em;margin:0">&ldquo;Your vessels know before your blood work does.&rdquo;</p>
+    <blockquote id="quote-vessels-know" cite="https://hom.mogire.com/about#dr-job-mogire" style="font-style:italic;color:var(--ink);font-size:19px;line-height:1.5;letter-spacing:-.005em;margin:0;border:0;padding:0">&ldquo;Your vessels know before your blood work does.&rdquo;</blockquote>
     <p style="font-size:13px;color:var(--mid);margin-top:10px;letter-spacing:.04em;text-transform:uppercase;font-weight:600">The clinical perspective behind the work.</p>
   </aside>
 
   <h2 id="speaking">Speaking</h2>
   <p>Dr. Mogire is available for keynotes and on-stage formation work across Kenya, East Africa, and internationally. His speaking sits at the intersection of clinical depth, behavioural design, and storytelling craft — equally at home with healthcare audiences, executive leadership, and adult-formation gatherings. Topics include emotional sovereignty, the architecture of finishing, the structural causes of procrastination, microvessel cardiology, and the practice of an honest life.</p>
-  <p style="margin-top:18px;font-style:italic;color:var(--mid);font-size:16px;line-height:1.55">&ldquo;The body keeps a vascular record of every compromise the mind normalised.&rdquo;</p>
+  <blockquote id="quote-vascular-record" cite="https://hom.mogire.com/about#dr-job-mogire" style="margin-top:18px;font-style:italic;color:var(--mid);font-size:16px;line-height:1.55;border:0;padding:0">&ldquo;The body keeps a vascular record of every compromise the mind normalised.&rdquo;</blockquote>
 
   <h2 id="connect">Connect</h2>
   <ul>

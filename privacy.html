@@ -6,13 +6,18 @@
 <title>Privacy Policy · House of Mastery</title>
 <meta name="description" content="The privacy policy of House of Mastery, the body of work of Dr. Job Mogire, MD, FACP, FACC, including The First Hour, KOORA, and related instruments.">
 <link rel="canonical" href="https://hom.mogire.com/privacy">
+<link rel="alternate" hreflang="en" href="https://hom.mogire.com/privacy">
+<link rel="alternate" hreflang="x-default" href="https://hom.mogire.com/privacy">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="en_KE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="en_GB">
 <meta property="og:title" content="Privacy Policy · House of Mastery">
 <meta property="og:description" content="What House of Mastery collects, how it's used, your rights, and the named sub-processors.">
 <meta property="og:url" content="https://hom.mogire.com/privacy">
 <meta property="og:image" content="https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="1058">
+<meta property="og:image:height" content="228">
 <meta property="og:site_name" content="House of Mastery">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy Policy · House of Mastery">
@@ -22,6 +27,8 @@
 {
   "@context":"https://schema.org",
   "@graph":[
+    {"@type":"WebSite","@id":"https://hom.mogire.com/#website","name":"House of Mastery","url":"https://hom.mogire.com/","inLanguage":"en"},
+    {"@type":"Organization","@id":"https://hom.mogire.com/#org","name":"House of Mastery","url":"https://hom.mogire.com/"},
     {"@type":"WebPage","@id":"https://hom.mogire.com/privacy","url":"https://hom.mogire.com/privacy","name":"Privacy Policy · House of Mastery","description":"What House of Mastery collects, how it's used, your rights, and the named sub-processors.","isPartOf":{"@id":"https://hom.mogire.com/#website"},"about":{"@id":"https://hom.mogire.com/#org"},"inLanguage":"en"},
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"House of Mastery","item":"https://hom.mogire.com/"},
@@ -31,7 +38,6 @@
 }
 </script>
 <meta name="theme-color" content="#0D1F3C">
-<link rel="canonical" href="https://hom.mogire.com/privacy">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -247,7 +253,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <tbody>
     <tr><td>Email and assessment archive of active participants</td><td>For as long as you remain in correspondence with House of Mastery, plus thirty-six months thereafter, unless you ask us to delete sooner.</td></tr>
     <tr><td>Cohort participation records</td><td>For the life of the cohort plus seven years, to support continuity for alumni rejoining the work.</td></tr>
-    <tr><td>Local-storage records on your own device. Keys written by the instruments: <code>koora_unfinished_v4</code> (your KOORA history; contains your name, email, and free-text reflections), <code>koora_inprogress</code> (a draft of your current attempt), <code>koora_participant_email</code> (<b>contains your raw email address</b>), <code>koora_cov_entry_{1..6}</code> (your covenant entries), <code>hom_lead_fired_koora</code> (a map of which emails have already triggered the Lead-fire dedup), <code>hom_firsthour_history_v3</code>, <code>hom_firsthour_inprogress</code>, <code>hom_firsthour_participant_email</code> (<b>contains your raw email address</b>), <code>hom_lead_fired_firsthour</code>, <code>fh_examen</code>, <code>fh_emoChoices</code>, <code>fh_unfinished</code>, <code>hom_firsthour_v3_notice_dismissed</code>, <code>hom_firsthour_v3_migrated</code>, <code>HOM_LS_PII_SWEEP_V1</code> (a one-time flag marking that we cleaned up older email-in-key entries), <code>HOM_OPS_BANNER</code> (an operator-only opt-in flag, off by default). Session-storage also holds <code>HOM_LAST_EVENT_IDS</code> and <code>hom_welcome_shown_*</code> dedup flags for the current tab only.</td><td>For as long as you choose. You may clear these at any time using the &ldquo;Reset history&rdquo; control inside each instrument or by clearing your browser data.</td></tr>
+    <tr><td>Local-storage records on your own device. Keys written by the instruments: <code>koora_unfinished_v4</code> (<b>your KOORA history; values contain your name, email, and free-text reflections</b>), <code>koora_inprogress</code> (<b>a draft of your current attempt; values contain your name and email</b>), <code>koora_participant_email</code> (<b>contains your raw email address</b>), <code>koora_cov_entry_{1..6}</code> (your covenant entries), <code>hom_lead_fired_koora</code> (a map of which emails have already triggered the Lead-fire dedup), <code>hom_complete_fired_koora_&lt;date&gt;</code> (one per assessment completion, value is just <code>1</code>), <code>hom_firsthour_history_v3</code> (<b>contains your name and email</b>), <code>hom_firsthour_inprogress</code> (<b>values contain your name and email</b>), <code>hom_firsthour_participant_email</code> (<b>contains your raw email address</b>), <code>hom_lead_fired_firsthour</code>, <code>hom_complete_fired_firsthour_&lt;date&gt;</code>, <code>fh_examen</code>, <code>fh_emoChoices</code>, <code>fh_unfinished</code>, <code>hom_firsthour_v3_notice_dismissed</code>, <code>hom_firsthour_v3_migrated</code>, <code>HOM_LS_PII_SWEEP_V1</code> (a one-time flag marking that we cleaned up older email-in-key entries), <code>HOM_OPS_BANNER</code> (an operator-only opt-in flag, off by default), <code>HOM_LAST_EVENT_IDS</code> (per-event Meta event IDs used by a future server-side CAPI dispatcher; pruned after 30 days). Session-storage also holds <code>hom_welcome_shown_*</code> and <code>hom_dashboard_shown_koora</code> dedup flags for the current tab only.</td><td>For as long as you choose. You may clear these at any time using the &ldquo;Reset history&rdquo; control inside each instrument or by clearing your browser data.</td></tr>
     <tr><td>Server logs</td><td>Up to thirty days, after which they are aggregated or deleted.</td></tr>
     <tr><td>Records we are legally required to keep</td><td>For the period required by the relevant law, then deleted.</td></tr>
   </tbody>
@@ -311,7 +317,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 </ul>
 <p>Where either pixel loads, it sets and reads cookies managed by Meta Platforms, Inc. (principally <code>_fbp</code>, and <code>_fbc</code> when you arrive via a Meta-served ad). The Pixel transmits the following to Meta on each page view or milestone event:</p>
 <ul>
-  <li>The page URL (we strip a comprehensive set of identifying query parameters &mdash; <code>name</code>, <code>email</code>, <code>first</code>, <code>last</code>, <code>firstname</code>, <code>lastname</code>, <code>fname</code>, <code>lname</code>, <code>em</code>, <code>token</code>, <code>contact_id</code>, <code>cid</code>, <code>phone</code>, <code>ph</code>, <code>user</code>, <code>uid</code> &mdash; before the Pixel is allowed to read the URL, so retake links from email do not leak personal identifiers);</li>
+  <li>The page URL (we strip a comprehensive set of identifying query parameters &mdash; <code>name</code>, <code>email</code>, <code>first</code>, <code>last</code>, <code>firstname</code>, <code>lastname</code>, <code>fname</code>, <code>lname</code>, <code>em</code>, <code>token</code>, <code>contact_id</code>, <code>cid</code>, <code>phone</code>, <code>ph</code>, <code>user</code>, <code>uid</code>, <code>mc_eid</code>, <code>vero_id</code>, <code>_branch_match_id</code> &mdash; before the Pixel is allowed to read the URL, so retake links from email do not leak personal identifiers);</li>
   <li>The event name &mdash; <i>PageView</i>, <i>ViewContent</i>, the standard events <i>Lead</i> (you confirmed your email at the gate) and <i>CompleteRegistration</i> (you reached your assessment result), and our custom milestone events (such as the welcome screen being shown, the begin button being clicked, mid-assessment progress thresholds, and section transitions);</li>
   <li>The custom event properties we attach &mdash; the instrument identifier (<i>koora</i> or <i>first-hour</i>), the assessment&rsquo;s content identifier, the question index at the moment of the event, and the synthetic conversion value used for ads optimisation;</li>
   <li>Meta-managed first-party cookie identifiers (<code>_fbp</code>, <code>_fbc</code>) and any <code>fbclid</code> click identifier present in the URL;</li>

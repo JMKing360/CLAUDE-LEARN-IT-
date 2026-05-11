@@ -23,8 +23,8 @@
 <meta property="og:description" content="A free nine-chamber audit by Dr. Job Mogire, MD, FACC, FACP. 54 items, ~15 minutes, results emailed. House of Mastery, Kenya. For the life you have been living without quite meaning to.">
 <meta property="og:image" content="https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg">
 <meta property="og:image:alt" content="The First Hour — a free nine-chamber audit by Dr. Job Mogire, MD, FACC, FACP, House of Mastery, Kenya">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:width" content="896">
+<meta property="og:image:height" content="1200">
 <meta property="og:url" content="https://hom.mogire.com/first-hour">
 <meta property="og:site_name" content="House of Mastery">
 <meta property="og:locale" content="en_KE">
@@ -115,6 +115,7 @@
         "https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/",
         "https://hom.mogire.com/about",
         "https://hom.mogire.com/",
+        "https://hom.mogire.com/first-hour",
         "https://houseofmastery.co/",
         "https://houseofmastery.co/about",
         "https://kooraassess.houseofmastery.co/",
@@ -898,8 +899,10 @@ body.footer-hidden footer{display:none}
 
 /* Print stylesheet */
 @media print{
-  *,*::before,*::after{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}
+  body,p,h1,h2,h3,h4,h5,h6,li,td,th,div{color:#000 !important;background:transparent !important;text-shadow:none !important;box-shadow:none !important}
   nav,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.q-back,.welcome-cta,.koora-funnel,.contact-block,.save-pill,#screen-welcome,#screen-question,#screen-transition,#screen-ack{display:none !important}
+  /* Hide PII inputs from print (painInput, painInput5y, intentInput, email/name inputs). */
+  .pain-input,#painInput,#painInput5y,#intentInput,.email-input,#participantName,#participantEmail{display:none !important}
   body{font-size:11pt;line-height:1.4;background:white !important;color:black !important;font-family:Georgia,serif}
   main{max-width:none;padding:0}
   #screen-results,#screen-results.active{display:block !important;padding:0 !important}
@@ -908,6 +911,9 @@ body.footer-hidden footer{display:none}
   .cover-letter,.koora-funnel,.author-byline,.unfinished-block,.scoring-note{display:none !important}
   .meet-doctor{break-before:page;page-break-before:always}
   .meet-doctor__figure{max-width:140px}
+  .pip-red{color:#B22222 !important}
+  .pip-amber{color:#C77700 !important}
+  .pip-green{color:#2E7D32 !important}
 }
 
 /* No-script fallback */
@@ -1013,7 +1019,8 @@ body.footer-hidden footer{display:none}
   try{
     var url=new URL(window.location.href);
     var stash={},stripped=false;
-    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','mc_cid','vero_id','_branch_match_id','utm_id'].forEach(function(k){
+    // PII-only strip. Ad-attribution + campaign tokens are NOT stripped.
+    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','vero_id','_branch_match_id'].forEach(function(k){
       if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
     });
     if(stripped){
@@ -1053,12 +1060,16 @@ fbq('track', 'PageView');
   var fired = false;
   function fireVC(){
     if(fired) return; fired = true;
+    var __vcID;
+    try { __vcID = (crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now()+'-'+Math.random().toString(36).slice(2)); }
+    catch(e){ __vcID = Date.now()+'-'+Math.random().toString(36).slice(2); }
+    window.HOM_VIEWCONTENT_EVENT_ID = __vcID;
     fbq('track', 'ViewContent', {
       content_name: 'The First Hour Assessment',
       content_category: 'Assessment',
       content_ids: ['first_hour_v1'],
       content_type: 'assessment'
-    });
+    }, { eventID: __vcID });
   }
   function arm(){
     var el = document.getElementById('screen-welcome');
@@ -1410,10 +1421,10 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
       <p class="pain-q">If this drift continues for thirty more days, what does it cost you?</p>
       <p class="pain-sub">One sentence. Concrete. Optional, and powerful. What you write travels with your full report.</p>
       <label class="sr-only" for="painInput">Name the 30-day cost of your drift</label>
-      <textarea class="pain-input" id="painInput" placeholder="The day my drift costs me ..." aria-label="Name the 30-day cost of your drift" onblur="showSelfQuote()"></textarea>
+      <textarea class="pain-input" id="painInput" placeholder="The day my drift costs me ..." onblur="showSelfQuote()"></textarea>
       <p class="pain-q-second">Five years from now, what will you wish you had named today?</p>
       <label class="sr-only" for="painInput5y">Name the five-year cost of staying as you are</label>
-      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will most regret ..." aria-label="Name the five-year cost of staying as you are" onblur="showSelfQuote()"></textarea>
+      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will most regret ..." onblur="showSelfQuote()"></textarea>
       <div class="self-quote" id="selfQuote">
         <div class="self-quote-label">Your own words, written back to you</div>
         <div class="self-quote-text" id="selfQuoteText"></div>
@@ -1421,7 +1432,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
       <p class="pain-q-second" style="margin-top:36px">When tomorrow begins, I will...</p>
       <p class="pain-sub">One specific sentence. The smallest first move you can make in the next twenty-four hours. <b>Insight without a move stays insight.</b> The move makes it real.</p>
       <label class="sr-only" for="intentInput">Name the first move you will make tomorrow</label>
-      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." aria-label="Name the first move you will make tomorrow" onblur="persistIntent()"></textarea>
+      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." onblur="persistIntent()"></textarea>
     </div>
   </div>
 
@@ -1642,7 +1653,7 @@ if(!EMAIL_OK){
     var showBanner=false;
     var h=location.hostname;
     // Production hostnames NEVER show the banner regardless of localStorage flag.
-    var isProd=(h==='hom.mogire.com'||h==='www.hom.mogire.com');
+    var isProd=(h==='hom.mogire.com'||h==='www.hom.mogire.com'||/(?:^|\.)houseofmastery\.co$/i.test(h));
     if(!isProd){
       if(h==='localhost'||h.indexOf('.pages.dev')>=0||h.indexOf('127.0.0.1')>=0)showBanner=true;
       try{if(localStorage.getItem('HOM_OPS_BANNER')==='1')showBanner=true;}catch(_e){}
@@ -1650,7 +1661,7 @@ if(!EMAIL_OK){
     if(showBanner){
       document.documentElement.classList.add('hom-ops-banner-on');
       var __style=document.createElement('style');
-      __style.textContent='.hom-ops-banner-on body{padding-top:48px}.hom-ops-banner{position:fixed;top:0;left:0;right:0;height:48px;z-index:99999;background:#B22222;color:#fff;font:600 13px/24px system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em;box-sizing:border-box}';
+      __style.textContent='.hom-ops-banner-on body{padding-top:48px}.hom-ops-banner{position:fixed;top:0;left:0;right:0;height:48px;z-index:99999;background:#B22222;color:#fff;font:600 13px/24px system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em;box-sizing:border-box}.hom-ops-banner button:focus-visible{outline:2px solid #fff;outline-offset:2px}';
       document.head.appendChild(__style);
       document.addEventListener('DOMContentLoaded',function(){
         var b=document.createElement('div');
@@ -2028,10 +2039,11 @@ function show(id){
     try{target.focus({preventScroll:true})}catch(e){target.focus()}
   }
   // welcome_shown: fire only when the welcome screen actually becomes visible,
-  // and only once per session.
+  // and only once per browser session (sessionStorage dedup matches KOORA).
   if(id==='screen-welcome' && !_welcomeShownFired && typeof HOM_TRACK==='function'){
     _welcomeShownFired=true;
-    HOM_TRACK('welcome_shown',{instrument:'first-hour'});
+    var __already=false;try{__already=sessionStorage.getItem('hom_welcome_shown_firsthour')==='1';if(!__already)sessionStorage.setItem('hom_welcome_shown_firsthour','1');}catch(e){}
+    if(!__already)HOM_TRACK('welcome_shown',{instrument:'first-hour'});
   }
 }
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
@@ -2498,6 +2510,14 @@ function finishAssessment(){
     var already=false;
     try{already=localStorage.getItem(doneKey)==='1'}catch(e){}
     if(!already){
+      // Re-seed Advanced Matching BEFORE the CompleteRegistration event fires
+      // so Meta receives the fresh em+fn match (not just gate-time em).
+      if(typeof HOM_PIXEL_ADVANCED_MATCH==='function' && rec.email){
+        var __am={em:rec.email};
+        var __fn=((rec.name||'')+'').toLowerCase();
+        if(__fn)__am.fn=__fn;
+        HOM_PIXEL_ADVANCED_MATCH(__am);
+      }
       HOM_TRACK('assessment_completed',{instrument:'first-hour'});
       try{localStorage.setItem(doneKey,'1')}catch(e){}
     }
@@ -2874,18 +2894,11 @@ function showSelfQuote(){
 // Email ,  silent send when assessment finishes, also resendable
 function fireEmailQuiet(rec){
   if(!EMAIL_OK)return;
-  // Re-seed Advanced Matching here so the assessment_completed -> Meta
-  // CompleteRegistration event downstream carries em+fn uplift. First Hour
-  // does not collect last name, so ln is omitted.
-  if(typeof HOM_PIXEL_ADVANCED_MATCH==='function' && rec && rec.email){
-    var __am={em:rec.email};
-    var __fn=((rec.name||'')+'').toLowerCase();
-    if(__fn)__am.fn=__fn;
-    HOM_PIXEL_ADVANCED_MATCH(__am);
-  }
+  // Note: Advanced Matching re-seed now happens BEFORE assessment_completed
+  // fires (at the call site in finishAssessment), so this function only fires
+  // the email_sent_clicked taxonomy event and posts the webhook.
   // Auto-send fires the same email_sent_clicked event as manual resend so
-  // funnel exit counts match KOORA (where every send fires the event). Marks
-  // auto vs manual so funnel analytics can distinguish.
+  // funnel exit counts match KOORA. Marks mode for funnel analytics.
   if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'auto'});
   buildEmailPayload(rec).then(function(){}).catch(function(){});
 }
@@ -2920,12 +2933,14 @@ function buildEmailPayload(rec){
   // can dedup server-side events against browser-side Pixel fires.
   var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed'):null;
   var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed'):null;
+  var metaViewContentEvtId=window.HOM_VIEWCONTENT_EVENT_ID||null;
   return sendToGhl({
     to_name:rec.name,
     to_email:rec.email,
     cc_email:'mogiremd@gmail.com',
     meta_event_id_lead:metaLeadEvtId,
     meta_event_id_completed:metaCompletedEvtId,
+    meta_event_id_view_content:metaViewContentEvtId,
     primary_reflex:loud.name,
     primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
     archetype_desc:'THE FIRST HOUR · By Dr. Job Mogire, MD, FACC · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Pre-Audit Examen (truths named before the audit): '+examenLine+'<br><br>UNFINISHED self-named: '+unfLine+'<br>Pre-assessment commitments. '+emoLine+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.<br><br><i>Scoring methodology: 54-item Likert (1-4) across nine chambers in three triads, plus a six-item agency-matrix binary check. Cost-of-autopilot figures calibrated to Killingsworth & Gilbert (2010). Adults spend ~47% of waking time on autopilot. Figures are estimates derived from responses, not measurements.</i>',

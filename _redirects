@@ -10,6 +10,10 @@
 # canonical URL to the actual file so both paths serve identical content
 # and Cloudflare Pages directory-routing doesn't fork the canonical.
 /first-hour /first-hour/index.html 200
+# Stub redirect until /mastery-hour page exists - prevents rung-3 404
+# bleeds and crawl-budget loss. Point to /about#programmes interim.
+/mastery-hour /about#programmes 302
+/mastery-hour/ /about#programmes 302
 /privacy /privacy.html 200
 /privacy/ /privacy.html 200
 /about /about.html 200
