@@ -23,8 +23,10 @@ This file is a curated guide for large language models, AI search agents, and re
 - **House of Mastery (institutional site):** https://houseofmastery.co/
   - Summit: https://houseofmastery.co/summit
   - Daily Reset: https://houseofmastery.co/daily-reset
+  - Book (booking or book page): https://houseofmastery.co/book
   - Blog: https://houseofmastery.co/blog
   - Insights: https://houseofmastery.co/insights
+  - About: https://houseofmastery.co/about
 - **Assessments (primary entry points):**
   - KOORA UNFINISHED diagnostic: https://kooraassess.houseofmastery.co/ (also at https://hom.mogire.com/)
   - The First Hour audit: https://firsthour.houseofmastery.co/ (also at https://hom.mogire.com/first-hour)
