@@ -27,7 +27,7 @@ jobs:
         run: npm run verify:deployment
       - name: Em-dash sweep on user-facing files
         run: |
-          if grep -nP '[\x{2014}]' first-hour.html index.html privacy.html | grep -v '^[^:]*:[0-9]*:[[:space:]]*\*\|^[^:]*:[0-9]*:[[:space:]]*//\|^[^:]*:[0-9]*:[[:space:]]*/\*'; then
+          if grep -nP '[\x{2014}]' first-hour/index.html index.html privacy.html | grep -v '^[^:]*:[0-9]*:[[:space:]]*\*\|^[^:]*:[0-9]*:[[:space:]]*//\|^[^:]*:[0-9]*:[[:space:]]*/\*'; then
             echo "Em dash found in user-facing copy"; exit 1
           fi
       - name: Lint
@@ -47,6 +47,60 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test --if-present
+
+  schema:
+    name: JSON-LD + tag-balance + cold-load smoke
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate JSON-LD + manifest + sitemap + tag balance
+        run: |
+          python3 <<'PY'
+          import re, json, sys, xml.etree.ElementTree as ET
+          errors = []
+          for f in ['about.html','index.html','first-hour/index.html','koora-faq.html','first-hour-faq.html','privacy.html']:
+              h = open(f).read()
+              for i,m in enumerate(re.finditer(r'<script[^>]+type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', h, re.DOTALL|re.IGNORECASE)):
+                  try: json.loads(m.group(1).strip())
+                  except json.JSONDecodeError as e: errors.append(f'{f} block {i+1}: {e}')
+          try: json.load(open('manifest.json'))
+          except Exception as e: errors.append(f'manifest.json: {e}')
+          try: ET.parse('sitemap.xml')
+          except Exception as e: errors.append(f'sitemap.xml: {e}')
+          for f in ['about.html','index.html','first-hour/index.html','koora-faq.html','first-hour-faq.html','privacy.html','404.html','embed.html']:
+              h = open(f).read()
+              for tag in ['script','section','div','main','header','footer','nav','article','aside','style','blockquote']:
+                  o = len(re.findall(r'<'+tag+r'[\s>]',h,re.I)); c = len(re.findall(r'</'+tag+r'>',h,re.I))
+                  if o != c: errors.append(f'{f}: <{tag}> opens={o} closes={c}')
+          if errors:
+              for e in errors: print('FAIL:', e)
+              sys.exit(1)
+          print('PASS: JSON-LD + manifest + sitemap + tag balance')
+          PY
+      - name: Cold-load smoke (JSDOM)
+        run: |
+          mkdir -p /tmp/jsdom && cd /tmp/jsdom && npm init -y >/dev/null && npm install --silent jsdom@24
+          cd $GITHUB_WORKSPACE
+          # Patch the test scripts' jsdom import path to point at the temp install
+          sed -e "s|/tmp/node_modules/jsdom|/tmp/jsdom/node_modules/jsdom|g" -e "s|REPO = '/home/user/CLAUDE-LEARN-IT-'|REPO = process.cwd()|g" tests/smoke/cold-load.mjs > /tmp/cold-load.mjs
+          node /tmp/cold-load.mjs 2>&1 | tee /tmp/smoke.out
+          if grep -q "Console errors during load: [^0]" /tmp/smoke.out; then
+            echo "Cold-load smoke detected JS errors"; exit 1
+          fi
+          if ! grep -q "fbq('init', PIXEL) fired: true" /tmp/smoke.out; then
+            echo "Pixel init did not fire"; exit 1
+          fi
+          if ! grep -q "fbq('track', 'PageView') fired: true" /tmp/smoke.out; then
+            echo "PageView did not fire"; exit 1
+          fi
 
   e2e:
     name: End-to-end (Playwright)
