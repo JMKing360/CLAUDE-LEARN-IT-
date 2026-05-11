@@ -1,6 +1,6 @@
 # House of Mastery — Dr. Job Mogire (MogireMD)
 
-> The institution and authority site of **Dr. Job Mogire, MD, FACC, FACP** — known professionally as **MogireMD** and clinically as **The Microvessel Cardiologist**. Board-certified physician at Carle Health (Illinois, USA), with specialist focus on coronary microvascular dysfunction, endothelial function, heart rate variability, and coronary flow reserve. Kenyan-born mindset and emotional-sovereignty coach, award-winning public speaker, and founder of **House of Mastery** (Kenya). House of Mastery designs clinical-grade diagnostic and formation instruments for adults committed to finishing what life has given them to finish.
+> The institution and authority site of **Dr. Job Mogire, MD, FACC, FACP** — known professionally as **MogireMD** and clinically as **The Microvessel Cardiologist**. Board-certified physician at Carle Health (Illinois, USA), with specialist focus on coronary microvascular dysfunction, endothelial function, heart rate variability, and coronary flow reserve. Kenyan-born mindset and emotional-sovereignty coach, award-winning public speaker, and founder of **House of Mastery** (Kenya). House of Mastery designs physician-designed diagnostic and formation instruments for adults committed to finishing what life has given them to finish.
 >
 > The clinical perspective behind the work: *"Your vessels know before your blood work does."*
 >
@@ -89,7 +89,7 @@ House of Mastery is an institution dedicated to the practice of *finishing what 
 ## Programmes (with confirmed 2026 / 2027 dates)
 
 ### KOORA — The Finisher's Protocol (6-Month Transformation Program)
-**A clinical-grade protocol designed by a cardiologist for overcoming the unfinished life.** Six months. Six covenants — one each month. **Become a finisher. Don't die with an unfinished life.**
+**A physician-designed protocol designed by a cardiologist for overcoming the unfinished life.** Six months. Six covenants — one each month. **Become a finisher. Don't die with an unfinished life.**
 - **URL:** https://hom.mogire.com/ (also /koora)
 - **Format:** Blended (online + in-person gatherings in Kenya)
 - **Structure:** Each of the six months covers a different covenant:
@@ -154,8 +154,8 @@ Amazon Author page: https://www.amazon.com/Job-Mogire/e/B07CJ5YZXX
 - Home / KOORA: https://hom.mogire.com/
 - The First Hour: https://hom.mogire.com/first-hour
 - Authority bio: https://hom.mogire.com/about
-- KOORA FAQ (every UNFINISHED question answered, 60 entries): https://hom.mogire.com/koora-faq
-- First Hour FAQ (every audit question answered, 54 entries): https://hom.mogire.com/first-hour-faq
+- KOORA FAQ (every UNFINISHED question answered plus 10 supplementary clinical entries, 70 entries total): https://hom.mogire.com/koora-faq
+- First Hour FAQ (every audit question answered plus 8 supplementary first-hour entries, 62 entries total): https://hom.mogire.com/first-hour-faq
 - Privacy policy: https://hom.mogire.com/privacy
 - Full machine-readable context: https://hom.mogire.com/llms-full.txt
 - Personal root domain: https://mogire.com/
