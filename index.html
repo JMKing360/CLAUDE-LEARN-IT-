@@ -1674,6 +1674,10 @@ try{
   }
 }catch(e){}
 var AUTO_ADVANCE_MS=1500;
+// Section-transition dwell: longer than question-to-question advance because
+// the transition screen carries reading content (eyebrow, headline, body,
+// covenant + day framing). Manual CONTINUE button stays for skip-ahead.
+var TRANSITION_AUTO_MS=6500;
 // SAVE_PILL_MS loaded from /shared.js
 var COHORT_2_LAUNCH='November 2026';
 
@@ -2466,6 +2470,7 @@ var participantEnrolled=null;
 var participantEmail='';
 var lastResults=null;
 var advanceTimer=null;
+var transitionTimer=null;
 var pendingAfterTransition=null;
 var covPulseValue=null;
 var claimValue=null;
@@ -2879,7 +2884,7 @@ function goDashboard(){
 }
 
 // Question render with auto-advance
-function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
+function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}}
 // Section short labels for the qSection eyebrow. Single word, neutral, no
 // priming. The per-tier diagnostic progression lives in the question text.
 var SECTION_SHORTS={
@@ -2992,8 +2997,16 @@ function enterTransition(trans){
   document.getElementById('trDayFrame').innerHTML=dayLine;
   hideChamberProgress();show('screen-transition');
   setProgress(Math.round((trans.q/TOTAL)*98));
+  // Auto-advance into the next section after dwell time. CONTINUE button still
+  // works for visitors who want to skip ahead; clicking it pre-empts the timer.
+  if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
+  transitionTimer=setTimeout(function(){
+    var s=document.getElementById('screen-transition');
+    if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
+  },TRANSITION_AUTO_MS);
 }
 function exitTransition(){
+  if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
   if(pendingAfterTransition==null)return;
   currentQ=pendingAfterTransition;pendingAfterTransition=null;
   renderQuestion(currentQ);show('screen-question');

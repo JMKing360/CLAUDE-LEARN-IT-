@@ -1162,16 +1162,11 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <svg class="icon cov-c--money" aria-hidden="true"><use href="#icon-money"/></svg>
     <svg class="icon cov-c--people" aria-hidden="true"><use href="#icon-people-alt"/></svg>
   </div>
-  <div class="welcome-brand">
-    <span class="welcome-firsthour-mark">THE FIRST HOUR <b>·</b> HOUSE OF MASTERY</span>
-    <p class="welcome-tm">©House of Mastery with Dr Job Mogire™ · The First Hour™ · The Unfinished Life™ · Don't Die With An Unfinished Life™ · <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a></p>
-  </div>
   <div class="rebuild-notice" id="rebuildNotice" style="display:none">
     <span class="rebuild-notice__h">The instrument was rebuilt.</span>
     <span class="rebuild-notice__body">Nine chambers, three triads, sixty items. Your prior takes are preserved as anchor dates only — chamber scores cannot be carried across the rebuild cleanly.</span>
     <button class="rebuild-notice__close" type="button" onclick="dismissRebuildNotice()" aria-label="Dismiss">×</button>
   </div>
-  <span class="eyebrow">THE FIRST HOUR · A nine-chamber audit</span>
   <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
   <p class="lede">Below are six fragments written for the part of you quietly carrying the most. <strong>Notice which ones land.</strong> Nothing here is accusation. It is architecture.</p>
   <p class="lede">Before you answer the sixty, six small things to notice. Answer honestly &mdash; we are not collecting them, they are gates. <strong>The pattern is the diagnosis, never the verdict.</strong></p>
@@ -1299,9 +1294,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
         <button class="btn-text" type="button" onclick="cancelEmailGate()">Back</button>
       </div>
     </div>
-    <p class="welcome-meta"><b>About fifteen minutes.</b> Take one breath. Notice your shoulders. Begin.</p>
-    <p class="welcome-tagline"><em>Don’t die with an unfinished life.</em></p>
-    <p class="welcome-waitlist">If you want the deeper protocol when it opens, email <a href="mailto:mail@mogire.com?subject=KOORA%20WAITLIST">mail@mogire.com</a> with subject <b>KOORA WAITLIST</b>.</p>
+    <p class="welcome-meta"><b>About fifteen minutes.</b></p>
   </div>
 </section>
 
@@ -1687,6 +1680,10 @@ var TOTAL=54;
 var AGENCY_TOTAL=6;
 var STORAGE_KEY='hom_firsthour_history_v3';
 var AUTO_ADVANCE_MS=1500;
+// Section-transition dwell: longer than question-to-question advance because
+// the transition screen carries reading content (eyebrow, headline, body).
+// Manual CONTINUE button stays for skip-ahead.
+var TRANSITION_AUTO_MS=6500;
 // SAVE_PILL_MS loaded from /shared.js
 
 var OPTIONS=[
@@ -1928,6 +1925,7 @@ var participantName='';
 var participantEmail='';
 var lastResults=null;
 var advanceTimer=null;
+var transitionTimer=null;
 var pendingAfterTransition=null;
 var painText='';
 var painText5y='';
@@ -2232,7 +2230,7 @@ function startAssessment(){
   renderQuestion(1);show('screen-question');
 }
 
-function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}}
+function cancelAdvance(){if(advanceTimer){clearTimeout(advanceTimer);advanceTimer=null}if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}}
 // Chamber prompts, six tiers per chamber, keyed to which return this is.
 // Tier rises with each return so language evolves through the six-month path.
 // v3.7.7 -- chamber prompt resolved from CHAMBERS[].sub (single source of truth).
@@ -2322,8 +2320,16 @@ function enterTransition(trans){
   document.getElementById('trText').innerHTML=trans.text;
   hideChamberProgress();show('screen-transition');
   setProgress(Math.round((trans.q/TOTAL)*98));
+  // Auto-advance into the next triad after dwell time. CONTINUE button still
+  // works for visitors who want to skip ahead; clicking it pre-empts the timer.
+  if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
+  transitionTimer=setTimeout(function(){
+    var s=document.getElementById('screen-transition');
+    if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
+  },TRANSITION_AUTO_MS);
 }
 function exitTransition(){
+  if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
   if(pendingAfterTransition==null)return;
   currentQ=pendingAfterTransition;pendingAfterTransition=null;
   renderQuestion(currentQ);show('screen-question');
@@ -3151,7 +3157,7 @@ function _downloadPDF(){
   var v=doc.splitTextToSize('You are permitted to drift. You are not permitted to drift quietly.',W-M*2);
   doc.text(v,M,y);y+=v.length*5+6;
   doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor(mid[0],mid[1],mid[2]);
-  doc.text('We will email you in thirty days. Replies reach Dr. Mogire’s team at mail@mogire.com.',M,y);
+  doc.text('We will email you in thirty days.',M,y);
 
   footer(3);doc.addPage();
 
