@@ -2,26 +2,44 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.20';
+const VERSION = 'hom-v3.7.51';
 const CORE = [
   '/',
-  '/first-hour.html',
+  '/first-hour',
   '/index.html',
+  '/about.html',
+  '/about',
+  '/koora-faq.html',
+  '/koora-faq',
+  '/first-hour-faq.html',
+  '/first-hour-faq',
   '/privacy.html',
+  '/privacy',
+  '/shared.js',
+  '/feature-flags.js',
+  '/observability.js',
   '/manifest.json',
-  '/images/koora-logo.png',
+  '/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png',
   '/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png',
   '/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png',
-  '/images/dr-job-clinical.jpg',
-  '/images/dr-job-cover.jpg',
-  '/images/dr-job-desk.jpg'
+  '/images/House-of-Mastery-icon-192.png',
+  '/images/House-of-Mastery-icon-512.png',
+  '/images/House-of-Mastery-icon-maskable-512.png',
+  '/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg',
+  '/images/dr-job-mogire-public-speaker-motivational-coach-house-of-mastery-east-africa.jpg',
+  '/images/dr-job-mogire-emotional-intelligence-coach-house-of-mastery-nairobi-kenya.jpg'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(VERSION).then((cache) =>
       Promise.all(
-        CORE.map((url) => cache.add(url).catch(() => null))
+        // Use console.warn (not null-swallow) so a regressed route surfaces in
+        // DevTools the first time SW installs after a deploy.
+        CORE.map((url) => cache.add(url).catch((e) => {
+          try { console.warn('[SW] cache.add failed for', url, e && e.message); } catch (_e) {}
+          return null;
+        }))
       )
     ).then(() => self.skipWaiting())
   );
@@ -48,14 +66,21 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML pages: network-first, fall back to cache
+  // HTML pages: network-first, fall back to cache. Do NOT write the response
+  // to cache when the server says Vary by CF-IPCountry or Sec-GPC - that
+  // response is country/GPC-specific and would lie to a future visitor whose
+  // country/GPC posture differs. Use the cache only as an offline fallback.
   if (req.mode === 'navigate' || req.headers.get('accept')?.includes('text/html')) {
     event.respondWith(
       fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(VERSION).then((cache) => cache.put(req, copy));
+        const vary = res.headers.get('vary') || '';
+        const isCountrySpecific = /cf-ipcountry|sec-gpc/i.test(vary);
+        if (!isCountrySpecific) {
+          const copy = res.clone();
+          caches.open(VERSION).then((cache) => cache.put(req, copy));
+        }
         return res;
-      }).catch(() => caches.match(req).then((cached) => cached || caches.match('/first-hour.html')))
+      }).catch(() => caches.match(req).then((cached) => cached || caches.match('/first-hour/')))
     );
     return;
   }

@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 
-const htmlFiles = ['index.html', 'first-hour.html'];
+const htmlFiles = ['index.html', 'first-hour/index.html'];
 
 for (const file of htmlFiles) {
   if (!fs.existsSync(file)) throw new Error(`${file} is missing`);
@@ -8,7 +8,7 @@ for (const file of htmlFiles) {
   if (/emailjs/i.test(html)) throw new Error(`${file} still contains EmailJS`);
 }
 
-const firstHour = fs.readFileSync('first-hour.html', 'utf8');
+const firstHour = fs.readFileSync('first-hour/index.html', 'utf8');
 if (!firstHour.includes('window.HOM_CONFIG.ghlWebhookUrl')) {
   throw new Error('GHL environment configuration hook is missing');
 }
@@ -20,7 +20,7 @@ if (!firstHour.includes('GHL webhook not configured')) {
 }
 
 const redirects = fs.readFileSync('_redirects', 'utf8');
-for (const route of ['/first-hour', '/privacy']) {
+for (const route of ['/koora', '/privacy']) {
   if (!redirects.includes(route)) throw new Error(`missing redirect route ${route}`);
 }
 

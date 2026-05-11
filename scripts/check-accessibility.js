@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { chromium } from 'playwright';
 
 const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:4173';
-const paths = ['/', '/first-hour.html', '/privacy.html'];
+const paths = ['/', '/first-hour/', '/privacy.html'];
 const navigationTimeoutMs = 15000;
 
 const browser = await chromium.launch();

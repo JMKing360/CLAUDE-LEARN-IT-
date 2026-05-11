@@ -126,7 +126,7 @@ Combine all 16 into a single SVG file with `<symbol>` blocks at the top of `<bod
 <svg class="icon"><use href="#icon-self"/></svg>
 ```
 
-This is what the v3.6.0 build uses — see `index.html` and `first-hour.html` in the repo.
+This is what the v3.6.0 build uses — see `index.html` and `first-hour/index.html` in the repo.
 
 ---
 

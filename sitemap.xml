@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Home / KOORA: The Finisher's Protocol (UNFINISHED diagnostic) -->
+  <url>
+    <loc>https://hom.mogire.com/</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png</image:loc>
+      <image:title>KOORA: The Finisher's Protocol — House of Mastery, Dr. Job Mogire, Kenya</image:title>
+      <image:caption>KOORA — The Finisher's Protocol. A 180-day physician-designed architecture by Dr. Job Mogire, MD, FACC, FACP. House of Mastery, Kenya.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg</image:loc>
+      <image:title>Dr. Job Mogire, MD, FACC, FACP — Board-Certified Physician, Mindset Coach, House of Mastery, Kenya</image:title>
+      <image:caption>Dr. Job Mogire — board-certified cardiologist and internist, mindset and emotional intelligence coach, founder of House of Mastery, Kenya.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- The First Hour — free nine-chamber audit -->
+  <url>
+    <loc>https://hom.mogire.com/first-hour</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg</image:loc>
+      <image:title>The First Hour — Free emotional intelligence and self-awareness audit by Dr. Job Mogire, House of Mastery</image:title>
+      <image:caption>The First Hour. A nine-chamber audit by Dr. Job Mogire, MD, FACC, FACP. House of Mastery, Kenya.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Authority bio — Dr. Job Mogire -->
+  <url>
+    <loc>https://hom.mogire.com/about</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/dr-job-mogire-public-speaker-motivational-coach-house-of-mastery-east-africa.jpg</image:loc>
+      <image:title>Dr. Job Mogire — Public Speaker and Motivational Speaker, Kenya and East Africa</image:title>
+      <image:caption>Dr. Job Mogire — Toastmasters regional winner, World Championship of Public Speaking quarterfinalist, NSA Storytelling Contest 2025 finalist.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/dr-job-mogire-emotional-intelligence-coach-house-of-mastery-nairobi-kenya.jpg</image:loc>
+      <image:title>Dr. Job Mogire — Emotional Intelligence Coach, House of Mastery, Nairobi, Kenya</image:title>
+      <image:caption>Dr. Job Mogire — emotional intelligence and emotional sovereignty coach, House of Mastery, Nairobi, Kenya.</image:caption>
+    </image:image>
+  </url>
+
+  <!-- KOORA FAQ — 70 answered questions (60 diagnostic items + 10 supplementary in Section 7) -->
+  <url>
+    <loc>https://hom.mogire.com/koora-faq</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png</image:loc>
+      <image:title>KOORA UNFINISHED FAQ — every question answered by Dr. Job Mogire</image:title>
+    </image:image>
+  </url>
+
+  <!-- First Hour FAQ — 62 answered questions (54 audit items + 8 supplementary in Chamber 10) -->
+  <url>
+    <loc>https://hom.mogire.com/first-hour-faq</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg</image:loc>
+      <image:title>The First Hour FAQ — every question answered by Dr. Job Mogire</image:title>
+    </image:image>
+  </url>
+
+  <!-- Privacy policy -->
+  <url>
+    <loc>https://hom.mogire.com/privacy</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

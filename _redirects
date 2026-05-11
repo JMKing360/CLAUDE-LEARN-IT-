@@ -1,7 +1,24 @@
-# Cloudflare Pages clean-path rewrites for the separate House of Mastery tools
-/first-hour /first-hour.html 200
-/first-hour/ /first-hour.html 200
-/koora /index.html 200
-/koora/ /index.html 200
+# Cloudflare Pages routing for the House of Mastery tools.
+# First Hour lives at first-hour/index.html and is served directly at
+# /first-hour/ via directory routing — no rewrite needed.
+# KOORA is the homepage; /koora 301-redirects to /.
+# Privacy retains a single-file rewrite for now.
+# FAQ pages: clean URLs that rewrite to the .html files.
+/koora / 301
+/koora/ / 301
+# Canonical for First Hour is /first-hour (no trailing slash). Rewrite the
+# canonical URL to the actual file so both paths serve identical content
+# and Cloudflare Pages directory-routing doesn't fork the canonical.
+/first-hour /first-hour/index.html 200
+# Stub redirect until /mastery-hour page exists - prevents rung-3 404
+# bleeds and crawl-budget loss. Point to /about#programmes interim.
+/mastery-hour /about#programmes 302
+/mastery-hour/ /about#programmes 302
 /privacy /privacy.html 200
 /privacy/ /privacy.html 200
+/about /about.html 200
+/about/ /about.html 200
+/koora-faq /koora-faq.html 200
+/koora-faq/ /koora-faq.html 200
+/first-hour-faq /first-hour-faq.html 200
+/first-hour-faq/ /first-hour-faq.html 200

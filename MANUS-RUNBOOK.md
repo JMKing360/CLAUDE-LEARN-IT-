@@ -45,7 +45,7 @@ This runbook is the single, end-to-end instruction set for taking the two House 
 - `embed.html` — iframe widget for partner sites
 - `.well-known/security.txt` — security disclosure path
 - `privacy.html` — privacy policy (postal address still pending in Phase 3)
-- `first-hour.html`, `index.html` — the two instruments
+- `first-hour/index.html`, `index.html` — the two instruments
 
 ### Steps
 
@@ -64,12 +64,10 @@ This runbook is the single, end-to-end instruction set for taking the two House 
    - Serve KOORA at the clean path `https://hom.mogire.com/koora`
    - Use the existing `hom.mogire.com` Cloudflare Pages custom domain
    - DNS should point `hom.mogire.com` to the HOM Cloudflare Pages project; the assessment tools are served by clean-path rewrites.
-4. **Add Cloudflare Pages Configuration Rules** so the right file serves at each subdomain
-   - `hom.mogire.com/first-hour` and `/first-hour/` → rewrite to `/first-hour.html`
-   - `hom.mogire.com/first-hour/*` → pass-through where a concrete asset exists; otherwise keep `/first-hour.html` as the tool entry point
-   - `hom.mogire.com/koora` and `/koora/` → rewrite to `/index.html`
-   - `hom.mogire.com/koora/*` → pass-through where a concrete asset exists; otherwise keep `/index.html` as the KOORA tool entry point
-   - `hom.mogire.com/privacy` and `/privacy/` → rewrite to `/privacy.html`
+4. **Routing is declared in `_redirects`** at the project root:
+   - `/first-hour/` serves `first-hour/index.html` via directory routing (no rewrite needed)
+   - `/koora` and `/koora/` → `301` to `/` (canonicalisation; KOORA is the homepage at `/`)
+   - `/privacy` and `/privacy/` → `200` rewrite to `/privacy.html`
 5. **Verify security headers** at `https://securityheaders.com`. Target A or A+. If anything below A, check that `_headers` was deployed (View Source, then Network → Response Headers).
 6. **Walk both instruments end to end on a real phone** (iOS Safari + Android Chrome) before announcing.
 
@@ -102,7 +100,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
      `https://services.leadconnectorhq.com/hooks/<LOCATION_ID>/<WEBHOOK_ID>`
    - Copy the URL.
 2. **Wire the URL into both instruments**
-   - In `first-hour.html` and `index.html`, add this `<script>` block in the `<head>` (before `</head>`):
+   - In `first-hour/index.html` and `index.html`, add this `<script>` block in the `<head>` (before `</head>`):
      ```html
      <script>
        window.HOM_CONFIG = Object.assign(window.HOM_CONFIG || {}, {
@@ -196,7 +194,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
    - Platform: Browser JavaScript
    - Copy the DSN.
 2. **Create a Plausible site** at plausible.io for `hom.mogire.com`
-3. **Set `window.HOM_CONFIG` before observability.js loads**, in the `<head>` of `first-hour.html` and `index.html`. Combine with the GHL config from Phase 1:
+3. **Set `window.HOM_CONFIG` before observability.js loads**, in the `<head>` of `first-hour/index.html` and `index.html`. Combine with the GHL config from Phase 1:
    ```html
    <script>
      window.HOM_CONFIG = Object.assign(window.HOM_CONFIG || {}, {
@@ -243,7 +241,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
 - [ ] `npm run lint` passes
 - [ ] `npm run type-check` passes
 - [ ] `npm test` passes
-- [ ] The deployed `dist/first-hour.html` and `dist/index.html` match the previous behaviour byte-for-byte where possible (visual regression diff)
+- [ ] The deployed `dist/first-hour/index.html` and `dist/index.html` match the previous behaviour byte-for-byte where possible (visual regression diff)
 
 ---
 
@@ -346,9 +344,9 @@ The webhook URL is *not* a secret — it's an unauthenticated endpoint by design
 2. **Generate proper PNG icons** at 192×192 and 512×512 from the SVG mark; place in `/icons/`.
 3. **Document the iframe embed** for partner integrators:
    ```html
-   <iframe src="https://hom.mogire.com/first-hour/embed/" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
+   <iframe src="https://hom.mogire.com/embed.html" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
    ```
-4. **Set up the `/embed/*` route** in Cloudflare Pages so the looser CSP applies (already in `_headers`).
+4. **The `/embed.html` route** has CORP `cross-origin` set in `_headers` so partner framing works (CSP `frame-ancestors` also allows `https://houseofmastery.co`).
 5. **Optional**: server-renderable build via Vite SSR for SEO.
 
 ---
@@ -358,16 +356,22 @@ The webhook URL is *not* a secret — it's an unauthenticated endpoint by design
 Phase 2 wires Sentry + Plausible. Layer on top:
 
 1. **Datadog RUM** for production Core Web Vitals if you need finer-grained perf insight.
-2. **Custom event taxonomy** consistent with the funnel:
-   - `welcome_shown`
-   - `assessment_began`
-   - `chamber_completed` (with chamber number)
-   - `ack_reached`
-   - `result_viewed`
-   - `email_sent_clicked`
-   - `pdf_downloaded`
-   - `ladder_rung_clicked` (with rung name)
-3. **Conversion-funnel dashboard** reviewed weekly for the first 90 days.
+2. **Custom event taxonomy** consistent with the funnel (live as of v3.7.36, all routed through `HOM_TRACK` in `observability.js`):
+   - `welcome_shown` — fires when `screen-welcome` becomes the active screen (one-shot per session; returning users on dashboard don't fire it).
+   - `begin_clicked` — fires after name + enrollment validation passes in `welcomeBeginClick`.
+   - `email_gate_confirmed` (→ Meta `Lead`) — fires after email validation passes in `confirmEmailAndStart`. Deduped per email via `localStorage`.
+   - `first_question_answered` — fires once on first selection.
+   - `quarter_complete` / `half_complete` / `three_quarters_complete` — mid-funnel milestones (one-shot per session).
+   - `transition_shown` — fires from `enterTransition` with `after_q` and `entering_section` props.
+   - `agency_completed` — First Hour only, fires from `finishAgency`.
+   - `assessment_completed` (→ Meta `CompleteRegistration`) — fires from `finishAssessment`. Deduped per `rec.date` so result re-views don't double-count.
+   - `email_sent_clicked` — fires from KOORA `sendEmail` and First Hour `resendEmail` after EMAIL_OK gate.
+3. **Meta Events Manager — operator setup checklist** (one-time):
+   - Pixel ID: `748998691952331`.
+   - In **Settings → Automatic Advanced Matching**: confirm it is **OFF**. The Pixel is initialised with `autoConfig: false` for defense-in-depth, but the dashboard switch is the authoritative control.
+   - In **Custom Conversions**: define `assessment_completed` (CompleteRegistration) as the primary conversion event for ad campaigns; tier `email_gate_confirmed` (Lead) as upper-funnel.
+   - **Verify** noscript fallback is suppressed for EEA/GPC visitors via `curl -H 'CF-IPCountry: DE' https://hom.mogire.com/` and confirm the response has no `<noscript data-pixel>` block.
+4. **Conversion-funnel dashboard** reviewed weekly for the first 90 days.
 
 ---
 
@@ -461,7 +465,7 @@ If every row passes, the instruments are ready for public announcement. If any r
 
 ## Appendix A — Configuration cheatsheet
 
-Single `<script>` block to drop into the `<head>` of both `first-hour.html` and `index.html` (after Phase 1 + Phase 2):
+Single `<script>` block to drop into the `<head>` of both `first-hour/index.html` and `index.html` (after Phase 1 + Phase 2):
 
 ```html
 <script>
@@ -483,7 +487,7 @@ Place this **before** `<script src="/observability.js" defer></script>` and befo
 
 | File | Purpose |
 |---|---|
-| `first-hour.html` | The First Hour instrument (42 items, 6 chambers) |
+| `first-hour/index.html` | The First Hour instrument (42 items, 6 chambers) |
 | `index.html` | KOORA · The Finishing Protocol (60 items, 6 sections) |
 | `privacy.html` | Privacy policy (GDPR + CCPA + Kenya DPA + LGPD) |
 | `embed.html` | Iframe widget for partner placement |
