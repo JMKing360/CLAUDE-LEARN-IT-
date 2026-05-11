@@ -3,7 +3,14 @@
 # /first-hour/ via directory routing — no rewrite needed.
 # KOORA is the homepage; /koora 301-redirects to /.
 # Privacy retains a single-file rewrite for now.
+# FAQ pages: clean URLs that rewrite to the .html files.
 /koora / 301
 /koora/ / 301
 /privacy /privacy.html 200
 /privacy/ /privacy.html 200
+/about /about.html 200
+/about/ /about.html 200
+/koora-faq /koora-faq.html 200
+/koora-faq/ /koora-faq.html 200
+/first-hour-faq /first-hour-faq.html 200
+/first-hour-faq/ /first-hour-faq.html 200

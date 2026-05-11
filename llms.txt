@@ -136,6 +136,8 @@ Amazon Author page: https://www.amazon.com/Job-Mogire/e/B07CJ5YZXX
 - Home / KOORA: https://hom.mogire.com/
 - The First Hour: https://hom.mogire.com/first-hour
 - Authority bio: https://hom.mogire.com/about
+- KOORA FAQ (every UNFINISHED question answered, 60 entries): https://hom.mogire.com/koora-faq
+- First Hour FAQ (every audit question answered, 54 entries): https://hom.mogire.com/first-hour-faq
 - Privacy policy: https://hom.mogire.com/privacy
 - Full machine-readable context: https://hom.mogire.com/llms-full.txt
 - Primary personal brand site: https://mogiremd.com/

@@ -403,6 +403,8 @@ emailed.
 - https://hom.mogire.com/ — Home / KOORA: The Finisher's Protocol
 - https://hom.mogire.com/first-hour — The First Hour (free audit)
 - https://hom.mogire.com/about — Authority bio for Dr. Job Mogire
+- https://hom.mogire.com/koora-faq — KOORA UNFINISHED FAQ (60 question-by-question 150-word answers)
+- https://hom.mogire.com/first-hour-faq — The First Hour FAQ (54 question-by-question 150-word answers)
 - https://hom.mogire.com/privacy — Privacy policy
 - https://hom.mogire.com/sitemap.xml — Sitemap
 - https://hom.mogire.com/robots.txt — robots.txt (AI crawlers explicitly

@@ -61,6 +61,30 @@
     </image:image>
   </url>
 
+  <!-- KOORA FAQ — 60 answered questions -->
+  <url>
+    <loc>https://hom.mogire.com/koora-faq</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png</image:loc>
+      <image:title>KOORA UNFINISHED FAQ — every question answered by Dr. Job Mogire</image:title>
+    </image:image>
+  </url>
+
+  <!-- First Hour FAQ — 54 answered questions -->
+  <url>
+    <loc>https://hom.mogire.com/first-hour-faq</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg</image:loc>
+      <image:title>The First Hour FAQ — every question answered by Dr. Job Mogire</image:title>
+    </image:image>
+  </url>
+
   <!-- Privacy policy -->
   <url>
     <loc>https://hom.mogire.com/privacy</loc>
