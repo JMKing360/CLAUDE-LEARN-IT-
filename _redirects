@@ -6,6 +6,10 @@
 # FAQ pages: clean URLs that rewrite to the .html files.
 /koora / 301
 /koora/ / 301
+# Canonical for First Hour is /first-hour (no trailing slash). Rewrite the
+# canonical URL to the actual file so both paths serve identical content
+# and Cloudflare Pages directory-routing doesn't fork the canonical.
+/first-hour /first-hour/index.html 200
 /privacy /privacy.html 200
 /privacy/ /privacy.html 200
 /about /about.html 200

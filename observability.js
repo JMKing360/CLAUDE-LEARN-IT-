@@ -20,6 +20,22 @@
         tracesSampleRate: 0.1,
         ignoreErrors: ['ResizeObserver loop limit exceeded']
       });
+      // Drain any captureMessage calls queued by inline scripts before
+      // Sentry was loaded. Inline scripts call window.HOM_SENTRY_WARN(msg, tags)
+      // which writes to HOM_SENTRY_QUEUE; here we replay them as warning-level
+      // messages now that Sentry is initialised.
+      var sq = window.HOM_SENTRY_QUEUE;
+      window.HOM_SENTRY_QUEUE = null;
+      if (sq && sq.length) {
+        for (var __si = 0; __si < sq.length; __si++) {
+          try { Sentry.captureMessage(sq[__si][0], { level: 'warning', tags: sq[__si][1] || {} }); } catch (e) {}
+        }
+      }
+      // Replace the stub with a direct passthrough so future inline calls
+      // hit the real Sentry SDK.
+      window.HOM_SENTRY_WARN = function (msg, tags) {
+        try { Sentry.captureMessage(msg, { level: 'warning', tags: tags || {} }); } catch (e) {}
+      };
     };
     document.head.appendChild(s);
   }
@@ -75,7 +91,18 @@
   }
   // Per-event-name record of the last eventID we fired. Used by GHL → CAPI
   // to dedup browser-side Pixel events against server-side CAPI events.
+  // Persisted in sessionStorage so a returner whose Pixel-side Lead-fire was
+  // deduped (because their email was already in hom_lead_fired_*) still has
+  // a stable eventID to forward to GHL; the persisted ID then deduplicates
+  // against the server-side CAPI fire for the same conversion.
   var lastEventIDs = {};
+  try {
+    var __cached = sessionStorage.getItem('HOM_LAST_EVENT_IDS');
+    if (__cached) lastEventIDs = JSON.parse(__cached);
+  } catch (e) {}
+  function persistEventIDs() {
+    try { sessionStorage.setItem('HOM_LAST_EVENT_IDS', JSON.stringify(lastEventIDs)); } catch (e) {}
+  }
 
   function track(name, props) {
     var payload = props || {};
@@ -85,6 +112,7 @@
       try {
         var eventID = newEventID();
         lastEventIDs[name] = eventID;
+        persistEventIDs();
         var standard = META_STANDARD[name];
         if (standard) {
           var instr = detectInstrument(payload);

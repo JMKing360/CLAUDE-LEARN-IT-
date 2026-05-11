@@ -2,15 +2,19 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.48';
+const VERSION = 'hom-v3.7.49';
 const CORE = [
   '/',
   '/first-hour/',
   '/index.html',
   '/about.html',
+  '/about',
   '/koora-faq.html',
+  '/koora-faq',
   '/first-hour-faq.html',
+  '/first-hour-faq',
   '/privacy.html',
+  '/privacy',
   '/shared.js',
   '/feature-flags.js',
   '/observability.js',
@@ -18,6 +22,9 @@ const CORE = [
   '/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png',
   '/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png',
   '/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png',
+  '/images/House-of-Mastery-icon-192.png',
+  '/images/House-of-Mastery-icon-512.png',
+  '/images/House-of-Mastery-icon-maskable-512.png',
   '/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg',
   '/images/dr-job-mogire-public-speaker-motivational-coach-house-of-mastery-east-africa.jpg',
   '/images/dr-job-mogire-emotional-intelligence-coach-house-of-mastery-nairobi-kenya.jpg'

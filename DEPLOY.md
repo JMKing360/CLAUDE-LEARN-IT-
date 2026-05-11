@@ -4,6 +4,18 @@ A complete sequence of actions to take the House of Mastery instruments from thi
 
 The order matters. Phases 0 → 3 must complete before announcing the public URLs. Phases 4 → 12 can run in parallel after that.
 
+> ## ⚠ Critical pre-launch check — `window.HOM_CONFIG`
+>
+> Both assessment apps read three values off `window.HOM_CONFIG` at parse time. If any is missing in production, the corresponding subsystem silently no-ops:
+>
+> | Key | What breaks if missing |
+> |---|---|
+> | `ghlWebhookUrl` | **The entire email pipeline.** Participants never get their report; the archive Gmail CC never fires. |
+> | `sentryDsn` | All error tracking + Sentry breadcrumbs + the GHL-config warning capture. |
+> | `plausibleDomain` | All privacy-first funnel analytics. |
+>
+> The repo emits a visible red banner on localhost / `*.pages.dev` / `127.0.0.1` when `ghlWebhookUrl` is missing (set `localStorage.HOM_OPS_BANNER='1'` in any environment to force the check). It also calls `HOM_SENTRY_WARN(...)` — but Sentry will only deliver that warning if `sentryDsn` is also configured. **Verify all three are injected via Cloudflare Pages environment variables before announcing the public URL.**
+
 ---
 
 ## Phase 0 — Cloudflare Pages first deploy *(do this today)*

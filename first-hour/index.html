@@ -115,6 +115,10 @@
         "https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/",
         "https://hom.mogire.com/about",
         "https://hom.mogire.com/",
+        "https://houseofmastery.co/",
+        "https://houseofmastery.co/about",
+        "https://kooraassess.houseofmastery.co/",
+        "https://firsthour.houseofmastery.co/",
         "https://houseofmastery.co/diagnostic",
         "https://houseofmastery.co/4CKOORA",
         "https://houseofmastery.co/frameworks/unfinished-life",
@@ -267,7 +271,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
 <link rel="mask-icon" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png" color="#0D1F3C">
 <link rel="shortcut icon" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
-<link rel="manifest" href='data:application/manifest+json;charset=utf-8,{"name":"The First Hour","short_name":"First Hour","description":"A House of Mastery audit by Dr. Job Mogire, MD, FACC","start_url":"/","display":"standalone","background_color":"%23FBFBFD","theme_color":"%230D1F3C","icons":[{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"192x192","type":"image/png"},{"src":"/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png","sizes":"512x512","type":"image/png"}]}'>
+<link rel="manifest" href="/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
@@ -277,6 +281,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;color:#3A3A40;min-height:100vh;line-height:1.5;-webkit-font-feature-settings:"ss01","ss02";font-feature-settings:"ss01","ss02"}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 :root{
   --navy:#0D1F3C;--navy-soft:#1B2D4F;
   --gold:#C9973A;--gold-soft:#E8B85A;--gold-text:#8A5C18;
@@ -988,10 +993,15 @@ body.footer-hidden footer{display:none}
 <script>window.HOM_CONFIG=window.HOM_CONFIG||{};</script>
 <script src="/feature-flags.js"></script>
 <script>
-// HOM_TRACK queue stub - synchronous, so inline app code can call HOM_TRACK()
-// before /observability.js (deferred) has executed. The bundle drains this
-// queue on load and replaces HOM_TRACK with the real implementation.
-(function(){var q=window.HOM_TRACK_QUEUE=window.HOM_TRACK_QUEUE||[];window.HOM_TRACK=function(n,p){try{q.push([n,p]);}catch(e){}};})();
+// HOM_TRACK + HOM_SENTRY_WARN queue stubs - synchronous, so inline app code
+// can call them before /observability.js (deferred) has executed. The bundle
+// drains both queues on load and replaces the stubs with real implementations.
+(function(){
+  var q=window.HOM_TRACK_QUEUE=window.HOM_TRACK_QUEUE||[];
+  window.HOM_TRACK=function(n,p){try{q.push([n,p]);}catch(e){}};
+  var sq=window.HOM_SENTRY_QUEUE=window.HOM_SENTRY_QUEUE||[];
+  window.HOM_SENTRY_WARN=function(m,t){try{sq.push([m,t]);}catch(e){}};
+})();
 </script>
 <script src="/observability.js" defer></script>
 <!-- Pre-Pixel guard: strip identifying URL params, gate Pixel on GPC / embed / EEA flag -->
@@ -1003,7 +1013,7 @@ body.footer-hidden footer{display:none}
   try{
     var url=new URL(window.location.href);
     var stash={},stripped=false;
-    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid'].forEach(function(k){
+    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','mc_cid','vero_id','_branch_match_id','utm_id'].forEach(function(k){
       if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
     });
     if(stripped){
@@ -1195,9 +1205,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <p class="triad-summary">Nine chambers. Three triads. Fifteen honest minutes. <b>You move outer first, deepest last</b> — the audit opens with what is being taken from you, and ends inside the wanting that is still yours.</p>
 
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
-    <img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery — emotional sovereignty coaching, mindset training and motivational speaking with Dr. Job Mogire, Kenya" class="cover-letter__brandmark" onerror="this.style.display='none'">
+    <img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" width="3295" height="1069" alt="House of Mastery — emotional sovereignty coaching, mindset training and motivational speaking with Dr. Job Mogire, Kenya" class="cover-letter__brandmark" onerror="this.style.display='none'">
     <div class="cover-letter__head">
-      <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" alt="Dr. Job Mogire, MD, FACC, FACP — Board-Certified Physician, mindset coach and founder of House of Mastery, Kenya" loading="lazy" decoding="async" onerror="this.style.display='none'">
+      <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" width="896" height="1200" alt="Dr. Job Mogire, MD, FACC, FACP — Board-Certified Physician, mindset coach and founder of House of Mastery, Kenya" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
       <div class="cover-letter__head-text">
         <div class="cover-letter__byline">A note from Dr. Job Mogire, MD, FACC, FACP</div>
         <div class="cover-letter__creds">Founder, House of Mastery · Mindset &amp; Emotional Intelligence Coach · Public Speaker · Kenya</div>
@@ -1399,16 +1409,19 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <div class="pain-block">
       <p class="pain-q">If this drift continues for thirty more days, what does it cost you?</p>
       <p class="pain-sub">One sentence. Concrete. Optional, and powerful. What you write travels with your full report.</p>
-      <textarea class="pain-input" id="painInput" placeholder="The day my drift costs me ..." onblur="showSelfQuote()"></textarea>
+      <label class="sr-only" for="painInput">Name the 30-day cost of your drift</label>
+      <textarea class="pain-input" id="painInput" placeholder="The day my drift costs me ..." aria-label="Name the 30-day cost of your drift" onblur="showSelfQuote()"></textarea>
       <p class="pain-q-second">Five years from now, what will you wish you had named today?</p>
-      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will most regret ..." onblur="showSelfQuote()"></textarea>
+      <label class="sr-only" for="painInput5y">Name the five-year cost of staying as you are</label>
+      <textarea class="pain-input" id="painInput5y" placeholder="Five years from now, what I will most regret ..." aria-label="Name the five-year cost of staying as you are" onblur="showSelfQuote()"></textarea>
       <div class="self-quote" id="selfQuote">
         <div class="self-quote-label">Your own words, written back to you</div>
         <div class="self-quote-text" id="selfQuoteText"></div>
       </div>
       <p class="pain-q-second" style="margin-top:36px">When tomorrow begins, I will...</p>
       <p class="pain-sub">One specific sentence. The smallest first move you can make in the next twenty-four hours. <b>Insight without a move stays insight.</b> The move makes it real.</p>
-      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." onblur="persistIntent()"></textarea>
+      <label class="sr-only" for="intentInput">Name the first move you will make tomorrow</label>
+      <textarea class="pain-input" id="intentInput" placeholder="When tomorrow begins, I will ..." aria-label="Name the first move you will make tomorrow" onblur="persistIntent()"></textarea>
     </div>
   </div>
 
@@ -1623,19 +1636,26 @@ var EMAIL_OK=!!(GHL_WEBHOOK_URL&&/^https:\/\/services\.leadconnectorhq\.com\/hoo
 // banner (only renders for non-prod or when explicitly opted in via
 // localStorage HOM_OPS_BANNER=1, so users never see it under normal prod).
 if(!EMAIL_OK){
-  try{if(window.Sentry&&Sentry.captureMessage)Sentry.captureMessage('HOM_CONFIG.ghlWebhookUrl missing or invalid - email delivery disabled',{level:'warning',tags:{instrument:'first-hour'}});}catch(e){}
+  try{if(typeof HOM_SENTRY_WARN==='function')HOM_SENTRY_WARN('HOM_CONFIG.ghlWebhookUrl missing or invalid - email delivery disabled',{instrument:'first-hour'});}catch(e){}
   if(window.console&&console.error)console.error('[hom] GHL webhook URL missing - participants will not receive their report. Set window.HOM_CONFIG.ghlWebhookUrl before this script runs.');
   try{
     var showBanner=false;
     var h=location.hostname;
-    if(h==='localhost'||h.indexOf('.pages.dev')>=0||h.indexOf('127.0.0.1')>=0)showBanner=true;
-    try{if(localStorage.getItem('HOM_OPS_BANNER')==='1')showBanner=true;}catch(_e){}
+    // Production hostnames NEVER show the banner regardless of localStorage flag.
+    var isProd=(h==='hom.mogire.com'||h==='www.hom.mogire.com');
+    if(!isProd){
+      if(h==='localhost'||h.indexOf('.pages.dev')>=0||h.indexOf('127.0.0.1')>=0)showBanner=true;
+      try{if(localStorage.getItem('HOM_OPS_BANNER')==='1')showBanner=true;}catch(_e){}
+    }
     if(showBanner){
+      document.documentElement.classList.add('hom-ops-banner-on');
+      var __style=document.createElement('style');
+      __style.textContent='.hom-ops-banner-on body{padding-top:48px}.hom-ops-banner{position:fixed;top:0;left:0;right:0;height:48px;z-index:99999;background:#B22222;color:#fff;font:600 13px/24px system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em;box-sizing:border-box}';
+      document.head.appendChild(__style);
       document.addEventListener('DOMContentLoaded',function(){
         var b=document.createElement('div');
-        b.setAttribute('role','status');
-        b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#B22222;color:#fff;font:600 13px/1.4 system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em';
-        b.innerHTML='⚠ <b>Operator notice:</b> <code style="background:rgba(0,0,0,.25);padding:2px 6px;border-radius:3px">window.HOM_CONFIG.ghlWebhookUrl</code> is missing. Email delivery is disabled. Set it in your Cloudflare Pages environment injection. <button onclick="this.parentNode.remove()" style="background:transparent;border:1px solid #fff;color:#fff;margin-left:12px;padding:4px 10px;border-radius:4px;cursor:pointer;font:600 12px system-ui">Dismiss</button>';
+        b.className='hom-ops-banner';b.setAttribute('role','status');
+        b.innerHTML='⚠ <b>Operator notice:</b> <code style="background:rgba(0,0,0,.25);padding:2px 6px;border-radius:3px">window.HOM_CONFIG.ghlWebhookUrl</code> is missing. Email delivery is disabled. <button onclick="this.parentNode.remove();document.documentElement.classList.remove(\'hom-ops-banner-on\')" style="background:transparent;border:1px solid #fff;color:#fff;margin-left:12px;padding:4px 10px;border-radius:4px;cursor:pointer;font:600 12px system-ui">Dismiss</button>';
         document.body.insertBefore(b,document.body.firstChild);
       });
     }
@@ -2057,7 +2077,9 @@ document.addEventListener('DOMContentLoaded',function(){
     var __wel=document.getElementById('screen-welcome');
     if(__wel && __wel.classList.contains('active') && !_welcomeShownFired && typeof HOM_TRACK==='function'){
       _welcomeShownFired=true;
-      HOM_TRACK('welcome_shown',{instrument:'first-hour'});
+      // Per-session dedup so page reloads don't inflate top-of-funnel volume.
+      var __already=false;try{__already=sessionStorage.getItem('hom_welcome_shown_firsthour')==='1';if(!__already)sessionStorage.setItem('hom_welcome_shown_firsthour','1');}catch(e){}
+      if(!__already)HOM_TRACK('welcome_shown',{instrument:'first-hour'});
     }
   }catch(e){}
 
@@ -2852,6 +2874,15 @@ function showSelfQuote(){
 // Email ,  silent send when assessment finishes, also resendable
 function fireEmailQuiet(rec){
   if(!EMAIL_OK)return;
+  // Re-seed Advanced Matching here so the assessment_completed -> Meta
+  // CompleteRegistration event downstream carries em+fn uplift. First Hour
+  // does not collect last name, so ln is omitted.
+  if(typeof HOM_PIXEL_ADVANCED_MATCH==='function' && rec && rec.email){
+    var __am={em:rec.email};
+    var __fn=((rec.name||'')+'').toLowerCase();
+    if(__fn)__am.fn=__fn;
+    HOM_PIXEL_ADVANCED_MATCH(__am);
+  }
   // Auto-send fires the same email_sent_clicked event as manual resend so
   // funnel exit counts match KOORA (where every send fires the event). Marks
   // auto vs manual so funnel analytics can distinguish.
@@ -2912,6 +2943,7 @@ function ensureJsPdf(){
   JSPDF_LOADING=new Promise(function(resolve,reject){
     var s=document.createElement('script');
     s.src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+    s.integrity='sha512-hG6tLc9q8bFM5OQASDTJTJJg/wn8PP0PcayE3I2H1972/F7ktiSvWutAuQIkt4QUTIhiaFEnkrKea7XHUv1ugg==';
     s.crossOrigin='anonymous';s.onload=resolve;s.onerror=reject;
     document.head.appendChild(s);
   });
