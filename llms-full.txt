@@ -104,8 +104,11 @@ structural. His instruments are built to surface that structure.
 - Press — Daily Nation (Kenya): https://nation.africa/kenya/dr-job-mogire-357936
 - Press — Mwakilishi (Kenyan diaspora): https://mwakilishi.com/article/diaspora-news/2017-08-26/job-mogire-my-journey-from-rural-kisii-to-harvard-university
 - Press — Citizen TV Kenya interview: https://www.facebook.com/CitizenTVKe/videos/220818393115535/
-- Cureus (peer-reviewed medical journal): https://share.google/xoDVNBgh70hWXcSkT *(canonical URL pending)*
-- ResearchGate (academic): https://share.google/amQuZ7HjljzGGWjqy + https://share.google/fUCH652OB4NfqNFfl *(canonical URL pending)*
+- Cureus (peer-reviewed medical journal — case report co-authored with
+  Al-Obaidi A, Buess C, Reddy PS, 20 December 2019): https://www.cureus.com/articles/25370-inflammatory-myofibroblastic-tumor-of-the-lung-an-extremely-rare-condition-in-adults
+- Same paper indexed at PubMed: https://pubmed.ncbi.nlm.nih.gov/31970041/
+- Same paper at PubMed Central: https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/
+- ResearchGate (academic profile): https://www.researchgate.net/scientific-contributions/Job-Mogire
 - RETURN challenge host: https://www.return90.com/
 
 ### House of Mastery
@@ -161,7 +164,11 @@ unfinished life.*
   31 October. Prorated entry available at the start of any month
   (May, June, July, August, September, October). All participants
   complete together at the end of October.
-- **Investment:** USD 1,200 / KES 150,000 (prorated for late entry)
+- **Investment — 2026 cohort (current):** KES 90,000 paid in full
+  **or** KES 15,000 per month × 6 months. Cohort gateway:
+  https://houseofmastery.co/daily-reset
+- **Investment — 2027 cohort (next):** USD 1,200 / KES 150,000
+  (prorated for late entry)
 - **2026 cohort:** 1 May 2026 – 31 October 2026
 - **2027 cohort:** 1 May 2027 – 31 October 2027
 

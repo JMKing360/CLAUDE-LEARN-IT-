@@ -110,9 +110,9 @@
         "https://nation.africa/kenya/dr-job-mogire-357936",
         "https://mwakilishi.com/article/diaspora-news/2017-08-26/job-mogire-my-journey-from-rural-kisii-to-harvard-university",
         "https://www.facebook.com/CitizenTVKe/videos/220818393115535/",
-        "https://share.google/xoDVNBgh70hWXcSkT",
-        "https://share.google/amQuZ7HjljzGGWjqy",
-        "https://share.google/fUCH652OB4NfqNFfl",
+        "https://www.cureus.com/articles/25370-inflammatory-myofibroblastic-tumor-of-the-lung-an-extremely-rare-condition-in-adults",
+        "https://pubmed.ncbi.nlm.nih.gov/31970041/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/",
         "https://hom.mogire.com/about",
         "https://hom.mogire.com/",
         "https://houseofmastery.co/diagnostic",
@@ -1030,12 +1030,40 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 // off in the Meta Events Manager dashboard.
 fbq('init', '748998691952331', {}, {autoConfig: false});
 fbq('track', 'PageView');
-fbq('track', 'ViewContent', {
-  content_name: 'The First Hour Assessment',
-  content_category: 'Assessment',
-  content_ids: ['first_hour_v1'],
-  content_type: 'assessment'
-});
+// ViewContent fires once the welcome screen is actually in view — not eagerly
+// on PageView. This avoids inflating ViewContent counts for bots / bounces /
+// users who arrive on the page but never see the assessment.
+(function(){
+  var fired = false;
+  function fireVC(){
+    if(fired) return; fired = true;
+    fbq('track', 'ViewContent', {
+      content_name: 'The First Hour Assessment',
+      content_category: 'Assessment',
+      content_ids: ['first_hour_v1'],
+      content_type: 'assessment'
+    });
+  }
+  function arm(){
+    var el = document.getElementById('screen-welcome');
+    if(!el){ return; }
+    if(!('IntersectionObserver' in window)){
+      setTimeout(fireVC, 750);
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      for(var i=0;i<entries.length;i++){
+        if(entries[i].isIntersecting && entries[i].intersectionRatio >= 0.25){
+          fireVC(); io.disconnect(); return;
+        }
+      }
+    }, { threshold: [0.25] });
+    io.observe(el);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', arm);
+  } else { arm(); }
+})();
 }
 </script>
 <noscript data-pixel><img height="1" width="1" style="display:none"

@@ -164,6 +164,9 @@
         {"@type":"Brand","name":"House of Mastery","url":"https://hom.mogire.com/"},
         {"@type":"Brand","name":"RETURN","url":"https://www.return90.com/"}
       ],
+      "subjectOf": [
+        {"@id":"https://www.cureus.com/articles/25370#article"}
+      ],
       "sameAs": [
         "https://mogire.com/",
         "https://houseofmastery.co/",
@@ -183,9 +186,9 @@
         "https://nation.africa/kenya/dr-job-mogire-357936",
         "https://mwakilishi.com/article/diaspora-news/2017-08-26/job-mogire-my-journey-from-rural-kisii-to-harvard-university",
         "https://www.facebook.com/CitizenTVKe/videos/220818393115535/",
-        "https://share.google/xoDVNBgh70hWXcSkT",
-        "https://share.google/amQuZ7HjljzGGWjqy",
-        "https://share.google/fUCH652OB4NfqNFfl",
+        "https://www.cureus.com/articles/25370-inflammatory-myofibroblastic-tumor-of-the-lung-an-extremely-rare-condition-in-adults",
+        "https://pubmed.ncbi.nlm.nih.gov/31970041/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/",
         "https://hom.mogire.com/about",
         "https://hom.mogire.com/",
         "https://hom.mogire.com/first-hour",
@@ -315,12 +318,14 @@
         {"@type":"Course","name":"KOORA Month 6 — Covenant with World","description":"What do I now give to the world because I have returned? Private restoration becomes public contribution.","provider":{"@id":"https://hom.mogire.com/#org"}}
       ],
       "hasCourseInstance": [
-        {"@type":"CourseInstance","name":"KOORA 2026 — Annual Cohort","startDate":"2026-05-01","endDate":"2026-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"description":"The single annual cohort for 2026. Prorated entry available at the start of each month: May, June, July, August, September, or October. All participants complete together at the end of October 2026."},
-        {"@type":"CourseInstance","name":"KOORA 2027 — Annual Cohort","startDate":"2027-05-01","endDate":"2027-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"description":"The single annual cohort for 2027. Prorated entry available at the start of each month, May through October. All participants complete together at the end of October 2027."}
-      ],
-      "offers": [
-        {"@type":"Offer","price":"1200","priceCurrency":"USD","availability":"https://schema.org/LimitedAvailability","url":"https://hom.mogire.com/","validFrom":"2026-05-10","description":"Full programme. Prorated entry available at the start of any month May–October."},
-        {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/LimitedAvailability","url":"https://hom.mogire.com/","validFrom":"2026-05-10","description":"Full programme. Prorated entry available at the start of any month May–October."}
+        {"@type":"CourseInstance","name":"KOORA 2026 — Annual Cohort","startDate":"2026-05-01","endDate":"2026-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"description":"The single annual cohort for 2026. Prorated entry available at the start of each month: May, June, July, August, September, or October. All participants complete together at the end of October 2026.","offers":[
+          {"@type":"Offer","price":"90000","priceCurrency":"KES","availability":"https://schema.org/LimitedAvailability","url":"https://houseofmastery.co/daily-reset","validFrom":"2026-05-01","validThrough":"2026-10-31","description":"2026 cohort — full programme, paid in full (KES 90,000)."},
+          {"@type":"Offer","price":"15000","priceCurrency":"KES","availability":"https://schema.org/LimitedAvailability","url":"https://houseofmastery.co/daily-reset","validFrom":"2026-05-01","validThrough":"2026-10-31","description":"2026 cohort — monthly payment plan (KES 15,000 / month × 6 months).","priceSpecification":{"@type":"UnitPriceSpecification","price":"15000","priceCurrency":"KES","unitText":"MONTH","billingDuration":"P1M"}}
+        ]},
+        {"@type":"CourseInstance","name":"KOORA 2027 — Annual Cohort","startDate":"2027-05-01","endDate":"2027-10-31","courseMode":"blended","location":{"@type":"Place","name":"Kenya (in-person gatherings) + online","address":{"@type":"PostalAddress","addressCountry":"KE"}},"instructor":{"@id":"https://hom.mogire.com/about#dr-job-mogire"},"description":"The single annual cohort for 2027. Prorated entry available at the start of each month, May through October. All participants complete together at the end of October 2027.","offers":[
+          {"@type":"Offer","price":"1200","priceCurrency":"USD","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — full programme. Prorated entry available at the start of any month May–October 2027."},
+          {"@type":"Offer","price":"150000","priceCurrency":"KES","availability":"https://schema.org/PreOrder","url":"https://hom.mogire.com/","validFrom":"2026-11-01","validThrough":"2027-10-31","description":"2027 cohort — full programme. Prorated entry available at the start of any month May–October 2027."}
+        ]}
       ]
     },
     {
@@ -571,6 +576,33 @@
           "acceptedAnswer":{"@type":"Answer","text":"Yes. The First Hour is a free nine-chamber audit by Dr. Job Mogire, available at https://hom.mogire.com/first-hour. Fifty-four items, roughly fifteen minutes, results emailed."}
         }
       ]
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://www.cureus.com/articles/25370#article",
+      "headline": "Inflammatory Myofibroblastic Tumor of the Lung: An Extremely Rare Condition in Adults",
+      "name": "Inflammatory Myofibroblastic Tumor of the Lung: An Extremely Rare Condition in Adults",
+      "datePublished": "2019-12-20",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "url": "https://www.cureus.com/articles/25370-inflammatory-myofibroblastic-tumor-of-the-lung-an-extremely-rare-condition-in-adults",
+      "sameAs": [
+        "https://pubmed.ncbi.nlm.nih.gov/31970041/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/"
+      ],
+      "isPartOf": {"@type":"PublicationIssue","isPartOf":{"@type":"Periodical","name":"Cureus","issn":"2168-8184","url":"https://www.cureus.com/"}},
+      "publisher": {"@type":"Organization","name":"Cureus, Inc.","url":"https://www.cureus.com/"},
+      "author": [
+        {"@type":"Person","name":"Ammar Al-Obaidi"},
+        {"@type":"Person","name":"Charles Scott Buess"},
+        {"@id":"https://hom.mogire.com/about#dr-job-mogire"},
+        {"@type":"Person","name":"Pavan S. Reddy"}
+      ],
+      "about": [
+        {"@type":"MedicalCondition","name":"Inflammatory myofibroblastic tumor"},
+        {"@type":"MedicalCondition","name":"Lung neoplasm"}
+      ],
+      "keywords": "inflammatory myofibroblastic tumor, IMT, lung, adult, rare lung neoplasm, case report"
     }
   ]
 }
@@ -702,6 +734,15 @@ footer.site a{color:var(--mid)}
     <li><i>CardioRenal Medicine</i>, Karger LLC — reviewer (2019–present)</li>
   </ul>
 
+  <h3 id="publications">Selected peer-reviewed publications</h3>
+  <ul>
+    <li>Al-Obaidi A, Buess CS, Mogire J, Reddy PS. <i>Inflammatory Myofibroblastic Tumor of the Lung: An Extremely Rare Condition in Adults.</i> Cureus, 20 December 2019.
+      &nbsp;·&nbsp; <a href="https://www.cureus.com/articles/25370-inflammatory-myofibroblastic-tumor-of-the-lung-an-extremely-rare-condition-in-adults" rel="noopener" target="_blank">Cureus</a>
+      &nbsp;·&nbsp; <a href="https://pubmed.ncbi.nlm.nih.gov/31970041/" rel="noopener" target="_blank">PubMed</a>
+      &nbsp;·&nbsp; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6970563/" rel="noopener" target="_blank">PMC</a>
+    </li>
+  </ul>
+
   <h3>Public speaking</h3>
   <ul>
     <li><b>Toastmasters Public Speaking Contest — Region 4 Champion, 2021</b> (region covering the United States Midwest — Kansas, Missouri, Illinois, Ohio — and several Canadian districts).</li>
@@ -742,7 +783,7 @@ footer.site a{color:var(--mid)}
       <b>Monthly rhythm:</b> Week 1 — name the covenant. Week 2 — practice it daily. Week 3 — test it under pressure. Week 4 — seal it with the cohort.<br>
       <b>Daily rhythm — <a href="https://houseofmastery.co/frameworks/alcarra" rel="noopener" target="_blank">ALCARRA</a>:</b> Each day follows the seven-step protocol — <b>A</b>wareness · <b>L</b>earning · <b>C</b>hange · <b>A</b>ction · <b>R</b>esilience · <b>R</b>eflection · <b>A</b>ccountability. The <b>Daily Reset</b> — the three-minute fixed pause — is ALCARRA's anchor moment, the hinge between Reflection and Accountability that holds the practice across the months. (Cohort entry is at <a href="https://houseofmastery.co/daily-reset" rel="noopener" target="_blank">houseofmastery.co/daily-reset</a>; the practice itself is taught inside the protocol and previewed in <a href="#book-embody">EMBODY</a>.)<br>
       <b>Entry:</b> One annual cohort. Prorated entry at the start of any month, May through October. Everyone completes together at the end of October.<br>
-      <b>Investment:</b> USD 1,200 &nbsp;·&nbsp; KES 150,000 (prorated for late entry).<br>
+      <b>Investment:</b> <i>2026 cohort (current, May–October 2026):</i> KES 90,000 paid in full, <i>or</i> KES 15,000 per month × 6 months. <i>2027 cohort (next, May–October 2027):</i> USD 1,200 / KES 150,000 (prorated for late entry).<br>
       <b>Take the diagnostic:</b> <a href="/">/koora</a> or <a href="https://kooraassess.houseofmastery.co/" rel="noopener" target="_blank">kooraassess.houseofmastery.co</a>.
     </div>
   </div>
