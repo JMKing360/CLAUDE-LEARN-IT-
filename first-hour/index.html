@@ -1952,19 +1952,24 @@ function migrateHistoryV2toV3(){
 try{migrateHistoryV2toV3()}catch(e){}
 
 // One-time sweep to delete email-in-key entries left over from before the
-// PII migration (fh_unfinished_<email>, hom_lead_fired_firsthour_<email>).
-// Their contents are now stored under bucketed keys; orphans are dead PII
-// at rest on the user's device. Idempotent via HOM_LS_PII_SWEEP_V1 flag.
+// PII migration. Reconstruct the new bucketed Lead-fired maps from the old
+// per-email keys BEFORE deletion so users who already confirmed under the
+// old scheme are not re-fired (which would inflate Lead counts).
+// Idempotent via HOM_LS_PII_SWEEP_V1 flag.
 try{
   if(localStorage.getItem('HOM_LS_PII_SWEEP_V1')!=='1'){
     var keysToDelete=[];
+    var __leadKoora={};try{__leadKoora=JSON.parse(localStorage.getItem('hom_lead_fired_koora')||'{}')}catch(_e){}
+    var __leadFh={};try{__leadFh=JSON.parse(localStorage.getItem('hom_lead_fired_firsthour')||'{}')}catch(_e){}
     for(var __i=0;__i<localStorage.length;__i++){
       var __k=localStorage.key(__i);
       if(!__k)continue;
-      if(__k.indexOf('fh_unfinished_')===0||__k.indexOf('hom_lead_fired_firsthour_')===0||__k.indexOf('hom_lead_fired_koora_')===0){
-        keysToDelete.push(__k);
-      }
+      if(__k.indexOf('hom_lead_fired_koora_')===0){keysToDelete.push(__k);__leadKoora[__k.slice('hom_lead_fired_koora_'.length)]=1;}
+      else if(__k.indexOf('hom_lead_fired_firsthour_')===0){keysToDelete.push(__k);__leadFh[__k.slice('hom_lead_fired_firsthour_'.length)]=1;}
+      else if(__k.indexOf('fh_unfinished_')===0){keysToDelete.push(__k);}
     }
+    try{localStorage.setItem('hom_lead_fired_koora',JSON.stringify(__leadKoora))}catch(_e){}
+    try{localStorage.setItem('hom_lead_fired_firsthour',JSON.stringify(__leadFh))}catch(_e){}
     for(var __j=0;__j<keysToDelete.length;__j++){localStorage.removeItem(keysToDelete[__j]);}
     localStorage.setItem('HOM_LS_PII_SWEEP_V1','1');
   }
@@ -2044,6 +2049,18 @@ function loadInProgress(){
 }
 function clearInProgress(){try{localStorage.removeItem('hom_firsthour_inprogress')}catch(e){}}
 document.addEventListener('DOMContentLoaded',function(){
+  // welcome_shown - First Hour's welcome section is class="screen active" in
+  // markup, so show('screen-welcome') never runs on cold load and the guard
+  // inside show() is unreachable for this initial state. Fire welcome_shown
+  // here once, when the welcome screen is verifiably visible.
+  try{
+    var __wel=document.getElementById('screen-welcome');
+    if(__wel && __wel.classList.contains('active') && !_welcomeShownFired && typeof HOM_TRACK==='function'){
+      _welcomeShownFired=true;
+      HOM_TRACK('welcome_shown',{instrument:'first-hour'});
+    }
+  }catch(e){}
+
   // Pre-fill from retake params. The pre-Pixel guard strips name/email from
   // the URL and stashes them on window.HOM_RETAKE so they never reach Meta.
   try{
@@ -2151,11 +2168,13 @@ function confirmEmailAndStart(){
   // Fire email_gate_confirmed (→ Meta Lead) only on validated email. Dedup per
   // email so re-takers don't inflate Lead counts.
   // Seed Meta Pixel Advanced Matching with the confirmed email + first name
-  // so all subsequent events (ViewContent already fired, plus assessment_
-  // progress and assessment_completed) carry EMQ uplift. Meta hashes
-  // client-side via the SDK.
+  // so all subsequent events carry EMQ uplift. Per-field guard so empty
+  // strings never reach Meta (would degrade match quality).
   if(typeof HOM_PIXEL_ADVANCED_MATCH==='function'){
-    HOM_PIXEL_ADVANCED_MATCH({em:email,fn:(participantName||'').toLowerCase()});
+    var __am={em:email};
+    var __fn=(participantName||'').toLowerCase();
+    if(__fn)__am.fn=__fn;
+    HOM_PIXEL_ADVANCED_MATCH(__am);
   }
   if(typeof HOM_TRACK==='function'){
     // Dedup Lead-fire per email without putting the email in the localStorage
@@ -2833,6 +2852,10 @@ function showSelfQuote(){
 // Email ,  silent send when assessment finishes, also resendable
 function fireEmailQuiet(rec){
   if(!EMAIL_OK)return;
+  // Auto-send fires the same email_sent_clicked event as manual resend so
+  // funnel exit counts match KOORA (where every send fires the event). Marks
+  // auto vs manual so funnel analytics can distinguish.
+  if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'auto'});
   buildEmailPayload(rec).then(function(){}).catch(function(){});
 }
 function resendEmail(){
@@ -2844,7 +2867,7 @@ function resendEmail(){
   status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
   if(!EMAIL_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
   // email_sent_clicked fires only on a real send attempt with EMAIL_OK gate.
-  if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour'});
+  if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'manual'});
   buildEmailPayload(rec).then(function(){
     status.style.color='var(--green)';status.textContent='Sent. Your full report is on its way to '+rec.email+'.';
   },function(){

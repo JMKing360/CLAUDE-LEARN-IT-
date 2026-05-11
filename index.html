@@ -1600,16 +1600,23 @@ var STORAGE_KEY='koora_unfinished_v4';
 
 // One-time sweep to delete email-in-key entries left over from before the
 // PII migration (hom_lead_fired_koora_<email>, hom_lead_fired_firsthour_<email>,
-// fh_unfinished_<email>). Their contents are now stored under bucketed keys;
-// orphans are dead PII at rest on the user's device. Idempotent.
+// fh_unfinished_<email>). Before deleting, reconstruct the new bucketed maps
+// from the old per-email keys so we never re-fire Lead for users who already
+// confirmed under the old scheme. Idempotent via HOM_LS_PII_SWEEP_V1 flag.
 try{
   if(localStorage.getItem('HOM_LS_PII_SWEEP_V1')!=='1'){
     var __pii=[];
+    var __leadKoora={};try{__leadKoora=JSON.parse(localStorage.getItem('hom_lead_fired_koora')||'{}')}catch(_e){}
+    var __leadFh={};try{__leadFh=JSON.parse(localStorage.getItem('hom_lead_fired_firsthour')||'{}')}catch(_e){}
     for(var __i=0;__i<localStorage.length;__i++){
       var __k=localStorage.key(__i);
       if(!__k)continue;
-      if(__k.indexOf('hom_lead_fired_koora_')===0||__k.indexOf('hom_lead_fired_firsthour_')===0||__k.indexOf('fh_unfinished_')===0){__pii.push(__k);}
+      if(__k.indexOf('hom_lead_fired_koora_')===0){__pii.push(__k);__leadKoora[__k.slice('hom_lead_fired_koora_'.length)]=1;}
+      else if(__k.indexOf('hom_lead_fired_firsthour_')===0){__pii.push(__k);__leadFh[__k.slice('hom_lead_fired_firsthour_'.length)]=1;}
+      else if(__k.indexOf('fh_unfinished_')===0){__pii.push(__k);}
     }
+    try{localStorage.setItem('hom_lead_fired_koora',JSON.stringify(__leadKoora))}catch(_e){}
+    try{localStorage.setItem('hom_lead_fired_firsthour',JSON.stringify(__leadFh))}catch(_e){}
     for(var __j=0;__j<__pii.length;__j++){localStorage.removeItem(__pii[__j]);}
     localStorage.setItem('HOM_LS_PII_SWEEP_V1','1');
   }
@@ -2469,7 +2476,14 @@ function show(id){
     _welcomeShownFired=true;
     HOM_TRACK('welcome_shown',{instrument:'koora'});
   }
+  // dashboard_shown: parallel signal for returning-user re-entry path which
+  // previously had no funnel event. Once per session.
+  if(id==='screen-dashboard' && !_dashboardShownFired && typeof HOM_TRACK==='function'){
+    _dashboardShownFired=true;
+    HOM_TRACK('dashboard_shown',{instrument:'koora'});
+  }
 }
+var _dashboardShownFired=false;
 function setProgress(pct){document.getElementById('progress').style.width=pct+'%'}
 function setChamberProgress(currentChamber){
   var bar=document.getElementById('chamber-progress');if(!bar)return;
@@ -2490,9 +2504,17 @@ function init(){
   if(h.length){
     var last=h[h.length-1];
     var name=last.name||'';
+    // Name pre-fill is load-bearing for the day-picker continuity in
+    // populateDayPicker() which calls lastFor(name). Shared-device de-anon
+    // risk is acknowledged; the trade-off favours the returning-user case
+    // since name alone is less identifying than email and the user can
+    // clear it from history with Reset history.
     document.getElementById('participantName').value=name;
     if(typeof last.enrolled==='boolean'){participantEnrolled=last.enrolled;syncEnrollToggle()}
-    if(last.email){try{localStorage.setItem('koora_participant_email',last.email)}catch(e){}}
+    // Previously we wrote koora_participant_email from last.email here so
+    // welcomeBeginClick could pre-fill the email gate. Pre-fill was removed
+    // in Pass 1.6 for shared-device privacy, so this write is now orphan -
+    // no read consumes it. Removed.
     renderDashboard(name);
     show('screen-dashboard');
   }else{
@@ -3532,12 +3554,13 @@ function sendEmail(){
   if(!email||email.indexOf('@')<0||email.indexOf('.')<0){status.className='email-status err';status.textContent='Enter a valid email address.';status.style.display='block';return}
   if(!EMAIL_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
   // Re-seed Meta Pixel Advanced Matching with full em+fn+ln from the results
-  // form. This is the only place the participant supplies their last name,
-  // so the assessment_completed -> CompleteRegistration event needs this
-  // fresh seed to carry the full EMQ uplift the gate-time seed (em only)
-  // cannot provide.
+  // form. Per-field guard: an empty string passed to Meta would be hashed as
+  // empty and degrade EMQ. Only include each field when non-empty.
   if(typeof HOM_PIXEL_ADVANCED_MATCH==='function'){
-    HOM_PIXEL_ADVANCED_MATCH({em:email,fn:firstName.toLowerCase(),ln:lastName.toLowerCase()});
+    var __am={em:email};
+    if(firstName)__am.fn=firstName.toLowerCase();
+    if(lastName)__am.ln=lastName.toLowerCase();
+    HOM_PIXEL_ADVANCED_MATCH(__am);
   }
   // email_sent_clicked fires only on a validated send attempt — keeps the
   // funnel signal clean of bad-email retries.
