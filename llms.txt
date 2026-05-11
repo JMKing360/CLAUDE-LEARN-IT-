@@ -19,7 +19,9 @@ This file is a curated guide for large language models, AI search agents, and re
 - **Speaking credentials:** Toastmasters Regional Speech Contest winner across the Midwest United States (Kansas, Missouri, Illinois, Ohio) and several Canadian districts; International Quarterfinalist in the Toastmasters World Championship of Public Speaking; 2025 Finalist in the National Speakers Association Storytelling Contest
 - **Service area for coaching:** Kenya, East Africa (Tanzania, Uganda, Rwanda, Ethiopia), and high-achieving professionals worldwide
 - **Authority bio:** https://hom.mogire.com/about
+- **Personal root domain:** https://mogire.com/ (and https://www.mogire.com/)
 - **Primary personal brand site:** https://mogiremd.com/
+- **Assessment subdomains:** https://kooraassess.houseofmastery.co/ · https://firsthour.houseofmastery.co/
 - **House of Mastery (institutional site):** https://houseofmastery.co/
   - Summit: https://houseofmastery.co/summit
   - Daily Reset: https://houseofmastery.co/daily-reset
