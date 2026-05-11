@@ -987,6 +987,12 @@ body.footer-hidden footer{display:none}
 </style>
 <script>window.HOM_CONFIG=window.HOM_CONFIG||{};</script>
 <script src="/feature-flags.js"></script>
+<script>
+// HOM_TRACK queue stub - synchronous, so inline app code can call HOM_TRACK()
+// before /observability.js (deferred) has executed. The bundle drains this
+// queue on load and replaces HOM_TRACK with the real implementation.
+(function(){var q=window.HOM_TRACK_QUEUE=window.HOM_TRACK_QUEUE||[];window.HOM_TRACK=function(n,p){try{q.push([n,p]);}catch(e){}};})();
+</script>
 <script src="/observability.js" defer></script>
 <!-- Pre-Pixel guard: strip identifying URL params, gate Pixel on GPC / embed / EEA flag -->
 <script>
@@ -1263,9 +1269,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <div class="welcome-cta">
     <button class="btn-primary" id="welcomeBeginBtn" onclick="welcomeBeginClick()" style="max-width:300px;letter-spacing:.05em">BEGIN YOUR FIRST HOUR</button>
     <div class="welcome-email-gate" id="welcomeEmailGate" style="display:none">
-      <p class="welcome-email-gate__h">Your email — so the report can find you.</p>
-      <p class="welcome-email-gate__sub">We send your full report and a monthly reminder for twelve months. We do not sell your data. Replies reach <b>mail@mogire.com</b>. <a href="/privacy" target="_blank" rel="noopener">Privacy policy</a>.</p>
-      <input class="field-input" type="email" id="participantEmail" placeholder="your@email.com" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" maxlength="120">
+      <label class="welcome-email-gate__h" for="participantEmail">Your email — so the report can find you.</label>
+      <p id="participantEmailHint" class="welcome-email-gate__sub">We send your full report and a monthly reminder for twelve months. We do not sell your data. Replies reach <b>mail@mogire.com</b>. <a href="/privacy" target="_blank" rel="noopener">Privacy policy</a>.</p>
+      <input class="field-input" type="email" id="participantEmail" placeholder="your@email.com" autocomplete="email" inputmode="email" spellcheck="false" autocapitalize="off" maxlength="120" aria-required="true" aria-describedby="participantEmailHint">
       <p class="welcome-email-gate__err" id="welcomeEmailErr" style="display:none">Enter a valid email address.</p>
       <div class="welcome-email-gate__row">
         <button class="btn-primary" onclick="confirmEmailAndStart()" style="max-width:300px;letter-spacing:.05em">CONTINUE</button>
@@ -2071,12 +2077,12 @@ function confirmEmailAndStart(){
   // Fire email_gate_confirmed (→ Meta Lead) only on validated email. Dedup per
   // email so re-takers don't inflate Lead counts.
   if(typeof HOM_TRACK==='function'){
-    var leadKey='hom_lead_fired_firsthour_'+email;
-    var alreadyFired=false;
-    try{alreadyFired=localStorage.getItem(leadKey)==='1'}catch(e){}
-    if(!alreadyFired){
+    // Dedup Lead-fire per email without putting the email in the localStorage
+    // key namespace (where Object.keys(localStorage) would expose it).
+    var firedMap={};try{firedMap=JSON.parse(localStorage.getItem('hom_lead_fired_firsthour')||'{}')}catch(e){}
+    if(!firedMap[email]){
       HOM_TRACK('email_gate_confirmed',{instrument:'first-hour'});
-      try{localStorage.setItem(leadKey,'1')}catch(e){}
+      firedMap[email]=1;try{localStorage.setItem('hom_lead_fired_firsthour',JSON.stringify(firedMap))}catch(e){}
     }
   }
   startAssessment();
@@ -2423,7 +2429,9 @@ function bindUnfinishedItems(){
         if(idx>=0){unfinishedSelected.splice(idx,1);it.classList.remove('selected');it.setAttribute('aria-checked','false')}
         else{unfinishedSelected.push(letter);it.classList.add('selected');it.setAttribute('aria-checked','true')}
         refreshCount();
-        try{localStorage.setItem('fh_unfinished_'+(participantEmail||'anon'),JSON.stringify(unfinishedSelected))}catch(e){}
+        // Bucket per-email under a single key so Object.keys(localStorage)
+        // does not surface the email as a separable token.
+        try{var fh={};try{fh=JSON.parse(localStorage.getItem('fh_unfinished')||'{}')}catch(_e){}fh[participantEmail||'anon']=unfinishedSelected;localStorage.setItem('fh_unfinished',JSON.stringify(fh))}catch(e){}
       });
       it.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();it.click()}});
     })(items[i]);

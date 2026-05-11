@@ -104,5 +104,16 @@
       } catch (e) { /* swallow — never let analytics break the app */ }
     }
   }
+  // Drain any calls queued before this deferred script executed. The HTML
+  // head defines a stub HOM_TRACK that pushes to HOM_TRACK_QUEUE so cold-load
+  // events (welcome_shown etc.) are not lost while we wait for the deferred
+  // observability bundle to land.
+  var queued = window.HOM_TRACK_QUEUE;
   window.HOM_TRACK = track;
+  window.HOM_TRACK_QUEUE = null;
+  if (queued && queued.length) {
+    for (var i = 0; i < queued.length; i++) {
+      try { track(queued[i][0], queued[i][1]); } catch (e) {}
+    }
+  }
 })();

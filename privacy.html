@@ -189,7 +189,16 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <h2 id="share">5. Who we share it with</h2>
 <p>We do not sell your personal information. We do not share your personal information with anyone except in the limited circumstances below.</p>
 <ul>
-  <li><b>Service providers</b> who process information strictly on our behalf and under written terms that satisfy Article 28 GDPR. The principal categories are email-delivery infrastructure, web hosting, and analytics. Each provider is bound to confidentiality, security, sub-processor restrictions, and data-protection assistance.</li>
+  <li><b>Service providers</b> who process information strictly on our behalf and under written terms that satisfy Article 28 GDPR. The named providers, by function, are:
+    <ul>
+      <li><b>GoHighLevel</b> (HighLevel, Inc., Dallas, Texas, USA) &mdash; customer-relationship and email-delivery platform. Receives the report email contents (name, email address, free-text reflections, assessment scores) for the purpose of delivering your result and any subsequent correspondence you have agreed to.</li>
+      <li><b>Google LLC</b> (Mountain View, California, USA) &mdash; the archive mailbox referenced under Section 3 is a Google Workspace / Gmail mailbox controlled by Dr. Mogire. A copy of each report email passes through Google&rsquo;s mail infrastructure for storage and retrieval. Google processes the message subject to the Google Workspace Data Processing Amendment.</li>
+      <li><b>Cloudflare, Inc.</b> (San Francisco, California, USA) &mdash; web hosting, edge delivery, and the geo-aware middleware that suppresses the Meta Pixel for EEA/UK/CH visitors. Cloudflare processes connection metadata and IP-derived country codes under its Data Processing Addendum.</li>
+      <li><b>Plausible Analytics</b> (Plausible Insights O&Uuml;, Estonia, EU) &mdash; privacy-first page analytics. Plausible does not set cookies, does not collect personal identifiers, and aggregates IP-derived country only.</li>
+      <li><b>Functional Software, Inc.</b> trading as <b>Sentry</b> (San Francisco, California, USA) &mdash; error-monitoring service. Receives stack traces and breadcrumbs when the assessment encounters a runtime error. We do not include personal data in error breadcrumbs by configuration.</li>
+    </ul>
+    Each provider is bound to confidentiality, security, sub-processor restrictions, and data-protection assistance.
+  </li>
   <li><b>Meta Platforms, Inc.</b> (the Meta Pixel). Following <i>Fashion ID</i> (CJEU C-40/17) and Meta&rsquo;s own Joint Controller Addendum, we treat Meta as a <b>joint controller</b> with us for the collection and transmission of Pixel events, and as an <b>independent controller</b> for any further processing Meta performs for its own purposes. We do not transfer your name, email, or assessment answers to Meta. The events transmitted, the lawful basis, and your opt-out rights are described in detail in Section 12. We do not load the Pixel for visitors connecting from the European Economic Area, the United Kingdom, or Switzerland, and we suppress it for any visitor whose browser sends a Global Privacy Control signal.</li>
   <li><b>Dr. Job Mogire and the named members of the House of Mastery team</b> who have a need to see your information in order to deliver the work you have engaged us for.</li>
   <li><b>Authorities</b> when we are required to disclose by law, court order, or to protect rights, safety, or property.</li>
@@ -212,7 +221,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   <tbody>
     <tr><td>Email and assessment archive of active participants</td><td>For as long as you remain in correspondence with House of Mastery, plus thirty-six months thereafter, unless you ask us to delete sooner.</td></tr>
     <tr><td>Cohort participation records</td><td>For the life of the cohort plus seven years, to support continuity for alumni rejoining the work.</td></tr>
-    <tr><td>Local-storage records on your own device</td><td>For as long as you choose. You may clear these at any time using the &ldquo;Reset history&rdquo; control inside each instrument or by clearing your browser data.</td></tr>
+    <tr><td>Local-storage records on your own device. Keys written by the instruments: <code>koora_unfinished_v4</code>, <code>koora_inprogress</code>, <code>koora_participant_email</code>, <code>koora_cov_entry_{1..6}</code>, <code>hom_lead_fired_koora</code>, <code>hom_firsthour_history_v3</code>, <code>hom_firsthour_inprogress</code>, <code>hom_firsthour_participant_email</code>, <code>hom_lead_fired_firsthour</code>, <code>fh_examen</code>, <code>fh_emoChoices</code>, <code>fh_unfinished</code>, <code>hom_firsthour_v3_notice_dismissed</code>, <code>hom_firsthour_v3_migrated</code>.</td><td>For as long as you choose. You may clear these at any time using the &ldquo;Reset history&rdquo; control inside each instrument or by clearing your browser data.</td></tr>
     <tr><td>Server logs</td><td>Up to thirty days, after which they are aggregated or deleted.</td></tr>
     <tr><td>Records we are legally required to keep</td><td>For the period required by the relevant law, then deleted.</td></tr>
   </tbody>
@@ -269,7 +278,12 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 
 <h2 id="cookies">12. Cookies and similar technologies</h2>
 <p>The assessment instruments themselves use your browser&rsquo;s local storage to save your assessment history on your own device; they do not set first-party tracking cookies of their own. The website may, where deployed, set strictly necessary cookies (for example, to maintain a session).</p>
-<p><b>Meta Pixel.</b> The website includes the Meta (Facebook) Pixel for measurement of campaign performance and to build audiences for direct marketing. Where it loads, the Pixel sets and reads cookies managed by Meta Platforms, Inc. (principally <code>_fbp</code>, and <code>_fbc</code> when you arrive via a Meta-served ad). The Pixel transmits the following to Meta on each page view or milestone event:</p>
+<p><b>Meta Pixel.</b> The websites in our property network include the Meta (Facebook) Pixel for measurement of campaign performance and to build audiences for direct marketing. Two Pixel identifiers are deployed across the network:</p>
+<ul>
+  <li>Pixel ID <code>748998691952331</code> &mdash; the primary House of Mastery pixel, deployed on <i>hom.mogire.com</i> (the instruments hub including The First Hour and KOORA UNFINISHED) and on the marketing pages of <i>houseofmastery.co</i>.</li>
+  <li>Pixel ID <code>214369085789</code> &mdash; a secondary pixel deployed specifically on <i>houseofmastery.co/diagnostic</i> (the 9-pattern Unfinished Life Diagnostic). It carries the same suppression rules (EEA/UK/CH, Sec-GPC) and the same advanced-matching posture as the primary pixel.</li>
+</ul>
+<p>Where either pixel loads, it sets and reads cookies managed by Meta Platforms, Inc. (principally <code>_fbp</code>, and <code>_fbc</code> when you arrive via a Meta-served ad). The Pixel transmits the following to Meta on each page view or milestone event:</p>
 <ul>
   <li>The page URL (we strip any <code>name</code>, <code>email</code>, <code>first</code>, <code>last</code>, and <code>token</code> query parameters before the Pixel is allowed to read the URL, so retake links from email do not leak personal identifiers);</li>
   <li>The event name &mdash; <i>PageView</i>, <i>ViewContent</i>, the standard events <i>Lead</i> (you confirmed your email at the gate) and <i>CompleteRegistration</i> (you reached your assessment result), and our custom milestone events (such as the welcome screen being shown, the begin button being clicked, mid-assessment progress thresholds, and section transitions);</li>
