@@ -7,6 +7,7 @@ export default defineConfig({
       input: {
         koora: resolve(__dirname, 'index.html'),
         firstHour: resolve(__dirname, 'first-hour/index.html'),
+        embed: resolve(__dirname, 'embed.html'),
         privacy: resolve(__dirname, 'privacy.html'),
       },
     },
