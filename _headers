@@ -35,7 +35,19 @@
   Vary: CF-IPCountry, Sec-GPC
 /first-hour/
   Vary: CF-IPCountry, Sec-GPC
-/*.html
+/index.html
+  Vary: CF-IPCountry, Sec-GPC
+/about.html
+  Vary: CF-IPCountry, Sec-GPC
+/privacy.html
+  Vary: CF-IPCountry, Sec-GPC
+/koora-faq.html
+  Vary: CF-IPCountry, Sec-GPC
+/first-hour-faq.html
+  Vary: CF-IPCountry, Sec-GPC
+/embed.html
+  Vary: CF-IPCountry, Sec-GPC
+/404.html
   Vary: CF-IPCountry, Sec-GPC
 
 # Embeddable widget — partner-framed via /embed.html, which iframes /first-hour/

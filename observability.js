@@ -77,10 +77,11 @@
     assessment_completed: 'CompleteRegistration'
   };
   // Synthetic value placeholders for value-based optimization. Calibrate
-  // against real LTV once Meta has volume (~50/week per event).
+  // against real LTV once Meta has volume (~50/week per event). HOM_CONFIG
+  // overrides ship without a code change once calibration data exists.
   var META_VALUE = {
-    Lead: 5,
-    CompleteRegistration: 25
+    Lead: (cfg && typeof cfg.metaValueLead === 'number') ? cfg.metaValueLead : 5,
+    CompleteRegistration: (cfg && typeof cfg.metaValueCompleteRegistration === 'number') ? cfg.metaValueCompleteRegistration : 25
   };
   function detectInstrument(p) {
     if (p && p.instrument) return p.instrument;
@@ -126,7 +127,12 @@
     if (window.fbq && !window.HOM_PIXEL_DISABLED) {
       try {
         var eventID = newEventID();
-        lastEventIDs[name] = { id: eventID, ts: Date.now() };
+        // Key by instrument+name so a user who takes both KOORA and First Hour
+        // in the same browser does not have one app's eventID overwrite the
+        // other's (the CAPI dedup forwarded to GHL would mismatch otherwise).
+        var __instr = (payload && payload.instrument) ? payload.instrument : '';
+        var __storeKey = __instr ? (__instr + ':' + name) : name;
+        lastEventIDs[__storeKey] = { id: eventID, ts: Date.now() };
         persistEventIDs();
         var standard = META_STANDARD[name];
         if (standard) {
@@ -162,16 +168,22 @@
     if (window.HOM_PIXEL_DISABLED) return;
     if (!window.fbq || !userData) return;
     try {
-      // Pixel ID matches the inline-init in index.html / first-hour/index.html.
-      fbq('init', '748998691952331', userData, { autoConfig: false });
+      // Read Pixel ID from HOM_CONFIG so per-environment overrides work
+      // without a code change. Falls back to the literal that ships in the
+      // inline init in index.html / first-hour/index.html.
+      var pid = (cfg && cfg.metaPixelId) || '748998691952331';
+      fbq('init', pid, userData, { autoConfig: false });
     } catch (e) {}
   };
 
   // CAPI-dedup helper. Returns the last eventID fired for the named event,
   // so the GHL webhook payload can forward it as meta_event_id_<name> and the
   // server-side CAPI dispatcher can dedup against the browser-side fire.
-  window.HOM_LAST_EVENT_ID = function (name) {
-    var rec = lastEventIDs[name];
+  // Pass the instrument so cross-app fires don't collide; falls back to the
+  // plain-name key for legacy callers.
+  window.HOM_LAST_EVENT_ID = function (name, instrument) {
+    var key = instrument ? (instrument + ':' + name) : name;
+    var rec = lastEventIDs[key] || lastEventIDs[name];
     return rec ? (rec.id || rec) : null;
   };
   // Drain any calls queued before this deferred script executed. The HTML

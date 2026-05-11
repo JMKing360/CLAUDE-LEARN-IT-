@@ -388,7 +388,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .field-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
 .field-input{display:block;width:100%;max-width:480px;padding:16px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .field-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
-.field-input::placeholder{color:#B8B8BD}
+.field-input::placeholder{color:#6E6E73}
 .field-stack{margin-bottom:22px}
 .welcome-cta{margin-top:32px;margin-bottom:8px}
 .welcome-email-gate{max-width:420px;padding:22px 22px 18px;margin-top:14px;background:var(--surface-2);border:1px solid var(--rule);border-radius:14px;animation:welcomeEmailGateIn .25s ease-out}
@@ -475,12 +475,13 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .opt-key{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .opt.sel .opt-key{color:var(--gold-soft)}
 .q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
-.q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
+.q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--mid);cursor:pointer;padding:12px 6px;display:inline-flex;align-items:center;gap:6px;border-radius:6px}
 .q-back:hover{color:var(--ink)}
-.q-next{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px;margin-left:auto}
+.q-back:focus-visible,.q-next:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
+.q-next{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;padding:12px 6px;display:inline-flex;align-items:center;gap:6px;margin-left:auto;border-radius:6px}
 .q-next:hover:not([disabled]){color:var(--navy)}
-.q-next[disabled]{opacity:.32;cursor:not-allowed;font-weight:600;color:var(--dim)}
+.q-next[disabled]{opacity:.4;cursor:not-allowed;font-weight:600;color:var(--mid)}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* ACK */
@@ -631,7 +632,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .pain-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
 .pain-input{width:100%;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
 .pain-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
-.pain-input::placeholder{color:#B8B8BD}
+.pain-input::placeholder{color:#6E6E73}
 .self-quote{margin-top:22px;padding:24px 26px;background:var(--surface-2);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;display:none}
 .self-quote.shown{display:block}
 .self-quote-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
@@ -1009,11 +1010,15 @@ body.footer-hidden footer{display:none}
 // HOM_TRACK + HOM_SENTRY_WARN queue stubs - synchronous, so inline app code
 // can call them before /observability.js (deferred) has executed. The bundle
 // drains both queues on load and replaces the stubs with real implementations.
+// Both queues are capped at 200 entries (drop oldest) so a network-blocked
+// /observability.js or Sentry CDN doesn't grow them unbounded across a
+// long-lived session.
 (function(){
+  var QCAP=200;
   var q=window.HOM_TRACK_QUEUE=window.HOM_TRACK_QUEUE||[];
-  window.HOM_TRACK=function(n,p){try{q.push([n,p]);}catch(e){}};
+  window.HOM_TRACK=function(n,p){try{q.push([n,p]);if(q.length>QCAP)q.shift();}catch(e){}};
   var sq=window.HOM_SENTRY_QUEUE=window.HOM_SENTRY_QUEUE||[];
-  window.HOM_SENTRY_WARN=function(m,t){try{sq.push([m,t]);}catch(e){}};
+  window.HOM_SENTRY_WARN=function(m,t){try{sq.push([m,t]);if(sq.length>QCAP)sq.shift();}catch(e){}};
 })();
 </script>
 <script src="/observability.js" defer></script>
@@ -1167,11 +1172,11 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   </div>
   <div class="rebuild-notice" id="rebuildNotice" style="display:none">
     <span class="rebuild-notice__h">The instrument was rebuilt.</span>
-    <span class="rebuild-notice__body">Nine chambers, three triads, sixty items. Your prior takes are preserved as anchor dates only — chamber scores cannot be carried across the rebuild cleanly.</span>
+    <span class="rebuild-notice__body">Nine chambers, three triads, fifty-four items. Your prior takes are preserved as anchor dates only — chamber scores cannot be carried across the rebuild cleanly.</span>
     <button class="rebuild-notice__close" type="button" onclick="dismissRebuildNotice()" aria-label="Dismiss">×</button>
   </div>
   <h1 class="hero">You are about to see your life with <em>new eyes.</em></h1>
-  <p class="lede">Sixty short fragments written for what you quietly carry. <strong>Notice gently.</strong></p>
+  <p class="lede">Fifty-four short statements written for what you quietly carry. <strong>Notice gently.</strong></p>
 
   <div class="gold-box">
     <p class="gold-box__h">I should be finishing, but...</p>
@@ -1195,7 +1200,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     </div>
     <div class="cover-letter__body">
       <p>Most assessments flatter you. This one will not. It shows you the patterns running underneath your life — the ones you have not let yourself say out loud.</p>
-      <p>Nothing here is public. Be honest with yourself for fifteen minutes. Whatever you find, you may carry. You may bring it back. Or you may close the tab. Both are honest answers.</p>
+      <p>Nothing here is public. Be honest with yourself for fifteen minutes. Carry what you find. Bring it back, or close the tab. Both are honest answers.</p>
       <p>The one thing I would ask you not to do: recognise yourself in the result, then forget. <em>That is the pattern this audit is built to interrupt.</em></p>
     </div>
     <div class="cover-letter__sig">
@@ -1289,7 +1294,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <span class="q-foot-meta" id="qCount">Question 1 of 54</span>
     <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next &rarr;</button>
   </div>
-  <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap.</p>
+  <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap. Then <b>Next</b> (or wait).</p>
 </section>
 
 <!-- ACK -->
@@ -1315,8 +1320,8 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 <section class="screen" id="screen-results">
   <h2 class="r-h1" id="rHeadline"></h2>
   <div class="author-byline" aria-label="Audit by Dr. Job Mogire">
-    <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
-    <span>Audit by <b>Dr. Job Mogire, MD, FACC, FACP</b> · Cardiologist · Internist · Mindset Coach · Speaker</span>
+    <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" width="896" height="1200" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
+    <span>Audit by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Founder, House of Mastery</span>
   </div>
 
   <p class="result-toc"><span class="result-toc__label">In this result:</span> The Nine Chambers · The Pattern Named · Spirit Pulse · Your Agency Matrix · Cost &amp; Five-Year Forecast · Your Own Words · What You Have Just Diagnosed · The Finishing System</p>
@@ -1571,12 +1576,12 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <h2 class="meet-doctor__h" id="meetDocH">Meet Dr. Job Mogire — Board-Certified Physician, Mindset Coach &amp; Public Speaker, Kenya</h2>
     <div class="meet-doctor__grid">
       <figure class="meet-doctor__figure">
-        <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" alt="Dr. Job Mogire, MD, FACC, FACP — Board-Certified Cardiologist and Internist, mindset and emotional intelligence coach, founder of House of Mastery, Kenya" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
-        <figcaption><b>Dr. Job Mogire, MD, FACC, FACP</b><br>Founder, House of Mastery · Kenya</figcaption>
+        <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" width="896" height="1200" alt="Dr. Job Mogire, MD, FACC, FACP — Board-Certified Cardiologist and Internist, mindset and emotional intelligence coach, founder of House of Mastery, Kenya" loading="lazy" decoding="async" onerror="this.parentNode.style.display='none'">
+        <figcaption><b>Dr. Job Mogire, MD, FACC</b><br>Cardiologist · Founder, House of Mastery</figcaption>
       </figure>
       <div class="meet-doctor__bio">
-        <div class="meet-doctor__creds">MD, FACC, FACP · Cardiologist · Internist · Mindset &amp; Emotional Intelligence Coach · Public Speaker</div>
-        <p><strong>Dr. Job Mogire, MD, FACC, FACP</strong> is a board-certified physician — Fellow of the American College of Cardiology and Fellow of the American College of Physicians — and one of Kenya’s most-respected mindset and emotional-sovereignty coaches. He has spent the past two decades listening for what unspoken life does to the body. He believes most adults are not under-performing. They are under-finishing. The difference is not motivational. It is structural.</p>
+        <div class="meet-doctor__creds">MD, FACC · Cardiologist · Founder, House of Mastery</div>
+        <p><strong>Dr. Job Mogire, MD, FACC</strong> is a board-certified cardiologist and one of Kenya’s most-respected mindset and emotional-sovereignty coaches. He has spent the past two decades listening for what unspoken life does to the body. He believes most adults are not under-performing. They are under-finishing. The difference is not motivational. It is structural.</p>
         <p>He is the founder of <strong>House of Mastery</strong> and the architect of <strong>KOORA: The Finisher’s Protocol</strong>. As a public speaker he is a Toastmasters regional winner across the Midwest United States and Canada, an international quarterfinalist in the Toastmasters World Championship of Public Speaking, and a 2025 finalist in the National Speakers Association Storytelling Contest. The First Hour is his quietest instrument, a free diagnostic offered so people across East Africa and beyond can find out where they stand before life forces the audit. <a href="/about" rel="author">Read the full bio &rarr;</a></p>
         <p>If what you found here matters to you, the next door is <strong>KOORA</strong>, opening once a year for twenty-four seats. The instrument you just took is the entry point.</p>
       </div>
@@ -2185,10 +2190,19 @@ function confirmEmailAndStart(){
   if(typeof HOM_TRACK==='function'){
     // Dedup Lead-fire per email without putting the email in the localStorage
     // key namespace (where Object.keys(localStorage) would expose it).
+    // TTL prune: values are timestamps (ms); entries older than 365 days are
+    // dropped on each write so the map does not grow over the device's lifetime.
+    var DEDUP_TTL=365*24*60*60*1000;
     var firedMap={};try{firedMap=JSON.parse(localStorage.getItem('hom_lead_fired_firsthour')||'{}')}catch(e){}
+    var nowTs=Date.now();
+    for(var __ek in firedMap){
+      var __v=firedMap[__ek];
+      var __ts=(typeof __v==='number'&&__v>1e12)?__v:0;
+      if(!__ts||nowTs-__ts>DEDUP_TTL){delete firedMap[__ek]}
+    }
     if(!firedMap[email]){
       HOM_TRACK('email_gate_confirmed',{instrument:'first-hour'});
-      firedMap[email]=1;try{localStorage.setItem('hom_lead_fired_firsthour',JSON.stringify(firedMap))}catch(e){}
+      firedMap[email]=nowTs;try{localStorage.setItem('hom_lead_fired_firsthour',JSON.stringify(firedMap))}catch(e){}
     }
   }
   startAssessment();
@@ -2241,6 +2255,10 @@ function renderQuestion(n){
   }
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
   var nx=document.getElementById('qNext');if(nx)nx.disabled=!answers[n];
+  // Refocus the question heading so screen readers announce the new question
+  // text after each renderQuestion (initial show() handles the very first
+  // question, but subsequent auto-advances would otherwise be silent for AT).
+  try{var __h=document.getElementById('qText');if(__h&&__h.focus)__h.focus({preventScroll:true})}catch(_e){}
 }
 var savePillTimer=null;
 function showSavePill(){
@@ -2252,10 +2270,15 @@ function showSavePill(){
 // Mid-funnel milestones: one-shot per session, fired on first selection at
 // each threshold. Gives Meta dropout audiences between Lead (email gate) and
 // the first transition screen (q18 in First Hour).
+// Milestones persist to sessionStorage so a participant who autosaves at q40
+// then refreshes does not re-fire quarter/half/three-quarters on the first
+// post-restore selectOption (n>=Math.floor(TOTAL/4) is true at q40).
 var _milestoneFired={};
+try{var __mc=sessionStorage.getItem('hom_milestones_firsthour');if(__mc)_milestoneFired=JSON.parse(__mc)||{}}catch(_e){}
 function fireMilestone(name){
   if(_milestoneFired[name])return;
   _milestoneFired[name]=true;
+  try{sessionStorage.setItem('hom_milestones_firsthour',JSON.stringify(_milestoneFired))}catch(_e){}
   if(typeof HOM_TRACK==='function')HOM_TRACK(name,{instrument:'first-hour',q:currentQ});
 }
 function selectOption(n,score){
@@ -2265,6 +2288,10 @@ function selectOption(n,score){
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   var nx=document.getElementById('qNext');if(nx)nx.disabled=false;
+  // Respect prefers-reduced-motion: do not auto-advance, require explicit
+  // NEXT/Enter so screen-reader and AT users are not preempted mid-announce.
+  var __reduce=false;try{__reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
+  if(__reduce){return}
   if(n===1)fireMilestone('first_question_answered');
   if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
   if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');
@@ -2297,11 +2324,15 @@ function enterTransition(trans){
   setProgress(Math.round((trans.q/TOTAL)*98));
   // Auto-advance into the next triad after dwell time. CONTINUE button still
   // works for visitors who want to skip ahead; clicking it pre-empts the timer.
+  // Reduced-motion users get no timer — manual CONTINUE only.
   if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
-  transitionTimer=setTimeout(function(){
-    var s=document.getElementById('screen-transition');
-    if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
-  },TRANSITION_AUTO_MS);
+  var __reduceTr=false;try{__reduceTr=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
+  if(!__reduceTr){
+    transitionTimer=setTimeout(function(){
+      var s=document.getElementById('screen-transition');
+      if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
+    },TRANSITION_AUTO_MS);
+  }
 }
 function exitTransition(){
   if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
@@ -2556,9 +2587,15 @@ function bindUnfinishedItems(){
         if(idx>=0){unfinishedSelected.splice(idx,1);it.classList.remove('selected');it.setAttribute('aria-checked','false')}
         else{unfinishedSelected.push(letter);it.classList.add('selected');it.setAttribute('aria-checked','true')}
         refreshCount();
-        // Bucket per-email under a single key so Object.keys(localStorage)
-        // does not surface the email as a separable token.
-        try{var fh={};try{fh=JSON.parse(localStorage.getItem('fh_unfinished')||'{}')}catch(_e){}fh[participantEmail||'anon']=unfinishedSelected;localStorage.setItem('fh_unfinished',JSON.stringify(fh))}catch(e){}
+        // Single-slot for the current participant (not a per-email map) so
+        // a shared/family device does not retain prior participants' emails
+        // as JSON keys inside the fh_unfinished value. Restore on cold-load
+        // is keyed off the same `participantEmail` only when the same email
+        // re-enters the assessment.
+        try{
+          var __fhPayload={email:participantEmail||'anon',sel:unfinishedSelected,ts:Date.now()};
+          localStorage.setItem('fh_unfinished',JSON.stringify(__fhPayload));
+        }catch(e){}
       });
       it.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();it.click()}});
     })(items[i]);
@@ -2881,7 +2918,17 @@ function fireEmailQuiet(rec){
   // the email_sent_clicked taxonomy event and posts the webhook.
   // Auto-send fires the same email_sent_clicked event as manual resend so
   // funnel exit counts match KOORA. Marks mode for funnel analytics.
-  if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'auto'});
+  // Dedup per-completion (rec.date) so the auto-send + later manual resend
+  // do not both fire email_sent_clicked for the same submission.
+  if(typeof HOM_TRACK==='function' && rec && rec.date){
+    var emailKey='hom_email_fired_firsthour_'+rec.date;
+    var alreadyEmailed=false;
+    try{alreadyEmailed=localStorage.getItem(emailKey)==='1'}catch(e){}
+    if(!alreadyEmailed){
+      HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'auto'});
+      try{localStorage.setItem(emailKey,'1')}catch(e){}
+    }
+  }
   buildEmailPayload(rec).then(function(){}).catch(function(){});
 }
 function resendEmail(){
@@ -2893,7 +2940,17 @@ function resendEmail(){
   status.style.display='block';status.style.color='var(--mid)';status.textContent='Sending...';
   if(!EMAIL_OK){status.style.color='var(--red)';status.textContent='Email is not available right now. Use Download Report.';return}
   // email_sent_clicked fires only on a real send attempt with EMAIL_OK gate.
-  if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'manual'});
+  // Dedup per-completion: if auto-send already fired for this rec.date we
+  // skip the analytics fire on the manual resend, but still do the webhook.
+  if(typeof HOM_TRACK==='function' && rec && rec.date){
+    var emailKey='hom_email_fired_firsthour_'+rec.date;
+    var alreadyEmailed=false;
+    try{alreadyEmailed=localStorage.getItem(emailKey)==='1'}catch(e){}
+    if(!alreadyEmailed){
+      HOM_TRACK('email_sent_clicked',{instrument:'first-hour',mode:'manual'});
+      try{localStorage.setItem(emailKey,'1')}catch(e){}
+    }
+  }
   buildEmailPayload(rec).then(function(){
     status.style.color='var(--green)';status.textContent='Sent. Your full report is on its way to '+rec.email+'.';
   },function(){
@@ -2913,8 +2970,8 @@ function buildEmailPayload(rec){
   var emoLine='Resonance: '+(rec.emo_resonance||' - ')+' · Readiness: '+(rec.emo_readiness||' - ');
   // Forward browser-side Meta event IDs to GHL so a future CAPI dispatcher
   // can dedup server-side events against browser-side Pixel fires.
-  var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed'):null;
-  var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed'):null;
+  var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed','first-hour'):null;
+  var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed','first-hour'):null;
   var metaViewContentEvtId=window.HOM_VIEWCONTENT_EVENT_ID||null;
   return sendToGhl({
     to_name:rec.name,
@@ -2925,6 +2982,19 @@ function buildEmailPayload(rec){
     meta_event_id_view_content:metaViewContentEvtId,
     primary_reflex:loud.name,
     primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
+    // Pre-test pickups as discrete top-level fields so GHL workflows /
+    // segments / conditional emails can filter without parsing the HTML
+    // archetype_desc blob. Same fields are also embedded as prose in
+    // archetype_desc for human readability of the email.
+    examen_selected:rec.examen_selected||[],
+    emo_resonance:rec.emo_resonance||null,
+    emo_readiness:rec.emo_readiness||null,
+    unfinished_selected:rec.unfinished_selected||[],
+    agency_red_axes:rec.agency_red_axes||[],
+    agency_green_axes:rec.agency_green_axes||[],
+    pain_text_30d:rec.pain_text||'',
+    pain_text_5y:rec.pain_text_5y||'',
+    intent_first_move:rec.intent||'',
     archetype_desc:'THE FIRST HOUR · By Dr. Job Mogire, MD, FACC · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Pre-Audit Examen (truths named before the audit): '+examenLine+'<br><br>UNFINISHED self-named: '+unfLine+'<br>Pre-assessment commitments. '+emoLine+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.<br><br><i>Scoring methodology: 54-item Likert (1-4) across nine chambers in three triads, plus a six-item agency-matrix binary check. Cost-of-autopilot figures calibrated to Killingsworth & Gilbert (2010). Adults spend ~47% of waking time on autopilot. Figures are estimates derived from responses, not measurements.</i>',
     traffic_summary:profileLines,
     strategies_html:'<b>The cost, this period</b><br>'+costLines+'<br><br><b>The five-year forecast</b><br>'+fcLines+'<br><br><b>UNFINISHED self-named</b><br>'+unfLine,

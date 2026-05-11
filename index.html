@@ -491,7 +491,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .field-label{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--body);margin-bottom:10px;display:block}
 .field-input,.field-select{display:block;width:100%;max-width:420px;padding:16px 18px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:16px;font-weight:500;color:var(--ink);background:var(--white);border:1.5px solid var(--rule);border-radius:10px;outline:none;transition:border-color .15s,box-shadow .15s}
 .field-input:focus,.field-select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
-.field-input::placeholder{color:#B8B8BD}
+.field-input::placeholder{color:#6E6E73}
 .field-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:42px}
 .field-stack{margin-bottom:26px}
 .welcome-cta{margin-top:36px}
@@ -546,12 +546,13 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .opt-key{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:700;color:var(--dim);letter-spacing:.05em;min-width:18px;flex-shrink:0;font-variant-numeric:tabular-nums}
 .opt.sel .opt-key{color:var(--gold-soft)}
 .q-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
-.q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
-.q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
+.q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--mid);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--mid);cursor:pointer;padding:12px 6px;display:inline-flex;align-items:center;gap:6px;border-radius:6px}
 .q-back:hover{color:var(--ink)}
-.q-next{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px;margin-left:auto}
+.q-back:focus-visible,.q-next:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(201,151,58,.45)}
+.q-next{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;padding:12px 6px;display:inline-flex;align-items:center;gap:6px;margin-left:auto;border-radius:6px}
 .q-next:hover:not([disabled]){color:var(--navy)}
-.q-next[disabled]{opacity:.32;cursor:not-allowed;font-weight:600;color:var(--dim)}
+.q-next[disabled]{opacity:.4;cursor:not-allowed;font-weight:600;color:var(--mid)}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* RESULTS */
@@ -644,7 +645,7 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .pain-sub{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--mid);margin-bottom:18px;line-height:1.55;letter-spacing:.005em}
 .pain-input{width:100%;padding:14px 16px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:15px;font-weight:500;color:var(--ink);background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;outline:none;resize:vertical;min-height:84px;line-height:1.5;transition:border-color .15s,box-shadow .15s}
 .pain-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.15)}
-.pain-input::placeholder{color:#B8B8BD}
+.pain-input::placeholder{color:#6E6E73}
 
 .cohort-cta{background:var(--navy);color:#fff;border-radius:22px;padding:40px 36px}
 .cohort-eyebrow{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:block}
@@ -982,7 +983,7 @@ body.footer-hidden footer{display:none}
   /* Hide PII input fields from print - emailInput, firstNameInput,
      lastNameInput, painInput*, intentTime - so a printed report does not
      carry the participant's identity in plain text. */
-  .delivery,.delivery-form,.email-input,#firstNameInput,#lastNameInput,#emailInput,#painInput,#painInput5y,#intentTime,.pain-input{display:none !important}
+  .delivery,.delivery-form,.email-input,#firstNameInput,#lastNameInput,#emailInput,#painInput,#painInput5y,#intentTime,.pain-input,#welcomeEmailInput,#participantName{display:none !important}
   body{font-size:11pt;line-height:1.4;background:white !important;color:black !important;font-family:Georgia,serif}
   main{max-width:none;padding:0}
   #screen-results,#screen-results.active{display:block !important;padding:0 !important}
@@ -1085,11 +1086,15 @@ body.footer-hidden footer{display:none}
 // HOM_TRACK + HOM_SENTRY_WARN queue stubs - synchronous, so inline app code
 // can call them before /observability.js (deferred) has executed. The bundle
 // drains both queues on load and replaces the stubs with real implementations.
+// Both queues are capped at 200 entries (drop oldest) so a network-blocked
+// /observability.js or Sentry CDN doesn't grow them unbounded across a
+// long-lived session.
 (function(){
+  var QCAP=200;
   var q=window.HOM_TRACK_QUEUE=window.HOM_TRACK_QUEUE||[];
-  window.HOM_TRACK=function(n,p){try{q.push([n,p]);}catch(e){}};
+  window.HOM_TRACK=function(n,p){try{q.push([n,p]);if(q.length>QCAP)q.shift();}catch(e){}};
   var sq=window.HOM_SENTRY_QUEUE=window.HOM_SENTRY_QUEUE||[];
-  window.HOM_SENTRY_WARN=function(m,t){try{sq.push([m,t]);}catch(e){}};
+  window.HOM_SENTRY_WARN=function(m,t){try{sq.push([m,t]);if(sq.length>QCAP)sq.shift();}catch(e){}};
 })();
 </script>
 <script src="/observability.js" defer></script>
@@ -1388,7 +1393,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <span class="q-foot-meta" id="qCount">Question 1 of 60</span>
     <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next &rarr;</button>
   </div>
-  <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap.</p>
+  <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap. Then <b>Next</b> (or wait).</p>
 </section>
 
 <!-- ACKNOWLEDGMENT (between final question and results) -->
@@ -1403,7 +1408,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <h2 class="r-h1" id="rHeadline">Here is what is <em>running you</em>.</h2>
   <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
     <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" width="896" height="1200" alt="" role="presentation" loading="lazy" decoding="async" onerror="this.style.display='none'">
-    <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC, FACP</b> · Cardiologist · Internist · Coach · Speaker</span>
+    <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC</b> · Cardiologist · Founder, House of Mastery</span>
   </div>
 
   <p class="result-toc"><span class="result-toc__label">In this result:</span> Snapshot · The Path · Pattern Profile · Allegiance Matrix · ALCARRA · Fundamental Needs · Forces · Fidelities · Faculties · Daily Practice · Threshold Map · Covenant in Motion · Cost of the Pattern</p>
@@ -1597,7 +1602,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 </div>
 
 <footer>
-  <p class="foot-credit">©House of Mastery with Dr Job Mogire™ · KOORA™ · The Unfinished Life™ · Don't Die With An Unfinished Life™ · <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" alt="House of Mastery" style="height:24px;width:auto;display:block;margin:14px auto 0;opacity:.7" onerror="this.style.display='none'"></p>
+  <p class="foot-credit">©House of Mastery with Dr Job Mogire™ · KOORA™ · The Unfinished Life™ · Don't Die With An Unfinished Life™ · <a href="https://www.mogire.com" target="_blank" rel="noopener">www.mogire.com</a><img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" width="3295" height="1069" alt="House of Mastery" style="height:24px;width:auto;display:block;margin:14px auto 0;opacity:.7" loading="lazy" decoding="async" onerror="this.style.display='none'"></p>
   <p class="foot-credit" style="margin-top:18px;font-size:12px;letter-spacing:.06em"><a href="https://hom.mogire.com/koora-faq" style="color:inherit;text-decoration:underline;text-underline-offset:3px">KOORA — Every Question Answered (FAQ)</a> &nbsp;·&nbsp; <a href="https://hom.mogire.com/first-hour-faq" style="color:inherit;text-decoration:underline;text-underline-offset:3px">First Hour FAQ</a> &nbsp;·&nbsp; <a href="https://hom.mogire.com/about" style="color:inherit;text-decoration:underline;text-underline-offset:3px">About Dr. Mogire</a> &nbsp;·&nbsp; <a href="https://hom.mogire.com/privacy" style="color:inherit;text-decoration:underline;text-underline-offset:3px">Privacy</a></p>
 </footer>
 
@@ -1782,7 +1787,7 @@ var QUESTIONS=[
     'When I see someone ahead of me, my body tries to shrink before my mind has caught up.',
     'When I see someone ahead of me, I notice the shrink before it lands.',
     'When I see someone ahead of me, those near me do not feel my orbit shifting away from my own life.',
-    'When I see someone ahead of me, I am becoming the kind of person who can stay on her own ground.',
+    'When I see someone ahead of me, I am becoming the kind of person who can stay on their own ground.',
     'When I see someone ahead of me, I can stay on my own ground.'
   ]},
   {n:10, sec:1,sn:'The four reflexes', dom:'Comparing', text:[
@@ -2426,7 +2431,7 @@ function covEntrySelfNamed(rec){
 var COVENANTS=[
   {month:1,name:'Self',  promise:'I will stop abandoning myself.',practice:'I keep one daily promise to myself.',evidence:'I am willing to build proof that I am trusting myself again.'},
   {month:2,name:'Body',  promise:'I will stop treating my body as disposable.',practice:'I protect rest, movement, nourishment, and attention.',evidence:'I am willing to build the kind of body that still carries me at sixty, seventy, eighty.'},
-  {month:3,name:'Craft', promise:'I will honor the work entrusted to me.',practice:'I serve the work daily. The work does not serve me.',evidence:'I am willing to build a track record of finishing. Not perfect, finished.'},
+  {month:3,name:'Craft', promise:'I will honour the work entrusted to me.',practice:'I serve the work daily. The work does not serve me.',evidence:'I am willing to build a track record of finishing. Not perfect, finished.'},
   {month:4,name:'People',promise:'I will become different at home before I am different anywhere else.',practice:'I repair what I broke. I show up when I said I would.',evidence:'I am willing to build a self the people closest to me can feel, not just hear about.'},
   {month:5,name:'Future',promise:'I will stop betraying the person I am becoming.',practice:'I act on behalf of the seventy-year-old version of me.',evidence:'I am willing to build a calendar, money, and habits that agree with my future.'},
   {month:6,name:'World', promise:'I will give back from the life I have rebuilt.',practice:'I do not abandon the work for easier invitations. I make one public contribution.',evidence:'I am willing to build proof that I came back stronger, and gave something back.'}
@@ -2452,7 +2457,7 @@ function dayFraming(day){
   if(day===90)return stack('Halfway. Most who began are not here. You are. Notice that, then keep going.');
   if(day===180)return stack('This is the Sealing. The last return of the path. What you carry forward is yours to keep, or to let go.');
   // Generic ranges
-  if(day<=60)return stack('You have begun. The pattern is still loud. Notice it without judgment.');
+  if(day<=60)return stack('You have begun. The pattern is still loud. Notice it without judgement.');
   if(day<=120)return stack('You have walked the middle. The pattern may already feel different. Answer for the last fifteen days, not the journey so far.');
   if(day<=180)return stack('You are near the seal. The pattern is now familiar to you. Notice if it lands differently this time.');
   return stack('The path is yours now. Use this return to keep the work honest.');
@@ -2856,10 +2861,20 @@ function confirmEmailAndStart(){
   if(typeof HOM_TRACK==='function'){
     // Dedup Lead-fire per email without putting the email in the localStorage
     // key namespace (where Object.keys(localStorage) would expose it).
+    // Values are now timestamps (ms) — entries older than the dedup window
+    // are pruned on each write so the map does not grow over the device's
+    // lifetime.
+    var DEDUP_TTL=365*24*60*60*1000; // 365 days
     var firedMap={};try{firedMap=JSON.parse(localStorage.getItem('hom_lead_fired_koora')||'{}')}catch(e){}
+    var nowTs=Date.now();
+    for(var __ek in firedMap){
+      var __v=firedMap[__ek];
+      var __ts=(typeof __v==='number'&&__v>1e12)?__v:0; // legacy `1` values prune
+      if(!__ts||nowTs-__ts>DEDUP_TTL){delete firedMap[__ek]}
+    }
     if(!firedMap[email]){
       HOM_TRACK('email_gate_confirmed',{instrument:'koora'});
-      firedMap[email]=1;try{localStorage.setItem('hom_lead_fired_koora',JSON.stringify(firedMap))}catch(e){}
+      firedMap[email]=nowTs;try{localStorage.setItem('hom_lead_fired_koora',JSON.stringify(firedMap))}catch(e){}
     }
   }
   startAssessment();
@@ -2939,6 +2954,10 @@ function renderQuestion(n){
   }
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
   var nx=document.getElementById('qNext');if(nx)nx.disabled=!answers[n];
+  // Refocus the question heading so screen readers announce the new question
+  // text after each renderQuestion (initial show() handles the very first
+  // question, but subsequent auto-advances would otherwise be silent for AT).
+  try{var __h=document.getElementById('qText');if(__h&&__h.focus)__h.focus({preventScroll:true})}catch(_e){}
 }
 var savePillTimer=null;
 function showSavePill(){
@@ -2950,10 +2969,15 @@ function showSavePill(){
 // Mid-funnel milestones: one-shot per session, fired on first selection at
 // each threshold. Gives Meta dropout audiences between Lead (email gate) and
 // the first transition screen (~q16 in KOORA).
+// Milestones persist to sessionStorage so a participant who autosaves at q40
+// then refreshes does not re-fire quarter/half/three-quarters on the first
+// post-restore selectOption (n>=Math.floor(TOTAL/4) is true at q40).
 var _milestoneFired={};
+try{var __mc=sessionStorage.getItem('hom_milestones_koora');if(__mc)_milestoneFired=JSON.parse(__mc)||{}}catch(_e){}
 function fireMilestone(name){
   if(_milestoneFired[name])return;
   _milestoneFired[name]=true;
+  try{sessionStorage.setItem('hom_milestones_koora',JSON.stringify(_milestoneFired))}catch(_e){}
   if(typeof HOM_TRACK==='function')HOM_TRACK(name,{instrument:'koora',q:currentQ});
 }
 function selectOption(n,score){
@@ -2962,6 +2986,10 @@ function selectOption(n,score){
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   var nx=document.getElementById('qNext');if(nx)nx.disabled=false;
+  // Respect prefers-reduced-motion: do not auto-advance, require explicit
+  // NEXT/Enter so screen-reader and AT users are not preempted mid-announce.
+  var __reduce=false;try{__reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
+  if(__reduce){return}
   if(n===1)fireMilestone('first_question_answered');
   if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
   if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');
@@ -3003,11 +3031,15 @@ function enterTransition(trans){
   setProgress(Math.round((trans.q/TOTAL)*98));
   // Auto-advance into the next section after dwell time. CONTINUE button still
   // works for visitors who want to skip ahead; clicking it pre-empts the timer.
+  // Reduced-motion users get no timer — manual CONTINUE only.
   if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
-  transitionTimer=setTimeout(function(){
-    var s=document.getElementById('screen-transition');
-    if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
-  },TRANSITION_AUTO_MS);
+  var __reduceTr=false;try{__reduceTr=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
+  if(!__reduceTr){
+    transitionTimer=setTimeout(function(){
+      var s=document.getElementById('screen-transition');
+      if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
+    },TRANSITION_AUTO_MS);
+  }
 }
 function exitTransition(){
   if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
@@ -3100,6 +3132,15 @@ function finishAssessment(){
     var already=false;
     try{already=localStorage.getItem(doneKey)==='1'}catch(e){}
     if(!already){
+      // Re-seed Advanced Matching BEFORE the CompleteRegistration event fires
+      // so Meta receives the fresh em+fn match (not just gate-time em).
+      // Mirrors first-hour/index.html ~2497-2502.
+      if(typeof HOM_PIXEL_ADVANCED_MATCH==='function' && rec.email){
+        var __am={em:rec.email};
+        var __fn=((rec.name||'')+'').toLowerCase();
+        if(__fn)__am.fn=__fn;
+        HOM_PIXEL_ADVANCED_MATCH(__am);
+      }
       HOM_TRACK('assessment_completed',{instrument:'koora'});
       try{localStorage.setItem(doneKey,'1')}catch(e){}
     }
@@ -3484,7 +3525,7 @@ function renderPracticeFidelity(prior){
   if(prior&&prior.scores.fidelity_rate!=null){
     var d=p._rate-prior.scores.fidelity_rate;
     if(d>0){meta+=' Up '+d+' points since last return.';read='You are holding more of the practice than you were.'}
-    else if(d<0){meta+=' Down '+Math.abs(d)+' points since last return.';read='The practice slipped this period. Notice the slip without judgment, and return.'}
+    else if(d<0){meta+=' Down '+Math.abs(d)+' points since last return.';read='The practice slipped this period. Notice the slip without judgement, and return.'}
     else{meta+=' Steady since last return.';read='The practice held steady. Steady is what compounds.'}
   }else{
     if(p._rate>=70)read='Strong baseline. The daily practice is alive in your week.';
@@ -3660,8 +3701,8 @@ function sendEmail(){
 
   // Forward the browser-side Meta event IDs to GHL so a future CAPI
   // dispatcher can dedup server-side events against browser-side Pixel fires.
-  var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed'):null;
-  var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed'):null;
+  var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed','koora'):null;
+  var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed','koora'):null;
   var metaViewContentEvtId=window.HOM_VIEWCONTENT_EVENT_ID||null;
   sendToGhl({
     to_name:rec.name,
@@ -3672,6 +3713,19 @@ function sendEmail(){
     meta_event_id_view_content:metaViewContentEvtId,
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
+    // Pre-test pickups as discrete top-level fields so GHL workflows /
+    // segments / conditional emails can filter without parsing the HTML
+    // archetype_desc blob. Same fields are also embedded as prose in
+    // archetype_desc for human readability of the email.
+    cov_entry_selected:rec.cov_entry_selected||{},
+    cov_pulse:rec.cov_pulse,
+    claim:rec.claim,
+    pain_text_30d:rec.pain_text||'',
+    pain_text_5y:rec.pain_text_5y||'',
+    intent_first_move:rec.intent||'',
+    threshold:rec.threshold||'',
+    day_of_path:rec.day,
+    enrolled:rec.enrolled,
     archetype_desc:'KOORA · UNFINISHED · By Dr. Job Mogire, MD, FACC<br>Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Covenant entry self-named: '+covEntrySelfNamed(rec)+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br>Threshold (self-reported): '+(rec.threshold||'(not selected)')+'<br><br><i>Scoring methodology: 60-item Likert (1-4); 6-tier covenant resolver mapped from Day-of-Path; reflexes classified at ≤44% quiet, 45-69% active, 70%+ loud. Reverse-scored items in ALCARRA, needs (filled), forces, fidelities, faculties, and daily practice flip the scale. Pattern is the diagnosis, never the verdict.</i><br><i>Internal · arc stage: '+arcMeta.name+'</i>',
     traffic_summary:traffic,
     strategies_html:'<b>The Allegiance Matrix · fingerprint of '+loud.name.toLowerCase()+'</b><br>'+matrixLines+'<br><b>The four needs</b><br>'+ndLine,

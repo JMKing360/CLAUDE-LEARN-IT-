@@ -2,19 +2,14 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.67';
+const VERSION = 'hom-v3.7.68';
+// Static assets only. HTML routes are NOT precached because the edge
+// middleware strips the Pixel for EEA / GPC visitors at request time —
+// precaching the Pixel-bearing HTML at install would re-serve it later
+// to a now-GPC browser whose middleware would have stripped it. HTML is
+// fetched at runtime via the network-first handler below; the offline
+// fallback is the cache populated by that handler, not the install step.
 const CORE = [
-  '/',
-  '/first-hour',
-  '/index.html',
-  '/about.html',
-  '/about',
-  '/koora-faq.html',
-  '/koora-faq',
-  '/first-hour-faq.html',
-  '/first-hour-faq',
-  '/privacy.html',
-  '/privacy',
   '/shared.js',
   '/feature-flags.js',
   '/observability.js',
@@ -82,7 +77,19 @@ self.addEventListener('fetch', (event) => {
           caches.open(VERSION).then((cache) => cache.put(req, copy));
         }
         return res;
-      }).catch(() => caches.match(req).then((cached) => cached || caches.match('/first-hour/')))
+      }).catch(() => caches.match(req).then((cached) => {
+        if (cached) return cached;
+        // Offline + nothing in cache for this URL: try a few siblings the
+        // network-first handler may have populated on prior visits, then a
+        // last-resort plain-text fallback. Avoid 'undefined' Response.
+        return caches.match('/').then((root) => root
+          || caches.match('/first-hour').then((fh) => fh
+          || caches.match('/index.html').then((idx) => idx
+          || new Response('You are offline. Reconnect and reload.', {
+              status: 503,
+              headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+            }))));
+      }))
     );
     return;
   }
