@@ -12,9 +12,9 @@
   Vary: CF-IPCountry, Sec-GPC
 
 # Embeddable widget — partner-framed via /embed.html, which iframes /first-hour/
-# under the global rule above. The previous /embed/* block was dead config (no
-# served path matched it). Partner framing is permitted via the `https://hom.mogire.com`
-# entry in frame-ancestors above; widen as needed when real partners are onboarded.
+# under the global rule above. Same-origin framing is covered by `'self'` in
+# frame-ancestors; cross-origin framing is permitted only for
+# `https://houseofmastery.co`. Widen as needed when real partners are onboarded.
 
 # Long cache for static asset paths (icons, fonts) — adjust as build matures
 /icons/*

@@ -73,6 +73,10 @@
     try { if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID(); } catch (e) {}
     return Date.now() + '-' + Math.random().toString(36).slice(2);
   }
+  // Per-event-name record of the last eventID we fired. Used by GHL → CAPI
+  // to dedup browser-side Pixel events against server-side CAPI events.
+  var lastEventIDs = {};
+
   function track(name, props) {
     var payload = props || {};
     if (window.plausible) window.plausible(name, { props: payload });
@@ -80,6 +84,7 @@
     if (window.fbq && !window.HOM_PIXEL_DISABLED) {
       try {
         var eventID = newEventID();
+        lastEventIDs[name] = eventID;
         var standard = META_STANDARD[name];
         if (standard) {
           var instr = detectInstrument(payload);
@@ -104,6 +109,25 @@
       } catch (e) { /* swallow — never let analytics break the app */ }
     }
   }
+
+  // Advanced Matching helper. Meta hashes em/fn/ln/etc. client-side via the
+  // SDK. Calling fbq('init', PIXEL, userData) after we have the email/name
+  // from the gate seeds Advanced Matching for all subsequent events,
+  // restoring EMQ uplift that autoConfig:false would otherwise lose. Safe to
+  // call repeatedly; Meta debounces internally.
+  window.HOM_PIXEL_ADVANCED_MATCH = function (userData) {
+    if (window.HOM_PIXEL_DISABLED) return;
+    if (!window.fbq || !userData) return;
+    try {
+      // Pixel ID matches the inline-init in index.html / first-hour/index.html.
+      fbq('init', '748998691952331', userData, { autoConfig: false });
+    } catch (e) {}
+  };
+
+  // CAPI-dedup helper. Returns the last eventID fired for the named event,
+  // so the GHL webhook payload can forward it as meta_event_id_<name> and the
+  // server-side CAPI dispatcher can dedup against the browser-side fire.
+  window.HOM_LAST_EVENT_ID = function (name) { return lastEventIDs[name] || null; };
   // Drain any calls queued before this deferred script executed. The HTML
   // head defines a stub HOM_TRACK that pushes to HOM_TRACK_QUEUE so cold-load
   // events (welcome_shown etc.) are not lost while we wait for the deferred

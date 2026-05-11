@@ -1557,6 +1557,14 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 // silent cohort archive.
 var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'';
 var EMAIL_OK=!!(GHL_WEBHOOK_URL&&/^https:\/\/services\.leadconnectorhq\.com\/hooks\//.test(GHL_WEBHOOK_URL));
+// If HOM_CONFIG.ghlWebhookUrl is not injected at deploy time, the entire
+// email-delivery path silently rejects - participants never receive their
+// report. Surface this as a Sentry warning and a console error so missing
+// config is visible immediately in observability.
+if(!EMAIL_OK){
+  try{if(window.Sentry&&Sentry.captureMessage)Sentry.captureMessage('HOM_CONFIG.ghlWebhookUrl missing or invalid - email delivery disabled',{level:'warning',tags:{instrument:'koora'}});}catch(e){}
+  if(window.console&&console.error)console.error('[hom] GHL webhook URL missing - participants will not receive their report. Set window.HOM_CONFIG.ghlWebhookUrl before this script runs.');
+}
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=60;
@@ -2697,6 +2705,11 @@ function confirmEmailAndStart(){
   try{localStorage.setItem('koora_participant_email',email)}catch(e){}
   // Fire email_gate_confirmed (→ Meta Lead) only on validated email. Dedup per
   // email so re-takers don't inflate Lead counts.
+  // Seed Meta Pixel Advanced Matching with the confirmed email so all
+  // subsequent events carry EMQ uplift. Meta hashes client-side.
+  if(typeof HOM_PIXEL_ADVANCED_MATCH==='function'){
+    HOM_PIXEL_ADVANCED_MATCH({em:email});
+  }
   if(typeof HOM_TRACK==='function'){
     // Dedup Lead-fire per email without putting the email in the localStorage
     // key namespace (where Object.keys(localStorage) would expose it).
@@ -2923,6 +2936,9 @@ function finishAssessment(){
   buildResults(rec);
   hideChamberProgress();show('screen-results');
   setNavMeta('Result · '+labelForDay(participantDay).split(' (')[0]);
+  // results_shown - lightweight signal on every results-screen view (re-takers
+  // included). Used by Plausible for funnel exit-point analysis.
+  if(typeof HOM_TRACK==='function'){HOM_TRACK('results_shown',{instrument:'koora'});}
   // assessment_completed → Meta CompleteRegistration. Dedup on rec.date (ISO
   // timestamp of this completion) so re-views via showResultsFromHistory()
   // never fire it again.
@@ -3476,10 +3492,16 @@ function sendEmail(){
   status.className='email-status';status.textContent='Sending...';status.style.display='block';
   btn.disabled=true;var prevBtn=btn.textContent;btn.textContent='Sending...';
 
+  // Forward the browser-side Meta event IDs to GHL so a future CAPI
+  // dispatcher can dedup server-side events against browser-side Pixel fires.
+  var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed'):null;
+  var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed'):null;
   sendToGhl({
     to_name:rec.name,
     to_email:email,
     cc_email:'mogiremd@gmail.com',
+    meta_event_id_lead:metaLeadEvtId,
+    meta_event_id_completed:metaCompletedEvtId,
     primary_reflex:loud.name,
     primary_level:levelLabelNeg(loud.pct)+' ('+loud.score+'/'+loud.max+')',
     archetype_desc:'KOORA · UNFINISHED · By Dr. Job Mogire, MD, FACC<br>Day '+rec.day+' · '+labelForDay(rec.day)+' · '+(participantEnrolled?'Enrolled':'Not yet enrolled')+'<br><br>Practice fidelity: '+practiceScores()._rate+'%<br>ALCARRA: '+alcLine+'<br><br>Active covenant: '+cov.name+' · Promise: '+cov.promise+' · Practice: '+cov.practice+' · Evidence: '+cov.evidence+'<br>Promise alive in participant today: '+(rec.cov_pulse===true?'Yes':rec.cov_pulse===false?'Not yet':'Not answered')+'<br>Covenant entry self-named: '+covEntrySelfNamed(rec)+'<br>Will return in fifteen days: '+(rec.claim===true?'Yes':rec.claim===false?'Not yet':'Not answered')+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br>Threshold (self-reported): '+(rec.threshold||'(not selected)')+'<br><br><i>Scoring methodology: 60-item Likert (1-4); 6-tier covenant resolver mapped from Day-of-Path; reflexes classified at ≤44% quiet, 45-69% active, 70%+ loud. Reverse-scored items in ALCARRA, needs (filled), forces, fidelities, faculties, and daily practice flip the scale. Pattern is the diagnosis, never the verdict.</i><br><i>Internal · arc stage: '+arcMeta.name+'</i>',

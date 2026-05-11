@@ -1446,21 +1446,21 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
         <div class="rung-name">The 5-Day Return Challenge</div>
         <div class="rung-meta">Monday – Friday · Last week of each month · 20:00–20:30 East Africa Time</div>
         <div class="rung-body">Five evenings. Thirty minutes each. The first hour named the pattern; the Challenge begins to break it. A monthly cohort of adults doing the smallest version of the work, witnessed, for five consecutive days. Hosted by Dr. Mogire at <b>return90.com</b>. Free to attend.</div>
-        <a class="rung-action" href="https://www.return90.com/" target="_blank" rel="noopener">Join the next cohort at return90.com →</a>
+        <a class="rung-action" data-rung="r2" data-dest="return90.com" href="https://www.return90.com/" target="_blank" rel="noopener">Join the next cohort at return90.com →</a>
       </div>
       <div class="rung r3">
         <span class="rung-eyebrow">Membership · Monthly</span>
         <div class="rung-name">The Mastery Hour</div>
         <div class="rung-meta">One hour with Dr. Mogire · Third Saturday monthly</div>
         <div class="rung-body">A physician-designed masterclass. <b>Dr. Job Mogire, MD, FACC</b> teaches one chamber of mastery in depth, every month. Members have full access to the recording library. The first session is included with the Pamoja Hour.</div>
-        <a class="rung-action" href="https://hom.mogire.com/mastery-hour" target="_blank" rel="noopener">Become a member at hom.mogire.com/mastery-hour</a>
+        <a class="rung-action" data-rung="r3" data-dest="hom.mogire.com/mastery-hour" href="https://hom.mogire.com/mastery-hour" target="_blank" rel="noopener">Become a member at hom.mogire.com/mastery-hour</a>
       </div>
       <div class="rung r4">
         <span class="rung-eyebrow">If the path is yours to walk</span>
         <div class="rung-name"><b>KOORA: The Finisher’s Protocol</b></div>
         <div class="rung-meta">180 days · Once a year · Twenty-four seats</div>
         <div class="rung-body">A 180-day physician-designed architecture for high-functioning professionals whose patterns have been running them quietly. <b>KOORA opens once a year.</b> Twenty-four seats, a number that is structural rather than arbitrary. Each module is non-recoverable until the next intake. The diagnosis stays steady. Your relationship to it is what changes.</div>
-        <a class="rung-action" href="https://hom.mogire.com/koora" target="_blank" rel="noopener">Read more at hom.mogire.com/koora →</a>
+        <a class="rung-action" data-rung="r4" data-dest="hom.mogire.com/koora" href="https://hom.mogire.com/koora" target="_blank" rel="noopener">Read more at hom.mogire.com/koora →</a>
       </div>
     </div>
   </div>
@@ -1618,6 +1618,14 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 // silent cohort archive.
 var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'';
 var EMAIL_OK=!!(GHL_WEBHOOK_URL&&/^https:\/\/services\.leadconnectorhq\.com\/hooks\//.test(GHL_WEBHOOK_URL));
+// If HOM_CONFIG.ghlWebhookUrl is not injected at deploy time, the entire
+// email-delivery path silently rejects - participants never receive their
+// report. Surface this as a Sentry warning and a console error so missing
+// config is visible immediately in observability.
+if(!EMAIL_OK){
+  try{if(window.Sentry&&Sentry.captureMessage)Sentry.captureMessage('HOM_CONFIG.ghlWebhookUrl missing or invalid - email delivery disabled',{level:'warning',tags:{instrument:'first-hour'}});}catch(e){}
+  if(window.console&&console.error)console.error('[hom] GHL webhook URL missing - participants will not receive their report. Set window.HOM_CONFIG.ghlWebhookUrl before this script runs.');
+}
 function sendToGhl(payload){
   if(!EMAIL_OK)return Promise.reject(new Error('GHL webhook not configured'));
   return fetch(GHL_WEBHOOK_URL,{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
@@ -2006,6 +2014,31 @@ document.addEventListener('DOMContentLoaded',function(){
     if(em)document.getElementById('participantEmail').value=em;
   }catch(e){}
 
+  // Delegated click handler for the results-page rung ladder. Fires
+  // rung_clicked so we can build lookalike audiences off RETURN-curious /
+  // KOORA-curious users without waiting for the cross-domain round-trip.
+  // For cross-domain links (return90.com), append _fbc / _fbp Meta cookies
+  // to the URL so the destination Pixel can stitch attribution back.
+  document.addEventListener('click',function(ev){
+    var a=ev.target&&ev.target.closest?ev.target.closest('a.rung-action[data-rung]'):null;
+    if(!a) return;
+    var rung=a.getAttribute('data-rung'),dest=a.getAttribute('data-dest')||'';
+    if(typeof HOM_TRACK==='function'){HOM_TRACK('rung_clicked',{instrument:'first-hour',rung:rung,dest:dest});}
+    // Append _fbc/_fbp for cross-domain Meta attribution to return90.com.
+    if(dest.indexOf('return90.com')>=0){
+      try{
+        var fbc='',fbp='';
+        document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='_fbc')fbc=p[1]||'';if(p[0]==='_fbp')fbp=p[1]||'';});
+        if(fbc||fbp){
+          var url=new URL(a.href);
+          if(fbc)url.searchParams.set('fbc',fbc);
+          if(fbp)url.searchParams.set('fbp',fbp);
+          a.href=url.toString();
+        }
+      }catch(e){}
+    }
+  });
+
   // v3.2.0. Wire emotional commitment radios on welcome screen
   if(typeof bindEmoRadios==='function')bindEmoRadios();
 
@@ -2076,6 +2109,13 @@ function confirmEmailAndStart(){
   try{localStorage.setItem('hom_firsthour_participant_email',email)}catch(e){}
   // Fire email_gate_confirmed (→ Meta Lead) only on validated email. Dedup per
   // email so re-takers don't inflate Lead counts.
+  // Seed Meta Pixel Advanced Matching with the confirmed email + first name
+  // so all subsequent events (ViewContent already fired, plus assessment_
+  // progress and assessment_completed) carry EMQ uplift. Meta hashes
+  // client-side via the SDK.
+  if(typeof HOM_PIXEL_ADVANCED_MATCH==='function'){
+    HOM_PIXEL_ADVANCED_MATCH({em:email,fn:(participantName||'').toLowerCase()});
+  }
   if(typeof HOM_TRACK==='function'){
     // Dedup Lead-fire per email without putting the email in the localStorage
     // key namespace (where Object.keys(localStorage) would expose it).
@@ -2366,6 +2406,9 @@ function finishAssessment(){
   // v3.2.0. Bind UNFINISHED selection block now that result DOM is present
   setTimeout(function(){if(typeof bindUnfinishedItems==='function')bindUnfinishedItems()},0);
   hideChamberProgress();show('screen-results');
+  // results_shown - lightweight signal for every results-screen view (re-takers
+  // included). Used by Plausible for funnel exit-point analysis.
+  if(typeof HOM_TRACK==='function'){HOM_TRACK('results_shown',{instrument:'first-hour'});}
   // assessment_completed → Meta CompleteRegistration. Dedup on rec.date so
   // re-views via priorRecords navigation never fire it again.
   if(typeof HOM_TRACK==='function' && rec && rec.date){
@@ -2778,10 +2821,16 @@ function buildEmailPayload(rec){
   var unfLine=unfNames.length?unfNames.join(' · '):'(none selected)';
   var examenLine=(rec.examen_selected||[]).length?'<br>'+rec.examen_selected.join('<br>'):'(none ticked)';
   var emoLine='Resonance: '+(rec.emo_resonance||' - ')+' · Readiness: '+(rec.emo_readiness||' - ');
+  // Forward browser-side Meta event IDs to GHL so a future CAPI dispatcher
+  // can dedup server-side events against browser-side Pixel fires.
+  var metaLeadEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('email_gate_confirmed'):null;
+  var metaCompletedEvtId=(typeof HOM_LAST_EVENT_ID==='function')?HOM_LAST_EVENT_ID('assessment_completed'):null;
   return sendToGhl({
     to_name:rec.name,
     to_email:rec.email,
     cc_email:'mogiremd@gmail.com',
+    meta_event_id_lead:metaLeadEvtId,
+    meta_event_id_completed:metaCompletedEvtId,
     primary_reflex:loud.name,
     primary_level:levelLabel(loud.pct)+' ('+loud.score+'/'+loud.max+')',
     archetype_desc:'THE FIRST HOUR · By Dr. Job Mogire, MD, FACC · A House of Mastery audit<br>Date: '+formatDate(rec.date)+'<br><br>'+CHAMBER_PARAGRAPHS[loud.key]+'<br><br>Pre-Audit Examen (truths named before the audit): '+examenLine+'<br><br>UNFINISHED self-named: '+unfLine+'<br>Pre-assessment commitments. '+emoLine+'<br><br>Thirty-day cost (their words): '+(rec.pain_text||'(not provided)')+'<br>Five-year cost (their words): '+(rec.pain_text_5y||'(not provided)')+'<br><br>Tomorrow’s first move (their words): '+(rec.intent||'(not provided)')+'<br><br>Next door: The Pamoja Hour, free first attendance, monthly. The Mastery Hour, monthly with Dr. Mogire. KOORA: The Finisher’s Protocol, once a year, twenty-four seats.<br><br><i>Scoring methodology: 54-item Likert (1-4) across nine chambers in three triads, plus a six-item agency-matrix binary check. Cost-of-autopilot figures calibrated to Killingsworth & Gilbert (2010). Adults spend ~47% of waking time on autopilot. Figures are estimates derived from responses, not measurements.</i>',
