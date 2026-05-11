@@ -2,7 +2,7 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.62';
+const VERSION = 'hom-v3.7.63';
 const CORE = [
   '/',
   '/first-hour',
@@ -20,6 +20,8 @@ const CORE = [
   '/observability.js',
   '/manifest.json',
   '/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png',
+  '/images/koora-wordmark-navy.png',
+  '/images/koora-wordmark-white.png',
   '/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png',
   '/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png',
   '/images/House-of-Mastery-icon-192.png',

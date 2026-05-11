@@ -372,12 +372,11 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;col
      light mode reads as bright-blue + bright-peach on dark surfaces. Replace
      with subtle gold text and a thin gold underline at the descender level. */
   .hero em{color:var(--gold-text);background:none;text-decoration:underline;text-decoration-color:var(--gold-soft);text-decoration-thickness:2px;text-underline-offset:6px}
-  /* KOORA wordmark in nav: the PNG has a white background baked in which
-     prints as a bright rectangle on dark. invert(1) flips white→black
-     (blends with dark nav) and the navy text → cream (legible on dark).
-     Applied to the span so the SVG fallback (which uses hardcoded navy
-     fill) also adapts. */
-  .nav-koora,.nav-koora img,.nav-koora svg{filter:invert(1) hue-rotate(180deg)}
+  /* KOORA wordmark: <picture> swaps to the white variant via
+     prefers-color-scheme media query - no filter needed. SVG fallback
+     uses currentColor, which inherits from .nav-koora { color:#FFFFFF }
+     in dark mode. */
+  .nav-koora{color:#FFFFFF}
 }
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;color:inherit}
@@ -402,7 +401,7 @@ a:hover{color:var(--gold)}
 
 nav{position:sticky;top:0;background:rgba(251,251,253,0.94);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--rule-soft);z-index:90}
 .nav-inner{max-width:1100px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:center;gap:14px}
-.nav-koora{display:inline-flex;align-items:center;height:18px}
+.nav-koora{display:inline-flex;align-items:center;height:18px;color:#0D1F3C}
 .nav-koora svg{height:18px;width:auto;display:block}
 .nav-dot{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--mid);line-height:1;display:none}
 .nav-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.18em;color:var(--mid);text-transform:uppercase;display:none}
@@ -1239,7 +1238,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 
 <nav>
   <div class="nav-inner">
-    <span class="nav-koora" role="img" aria-label="KOORA — The Finisher’s Protocol by Dr. Job Mogire"><img src="/images/koora-finishers-protocol-dr-job-mogire-house-of-mastery-kenya.png" alt="KOORA — The Finisher’s Protocol logo by Dr. Job Mogire, House of Mastery, Kenya" style="height:18px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:18px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;64&quot; letter-spacing=&quot;6&quot; text-anchor=&quot;middle&quot; fill=&quot;%230D1F3C&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></span>
+    <span class="nav-koora" role="img" aria-label="KOORA — The Finisher’s Protocol by Dr. Job Mogire"><picture><source srcset="/images/koora-wordmark-white.png" media="(prefers-color-scheme: dark)"><img src="/images/koora-wordmark-navy.png" alt="KOORA — The Finisher’s Protocol by Dr. Job Mogire, House of Mastery, Kenya" style="height:18px;width:auto;display:block" onerror="this.outerHTML='&lt;svg viewBox=&quot;0 0 300 80&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;height:18px;width:auto;display:block&quot;&gt;&lt;text x=&quot;150&quot; y=&quot;62&quot; font-family=&quot;Plus Jakarta Sans, system-ui, sans-serif&quot; font-weight=&quot;800&quot; font-size=&quot;64&quot; letter-spacing=&quot;6&quot; text-anchor=&quot;middle&quot; fill=&quot;currentColor&quot;&gt;KOORA&lt;/text&gt;&lt;/svg&gt;'"></picture></span>
     <span class="nav-dot" aria-hidden="true">•</span>
     <span class="nav-meta" id="navMeta">UNFINISHED</span>
   </div>
