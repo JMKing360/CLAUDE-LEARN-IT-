@@ -38,6 +38,7 @@
 }
 </script>
 <meta name="theme-color" content="#0D1F3C">
+<meta name="color-scheme" content="light dark">
 <meta name="referrer" content="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,6 +114,18 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
   td{border-bottom:none;padding:6px 0}
   tr{border-bottom:1px solid var(--rule-soft);padding:12px 0}
   tr:last-child{border-bottom:none}
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --navy:#7BA8FF;--gold:#E8B85A;
+    --ink:#F2F2F4;--body:#D4D4D8;--mid:#9899A0;--dim:#6B6C72;
+    --rule:#3A3A40;--rule-soft:#2A2A30;
+    --surface-2:#16171C;--white:#16171C;
+  }
+  body{background:#0F1014;color:var(--body)}
+  nav{background:rgba(15,16,20,.92)}
+  footer{background:#0F1014}
+  .contact,.toc{background:#1D1E24;border-color:var(--rule)}
 }
 @media print{nav,header.site,footer.site,.cta-row,.assessment-cta,.koora-funnel{display:none!important}*{color:#000!important;background:transparent!important}a{text-decoration:underline}body{font-size:11pt;line-height:1.5}h1,h2{page-break-after:avoid}p{orphans:3;widows:3}}
 </style>
