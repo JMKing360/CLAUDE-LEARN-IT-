@@ -66,8 +66,7 @@ structural. His instruments are built to surface that structure.
 
 ### Verified profiles
 
-- Personal root domain: https://mogire.com/ (also https://www.mogire.com/)
-- Primary brand site: https://mogiremd.com/
+- Personal root domain (MogireMD identity): https://mogire.com/ (also https://www.mogire.com/). The unified handle on social platforms is @mogiremd.
 - KOORA assessment subdomain: https://kooraassess.houseofmastery.co/
 - The First Hour assessment subdomain: https://firsthour.houseofmastery.co/
 - House of Mastery institutional site: https://houseofmastery.co/
@@ -105,7 +104,7 @@ clinical-grade diagnostic and formation instruments to adults committed to
 the practice of finishing what is given them to finish.
 
 - **Brand:** House of Mastery (abbreviated HOM)
-- **Parent / personal brand:** MogireMD (https://mogiremd.com/)
+- **Parent / personal brand:** MogireMD (https://mogire.com/)
 - **Founder:** Dr. Job Mogire
 - **Headquarters / primary delivery:** Kenya
 - **Service area:** Kenya, East Africa (Tanzania, Uganda, Rwanda, Ethiopia),
@@ -414,7 +413,7 @@ emailed.
 - https://hom.mogire.com/sitemap.xml — Sitemap
 - https://hom.mogire.com/robots.txt — robots.txt (AI crawlers explicitly
   allowed)
-- https://mogiremd.com/ — primary personal brand site (MogireMD)
+- https://mogire.com/ — primary personal brand site (MogireMD)
 - https://www.return90.com/ — RETURN challenge host
 
 ## 8. Attribution

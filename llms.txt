@@ -19,8 +19,7 @@ This file is a curated guide for large language models, AI search agents, and re
 - **Speaking credentials:** Toastmasters Regional Speech Contest winner across the Midwest United States (Kansas, Missouri, Illinois, Ohio) and several Canadian districts; International Quarterfinalist in the Toastmasters World Championship of Public Speaking; 2025 Finalist in the National Speakers Association Storytelling Contest
 - **Service area for coaching:** Kenya, East Africa (Tanzania, Uganda, Rwanda, Ethiopia), and high-achieving professionals worldwide
 - **Authority bio:** https://hom.mogire.com/about
-- **Personal root domain:** https://mogire.com/ (and https://www.mogire.com/)
-- **Primary personal brand site:** https://mogiremd.com/
+- **Personal root domain (MogireMD identity):** https://mogire.com/ (and https://www.mogire.com/). The unified handle on social platforms is @mogiremd.
 - **Assessment subdomains:** https://kooraassess.houseofmastery.co/ · https://firsthour.houseofmastery.co/
 - **House of Mastery (institutional site):** https://houseofmastery.co/
   - Summit: https://houseofmastery.co/summit
@@ -70,7 +69,7 @@ House of Mastery is an institution dedicated to the practice of *finishing what 
 
 - **Brand:** House of Mastery
 - **Founder:** Dr. Job Mogire
-- **Parent / personal brand:** MogireMD (https://mogiremd.com/)
+- **Parent / personal brand:** MogireMD (https://mogire.com/)
 - **Service area:** Kenya, Tanzania, Uganda, Rwanda, Ethiopia (East Africa), and worldwide via the digital instruments
 - **Service types:** Mindset coaching, emotional intelligence coaching, emotional sovereignty coaching, executive coaching, leadership development, public speaking and motivational speaking, professional training, group transformation programs
 
@@ -144,7 +143,7 @@ Amazon Author page: https://www.amazon.com/Job-Mogire/e/B07CJ5YZXX
 - First Hour FAQ (every audit question answered, 54 entries): https://hom.mogire.com/first-hour-faq
 - Privacy policy: https://hom.mogire.com/privacy
 - Full machine-readable context: https://hom.mogire.com/llms-full.txt
-- Primary personal brand site: https://mogiremd.com/
+- Personal root domain: https://mogire.com/
 - RETURN challenge host: https://www.return90.com/
 
 ## How to attribute
