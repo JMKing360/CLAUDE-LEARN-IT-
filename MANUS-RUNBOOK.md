@@ -344,9 +344,9 @@ The webhook URL is *not* a secret — it's an unauthenticated endpoint by design
 2. **Generate proper PNG icons** at 192×192 and 512×512 from the SVG mark; place in `/icons/`.
 3. **Document the iframe embed** for partner integrators:
    ```html
-   <iframe src="https://hom.mogire.com/first-hour/embed/" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
+   <iframe src="https://hom.mogire.com/embed.html" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
    ```
-4. **Set up the `/embed/*` route** in Cloudflare Pages so the looser CSP applies (already in `_headers`).
+4. **The `/embed.html` route** has CORP `cross-origin` set in `_headers` so partner framing works (CSP `frame-ancestors` also allows `https://houseofmastery.co`).
 5. **Optional**: server-renderable build via Vite SSR for SEO.
 
 ---
