@@ -949,6 +949,75 @@ body.footer-hidden footer{display:none}
   .bar-loud{background:var(--red)}
 }
 
+/* Dark-mode mobile readability patch. Keep intentionally gold/light cards
+   light with dark ink, and keep intentionally navy cards navy with light ink.
+   This prevents light-on-gold and white-on-blue regressions caused by the
+   global dark-mode token swap. */
+@media (prefers-color-scheme: dark){
+  .gold-box,
+  .rebuild-notice,
+  .unfinished-item.selected{
+    background:#F3CF7A;
+    color:#0D1F3C;
+    border-color:#C9973A;
+  }
+  .gold-box__h,
+  .gold-box__list,
+  .gold-box__close,
+  .rebuild-notice__h,
+  .rebuild-notice__body,
+  .unfinished-item.selected .unfinished-name,
+  .unfinished-item.selected .unfinished-desc{
+    color:#0D1F3C;
+  }
+  .gold-box__close{border-top-color:rgba(13,31,60,.18)}
+  .rebuild-notice__close{color:#4C3920}
+  .rebuild-notice__close:hover{color:#0D1F3C;background:rgba(13,31,60,.08)}
+  .triad__chamber:hover{
+    background:rgba(240,203,126,.12);
+    border-color:#E8B85A;
+  }
+  .hero em,
+  .r-h1 em{
+    color:#F7F8FB;
+    background:linear-gradient(transparent 66%,rgba(232,184,90,.34) 66%,rgba(232,184,90,.34) 92%,transparent 92%);
+  }
+  .feature-card,
+  .rung.r4,
+  .koora-funnel{
+    background:#0D1F3C;
+    color:#FFFFFF;
+  }
+  .koora-funnel{background:linear-gradient(180deg,#0D1F3C 0%,#162B52 100%)}
+  .feature-eyebrow,
+  .feature-h em,
+  .rung.r4 .rung-eyebrow,
+  .koora-funnel__eyebrow{
+    color:#F0CB7E;
+  }
+  .feature-body,
+  .rung.r4 .rung-body,
+  .koora-funnel__body{
+    color:#E8E8EC;
+  }
+  .btn-gold{
+    background:#F0CB7E;
+    color:#0D1F3C;
+  }
+  .btn-gold:hover{background:#F6DDA1}
+  .pulse-tag{
+    background:rgba(240,203,126,.14);
+    color:#F0CB7E;
+  }
+  .spirit-pulse{
+    background:linear-gradient(135deg,rgba(240,203,126,.16),var(--surface-2));
+  }
+  .agency-radio.sel-yes{background:rgba(156,217,164,.16);color:#C9F2D0;border-color:#9CD9A4}
+  .agency-radio.sel-no{background:rgba(242,181,181,.14);color:#FFD6D6;border-color:#F2B5B5}
+  .agency-pill.red{background:rgba(242,181,181,.14);color:#FFD6D6}
+  .agency-pill.green{background:rgba(156,217,164,.16);color:#C9F2D0}
+}
+
 /* ============================================================
    v3.6.0. Iconography system + ambient gradient ground.
    Icons fade faintly into the page rather than competing with prose.
