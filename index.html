@@ -188,7 +188,7 @@
     },
     {
       "@type": "Course",
-      "@id": "https://hom.mogire.com/koora#course",
+      "@id": "https://hom.mogire.com/about#koora-course",
       "name": "KOORA: The Finisher's Protocol",
       "description": "Six covenants in 180 days, in this order: Self, Body, Craft, People, Future, World. Each month names one covenant, practices it daily, tests it under pressure, and seals it with the cohort. The daily protocol is ALCARRA — Awareness, Learning, Change, Action, Resilience, Reflection, Accountability — anchored each day by the three-minute Daily Reset. One annual cohort, May through October. Participants may join prorated at the start of any month and complete the programme together at the end of October. Six promises. Six practices. Six completions. One life returned.",
       "provider": {"@id": "https://hom.mogire.com/#org"},
@@ -1113,25 +1113,35 @@ fbq('track', 'PageView');
       content_type: 'assessment'
     });
   }
+  // Belt-and-braces arm so a missing #screen-welcome at first DOMContentLoaded
+  // does not silently drop ViewContent. We try: (1) IntersectionObserver if
+  // available, on first hit, (2) a 750 ms fallback timer, (3) a HOM_FIRE_VIEW
+  // CONTENT hook the app can call explicitly when show('screen-welcome') runs,
+  // (4) a final 4 s safety-net timer so the event always fires for any user
+  // who actually loaded the page in a browser.
   function arm(){
     var el = document.getElementById('screen-welcome');
-    if(!el){ return; }
-    if(!('IntersectionObserver' in window)){
-      setTimeout(fireVC, 750);
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      for(var i=0;i<entries.length;i++){
-        if(entries[i].isIntersecting && entries[i].intersectionRatio >= 0.25){
-          fireVC(); io.disconnect(); return;
+    if(el && ('IntersectionObserver' in window)){
+      var io = new IntersectionObserver(function(entries){
+        for(var i=0;i<entries.length;i++){
+          if(entries[i].isIntersecting && entries[i].intersectionRatio >= 0.25){
+            fireVC(); io.disconnect(); return;
+          }
         }
-      }
-    }, { threshold: [0.25] });
-    io.observe(el);
+      }, { threshold: [0.25] });
+      io.observe(el);
+    }
+    setTimeout(fireVC, 750);
   }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', arm);
-  } else { arm(); }
+  // Register the listener unconditionally so we are never in a state where
+  // arm() ran before DOMContentLoaded and silently exited because the welcome
+  // screen was not yet in the DOM.
+  document.addEventListener('DOMContentLoaded', arm);
+  if(document.readyState !== 'loading') arm();
+  // Public hook the app calls from show('screen-welcome') as a third trigger.
+  window.HOM_FIRE_VIEWCONTENT = fireVC;
+  // Safety-net: even if every other path fails, this guarantees the event.
+  setTimeout(fireVC, 4000);
 })();
 }
 </script>
@@ -1559,16 +1569,51 @@ var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'';
 var EMAIL_OK=!!(GHL_WEBHOOK_URL&&/^https:\/\/services\.leadconnectorhq\.com\/hooks\//.test(GHL_WEBHOOK_URL));
 // If HOM_CONFIG.ghlWebhookUrl is not injected at deploy time, the entire
 // email-delivery path silently rejects - participants never receive their
-// report. Surface this as a Sentry warning and a console error so missing
-// config is visible immediately in observability.
+// report. Surface this aggressively: Sentry + console + a visible operator
+// banner (only renders for non-prod or when explicitly opted in via
+// localStorage HOM_OPS_BANNER=1, so users never see it under normal prod).
 if(!EMAIL_OK){
   try{if(window.Sentry&&Sentry.captureMessage)Sentry.captureMessage('HOM_CONFIG.ghlWebhookUrl missing or invalid - email delivery disabled',{level:'warning',tags:{instrument:'koora'}});}catch(e){}
   if(window.console&&console.error)console.error('[hom] GHL webhook URL missing - participants will not receive their report. Set window.HOM_CONFIG.ghlWebhookUrl before this script runs.');
+  // Visible operator banner. Only renders if (a) localhost / *.pages.dev preview, OR
+  // (b) operator has opted in via localStorage. Production participants never see it.
+  try{
+    var showBanner=false;
+    var h=location.hostname;
+    if(h==='localhost'||h.indexOf('.pages.dev')>=0||h.indexOf('127.0.0.1')>=0)showBanner=true;
+    try{if(localStorage.getItem('HOM_OPS_BANNER')==='1')showBanner=true;}catch(_e){}
+    if(showBanner){
+      document.addEventListener('DOMContentLoaded',function(){
+        var b=document.createElement('div');
+        b.setAttribute('role','status');
+        b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#B22222;color:#fff;font:600 13px/1.4 system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em';
+        b.innerHTML='⚠ <b>Operator notice:</b> <code style="background:rgba(0,0,0,.25);padding:2px 6px;border-radius:3px">window.HOM_CONFIG.ghlWebhookUrl</code> is missing. Email delivery is disabled. Set it in your Cloudflare Pages environment injection. <button onclick="this.parentNode.remove()" style="background:transparent;border:1px solid #fff;color:#fff;margin-left:12px;padding:4px 10px;border-radius:4px;cursor:pointer;font:600 12px system-ui">Dismiss</button>';
+        document.body.insertBefore(b,document.body.firstChild);
+      });
+    }
+  }catch(e){}
 }
 var JSPDF_OK=(typeof window.jspdf!=='undefined');
 
 var TOTAL=60;
 var STORAGE_KEY='koora_unfinished_v4';
+
+// One-time sweep to delete email-in-key entries left over from before the
+// PII migration (hom_lead_fired_koora_<email>, hom_lead_fired_firsthour_<email>,
+// fh_unfinished_<email>). Their contents are now stored under bucketed keys;
+// orphans are dead PII at rest on the user's device. Idempotent.
+try{
+  if(localStorage.getItem('HOM_LS_PII_SWEEP_V1')!=='1'){
+    var __pii=[];
+    for(var __i=0;__i<localStorage.length;__i++){
+      var __k=localStorage.key(__i);
+      if(!__k)continue;
+      if(__k.indexOf('hom_lead_fired_koora_')===0||__k.indexOf('hom_lead_fired_firsthour_')===0||__k.indexOf('fh_unfinished_')===0){__pii.push(__k);}
+    }
+    for(var __j=0;__j<__pii.length;__j++){localStorage.removeItem(__pii[__j]);}
+    localStorage.setItem('HOM_LS_PII_SWEEP_V1','1');
+  }
+}catch(e){}
 var AUTO_ADVANCE_MS=1500;
 // SAVE_PILL_MS loaded from /shared.js
 var COHORT_2_LAUNCH='November 2026';
@@ -2404,6 +2449,11 @@ function show(id){
   next.classList.add('active');
   window.scrollTo(0,0);
   document.body.classList.toggle('footer-hidden', id==='screen-question'||id==='screen-transition');
+  // Belt-and-braces ViewContent trigger from the welcome-screen show path,
+  // in case the IntersectionObserver fallback hasn't fired yet.
+  if(id==='screen-welcome' && typeof window.HOM_FIRE_VIEWCONTENT==='function'){
+    try{window.HOM_FIRE_VIEWCONTENT()}catch(e){}
+  }
   // Focus management: drop focus into the new screen so keyboard / SR users
   // pick up the new content without tabbing past stale chrome. Question text
   // and transition heading already have tabindex=-1; for screens without an
@@ -2685,8 +2735,13 @@ function welcomeBeginClick(){
   document.getElementById('welcomeBeginBtn').style.display='none';
   var gate=document.getElementById('welcomeEmailGate');
   gate.style.display='block';
+  // email_gate_shown fires the moment the gate transitions to visible. Distinct
+  // from begin_clicked: a user may abandon between begin and gate-render.
+  if(typeof HOM_TRACK==='function')HOM_TRACK('email_gate_shown',{instrument:'koora'});
   var em=document.getElementById('welcomeEmailInput');
-  try{var saved=localStorage.getItem('koora_participant_email')||'';if(saved&&!em.value)em.value=saved}catch(e){}
+  // Pre-fill removed for household / shared-device privacy. Previous behaviour
+  // auto-restored the last participant's email - on shared devices this
+  // de-anonymised the prior user to whoever next opened the page.
   setTimeout(function(){em.focus()},80);
 }
 function cancelEmailGate(){
@@ -3468,10 +3523,22 @@ function sendEmail(){
   rec.threshold=rec.threshold||null;
   var emailEl=document.getElementById('emailInput');
   var email=(emailEl.value||'').trim();
+  var firstNameEl=document.getElementById('firstNameInput');
+  var firstName=(firstNameEl&&firstNameEl.value||'').trim();
+  var lastNameEl=document.getElementById('lastNameInput');
+  var lastName=(lastNameEl&&lastNameEl.value||'').trim();
   var status=document.getElementById('emailStatus');
   var btn=document.getElementById('sendBtn');
   if(!email||email.indexOf('@')<0||email.indexOf('.')<0){status.className='email-status err';status.textContent='Enter a valid email address.';status.style.display='block';return}
   if(!EMAIL_OK){status.className='email-status err';status.textContent='Email is not available right now. Use Download Report instead.';status.style.display='block';return}
+  // Re-seed Meta Pixel Advanced Matching with full em+fn+ln from the results
+  // form. This is the only place the participant supplies their last name,
+  // so the assessment_completed -> CompleteRegistration event needs this
+  // fresh seed to carry the full EMQ uplift the gate-time seed (em only)
+  // cannot provide.
+  if(typeof HOM_PIXEL_ADVANCED_MATCH==='function'){
+    HOM_PIXEL_ADVANCED_MATCH({em:email,fn:firstName.toLowerCase(),ln:lastName.toLowerCase()});
+  }
   // email_sent_clicked fires only on a validated send attempt — keeps the
   // funnel signal clean of bad-email retries.
   if(typeof HOM_TRACK==='function')HOM_TRACK('email_sent_clicked',{instrument:'koora'});

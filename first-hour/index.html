@@ -1052,23 +1052,22 @@ fbq('track', 'PageView');
   }
   function arm(){
     var el = document.getElementById('screen-welcome');
-    if(!el){ return; }
-    if(!('IntersectionObserver' in window)){
-      setTimeout(fireVC, 750);
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      for(var i=0;i<entries.length;i++){
-        if(entries[i].isIntersecting && entries[i].intersectionRatio >= 0.25){
-          fireVC(); io.disconnect(); return;
+    if(el && ('IntersectionObserver' in window)){
+      var io = new IntersectionObserver(function(entries){
+        for(var i=0;i<entries.length;i++){
+          if(entries[i].isIntersecting && entries[i].intersectionRatio >= 0.25){
+            fireVC(); io.disconnect(); return;
+          }
         }
-      }
-    }, { threshold: [0.25] });
-    io.observe(el);
+      }, { threshold: [0.25] });
+      io.observe(el);
+    }
+    setTimeout(fireVC, 750);
   }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', arm);
-  } else { arm(); }
+  document.addEventListener('DOMContentLoaded', arm);
+  if(document.readyState !== 'loading') arm();
+  window.HOM_FIRE_VIEWCONTENT = fireVC;
+  setTimeout(fireVC, 4000);
 })();
 }
 </script>
@@ -1620,11 +1619,27 @@ var GHL_WEBHOOK_URL=(window.HOM_CONFIG&&window.HOM_CONFIG.ghlWebhookUrl)||'';
 var EMAIL_OK=!!(GHL_WEBHOOK_URL&&/^https:\/\/services\.leadconnectorhq\.com\/hooks\//.test(GHL_WEBHOOK_URL));
 // If HOM_CONFIG.ghlWebhookUrl is not injected at deploy time, the entire
 // email-delivery path silently rejects - participants never receive their
-// report. Surface this as a Sentry warning and a console error so missing
-// config is visible immediately in observability.
+// report. Surface this aggressively: Sentry + console + a visible operator
+// banner (only renders for non-prod or when explicitly opted in via
+// localStorage HOM_OPS_BANNER=1, so users never see it under normal prod).
 if(!EMAIL_OK){
   try{if(window.Sentry&&Sentry.captureMessage)Sentry.captureMessage('HOM_CONFIG.ghlWebhookUrl missing or invalid - email delivery disabled',{level:'warning',tags:{instrument:'first-hour'}});}catch(e){}
   if(window.console&&console.error)console.error('[hom] GHL webhook URL missing - participants will not receive their report. Set window.HOM_CONFIG.ghlWebhookUrl before this script runs.');
+  try{
+    var showBanner=false;
+    var h=location.hostname;
+    if(h==='localhost'||h.indexOf('.pages.dev')>=0||h.indexOf('127.0.0.1')>=0)showBanner=true;
+    try{if(localStorage.getItem('HOM_OPS_BANNER')==='1')showBanner=true;}catch(_e){}
+    if(showBanner){
+      document.addEventListener('DOMContentLoaded',function(){
+        var b=document.createElement('div');
+        b.setAttribute('role','status');
+        b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#B22222;color:#fff;font:600 13px/1.4 system-ui,sans-serif;padding:12px 18px;text-align:center;letter-spacing:.02em';
+        b.innerHTML='⚠ <b>Operator notice:</b> <code style="background:rgba(0,0,0,.25);padding:2px 6px;border-radius:3px">window.HOM_CONFIG.ghlWebhookUrl</code> is missing. Email delivery is disabled. Set it in your Cloudflare Pages environment injection. <button onclick="this.parentNode.remove()" style="background:transparent;border:1px solid #fff;color:#fff;margin-left:12px;padding:4px 10px;border-radius:4px;cursor:pointer;font:600 12px system-ui">Dismiss</button>';
+        document.body.insertBefore(b,document.body.firstChild);
+      });
+    }
+  }catch(e){}
 }
 function sendToGhl(payload){
   if(!EMAIL_OK)return Promise.reject(new Error('GHL webhook not configured'));
@@ -1935,6 +1950,25 @@ function migrateHistoryV2toV3(){
   }catch(e){}
 }
 try{migrateHistoryV2toV3()}catch(e){}
+
+// One-time sweep to delete email-in-key entries left over from before the
+// PII migration (fh_unfinished_<email>, hom_lead_fired_firsthour_<email>).
+// Their contents are now stored under bucketed keys; orphans are dead PII
+// at rest on the user's device. Idempotent via HOM_LS_PII_SWEEP_V1 flag.
+try{
+  if(localStorage.getItem('HOM_LS_PII_SWEEP_V1')!=='1'){
+    var keysToDelete=[];
+    for(var __i=0;__i<localStorage.length;__i++){
+      var __k=localStorage.key(__i);
+      if(!__k)continue;
+      if(__k.indexOf('fh_unfinished_')===0||__k.indexOf('hom_lead_fired_firsthour_')===0||__k.indexOf('hom_lead_fired_koora_')===0){
+        keysToDelete.push(__k);
+      }
+    }
+    for(var __j=0;__j<keysToDelete.length;__j++){localStorage.removeItem(keysToDelete[__j]);}
+    localStorage.setItem('HOM_LS_PII_SWEEP_V1','1');
+  }
+}catch(e){}
 function loadHistory(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):[]}catch(e){return []}}
 function saveHistory(arr){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(arr))}catch(e){}}
 function appendRecord(rec){var h=loadHistory();h.push(rec);saveHistory(h);return h}
@@ -1954,6 +1988,11 @@ function show(id){
   next.classList.add('active');
   window.scrollTo(0,0);
   document.body.classList.toggle('footer-hidden', id==='screen-question'||id==='screen-transition');
+  // Belt-and-braces ViewContent trigger from the welcome-screen show path,
+  // in case the IntersectionObserver fallback hasn't fired yet.
+  if(id==='screen-welcome' && typeof window.HOM_FIRE_VIEWCONTENT==='function'){
+    try{window.HOM_FIRE_VIEWCONTENT()}catch(e){}
+  }
   // Focus management: drop focus into the new screen so keyboard / SR users
   // pick up the new content without tabbing past stale chrome. Question text
   // already has tabindex=-1; for screens without an explicit focus target,
@@ -2090,8 +2129,10 @@ function welcomeBeginClick(){
   document.getElementById('welcomeBeginBtn').style.display='none';
   var gate=document.getElementById('welcomeEmailGate');
   gate.style.display='block';
+  // email_gate_shown fires the moment the gate transitions to visible.
+  if(typeof HOM_TRACK==='function')HOM_TRACK('email_gate_shown',{instrument:'first-hour'});
   var em=document.getElementById('participantEmail');
-  try{var saved=localStorage.getItem('hom_firsthour_participant_email')||'';if(saved&&!em.value)em.value=saved}catch(e){}
+  // Pre-fill removed for household / shared-device privacy.
   setTimeout(function(){em.focus()},80);
 }
 function cancelEmailGate(){
