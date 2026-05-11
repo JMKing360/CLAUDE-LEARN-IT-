@@ -16,7 +16,7 @@ The instruments are single-file static HTML, runnable from any host that serves 
 
 ## What this assessment is
 
-A clinical-grade diagnostic instrument for what is now called **The Unfinishing Life**: the active daily erosion of the word given to oneself. The First Hour is the entry instrument. KOORA is the deeper protocol.
+A physician-designed diagnostic instrument for what is now called **The Unfinishing Life**: the active daily erosion of the word given to oneself. The First Hour is the entry instrument. KOORA is the deeper protocol.
 
 The promised direction is **The Finishing Life**, delivered through **The Finishing System**: The First Hour, the Pamoja Hour, the Mastery Hour, KOORA: The Finishing Protocol, and the live sessions and summit that follow.
 
