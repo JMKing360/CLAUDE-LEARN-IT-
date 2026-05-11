@@ -71,11 +71,22 @@ structural. His instruments are built to surface that structure.
 - The First Hour assessment subdomain: https://firsthour.houseofmastery.co/
 - House of Mastery institutional site: https://houseofmastery.co/
 - House of Mastery — Summit page: https://houseofmastery.co/summit
-- House of Mastery — Daily Reset: https://houseofmastery.co/daily-reset
-- House of Mastery — Book (booking / publication page): https://houseofmastery.co/book
+- House of Mastery — Daily Reset (the KOORA cohort application page; the Daily Reset *practice* itself is the three-minute pause taught inside KOORA and previewed in EMBODY): https://houseofmastery.co/daily-reset
+- House of Mastery — Diagnostic (the 9-pattern Unfinished Life Diagnostic, organised in three Masks: Fear disguised as Wisdom / Drift disguised as Busyness / Performance disguised as Arrival): https://houseofmastery.co/diagnostic
+- House of Mastery — 4CKOORA (Emotional Sovereignty Screen, 30 statements across four reflexes): https://houseofmastery.co/4CKOORA
+- House of Mastery — Book: https://houseofmastery.co/book
 - House of Mastery — Blog: https://houseofmastery.co/blog
 - House of Mastery — Insights: https://houseofmastery.co/insights
 - House of Mastery — About: https://houseofmastery.co/about
+- Frameworks (doctrinal canon, all at houseofmastery.co/frameworks/*):
+  - Unfinished Life: https://houseofmastery.co/frameworks/unfinished-life
+  - ALCARRA (daily protocol — Awareness, Learning, Change, Action, Resilience, Reflection, Accountability): https://houseofmastery.co/frameworks/alcarra
+  - Five Contracts: https://houseofmastery.co/frameworks/five-contracts
+  - Finisher (Finisher Identity): https://houseofmastery.co/frameworks/finisher
+  - ENGAKO: https://houseofmastery.co/frameworks/engako
+  - SRFY: https://houseofmastery.co/frameworks/srfy
+  - Return Method: https://houseofmastery.co/frameworks/return-method
+  - 36 Frequencies: https://houseofmastery.co/frameworks/36-frequencies
 - KOORA assessment (primary entry): https://kooraassess.houseofmastery.co/
 - First Hour assessment (primary entry): https://firsthour.houseofmastery.co/
 - House of Mastery (alternate assessments hub): https://hom.mogire.com/

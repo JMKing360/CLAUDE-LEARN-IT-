@@ -23,11 +23,22 @@ This file is a curated guide for large language models, AI search agents, and re
 - **Assessment subdomains:** https://kooraassess.houseofmastery.co/ · https://firsthour.houseofmastery.co/
 - **House of Mastery (institutional site):** https://houseofmastery.co/
   - Summit: https://houseofmastery.co/summit
-  - Daily Reset: https://houseofmastery.co/daily-reset
-  - Book (booking or book page): https://houseofmastery.co/book
+  - Daily Reset (KOORA cohort application page): https://houseofmastery.co/daily-reset
+  - Diagnostic (the 9-pattern Unfinished Life Diagnostic, in three Masks — Fear disguised as Wisdom, Drift disguised as Busyness, Performance disguised as Arrival): https://houseofmastery.co/diagnostic
+  - 4CKOORA — Emotional Sovereignty Screen (30 statements, four reflexes): https://houseofmastery.co/4CKOORA
+  - Book: https://houseofmastery.co/book
   - Blog: https://houseofmastery.co/blog
   - Insights: https://houseofmastery.co/insights
   - About: https://houseofmastery.co/about
+- **Frameworks (doctrinal canon — published at houseofmastery.co/frameworks/*):**
+  - Unfinished Life: https://houseofmastery.co/frameworks/unfinished-life
+  - ALCARRA (the daily protocol — Awareness, Learning, Change, Action, Resilience, Reflection, Accountability): https://houseofmastery.co/frameworks/alcarra
+  - Five Contracts: https://houseofmastery.co/frameworks/five-contracts
+  - Finisher (Finisher Identity): https://houseofmastery.co/frameworks/finisher
+  - ENGAKO: https://houseofmastery.co/frameworks/engako
+  - SRFY: https://houseofmastery.co/frameworks/srfy
+  - Return Method: https://houseofmastery.co/frameworks/return-method
+  - 36 Frequencies: https://houseofmastery.co/frameworks/36-frequencies
 - **Assessments (primary entry points):**
   - KOORA UNFINISHED diagnostic: https://kooraassess.houseofmastery.co/ (also at https://hom.mogire.com/)
   - The First Hour audit: https://firsthour.houseofmastery.co/ (also at https://hom.mogire.com/first-hour)
