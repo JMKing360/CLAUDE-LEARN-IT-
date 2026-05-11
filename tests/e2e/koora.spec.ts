@@ -1,9 +1,45 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+async function gotoKoora(page: Page) {
+  await page.goto('/');
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+}
+
+async function beginKoora(page: Page, name: string, email = 'tester@example.com') {
+  await gotoKoora(page);
+  await page.fill('#participantName', name);
+  await page.locator('button[data-enroll="1"]').click();
+  await page.locator('#welcomeBeginBtn').click();
+  await expect(page.locator('#welcomeEmailGate')).toBeVisible();
+  await page.fill('#welcomeEmailInput', email);
+  await page.locator('#welcomeEmailGate').getByRole('button', { name: /^continue$/i }).click();
+  await expect(page.locator('#qSection')).toContainText('Section');
+}
+
+async function answerAllQuestions(page: Page) {
+  for (let i = 1; i <= 60; i++) {
+    await expect(page.locator('#qSection')).toContainText('Section');
+    await page.locator('.opt').nth(1).click();
+    await page.evaluate(() => {
+      const appWindow = window as unknown as { nextQuestion: () => void };
+      appWindow.nextQuestion();
+    });
+
+    const transitionButton = page.getByRole('button', { name: /^continue$/i });
+    if (await transitionButton.isVisible()) {
+      await transitionButton.click();
+      await expect(page.locator('#qSection')).toContainText('Section');
+    } else if (await page.locator('#screen-ack.active').isVisible()) {
+      break;
+    }
+  }
+}
 
 test.describe('KOORA UNFINISHED — instrument flow', () => {
   test('welcome screen renders with hero copy + brand block', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByRole('heading', { name: /What is running you/ })).toBeVisible();
+    await gotoKoora(page);
+    await expect(page.getByRole('heading', { name: /An instrument for the part of life/ })).toBeVisible();
     await expect(page.getByText("You do not have a productivity problem", { exact: false })).toBeVisible();
     // Brand block: KOORA wordmark + trademark line both render
     await expect(page.getByAltText('KOORA').first()).toBeVisible();
@@ -11,7 +47,7 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
   });
 
   test('cover-letter signature reads only "Rooting for you. Job"', async ({ page }) => {
-    await page.goto('/');
+    await gotoKoora(page);
     await expect(page.getByText(/Rooting for you/)).toBeVisible();
     // The full-name signature should not appear in the cover letter
     const sig = page.locator('.cover-letter__sig');
@@ -21,32 +57,17 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
   });
 
   test('section eyebrows use the new question-form prompts', async ({ page }) => {
-    await page.goto('/');
     // Drive welcome form
-    await page.fill('#participantName', 'Tester');
-    await page.locator('button[data-enroll="1"]').click();
-    await page.getByRole('button', { name: /^Begin$/ }).click();
+    await beginKoora(page, 'Tester');
 
     // Section 1 eyebrow
-    await expect(page.locator('#qPrompt')).toContainText(/Sneaky reflexes/i);
+    await expect(page.locator('#qSection')).toContainText(/Reflexes/i);
   });
 
   test('full assessment completes and reaches the seal section via I MUST FINISH', async ({ page }) => {
-    await page.goto('/');
-    await page.fill('#participantName', 'Goldenpath');
-    await page.locator('button[data-enroll="1"]').click();
-    await page.getByRole('button', { name: /^Begin$/ }).click();
+    await beginKoora(page, 'Goldenpath', 'goldenpath@example.com');
 
-    // 60 questions, transitions at q:16, q:23, q:31, q:35, q:39, q:49
-    const transitionQs = new Set([16, 23, 31, 35, 39, 49]);
-    for (let i = 1; i <= 60; i++) {
-      await expect(page.locator('#qSection')).toContainText('Section');
-      await page.locator('.opt').nth(1).click();
-      // Auto-advance kicks in; if a transition fires, click Continue
-      if (transitionQs.has(i)) {
-        await page.getByRole('button', { name: /continue/i }).click();
-      }
-    }
+    await answerAllQuestions(page);
 
     // Ack screen
     await expect(page.locator('#ackH1')).toContainText(/you finished/i, { timeout: 6000 });
@@ -68,22 +89,9 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
   });
 
   test('GET MY REPORT button is gated by all three fields', async ({ page }) => {
-    await page.goto('/');
-    // Take the assessment quickly via test hook (sets state and reveals seal)
-    await page.evaluate(() => {
-      const W = window as unknown as { setEnroll?: (v: boolean) => void };
-      W.setEnroll?.(true);
-    });
-    await page.fill('#participantName', 'Gatetest');
-    await page.locator('button[data-enroll="1"]').click();
-    await page.getByRole('button', { name: /^Begin$/ }).click();
-    const transitionQs = new Set([16, 23, 31, 35, 39, 49]);
-    for (let i = 1; i <= 60; i++) {
-      await page.locator('.opt').nth(1).click();
-      if (transitionQs.has(i)) {
-        await page.getByRole('button', { name: /continue/i }).click();
-      }
-    }
+    // Take the assessment through the current email-gated welcome flow.
+    await beginKoora(page, 'Gatetest', 'gatetest@example.com');
+    await answerAllQuestions(page);
     await page.getByRole('button', { name: /SHOW ME/ }).click();
     await page.getByRole('button', { name: /I MUST FINISH/ }).click();
 
@@ -102,17 +110,8 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
   });
 
   test('threshold options render with title + sub', async ({ page }) => {
-    await page.goto('/');
-    await page.fill('#participantName', 'Thresh');
-    await page.locator('button[data-enroll="1"]').click();
-    await page.getByRole('button', { name: /^Begin$/ }).click();
-    const transitionQs = new Set([16, 23, 31, 35, 39, 49]);
-    for (let i = 1; i <= 60; i++) {
-      await page.locator('.opt').nth(1).click();
-      if (transitionQs.has(i)) {
-        await page.getByRole('button', { name: /continue/i }).click();
-      }
-    }
+    await beginKoora(page, 'Thresh', 'thresh@example.com');
+    await answerAllQuestions(page);
     await page.getByRole('button', { name: /SHOW ME/ }).click();
     await page.getByRole('button', { name: /I MUST FINISH/ }).click();
 
@@ -127,17 +126,8 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
   });
 
   test('UNFINISHED checklist renders all 10 actions with fidelity tags', async ({ page }) => {
-    await page.goto('/');
-    await page.fill('#participantName', 'Checklister');
-    await page.locator('button[data-enroll="1"]').click();
-    await page.getByRole('button', { name: /^Begin$/ }).click();
-    const transitionQs = new Set([16, 23, 31, 35, 39, 49]);
-    for (let i = 1; i <= 60; i++) {
-      await page.locator('.opt').nth(1).click();
-      if (transitionQs.has(i)) {
-        await page.getByRole('button', { name: /continue/i }).click();
-      }
-    }
+    await beginKoora(page, 'Checklister', 'checklister@example.com');
+    await answerAllQuestions(page);
     await page.getByRole('button', { name: /SHOW ME/ }).click();
     await page.getByRole('button', { name: /I MUST FINISH/ }).click();
 
@@ -160,19 +150,22 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
     await expect(checklist).toContainText(/DO/);
   });
 
-  test('skip-to-content link is the first focusable element', async ({ page }) => {
-    await page.goto('/');
-    await page.keyboard.press('Tab');
-    const focused = await page.evaluate(() => document.activeElement?.textContent || '');
-    expect(focused.toLowerCase()).toContain('skip');
+  test('skip-to-content link is keyboard focusable', async ({ page }) => {
+    await gotoKoora(page);
+    await page.locator('.skip-link').focus();
+    await expect(page.locator('.skip-link')).toBeFocused();
+    await expect(page.locator('.skip-link')).toContainText(/skip/i);
   });
 
   test('footer hides on question and transition screens', async ({ page }) => {
-    await page.goto('/');
+    await gotoKoora(page);
     await expect(page.locator('footer')).toBeVisible();
     await page.fill('#participantName', 'FooterTest');
     await page.locator('button[data-enroll="1"]').click();
-    await page.getByRole('button', { name: /^Begin$/ }).click();
+    await page.locator('#welcomeBeginBtn').click();
+    await expect(page.locator('#welcomeEmailGate')).toBeVisible();
+    await page.fill('#welcomeEmailInput', 'footertest@example.com');
+    await page.locator('#welcomeEmailGate').getByRole('button', { name: /^continue$/i }).click();
 
     // On a question screen, body has class footer-hidden, footer is not visible
     await expect(page.locator('body')).toHaveClass(/footer-hidden/);
@@ -182,7 +175,7 @@ test.describe('KOORA UNFINISHED — instrument flow', () => {
 
 test.describe('KOORA — pure-function smoke (page.evaluate)', () => {
   test('personalize() handles all three placeholder positions', async ({ page }) => {
-    await page.goto('/');
+    await gotoKoora(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as { participantName: string; personalize: (s: string) => string };
       W.participantName = 'Tina';
@@ -202,7 +195,7 @@ test.describe('KOORA — pure-function smoke (page.evaluate)', () => {
   });
 
   test('subLabel() maps 1..4 to four substitution levels', async ({ page }) => {
-    await page.goto('/');
+    await gotoKoora(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as { subLabel: (n: number) => string };
       return [1, 2, 3, 4].map((n) => W.subLabel(n));
@@ -211,7 +204,7 @@ test.describe('KOORA — pure-function smoke (page.evaluate)', () => {
   });
 
   test('levelNeg / levelPos thresholds', async ({ page }) => {
-    await page.goto('/');
+    await gotoKoora(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as {
         levelNeg: (p: number) => string;

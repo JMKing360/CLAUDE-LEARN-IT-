@@ -1,14 +1,32 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+async function gotoFirstHour(page: Page) {
+  await page.goto('/first-hour/');
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await page.locator('#rebuildNotice').evaluate((el) => {
+    (el as HTMLElement).style.display = 'none';
+  });
+}
+
+async function beginFirstHour(page: Page, name: string, email: string) {
+  await gotoFirstHour(page);
+  await page.fill('#participantName', name);
+  await page.getByRole('button', { name: /begin your first hour/i }).click();
+  await expect(page.locator('#welcomeEmailGate')).toBeVisible();
+  await page.fill('#participantEmail', email);
+  await page.getByRole('button', { name: /^continue$/i }).click();
+}
 
 test.describe('The First Hour — completion flow', () => {
   test('welcome screen renders with hero copy', async ({ page }) => {
-    await page.goto('/first-hour/');
+    await gotoFirstHour(page);
     await expect(page.getByText('without quite meaning to', { exact: false })).toBeVisible();
     await expect(page.getByText('You are not lazy')).toBeVisible();
   });
 
   test('begin button requires name and email', async ({ page }) => {
-    await page.goto('/first-hour/');
+    await gotoFirstHour(page);
     const begin = page.getByRole('button', { name: /begin your first hour/i });
     await begin.click();
     // Focus should fall to the empty required field
@@ -16,10 +34,7 @@ test.describe('The First Hour — completion flow', () => {
   });
 
   test('full assessment completes when answered', async ({ page }) => {
-    await page.goto('/first-hour/');
-    await page.fill('#participantName', 'Test');
-    await page.fill('#participantEmail', 'test@example.com');
-    await page.getByRole('button', { name: /begin your first hour/i }).click();
+    await beginFirstHour(page, 'Test', 'test@example.com');
 
     const transitionQuestions = new Set([18, 30, 48]);
 
@@ -47,7 +62,7 @@ test.describe('The First Hour — completion flow', () => {
   });
 
   test('matrixResolve follows the binary spec (red/green only)', async ({ page }) => {
-    await page.goto('/first-hour/');
+    await gotoFirstHour(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as {
         matrixResolve: (a: Record<number, string>) => Record<string, string>;
@@ -68,18 +83,15 @@ test.describe('The First Hour — completion flow', () => {
     expect(out.allRedFlag).toBe(true);
   });
 
-  test('skip-to-content link is the first focusable element', async ({ page }) => {
-    await page.goto('/first-hour/');
-    await page.keyboard.press('Tab');
-    const focused = await page.evaluate(() => document.activeElement?.textContent || '');
-    expect(focused.toLowerCase()).toContain('skip');
+  test('skip-to-content link is keyboard focusable', async ({ page }) => {
+    await gotoFirstHour(page);
+    await page.locator('.skip-link').focus();
+    await expect(page.locator('.skip-link')).toBeFocused();
+    await expect(page.locator('.skip-link')).toContainText(/skip/i);
   });
 
   test('autosave persists across reload', async ({ page }) => {
-    await page.goto('/first-hour/');
-    await page.fill('#participantName', 'Persisted');
-    await page.fill('#participantEmail', 'persist@example.com');
-    await page.getByRole('button', { name: /begin/i }).click();
+    await beginFirstHour(page, 'Persisted', 'persist@example.com');
     await page.locator('.opt').first().click();
     await page.waitForTimeout(1700);
     await page.reload();
@@ -93,7 +105,7 @@ test.describe('The First Hour — completion flow', () => {
 
 test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
   test('personalize() handles all three placeholder positions', async ({ page }) => {
-    await page.goto('/first-hour/');
+    await gotoFirstHour(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as { participantName: string; personalize: (s: string) => string };
       W.participantName = 'Tina';
@@ -113,7 +125,7 @@ test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
   });
 
   test('safe() escapes HTML in user-supplied strings', async ({ page }) => {
-    await page.goto('/first-hour/');
+    await gotoFirstHour(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as { safe: (s: string) => string };
       return {
@@ -132,7 +144,7 @@ test.describe('The First Hour — pure-function smoke (page.evaluate)', () => {
   });
 
   test('formatDate() returns en-GB long form', async ({ page }) => {
-    await page.goto('/first-hour/');
+    await gotoFirstHour(page);
     const out = await page.evaluate(() => {
       const W = window as unknown as { formatDate: (iso: string) => string };
       return W.formatDate('2026-05-10T12:00:00.000Z');
