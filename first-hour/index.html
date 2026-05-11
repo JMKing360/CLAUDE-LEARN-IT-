@@ -478,6 +478,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
 .q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
 .q-back:hover{color:var(--ink)}
+.q-next{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px;margin-left:auto}
+.q-next:hover:not([disabled]){color:var(--navy)}
+.q-next[disabled]{opacity:.32;cursor:not-allowed;font-weight:600;color:var(--dim)}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* ACK */
@@ -904,7 +907,7 @@ body.footer-hidden footer{display:none}
 /* Print stylesheet */
 @media print{
   body,p,h1,h2,h3,h4,h5,h6,li,td,th,div{color:#000 !important;background:transparent !important;text-shadow:none !important;box-shadow:none !important}
-  nav,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.q-back,.welcome-cta,.koora-funnel,.contact-block,.save-pill,#screen-welcome,#screen-question,#screen-transition,#screen-ack{display:none !important}
+  nav,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.q-back,.q-next,.welcome-cta,.koora-funnel,.contact-block,.save-pill,#screen-welcome,#screen-question,#screen-transition,#screen-ack{display:none !important}
   /* Hide PII inputs from print (painInput, painInput5y, intentInput, email/name inputs). */
   .pain-input,#painInput,#painInput5y,#intentInput,.email-input,#participantName,#participantEmail{display:none !important}
   body{font-size:11pt;line-height:1.4;background:white !important;color:black !important;font-family:Georgia,serif}
@@ -1167,9 +1170,8 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <span class="rebuild-notice__body">Nine chambers, three triads, sixty items. Your prior takes are preserved as anchor dates only — chamber scores cannot be carried across the rebuild cleanly.</span>
     <button class="rebuild-notice__close" type="button" onclick="dismissRebuildNotice()" aria-label="Dismiss">×</button>
   </div>
-  <h1 class="hero">The life you have been living, <em>without quite meaning to.</em></h1>
-  <p class="lede">Below are six fragments written for the part of you quietly carrying the most. <strong>Notice which ones land.</strong> Nothing here is accusation. It is architecture.</p>
-  <p class="lede">Before you answer the sixty, six small things to notice. Answer honestly &mdash; we are not collecting them, they are gates. <strong>The pattern is the diagnosis, never the verdict.</strong></p>
+  <h1 class="hero">You are about to see your life with <em>new eyes.</em></h1>
+  <p class="lede">Sixty short fragments written for what you quietly carry. <strong>Notice gently.</strong></p>
 
   <div class="gold-box">
     <p class="gold-box__h">I should be finishing, but...</p>
@@ -1183,36 +1185,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     </p>
   </div>
 
-  <div class="triad-list" aria-label="The nine chambers, grouped into three triads">
-    <div class="triad">
-      <p class="triad__h">Triad One · The Inner Ruins</p>
-      <div class="triad__chambers" role="list">
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Mind that Stopped Thinking</button>
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Body that Got Forgotten</button>
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Spirit that Got Silenced</button>
-      </div>
-    </div>
-    <div class="triad">
-      <p class="triad__h">Triad Two · The Broken Vessels</p>
-      <div class="triad__chambers" role="list">
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Word that Weighs on Strangers</button>
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Promise that Got Postponed</button>
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">People You Are Pretending With</button>
-      </div>
-    </div>
-    <div class="triad">
-      <p class="triad__h">Triad Three · The Stolen Resources</p>
-      <div class="triad__chambers" role="list">
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Time that Disappeared</button>
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Attention that Got Farmed</button>
-        <button type="button" class="triad__chamber" tabindex="-1" role="listitem">Money that Owns You</button>
-      </div>
-    </div>
-  </div>
-  <p class="triad-summary">Nine chambers. Three triads. Fifteen honest minutes. <b>You move outer first, deepest last</b> — the audit opens with what is being taken from you, and ends inside the wanting that is still yours.</p>
-
   <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
-    <img src="/images/House-of-Mastery-with-Dr-Job-Mogire-logo.png" width="3295" height="1069" alt="House of Mastery — emotional sovereignty coaching, mindset training and motivational speaking with Dr. Job Mogire, Kenya" class="cover-letter__brandmark" onerror="this.style.display='none'">
     <div class="cover-letter__head">
       <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" width="896" height="1200" alt="Dr. Job Mogire, MD, FACC, FACP — Board-Certified Physician, mindset coach and founder of House of Mastery, Kenya" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
       <div class="cover-letter__head-text">
@@ -1312,9 +1285,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <h2 class="q-text" id="qText" tabindex="-1"></h2>
   <div class="options" id="qOptions" aria-describedby="qKeyhint"></div>
   <div class="q-foot">
-    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
+    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">&larr; Back</button>
     <span class="q-foot-meta" id="qCount">Question 1 of 54</span>
-    <span></span>
+    <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next &rarr;</button>
   </div>
   <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap.</p>
 </section>
@@ -1679,7 +1652,7 @@ var JSPDF_OK=(typeof window.jspdf!=='undefined');
 var TOTAL=54;
 var AGENCY_TOTAL=6;
 var STORAGE_KEY='hom_firsthour_history_v3';
-var AUTO_ADVANCE_MS=1500;
+var AUTO_ADVANCE_MS=1750;
 // Section-transition dwell: longer than question-to-question advance because
 // the transition screen carries reading content (eyebrow, headline, body).
 // Manual CONTINUE button stays for skip-ahead.
@@ -2267,6 +2240,7 @@ function renderQuestion(n){
     })(OPTIONS[i]);
   }
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
+  var nx=document.getElementById('qNext');if(nx)nx.disabled=!answers[n];
 }
 var savePillTimer=null;
 function showSavePill(){
@@ -2290,6 +2264,7 @@ function selectOption(n,score){
   try{localStorage.setItem('hom_firsthour_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,email:participantEmail,started:Date.now()}));showSavePill()}catch(e){}
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
+  var nx=document.getElementById('qNext');if(nx)nx.disabled=false;
   if(n===1)fireMilestone('first_question_answered');
   if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
   if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');

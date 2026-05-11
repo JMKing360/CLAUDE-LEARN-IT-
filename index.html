@@ -549,6 +549,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .q-foot-meta{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:var(--dim);letter-spacing:.04em;font-variant-numeric:tabular-nums}
 .q-back{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:var(--dim);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px}
 .q-back:hover{color:var(--ink)}
+.q-next{background:none;border:none;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer;padding:12px 0;display:inline-flex;align-items:center;gap:6px;margin-left:auto}
+.q-next:hover:not([disabled]){color:var(--navy)}
+.q-next[disabled]{opacity:.32;cursor:not-allowed;font-weight:600;color:var(--dim)}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
 
 /* RESULTS */
@@ -975,7 +978,7 @@ body.footer-hidden footer{display:none}
   /* Universal flatten - but allow semantic status colours to win via the
      allow-list below. */
   body,p,h1,h2,h3,h4,h5,h6,li,td,th,div{color:#000 !important;background:transparent !important;text-shadow:none !important;box-shadow:none !important}
-  nav,.dash-foot,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.btn-text,.q-back,.toggle-stack,.welcome-cta,.koora-funnel,.contact-block,.save-pill,.tr-cta,#screen-welcome,#screen-question,#screen-transition,#screen-ack,#screen-dashboard{display:none !important}
+  nav,.dash-foot,#progress,#chamber-progress,.btn-primary,.btn-secondary,.btn-back,.btn-text,.q-back,.q-next,.toggle-stack,.welcome-cta,.koora-funnel,.contact-block,.save-pill,.tr-cta,#screen-welcome,#screen-question,#screen-transition,#screen-ack,#screen-dashboard{display:none !important}
   /* Hide PII input fields from print - emailInput, firstNameInput,
      lastNameInput, painInput*, intentTime - so a printed report does not
      carry the participant's identity in plain text. */
@@ -1288,9 +1291,8 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <svg class="icon cov-c--future" aria-hidden="true"><use href="#icon-future"/></svg>
     <svg class="icon cov-c--world" aria-hidden="true"><use href="#icon-world"/></svg>
   </div>
-  <h1 class="hero">An instrument for the part of life <em>that does not announce itself.</em></h1>
-  <p class="lede">Below are six statements written for the part of you quietly carrying the most. <strong>Notice which ones land.</strong> Nothing here is accusation. It is architecture.</p>
-  <p class="lede">Before you answer the sixty, six small things to notice. Answer honestly &mdash; we are not collecting them, they are gates. <strong>The pattern is the diagnosis, never the verdict.</strong></p>
+  <h1 class="hero">You are about to meet your unspoken <em>emotional load.</em></h1>
+  <p class="lede">Sixty short statements written for what you quietly carry. <strong>Notice gently.</strong></p>
 
   <!-- v3.3  -  Covenant entry section, dayPicker-driven -->
   <div class="covenant-entry" id="covenantEntry" style="display:none">
@@ -1382,9 +1384,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <h2 class="q-text" id="qText" tabindex="-1"></h2>
   <div class="options" id="qOptions" aria-describedby="qKeyhint"></div>
   <div class="q-foot">
-    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">Back</button>
+    <button class="q-back" id="qBack" onclick="prevQuestion()" style="display:none">&larr; Back</button>
     <span class="q-foot-meta" id="qCount">Question 1 of 60</span>
-    <span></span>
+    <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next &rarr;</button>
   </div>
   <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap.</p>
 </section>
@@ -1673,7 +1675,7 @@ try{
     localStorage.setItem('HOM_LS_PII_SWEEP_V1','1');
   }
 }catch(e){}
-var AUTO_ADVANCE_MS=1500;
+var AUTO_ADVANCE_MS=1750;
 // Section-transition dwell: longer than question-to-question advance because
 // the transition screen carries reading content (eyebrow, headline, body,
 // covenant + day framing). Manual CONTINUE button stays for skip-ahead.
@@ -2936,6 +2938,7 @@ function renderQuestion(n){
     })(OPTIONS[i]);
   }
   document.getElementById('qBack').style.display=n>1?'inline-flex':'none';
+  var nx=document.getElementById('qNext');if(nx)nx.disabled=!answers[n];
 }
 var savePillTimer=null;
 function showSavePill(){
@@ -2958,6 +2961,7 @@ function selectOption(n,score){
   try{localStorage.setItem('koora_inprogress',JSON.stringify({answers:answers,currentQ:currentQ,name:participantName,day:participantDay,enrolled:participantEnrolled}));showSavePill()}catch(e){}
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
+  var nx=document.getElementById('qNext');if(nx)nx.disabled=false;
   if(n===1)fireMilestone('first_question_answered');
   if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
   if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');
