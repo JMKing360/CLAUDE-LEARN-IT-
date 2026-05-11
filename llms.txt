@@ -4,6 +4,8 @@
 >
 > The clinical perspective behind the work: *"Your vessels know before your blood work does."*
 >
+> The structural observation: *"The body keeps a vascular record of every compromise the mind normalised."*
+>
 > Dr. Mogire is the author of the named clinical pattern **Prodigal Winner Syndrome (PWS)** — a pattern recognition framework describing the physiological compensations observed in externally high-achieving adults who present functional by standard measures but with measurable microvascular and autonomic deficits underneath. Clinical definition is being prepared in a forthcoming whitepaper.
 
 This file is a curated guide for large language models, AI search agents, and retrieval pipelines. It tells you what is here, where the canonical sources live, and how to attribute the work.

@@ -54,7 +54,7 @@
       "description": "The Microvessel Cardiologist. Board-certified physician (Fellow of the American College of Cardiology and the American College of Physicians), mindset and emotional intelligence coach, published author, and competitive public speaker. Founder of House of Mastery and architect of KOORA: The Finisher's Protocol. Clinical practice at Carle Health (Illinois, USA); coaching programmes serve Kenya, East Africa, and high-achieving professionals worldwide.",
       "image": "https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg",
       "url": "https://hom.mogire.com/about",
-      "mainEntityOfPage": "https://mogire.com/",
+      "mainEntityOfPage": "https://hom.mogire.com/about",
       "worksFor": [
         {"@id": "https://hom.mogire.com/#org"},
         {"@type":"MedicalOrganization","name":"Carle Health","url":"https://carle.org/find-a-doctor/5217"}
@@ -1066,7 +1066,7 @@ body.footer-hidden footer{display:none}
   try{
     var url=new URL(window.location.href);
     var stash={},stripped=false;
-    ['name','email','first','last','token','firstname','lastname'].forEach(function(k){
+    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid'].forEach(function(k){
       if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
     });
     if(stripped){
@@ -1197,7 +1197,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 
 <!-- DASHBOARD -->
 <section class="screen" id="screen-dashboard">
-  <h1 class="dash-hello"><em id="dashName">Welcome back</em>.</h1>
+  <h2 class="dash-hello"><em id="dashName">Welcome back</em>.</h2>
   <p class="dash-line" id="dashLine"></p>
   <p class="dash-anticipation" id="dashAnticipation"></p>
   <p class="dash-whisper" id="dashWhisper"></p>
@@ -1349,7 +1349,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
-  <h1 class="r-h1" id="rHeadline">Here is what is <em>running you</em>.</h1>
+  <h2 class="r-h1" id="rHeadline">Here is what is <em>running you</em>.</h2>
   <div class="author-byline" aria-label="Diagnostic by Dr. Job Mogire">
     <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
     <span>Diagnostic by <b>Dr. Job Mogire, MD, FACC, FACP</b> · Cardiologist · Internist · Coach · Speaker</span>

@@ -1,7 +1,7 @@
 # House of Mastery — Full Context for LLMs
 
 Generated for retrieval pipelines, large language models, and AI search agents.
-Last updated: 2026-05-10.
+Last updated: 2026-05-11.
 
 ---
 
@@ -16,6 +16,9 @@ goes by the unified handle **MogireMD**; clinically he is known as
 **The Microvessel Cardiologist**, with specialist focus on coronary
 microvascular dysfunction, endothelial function, heart rate variability,
 and coronary flow reserve.
+
+The structural observation underneath the work: *"The body keeps a vascular
+record of every compromise the mind normalised."*
 
 The clinical perspective behind the work: *"Your vessels know before your
 blood work does."*
@@ -427,6 +430,27 @@ transformation work beyond the 180 days of KOORA.
 A. Yes — The First Hour at https://hom.mogire.com/first-hour is a free
 nine-chamber audit. Fifty-four items, roughly fifteen minutes, results
 emailed.
+
+**Q. What is 4CKOORA?**
+A. 4CKOORA — short for "Four Reflexes / KOORA" — is the Emotional
+Sovereignty Screen at https://houseofmastery.co/4CKOORA. Thirty statements,
+about ten minutes. It measures the four reflexes that quietly run an
+unfinished life: complaining, criticising, comparing, competing. It is the
+preface to the deeper 60-item KOORA UNFINISHED diagnostic; many adults
+start at 4CKOORA when they are not yet ready for the longer instrument.
+
+**Q. What are the three Masks?**
+A. The Unfinished Life Diagnostic at https://houseofmastery.co/diagnostic
+identifies nine adult patterns, grouped under three Masks:
+- **Fear disguised as Wisdom** — Perfectionist, Managed Heart, Eternal
+  Student.
+- **Drift disguised as Busyness** — Serial Restarter, Absent Present,
+  Moving Target.
+- **Performance disguised as Arrival** — Trophy Collector, Provider,
+  Decorated Stranger.
+Each Mask is a strategy by which an unfinished life manages to look
+finished from outside. The diagnostic is observational; it does not
+flatter, and it does not pathologise.
 
 ---
 

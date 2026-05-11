@@ -54,7 +54,7 @@
       "description": "The Microvessel Cardiologist. Board-certified physician (Fellow of the American College of Cardiology and the American College of Physicians), mindset and emotional intelligence coach, published author, and competitive public speaker. Founder of House of Mastery and architect of KOORA: The Finisher's Protocol. Clinical practice at Carle Health (Illinois, USA); coaching programmes serve Kenya, East Africa, and high-achieving professionals worldwide.",
       "image": "https://hom.mogire.com/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg",
       "url": "https://hom.mogire.com/about",
-      "mainEntityOfPage": "https://mogire.com/",
+      "mainEntityOfPage": "https://hom.mogire.com/about",
       "worksFor": [
         {"@id": "https://hom.mogire.com/#org"},
         {"@type":"MedicalOrganization","name":"Carle Health","url":"https://carle.org/find-a-doctor/5217"}
@@ -1003,7 +1003,7 @@ body.footer-hidden footer{display:none}
   try{
     var url=new URL(window.location.href);
     var stash={},stripped=false;
-    ['name','email','first','last','token','firstname','lastname'].forEach(function(k){
+    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid'].forEach(function(k){
       if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
     });
     if(stripped){
@@ -1309,7 +1309,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 <!-- AGENCY MATRIX (final 6 binary questions on a single screen) -->
 <section class="screen" id="screen-agency">
   <span class="agency-eyebrow">FINAL · YOUR AGENCY MATRIX</span>
-  <h1 class="agency-h1">Six questions to map where you stand.</h1>
+  <h2 class="agency-h1">Six questions to map where you stand.</h2>
   <p class="agency-sub">YES or NO. Be honest. This is not a test. It is a mirror. The four columns are <b>What I think</b>, <b>What I feel</b>, <b>What I choose</b>, <b>What I do</b>. Together they show where your agency is strongest and where it is stuck.</p>
   <div class="agency-grid" id="agencyGrid"></div>
   <div class="agency-cta">
@@ -1326,7 +1326,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 
 <!-- RESULTS -->
 <section class="screen" id="screen-results">
-  <h1 class="r-h1" id="rHeadline"></h1>
+  <h2 class="r-h1" id="rHeadline"></h2>
   <div class="author-byline" aria-label="Audit by Dr. Job Mogire">
     <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'">
     <span>Audit by <b>Dr. Job Mogire, MD, FACC, FACP</b> · Cardiologist · Internist · Mindset Coach · Speaker</span>
