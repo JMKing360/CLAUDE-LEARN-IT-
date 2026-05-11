@@ -25,8 +25,30 @@ const EEA_UK_CH = new Set([
   'GB','CH'
 ]);
 
+async function fetchStaticAsset(context, pathname) {
+  const assetUrl = new URL(context.request.url);
+  assetUrl.pathname = pathname;
+
+  const assetRequest = new Request(assetUrl.toString(), {
+    method: context.request.method,
+    headers: context.request.headers,
+    redirect: 'manual'
+  });
+
+  return context.env.ASSETS.fetch(assetRequest);
+}
+
 export async function onRequest(context) {
-  const response = await context.next();
+  const requestUrl = new URL(context.request.url);
+  let response;
+
+  if (requestUrl.pathname === '/first-hour' || requestUrl.pathname === '/first-hour/') {
+    response = await fetchStaticAsset(context, '/first-hour/');
+  } else if (requestUrl.pathname === '/embed.html') {
+    response = await fetchStaticAsset(context, '/embed');
+  } else {
+    response = await context.next();
+  }
 
   const country = (context.request.cf && context.request.cf.country)
     || context.request.headers.get('CF-IPCountry')

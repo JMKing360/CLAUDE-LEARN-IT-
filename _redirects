@@ -6,10 +6,14 @@
 # FAQ pages: clean URLs that rewrite to the .html files.
 /koora / 301
 /koora/ / 301
-# Canonical for First Hour is /first-hour (no trailing slash). Rewrite the
-# canonical URL to the actual file so both paths serve identical content
-# and Cloudflare Pages directory-routing doesn't fork the canonical.
+# First Hour must serve identical HTML with and without the trailing slash.
+# Keep both rewrites explicit so Cloudflare Pages does not emit its automatic
+# directory 308 before returning the assessment HTML.
 /first-hour /first-hour/index.html 200
+/first-hour/ /first-hour/index.html 200
+# Partner embed route must remain directly fetchable as /embed.html because
+# downstream integrations probe that exact filename path.
+/embed.html /embed.html 200
 # Stub redirect until /mastery-hour page exists - prevents rung-3 404
 # bleeds and crawl-budget loss. Point to /about#programmes interim.
 /mastery-hour /about#programmes 302
