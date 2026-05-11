@@ -367,6 +367,17 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;col
   }
   body{background:var(--surface)}
   nav{background:rgba(15,16,20,.92)}
+  /* Dark-mode visual fixes */
+  /* .hero em: the loud "navy text + peach underline" treatment that works in
+     light mode reads as bright-blue + bright-peach on dark surfaces. Replace
+     with subtle gold text and a thin gold underline at the descender level. */
+  .hero em{color:var(--gold-text);background:none;text-decoration:underline;text-decoration-color:var(--gold-soft);text-decoration-thickness:2px;text-underline-offset:6px}
+  /* KOORA wordmark in nav: the PNG has a white background baked in which
+     prints as a bright rectangle on dark. invert(1) flips white→black
+     (blends with dark nav) and the navy text → cream (legible on dark).
+     Applied to the span so the SVG fallback (which uses hardcoded navy
+     fill) also adapts. */
+  .nav-koora,.nav-koora img,.nav-koora svg{filter:invert(1) hue-rotate(180deg)}
 }
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;color:inherit}

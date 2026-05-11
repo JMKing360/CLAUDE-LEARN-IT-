@@ -312,6 +312,9 @@ body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#FBFBFD;col
   }
   body{background:var(--surface)}
   nav{background:rgba(15,16,20,.92)}
+  /* Dark-mode visual fix for .hero em: the navy text + peach underline
+     reads loud on dark. Replace with subtle gold text + thin gold underline. */
+  .hero em{color:var(--gold-text);background:none;text-decoration:underline;text-decoration-color:var(--gold-soft);text-decoration-thickness:2px;text-underline-offset:6px}
 }
 button{font-family:inherit}
 input,select,textarea{font-family:inherit;color:inherit}
