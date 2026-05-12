@@ -924,6 +924,51 @@ body.footer-hidden footer{display:none}
   .cov-load-gauge__capsule[data-load="4"]{animation:none}
   .cov-load-gauge[data-load="6"]{animation:none}
 }
+/* Dr Mogire AI · pattern synthesis panel on the results screen.
+   Lives inside #screen-results, after the existing result blocks. Uses
+   the gold-soft + navy border treatment so it reads as Dr Mogire's voice
+   (not as a generic chat widget). Dark mode flips surface tokens. */
+.hom-ai{margin:48px 0 32px;background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--gold);border-radius:var(--r-md,14px);padding:28px 32px;font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.hom-ai__head{margin-bottom:18px}
+.hom-ai__eyebrow{display:block;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-text);margin-bottom:6px}
+.hom-ai__h{font-size:clamp(20px,2.4vw,24px);font-weight:700;color:var(--ink);letter-spacing:-.012em;line-height:1.25;margin:0}
+.hom-ai__synthesis{font-size:16.5px;line-height:1.7;color:var(--body);margin:0 0 24px;letter-spacing:-.002em}
+.hom-ai__synthesis[aria-busy="true"]{color:var(--mid)}
+.hom-ai__synthesis .hom-ai__paragraph{margin:0;white-space:pre-wrap}
+.hom-ai__loading{font-style:italic;color:var(--mid);margin:0}
+.hom-ai__qa{border-top:1px solid var(--rule-soft);padding-top:22px;margin-top:8px}
+.hom-ai__qa-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;font-size:13.5px;color:var(--mid);margin-bottom:12px;font-weight:500}
+.hom-ai__counter{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hom-ai__form{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.hom-ai__input{flex:1 1 320px;min-width:0;font-family:inherit;font-size:14.5px;line-height:1.5;padding:12px 14px;border:1.5px solid var(--rule);border-radius:10px;background:var(--surface-2,var(--white));color:var(--ink);resize:vertical;transition:border-color .15s,box-shadow .15s}
+.hom-ai__input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,151,58,.18)}
+.hom-ai__input:disabled{opacity:.55;cursor:not-allowed}
+.hom-ai__send{flex:0 0 auto;align-self:stretch;max-width:160px;padding:12px 22px;font-size:14px}
+.hom-ai__send:disabled{opacity:.5;cursor:not-allowed}
+.hom-ai__err{font-size:13px;font-weight:600;color:var(--red);margin:10px 0 0;line-height:1.5}
+.hom-ai__history{list-style:none;padding:0;margin:18px 0 0;display:flex;flex-direction:column;gap:14px}
+.hom-ai__turn{padding:14px 16px;border-radius:10px;background:var(--surface-2,var(--rule-soft))}
+.hom-ai__turn--q{background:rgba(201,151,58,.08);border-left:2px solid var(--gold-soft)}
+.hom-ai__turn--a{background:var(--rule-soft);border-left:2px solid var(--navy)}
+.hom-ai__role{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.hom-ai__turn p{margin:0;font-size:15px;line-height:1.65;color:var(--body);white-space:pre-wrap}
+.hom-ai__disclaimer{font-size:12.5px;line-height:1.6;color:var(--mid);margin:22px 0 0;padding-top:18px;border-top:1px solid var(--rule-soft);font-weight:500}
+.hom-ai__disclaimer a{color:var(--gold-text);text-decoration:underline;text-underline-offset:2px}
+@media(prefers-color-scheme:dark){
+  .hom-ai{background:var(--surface-2);border-color:var(--rule)}
+  .hom-ai__turn--q{background:rgba(232,184,90,.10);border-left-color:var(--gold-soft)}
+  .hom-ai__turn--a{background:var(--surface-3,var(--rule-soft));border-left-color:var(--navy)}
+}
+@media(max-width:560px){
+  .hom-ai{padding:22px 20px;margin:36px 0 24px}
+  .hom-ai__form{flex-direction:column;align-items:stretch}
+  .hom-ai__send{max-width:none}
+  .hom-ai__qa-head{font-size:12.5px}
+}
+@media print{
+  .hom-ai__qa,.hom-ai__disclaimer,.hom-ai__history,.hom-ai__form{display:none !important}
+  .hom-ai{border:1px solid #ccc;padding:14px;margin:18px 0}
+}
 @media(max-width:560px){
   .cov-load-gauge{padding:12px 14px;gap:10px;flex-wrap:wrap}
   .cov-load-gauge__capsule{padding:7px 14px}
@@ -1628,6 +1673,31 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   </div>
 
   </div><!-- /#sealSection -->
+
+  <!-- DR MOGIRE AI · Pattern synthesis -->
+  <aside class="hom-ai" id="homAiPanel" aria-labelledby="homAiH">
+    <div class="hom-ai__head">
+      <span class="hom-ai__eyebrow">Dr Mogire AI · Pattern synthesis</span>
+      <h3 class="hom-ai__h" id="homAiH">What the AI reads in your pattern</h3>
+    </div>
+    <div class="hom-ai__synthesis" id="homAiSynthesis" aria-live="polite" aria-busy="true">
+      <p class="hom-ai__loading">Reading your pattern&hellip;</p>
+    </div>
+    <div class="hom-ai__qa">
+      <div class="hom-ai__qa-head">
+        <span>Have a question? Ask Dr Mogire AI.</span>
+        <span class="hom-ai__counter" id="homAiCounter">7 of 7 free questions left</span>
+      </div>
+      <form class="hom-ai__form" id="homAiForm" onsubmit="return homAiSubmit(event)">
+        <label class="sr-only" for="homAiInput">Your question for Dr Mogire AI</label>
+        <textarea class="hom-ai__input" id="homAiInput" rows="2" maxlength="600" placeholder="e.g. Which covenant should I sit with first, and why?" aria-describedby="homAiCounter"></textarea>
+        <button class="btn-primary hom-ai__send" id="homAiSend" type="submit">Ask</button>
+      </form>
+      <p class="hom-ai__err" id="homAiErr" role="alert" style="display:none"></p>
+      <ol class="hom-ai__history" id="homAiHistory" aria-label="Conversation with Dr Mogire AI"></ol>
+    </div>
+    <p class="hom-ai__disclaimer">Dr Mogire AI reads the pattern in your responses through Dr Job Mogire's framework. It is an AI synthesis &mdash; not Dr Mogire, and not a clinical diagnosis. Your responses are processed once per question and are not used to train models. See the <a href="/privacy#ai" target="_blank" rel="noopener">privacy policy</a>.</p>
+  </aside>
 
 </section>
 
@@ -3236,6 +3306,11 @@ function buildRecord(){
 // Results
 function buildResults(rec){
   lastResults=rec;
+  window.lastResults=rec;
+  // Fire Dr Mogire AI auto-synthesis once per completion (free, doesn't
+  // count against the 7-prompt cap). Best-effort — failure does not block
+  // the rest of the results render.
+  try{if(typeof window.homAIAutoSynthesise==='function')window.homAIAutoSynthesise('koora',rec)}catch(_e){}
   participantName=rec.name;participantDay=rec.day;answers=rec.answers||answers;
   // Reset seal section visibility on each render
   var seal=document.getElementById('sealSection');if(seal)seal.style.display='none';

@@ -185,3 +185,131 @@ if(typeof window!=='undefined'){
   }
 }
 
+// --- Dr Mogire AI · pattern synthesis ---
+// Calls /api/dr-mogire-ai with the participant's just-finished record. Two
+// modes: 'auto' fires once per completion to produce the auto-synthesis;
+// 'qa' fires per question the participant submits. The server tracks the
+// 7-free-prompt cap server-side via KV when bound; we also keep a soft
+// client-side mirror so the counter UI stays accurate offline.
+var HOM_AI_FREE_LIMIT=7;
+var __homAiHistory=[];
+
+function homAiState(email){
+  var key='hom_ai_used:'+(email||'anon');
+  var used=0;try{used=parseInt(localStorage.getItem(key)||'0',10)||0}catch(_e){}
+  return {key:key,used:used};
+}
+
+function homAiSetUsed(email,used){
+  try{localStorage.setItem('hom_ai_used:'+(email||'anon'),String(used))}catch(_e){}
+}
+
+function homAiUpdateCounter(used){
+  var el=document.getElementById('homAiCounter');if(!el)return;
+  var left=Math.max(0,HOM_AI_FREE_LIMIT-used);
+  el.textContent=left+' of '+HOM_AI_FREE_LIMIT+' free questions left';
+  var input=document.getElementById('homAiInput');
+  var send=document.getElementById('homAiSend');
+  if(left<=0){
+    if(input)input.disabled=true;
+    if(send){send.disabled=true;send.textContent='Limit reached'}
+    if(input)input.placeholder='Free question limit reached. Subscription coming soon.';
+  }
+}
+
+function homAiCall(payload){
+  return fetch('/api/dr-mogire-ai',{
+    method:'POST',
+    headers:{'content-type':'application/json'},
+    body:JSON.stringify(payload)
+  }).then(function(r){
+    return r.json().then(function(body){return {status:r.status,body:body}});
+  });
+}
+
+// Public — called by each app from finishAssessment after lastResults is set.
+// instrument is 'koora' or 'first-hour'. rec is the full record object.
+window.homAIAutoSynthesise=function(instrument,rec){
+  var box=document.getElementById('homAiSynthesis');
+  if(!box||!rec||!rec.email)return;
+  var st=homAiState(rec.email);
+  homAiUpdateCounter(st.used);
+  box.setAttribute('aria-busy','true');
+  homAiCall({instrument:instrument,mode:'auto',rec:rec}).then(function(r){
+    box.setAttribute('aria-busy','false');
+    if(!r.body||!r.body.ok){
+      box.innerHTML='<p class="hom-ai__loading">Synthesis unavailable right now. Your full report is still on the way to your email.</p>';
+      return;
+    }
+    box.innerHTML='';
+    var p=document.createElement('p');p.className='hom-ai__paragraph';p.textContent=r.body.text||'';
+    box.appendChild(p);
+    // Auto-synthesis is FREE, doesn't count against the 7. Don't increment.
+    if(typeof rec==='object')rec.aiSynthesis=r.body.text;
+  }).catch(function(){
+    box.setAttribute('aria-busy','false');
+    box.innerHTML='<p class="hom-ai__loading">Synthesis unavailable right now. Your full report is still on the way to your email.</p>';
+  });
+};
+
+// Form submit handler — also referenced via inline onsubmit in the markup.
+window.homAiSubmit=function(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  var input=document.getElementById('homAiInput');
+  var send=document.getElementById('homAiSend');
+  var err=document.getElementById('homAiErr');
+  var historyEl=document.getElementById('homAiHistory');
+  if(err){err.style.display='none';err.textContent=''}
+  if(!input||!historyEl||!window.lastResults||!window.lastResults.email)return false;
+  var q=(input.value||'').trim();if(!q)return false;
+  var rec=window.lastResults;
+  var instrument=(location.pathname.indexOf('/first-hour')===0)?'first-hour':'koora';
+  var st=homAiState(rec.email);
+  if(st.used>=HOM_AI_FREE_LIMIT){
+    if(err){err.textContent='Free question limit reached. A subscription unlocking more questions is coming soon.';err.style.display='block'}
+    return false;
+  }
+  // Optimistic UI — render the user's question immediately, show a
+  // placeholder for the answer, disable the input while in flight.
+  input.disabled=true;if(send){send.disabled=true;send.textContent='Reading…'}
+  var liQ=document.createElement('li');liQ.className='hom-ai__turn hom-ai__turn--q';
+  var qLabel=document.createElement('span');qLabel.className='hom-ai__role';qLabel.textContent='You';
+  var qBody=document.createElement('p');qBody.textContent=q;
+  liQ.appendChild(qLabel);liQ.appendChild(qBody);historyEl.appendChild(liQ);
+  var liA=document.createElement('li');liA.className='hom-ai__turn hom-ai__turn--a';
+  var aLabel=document.createElement('span');aLabel.className='hom-ai__role';aLabel.textContent='Dr Mogire AI';
+  var aBody=document.createElement('p');aBody.textContent='Reading…';
+  liA.appendChild(aLabel);liA.appendChild(aBody);historyEl.appendChild(liA);
+  homAiCall({
+    instrument:instrument,
+    mode:'qa',
+    rec:rec,
+    prompt:q,
+    history:__homAiHistory.slice(-10)
+  }).then(function(r){
+    input.disabled=false;if(send){send.disabled=false;send.textContent='Ask'}
+    if(r.status===402){
+      aBody.textContent='Free question limit reached.';
+      homAiSetUsed(rec.email,HOM_AI_FREE_LIMIT);
+      homAiUpdateCounter(HOM_AI_FREE_LIMIT);
+      return;
+    }
+    if(!r.body||!r.body.ok){
+      aBody.textContent='Could not reach Dr Mogire AI right now. Try again in a moment.';
+      if(err){err.textContent=(r.body&&r.body.error)||'Service error';err.style.display='block'}
+      return;
+    }
+    aBody.textContent=r.body.text||'(empty response)';
+    __homAiHistory.push({role:'user',content:q});
+    __homAiHistory.push({role:'assistant',content:r.body.text||''});
+    var used=(typeof r.body.used==='number')?r.body.used:(st.used+1);
+    homAiSetUsed(rec.email,used);
+    homAiUpdateCounter(used);
+    input.value='';
+  }).catch(function(){
+    input.disabled=false;if(send){send.disabled=false;send.textContent='Ask'}
+    aBody.textContent='Network error. Try again in a moment.';
+  });
+  return false;
+};
+
