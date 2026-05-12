@@ -298,7 +298,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 28px;text-align:center
 <p>We do <b>not</b> sell your personal information for monetary consideration. Loading the Meta Pixel, however, qualifies as a &ldquo;share&rdquo; within the expanded definition of California Civil Code &sect;1798.140(ah) because it discloses limited online-activity information (page URL, event names, Meta-managed cookies, IP-derived location) to Meta Platforms, Inc. for cross-context behavioural advertising.</p>
 <p>To exercise your right to opt out of this sharing you have three independent paths, any of which is sufficient:</p>
 <ul>
-  <li>Send a <b>Global Privacy Control</b> signal from your browser. We honour <code>Sec-GPC: 1</code> at the edge: the Pixel and its noscript fallback are stripped from the page before it reaches your browser.</li>
+  <li>Send a <b>Global Privacy Control</b> signal from your browser. We honour <code>Sec-GPC: 1</code> at the edge: the Pixel and its noscript fallback are stripped from the page before it reaches your browser, and our analytics scripts (Plausible, Sentry) are not loaded for your session. The suppression applies to fresh fetches; if you have a service-worker cache from a prior visit on the same device, hard-reload the page once after enabling GPC so your browser drops any pre-GPC HTML.</li>
   <li>Use a browser that resides in the European Economic Area, the United Kingdom, or Switzerland. We suppress the Pixel for those regions by default.</li>
   <li>Email <a href="mailto:mail@mogire.com">mail@mogire.com</a> with the words <em>California opt-out</em> in the subject. We will record the request and confirm by reply.</li>
 </ul>

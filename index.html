@@ -1109,8 +1109,16 @@ body.footer-hidden footer{display:none}
     // PII-only strip. Ad-attribution tokens (gclid/msclkid/ttclid/fbclid/wbraid/
     // gbraid) and campaign tokens (utm_*, mc_cid) are NOT stripped - they carry
     // attribution downstream. mc_eid IS stripped because Mailchimp emails encode
-    // the subscriber identity into it.
-    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','vero_id','_branch_match_id'].forEach(function(k){
+    // the subscriber identity into it. ESP/CRM identifiers below are stripped
+    // because partner-syndicated emails commonly embed subscriber-IDs that
+    // would otherwise be read by the Pixel before strip:
+    //   _kx, _ke      - Klaviyo
+    //   mkt_tok       - Marketo / Eloqua
+    //   __hstc, __hssc, hsCtaTracking, hsa_acc - HubSpot
+    //   oly_anon_id, oly_enc_id - Omeda
+    //   s_cid         - Adobe Site Catalyst
+    //   pk_kwd, pk_source - Matomo
+    ['name','email','first','last','token','firstname','lastname','contact_id','cid','em','fname','lname','phone','ph','user','uid','mc_eid','vero_id','_branch_match_id','_kx','_ke','mkt_tok','__hstc','__hssc','hsCtaTracking','hsa_acc','oly_anon_id','oly_enc_id','s_cid','pk_kwd','pk_source'].forEach(function(k){
       if(url.searchParams.has(k)){stash[k]=url.searchParams.get(k);url.searchParams.delete(k);stripped=true}
     });
     if(stripped){
@@ -1191,7 +1199,10 @@ fbq('track', 'PageView');
   // Public hook the app calls from show('screen-welcome') as a third trigger.
   window.HOM_FIRE_VIEWCONTENT = fireVC;
   // Safety-net: even if every other path fails, this guarantees the event.
-  setTimeout(fireVC, 4000);
+  // Gated on #screen-welcome actually existing in the DOM so bots and dead
+  // loads (broken parse, blocked scripts) don't generate phantom ViewContent
+  // fires + phantom event IDs forwarded to GHL.
+  setTimeout(function(){ if(document.getElementById('screen-welcome')) fireVC(); }, 4000);
 })();
 }
 </script>
@@ -1305,7 +1316,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <h2 class="covenant-entry__h" id="covEntryH"></h2>
     <p class="covenant-entry__sub" id="covEntrySub"></p>
     <ul class="covenant-entry__list" id="covEntryList"></ul>
-    <div class="cov-load-gauge" id="covLoadGauge" aria-live="polite">
+    <div class="cov-load-gauge" id="covLoadGauge" aria-live="polite" aria-atomic="true">
       <span class="cov-load-gauge__label">YOUR LOAD</span>
       <span class="cov-load-gauge__capsule" id="covLoadCapsule" data-load="0">
         <span class="cov-load-gauge__capsule__count" id="covLoadCount">0</span>
@@ -1315,7 +1326,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <p class="covenant-entry__threshold" id="covEntryThreshold"></p>
   </div>
 
-  <aside class="cover-letter" aria-label="A note from Dr. Job Mogire">
+  <section class="cover-letter" aria-label="A note from Dr. Job Mogire">
     <div class="cover-letter__head">
       <img src="/images/dr-job-mogire-md-facc-facp-physician-mindset-coach-house-of-mastery-kenya.jpg" width="896" height="1200" alt="Dr. Job Mogire, MD, FACC, FACP — Board-Certified Physician, mindset coach and founder of House of Mastery, Kenya" loading="eager" fetchpriority="high" decoding="async" onerror="this.style.display='none'">
       <div class="cover-letter__head-text">
@@ -1332,7 +1343,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
       Rooting for you.
       <small>Job</small>
     </div>
-  </aside>
+  </section>
 
   <hr class="divider">
 
@@ -1381,6 +1392,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <div class="tr-cta">
     <button class="btn-primary" id="trContinueBtn" onclick="exitTransition()" style="max-width:240px;letter-spacing:.05em">CONTINUE</button>
   </div>
+  <p class="sr-only" id="trAriaLive" aria-live="polite" aria-atomic="true"></p>
 </section>
 
 <!-- QUESTION -->
@@ -2403,6 +2415,9 @@ function persistCovEntrySel(covIdx){
   var keys=[];for(var i=0;i<inputs.length;i++)keys.push(parseInt(inputs[i].getAttribute('data-idx'),10));
   try{localStorage.setItem('koora_cov_entry_'+covIdx,JSON.stringify(keys))}catch(e){}
 }
+// Debounce token for the polite-announce text update so rapid checkbox
+// ticking doesn't stack screen-reader announcements in the polite queue.
+var __covLoadGaugeDebounce=null;
 function renderCovLoadGauge(covIdx){
   var capsule=document.getElementById('covLoadCapsule');
   var countEl=document.getElementById('covLoadCount');
@@ -2411,9 +2426,15 @@ function renderCovLoadGauge(covIdx){
   var n=document.querySelectorAll('#covEntryList input[type=checkbox][data-cov="'+covIdx+'"]:checked').length;
   var bucket=n>=4?4:n;
   var labels={0:'NONE TICKED',1:'LIGHT LOAD',2:'MEDIUM LOAD',3:'HEAVY LOAD',4:'VERY HEAVY'};
+  // Visual update fires immediately; aria-live text update is debounced 600ms
+  // so the screen reader announces only the steady-state value once the user
+  // pauses ticking. Capsule data-load and the visible count both update
+  // immediately for sighted users.
   capsule.setAttribute('data-load',String(bucket));
   countEl.textContent=String(n);
-  textEl.textContent=labels[bucket];
+  // Debounce the live-region text so rapid clicks don't stack announcements.
+  if(__covLoadGaugeDebounce){clearTimeout(__covLoadGaugeDebounce)}
+  __covLoadGaugeDebounce=setTimeout(function(){textEl.textContent=labels[bucket]},600);
 }
 // Render the participant's covenant-entry tickbox selections for the active
 // covenant in plain text, so they travel into the email payload.
@@ -3034,7 +3055,12 @@ function enterTransition(trans){
   // Reduced-motion users get no timer — manual CONTINUE only.
   if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
   var __reduceTr=false;try{__reduceTr=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
-  if(!__reduceTr){
+  var __live=document.getElementById('trAriaLive');
+  if(__reduceTr){
+    if(__live)__live.textContent='Press Continue when ready.';
+  }else{
+    var __sec=Math.round(TRANSITION_AUTO_MS/1000);
+    if(__live)__live.textContent='Next question in '+__sec+' seconds. Press Continue to skip.';
     transitionTimer=setTimeout(function(){
       var s=document.getElementById('screen-transition');
       if(pendingAfterTransition!=null && s && s.classList.contains('active')){exitTransition()}
@@ -3043,6 +3069,7 @@ function enterTransition(trans){
 }
 function exitTransition(){
   if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}
+  var __live=document.getElementById('trAriaLive');if(__live)__live.textContent='';
   if(pendingAfterTransition==null)return;
   currentQ=pendingAfterTransition;pendingAfterTransition=null;
   renderQuestion(currentQ);show('screen-question');

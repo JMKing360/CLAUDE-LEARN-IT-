@@ -6,14 +6,25 @@
   'use strict';
   var cfg = window.HOM_CONFIG || {};
 
+  // Honour Global Privacy Control. If the browser signals GPC=true we skip
+  // the third-party script-tag injection AND the call-time relays below.
+  // Operator can opt out via cfg.respectGPC === false (legitimate-interest
+  // jurisdictions). The Pixel guard is separate: see HOM_PIXEL_DISABLED in
+  // the per-page inline script — that already accounts for GPC.
+  function gpcDeny() {
+    if (cfg.respectGPC === false) return false;
+    try { return navigator.globalPrivacyControl === true; } catch (e) { return false; }
+  }
+  var __GPC = gpcDeny();
+
   // ---------- Sentry (error tracking) ----------
-  if (!cfg.sentryDsn) {
-    // No DSN configured: replace the queue stub with a no-op so HOM_SENTRY_WARN
-    // calls don't grow HOM_SENTRY_QUEUE unboundedly across the session.
+  if (!cfg.sentryDsn || __GPC) {
+    // No DSN configured OR GPC denies: replace the queue stub with a no-op so
+    // HOM_SENTRY_WARN calls don't grow HOM_SENTRY_QUEUE unbounded.
     window.HOM_SENTRY_QUEUE = null;
     window.HOM_SENTRY_WARN = function () {};
   }
-  if (cfg.sentryDsn) {
+  if (cfg.sentryDsn && !__GPC) {
     var s = document.createElement('script');
     s.src = 'https://browser.sentry-cdn.com/7.119.0/bundle.tracing.min.js';
     s.crossOrigin = 'anonymous';
@@ -47,7 +58,7 @@
   }
 
   // ---------- Plausible (privacy-first analytics) ----------
-  if (cfg.plausibleDomain) {
+  if (cfg.plausibleDomain && !__GPC) {
     var p = document.createElement('script');
     p.defer = true;
     p.dataset.domain = cfg.plausibleDomain;
@@ -122,8 +133,8 @@
 
   function track(name, props) {
     var payload = props || {};
-    if (window.plausible) window.plausible(name, { props: payload });
-    if (window.Sentry && Sentry.addBreadcrumb) Sentry.addBreadcrumb({ category: 'hom', message: name, data: payload });
+    if (window.plausible && !__GPC) window.plausible(name, { props: payload });
+    if (window.Sentry && Sentry.addBreadcrumb && !__GPC) Sentry.addBreadcrumb({ category: 'hom', message: name, data: payload });
     if (window.fbq && !window.HOM_PIXEL_DISABLED) {
       try {
         var eventID = newEventID();
