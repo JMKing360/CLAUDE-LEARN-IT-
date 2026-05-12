@@ -533,6 +533,21 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .ack-h1{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(30px,4.6vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:22px}
 .ack-h1 em{font-style:italic;font-weight:600}
 .ack-text{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(20px,2.8vw,24px);font-weight:400;line-height:1.55;color:var(--body);letter-spacing:-.005em;margin-bottom:36px}
+/* FINISHER identity line on the ack screen. Sits between the "you finished"
+   headline and the "sixty items" body. Larger than body text, smaller than
+   the headline; ALL-CAPS FINISHER is the centrepiece. */
+.ack-finisher{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:clamp(18px,2.4vw,22px);font-weight:500;line-height:1.5;color:var(--body);letter-spacing:.005em;margin:0 0 28px;max-width:680px}
+.ack-finisher b{color:var(--gold-text);font-weight:800;letter-spacing:.08em}
+/* KOORA brand chant tag — small footer mark on the ack screen. Tiny pulse
+   animation on the three "pi"s lands the cohort rhythm. Decorative; hidden
+   on print and under prefers-reduced-motion. */
+.ack-chant{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-text);margin:40px 0 0;opacity:.85}
+.ack-chant span{display:inline-block;animation:ackChantPulse 1.8s ease-in-out infinite}
+.ack-chant span:nth-child(2){animation-delay:.18s}
+.ack-chant span:nth-child(3){animation-delay:.36s}
+@keyframes ackChantPulse{0%,100%{opacity:.55}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.ack-chant span{animation:none;opacity:.85}}
+@media print{.ack-chant,.ack-finisher{display:none}}
 
 /* QUESTION */
 #screen-question{padding:20px 0 120px;scroll-margin-top:80px}
@@ -1481,8 +1496,10 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 <!-- ACKNOWLEDGMENT (between final question and results) -->
 <section class="screen" id="screen-ack">
   <h2 class="ack-h1" id="ackH1">You finished.</h2>
+  <p class="ack-finisher" id="ackFinisher">You are a <b>FINISHER</b>.</p>
   <p class="ack-text" id="ackText">Sixty items. That is harder than it sounds. Especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px;background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em">SHOW ME :)</button>
+  <p class="ack-chant" aria-label="KOORA brand chant">KOORA &middot; <span>pi</span> <span>pi</span> <span>pi</span></p>
 </section>
 
 <!-- RESULTS -->
@@ -3180,6 +3197,18 @@ function exitTransition(){
 
 function enterAck(){
   document.getElementById('ackH1').innerHTML=personalize('{name,}you finished.');
+  // FINISHER identity claim — landed once per completion, the celebration
+  // beat. Personalised: returners get the contrast line if priors exist.
+  var fin=document.getElementById('ackFinisher');
+  if(fin){
+    var hist=[];try{hist=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]')}catch(_e){}
+    var hasPrior=Array.isArray(hist) && hist.length>0;
+    if(hasPrior){
+      fin.innerHTML='Last year you were unfinishing. Today you are a <b>FINISHER</b>. One less unfinished day.';
+    }else{
+      fin.innerHTML='You are a <b>FINISHER</b>. One less unfinished day.';
+    }
+  }
   document.getElementById('ackText').innerHTML=personalize('Sixty items. That is harder than it sounds. Especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result{,name}?</b>');
   hideChamberProgress();show('screen-ack');setProgress(100);
 }

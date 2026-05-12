@@ -107,7 +107,16 @@ const SOUNDBITES_CANON = [
   { text: "The covenant is not broken when the answer is small; it is broken when the question is skipped.", attributed: true },
   { text: "When you stop arguing with your own history, the body stops spending energy on both sides of the argument.", attributed: true },
   { text: "The dying do not regret the risks they took. They regret the ones they did not.", attributed: true },
-  { text: "Contempt is not anger. Anger still believes the relationship matters enough to fight for. Contempt has stopped believing that.", attributed: true }
+  { text: "Contempt is not anger. Anger still believes the relationship matters enough to fight for. Contempt has stopped believing that.", attributed: true },
+
+  // FINISHER identity claims — the cohort chant + the year-on-year frame.
+  // These are the celebration register, used sparingly. The synthesis can
+  // anchor them when a participant has just completed an assessment or
+  // returned across a year boundary; they are out of register for a
+  // first-time low-engagement reading.
+  { text: "You are a FINISHER.", attributed: true },
+  { text: "Last year you were unfinishing. This year you are finishing.", attributed: true },
+  { text: "One less unfinished day.", attributed: true }
 ];
 
 function renderSoundbiteCanon() {
