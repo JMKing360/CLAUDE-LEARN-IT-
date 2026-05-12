@@ -1,5 +1,5 @@
 Contact: mailto:mail@mogire.com
 Expires: 2027-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://hom.mogire.com/.well-known/security.txt
-Policy: https://hom.mogire.com/security
+Canonical: https://kooraassess.houseofmastery.co/.well-known/security.txt
+Policy: https://kooraassess.houseofmastery.co/security

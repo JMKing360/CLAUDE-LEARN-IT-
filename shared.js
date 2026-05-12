@@ -109,7 +109,7 @@ if(typeof window!=='undefined'){
 }
 
 // --- Cross-subdomain attribution stitcher + outbound CTA tracker ---
-// hom.mogire.com and the *.houseofmastery.co mirror subdomains live on
+// kooraassess.houseofmastery.co and the *.houseofmastery.co mirror subdomains live on
 // different eTLD+1 zones, so _fbp/_fbc cookies don't share. On outbound
 // clicks to those mirrors, we read the local _fbp/_fbc cookies and append
 // them as URL params so the destination can re-seed Meta Advanced Matching.
@@ -163,7 +163,7 @@ function homInstallOutboundStitcher(){
     // On inbound: if URL carries _fbp/_fbc, persist them as cookies so the
     // destination's Pixel sees the originating identity. Cookies are scoped
     // to the destination's host + 90d (Meta default). This runs on every
-    // page load on hom.mogire.com / mirrors — no-op when params absent.
+    // page load on kooraassess.houseofmastery.co / mirrors — no-op when params absent.
     try{
       var u=new URL(location.href);
       var inFbp=u.searchParams.get('_fbp');

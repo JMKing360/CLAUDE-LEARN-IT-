@@ -4,11 +4,11 @@
 **Branch to ship:** `claude/build-mature-assessment-k6AT9` → merge to `main`
 **Custodian:** Dr. Job Mogire (`mail@mogire.com`)
 **Cohort archive:** `mogiremd@gmail.com`
-**Public site:** `hom.mogire.com`
+**Public site:** `kooraassess.houseofmastery.co`
 **Production URLs (target):**
-- The First Hour → `https://hom.mogire.com/first-hour`
-- KOORA Assess → `https://hom.mogire.com/koora`
-- Privacy → `https://hom.mogire.com/privacy`
+- The First Hour → `https://firsthour.houseofmastery.co/first-hour`
+- KOORA Assess → `https://kooraassess.houseofmastery.co/`
+- Privacy → `https://kooraassess.houseofmastery.co/privacy`
 
 This runbook is the single, end-to-end instruction set for taking the two House of Mastery diagnostic instruments from this branch to a live, observable, secure, investor-grade deployment. It is written so that Manus (or any qualified operator) can execute it without further context. Phases 0 → 3 are mandatory before announcing the public URLs. Phases 4 → 12 can run in parallel after Phase 3.
 
@@ -60,10 +60,10 @@ This runbook is the single, end-to-end instruction set for taking the two House 
    - Output directory: leave empty (root)
    - Click Deploy.
 3. **Add custom domains**
-   - Project → Custom domains → ensure `hom.mogire.com` is attached to the HOM Pages project
-   - Serve KOORA at the clean path `https://hom.mogire.com/koora`
-   - Use the existing `hom.mogire.com` Cloudflare Pages custom domain
-   - DNS should point `hom.mogire.com` to the HOM Cloudflare Pages project; the assessment tools are served by clean-path rewrites.
+   - Project → Custom domains → ensure `kooraassess.houseofmastery.co` is attached to the HOM Pages project
+   - Serve KOORA at the clean path `https://kooraassess.houseofmastery.co/`
+   - Use the existing `kooraassess.houseofmastery.co` Cloudflare Pages custom domain
+   - DNS should point `kooraassess.houseofmastery.co` to the HOM Cloudflare Pages project; the assessment tools are served by clean-path rewrites.
 4. **Routing is declared in `_redirects`** at the project root:
    - `/first-hour/` serves `first-hour/index.html` via directory routing (no rewrite needed)
    - `/koora` and `/koora/` → `301` to `/` (canonicalisation; KOORA is the homepage at `/`)
@@ -72,10 +72,10 @@ This runbook is the single, end-to-end instruction set for taking the two House 
 6. **Walk both instruments end to end on a real phone** (iOS Safari + Android Chrome) before announcing.
 
 ### Verification checklist
-- [ ] `https://hom.mogire.com/first-hour` loads and shows the welcome hero
-- [ ] `https://hom.mogire.com/koora` loads and shows the gating question
-- [ ] `https://hom.mogire.com/privacy` loads the privacy policy
-- [ ] `https://hom.mogire.com/.well-known/security.txt` returns 200
+- [ ] `https://firsthour.houseofmastery.co/first-hour` loads and shows the welcome hero
+- [ ] `https://kooraassess.houseofmastery.co/` loads and shows the gating question
+- [ ] `https://kooraassess.houseofmastery.co/privacy` loads the privacy policy
+- [ ] `https://kooraassess.houseofmastery.co/.well-known/security.txt` returns 200
 - [ ] `securityheaders.com` shows A or A+ for both subdomains
 - [ ] Service worker registers (DevTools → Application → Service Workers)
 - [ ] Manifest is recognised (DevTools → Application → Manifest)
@@ -143,10 +143,10 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
    - `arc_stage_internal`, `arc_alignment_internal` (facilitator-only fields, render in email but not in UI)
 
 5. **Send a test result through each instrument**
-   - Open `hom.mogire.com/first-hour`, complete a test pass with your own email, click Send Results.
+   - Open `firsthour.houseofmastery.co/first-hour`, complete a test pass with your own email, click Send Results.
    - Verify the participant inbox receives the email within 60 seconds.
    - Verify `mogiremd@gmail.com` receives the silent BCC.
-   - Repeat for `hom.mogire.com/koora`.
+   - Repeat for `kooraassess.houseofmastery.co`.
 6. **Set up Gmail filters on `mogiremd@gmail.com`**
    - Filter `from:(automation@yourGHLsendingdomain) subject:("Your First Hour result")` → label `cohort/first-hour` → archive
    - Filter `from:(automation@yourGHLsendingdomain) subject:("Your KOORA result")` → label `cohort/koora` → archive
@@ -176,7 +176,7 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
 4. **Link the privacy policy** from any other surface that handles personal data:
    - The welcome consent line of each instrument (already linked)
    - The footer of each instrument (already linked)
-   - The public hom.mogire.com site
+   - The public kooraassess.houseofmastery.co site
    - Any sales pages, sign-up forms, or partner placements
 
 ---
@@ -193,14 +193,14 @@ We migrated email delivery from EmailJS to GoHighLevel. The browser no longer lo
 1. **Create a Sentry project** at sentry.io
    - Platform: Browser JavaScript
    - Copy the DSN.
-2. **Create a Plausible site** at plausible.io for `hom.mogire.com`
+2. **Create a Plausible site** at plausible.io for `kooraassess.houseofmastery.co`
 3. **Set `window.HOM_CONFIG` before observability.js loads**, in the `<head>` of `first-hour/index.html` and `index.html`. Combine with the GHL config from Phase 1:
    ```html
    <script>
      window.HOM_CONFIG = Object.assign(window.HOM_CONFIG || {}, {
        ghlWebhookUrl: 'https://services.leadconnectorhq.com/hooks/REPLACE/REPLACE',
        sentryDsn: 'YOUR_SENTRY_DSN_HERE',
-       plausibleDomain: 'hom.mogire.com',
+       plausibleDomain: 'kooraassess.houseofmastery.co',
        release: 'hom@3.1.0',
        environment: 'production'
      });
@@ -344,7 +344,7 @@ The webhook URL is *not* a secret — it's an unauthenticated endpoint by design
 2. **Generate proper PNG icons** at 192×192 and 512×512 from the SVG mark; place in `/icons/`.
 3. **Document the iframe embed** for partner integrators:
    ```html
-   <iframe src="https://hom.mogire.com/embed.html" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
+   <iframe src="https://firsthour.houseofmastery.co/embed.html" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
    ```
 4. **The `/embed.html` route** has CORP `cross-origin` set in `_headers` so partner framing works (CSP `frame-ancestors` also allows `https://houseofmastery.co`).
 5. **Optional**: server-renderable build via Vite SSR for SEO.
@@ -370,7 +370,7 @@ Phase 2 wires Sentry + Plausible. Layer on top:
    - Pixel ID: `748998691952331`.
    - In **Settings → Automatic Advanced Matching**: confirm it is **OFF**. The Pixel is initialised with `autoConfig: false` for defense-in-depth, but the dashboard switch is the authoritative control.
    - In **Custom Conversions**: define `assessment_completed` (CompleteRegistration) as the primary conversion event for ad campaigns; tier `email_gate_confirmed` (Lead) as upper-funnel.
-   - **Verify** noscript fallback is suppressed for EEA/GPC visitors via `curl -H 'CF-IPCountry: DE' https://hom.mogire.com/` and confirm the response has no `<noscript data-pixel>` block.
+   - **Verify** noscript fallback is suppressed for EEA/GPC visitors via `curl -H 'CF-IPCountry: DE' https://kooraassess.houseofmastery.co/` and confirm the response has no `<noscript data-pixel>` block.
 4. **Conversion-funnel dashboard** reviewed weekly for the first 90 days.
 
 ---
@@ -430,11 +430,11 @@ Phase 2 wires Sentry + Plausible. Layer on top:
 | Security reports | `mail@mogire.com` with subject "Security report" |
 | Cohort archive | `mogiremd@gmail.com` (silent BCC, set inside the GHL automation) |
 | Email infrastructure | GoHighLevel inbound webhook → Send Email action |
-| Public site | `hom.mogire.com` |
-| First Hour | `hom.mogire.com/first-hour` |
-| KOORA | `hom.mogire.com/koora` |
-| Privacy | `hom.mogire.com/privacy` |
-| Security disclosure | `hom.mogire.com/.well-known/security.txt` |
+| Public site | `kooraassess.houseofmastery.co` |
+| First Hour | `firsthour.houseofmastery.co/first-hour` |
+| KOORA | `kooraassess.houseofmastery.co` |
+| Privacy | `kooraassess.houseofmastery.co/privacy` |
+| Security disclosure | `kooraassess.houseofmastery.co/.well-known/security.txt` |
 
 ---
 
@@ -444,9 +444,9 @@ Run this after Phase 0 + 1 + 3 are complete, before announcing publicly.
 
 | Check | Pass criterion | How to verify |
 |---|---|---|
-| First Hour loads | 200 OK, hero visible | Open `hom.mogire.com/first-hour` in incognito |
-| KOORA loads | 200 OK, gating question visible | Open `hom.mogire.com/koora` in incognito |
-| Privacy loads | 200 OK, policy renders | Open `hom.mogire.com/privacy` |
+| First Hour loads | 200 OK, hero visible | Open `firsthour.houseofmastery.co/first-hour` in incognito |
+| KOORA loads | 200 OK, gating question visible | Open `kooraassess.houseofmastery.co` in incognito |
+| Privacy loads | 200 OK, policy renders | Open `kooraassess.houseofmastery.co/privacy` |
 | Security headers | A or A+ | `securityheaders.com` for both subdomains |
 | HTTPS only | No mixed content | DevTools → Console |
 | OG preview | Image + title + description | Paste link into WhatsApp / iMessage / Twitter |
@@ -472,7 +472,7 @@ Single `<script>` block to drop into the `<head>` of both `first-hour/index.html
   window.HOM_CONFIG = Object.assign(window.HOM_CONFIG || {}, {
     ghlWebhookUrl: 'https://services.leadconnectorhq.com/hooks/LOCATION_ID/WEBHOOK_ID',
     sentryDsn: 'https://...@o....ingest.sentry.io/...',
-    plausibleDomain: 'hom.mogire.com',
+    plausibleDomain: 'kooraassess.houseofmastery.co',
     release: 'hom@3.1.0',
     environment: 'production'
   });

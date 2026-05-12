@@ -13,7 +13,7 @@ const REPO = '/home/user/CLAUDE-LEARN-IT-';
 // doesn't fail to load Pixel/Sentry/Plausible/jsPDF in the sandbox.
 class LocalLoader extends ResourceLoader {
   fetch(url, opts) {
-    // Map hom.mogire.com or any test hostname back to the local repo so
+    // Map kooraassess.houseofmastery.co or any test hostname back to the local repo so
     // /observability.js etc. resolve from disk.
     try {
       const u = new URL(url);
@@ -42,7 +42,7 @@ async function testApp(label, htmlRelPath, prodHostname) {
   const beforeScripts = `
     window.HOM_CONFIG = {
       ghlWebhookUrl: 'https://services.leadconnectorhq.com/hooks/test/abc',
-      plausibleDomain: 'hom.mogire.com',
+      plausibleDomain: 'kooraassess.houseofmastery.co',
       sentryDsn: 'https://abc@xyz.ingest.sentry.io/123',
       release: 'hom@test',
       environment: 'test'
@@ -69,7 +69,7 @@ async function testApp(label, htmlRelPath, prodHostname) {
       window.fbq.queue = [];
       window.HOM_CONFIG = {
         ghlWebhookUrl: 'https://services.leadconnectorhq.com/hooks/test/abc',
-        plausibleDomain: 'hom.mogire.com',
+        plausibleDomain: 'kooraassess.houseofmastery.co',
         sentryDsn: 'https://abc@xyz.ingest.sentry.io/123',
         release: 'hom@test',
         environment: 'test'
@@ -131,9 +131,9 @@ async function testApp(label, htmlRelPath, prodHostname) {
 
 (async () => {
   // KOORA on prod hostname (banner must NOT show)
-  await testApp('KOORA cold-load (hom.mogire.com)', 'index.html', 'hom.mogire.com');
-  // First Hour on prod hostname
-  await testApp('First Hour cold-load (hom.mogire.com)', 'first-hour/index.html', 'hom.mogire.com');
+  await testApp('KOORA cold-load (kooraassess.houseofmastery.co)', 'index.html', 'kooraassess.houseofmastery.co');
+  // First Hour on its own prod hostname
+  await testApp('First Hour cold-load (firsthour.houseofmastery.co)', 'first-hour/index.html', 'firsthour.houseofmastery.co');
   // First Hour on preview hostname (banner SHOULD show if HOM_CONFIG missing — but we provided it, so banner suppressed)
   await testApp('First Hour preview-host with valid config', 'first-hour/index.html', 'preview-abc.pages.dev');
 })();

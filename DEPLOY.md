@@ -40,8 +40,8 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
    - Output directory: `dist/` (or empty if serving the repository root)
    - Deploy
 3. **Add custom domains**:
-   - Project → Custom domains → ensure `hom.mogire.com` is attached to the HOM Pages project
-   - DNS will be auto-created if `hom.mogire.com` is on Cloudflare
+   - Project → Custom domains → ensure `kooraassess.houseofmastery.co` is attached to the HOM Pages project
+   - DNS will be auto-created if `kooraassess.houseofmastery.co` is on Cloudflare
 4. **Routing is declared in `_redirects`** at the project root. The current contract:
    - `/` serves `index.html` (KOORA, the homepage)
    - `/first-hour/` serves `first-hour/index.html` via directory routing — no rewrite needed
@@ -51,10 +51,10 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 6. **Walk both instruments end to end on a real phone** before announcing.
 
 ### Verification checklist
-- [ ] `https://hom.mogire.com/` loads KOORA
-- [ ] `https://hom.mogire.com/first-hour/` loads The First Hour
-- [ ] `https://hom.mogire.com/koora` 301-redirects to `https://hom.mogire.com/`
-- [ ] `https://hom.mogire.com/privacy` loads the privacy policy
+- [ ] `https://kooraassess.houseofmastery.co/` loads KOORA
+- [ ] `https://firsthour.houseofmastery.co/first-hour/` loads The First Hour
+- [ ] `https://kooraassess.houseofmastery.co/` 301-redirects to `https://kooraassess.houseofmastery.co/`
+- [ ] `https://kooraassess.houseofmastery.co/privacy` loads the privacy policy
 - [ ] `securityheaders.com` shows A or A+ for both subdomains
 - [ ] Service worker registers (DevTools → Application → Service Workers)
 - [ ] Manifest is recognised (DevTools → Application → Manifest)
@@ -103,11 +103,11 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 1. **Create a Sentry project** at sentry.io
    - Platform: Browser JavaScript
    - Get the DSN
-2. **Create a Plausible site** at plausible.io for `hom.mogire.com`
+2. **Create a Plausible site** at plausible.io for `kooraassess.houseofmastery.co`
 3. **Set window.HOM_CONFIG before observability.js loads**, in each instrument:
    - Add a small `<script>` block in the `<head>` of `first-hour/index.html`, `index.html`:
      ```html
-     <script>window.HOM_CONFIG = { sentryDsn: 'YOUR_DSN_HERE', plausibleDomain: 'hom.mogire.com', release: 'hom@3.0.0', environment: 'production' };</script>
+     <script>window.HOM_CONFIG = { sentryDsn: 'YOUR_DSN_HERE', plausibleDomain: 'kooraassess.houseofmastery.co', release: 'hom@3.0.0', environment: 'production' };</script>
      <script src="/observability.js" defer></script>
      ```
 4. Push, redeploy, verify events in Sentry and Plausible
@@ -214,7 +214,7 @@ The order matters. Phases 0 → 3 must complete before announcing the public URL
 2. **Generate proper PNG icons** at 192×192 and 512×512 from the SVG mark; place in `/icons/`
 3. **Document the iframe embed** for partner integrators:
    ```html
-   <iframe src="https://hom.mogire.com/embed.html" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
+   <iframe src="https://firsthour.houseofmastery.co/embed.html" width="100%" height="900" allow="clipboard-write" style="border:0"></iframe>
    ```
 4. **The `/embed.html` route** has CORP `cross-origin` set in `_headers` so partner framing works. The CSP `frame-ancestors` allow-list also covers `https://houseofmastery.co`.
 5. **Optional**: server-renderable build via Vite SSR for SEO
@@ -291,8 +291,8 @@ Already covered above in **Phase 2**. Once Sentry and Plausible are live, layer:
 | Privacy questions | `mail@mogire.com` |
 | Security reports | `mail@mogire.com` with subject "Security report" |
 | Cohort archive | `mogiremd@gmail.com` (silent CC) |
-| Public site | `hom.mogire.com` |
-| First Hour | `hom.mogire.com/first-hour/` |
-| KOORA | `hom.mogire.com/` (`/koora` 301 → `/`) |
-| Privacy | `hom.mogire.com/privacy` |
-| Security disclosure | `hom.mogire.com/.well-known/security.txt` |
+| Public site | `kooraassess.houseofmastery.co` |
+| First Hour | `firsthour.houseofmastery.co/first-hour/` |
+| KOORA | `kooraassess.houseofmastery.co/` (`/koora` 301 → `/`) |
+| Privacy | `kooraassess.houseofmastery.co/privacy` |
+| Security disclosure | `kooraassess.houseofmastery.co/.well-known/security.txt` |

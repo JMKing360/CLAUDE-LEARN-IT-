@@ -25,8 +25,8 @@ async function test(label, hostname, withConfig) {
   console.log(`${label.padEnd(60)} banner=${banner} errors=${events.errors.length}`);
   dom.window.close();
 }
-await test('prod (hom.mogire.com) WITH config → banner suppressed', 'hom.mogire.com', true);
-await test('prod (hom.mogire.com) WITHOUT config → banner suppressed', 'hom.mogire.com', false);
+await test('prod (kooraassess.houseofmastery.co) WITH config → banner suppressed', 'kooraassess.houseofmastery.co', true);
+await test('prod (kooraassess.houseofmastery.co) WITHOUT config → banner suppressed', 'kooraassess.houseofmastery.co', false);
 await test('preview (abc.pages.dev) WITH config → banner suppressed', 'abc.pages.dev', true);
 await test('preview (abc.pages.dev) WITHOUT config → banner SHOULD render', 'abc.pages.dev', false);
 await test('localhost WITHOUT config → banner SHOULD render', 'localhost', false);

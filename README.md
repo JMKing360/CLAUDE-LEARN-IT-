@@ -104,7 +104,7 @@ Cloudflare Pages production setup:
 For retake email links, use URL parameters:
 
 ```
-https://hom.mogire.com/first-hour/?name=Job&email=jobsm2005@gmail.com
+https://firsthour.houseofmastery.co/first-hour/?name=Job&email=jobsm2005@gmail.com
 ```
 
 The page reads URL params and prefills the form.
@@ -145,7 +145,7 @@ node --check /tmp/check.js
 **Architect**: Dr. Job Mogire, MD, FACP, FACC.
 **Entity**: House of Mastery.
 **Public contact**: [mail@mogire.com](mailto:mail@mogire.com)
-**Site**: [hom.mogire.com](https://hom.mogire.com)
+**Site**: [kooraassess.houseofmastery.co](https://kooraassess.houseofmastery.co)
 
 ---
 

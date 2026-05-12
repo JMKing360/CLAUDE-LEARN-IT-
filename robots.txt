@@ -1,5 +1,5 @@
 # House of Mastery — robots.txt
-# Site: https://hom.mogire.com/
+# Site: https://kooraassess.houseofmastery.co/
 # Architect: Dr. Job Mogire, MD, FACC, FACP — Cardiologist, Internist,
 #            Mindset & Emotional Intelligence Coach, Public Speaker (Kenya).
 
@@ -115,4 +115,4 @@ User-agent: Kagibot
 Allow: /
 
 # Sitemap
-Sitemap: https://hom.mogire.com/sitemap.xml
+Sitemap: https://kooraassess.houseofmastery.co/sitemap.xml

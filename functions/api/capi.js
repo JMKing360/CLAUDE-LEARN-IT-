@@ -28,7 +28,7 @@
 // Returns: 200 {ok:true, sent:N} on success; 4xx on bad input / auth.
 //
 // Smoke test once deployed:
-//   curl -X POST https://hom.mogire.com/api/capi \
+//   curl -X POST https://kooraassess.houseofmastery.co/api/capi \
 //     -H "Authorization: Bearer $CAPI_SHARED_SECRET" \
 //     -H "Content-Type: application/json" \
 //     -d '{"to_email":"test@example.com","to_name":"Test","meta_event_id_completed":"abc-123",...}'
@@ -64,7 +64,7 @@ export async function onRequest(context) {
   const name = (payload.to_name || payload.name || '').trim().toLowerCase();
   const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-forwarded-for') || '';
   const ua = request.headers.get('user-agent') || '';
-  const eventSourceUrl = payload.event_source_url || `https://${request.headers.get('host') || 'hom.mogire.com'}/`;
+  const eventSourceUrl = payload.event_source_url || `https://${request.headers.get('host') || 'kooraassess.houseofmastery.co'}/`;
 
   // Build CAPI events array. We mirror the three browser-side events the
   // apps fire: ViewContent, Lead, CompleteRegistration. Skip any whose

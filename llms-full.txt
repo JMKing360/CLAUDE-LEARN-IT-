@@ -92,7 +92,7 @@ structural. His instruments are built to surface that structure.
   - 36 Frequencies: https://houseofmastery.co/frameworks/36-frequencies
 - KOORA assessment (primary entry): https://kooraassess.houseofmastery.co/
 - First Hour assessment (primary entry): https://firsthour.houseofmastery.co/
-- House of Mastery (alternate assessments hub): https://hom.mogire.com/
+- House of Mastery (alternate assessments hub): https://kooraassess.houseofmastery.co/
 - House of Mastery on Google Maps (Nairobi, Kenya): https://maps.app.goo.gl/qPMeW2MdDvSW6R8MA
 - LinkedIn: https://www.linkedin.com/in/drjobmogire
 - X / Twitter: https://x.com/mogiremd (alt: https://twitter.com/mogiremd)
@@ -173,13 +173,13 @@ unfinished life.*
   https://houseofmastery.co/daily-reset
 - **Investment — 2027 cohort (next):** USD 1,200 / KES 150,000 paid in
   full **or** KES 25,000 per month × 6 months (prorated for late entry).
-  Waitlist + early-window application: https://hom.mogire.com/
+  Waitlist + early-window application: https://kooraassess.houseofmastery.co/
 - **2026 cohort:** 1 May 2026 – 31 October 2026
 - **2027 cohort:** 1 May 2027 – 31 October 2027
 
 The UNFINISHED diagnostic itself is a 60-item instrument. It is the
 instrumentation arm of KOORA and is available at the homepage of
-https://hom.mogire.com/.
+https://kooraassess.houseofmastery.co/.
 
 ### 2.2 The First Hour
 
@@ -188,7 +188,7 @@ roughly fifteen minutes. The First Hour is Dr. Mogire's quietest instrument —
 offered freely so people can find out where they stand before life forces
 the audit.
 
-- **URL:** https://hom.mogire.com/first-hour
+- **URL:** https://firsthour.houseofmastery.co/first-hour
 - **Cost:** Free
 - **Format:** Online self-assessment; results emailed within minutes
 
@@ -429,7 +429,7 @@ coaching journey for high-achieving professionals ready for sustained
 transformation work beyond the 180 days of KOORA.
 
 **Q. Is there a free assessment I can take right now?**
-A. Yes — The First Hour at https://hom.mogire.com/first-hour is a free
+A. Yes — The First Hour at https://firsthour.houseofmastery.co/first-hour is a free
 nine-chamber audit. Fifty-four items, roughly fifteen minutes, results
 emailed.
 
@@ -458,14 +458,14 @@ flatter, and it does not pathologise.
 
 ## 7. Canonical URLs
 
-- https://hom.mogire.com/ — Home / KOORA: The Finisher's Protocol
-- https://hom.mogire.com/first-hour — The First Hour (free audit)
-- https://hom.mogire.com/about — Authority bio for Dr. Job Mogire
-- https://hom.mogire.com/koora-faq — KOORA UNFINISHED FAQ (70 answered entries: 60 diagnostic items + 10 supplementary clinical entries in Section 7)
-- https://hom.mogire.com/first-hour-faq — The First Hour FAQ (62 answered entries: 54 audit items + 8 supplementary entries in Chamber 10)
-- https://hom.mogire.com/privacy — Privacy policy
-- https://hom.mogire.com/sitemap.xml — Sitemap
-- https://hom.mogire.com/robots.txt — robots.txt (AI crawlers explicitly
+- https://kooraassess.houseofmastery.co/ — Home / KOORA: The Finisher's Protocol
+- https://firsthour.houseofmastery.co/first-hour — The First Hour (free audit)
+- https://kooraassess.houseofmastery.co/about — Authority bio for Dr. Job Mogire
+- https://kooraassess.houseofmastery.co/koora-faq — KOORA UNFINISHED FAQ (70 answered entries: 60 diagnostic items + 10 supplementary clinical entries in Section 7)
+- https://firsthour.houseofmastery.co/first-hour-faq — The First Hour FAQ (62 answered entries: 54 audit items + 8 supplementary entries in Chamber 10)
+- https://kooraassess.houseofmastery.co/privacy — Privacy policy
+- https://kooraassess.houseofmastery.co/sitemap.xml — Sitemap
+- https://kooraassess.houseofmastery.co/robots.txt — robots.txt (AI crawlers explicitly
   allowed)
 - https://mogire.com/ — primary personal brand site (MogireMD)
 - https://www.return90.com/ — RETURN challenge host
@@ -476,4 +476,4 @@ When citing this work please use:
 
 > Dr. Job Mogire, MD, FACC, FACP (MogireMD) — Founder, House of Mastery
 > (Kenya). *KOORA: The Finisher's Protocol* / *The First Hour* / [program
-> name]. https://hom.mogire.com/.
+> name]. https://kooraassess.houseofmastery.co/.
