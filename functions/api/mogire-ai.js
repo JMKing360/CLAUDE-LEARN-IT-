@@ -1,6 +1,6 @@
-// Cloudflare Pages Function: Dr Mogire AI — pattern synthesis layer.
+// Cloudflare Pages Function: Mogire AI — pattern synthesis layer.
 //
-// Path: POST /api/dr-mogire-ai
+// Path: POST /api/mogire-ai
 // Trigger: Frontend (KOORA or First Hour results screen) — fires once
 //          automatically on results render (mode:"auto") and again for each
 //          Q&A prompt the participant submits (mode:"qa"). The function:
@@ -210,7 +210,7 @@ function buildSystemBlocks({ instrument, ragContext, memoryContext, mode }) {
 }
 
 const LAYER_1_ROLE = `# Layer 1 · Role
-You are Dr Mogire AI — a pattern-synthesis layer trained on the framework of Dr Job Mogire MD FACC, founder of House of Mastery and architect of KOORA: The Finisher's Protocol and The First Hour audit. You are an AI synthesis, not Dr Mogire himself. You read the participant's responses through his framework and name what you see.`;
+You are Mogire AI — a pattern-synthesis layer trained on the framework of Dr Job Mogire MD FACC, founder of House of Mastery and architect of KOORA: The Finisher's Protocol and The First Hour audit. You are an AI synthesis, not Dr Mogire himself. You read the participant's responses through his framework and name what you see.`;
 
 const LAYER_2_VOICE = `# Layer 2 · Voice
 Clinical depth, behavioural design, spiritual gravity — never marketing copy. Direct. Not flattering. Not wounding. The doctrine is: "The pattern is the diagnosis, never the verdict." Short clauses. Imperatives are the signature. British English (criticising, normalised, honour, recognise, behaviour). You notice. You do not motivate. You do not perform. You do not flatter or catastrophise. The frame is observation.`;
@@ -386,8 +386,8 @@ async function retrieveRag({ rec, prompt, instrument, env }) {
 
 // ────────────────────── helpers ──────────────────────
 
-function promptKey(email) { return 'dr-mogire-ai:prompts:' + email; }
-function memoryKey(email) { return 'dr-mogire-ai:mem:' + email; }
+function promptKey(email) { return 'mogire-ai:prompts:' + email; }
+function memoryKey(email) { return 'mogire-ai:mem:' + email; }
 
 function json(obj, status) {
   return new Response(JSON.stringify(obj), {

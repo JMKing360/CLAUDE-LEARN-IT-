@@ -2,7 +2,7 @@
 // Provides offline resilience for the assessment instruments.
 // Strategy: cache-first for the HTML shell, network-first for everything else.
 
-const VERSION = 'hom-v3.7.72';
+const VERSION = 'hom-v3.7.73';
 // Static assets only. HTML routes are NOT precached because the edge
 // middleware strips the Pixel for EEA / GPC visitors at request time —
 // precaching the Pixel-bearing HTML at install would re-serve it later

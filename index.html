@@ -924,7 +924,7 @@ body.footer-hidden footer{display:none}
   .cov-load-gauge__capsule[data-load="4"]{animation:none}
   .cov-load-gauge[data-load="6"]{animation:none}
 }
-/* Dr Mogire AI · pattern synthesis panel on the results screen.
+/* Mogire AI · pattern synthesis panel on the results screen.
    Lives inside #screen-results, after the existing result blocks. Uses
    the gold-soft + navy border treatment so it reads as Dr Mogire's voice
    (not as a generic chat widget). Dark mode flips surface tokens. */
@@ -1677,7 +1677,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
   <!-- DR MOGIRE AI · Pattern synthesis -->
   <aside class="hom-ai" id="homAiPanel" aria-labelledby="homAiH">
     <div class="hom-ai__head">
-      <span class="hom-ai__eyebrow">Dr Mogire AI · Pattern synthesis</span>
+      <span class="hom-ai__eyebrow">Mogire AI · Pattern synthesis</span>
       <h3 class="hom-ai__h" id="homAiH">What the AI reads in your pattern</h3>
     </div>
     <div class="hom-ai__synthesis" id="homAiSynthesis" aria-live="polite" aria-busy="true">
@@ -1685,18 +1685,18 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     </div>
     <div class="hom-ai__qa">
       <div class="hom-ai__qa-head">
-        <span>Have a question? Ask Dr Mogire AI.</span>
+        <span>Have a question? Ask Mogire AI.</span>
         <span class="hom-ai__counter" id="homAiCounter">7 of 7 free questions left</span>
       </div>
       <form class="hom-ai__form" id="homAiForm" onsubmit="return homAiSubmit(event)">
-        <label class="sr-only" for="homAiInput">Your question for Dr Mogire AI</label>
+        <label class="sr-only" for="homAiInput">Your question for Mogire AI</label>
         <textarea class="hom-ai__input" id="homAiInput" rows="2" maxlength="600" placeholder="e.g. Which covenant should I sit with first, and why?" aria-describedby="homAiCounter"></textarea>
         <button class="btn-primary hom-ai__send" id="homAiSend" type="submit">Ask</button>
       </form>
       <p class="hom-ai__err" id="homAiErr" role="alert" style="display:none"></p>
-      <ol class="hom-ai__history" id="homAiHistory" aria-label="Conversation with Dr Mogire AI"></ol>
+      <ol class="hom-ai__history" id="homAiHistory" aria-label="Conversation with Mogire AI"></ol>
     </div>
-    <p class="hom-ai__disclaimer">Dr Mogire AI reads the pattern in your responses through Dr Job Mogire's framework. It is an AI synthesis &mdash; not Dr Mogire, and not a clinical diagnosis. Your responses are processed once per question and are not used to train models. See the <a href="/privacy#ai" target="_blank" rel="noopener">privacy policy</a>.</p>
+    <p class="hom-ai__disclaimer">Mogire AI reads the pattern in your responses through Dr Job Mogire's framework. It is an AI synthesis &mdash; not Dr Mogire, and not a clinical diagnosis. Your responses are processed once per question and are not used to train models. See the <a href="/privacy#ai" target="_blank" rel="noopener">privacy policy</a>.</p>
   </aside>
 
 </section>
@@ -3307,7 +3307,7 @@ function buildRecord(){
 function buildResults(rec){
   lastResults=rec;
   window.lastResults=rec;
-  // Fire Dr Mogire AI auto-synthesis once per completion (free, doesn't
+  // Fire Mogire AI auto-synthesis once per completion (free, doesn't
   // count against the 7-prompt cap). Best-effort — failure does not block
   // the rest of the results render.
   try{if(typeof window.homAIAutoSynthesise==='function')window.homAIAutoSynthesise('koora',rec)}catch(_e){}

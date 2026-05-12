@@ -185,8 +185,8 @@ if(typeof window!=='undefined'){
   }
 }
 
-// --- Dr Mogire AI · pattern synthesis ---
-// Calls /api/dr-mogire-ai with the participant's just-finished record. Two
+// --- Mogire AI · pattern synthesis ---
+// Calls /api/mogire-ai with the participant's just-finished record. Two
 // modes: 'auto' fires once per completion to produce the auto-synthesis;
 // 'qa' fires per question the participant submits. The server tracks the
 // 7-free-prompt cap server-side via KV when bound; we also keep a soft
@@ -218,7 +218,7 @@ function homAiUpdateCounter(used){
 }
 
 function homAiCall(payload){
-  return fetch('/api/dr-mogire-ai',{
+  return fetch('/api/mogire-ai',{
     method:'POST',
     headers:{'content-type':'application/json'},
     body:JSON.stringify(payload)
@@ -277,7 +277,7 @@ window.homAiSubmit=function(e){
   var qBody=document.createElement('p');qBody.textContent=q;
   liQ.appendChild(qLabel);liQ.appendChild(qBody);historyEl.appendChild(liQ);
   var liA=document.createElement('li');liA.className='hom-ai__turn hom-ai__turn--a';
-  var aLabel=document.createElement('span');aLabel.className='hom-ai__role';aLabel.textContent='Dr Mogire AI';
+  var aLabel=document.createElement('span');aLabel.className='hom-ai__role';aLabel.textContent='Mogire AI';
   var aBody=document.createElement('p');aBody.textContent='Reading…';
   liA.appendChild(aLabel);liA.appendChild(aBody);historyEl.appendChild(liA);
   homAiCall({
@@ -295,7 +295,7 @@ window.homAiSubmit=function(e){
       return;
     }
     if(!r.body||!r.body.ok){
-      aBody.textContent='Could not reach Dr Mogire AI right now. Try again in a moment.';
+      aBody.textContent='Could not reach Mogire AI right now. Try again in a moment.';
       if(err){err.textContent=(r.body&&r.body.error)||'Service error';err.style.display='block'}
       return;
     }
