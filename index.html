@@ -387,7 +387,7 @@ a:hover{color:var(--gold)}
 .skip-link:focus{left:18px;top:18px}
 #progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--gold);box-shadow:0 0 8px rgba(201,151,58,.45);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 /* Six-segment chamber progress */
-#chamber-progress{position:sticky;top:46px;left:0;right:0;display:none;justify-content:center;gap:6px;padding:8px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
+#chamber-progress{position:sticky;top:var(--nav-h,46px);left:0;right:0;display:none;justify-content:center;gap:6px;padding:8px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
 #chamber-progress.shown{display:flex}
 .cp-seg{flex:0 1 70px;max-width:70px;height:3px;border-radius:2px;background:var(--rule);position:relative;transition:background .3s ease}
 .cp-seg.done{background:var(--navy)}
@@ -554,6 +554,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .q-next:hover:not([disabled]){color:var(--navy)}
 .q-next[disabled]{opacity:.4;cursor:not-allowed;font-weight:600;color:var(--mid)}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
+.q-autoadvance{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);cursor:pointer;user-select:none;letter-spacing:.005em}
+.q-autoadvance input[type=checkbox]{width:14px;height:14px;accent-color:var(--gold);cursor:pointer;margin:0}
+.q-autoadvance:hover{color:var(--ink)}
 
 /* RESULTS */
 #screen-results{padding:48px 0 96px}
@@ -1406,6 +1409,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next &rarr;</button>
   </div>
   <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap. Then <b>Next</b> (or wait).</p>
+  <label class="q-autoadvance" id="qAutoadvance">
+    <input type="checkbox" id="qAutoadvanceToggle" checked> Auto-advance after each answer
+  </label>
 </section>
 
 <!-- ACKNOWLEDGMENT (between final question and results) -->
@@ -1832,7 +1838,7 @@ var QUESTIONS=[
     'When I think about my field, my body lights up at rivals before it lights up at the work.',
     'When I think about my field, I notice the tracking and return to my own work.',
     'When I think about my field, the people around me hear me talk about my work, not about a leaderboard.',
-    'When I think about my field, I am becoming the kind of person who tracks her own progress more than anyone else’s.',
+    'When I think about my field, I am becoming the kind of person who tracks their own progress more than anyone else’s.',
     'When I think about my field, I track my own progress more than anyone else’s.'
   ]},
   {n:14, sec:1,sn:'The four reflexes', dom:'Competing', text:[
@@ -1956,7 +1962,7 @@ var QUESTIONS=[
     'What I am doing lands in my body. My body does not lie about this.',
     'What I am doing matters more steadily than it used to.',
     'The people watching me read my work as meaningful, not only productive.',
-    'I am becoming the kind of person whose work matters, not just keeps her moving.',
+    'I am becoming the kind of person whose work matters, not just keeps them moving.',
     'What I do matters. I have proof.'
   ], rev:true},
   {n:29, sec:3,sn:'Fundamental needs', dom:'Meaning · substitute', text:[
@@ -2010,11 +2016,11 @@ var QUESTIONS=[
     'I declare what I want, to people who can ask how it is going. That is the work.'
   ], rev:true},
   {n:35, sec:4,sn:'Forces of necessity', dom:'Identity', text:[
-    'There is a version of me who could deliver on my highest desires. I am not her yet.',
-    'My body is rehearsing her gestures, even if quietly.',
-    'I am closer to her than I was.',
-    'The people closest to me are starting to meet her, not just hear about her.',
-    'I am becoming her, today.',
+    'There is a version of me who could deliver on my highest desires. I am not them yet.',
+    'My body is rehearsing their gestures, even if quietly.',
+    'I am closer to them than I was.',
+    'The people closest to me are starting to meet them, not just hear about them.',
+    'I am becoming them, today.',
     'She is who I am, today.'
   ], rev:true},
   {n:36, sec:4,sn:'Forces of necessity', dom:'Fidelity to Mind', text:[
@@ -2022,7 +2028,7 @@ var QUESTIONS=[
     'My body recognises my own thoughts even when my mind is replaying inherited ones.',
     'I am beginning to think my own thoughts, not the inherited ones.',
     'The people who hear me speak hear my own thinking, not a borrowed cadence.',
-    'I am becoming the kind of person whose thoughts are her own.',
+    'I am becoming the kind of person whose thoughts are their own.',
     'My thoughts are my own.'
   ], rev:true},
   {n:37, sec:4,sn:'Forces of necessity', dom:'Fidelity to Heart', text:[
@@ -2030,7 +2036,7 @@ var QUESTIONS=[
     'My body knows the actual feeling before the trained one takes over.',
     'I am beginning to feel what is actually present, not the version I was taught to show.',
     'The people I love meet what is actually present, not what I was trained to display.',
-    'I am becoming the kind of person whose feelings are her own.',
+    'I am becoming the kind of person whose feelings are their own.',
     'My feelings are my own.'
   ], rev:true},
   {n:38, sec:4,sn:'Forces of necessity', dom:'Fidelity to Will', text:[
@@ -2038,7 +2044,7 @@ var QUESTIONS=[
     'My body leans toward easier before my will catches up.',
     'I am beginning to make choices that are actually mine, even when they are harder.',
     'The people who depend on me see choices that are actually mine, not borrowed.',
-    'I am becoming the kind of person whose choices are her own.',
+    'I am becoming the kind of person whose choices are their own.',
     'My choices are my own.'
   ], rev:true},
   {n:39, sec:4,sn:'Forces of necessity', dom:'Fidelity to Hand', text:[
@@ -2046,7 +2052,7 @@ var QUESTIONS=[
     'My body remembers what I said, even when my actions have not caught up yet.',
     'The gap between what I say and what I do is closing.',
     'The people who heard me say it see me actually do it.',
-    'I am becoming the kind of person whose actions match her words.',
+    'I am becoming the kind of person whose actions match their words.',
     'My actions match what I say.'
   ], rev:true},
 
@@ -2056,7 +2062,7 @@ var QUESTIONS=[
     'My body knows the drift has begun before my mind notices.',
     'I am beginning to notice where my mind goes when it is not held.',
     'The people who depend on my attention feel it land where it belongs.',
-    'I am becoming the kind of person who knows where her mind goes, and brings it back.',
+    'I am becoming the kind of person who knows where their mind goes, and brings it back.',
     'I know where my mind goes when I am not holding it. I bring it back.'
   ], rev:true},
   {n:41, sec:5,sn:'Faculties of agency', dom:'Allegiance', text:[
@@ -2146,7 +2152,7 @@ var QUESTIONS=[
     'My body braces for the breaking before I begin.',
     'I am starting to believe my own word again, even if quietly.',
     'The people who hear me make a commitment can tell whether I mean it.',
-    'I am becoming the kind of person who believes her own word.',
+    'I am becoming the kind of person who believes their own word.',
     'When I make a commitment, I believe myself.'
   ]},
   {n:52, sec:6,sn:'Where you are now', dom:'Deferred action', text:[
@@ -2218,7 +2224,7 @@ var QUESTIONS=[
     'I am willing to let the new way become my default, even while the old way still pulls.',
     'My body has settled into the new way.',
     'The new way is the only way.',
-    'The people who knew the old me have stopped expecting her to come back.',
+    'The people who knew the old me have stopped expecting them to come back.',
     'I am becoming the kind of person who is at home in the new way.',
     'I am at home. The work continues, but the war is over.'
   ], arc:'newnormal'}
@@ -2355,7 +2361,7 @@ var COVENANT_ENTRY={
      h:'Before you answer this round, five things about the person you are becoming.',
      sub:'Notice. The future is already arriving.',
      items:[
-       'There is a person I keep promising I will become, and I keep finding ways to delay her arrival.',
+       'There is a person I keep promising I will become, and I keep finding ways to delay their arrival.',
        'There is a version of me five years from now I am betraying with how I am living right now.',
        'My calendar, my money, and my habits do not yet match the person I claim I am becoming.',
        'I am closer than I was, and still not where I want to be. And I feel that distance every day.',
@@ -3007,10 +3013,13 @@ function selectOption(n,score){
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   var nx=document.getElementById('qNext');if(nx)nx.disabled=false;
-  // Respect prefers-reduced-motion: do not auto-advance, require explicit
-  // NEXT/Enter so screen-reader and AT users are not preempted mid-announce.
+  // Respect prefers-reduced-motion: do not auto-advance.
   var __reduce=false;try{__reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
   if(__reduce){return}
+  // Respect the user's auto-advance preference (toggle in question footer).
+  // Default ON (checked); persisted to localStorage as 'on'/'off'.
+  var __pref='on';try{__pref=localStorage.getItem('hom_auto_advance_pref')||'on'}catch(_e){}
+  if(__pref==='off'){return}
   if(n===1)fireMilestone('first_question_answered');
   if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
   if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');

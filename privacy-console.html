@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Console · House of Mastery</title>
+<meta name="description" content="Inspect and erase every piece of data this device holds for the House of Mastery instruments.">
+<meta name="robots" content="noindex, follow">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://hom.mogire.com/privacy/console">
+<link rel="icon" type="image/png" href="/images/House-of-Mastery-with-Dr-Job-Mogire-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1F3C;--gold:#C9973A;--gold-soft:#E8B85A;--ink:#1A1A1F;--body:#2D2D33;
+  --mid:#52525A;--rule:#E8E8EC;--rule-soft:#F2F2F4;--surface:#FBFBFD;--surface-2:#F5F5F8;
+  --red:#B53A3A;--green:#3A8A4F;--white:#FFFFFF;
+}
+html,body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--surface);color:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{padding:48px 24px 96px}
+main{max-width:760px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+h1{font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.lede{font-size:16px;color:var(--mid);margin-bottom:28px;max-width:560px}
+.lede a{color:var(--gold);text-decoration:underline;text-underline-offset:2px}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px}
+.summary div{background:var(--white);border:1px solid var(--rule);border-radius:12px;padding:16px 18px}
+.summary .label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.summary .value{font-size:24px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:10px;font-family:inherit;font-size:14px;font-weight:700;letter-spacing:.005em;cursor:pointer;border:none;text-decoration:none}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-danger:hover{filter:brightness(1.1)}
+.btn-secondary{background:var(--white);color:var(--ink);border:1px solid var(--rule)}
+.btn-secondary:hover{background:var(--surface-2)}
+.section-h{font-size:14px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin:28px 0 12px}
+.empty{font-size:14px;color:var(--mid);font-style:italic;padding:20px;background:var(--surface-2);border-radius:10px;text-align:center}
+table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+thead th{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);padding:12px 16px;text-align:left;background:var(--surface-2);border-bottom:1px solid var(--rule)}
+tbody td{padding:14px 16px;border-bottom:1px solid var(--rule-soft);font-size:13px;vertical-align:top;line-height:1.5}
+tbody tr:last-child td{border-bottom:none}
+.k-name{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink);font-weight:600;word-break:break-all}
+.k-bytes{font-variant-numeric:tabular-nums;color:var(--mid);font-size:12px;white-space:nowrap}
+.k-preview{color:var(--mid);font-size:12px;font-family:ui-monospace,Menlo,monospace;word-break:break-all;max-width:280px}
+.k-preview.pii{color:var(--red);font-style:italic}
+.btn-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.btn-mini{padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--rule);background:var(--white);color:var(--ink)}
+.btn-mini:hover{background:var(--surface-2);border-color:var(--mid)}
+.btn-mini.danger{color:var(--red);border-color:rgba(181,58,58,.3)}
+.btn-mini.danger:hover{background:rgba(181,58,58,.08);border-color:var(--red)}
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:#fff;padding:14px 22px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;transition:transform .25s,opacity .25s;z-index:200;pointer-events:none}
+.toast.shown{transform:translateX(-50%) translateY(0);opacity:1}
+.foot-link{display:block;margin-top:48px;font-size:13px;color:var(--mid);text-align:center}
+.foot-link a{color:var(--mid);text-decoration:underline;text-underline-offset:2px}
+.foot-link a:hover{color:var(--ink)}
+@media (prefers-color-scheme: dark){
+  :root{--surface:#0F1014;--surface-2:#1A1A1F;--white:#1A1A1F;--ink:#F2F2F4;--body:#D4D4D8;--mid:#9899A0;--rule:#2D2D33;--rule-soft:#1F1F26;--navy:#1A2B4A}
+  body{background:var(--surface);color:var(--body)}
+}
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">House of Mastery · Privacy Console</p>
+  <h1>What this device is holding for you.</h1>
+  <p class="lede">A live inventory of every browser-storage entry the assessments wrote to this device. Nothing here leaves your machine. Delete what you want, when you want. The full <a href="/privacy">privacy policy</a> explains why each key exists.</p>
+
+  <div class="summary">
+    <div><div class="label">Local Storage</div><div class="value" id="lsCount">—</div></div>
+    <div><div class="label">Session Storage</div><div class="value" id="ssCount">—</div></div>
+    <div><div class="label">Cookies</div><div class="value" id="ckCount">—</div></div>
+    <div><div class="label">Approx. bytes</div><div class="value" id="totalBytes">—</div></div>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-danger" type="button" onclick="factoryReset()">Factory reset (clears everything HoM-related)</button>
+    <button class="btn btn-secondary" type="button" onclick="renderAll()">Refresh inventory</button>
+    <a class="btn btn-secondary" href="/">Open KOORA</a>
+    <a class="btn btn-secondary" href="/first-hour">Open The First Hour</a>
+  </div>
+
+  <p class="section-h">Local Storage</p>
+  <div id="lsTable"></div>
+
+  <p class="section-h">Session Storage</p>
+  <div id="ssTable"></div>
+
+  <p class="section-h">Cookies</p>
+  <div id="ckTable"></div>
+
+  <p class="foot-link"><a href="/privacy">Back to the privacy policy</a> · <a href="mailto:mail@mogire.com?subject=Privacy">Email a question</a></p>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// PII detector. Flags raw email + name patterns so the preview is redacted.
+function looksLikeEmail(s){return /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(s)}
+function redact(v){
+  try{
+    if(typeof v!=='string')v=String(v);
+    return v.replace(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g,'<email>')
+            .replace(/"name"\s*:\s*"[^"]+"/g,'"name":"<name>"')
+            .replace(/"email"\s*:\s*"[^"]+"/g,'"email":"<email>"');
+  }catch(_e){return '(unparseable)'}
+}
+function preview(v){
+  var r=redact(v);
+  if(r.length>180)r=r.slice(0,180)+'…';
+  return r;
+}
+function isPii(k,v){
+  if(/email|firstname|lastname|^name$/i.test(k))return true;
+  return looksLikeEmail(typeof v==='string'?v:String(v));
+}
+function bytes(s){try{return new Blob([s]).size}catch(_e){return (s||'').length}}
+function formatBytes(n){if(n<1024)return n+' B';if(n<1024*1024)return (n/1024).toFixed(1)+' KB';return (n/1024/1024).toFixed(2)+' MB'}
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('shown');
+  clearTimeout(window.__toastT);window.__toastT=setTimeout(function(){t.classList.remove('shown')},2200);
+}
+
+function inventoryStorage(store, mountId){
+  var mount=document.getElementById(mountId);
+  var keys=[];for(var i=0;i<store.length;i++){keys.push(store.key(i))}
+  keys.sort();
+  if(!keys.length){mount.innerHTML='<p class="empty">Nothing stored.</p>';return {count:0,bytes:0}}
+  var rows='',totalBytes=0;
+  for(var j=0;j<keys.length;j++){
+    var k=keys[j],v=store.getItem(k)||'';
+    var sz=bytes(k)+bytes(v);totalBytes+=sz;
+    var pii=isPii(k,v);
+    var pv=preview(v);
+    rows+='<tr><td><div class="k-name">'+escHtml(k)+'</div></td>'+
+          '<td class="k-bytes">'+formatBytes(sz)+'</td>'+
+          '<td class="k-preview'+(pii?' pii':'')+'">'+(pii?'(redacted)':escHtml(pv))+'</td>'+
+          '<td><div class="btn-row">'+
+            '<button class="btn-mini" type="button" onclick="copyKey(\''+jsesc(k)+'\',\''+(store===localStorage?'ls':'ss')+'\')">Copy</button>'+
+            '<button class="btn-mini danger" type="button" onclick="deleteKey(\''+jsesc(k)+'\',\''+(store===localStorage?'ls':'ss')+'\')">Delete</button>'+
+          '</div></td></tr>';
+  }
+  mount.innerHTML='<table><thead><tr><th>Key</th><th>Size</th><th>Preview</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>';
+  return {count:keys.length,bytes:totalBytes};
+}
+
+function inventoryCookies(){
+  var mount=document.getElementById('ckTable');
+  var raw=document.cookie||'';
+  var pairs=raw.split(/;\s*/).filter(Boolean);
+  if(!pairs.length){mount.innerHTML='<p class="empty">No cookies set.</p>';return {count:0,bytes:0}}
+  var rows='',totalBytes=0;
+  pairs.sort();
+  for(var i=0;i<pairs.length;i++){
+    var idx=pairs[i].indexOf('=');
+    var k=idx>=0?pairs[i].slice(0,idx):pairs[i];
+    var v=idx>=0?pairs[i].slice(idx+1):'';
+    var sz=bytes(pairs[i]);totalBytes+=sz;
+    var pii=isPii(k,v);
+    rows+='<tr><td><div class="k-name">'+escHtml(k)+'</div></td>'+
+          '<td class="k-bytes">'+formatBytes(sz)+'</td>'+
+          '<td class="k-preview'+(pii?' pii':'')+'">'+(pii?'(redacted)':escHtml(preview(v)))+'</td>'+
+          '<td><div class="btn-row">'+
+            '<button class="btn-mini danger" type="button" onclick="deleteCookie(\''+jsesc(k)+'\')">Delete</button>'+
+          '</div></td></tr>';
+  }
+  mount.innerHTML='<table><thead><tr><th>Cookie</th><th>Size</th><th>Preview</th><th></th></tr></thead><tbody>'+rows+'</tbody></table>';
+  return {count:pairs.length,bytes:totalBytes};
+}
+
+function escHtml(s){var d=document.createElement('div');d.textContent=String(s);return d.innerHTML}
+function jsesc(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'")}
+
+function deleteKey(k,store){
+  try{(store==='ls'?localStorage:sessionStorage).removeItem(k);toast('Deleted '+k);renderAll();}catch(_e){toast('Could not delete')}
+}
+function copyKey(k,store){
+  try{
+    var v=(store==='ls'?localStorage:sessionStorage).getItem(k)||'';
+    navigator.clipboard.writeText(v).then(function(){toast('Copied value to clipboard')},function(){toast('Clipboard blocked')});
+  }catch(_e){toast('Copy failed')}
+}
+function deleteCookie(name){
+  // Wipe at this host on every plausible path. This won't reach cookies set
+  // for parent zones we don't control; the toast advises that case.
+  var paths=['/', '/first-hour/', '/privacy', '/about'];
+  for(var i=0;i<paths.length;i++){
+    document.cookie=name+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path='+paths[i];
+  }
+  document.cookie=name+'=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain='+location.hostname;
+  toast('Removed '+name+' for this host');
+  renderAll();
+}
+function factoryReset(){
+  if(!confirm('Erase every House of Mastery storage entry on this device? This is not reversible.'))return;
+  try{
+    var lsKeys=[];for(var i=0;i<localStorage.length;i++){lsKeys.push(localStorage.key(i))}
+    lsKeys.forEach(function(k){if(/^(koora_|hom_|fh_|HOM_)/.test(k))localStorage.removeItem(k)});
+    var ssKeys=[];for(var j=0;j<sessionStorage.length;j++){ssKeys.push(sessionStorage.key(j))}
+    ssKeys.forEach(function(k){if(/^(koora_|hom_|fh_|HOM_)/.test(k))sessionStorage.removeItem(k)});
+    var cks=document.cookie.split(/;\s*/).filter(Boolean);
+    cks.forEach(function(c){var k=c.split('=')[0];if(/^(_fbp|_fbc|hom_|koora_|fh_)/.test(k))deleteCookie(k)});
+    // Ask the SW to drop its caches too.
+    if(navigator.serviceWorker && navigator.serviceWorker.controller){
+      navigator.serviceWorker.controller.postMessage({type:'CACHE_BUST'});
+    }
+    toast('Factory reset complete');
+    setTimeout(renderAll,200);
+  }catch(_e){toast('Could not finish reset')}
+}
+
+function renderAll(){
+  var ls=inventoryStorage(localStorage,'lsTable');
+  var ss=inventoryStorage(sessionStorage,'ssTable');
+  var ck=inventoryCookies();
+  document.getElementById('lsCount').textContent=String(ls.count);
+  document.getElementById('ssCount').textContent=String(ss.count);
+  document.getElementById('ckCount').textContent=String(ck.count);
+  document.getElementById('totalBytes').textContent=formatBytes(ls.bytes+ss.bytes+ck.bytes);
+}
+renderAll();
+// Listen for SW cache-bust acknowledgements to keep the inventory fresh.
+if(navigator.serviceWorker){
+  navigator.serviceWorker.addEventListener('message', function(e){
+    if(e.data && e.data.type==='CACHE_BUSTED') renderAll();
+  });
+}
+</script>
+</body>
+</html>

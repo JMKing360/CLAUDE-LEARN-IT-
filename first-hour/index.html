@@ -326,7 +326,7 @@ a:hover{color:var(--gold)}
 #progress{position:fixed;top:0;left:0;height:3px;width:0%;background:var(--gold);box-shadow:0 0 8px rgba(201,151,58,.45);z-index:100;transition:width .35s cubic-bezier(.4,0,.2,1)}
 
 /* Six-segment chamber progress ,  visible architecture */
-#chamber-progress{position:sticky;top:46px;left:0;right:0;display:none;justify-content:center;gap:6px;padding:8px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
+#chamber-progress{position:sticky;top:var(--nav-h,46px);left:0;right:0;display:none;justify-content:center;gap:6px;padding:8px 22px;z-index:80;background:rgba(251,251,253,.92);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--rule-soft);pointer-events:none}
 #chamber-progress.shown{display:flex}
 .cp-seg{flex:0 1 70px;max-width:70px;height:3px;border-radius:var(--r-md);background:var(--rule);position:relative;transition:background .3s ease}
 .cp-seg.done{background:var(--navy)}
@@ -483,6 +483,9 @@ main{max-width:760px;margin:0 auto;padding:0 28px}
 .q-next:hover:not([disabled]){color:var(--navy)}
 .q-next[disabled]{opacity:.4;cursor:not-allowed;font-weight:600;color:var(--mid)}
 .q-keyhint{font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:11px;font-weight:500;color:var(--dim);margin-top:18px;letter-spacing:.005em}
+.q-autoadvance{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-size:12px;font-weight:500;color:var(--mid);cursor:pointer;user-select:none;letter-spacing:.005em}
+.q-autoadvance input[type=checkbox]{width:14px;height:14px;accent-color:var(--gold);cursor:pointer;margin:0}
+.q-autoadvance:hover{color:var(--ink)}
 
 /* ACK */
 #screen-agency{padding:88px 0 140px}
@@ -1201,9 +1204,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="cover-letter__body">
-      <p>Most assessments flatter you. This one will not. It shows you the patterns running underneath your life — the ones you have not let yourself say out loud.</p>
-      <p>Nothing here is public. Be honest with yourself for fifteen minutes. Carry what you find. Bring it back, or close the tab. Both are honest answers.</p>
-      <p>The one thing I would ask you not to do: recognise yourself in the result, then forget. <em>That is the pattern this audit is built to interrupt.</em></p>
+      <p>I built this for the part of life nobody else asks about. Not the résumé. The patterns running underneath, the ones you have not let yourself say out loud.</p>
+      <p>The audit will not flatter you. It will not wound you. Answer it as the person you actually are today. <em>No performance needed.</em></p>
+      <p>Take fifteen minutes. Be specific. Be honest.</p>
     </div>
     <div class="cover-letter__sig">
       Rooting for you.
@@ -1298,6 +1301,9 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
     <button class="q-next" id="qNext" onclick="nextQuestion()" disabled>Next &rarr;</button>
   </div>
   <p class="q-keyhint" id="qKeyhint">Press <b>A</b>, <b>B</b>, <b>C</b>, or <b>D</b>, or tap. Then <b>Next</b> (or wait).</p>
+  <label class="q-autoadvance" id="qAutoadvance">
+    <input type="checkbox" id="qAutoadvanceToggle" checked> Auto-advance after each answer
+  </label>
 </section>
 
 <!-- ACK -->
@@ -1315,7 +1321,7 @@ src="https://www.facebook.com/tr?id=748998691952331&ev=PageView&noscript=1"
 
 <section class="screen" id="screen-ack">
   <h2 class="ack-h1" id="ackH1">You finished.</h2>
-  <p class="ack-text" id="ackText">Fifty-four items, plus a six-question agency check. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
+  <p class="ack-text" id="ackText">Fifty-four items. Plus six on agency. That is harder than it sounds, especially the honest answers. Take one breath. Stretch and grab some water. <b>Are you ready to see your result?</b></p>
   <button class="btn-primary" onclick="afterAck()" style="max-width:280px;background:var(--gold);color:var(--navy);font-weight:800;letter-spacing:.05em">SHOW ME :)</button>
 </section>
 
@@ -2291,10 +2297,12 @@ function selectOption(n,score){
   var opts=document.querySelectorAll('#qOptions .opt');
   for(var i=0;i<opts.length;i++)opts[i].classList.toggle('sel',OPTIONS[i].score===score);
   var nx=document.getElementById('qNext');if(nx)nx.disabled=false;
-  // Respect prefers-reduced-motion: do not auto-advance, require explicit
-  // NEXT/Enter so screen-reader and AT users are not preempted mid-announce.
+  // Respect prefers-reduced-motion: do not auto-advance.
   var __reduce=false;try{__reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches}catch(_e){}
   if(__reduce){return}
+  // Respect the user's auto-advance preference (toggle in question footer).
+  var __pref='on';try{__pref=localStorage.getItem('hom_auto_advance_pref')||'on'}catch(_e){}
+  if(__pref==='off'){return}
   if(n===1)fireMilestone('first_question_answered');
   if(n>=Math.floor(TOTAL/4))fireMilestone('quarter_complete');
   if(n>=Math.floor(TOTAL/2))fireMilestone('half_complete');
