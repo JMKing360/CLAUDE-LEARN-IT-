@@ -36,7 +36,10 @@
 export async function onRequest(context) {
   const { request, env } = context;
   if (request.method !== 'POST') {
-    return new Response('Method Not Allowed', { status: 405, headers: { 'Allow': 'POST' } });
+    return new Response(JSON.stringify({ ok: false, error: 'method not allowed', allow: 'POST' }), {
+      status: 405,
+      headers: { 'Content-Type': 'application/json; charset=utf-8', 'Allow': 'POST' }
+    });
   }
 
   // Auth: shared secret (bearer). Operator sets CAPI_SHARED_SECRET in

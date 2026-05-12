@@ -146,6 +146,17 @@ function renderSoundbiteCanon() {
   return SOUNDBITES_CANON.map((s, i) => `  ${i + 1}. "${s.text}"`).join('\n');
 }
 
+// Cloudflare Pages Functions routes the method-specific handler first; this
+// onRequest fallback fires for GET / HEAD / OPTIONS / etc. and returns a
+// JSON 405 so the error surface is uniform with the rest of the app. Allow
+// header per HTTP spec.
+export async function onRequest(context) {
+  return new Response(JSON.stringify({ ok: false, error: 'method not allowed', allow: 'POST' }), {
+    status: 405,
+    headers: { 'Content-Type': 'application/json; charset=utf-8', 'Allow': 'POST' }
+  });
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -613,9 +624,36 @@ function redactForPrompt(rec) {
       if (safeName) out.name = safeName;
       continue;
     }
-    out[k] = rec[k];
+    out[k] = sanitiseValue(rec[k]);
   }
   return out;
+}
+
+// Defence-in-depth at the input boundary against prompt injection via the
+// participant-controlled free-text fields (pain_text, pain_text_5y, intent,
+// examen_selected, unfinished_selected, answers, etc.). The redacted record
+// is serialised inside a markdown ```json fence; without this sanitiser a
+// participant could embed a triple-backtick to "close" the fence early and
+// pass instructions as if they were system text. Control chars are stripped
+// because they carry no semantic content but can hide steering payloads.
+// Length cap prevents prompt-stuffing / bloat attacks. Layer 6's boundary
+// rules remain the model's second line; this is the first line.
+function sanitiseFreeText(s) {
+  return String(s)
+    .replace(/`/g, "'")
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')
+    .slice(0, 4000);
+}
+
+function sanitiseValue(v) {
+  if (typeof v === 'string') return sanitiseFreeText(v);
+  if (Array.isArray(v)) return v.map(sanitiseValue);
+  if (v && typeof v === 'object') {
+    const o = {};
+    for (const k in v) o[k] = sanitiseValue(v[k]);
+    return o;
+  }
+  return v;
 }
 
 // ────────────────────── Anthropic call ──────────────────────
@@ -655,8 +693,24 @@ async function retrieveRag({ rec, prompt, instrument, env }) {
   const queryParts = [];
   if (instrument === 'first-hour') {
     if (rec.loud) queryParts.push(`primary chamber: ${rec.loud}`);
+    if (rec.loud_level) queryParts.push(`level: ${rec.loud_level}`);
+    if (Array.isArray(rec.unfinished_selected) && rec.unfinished_selected.length) {
+      queryParts.push(`unfinished named: ${rec.unfinished_selected.slice(0, 6).join(' · ')}`);
+    }
+    if (Array.isArray(rec.examen_selected) && rec.examen_selected.length) {
+      queryParts.push(`examen named: ${rec.examen_selected.slice(0, 6).join(' · ')}`);
+    }
+    if (Array.isArray(rec.agency_red_axes) && rec.agency_red_axes.length) {
+      queryParts.push(`weakest agency axes: ${rec.agency_red_axes.join(' · ')}`);
+    }
   } else {
     if (rec.primary_reflex) queryParts.push(`primary reflex: ${rec.primary_reflex}`);
+    if (rec.primary_level) queryParts.push(`level: ${rec.primary_level}`);
+    if (rec.active_stage) queryParts.push(`arc stage: ${rec.active_stage}`);
+    if (typeof rec.day === 'number') queryParts.push(`day of path: ${rec.day}`);
+    if (typeof rec.enrolled === 'boolean') queryParts.push(`enrolled: ${rec.enrolled ? 'yes' : 'not yet'}`);
+    if (rec.cov_pulse === true) queryParts.push('covenant pulse: alive');
+    else if (rec.cov_pulse === false) queryParts.push('covenant pulse: not yet');
   }
   if (rec.pain_text) queryParts.push(`thirty-day cost: ${rec.pain_text.slice(0, 400)}`);
   if (rec.pain_text_5y) queryParts.push(`five-year cost: ${rec.pain_text_5y.slice(0, 400)}`);
