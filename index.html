@@ -898,12 +898,31 @@ body.footer-hidden footer{display:none}
 .cov-load-gauge__capsule[data-load="3"] .cov-load-gauge__capsule__text{color:var(--red)}
 .cov-load-gauge__capsule[data-load="4"]{border-color:var(--red);box-shadow:0 0 0 4px rgba(178,34,34,.32);animation:covLoadPulse 1.8s ease-in-out infinite}
 .cov-load-gauge__capsule[data-load="4"] .cov-load-gauge__capsule__text{color:var(--red)}
+/* Levels 5 and 6: the outer gauge fills with a fixed brand red (NOT the
+   --red token, which flips to light pink in dark mode — we want a solid
+   alarming red regardless of mode). White text on top reads correctly on
+   both white and dark page backgrounds because the box itself is red. */
+.cov-load-gauge[data-load="5"],.cov-load-gauge[data-load="6"]{background:#B22222;border-color:#B22222;box-shadow:0 4px 16px rgba(178,34,34,.34)}
+.cov-load-gauge[data-load="5"] .cov-load-gauge__label,
+.cov-load-gauge[data-load="6"] .cov-load-gauge__label{color:#FFFFFF;letter-spacing:.20em}
+.cov-load-gauge[data-load="5"] .cov-load-gauge__capsule,
+.cov-load-gauge[data-load="6"] .cov-load-gauge__capsule{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55);box-shadow:none;animation:none}
+.cov-load-gauge[data-load="5"] .cov-load-gauge__capsule__count,
+.cov-load-gauge[data-load="6"] .cov-load-gauge__capsule__count{color:#FFFFFF}
+.cov-load-gauge[data-load="5"] .cov-load-gauge__capsule__text,
+.cov-load-gauge[data-load="6"] .cov-load-gauge__capsule__text{color:#FFFFFF}
+.cov-load-gauge[data-load="6"]{animation:covLoadPulseFull 1.6s ease-in-out infinite}
 @keyframes covLoadPulse{
   0%,100%{box-shadow:0 0 0 4px rgba(178,34,34,.22)}
   50%{box-shadow:0 0 0 8px rgba(178,34,34,.10)}
 }
+@keyframes covLoadPulseFull{
+  0%,100%{box-shadow:0 4px 16px rgba(178,34,34,.34)}
+  50%{box-shadow:0 6px 26px rgba(178,34,34,.62)}
+}
 @media(prefers-reduced-motion:reduce){
   .cov-load-gauge__capsule[data-load="4"]{animation:none}
+  .cov-load-gauge[data-load="6"]{animation:none}
 }
 @media(max-width:560px){
   .cov-load-gauge{padding:12px 14px;gap:10px;flex-wrap:wrap}
@@ -2428,15 +2447,20 @@ function renderCovLoadGauge(covIdx){
   var capsule=document.getElementById('covLoadCapsule');
   var countEl=document.getElementById('covLoadCount');
   var textEl=document.getElementById('covLoadText');
+  var gauge=document.getElementById('covLoadGauge');
   if(!capsule||!countEl||!textEl)return;
   var n=document.querySelectorAll('#covEntryList input[type=checkbox][data-cov="'+covIdx+'"]:checked').length;
-  var bucket=n>=4?4:n;
-  var labels={0:'NONE TICKED',1:'LIGHT LOAD',2:'MEDIUM LOAD',3:'HEAVY LOAD',4:'VERY HEAVY'};
+  // Six covenant items per entry day, so bucket scales 0..6. Beyond level 4
+  // the escalation is signalled with a full red fill on the outer gauge
+  // (driven by data-load on .cov-load-gauge, not just the capsule).
+  var bucket=Math.min(6,n);
+  var labels={0:'NONE TICKED',1:'LIGHT LOAD',2:'MEDIUM LOAD',3:'HEAVY LOAD',4:'VERY HEAVY',5:'CRITICAL',6:'BREAKING POINT'};
   // Visual update fires immediately; aria-live text update is debounced 600ms
   // so the screen reader announces only the steady-state value once the user
   // pauses ticking. Capsule data-load and the visible count both update
   // immediately for sighted users.
   capsule.setAttribute('data-load',String(bucket));
+  if(gauge)gauge.setAttribute('data-load',String(bucket));
   countEl.textContent=String(n);
   // Debounce the live-region text so rapid clicks don't stack announcements.
   if(__covLoadGaugeDebounce){clearTimeout(__covLoadGaugeDebounce)}
